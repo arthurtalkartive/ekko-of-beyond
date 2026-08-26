@@ -1209,6 +1209,35 @@ function pulseReticle(){
   reticleTimer = setTimeout(() => r.classList.remove('on'), 2600);
 }
 
+/* Designe le skyculture Ekko comme culture active, puis verifie que les
+   figures ont bien ete creees. La designation est rejouee tant que rien
+   n'apparait : le JSON et le markdown arrivent de facon asynchrone, et
+   reactiver une culture deja active est sans effet de bord — le moteur
+   retire les figures existantes avant de les recreer. */
+function activateEkkoSkyculture(stel){
+  const designate = function(){
+    try{ stel.core.skycultures.current_id = 'ekko'; }catch(e){}
+  };
+  designate();
+  let tries = 0;
+  const timer = setInterval(function(){
+    tries++;
+    let ok = false;
+    try{ ok = !!stel.getObj('CON ekko UMa'); }catch(e){}
+    if(ok){
+      clearInterval(timer);
+      return;
+    }
+    if(tries > 40){          /* environ 20 s, puis on abandonne proprement */
+      clearInterval(timer);
+      console.warn('[ekko] skyculture non active : verifiez /skyculture/ekko/index.json et description.md');
+      setStatus('Figures indisponibles - voir la console');
+      return;
+    }
+    designate();
+  }, 500);
+}
+
 function applyEkkoFilters(stel){
   const core = stel.core;
   const set = fn => { try{ fn(); }catch(e){} };
@@ -1271,13 +1300,21 @@ function boot(lat, lon){
         ]).catch(e => console.warn('[ekko] Afacad non chargée dans le moteur :', e));
 
         stel.core.stars.addDataSource({ url: SKYDATA + 'stars' });
-        /* Skyculture Ekko : nos 53 figures et elles seules, avec leurs noms
-           français portés par les données — plus besoin de traduire les
-           constellations. Absence du bloc « edges » : les frontières en
-           pointillés ne sont plus tracées.
-           Pour revenir aux 88 figures occidentales, remplacer cette ligne par :
+        /* Skyculture Ekko : nos 53 figures et elles seules, noms français
+           portés par les données. Absence du bloc « edges » : plus de
+           frontières en pointillés.
+
+           Deux subtilités du moteur, relevées dans skycultures.c :
+           1. il n'auto-active une culture que si son URL se termine par
+              « western ». Pour toute autre, il faut désigner soi-même la
+              culture active via current_id ;
+           2. l'activation n'a lieu qu'une fois description.md téléchargé,
+              et la culture doit déjà être désignée active à cet instant.
+
+           Pour revenir aux 88 figures occidentales :
            stel.core.skycultures.addDataSource({ url: SKYDATA + 'skycultures/western', key: 'western' }); */
         stel.core.skycultures.addDataSource({ url: '/skyculture/ekko', key: 'ekko' });
+        activateEkkoSkyculture(stel);
         /* fond de Voie lactée */
         stel.core.milkyway.addDataSource({ url: SKYDATA + 'surveys/milkyway' });
         /* textures de surface : seules la Lune et le Soleil en ont une.
