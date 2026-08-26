@@ -1013,7 +1013,10 @@ const IAU = {
   her:'Her', crb:'CrB', cyg:'Cyg', lyr:'Lyr', aql:'Aql', oph:'Oph',
   ser:'Ser', del:'Del', sge:'Sge',
   and:'And', per:'Per', peg:'Peg', cet:'Cet', tri:'Tri', psa:'PsA',
-  cru:'Cru', cen:'Cen', car:'Car'
+  cru:'Cru', cen:'Cen', car:'Car',
+  /* Ces quatre-là n'existent dans aucun catalogue : le skyculture Ekko leur
+     donne un code propre, ce qui leur vaut désormais tracé et sélection. */
+  lmc:'LMC', tde:'TDE', tdh:'TDH', hdh:'HDH'
 };
 const BY_IAU = {};
 CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
@@ -1129,7 +1132,7 @@ function selectInEngine(idx, delayMs){
   selTimer = setTimeout(() => {
     try{
       if(!iau){ STEL.core.selection = null; return; }
-      const obj = STEL.getObj('CON western ' + iau) || STEL.getObj('NAME ' + iau);
+      const obj = STEL.getObj('CON ekko ' + iau) || STEL.getObj('NAME ' + iau);
       STEL.core.selection = obj || null;
     }catch(e){ console.warn('[ekko] sélection impossible :', e); }
   }, delayMs || 0);
@@ -1268,7 +1271,13 @@ function boot(lat, lon){
         ]).catch(e => console.warn('[ekko] Afacad non chargée dans le moteur :', e));
 
         stel.core.stars.addDataSource({ url: SKYDATA + 'stars' });
-        stel.core.skycultures.addDataSource({ url: SKYDATA + 'skycultures/western', key: 'western' });
+        /* Skyculture Ekko : nos 53 figures et elles seules, avec leurs noms
+           français portés par les données — plus besoin de traduire les
+           constellations. Absence du bloc « edges » : les frontières en
+           pointillés ne sont plus tracées.
+           Pour revenir aux 88 figures occidentales, remplacer cette ligne par :
+           stel.core.skycultures.addDataSource({ url: SKYDATA + 'skycultures/western', key: 'western' }); */
+        stel.core.skycultures.addDataSource({ url: '/skyculture/ekko', key: 'ekko' });
         /* fond de Voie lactée */
         stel.core.milkyway.addDataSource({ url: SKYDATA + 'surveys/milkyway' });
         /* textures de surface : seules la Lune et le Soleil en ont une.
