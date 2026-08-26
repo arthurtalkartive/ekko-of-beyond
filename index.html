@@ -984,7 +984,11 @@ const CATS = {
    Libellés : police Afacad chargée dans le moteur + noms français
    ============================================================ */
 
-const ENGINE_WASM = '/vendor/stellarium-web-engine.wasm';
+/* Nom versionne : les fichiers de /vendor sont servis avec un cache
+   immuable d'un an, donc toute modification du binaire exige un nouveau
+   nom, sinon le navigateur continue de servir l'ancien depuis son cache.
+   Increment a chaque nouveau patch du moteur. */
+const ENGINE_WASM = '/vendor/stellarium-web-engine-ekko1.wasm';
 const SKYDATA = 'https://cdn.jsdelivr.net/gh/liudonghua123/stellarium-web-engine@453e155185a6060711e533f9bf8d0334b2ae862f/skydata/';
 const AFACAD_TTF = '/vendor/Afacad-variable.ttf';
 
@@ -1248,6 +1252,10 @@ function applyEkkoFilters(stel){
   set(()=>{ core.constellations.images_visible  = false; });
   set(()=>{ core.constellations.bounds_visible  = false; });
   set(()=>{ core.constellations.lines_animation = false; });
+  /* Par defaut le moteur n'affiche QUE la figure pointee
+     (show_only_pointed = true dans constellations_init). C'est ce reglage,
+     et lui seul, qui ne laissait voir qu'une constellation a la fois. */
+  set(()=>{ core.constellations.show_only_pointed = false; });
   set(()=>{ core.constellations.lines_color = [0.890, 0.890, 0.769, 0.55]; });
 
   /* noms d'étoiles, également traduits */
