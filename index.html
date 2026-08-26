@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Ekko of Beyond · Vue du ciel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#E3E3C4;
+  --cream-50:rgba(227,227,196,.5);
+  --cream-25:rgba(227,227,196,.25);
+  --ink:#060A10;
+  --card:#08141D;
+  --w-50:rgba(255,255,255,.5);
+  --w-30:rgba(255,255,255,.3);
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  /* géométrie du header, reprise de la maquette */
+  --hd-h:89px;      /* hauteur de la barre */
+  --notch-d:9px;    /* profondeur de la défonce */
+  --notch-w:348px;  /* largeur totale de la défonce */
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:'Afacad',system-ui,sans-serif;color:#fff;
+  background:linear-gradient(180deg,#000 0%,#0A1931 100%);
+}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+/* ================= CIEL ================= */
+#stel-canvas{
+  position:fixed;inset:0;width:100%;height:100%;z-index:1;touch-action:none;
+  /* ramène tracés + étoiles vers #E3E3C4 (couleur codée en dur dans le moteur) */
+  filter:sepia(.85) hue-rotate(17deg) saturate(.55) brightness(1.12);
+}
+#fallback-stars{position:fixed;inset:0;z-index:0;pointer-events:none;transition:opacity 1.2s}
+.horizon-glow{
+  position:fixed;left:50%;bottom:-46vh;transform:translateX(-50%);
+  width:151vw;height:92vh;z-index:2;pointer-events:none;mix-blend-mode:color-dodge;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(58,110,128,.55) 0%,rgba(28,64,84,.22) 42%,transparent 72%);
+}
+
+/* ================= HEADER ================= */
+.hd-bg{
+  position:fixed;top:0;left:0;right:0;height:calc(var(--hd-h) + var(--safe-t));z-index:9;pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(4,7,12,.97) 0%,
+    rgba(5,9,15,.94) 42%,
+    rgba(8,18,33,.86) 78%,
+    rgba(10,25,49,.74) 100%);
+}
+header{
+  position:fixed;top:0;left:0;right:0;z-index:11;
+  height:calc(var(--hd-h) + var(--safe-t));
+  padding:calc(27px + var(--safe-t)) 80px 27px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+/* bloc miroir invisible : centre le logo exactement comme dans Figma */
+.hd-mirror{opacity:0;pointer-events:none}
+.account{display:flex;align-items:center;gap:15px;flex:none}
+.account .ico{width:29.33px;height:30px;flex:none;display:block}
+.account .ico svg{width:100%;height:100%;display:block;overflow:visible}
+a.account{text-decoration:none}
+.account .lbl{font-weight:700;font-size:18px;line-height:normal;text-transform:uppercase;color:var(--cream);white-space:nowrap}
+.logo{width:324.7px;height:45px;flex:none;display:block}
+.logo svg{width:100%;height:100%;display:block}
+
+/* ---- la défonce : hairline + tab centré ---- */
+.hd-edge{
+  position:fixed;left:0;right:0;top:calc(var(--hd-h) + var(--safe-t) + 1px);
+  height:var(--notch-d);z-index:11;pointer-events:none;
+  display:flex;align-items:flex-start;justify-content:center;
+}
+.hd-edge .side{flex:1 1 auto;height:1px;background:var(--cream-50)}
+.hd-edge .notch{flex:none;width:var(--notch-w);height:auto;display:block;overflow:visible}
+/* la forme suspendue sous le logo (arc + point + filet) */
+.hd-drop{
+  position:fixed;left:50%;transform:translateX(-50%);
+  top:calc(var(--hd-h) + var(--safe-t) + var(--notch-d) + 1px);
+  width:68px;height:53px;z-index:11;pointer-events:none;overflow:hidden;
+}
+.hd-drop svg{width:100%;height:100%;display:block;overflow:visible}
+
+/* ================= TOGGLE ================= */
+.toggle-wrap{
+  position:fixed;left:50%;transform:translateX(-50%);
+  top:calc(162px + var(--safe-t));z-index:11;
+  display:flex;align-items:center;
+}
+.orn{display:flex;align-items:center;gap:5px;flex:none}
+.orn .d5{width:5px;height:5px;border-radius:50%;background:var(--cream);flex:none}
+.orn .r7{width:7px;height:7px;border-radius:50%;border:1px solid var(--cream);flex:none}
+.orn .ln{width:20px;height:1px;background:var(--cream-50);flex:none}
+.toggle{
+  display:flex;align-items:stretch;flex:none;
+  border:1px solid var(--cream-50);border-radius:20000px;
+  background:linear-gradient(180deg,rgba(227,227,196,.03) 0%,rgba(227,227,196,.10) 100%);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.tg{
+  display:flex;align-items:center;justify-content:center;
+  padding:15px 50px;border-radius:20000px;
+  font-weight:700;font-size:18px;line-height:normal;text-transform:uppercase;text-align:center;
+  color:var(--cream);opacity:.5;white-space:nowrap;transition:opacity .2s,background .2s;
+}
+.tg + .tg{padding-left:40px}
+.tg.on{background:var(--cream);color:var(--ink);opacity:1;padding-left:50px;padding-right:50px}
+.tg:not(.on):hover{opacity:.75}
+
+/* ================= ZOOM ================= */
+.zoom{position:fixed;right:39.7px;bottom:calc(40px + var(--safe-b));z-index:11;display:flex;flex-direction:column;gap:5px}
+.zbtn{
+  width:50px;height:50px;border-radius:50%;flex:none;
+  border:1.064px solid var(--cream);
+  background:linear-gradient(180deg,rgba(227,227,196,.04) 0%,rgba(227,227,196,.2) 100%);
+  display:flex;align-items:center;justify-content:center;transition:background .2s}
+.zbtn:active{background:rgba(227,227,196,.32)}
+.zbtn svg{width:24px;height:24px;display:block}
+
+/* ================= CARTE ================= */
+.card-row{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(40px + var(--safe-b));z-index:11;
+  display:flex;align-items:center;
+}
+.nav-side{display:flex;align-items:center;gap:5px;height:54px;flex:none}
+.nav-side .ln{width:40px;height:1px;background:var(--w-50);flex:none}
+.nav-side .d5{width:5px;height:5px;border-radius:50%;background:#fff;flex:none}
+.nav-side .r7{width:7px;height:7px;border-radius:50%;border:1px solid #fff;flex:none}
+.nav-btn{
+  width:50px;height:50px;border-radius:50%;flex:none;
+  border:1px solid var(--w-50);background:rgba(6,10,16,.45);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s}
+.nav-btn:active{background:rgba(227,227,196,.16);border-color:var(--cream)}
+.nav-btn svg{width:16px;height:16px;display:block}
+.card{
+  width:560px;flex:none;position:relative;
+  border:1px solid var(--w-50);border-radius:8px;
+  padding:20px 30px;display:flex;gap:30px;align-items:center;
+  background:
+    radial-gradient(118% 150% at 88% -28%,rgba(46,82,104,.55) 0%,rgba(20,42,58,.18) 46%,transparent 72%),
+    var(--card);
+  box-shadow:0 20px 54px rgba(0,0,0,.5);
+}
+.medallion{width:100px;height:100px;flex:none;opacity:.75;position:relative}
+.medallion svg{width:100%;height:100%;display:block}
+.card-body{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:7px}
+.chips{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.chip{
+  display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  padding:2px 10px;border-radius:2000px;
+  font-weight:700;font-size:10px;line-height:1.5;text-transform:uppercase;color:#fff;white-space:nowrap;flex:none}
+.chip.cat{background:var(--w-30);opacity:.75}
+.chip.vis{border:1px solid #fff}
+.chip.vis svg{width:9.5px;height:10px;display:block;flex:none}
+.card-txt{display:flex;flex-direction:column;align-items:flex-start;opacity:.75;width:100%}
+.c-title{font-weight:700;font-size:22px;line-height:normal;text-transform:uppercase;width:100%}
+.c-desc{font-weight:400;font-size:14px;line-height:1.2;width:100%;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.c-state{display:flex;align-items:center;gap:5px;width:368px;max-width:100%;margin-top:0}
+.c-state .ln{flex:1 1 0;min-width:0;height:1px;background:var(--w-50)}
+.c-state .r7{width:7px;height:7px;border-radius:50%;border:1px solid #fff;flex:none}
+.c-state .d5{width:5px;height:5px;border-radius:50%;background:#fff;flex:none}
+.c-state .pill{
+  border:1px solid var(--w-30);border-radius:2000px;padding:2px 10px;flex:none;
+  font-weight:700;font-size:10px;line-height:1.5;text-transform:uppercase;color:#fff;white-space:nowrap}
+.c-state .pill.got{border-color:var(--cream-50);color:var(--cream)}
+
+.c-pos{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(152px + var(--safe-b));z-index:11;
+  font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cream-50);pointer-events:none;white-space:nowrap}
+
+/* ================= RETICULE ================= */
+#reticle{
+  position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.84);
+  width:min(44vmin,400px);height:min(44vmin,400px);z-index:5;pointer-events:none;
+  opacity:0;transition:opacity .5s ease,transform .9s cubic-bezier(.2,.9,.3,1)}
+#reticle.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#reticle svg{width:100%;height:100%;overflow:visible}
+#reticle .spin{transform-origin:50% 50%;animation:ret-spin 34s linear infinite}
+@keyframes ret-spin{to{transform:rotate(360deg)}}
+
+/* ================= STATUT ================= */
+#status{
+  position:fixed;left:50%;transform:translateX(-50%);top:calc(232px + var(--safe-t));z-index:12;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-50);
+  background:rgba(6,10,16,.6);border:1px solid var(--cream-25);border-radius:2000px;
+  padding:8px 18px;backdrop-filter:blur(8px);transition:opacity .8s;text-align:center;max-width:88vw}
+#status.off{opacity:0;pointer-events:none}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1180px){
+  header{padding-left:32px;padding-right:32px}
+  .hd-mirror{display:none}
+  header{justify-content:center;position:fixed}
+  .account{position:fixed;right:32px;top:calc(27px + var(--safe-t));z-index:12}
+}
+@media (max-width:820px){
+  .c-pos{bottom:calc(118px + var(--safe-b));font-size:10px}
+  :root{--hd-h:72px;--notch-w:210px;--notch-d:7px}
+  header{padding:calc(18px + var(--safe-t)) 18px 18px}
+  .logo{width:220px;height:30.5px}
+  .account{right:18px;top:calc(20px + var(--safe-t));gap:0}
+  a.account{text-decoration:none}
+.account .lbl{display:none}
+  .account .ico{width:26px;height:26.6px}
+  .hd-drop{width:54px;height:42px}
+  .toggle-wrap{top:calc(112px + var(--safe-t))}
+  .tg{padding:11px 26px;font-size:14px}
+  .tg + .tg{padding-left:20px}
+  .tg.on{padding-left:26px;padding-right:26px}
+  .orn .ln{width:12px}
+  #status{top:calc(172px + var(--safe-t));font-size:11px;padding:7px 14px}
+  .zoom{right:14px;bottom:calc(196px + var(--safe-b))}
+  .zbtn{width:44px;height:44px}
+  .zbtn svg{width:20px;height:20px}
+  .card-row{width:100%;padding:0 12px;bottom:calc(16px + var(--safe-b))}
+  .nav-side{position:absolute;top:50%;transform:translateY(-50%);z-index:3;gap:0}
+  .nav-side .ln,.nav-side .d5,.nav-side .r7{display:none}
+  .nav-side.prev{left:20px}
+  .nav-side.next{right:20px}
+  .nav-btn{width:40px;height:40px;background:rgba(6,10,16,.72)}
+  .card{width:100%;padding:16px 14px;gap:14px}
+  .medallion{width:66px;height:66px}
+  .c-title{font-size:18px}
+  .c-desc{font-size:13px}
+  .c-state{width:100%}
+}
+@media (max-width:400px){
+  .medallion{width:56px;height:56px}
+  .chips{flex-wrap:wrap;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<canvas id="fallback-stars"></canvas>
+<canvas id="stel-canvas"></canvas>
+<div class="horizon-glow"></div>
+
+<div id="reticle" aria-hidden="true">
+  <svg viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="94" fill="none" stroke="rgba(227,227,196,.26)" stroke-width="1"/>
+    <g class="spin"><circle cx="100" cy="100" r="82" fill="none" stroke="rgba(227,227,196,.5)" stroke-width="1" stroke-dasharray="3 9"/></g>
+    <path d="M100 6v14M100 180v14M6 100h14M180 100h14" stroke="rgba(227,227,196,.6)" stroke-width="1"/>
+  </svg>
+</div>
+
+<div class="hd-bg"></div>
+<header>
+  <div class="account hd-mirror" aria-hidden="true">
+    <span class="ico">
+<svg viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.662 22.1333L8.19531 10.6666H22.5953L15.662 22.1333Z" stroke="#E3E3C4" stroke-width="0.8"/>
+<path d="M15.6618 30L0.728516 6.53333H30.0618L15.6618 30Z" stroke="#E3E3C4" stroke-width="0.8"/>
+<path d="M15.6621 0V26.9333" stroke="#E3E3C4" stroke-width="0.8"/>
+<circle cx="15.3949" cy="13.6" r="13.2" stroke="#E3E3C4" stroke-width="0.8"/>
+</svg>
+    </span>
+    <span class="lbl">Mon compte</span>
+  </div>
+
+  <div class="logo">
+<svg viewBox="0 0 325 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M70.3945 21.9824C70.3945 20.039 70.7172 18.2182 71.3625 16.5198C72.0232 14.8214 72.9297 13.3517 74.0821 12.1106C75.2345 10.8695 76.648 9.88962 78.3228 9.17108C80.0129 8.45253 81.849 8.09326 83.8311 8.09326C87.7645 8.09326 90.9834 9.4242 93.4879 12.0861C95.9923 14.7316 97.2446 18.0304 97.2446 21.9824C97.2446 23.9257 96.9142 25.7547 96.2535 27.4694C95.6082 29.1678 94.7017 30.6376 93.534 31.8787C92.3662 33.1198 90.9373 34.0996 89.2472 34.8182C87.5724 35.5367 85.7517 35.896 83.785 35.896C81.1883 35.896 78.8605 35.2836 76.8017 34.0588C74.7581 32.8177 73.1756 31.1438 72.0539 29.0372C70.9477 26.9305 70.3945 24.5789 70.3945 21.9824ZM77.7927 21.9824C77.7927 24.0074 78.3535 25.6649 79.4751 26.955C80.6121 28.2288 82.0487 28.8657 83.785 28.8657C85.5366 28.8657 86.9808 28.2206 88.1178 26.9305C89.2702 25.6404 89.8464 23.991 89.8464 21.9824C89.8464 19.9737 89.2702 18.3325 88.1178 17.0587C86.9808 15.7686 85.5366 15.1236 83.785 15.1236C82.0487 15.1236 80.6121 15.7686 79.4751 17.0587C78.3535 18.3325 77.7927 19.9737 77.7927 21.9824Z" fill="#E3E3C4"/>
+<path opacity="0.5" d="M98.1367 8.08093C102.07 8.08093 105.289 9.41127 107.794 12.0731C110.298 14.7186 111.55 18.0177 111.55 21.9696C111.55 23.9129 111.22 25.7422 110.56 27.4569C109.914 29.1552 109.007 30.625 107.84 31.8661C106.672 33.1072 105.243 34.087 103.553 34.8055C101.878 35.5241 100.057 35.8836 98.0908 35.8837C95.4943 35.8837 93.1662 35.2714 91.1074 34.0468C91.0574 34.0164 91.0085 33.9839 90.959 33.953C91.9265 33.3709 92.7869 32.6821 93.5381 31.8837C94.4799 30.8826 95.2507 29.7321 95.8525 28.4335C96.5333 28.712 97.279 28.8534 98.0908 28.8534C99.8423 28.8533 101.287 28.2079 102.424 26.9178C103.576 25.6278 104.152 23.9781 104.152 21.9696C104.152 19.9611 103.576 18.3195 102.424 17.0458C101.287 15.7558 99.8423 15.1113 98.0908 15.1112C97.2861 15.1112 96.5461 15.251 95.8701 15.5282C95.2718 14.2808 94.4795 13.1346 93.4912 12.0907C92.7186 11.2695 91.8774 10.5755 90.9688 10.0077C91.4901 9.69283 92.0437 9.41012 92.6289 9.15906C94.319 8.44058 96.1547 8.08093 98.1367 8.08093Z" fill="#E3E3C4"/>
+<path opacity="0.25" d="M112.291 8.08093C116.224 8.08093 119.444 9.41136 121.948 12.0731C124.453 14.7186 125.705 18.0177 125.705 21.9696C125.705 23.9129 125.375 25.7422 124.714 27.4569C124.069 29.1553 123.162 30.625 121.994 31.8661C120.826 33.1072 119.397 34.087 117.707 34.8055C116.032 35.524 114.212 35.8837 112.245 35.8837C109.649 35.8836 107.321 35.2715 105.262 34.0468C105.231 34.0279 105.201 34.0072 105.17 33.9882C106.173 33.3954 107.062 32.6891 107.835 31.8671C108.762 30.882 109.522 29.7524 110.12 28.4794C110.77 28.7279 111.478 28.8534 112.245 28.8534C113.997 28.8534 115.441 28.208 116.578 26.9178C117.73 25.6278 118.307 23.9782 118.307 21.9696C118.307 19.9611 117.73 18.3195 116.578 17.0458C115.441 15.7558 113.997 15.1112 112.245 15.1112C111.49 15.1112 110.792 15.2326 110.15 15.4764C109.554 14.2429 108.768 13.108 107.789 12.0741C107 11.2359 106.14 10.5301 105.21 9.95593C105.706 9.66178 106.23 9.39626 106.783 9.15906C108.473 8.44055 110.309 8.08097 112.291 8.08093Z" fill="#E3E3C4"/>
+<path d="M0.603516 22.6507C0.603516 18.819 1.69711 15.7039 3.88429 13.3053C6.07147 10.8916 8.91907 9.68481 12.4271 9.68481C14.2734 9.68481 15.9351 10.0318 17.4122 10.7257C18.9034 11.4045 20.1177 12.3323 21.0551 13.5089C21.9925 14.6856 22.7097 16.0357 23.2068 17.5594C23.7181 19.083 23.9737 20.7047 23.9737 22.4244V24.5062H7.01594C7.12956 26.0751 7.68345 27.3573 8.67763 28.3529C9.686 29.3486 10.9784 29.8464 12.5549 29.8464C13.8189 29.8464 14.8912 29.5673 15.7718 29.0092C16.6665 28.451 17.2914 27.7571 17.6465 26.9274H23.7607C23.2352 29.5221 21.964 31.5812 19.9473 33.1048C17.9305 34.6134 15.3812 35.3676 12.2993 35.3676C10.0979 35.3676 8.10243 34.8246 6.31291 33.7384C4.5376 32.6523 3.13866 31.1362 2.11608 29.1902C1.1077 27.2442 0.603516 25.0643 0.603516 22.6507ZM7.14376 19.7317H17.7104C17.5826 18.4041 17.0358 17.3105 16.07 16.4506C15.1185 15.5907 13.9041 15.1608 12.4271 15.1608C11.0352 15.1608 9.84223 15.6134 8.84806 16.5185C7.86808 17.4085 7.29999 18.4796 7.14376 19.7317Z" fill="#E3E3C4"/>
+<path d="M25.8297 34.7567V0H32.6043V18.6229H32.8599L39.4002 10.2958H47.7299L40.3162 19.0981L48.3051 34.7567H40.721L35.6507 24.5967L32.6043 28.2172V34.7567H25.8297Z" fill="#E3E3C4"/>
+<path d="M49.7155 34.7567V0H56.4901V18.6229H56.7457L63.2859 10.2958H71.6157L64.202 19.0981L72.1909 34.7567H64.6068L59.5365 24.5967L56.4901 28.2172V34.7567H49.7155Z" fill="#E3E3C4"/>
+<path opacity="0.5" d="M140.366 26.6555C137.854 26.6555 135.999 24.8009 135.999 22.3121C135.999 19.8473 137.866 17.9687 140.378 17.9687C142.903 17.9687 144.746 19.8712 144.746 22.3121C144.746 24.777 142.891 26.6555 140.366 26.6555ZM140.378 25.4351C142.137 25.4351 143.417 24.1069 143.417 22.3121C143.417 20.5413 142.137 19.1892 140.378 19.1892C138.619 19.1892 137.339 20.5413 137.339 22.3121C137.339 24.1069 138.619 25.4351 140.378 25.4351ZM145.889 26.5V18.1243H150.855V19.261H147.182V21.8096H150.568V22.9343H147.182V26.5H145.889Z" fill="#E3E3C4"/>
+<path d="M298.602 36.7835V7.46838H309.029C318.41 7.46838 324.106 13.457 324.106 22.0003C324.106 31.088 318.41 36.7835 309.029 36.7835H298.602ZM305.218 31.0461H308.736C313.008 31.0461 317.196 28.659 317.196 22.0003C317.196 15.6766 313.05 13.2058 308.736 13.2058H305.218V31.0461Z" fill="url(#paint0_linear_142_2072)" fill-opacity="0.1" stroke="#E3E3C4" stroke-width="0.598267" stroke-linecap="round"/>
+<path d="M269.285 36.7835V7.46838H276.614L287.837 25.895H288.089V7.46838H294.496V36.7835H287.125L275.944 18.3568H275.693V36.7835H269.285Z" fill="url(#paint1_linear_142_2072)" fill-opacity="0.1" stroke="#E3E3C4" stroke-width="0.598267" stroke-linecap="round"/>
+<path d="M217.288 36.7835V25.4344L207.111 7.46838H214.356L220.345 18.7338H220.722L226.669 7.46838H233.997L223.947 25.3925V36.7835H217.288Z" fill="url(#paint2_linear_142_2072)" fill-opacity="0.1" stroke="#E3E3C4" stroke-width="0.598267" stroke-linecap="round"/>
+<path d="M185.83 36.7835V7.46838H204.382V13.122H192.447V19.1944H202.623V24.848H192.447V31.088H204.843V36.7835H185.83Z" fill="url(#paint3_linear_142_2072)" fill-opacity="0.1" stroke="#E3E3C4" stroke-width="0.598267" stroke-linecap="round"/>
+<path d="M161.148 36.7835V7.46838H172.623C178.402 7.46838 181.711 10.8187 181.711 15.2578C181.711 17.8962 180.413 19.9901 178.402 21.2046V21.4559C180.329 22.3353 182.674 24.4293 182.674 28.1983C182.674 33.6426 178.319 36.7835 173.503 36.7835H161.148ZM167.472 19.2363H171.744C173.921 19.2363 175.22 17.8543 175.22 15.9279C175.22 14.1271 173.838 12.8707 171.786 12.8707H167.472V19.2363ZM167.472 31.2136H171.744C174.047 31.2136 175.638 30.041 175.638 27.5283C175.638 25.1412 173.796 24.0105 171.66 24.0105H167.472V31.2136Z" fill="url(#paint4_linear_142_2072)" fill-opacity="0.1" stroke="#E3E3C4" stroke-width="0.598267" stroke-linecap="round"/>
+<path opacity="0.5" d="M262.04 22.481L252.687 22.7253" stroke="#E3E3C4" stroke-width="0.299134" stroke-linecap="square" stroke-dasharray="0.12 1.2"/>
+<path opacity="0.5" d="M248.522 37.731L248.524 37.8804L248.225 37.8843L248.223 37.7339V37.6733L248.221 37.5239L248.52 37.521L248.522 37.731ZM248.506 36.3442L248.508 36.4644L248.51 36.6138L248.21 36.6177L248.207 36.3472L248.205 36.1978L248.505 36.1948L248.506 36.3442ZM248.491 35.0171L248.492 35.1382L248.494 35.2876L248.195 35.2915L248.191 35.021L248.19 34.8716L248.489 34.8677L248.491 35.0171ZM248.476 33.6909L248.478 33.811L248.479 33.9614L248.18 33.9644L248.178 33.8149L248.175 33.5454L248.474 33.5415L248.476 33.6909ZM248.461 32.3647L248.462 32.4849L248.464 32.6343L248.165 32.6382L248.161 32.3677L248.16 32.2183L248.459 32.2144L248.461 32.3647ZM248.445 31.0376L248.446 31.1587L248.448 31.3081L248.149 31.312L248.147 31.1616L248.145 30.8921L248.443 30.8882L248.445 31.0376ZM248.431 29.7114L248.432 29.8315L248.434 29.9819L248.134 29.9849L248.133 29.8354L248.131 29.7153L248.129 29.5659L248.429 29.562L248.431 29.7114ZM248.415 28.3853L248.416 28.5054L248.418 28.6548L248.119 28.6587L248.115 28.3882L248.114 28.2388L248.413 28.2358L248.415 28.3853ZM248.399 27.0581L248.401 27.1792L248.402 27.3286L248.104 27.3325L248.102 27.1831L248.099 26.9614C248.199 26.9646 248.299 26.9639 248.398 26.9604L248.399 27.0581ZM248.294 17.894L248.295 17.9907C248.195 17.9897 248.095 17.9909 247.996 17.9966L247.992 17.6265L248.291 17.6235L248.294 17.894ZM248.277 16.4468L248.281 16.7163L247.981 16.7202L247.98 16.5708L247.977 16.3003L248.276 16.2974L248.277 16.4468ZM248.263 15.1196L248.266 15.3901L247.967 15.3931L247.965 15.2437L247.962 14.9741L248.261 14.9702L248.263 15.1196ZM248.249 13.9146L248.251 14.064L247.951 14.0669L247.948 13.7964L247.946 13.647L248.246 13.644L248.249 13.9146ZM248.232 12.4673L248.235 12.7368L247.937 12.7407L247.935 12.5913L247.932 12.3208L248.23 12.3179L248.232 12.4673ZM248.219 11.2612L248.22 11.4106L247.921 11.4136L247.919 11.2642L247.918 11.144L247.916 10.9937L248.216 10.9907L248.219 11.2612ZM248.201 9.81396L248.203 9.93408L248.205 10.0845L247.905 10.0874L247.902 9.81689L247.9 9.66748L248.2 9.66455L248.201 9.81396ZM248.187 8.48779L248.189 8.75732L247.891 8.76123L247.889 8.61182L247.886 8.34131L248.185 8.3374L248.187 8.48779ZM248.173 7.28174L248.175 7.43115L247.875 7.43408L247.874 7.28467L247.873 7.2251L247.871 7.07471L248.171 7.07178L248.173 7.28174Z" fill="#E3E3C4"/>
+<path d="M246.136 26.095C244.138 24.93 243.462 22.3657 244.627 20.3676C245.792 18.3696 248.357 17.6943 250.355 18.8592C252.353 20.0242 253.028 22.5886 251.863 24.5866C250.698 26.5847 248.134 27.2601 246.136 26.095ZM245.834 26.6119C248.118 27.9433 251.049 27.1715 252.38 24.888C253.711 22.6045 252.939 19.6741 250.656 18.3427C248.372 17.0113 245.442 17.783 244.111 20.0665C242.779 22.3499 243.551 25.2804 245.834 26.6119Z" fill="#E3E3C4"/>
+<path d="M239.442 17.5519C242.164 12.8831 248.156 11.3053 252.825 14.0275C257.494 16.7499 259.072 22.7415 256.349 27.4103C253.627 32.0791 247.635 33.657 242.967 30.9347C242.769 30.8195 242.579 30.696 242.392 30.5695C242.515 30.464 242.624 30.3381 242.71 30.1906C242.728 30.1594 242.743 30.1268 242.759 30.0949C242.924 30.2064 243.092 30.3161 243.267 30.4181C247.651 32.974 253.277 31.4921 255.833 27.1086C258.388 22.7251 256.907 17.0999 252.523 14.5441C248.14 11.9885 242.515 13.4697 239.959 17.8527C238.007 21.2001 238.411 25.2707 240.663 28.1466C240.492 28.2461 240.34 28.3799 240.217 28.5461C237.797 25.4812 237.356 21.1292 239.442 17.5519Z" fill="#E3E3C4"/>
+<path d="M240.813 30.4707C240.242 30.1378 240.049 29.4051 240.382 28.8343C240.715 28.2636 241.448 28.0706 242.019 28.4033C242.589 28.7362 242.782 29.4689 242.45 30.0397C242.117 30.6106 241.384 30.8036 240.813 30.4707ZM240.512 30.9876C241.368 31.4869 242.467 31.1974 242.966 30.3411C243.466 29.4848 243.176 28.3861 242.32 27.8868C241.464 27.3876 240.365 27.677 239.866 28.5331C239.366 29.3894 239.656 30.4882 240.512 30.9876Z" fill="#E3E3C4"/>
+<path opacity="0.5" d="M244.791 25.6423L242.578 28.0374" stroke="#E3E3C4" stroke-width="0.299134" stroke-linecap="square" stroke-dasharray="0.12 1.2"/>
+<path d="M248.997 38.3272C249.167 38.4793 249.268 38.688 249.29 38.907C254.509 38.5168 259.455 35.6498 262.291 30.7866C263.521 28.6759 264.229 26.4045 264.454 24.1222C264.257 24.1612 264.053 24.1686 263.851 24.1395C263.627 26.3131 262.947 28.4751 261.774 30.4855C258.997 35.2491 254.118 38.025 248.997 38.3272ZM233.865 14.2126C232.605 16.3742 231.894 18.7047 231.687 21.0423C231.882 20.9713 232.089 20.9354 232.297 20.9345C232.514 18.7358 233.196 16.5472 234.382 14.5137C238.792 6.94973 248.5 4.39302 256.064 8.80327C260.52 11.4014 263.236 15.8384 263.816 20.592C264.014 20.5592 264.219 20.5618 264.421 20.5976C263.839 15.6354 261.013 10.9973 256.365 8.28697C248.516 3.71029 238.442 6.36325 233.865 14.2126ZM231.739 24.4321C232.328 29.3829 235.152 34.0074 239.791 36.7123C242.224 38.1309 244.871 38.854 247.502 38.9439C247.509 38.8069 247.549 38.6695 247.622 38.5429C247.665 38.4707 247.716 38.4068 247.773 38.3512C245.156 38.3032 242.514 37.608 240.092 36.196C235.671 33.6183 232.962 29.231 232.353 24.5202C232.148 24.5261 231.94 24.499 231.739 24.4321Z" fill="#E3E3C4"/>
+<path d="M231.552 24.0209C230.838 23.6048 230.597 22.689 231.013 21.9755C231.429 21.2619 232.345 21.0206 233.058 21.4367C233.772 21.8528 234.013 22.7687 233.597 23.4822C233.181 24.1958 232.265 24.4369 231.552 24.0209ZM231.25 24.5377C232.249 25.1202 233.531 24.7826 234.114 23.7836C234.696 22.7846 234.359 21.5027 233.36 20.9201C232.361 20.3376 231.079 20.6753 230.496 21.6743C229.914 22.6733 230.251 23.9552 231.25 24.5377Z" fill="#E3E3C4"/>
+<path d="M232.002 23.2458C232.287 23.4122 232.654 23.3157 232.82 23.0303C232.987 22.7449 232.89 22.3785 232.605 22.2121C232.319 22.0457 231.953 22.1422 231.787 22.4276C231.62 22.713 231.717 23.0793 232.002 23.2458Z" fill="#E3E3C4"/>
+<circle cx="1.19653" cy="1.19653" r="1.19653" transform="matrix(-0.503702 0.863878 0.863878 0.503702 247.693 4.73267)" fill="#E3E3C4"/>
+<circle cx="0.299134" cy="0.299134" r="0.299134" transform="matrix(-0.503702 0.863878 0.863878 0.503702 241.309 29.0281)" fill="#E3E3C4"/>
+<path d="M247.942 39.7703C247.514 39.5206 247.369 38.971 247.619 38.5429C247.869 38.1149 248.418 37.9702 248.846 38.2197C249.247 38.4538 249.4 38.9515 249.212 39.3655L249.17 39.447C248.936 39.8484 248.438 40.0008 248.024 39.8126L247.942 39.7703ZM247.641 40.2871C248.354 40.7032 249.27 40.4619 249.686 39.7483C250.102 39.0348 249.861 38.1189 249.147 37.7029C248.434 37.2869 247.518 37.5281 247.102 38.2415C246.686 38.9551 246.927 39.871 247.641 40.2871Z" fill="#E3E3C4"/>
+<circle cx="0.299134" cy="0.299134" r="0.299134" transform="matrix(-0.503702 0.863878 0.863878 0.503702 248.287 38.5861)" fill="#E3E3C4"/>
+<path d="M263.354 23.6558C262.641 23.2397 262.399 22.3239 262.815 21.6103C263.231 20.8968 264.148 20.6555 264.861 21.0716C265.575 21.4877 265.816 22.4036 265.4 23.1171C264.984 23.8307 264.068 24.0718 263.354 23.6558ZM263.053 24.1726C264.052 24.7551 265.334 24.4175 265.916 23.4185C266.499 22.4195 266.161 21.1375 265.162 20.555C264.163 19.9725 262.881 20.3101 262.299 21.3092C261.716 22.3082 262.054 23.5901 263.053 24.1726Z" fill="#E3E3C4"/>
+<circle cx="0.598267" cy="0.598267" r="0.598267" transform="matrix(-0.503702 0.863878 0.863878 0.503702 263.891 21.5457)" fill="#E3E3C4"/>
+<defs>
+<linearGradient id="paint0_linear_142_2072" x1="311.354" y1="7.46838" x2="311.354" y2="36.7835" gradientUnits="userSpaceOnUse">
+<stop stop-color="#E3E3C4"/>
+<stop offset="1" stop-color="#E3E3C4" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_142_2072" x1="281.891" y1="7.46838" x2="281.891" y2="36.7835" gradientUnits="userSpaceOnUse">
+<stop stop-color="#E3E3C4"/>
+<stop offset="1" stop-color="#E3E3C4" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint2_linear_142_2072" x1="220.554" y1="7.46838" x2="220.554" y2="36.7835" gradientUnits="userSpaceOnUse">
+<stop stop-color="#E3E3C4"/>
+<stop offset="1" stop-color="#E3E3C4" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint3_linear_142_2072" x1="195.337" y1="7.46838" x2="195.337" y2="36.7835" gradientUnits="userSpaceOnUse">
+<stop stop-color="#E3E3C4"/>
+<stop offset="1" stop-color="#E3E3C4" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint4_linear_142_2072" x1="171.911" y1="7.46838" x2="171.911" y2="36.7835" gradientUnits="userSpaceOnUse">
+<stop stop-color="#E3E3C4"/>
+<stop offset="1" stop-color="#E3E3C4" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
+  </div>
+
+  <a class="account" id="btn-account" href="/verification" aria-label="Outil de vérification des figures">
+    <span class="ico">
+<svg viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.662 22.1333L8.19531 10.6666H22.5953L15.662 22.1333Z" stroke="#E3E3C4" stroke-width="0.8"/>
+<path d="M15.6618 30L0.728516 6.53333H30.0618L15.6618 30Z" stroke="#E3E3C4" stroke-width="0.8"/>
+<path d="M15.6621 0V26.9333" stroke="#E3E3C4" stroke-width="0.8"/>
+<circle cx="15.3949" cy="13.6" r="13.2" stroke="#E3E3C4" stroke-width="0.8"/>
+</svg>
+    </span>
+    <span class="lbl">Mon compte</span>
+  </a>
+</header>
+
+<!-- défonce : hairline plein écran + tab chanfreiné centré sous le logo -->
+<div class="hd-edge">
+  <span class="side"></span>
+  <svg class="notch" viewBox="0 0 348 10" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+    <path d="M0 0.5 L18 0.5 L36 8.5 L312 8.5 L330 0.5 L348 0.5 L348 0 L0 0 Z"
+          fill="rgba(10,25,49,.74)"/>
+    <path d="M0 0.5 L18 0.5 L36 8.5 L312 8.5 L330 0.5 L348 0.5"
+          fill="none" stroke="rgba(227,227,196,.5)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+  </svg>
+  <span class="side"></span>
+</div>
+
+<!-- forme suspendue sous le logo -->
+<div class="hd-drop" aria-hidden="true">
+<svg viewBox="0 0 68 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_142_2132)">
+<circle cx="4.25" cy="4.25" r="4.25" transform="matrix(1 0 0 -1 29.75 29.75)" fill="#E3E3C4"/>
+<circle cx="34" cy="-6.375" r="31.875" stroke="#E3E3C4" stroke-width="2.125"/>
+<path opacity="0.5" d="M36.125 -1.0625C34.7083 -1.0625 33.2917 -1.0625 31.875 -1.0625C31.9104 -0.163541 31.9458 0.735416 31.9813 1.63438C32.6187 17.8156 33.2563 33.9969 33.8937 50.1781C33.9292 51.0771 33.9646 51.976 34 52.875C34.0354 51.976 34.0708 51.0771 34.1063 50.1781C34.7437 33.9969 35.3813 17.8156 36.0187 1.63438C36.0542 0.735416 36.0896 -0.163541 36.125 -1.0625Z" fill="#E3E3C4"/>
+</g>
+<defs>
+<clipPath id="clip0_142_2132">
+<rect fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</div>
+
+<div class="toggle-wrap">
+  <span class="orn"><span class="d5"></span><span class="r7"></span><span class="ln"></span></span>
+  <div class="toggle">
+    <button class="tg on" id="tg-sky">vue du ciel</button>
+    <button class="tg" id="tg-coll">Collection</button>
+  </div>
+  <span class="orn"><span class="ln"></span><span class="r7"></span><span class="d5"></span></span>
+</div>
+
+<div id="status">Initialisation du ciel Stellarium…</div>
+
+<div class="zoom">
+  <button class="zbtn" id="z-in" aria-label="Zoomer"><svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+  <button class="zbtn" id="z-out" aria-label="Dézoomer"><svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+</div>
+
+<div class="c-pos" id="c-pos">1 / 53</div>
+
+<div class="card-row">
+  <span class="nav-side prev">
+    <span class="d5"></span><span class="r7"></span>
+    <button class="nav-btn" id="prev" aria-label="Constellation précédente"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg></button>
+    <span class="ln"></span>
+  </span>
+
+  <div class="card">
+    <div class="medallion" id="medallion"></div>
+    <div class="card-body">
+      <div class="chips">
+        <span class="chip cat" id="c-cat">Circumpolaires</span>
+        <span class="chip vis" id="c-vis">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M1.2 6.6 6.9 1.2l2 2.3-5.7 5.3z"/><path d="M3.2 8.8 1.6 10M7 1.4l.9 1"/></svg>
+          <span id="c-vis-txt">Visible maintenant</span>
+        </span>
+      </div>
+      <div class="card-txt">
+        <div class="c-title" id="c-title">Grande Ourse</div>
+        <div class="c-desc" id="c-desc">La casserole que tout le monde connaît cache une nymphe changée en ourse.</div>
+      </div>
+      <div class="c-state">
+        <span class="ln"></span><span class="r7"></span><span class="d5"></span>
+        <span class="pill" id="c-pill">non collectée</span>
+      </div>
+    </div>
+  </div>
+
+  <span class="nav-side next">
+    <span class="ln"></span>
+    <button class="nav-btn" id="next" aria-label="Constellation suivante"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></button>
+    <span class="r7"></span><span class="d5"></span>
+  </span>
+</div>
+
+
+<script src="/vendor/stellarium-web-engine.js"></script>
+<script>
+/* stars: [nom, RA(h), Dec(deg), magnitude, info] */
+const RAW = [
+['uma','Grande Ourse','Ursa Major',
+ "La nymphe Callisto, changée en ourse par la jalousie d'Héra, veille sur le nord depuis que Zeus l'a projetée dans le ciel.",
+ "Cinq de ses étoiles sont nées du même nuage et dérivent ensemble dans la galaxie depuis 300 millions d'années.",
+ [['Dubhe',11.062,61.75,1.8,"Avec Merak, elle forme les Gardes : leur alignement pointe droit vers l'étoile Polaire."],['Merak',11.031,56.38,2.4],['Phecda',11.897,53.69,2.4],['Megrez',12.257,57.03,3.3],['Alioth',12.900,55.96,1.8],['Mizar',13.399,54.93,2.2,"Étoile double visible à l'œil nu avec Alcor : un test de vue chez les anciens Arabes."],['Alkaïd',13.792,49.31,1.9]],
+ [[0,1],[1,2],[2,3],[3,0],[3,4],[4,5],[5,6]]],
+['umi','Petite Ourse','Ursa Minor',
+ "Arcas, fils de Callisto, transformé en ourson et placé près de sa mère. Au bout de sa queue brille l'étoile qui ne bouge jamais.",
+ "L'étoile Polaire est alignée avec l'axe de la Terre : tout le ciel semble pivoter autour d'elle chaque nuit.",
+ [['Polaris',2.530,89.26,2.0,"L'étoile Polaire, boussole des navigateurs. Sa hauteur au-dessus de l'horizon vous donne votre latitude."],['Kochab',14.845,74.16,2.1,"Elle fut l'étoile polaire des Égyptiens, à l'époque des pyramides."],['Pherkad',15.345,71.83,3.0],['Yildun',17.537,86.59,4.4]],
+ [[0,3],[3,1],[1,2]]],
+['cas','Cassiopée','Cassiopeia',
+ "Reine condamnée pour sa vanité à tourner autour du pôle, tantôt sur son trône, tantôt la tête en bas. Son W signe le ciel du nord.",
+ "Ses champs d'étoiles cachent le rémanent de la supernova observée par Tycho Brahé en 1572.",
+ [['Caph',0.153,59.15,2.3],['Schedar',0.675,56.54,2.2,"Géante orange dont le nom arabe signifie « la poitrine » de la reine."],['Tsih',0.945,60.72,2.4,"Étoile éruptive instable qui éjecte des anneaux de gaz par à-coups."],['Ruchbah',1.430,60.24,2.7],['Segin',1.907,63.67,3.4]],
+ [[0,1],[1,2],[2,3],[3,4]]],
+['cep','Céphée','Cepheus',
+ "Roi d'Éthiopie, époux de Cassiopée et père d'Andromède, placé près des siens pour l'éternité. Sa maison pointue veille sur le pôle.",
+ "Delta Cephei donna son nom aux céphéides, ces étoiles-phares qui permettent de mesurer les distances dans l'Univers.",
+ [['Alderamin',21.310,62.59,2.5,"« Le bras droit » du roi : elle deviendra l'étoile polaire dans 5 500 ans."],['Alfirk',21.478,70.56,3.2],['Errai',23.656,77.63,3.2],['Zeta Cep',22.181,58.20,3.4],['Iota Cep',22.828,66.20,3.5]],
+ [[0,1],[1,2],[2,4],[4,3],[3,0]]],
+['dra','Dragon','Draco',
+ "Ladon, le dragon qui gardait les pommes d'or des Hespérides, terrassé par Héraclès puis enroulé autour du pôle.",
+ "Thuban, dans sa queue, était l'étoile polaire des bâtisseurs de pyramides il y a 4 700 ans.",
+ [['Eltanin',17.943,51.49,2.2,"L'œil du dragon : c'est en l'observant qu'on prouva en 1728 que la Terre tourne autour du Soleil."],['Rastaban',17.507,52.30,2.8],['Grumium',17.892,56.87,3.7],['Zeta Dra',17.146,65.71,3.2],['Edasich',15.415,58.97,3.3],['Thuban',14.073,64.38,3.7,"Étoile polaire de l'Égypte ancienne : les couloirs des pyramides la visaient."],['Kappa Dra',12.558,69.79,3.9],['Giausar',11.523,69.33,3.8]],
+ [[0,1],[1,2],[2,0],[2,3],[3,4],[4,5],[5,6],[6,7]]],
+['ari','Bélier','Aries',
+ "Le bélier à la toison d'or qui sauva Phrixos en traversant les mers, et dont la dépouille lança la quête des Argonautes.",
+ "Hamal servait de repère aux temples grecs : plusieurs sont alignés sur son lever d'il y a 2 500 ans.",
+ [['Hamal',2.120,23.46,2.0,"« La tête du mouton » en arabe, géante orange à 66 années-lumière."],['Sheratan',1.911,20.81,2.6],['Mesarthim',1.892,19.29,3.9],['41 Ari',2.833,27.26,3.6]],
+ [[3,0],[0,1],[1,2]]],
+['tau','Taureau','Taurus',
+ "Zeus, métamorphosé en taureau blanc, enleva la princesse Europe. Seul l'avant de l'animal émerge des flots célestes.",
+ "Deux amas visibles à l'œil nu : les Hyades, son mufle, et les Pléiades, les sept sœurs voilées de bleu.",
+ [['Aldébaran',4.599,16.51,0.9,"L'œil rouge du taureau : géante orange qui semble faire partie des Hyades mais se trouve deux fois plus près."],['Elnath',5.438,28.61,1.7],['Tianguan',5.627,21.14,3.0],['Alcyone',3.791,24.11,2.9,"La plus brillante des Pléiades, que presque toutes les cultures du monde ont nommées."],['Aïn',4.477,19.18,3.5]],
+ [[3,4],[4,0],[0,2],[4,1]]],
+['gem','Gémeaux','Gemini',
+ "Castor le mortel et Pollux l'immortel : à la mort du premier, son frère partagea son immortalité pour ne jamais le quitter.",
+ "C'est près de Castor que Pluton fut découverte en 1930, et Pollux héberge une planète géante confirmée.",
+ [['Castor',7.577,31.89,1.6,"Pas une étoile mais six : trois couples serrés qui dansent ensemble à 51 années-lumière."],['Pollux',7.755,28.03,1.1,"Géante orange, l'étoile brillante la plus proche à héberger une planète connue."],['Alhena',6.629,16.40,1.9],['Wasat',7.335,21.98,3.5],['Mebsuta',6.732,25.13,3.0]],
+ [[0,4],[4,2],[1,3],[3,2],[0,1]]],
+['cnc','Cancer','Cancer',
+ "Le crabe envoyé par Héra pour pincer Héraclès pendant son combat contre l'Hydre. Écrasé d'un coup de talon, il gagna le ciel.",
+ "En son cœur brille la Ruche, un essaim de mille étoiles que Galilée fut le premier à résoudre à la lunette.",
+ [['Acubens',8.975,11.86,4.3],['Al Tarf',8.275,9.19,3.5,"« Le regard » du crabe, la plus brillante de cette discrète constellation."],['Asellus Borealis',8.721,21.47,4.7],['Asellus Australis',8.745,18.15,3.9,"Les deux « ânons » encadrent la Crèche, un amas visible comme une tache laiteuse."],['Iota Cnc',8.778,28.76,4.0]],
+ [[2,3],[3,0],[3,1],[2,4]]],
+['leo','Lion','Leo',
+ "Le lion de Némée, à la peau impénétrable, premier des douze travaux d'Héraclès. Sa crinière dessine une faucille renversée.",
+ "Chaque novembre, les étoiles filantes des Léonides semblent jaillir de sa crinière.",
+ [['Régulus',10.140,11.97,1.4,"« Le petit roi » : elle tourne si vite qu'elle est aplatie comme une mandarine."],['Dénébola',11.818,14.57,2.1,"« La queue du lion » en arabe, à 36 années-lumière seulement."],['Algieba',10.333,19.84,2.0],['Zosma',11.235,20.52,2.6],['Ras Elased',9.764,23.77,3.0]],
+ [[4,2],[2,0],[2,3],[3,1],[0,1]]],
+['vir','Vierge','Virgo',
+ "Déméter ou Astrée, déesse des moissons et de la justice, dernière immortelle à quitter la Terre, un épi de blé à la main.",
+ "Derrière ses étoiles s'étend l'amas de la Vierge : des milliers de galaxies vers lesquelles la nôtre est attirée.",
+ [['Spica',13.420,-11.16,1.0,"« L'épi de blé » : deux étoiles bleues si proches qu'elles se déforment mutuellement en œufs."],['Porrima',12.694,-1.45,2.7],['Auva',12.927,3.40,3.4],['Vindemiatrix',13.036,10.96,2.8,"« La vendangeuse » : son lever à l'aube annonçait les vendanges chez les Romains."],['Zaniah',12.331,-0.67,3.9],['Heze',13.578,-0.60,3.4]],
+ [[4,1],[1,2],[2,3],[1,5],[5,0]]],
+['lib','Balance','Libra',
+ "Les plateaux où Astrée pesait les âmes. Ses étoiles portent encore les noms des pinces du Scorpion voisin, dont elle fut détachée.",
+ "Zubeneschamali passe pour la seule étoile verdâtre visible à l'œil nu — un mystère optique jamais élucidé.",
+ [['Zubenelgenubi',14.848,-16.04,2.7,"« La pince du sud » : la Balance était autrefois les pinces du Scorpion."],['Zubeneschamali',15.283,-9.38,2.6,"« La pince du nord », l'étoile que certains observateurs jurent voir verte."],['Zubenelakrab',15.592,-14.79,3.9],['Sigma Lib',15.068,-25.28,3.3]],
+ [[0,1],[1,2],[2,0],[0,3]]],
+['sco','Scorpion','Scorpius',
+ "Le scorpion qui piqua Orion. Quand l'un se lève, l'autre se couche : les deux ennemis se poursuivent éternellement.",
+ "Placée au centre du système solaire, Antarès engloutirait Mars, et sa couleur rivalise avec la planète rouge.",
+ [['Antarès',16.490,-26.43,1.0,"« La rivale de Mars » : supergéante rouge 700 fois plus large que le Soleil, cœur battant du Scorpion."],['Acrab',16.091,-19.81,2.6],['Dschubba',16.006,-22.62,2.3],['Sargas',17.622,-42.99,1.9],['Shaula',17.560,-37.10,1.6,"« Le dard » en arabe : la pointe venimeuse de la queue."]],
+ [[1,2],[2,0],[0,3],[3,4]]],
+['sgr','Sagittaire','Sagittarius',
+ "Le centaure archer, flèche pointée sur le cœur du Scorpion pour venger Orion. Ses étoiles dessinent une théière familière.",
+ "Derrière sa théière se cache le centre de la Voie lactée et son trou noir de quatre millions de soleils.",
+ [['Alnasl',18.097,-30.42,3.0],['Kaus Media',18.350,-29.83,2.7],['Kaus Australis',18.403,-34.38,1.8,"La plus brillante de l'archer, à la base de l'arc."],['Kaus Borealis',18.466,-25.42,2.8],['Phi Sgr',18.762,-26.99,3.2],['Nunki',18.921,-26.30,2.0,"L'un des plus anciens noms d'étoiles connus, hérité des Babyloniens."],['Ascella',19.043,-29.88,2.6]],
+ [[0,1],[1,2],[2,6],[6,4],[4,1],[1,3],[3,4],[4,5],[5,6]]],
+['cap','Capricorne','Capricornus',
+ "Le dieu Pan, mi-chèvre mi-poisson depuis qu'il plongea dans le Nil pour fuir le monstre Typhon.",
+ "C'est dans le Capricorne que Neptune fut découverte en 1846, par le calcul avant l'observation.",
+ [['Algedi',20.301,-12.54,3.6,"Deux étoiles sans lien, à 100 et 600 années-lumière, que la perspective réunit."],['Dabih',20.350,-14.78,3.1],['Omega Cap',20.864,-26.92,4.1],['Zeta Cap',21.444,-22.41,3.7],['Deneb Algedi',21.784,-16.13,2.9,"« La queue de la chèvre », près de laquelle Neptune apparut pour la première fois dans une lunette."],['Nashira',21.668,-16.66,3.7]],
+ [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]]],
+['aqr','Verseau','Aquarius',
+ "Ganymède, l'échanson des dieux enlevé par l'aigle de Zeus, versant l'eau céleste dans la gueule du Poisson austral.",
+ "Sa région du ciel, pauvre en étoiles brillantes, était la « Mer » des Babyloniens, peuplée de créatures aquatiques.",
+ [['Albali',20.794,-9.50,3.8],['Sadalsuud',21.526,-5.57,2.9,"« La chance des chances » : son lever accompagnait le retour des pluies en Arabie."],['Sadalmelik',22.096,-0.32,3.0],['Sadachbia',22.361,-1.39,3.8],['Lambda Aqr',22.877,-7.58,3.7],['Skat',22.911,-15.82,3.3]],
+ [[0,1],[1,2],[2,3],[3,4],[4,5]]],
+['psc','Poissons','Pisces',
+ "Aphrodite et Éros, changés en poissons pour fuir Typhon, liés par un ruban pour ne pas se perdre dans le fleuve.",
+ "Le point vernal, origine des coordonnées célestes, se trouve aujourd'hui chez les Poissons.",
+ [['Alrescha',2.034,2.76,3.8,"« La corde » : le nœud qui relie les deux poissons."],['Eta Psc',1.525,15.35,3.6],['Omicron Psc',1.756,9.16,4.3],['Omega Psc',23.988,6.86,4.0],['Gamma Psc',23.286,3.28,3.7],['Lambda Psc',23.700,1.78,4.5]],
+ [[1,2],[2,0],[0,3],[3,4],[4,5],[5,3]]],
+['ori','Orion','Orion',
+ "Chasseur géant terrassé par un scorpion envoyé par Gaïa. Zeus le plaça à l'opposé exact de son ennemi, pour que jamais ils ne se croisent.",
+ "Sous son baudrier, la nébuleuse M42 est une pouponnière d'étoiles visible à l'œil nu, à 1 350 années-lumière.",
+ [['Bételgeuse',5.919,7.41,0.5,"Supergéante rouge en fin de vie, 700 fois plus large que le Soleil. Elle explosera un jour en supernova."],['Rigel',5.242,-8.20,0.1,"Supergéante bleue, 120 000 fois plus lumineuse que notre Soleil."],['Bellatrix',5.418,6.35,1.6],['Alnitak',5.679,-1.94,1.8],['Alnilam',5.603,-1.20,1.7,"Le joyau central du Baudrier, l'un des alignements les plus célèbres du ciel."],['Mintaka',5.533,-0.30,2.2],['Saïph',5.796,-9.67,2.1]],
+ [[0,2],[2,5],[5,4],[4,3],[3,6],[6,1],[1,5],[0,3]]],
+['cma','Grand Chien','Canis Major',
+ "Laelaps, le chien de chasse qui n'échouait jamais, suit son maître Orion à travers le ciel d'hiver, museau levé vers Sirius.",
+ "Sirius n'est qu'à 8,6 années-lumière : c'est sa proximité, plus que sa puissance, qui en fait la plus brillante du ciel.",
+ [['Sirius',6.752,-16.72,-1.5,"L'étoile la plus brillante du ciel nocturne. Les Égyptiens réglaient leur calendrier sur son lever."],['Mirzam',6.378,-17.96,2.0,"« L'annonciatrice » : elle se lève juste avant Sirius, comme un héraut."],['Wezen',7.140,-26.39,1.8],['Adhara',6.977,-28.97,1.5],['Aludra',7.401,-29.30,2.4]],
+ [[1,0],[0,2],[2,3],[2,4]]],
+['cmi','Petit Chien','Canis Minor',
+ "Le second chien d'Orion, ou Maera, la chienne fidèle qui révéla aux hommes la tombe de son maître Icarios.",
+ "Procyon signifie « avant le chien » : elle se lève quelques minutes avant Sirius sous nos latitudes.",
+ [['Procyon',7.655,5.22,0.4,"À 11,5 années-lumière, l'une de nos plus proches voisines, accompagnée d'une naine blanche."],['Gomeisa',7.453,8.29,2.9]],
+ [[0,1]]],
+['aur','Cocher','Auriga',
+ "Érichthonios, roi boiteux d'Athènes, inventeur du char à quatre chevaux, portant une chèvre et ses chevreaux sur l'épaule.",
+ "Capella, « la petite chèvre », est en réalité deux géantes dorées qui se tournent autour en 104 jours.",
+ [['Capella',5.278,46.00,0.1,"La sixième étoile la plus brillante du ciel : deux géantes jaunes enlacées, à 43 années-lumière."],['Menkalinan',5.995,44.95,1.9],['Mahasim',5.995,37.21,2.7],['Hassaleh',4.950,33.17,2.7],['Almaaz',5.033,43.82,3.0,"Tous les 27 ans, un disque de poussière opaque l'éclipse pendant deux ans."],['Elnath',5.438,28.61,1.7]],
+ [[0,1],[1,2],[2,5],[5,3],[3,4],[4,0]]],
+['eri','Éridan','Eridanus',
+ "Le fleuve où s'abîma Phaéton, foudroyé pour avoir perdu le contrôle du char du Soleil. Il serpente d'Orion jusqu'au grand sud.",
+ "Le fleuve céleste coule sur 60 degrés, de Rigel jusqu'à Achernar, invisible depuis l'Europe.",
+ [['Cursa',5.131,-5.09,2.8,"« Le repose-pied d'Orion », la source du fleuve céleste."],['Zaurak',3.967,-13.51,3.0],['Rana',3.721,-9.76,3.5],['Azha',2.940,-8.90,3.9],['Acamar',2.971,-40.30,2.9],['Achernar',1.629,-57.24,0.5,"« La fin du fleuve » : l'étoile la plus aplatie connue, déformée par sa rotation folle."]],
+ [[0,1],[1,2],[2,3],[3,4],[4,5]]],
+['lep','Lièvre','Lepus',
+ "Le lièvre que poursuit éternellement le Grand Chien, placé aux pieds d'Orion par Hermès pour honorer sa vitesse.",
+ "Il abrite l'Écarlate de Hind, une étoile carbone d'un rouge si profond qu'on la dirait une goutte de sang.",
+ [['Arneb',5.545,-17.82,2.6,"« Le lièvre » en arabe : une supergéante en fin de vie, à 2 200 années-lumière."],['Nihal',5.471,-20.76,2.8],['Eps Lep',5.091,-22.37,3.2],['Mu Lep',5.216,-16.21,3.3],['Zeta Lep',5.783,-14.82,3.5],['Gamma Lep',5.741,-22.45,3.6]],
+ [[3,0],[0,4],[0,1],[1,2],[1,5],[2,3]]],
+['mon','Licorne','Monoceros',
+ "Créature discrète glissée entre les deux Chiens au XVIIe siècle : ses étoiles pâles se cachent dans l'éclat du Triangle d'hiver.",
+ "Ses nébuleuses de la Rosette et du Cône comptent parmi les plus belles pouponnières d'étoiles de la galaxie.",
+ [['Gamma Mon',6.248,-6.27,4.0],['Beta Mon',6.480,-7.03,3.7,"Un triple joyau : trois étoiles bleues alignées, « l'une des plus belles surprises du télescope » selon Herschel."],['Delta Mon',7.197,-0.49,4.2],['Alpha Mon',7.687,-9.55,3.9],['Zeta Mon',8.143,-2.98,4.3]],
+ [[0,1],[1,2],[2,3],[3,4]]],
+['col','Colombe','Columba',
+ "La colombe de l'Arche, envoyée par Noé chercher la terre ferme, ou celle des Argonautes, guidant le navire entre les rochers.",
+ "Elle abrite une « étoile en fuite », éjectée d'Orion il y a 2,5 millions d'années.",
+ [['Phact',5.661,-34.07,2.6,"« La colombe » en arabe, étoile bleue entourée d'un disque de gaz."],['Wazn',5.849,-35.77,3.1],['Delta Col',6.369,-33.44,3.9],['Eps Col',5.520,-35.47,3.9],['Eta Col',5.985,-42.82,4.0]],
+ [[3,0],[0,1],[1,2],[1,4]]],
+['boo','Bouvier','Boötes',
+ "Le gardien des ourses, qui pousse la Grande Casserole autour du pôle. Son cerf-volant s'élève dans le ciel de printemps.",
+ "Suivez la courbe du manche de la Grande Ourse : elle mène droit à Arcturus.",
+ [['Arcturus',14.261,19.18,-0.1,"La plus brillante du ciel boréal : une géante orange venue d'une autre population d'étoiles, de passage chez nous."],['Izar',14.750,27.07,2.4,"« La ceinture » : un couple orange et bleu surnommé Pulcherrima, « la plus belle »."],['Delta Boo',15.258,33.31,3.5],['Nekkar',15.032,40.39,3.5],['Seginus',14.535,38.31,3.0],['Muphrid',13.911,18.40,2.7]],
+ [[0,1],[1,2],[2,3],[3,4],[4,0],[0,5]]],
+['hya','Hydre','Hydra',
+ "Le serpent d'eau aux têtes renaissantes vaincu par Héraclès. La plus vaste constellation du ciel s'étire sur un quart de l'horizon.",
+ "Il faut plus de six heures pour que l'Hydre entière se lève, de la tête à la queue.",
+ [['Eps Hya',8.780,6.42,3.4],['Delta Hya',8.628,5.70,4.1],['Eta Hya',8.720,3.40,4.3],['Zeta Hya',8.923,5.95,3.1],['Alphard',9.460,-8.66,2.0,"« La solitaire » : aucune étoile brillante à des dizaines de degrés à la ronde."],['Nu Hya',10.827,-16.19,3.1],['Gamma Hya',13.316,-23.17,3.0]],
+ [[0,1],[1,2],[2,3],[3,0],[3,4],[4,5],[5,6]]],
+['crv','Corbeau','Corvus',
+ "L'oiseau d'Apollon, puni pour son mensonge : condamné à la soif éternelle, la Coupe à jamais hors de portée de son bec.",
+ "Ses quatre étoiles pointent vers Spica ; à côté, deux galaxies en collision forment les célèbres Antennes.",
+ [['Gienah',12.263,-17.54,2.6,"« L'aile » du corbeau, la plus brillante du quadrilatère."],['Kraz',12.573,-23.40,2.6],['Algorab',12.498,-16.52,3.0],['Minkar',12.168,-22.62,3.0],['Alchiba',12.140,-24.73,4.0]],
+ [[0,2],[2,1],[1,3],[3,0],[3,4]]],
+['crt','Coupe','Crater',
+ "La coupe d'Apollon, que le Corbeau devait remplir à la source et qu'il rapporta trop tard, perdant la confiance du dieu.",
+ "Constellation discrète du printemps : ses étoiles pâles dessinent un calice posé sur le dos de l'Hydre.",
+ [['Alkes',10.996,-18.30,4.1,"« La coupe » en arabe, géante orange à 174 années-lumière."],['Beta Crt',11.194,-22.83,4.5],['Gamma Crt',11.415,-17.68,4.1],['Delta Crt',11.322,-14.78,3.6],['Eps Crt',11.410,-10.86,4.8],['Theta Crt',11.611,-9.80,4.7]],
+ [[0,1],[1,2],[2,3],[3,0],[3,4],[4,5]]],
+['com','Chevelure de Bérénice','Coma Berenices',
+ "La chevelure de la reine Bérénice, offerte aux dieux pour le retour de son époux, dérobée du temple et retrouvée dans le ciel.",
+ "Derrière ses étoiles diffuses se cache un mur de milliers de galaxies.",
+ [['Alpha Com',13.166,17.53,4.3],['Beta Com',13.198,27.88,4.2,"Une quasi-jumelle de notre Soleil, à seulement 30 années-lumière."],['Gamma Com',12.449,28.27,4.4]],
+ [[2,1],[1,0]]],
+['cvn','Chiens de chasse','Canes Venatici',
+ "Astérion et Chara, les deux lévriers du Bouvier, lancés à la poursuite des ourses autour du pôle.",
+ "Cor Caroli, « le cœur de Charles », fut nommée en mémoire du roi décapité Charles Ier d'Angleterre.",
+ [['Cor Caroli',12.934,38.32,2.9,"Une étoile au champ magnétique 5 000 fois plus intense que celui du Soleil."],['Chara',12.562,41.36,4.2]],
+ [[0,1]]],
+['her','Hercule','Hercules',
+ "Le héros aux douze travaux, agenouillé dans le ciel, un pied posé sur la tête du Dragon vaincu.",
+ "Dans sa Clé de voûte scintille M13 : un demi-million d'étoiles en boule, destinataire du message d'Arecibo en 1974.",
+ [['Zeta Her',16.688,31.60,2.8],['Eps Her',17.005,30.93,3.9],['Pi Her',17.251,36.81,3.2],['Eta Her',16.715,38.92,3.5,"Près d'elle se trouve le grand amas d'Hercule, fourmilière d'un demi-million de soleils."],['Kornephoros',16.503,21.49,2.8,"« Le porteur de massue », la plus brillante du héros."],['Delta Her',17.251,24.84,3.1],['Rasalgethi',17.244,14.39,3.1]],
+ [[0,1],[1,2],[2,3],[3,0],[0,4],[1,5],[5,6]]],
+['crb','Couronne boréale','Corona Borealis',
+ "Le diadème d'Ariane, offert par Dionysos et lancé vers le ciel le soir de leurs noces, ses joyaux devenus étoiles.",
+ "T CrB, la « Blaze Star », est une nova récurrente qui s'embrase environ tous les 80 ans.",
+ [['Theta CrB',15.549,31.36,4.1],['Nusakan',15.464,29.11,3.7],['Alphecca',15.578,26.71,2.2,"« La perle » de la couronne : une étoile double éclipsée tous les 17 jours."],['Gamma CrB',15.713,26.30,3.8],['Delta CrB',15.826,26.07,4.6],['Eps CrB',15.959,26.88,4.1]],
+ [[0,1],[1,2],[2,3],[3,4],[4,5]]],
+['cyg','Cygne','Cygnus',
+ "Zeus prit la forme d'un cygne pour séduire Léda. L'oiseau vole le long de la Voie lactée, ailes déployées : la Croix du Nord.",
+ "Il contient Cygnus X-1, le premier trou noir jamais identifié, dévorant l'étoile géante qui l'accompagne.",
+ [['Deneb',20.690,45.28,1.3,"À 2 600 années-lumière, elle brille comme 200 000 Soleils : l'une des plus puissantes de la galaxie."],['Sadr',20.371,40.26,2.2],['Gienah Cyg',20.770,33.97,2.5],['Fawaris',19.749,45.13,2.9],['Albireo',19.512,27.96,3.1,"Le plus beau couple du ciel : une étoile dorée et une saphir, côte à côte dans une lunette."]],
+ [[0,1],[1,2],[1,3],[1,4]]],
+['lyr','Lyre','Lyra',
+ "L'instrument d'Orphée, dont la musique fit fléchir Hadès lui-même. À sa mort, Zeus plaça la lyre parmi les étoiles.",
+ "Véga fut l'étoile Polaire il y a 14 000 ans et le sera de nouveau : l'axe de la Terre oscille comme une toupie.",
+ [['Véga',18.616,38.78,0.0,"Cinquième étoile la plus brillante du ciel, entourée d'un disque de poussière où naissent peut-être des planètes."],['Sheliak',18.834,33.36,3.5],['Sulafat',18.982,32.69,3.2],['Delta Lyr',18.908,36.90,4.3],['Zeta Lyr',18.746,37.61,4.4]],
+ [[0,4],[4,3],[3,2],[2,1],[1,4]]],
+['aql','Aigle','Aquila',
+ "L'aigle de Zeus, porteur de la foudre, qui enleva Ganymède pour en faire l'échanson des dieux.",
+ "Altaïr tourne sur elle-même en 9 heures à peine, contre 25 jours pour le Soleil : sa silhouette en est déformée.",
+ [['Altaïr',19.846,8.87,0.8,"À 17 années-lumière, l'une de nos plus proches voisines brillantes."],['Tarazed',19.771,10.61,2.7],['Alshain',19.922,6.41,3.7],['Okab',19.090,13.86,3.0]],
+ [[1,0],[0,2],[1,3]]],
+['oph','Serpentaire','Ophiuchus · 13e signe',
+ "Asclépios, dieu de la médecine, qui apprit du serpent à ressusciter les morts — foudroyé par Zeus pour avoir défié l'ordre du monde.",
+ "Le Soleil le traverse trois semaines par an : c'est le « treizième signe » que l'astrologie ignore.",
+ [['Rasalhague',17.582,12.56,2.1,"« La tête du charmeur de serpents », à 47 années-lumière."],['Cebalrai',17.724,4.57,2.8],['Sabik',17.173,-15.72,2.4],['Zeta Oph',16.619,-10.57,2.6,"Une étoile en fuite, éjectée par l'explosion de sa compagne, qui laboure le gaz interstellaire."],['Yed Posterior',16.305,-4.69,3.2],['Yed Prior',16.239,-3.69,2.7],['Kappa Oph',16.961,9.38,3.2]],
+ [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,0]]],
+['ser','Serpent','Serpens',
+ "Le serpent d'Asclépios, seule constellation coupée en deux : la tête d'un côté du Serpentaire, la queue de l'autre.",
+ "Dans sa queue s'ouvre la nébuleuse de l'Aigle et ses Piliers de la création, immortalisés par Hubble.",
+ [['Gamma Ser',15.940,15.66,3.9],['Beta Ser',15.769,15.42,3.7],['Unukalhai',15.738,6.43,2.6,"« Le cou du serpent », géante orange à 74 années-lumière."],['Mu Ser',15.827,-3.43,3.5],['Eta Ser',18.355,-2.90,3.3],['Alya',18.937,4.20,4.6,"La pointe de la queue : un couple de jumelles blanches parfaitement identiques."]],
+ [[0,1],[1,2],[2,3],[3,4],[4,5]]],
+['del','Dauphin','Delphinus',
+ "Le dauphin qui convainquit Amphitrite d'épouser Poséidon, ou celui qui sauva le poète Arion des flots.",
+ "Ses deux étoiles principales cachent le nom inversé d'un astronome farceur : Nicolaus Venator.",
+ [['Sualocin',20.661,15.91,3.8],['Rotanev',20.626,14.60,3.6],['Gamma Del',20.777,16.12,4.3,"Un couple doré célèbre chez les astronomes amateurs, à la pointe du museau."],['Delta Del',20.724,15.07,4.4],['Aldulfin',20.554,11.30,4.0]],
+ [[0,2],[2,3],[3,1],[1,0],[1,4]]],
+['sge','Flèche','Sagitta',
+ "La flèche d'Héraclès qui délivra Prométhée en tuant l'aigle dévoreur, figée en plein vol dans la Voie lactée.",
+ "Troisième plus petite constellation du ciel, elle se glisse entre l'Aigle et le Cygne.",
+ [['Sham',19.668,18.01,4.4,"« La flèche » en arabe, qui donne son nom à tout l'astérisme."],['Beta Sge',19.684,17.48,4.4],['Delta Sge',19.789,18.53,3.8],['Gamma Sge',19.979,19.49,3.5]],
+ [[0,2],[1,2],[2,3]]],
+['and','Andromède','Andromeda',
+ "Fille de Cassiopée, enchaînée à un rocher pour apaiser un monstre marin, sauvée par Persée.",
+ "Elle héberge M31 : l'objet le plus lointain visible à l'œil nu, dont la lumière a voyagé 2,5 millions d'années.",
+ [['Alpheratz',0.140,29.09,2.1,"L'étoile partagée : elle appartient à Andromède mais complète le grand carré de Pégase."],['Mirach',1.162,35.62,2.1,"Point de départ du chemin d'étoiles qui mène l'œil jusqu'à la galaxie d'Andromède."],['Almach',2.065,42.33,2.3],['Delta And',0.656,30.86,3.3]],
+ [[0,3],[3,1],[1,2]]],
+['per','Persée','Perseus',
+ "Le héros au casque d'invisibilité, brandissant la tête de Méduse dont l'œil clignote encore : l'étoile Algol.",
+ "Chaque mois d'août, les Perséides semblent jaillir de son épée : la plus célèbre pluie d'étoiles filantes.",
+ [['Mirfak',3.405,49.86,1.8,"Au cœur d'un amas de jeunes étoiles bleues, superbe aux jumelles."],['Algol',3.136,40.96,2.1,"« L'étoile du démon » : l'œil de Méduse, qui s'éteint toutes les 69 heures quand sa compagne l'éclipse."],['Gamma Per',3.080,53.51,2.9],['Delta Per',3.715,47.79,3.0],['Eps Per',3.964,40.01,2.9],['Zeta Per',3.902,31.88,2.9]],
+ [[2,0],[0,3],[3,4],[4,5],[0,1]]],
+['peg','Pégase','Pegasus',
+ "Le cheval ailé né du sang de Méduse, monture de Bellérophon. Son grand carré ouvre le ciel d'automne.",
+ "C'est autour de 51 Pegasi que fut découverte en 1995 la première planète orbitant une étoile semblable au Soleil.",
+ [['Markab',23.079,15.21,2.5,"« La selle » du cheval, coin sud-ouest du grand carré d'automne."],['Scheat',23.063,28.08,2.4],['Algenib',0.220,15.18,2.8],['Alpheratz',0.140,29.09,2.1],['Enif',21.736,9.88,2.4,"« Le museau » : une supergéante orange qui pique du nez hors du carré."],['Homam',22.691,10.83,3.4],['Matar',22.717,30.22,2.9]],
+ [[0,1],[1,3],[3,2],[2,0],[0,5],[5,4],[1,6]]],
+['cet','Baleine','Cetus',
+ "Le monstre marin envoyé dévorer Andromède, pétrifié par Persée avec la tête de Méduse.",
+ "Mira, « la merveilleuse », fut la première étoile variable connue : elle apparaît et disparaît en 11 mois.",
+ [['Menkar',3.038,4.09,2.5,"« Les naseaux » du monstre, géante rouge du ciel d'automne."],['Kaffaljidhma',2.722,3.24,3.5],['Mira',2.322,-2.98,3.0,"L'étoile merveilleuse : géante pulsante qui traîne derrière elle une queue de 13 années-lumière."],['Baten Kaitos',1.858,-10.34,3.7],['Theta Cet',1.400,-8.18,3.6],['Eta Cet',1.143,-10.18,3.4],['Diphda',0.726,-17.99,2.0]],
+ [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]]],
+['tri','Triangle','Triangulum',
+ "Simple delta de lumière, vu comme le delta du Nil par les Égyptiens et la Sicile par les Romains.",
+ "Il abrite M33, la troisième grande galaxie de notre groupe local, juste à la limite de l'œil nu.",
+ [['Mothallah',1.885,29.58,3.4,"« Le triangle » en arabe : la pointe du delta céleste."],['Beta Tri',2.159,34.99,3.0],['Gamma Tri',2.289,33.85,4.0]],
+ [[0,1],[1,2],[2,0]]],
+['psa','Poisson austral','Piscis Austrinus',
+ "Le grand poisson qui but l'eau versée par le Verseau, parent des deux Poissons du zodiaque.",
+ "Fomalhaut est entourée d'un immense anneau de poussière, photographié directement par Hubble.",
+ [['Fomalhaut',22.961,-29.62,1.2,"« La bouche du poisson » : l'étoile solitaire de l'automne, entourée d'un anneau de mondes en formation."],['Eps PsA',22.678,-27.04,4.2],['Beta PsA',22.525,-32.35,4.3],['Gamma PsA',22.874,-32.88,4.5]],
+ [[0,1],[1,2],[2,3],[3,0]]],
+['cru','Croix du Sud','Crux',
+ "Invisible d'Europe depuis l'Antiquité à cause de la lente oscillation de la Terre, devenue la boussole des navigateurs du sud.",
+ "La plus petite constellation du ciel borde le Sac de Charbon, un nuage sombre qui troue la Voie lactée.",
+ [['Acrux',12.443,-63.10,0.8,"Le pied de la croix : un système d'étoiles bleues massives brûlant leur vie à toute vitesse."],['Mimosa',12.795,-59.69,1.3],['Gacrux',12.519,-57.11,1.6,"Avec Acrux, elle pointe vers le pôle sud céleste, qui n'a pas d'étoile polaire."],['Imai',12.253,-58.75,2.8]],
+ [[0,2],[1,3]]],
+['cen','Centaure','Centaurus',
+ "Chiron, le centaure savant, précepteur d'Achille et d'Asclépios, qui offrit son immortalité pour délivrer Prométhée.",
+ "Alpha du Centaure est le système stellaire le plus proche du Soleil : Proxima et sa planète ne sont qu'à 4,2 années-lumière.",
+ [['Alpha Cen',14.660,-60.83,-0.3,"Nos plus proches voisines : trois soleils, dont Proxima et sa planète rocheuse tempérée."],['Hadar',14.064,-60.37,0.6],['Menkent',14.111,-36.37,2.1],['Gamma Cen',12.692,-48.96,2.2],['Eps Cen',13.665,-53.47,2.3]],
+ [[0,1],[1,4],[4,3],[4,2]]],
+['car','Carène','Carina',
+ "La coque du navire Argo, si vaste qu'il fallut découper la constellation en trois : la Carène, les Voiles et la Poupe.",
+ "Eta Carinae, monstre de cent masses solaires, frôla l'explosion en 1843 : la prochaine supernova pourrait être elle.",
+ [['Canopus',6.399,-52.70,-0.7,"Deuxième étoile la plus brillante du ciel, phare des sondes spatiales qui s'orientent sur elle."],['Miaplacidus',9.220,-69.72,1.7],['Avior',8.375,-59.51,1.9],['Aspidiske',9.285,-59.28,2.2],['Theta Car',10.716,-64.39,2.7]],
+ [[0,2],[2,3],[3,4],[4,1],[1,2]]],
+['lmc','Grand Nuage de Magellan','Nubecula Major',
+ "Nuage laiteux du ciel austral, guide des navigateurs polynésiens bien avant que Magellan ne lui laisse son nom.",
+ "Ce n'est pas une constellation mais une galaxie entière, satellite de la nôtre : 30 milliards d'étoiles à 160 000 années-lumière.",
+ [['Coeur du Nuage',5.393,-69.76,1.0,"En 1987, une supernova y explosa à l'œil nu : la plus proche observée depuis quatre siècles."],['La Tarentule',5.645,-69.10,2.0,"La nébuleuse de la Tarentule, la plus vaste pouponnière d'étoiles du Groupe local."],['Bord ouest',5.130,-70.50,2.5],['Bord nord',5.350,-68.30,2.5],['Bord sud',5.500,-71.20,2.5]],
+ []],
+['tde','Triangle d\u2019été','Astérisme',
+ "Trois reines de trois constellations — la Lyre, le Cygne et l'Aigle — réunies en un triangle qui domine toutes les nuits d'été.",
+ "Ce n'est pas une constellation officielle mais un repère : trouvez-le, et tout le ciel d'été s'ordonne autour.",
+ [['Véga',18.616,38.78,0.0,"Le sommet le plus brillant, dans la Lyre."],['Deneb',20.690,45.28,1.3,"La queue du Cygne, la plus lointaine des trois."],['Altaïr',19.846,8.87,0.8,"La pointe sud, dans l'Aigle, notre proche voisine."]],
+ [[0,1],[1,2],[2,0]]],
+['tdh','Triangle d\u2019hiver','Astérisme',
+ "Trois feux au cœur des nuits froides : l'épaule d'Orion, le Grand Chien et le Petit Chien, presque équilatéraux.",
+ "Le triangle encercle une des zones les plus discrètes du ciel, la Licorne, et le fleuve de la Voie lactée d'hiver.",
+ [['Bételgeuse',5.919,7.41,0.5,"Le sommet nord : la supergéante rouge d'Orion."],['Sirius',6.752,-16.72,-1.5,"Le sommet sud : l'étoile la plus brillante de tout le ciel."],['Procyon',7.655,5.22,0.4,"Le sommet est, dans le Petit Chien."]],
+ [[0,1],[1,2],[2,0]]],
+['hdh','Hexagone d\u2019hiver','Astérisme',
+ "Six constellations se donnent la main autour d'Orion : le grand anneau de lumière des soirs d'hiver.",
+ "L'hexagone relie six des étoiles les plus brillantes du ciel — le plus grand repère céleste visible d'Europe.",
+ [['Capella',5.278,46.00,0.1,"Le sommet nord, dans le Cocher."],['Aldébaran',4.599,16.51,0.9,"L'œil du Taureau, à l'ouest."],['Rigel',5.242,-8.20,0.1,"Le pied d'Orion, au sud-ouest."],['Sirius',6.752,-16.72,-1.5,"La base sud de l'hexagone."],['Procyon',7.655,5.22,0.4,"Le flanc est, dans le Petit Chien."],['Pollux',7.755,28.03,1.1,"Le sommet nord-est, chez les Gémeaux."]],
+ [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]]]
+];
+
+/* ============================================================
+   DICTIONNAIRE FRANÇAIS
+   Le moteur appelle translateFn(domain, str) pour chaque libellé.
+   Domaines utilisés : 'skyculture' (constellations), 'sky' (étoiles,
+   planètes, désignations), 'gui' (points cardinaux).
+   On enregistre pour chaque constellation le nom latin ET le nom
+   commun anglais : le moteur peut utiliser l'un ou l'autre selon la
+   locale détectée, les deux clés pointent donc vers le même français.
+   ============================================================ */
+const T_SKYCULTURE = {
+  /* --- les 53 d'Ekko --- */
+  'Ursa Major':'Grande Ourse','Great Bear':'Grande Ourse',
+  'Ursa Minor':'Petite Ourse','Little Bear':'Petite Ourse',
+  'Cassiopeia':'Cassiopée',
+  'Cepheus':'Céphée',
+  'Draco':'Dragon','Dragon':'Dragon',
+  'Aries':'Bélier','Ram':'Bélier',
+  'Taurus':'Taureau','Bull':'Taureau',
+  'Gemini':'Gémeaux','Twins':'Gémeaux',
+  'Cancer':'Cancer','Crab':'Cancer',
+  'Leo':'Lion','Lion':'Lion',
+  'Virgo':'Vierge','Virgin':'Vierge',
+  'Libra':'Balance','Scales':'Balance',
+  'Scorpius':'Scorpion','Scorpion':'Scorpion',
+  'Sagittarius':'Sagittaire','Archer':'Sagittaire',
+  'Capricornus':'Capricorne','Sea Goat':'Capricorne',
+  'Aquarius':'Verseau','Water Bearer':'Verseau',
+  'Pisces':'Poissons','Fishes':'Poissons',
+  'Orion':'Orion','Hunter':'Orion',
+  'Canis Major':'Grand Chien','Greater Dog':'Grand Chien',
+  'Canis Minor':'Petit Chien','Lesser Dog':'Petit Chien',
+  'Auriga':'Cocher','Charioteer':'Cocher',
+  'Eridanus':'Éridan','River Eridanus':'Éridan',
+  'Lepus':'Lièvre','Hare':'Lièvre',
+  'Monoceros':'Licorne','Unicorn':'Licorne',
+  'Columba':'Colombe','Dove':'Colombe',
+  'Bootes':'Bouvier','Boötes':'Bouvier','Herdsman':'Bouvier',
+  'Hydra':'Hydre','Water Snake':'Hydre',
+  'Corvus':'Corbeau','Crow':'Corbeau','Raven':'Corbeau',
+  'Crater':'Coupe','Cup':'Coupe',
+  'Coma Berenices':'Chevelure de Bérénice',"Berenice's Hair":'Chevelure de Bérénice',
+  'Canes Venatici':'Chiens de chasse','Hunting Dogs':'Chiens de chasse',
+  'Hercules':'Hercule',
+  'Corona Borealis':'Couronne boréale','Northern Crown':'Couronne boréale',
+  'Cygnus':'Cygne','Swan':'Cygne',
+  'Lyra':'Lyre','Lyre':'Lyre','Harp':'Lyre',
+  'Aquila':'Aigle','Eagle':'Aigle',
+  'Ophiuchus':'Serpentaire','Serpent Holder':'Serpentaire','Serpent Bearer':'Serpentaire',
+  'Serpens':'Serpent','Serpent':'Serpent',
+  'Delphinus':'Dauphin','Dolphin':'Dauphin',
+  'Sagitta':'Flèche','Arrow':'Flèche',
+  'Andromeda':'Andromède',
+  'Perseus':'Persée',
+  'Pegasus':'Pégase','Winged Horse':'Pégase',
+  'Cetus':'Baleine','Whale':'Baleine','Sea Monster':'Baleine',
+  'Triangulum':'Triangle','Triangle':'Triangle',
+  'Piscis Austrinus':'Poisson austral','Southern Fish':'Poisson austral',
+  'Crux':'Croix du Sud','Southern Cross':'Croix du Sud',
+  'Centaurus':'Centaure','Centaur':'Centaure',
+  'Carina':'Carène','Keel':'Carène',
+  /* --- les 35 autres figures IAU : traduites aussi, pour qu'aucun
+         libellé anglais ne subsiste dans le ciel de fond --- */
+  'Antlia':'Machine pneumatique','Air Pump':'Machine pneumatique',
+  'Apus':'Oiseau de paradis','Bird of Paradise':'Oiseau de paradis',
+  'Ara':'Autel','Altar':'Autel',
+  'Caelum':'Burin','Chisel':'Burin',
+  'Camelopardalis':'Girafe','Giraffe':'Girafe',
+  'Capricorn':'Capricorne',
+  'Chamaeleon':'Caméléon','Chameleon':'Caméléon',
+  'Circinus':'Compas','Compass':'Compas',
+  'Corona Australis':'Couronne australe','Southern Crown':'Couronne australe',
+  'Dorado':'Dorade','Swordfish':'Dorade',
+  'Equuleus':'Petit Cheval','Little Horse':'Petit Cheval',
+  'Fornax':'Fourneau','Furnace':'Fourneau',
+  'Grus':'Grue','Crane':'Grue',
+  'Horologium':'Horloge','Clock':'Horloge',
+  'Hydrus':'Hydre mâle','Lesser Water Snake':'Hydre mâle',
+  'Indus':'Indien','Indian':'Indien',
+  'Lacerta':'Lézard','Lizard':'Lézard',
+  'Leo Minor':'Petit Lion','Lesser Lion':'Petit Lion',
+  'Lupus':'Loup','Wolf':'Loup',
+  'Lynx':'Lynx',
+  'Mensa':'Table','Table Mountain':'Table',
+  'Microscopium':'Microscope','Microscope':'Microscope',
+  'Musca':'Mouche','Fly':'Mouche',
+  'Norma':'Règle','Level':'Règle',
+  'Octans':'Octant','Octant':'Octant',
+  'Pavo':'Paon','Peacock':'Paon',
+  'Phoenix':'Phénix',
+  'Pictor':'Chevalet du peintre',"Painter's Easel":'Chevalet du peintre',
+  'Puppis':'Poupe','Stern':'Poupe',
+  'Pyxis':'Boussole','Compass Box':'Boussole','Mariner\u2019s Compass':'Boussole',
+  'Reticulum':'Réticule','Reticle':'Réticule',
+  'Sculptor':'Sculpteur',
+  'Scutum':'Écu de Sobieski','Shield':'Écu de Sobieski',
+  'Sextans':'Sextant','Sextant':'Sextant',
+  'Telescopium':'Télescope','Telescope':'Télescope',
+  'Triangulum Australe':'Triangle austral','Southern Triangle':'Triangle austral',
+  'Tucana':'Toucan','Toucan':'Toucan',
+  'Vela':'Voiles','Sails':'Voiles',
+  'Volans':'Poisson volant','Flying Fish':'Poisson volant',
+  'Vulpecula':'Petit Renard','Fox':'Petit Renard'
+};
+
+/* Étoiles : seules celles dont l'orthographe française diffère.
+   Les autres (Sirius, Rigel, Spica, Polaris…) traversent inchangées. */
+const T_SKY = {
+  'Betelgeuse':'Bételgeuse',
+  'Vega':'Véga','Wega':'Véga',
+  'Aldebaran':'Aldébaran',
+  'Denebola':'Dénébola',
+  'Alkaid':'Alkaïd','Benetnash':'Alkaïd','Elkeid':'Alkaïd',
+  'Polaris':'Polaris \u00b7 étoile Polaire',
+  'Altair':'Altaïr',
+  'Antares':'Antarès',
+  'Regulus':'Régulus',
+  'Alphecca':'Alphécca','Gemma':'Alphécca',
+  'Deneb':'Deneb',
+  'Acamar':'Acamar',
+  'Achernar':'Achernar',
+  'Alnair':'Al Nair',
+  'Alpheratz':'Alphératz','Sirrah':'Alphératz',
+  'Alcyone':'Alcyone',
+  'Almach':'Almach',
+  'Alnitak':'Alnitak',
+  'Alnilam':'Alnilam',
+  'Mintaka':'Mintaka',
+  'Bellatrix':'Bellatrix',
+  'Saiph':'Saïph',
+  'Capella':'Capella',
+  'Castor':'Castor',
+  'Pollux':'Pollux',
+  'Procyon':'Procyon',
+  'Sirius':'Sirius',
+  'Canopus':'Canopus',
+  'Arcturus':'Arcturus',
+  'Izar':'Izar','Pulcherrima':'Izar',
+  'Mizar':'Mizar',
+  'Alcor':'Alcor',
+  'Dubhe':'Dubhé',
+  'Merak':'Merak',
+  'Phecda':'Phecda','Phad':'Phecda',
+  'Megrez':'Megrez',
+  'Alioth':'Alioth',
+  'Kochab':'Kochab',
+  'Pherkad':'Pherkad',
+  'Schedar':'Schédar','Shedir':'Schédar',
+  'Caph':'Caph',
+  'Ruchbah':'Ruchbah',
+  'Segin':'Segin',
+  'Alderamin':'Aldéramin',
+  'Errai':'Erraï',
+  'Eltanin':'Eltanin','Etamin':'Eltanin',
+  'Rastaban':'Rastaban',
+  'Thuban':'Thuban',
+  'Hamal':'Hamal',
+  'Sheratan':'Shératan',
+  'Mesarthim':'Mésarthim',
+  'Elnath':'Elnath',
+  'Alhena':'Alhéna',
+  'Alphard':'Alphard',
+  'Algieba':'Algieba',
+  'Zosma':'Zosma',
+  'Spica':'Spica',
+  'Porrima':'Porrima',
+  'Vindemiatrix':'Vindémiatrix',
+  'Zubenelgenubi':'Zubénelgenubi',
+  'Zubeneschamali':'Zubéneschamali',
+  'Shaula':'Shaula',
+  'Sargas':'Sargas',
+  'Dschubba':'Dschubba',
+  'Acrab':'Acrab','Graffias':'Acrab',
+  'Kaus Australis':'Kaus Australis',
+  'Nunki':'Nunki',
+  'Ascella':'Ascella',
+  'Deneb Algedi':'Déneb Algedi',
+  'Sadalsuud':'Sadalsuud',
+  'Sadalmelik':'Sadalmélik',
+  'Skat':'Skat',
+  'Alrescha':'Alrescha','Alrisha':'Alrescha',
+  'Mirzam':'Mirzam','Murzim':'Mirzam',
+  'Wezen':'Wezen',
+  'Adhara':'Adhara',
+  'Aludra':'Aludra',
+  'Gomeisa':'Goméisa',
+  'Menkalinan':'Menkalinan',
+  'Almaaz':'Almaaz','Al Anz':'Almaaz',
+  'Cursa':'Cursa',
+  'Zaurak':'Zaurak',
+  'Arneb':'Arneb',
+  'Nihal':'Nihal',
+  'Phact':'Phact',
+  'Wazn':'Wazn',
+  'Muphrid':'Muphrid',
+  'Nekkar':'Nekkar',
+  'Seginus':'Séginus',
+  'Gienah':'Gienah',
+  'Algorab':'Algorab',
+  'Kraz':'Kraz',
+  'Minkar':'Minkar',
+  'Alchiba':'Alchiba',
+  'Alkes':'Alkès',
+  'Cor Caroli':'Cor Caroli',
+  'Chara':'Chara',
+  'Kornephoros':'Kornéphoros',
+  'Rasalgethi':'Rasalgéthi',
+  'Rasalhague':'Rasalhague',
+  'Cebalrai':'Cébalraï',
+  'Sabik':'Sabik',
+  'Unukalhai':'Unukalhaï',
+  'Alya':'Alya',
+  'Sadr':'Sadr',
+  'Albireo':'Albiréo',
+  'Fawaris':'Fawaris',
+  'Sheliak':'Sheliak',
+  'Sulafat':'Sulafat',
+  'Tarazed':'Tarazed',
+  'Alshain':'Alshain',
+  'Sualocin':'Sualocin',
+  'Rotanev':'Rotanev',
+  'Sham':'Sham',
+  'Mirach':'Mirach',
+  'Mirfak':'Mirfak','Algenib':'Algenib',
+  'Algol':'Algol',
+  'Markab':'Markab',
+  'Scheat':'Schéat',
+  'Enif':'Enif',
+  'Homam':'Homam',
+  'Matar':'Matar',
+  'Menkar':'Menkar',
+  'Mira':'Mira',
+  'Diphda':'Diphda','Deneb Kaitos':'Diphda',
+  'Mothallah':'Mothallah',
+  'Fomalhaut':'Fomalhaut',
+  'Acrux':'Acrux',
+  'Mimosa':'Mimosa','Becrux':'Mimosa',
+  'Gacrux':'Gacrux',
+  'Imai':'Imaï',
+  'Hadar':'Hadar','Agena':'Hadar',
+  'Menkent':'Menkent',
+  'Rigil Kentaurus':'Rigil Kentaurus',
+  'Proxima Centauri':'Proxima du Centaure',
+  'Miaplacidus':'Miaplacidus',
+  'Avior':'Avior',
+  'Aspidiske':'Aspidiske',
+  /* planètes et objets, au cas où ils seraient réactivés */
+  'Sun':'Soleil','Moon':'Lune','Mercury':'Mercure','Venus':'Vénus',
+  'Earth':'Terre','Mars':'Mars','Jupiter':'Jupiter','Saturn':'Saturne',
+  'Uranus':'Uranus','Neptune':'Neptune','Pluto':'Pluton'
+};
+
+/* Points cardinaux : seul W diffère en français */
+const T_GUI = { 'N':'N','E':'E','S':'S','W':'O','NE':'NE','SE':'SE','SW':'SO','NW':'NO' };
+
+function translateFn(domain, str){
+  if(domain === 'skyculture') return T_SKYCULTURE[str] || str;
+  if(domain === 'sky')        return T_SKY[str] || str;
+  if(domain === 'gui')        return T_GUI[str] || str;
+  return str;
+}
+
+/* Catégories affichées dans la puce de la carte */
+const CATS = {
+  uma:'Circumpolaires', umi:'Circumpolaires', cas:'Circumpolaires', cep:'Circumpolaires', dra:'Circumpolaires',
+  ari:'Zodiaque', tau:'Zodiaque', gem:'Zodiaque', cnc:'Zodiaque', leo:'Zodiaque', vir:'Zodiaque',
+  lib:'Zodiaque', sco:'Zodiaque', sgr:'Zodiaque', cap:'Zodiaque', aqr:'Zodiaque', psc:'Zodiaque',
+  ori:'Hiver', cma:'Hiver', cmi:'Hiver', aur:'Hiver', eri:'Hiver', lep:'Hiver', mon:'Hiver', col:'Hiver',
+  boo:'Printemps', hya:'Printemps', crv:'Printemps', crt:'Printemps', com:'Printemps', cvn:'Printemps',
+  her:'Été', crb:'Été', cyg:'Été', lyr:'Été', aql:'Été', oph:'Été', ser:'Été', del:'Été', sge:'Été',
+  and:'Automne', per:'Automne', peg:'Automne', cet:'Automne', tri:'Automne', psa:'Automne',
+  cru:'Ciel austral', cen:'Ciel austral', car:'Ciel austral', lmc:'Ciel austral',
+  tde:'Astérisme', tdh:'Astérisme', hdh:'Astérisme'
+};
+
+/* ============================================================
+   EKKO OF BEYOND — Vue du ciel · 53 constellations
+   Fond : Stellarium Web Engine (tracés de constellations uniquement)
+   Libellés : police Afacad chargée dans le moteur + noms français
+   ============================================================ */
+
+const ENGINE_WASM = '/vendor/stellarium-web-engine.wasm';
+const SKYDATA = 'https://cdn.jsdelivr.net/gh/liudonghua123/stellarium-web-engine@453e155185a6060711e533f9bf8d0334b2ae862f/skydata/';
+const AFACAD_TTF = '/vendor/Afacad-variable.ttf';
+
+const $ = s => document.querySelector(s);
+const statusEl = $('#status');
+const setStatus = m => { statusEl.textContent = m; statusEl.classList.remove('off'); };
+const hideStatus = d => setTimeout(() => statusEl.classList.add('off'), d || 0);
+
+const CONSTELLATIONS = RAW.map(r => ({
+  id:r[0], name:r[1], latin:r[2], desc:r[3],
+  stars:r[5].map(s => ({ n:s[0], ra:s[1], dec:s[2] })),
+  lines:r[6],
+  cat: CATS[r[0]] || 'Constellation'
+}));
+
+/* Correspondance id Ekko -> abréviation IAU, pour dialoguer avec le moteur.
+   Le Grand Nuage de Magellan et les trois astérismes n'ont pas de
+   constellation équivalente : ils restent volontairement sans entrée. */
+const IAU = {
+  uma:'UMa', umi:'UMi', cas:'Cas', cep:'Cep', dra:'Dra',
+  ari:'Ari', tau:'Tau', gem:'Gem', cnc:'Cnc', leo:'Leo', vir:'Vir',
+  lib:'Lib', sco:'Sco', sgr:'Sgr', cap:'Cap', aqr:'Aqr', psc:'Psc',
+  ori:'Ori', cma:'CMa', cmi:'CMi', aur:'Aur', eri:'Eri', lep:'Lep',
+  mon:'Mon', col:'Col',
+  boo:'Boo', hya:'Hya', crv:'Crv', crt:'Crt', com:'Com', cvn:'CVn',
+  her:'Her', crb:'CrB', cyg:'Cyg', lyr:'Lyr', aql:'Aql', oph:'Oph',
+  ser:'Ser', del:'Del', sge:'Sge',
+  and:'And', per:'Per', peg:'Peg', cet:'Cet', tri:'Tri', psa:'PsA',
+  cru:'Cru', cen:'Cen', car:'Car'
+};
+const BY_IAU = {};
+CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
+
+/* ---------- fond étoilé de secours ---------- */
+(function(){
+  const c = $('#fallback-stars'), x = c.getContext('2d');
+  function draw(){
+    c.width = innerWidth * devicePixelRatio; c.height = innerHeight * devicePixelRatio;
+    x.clearRect(0,0,c.width,c.height);
+    for(let i=0;i<240;i++){
+      x.fillStyle = 'rgba(227,227,196,'+(0.05+Math.random()*0.28)+')';
+      x.beginPath();
+      x.arc(Math.random()*c.width, Math.random()*c.height, (Math.random()<0.9?0.6:1.2)*devicePixelRatio, 0, 7);
+      x.fill();
+    }
+  }
+  draw(); addEventListener('resize', draw);
+})();
+
+/* ---------- astronomie : visibilité depuis la position ---------- */
+const GEO = { lat:37.18, lon:-3.60 };
+function lstHours(date, lonDeg){
+  const jd = date.getTime()/86400000 + 2440587.5, d = jd - 2451545.0;
+  let lst = (18.697374558 + 24.06570982441908*d + lonDeg/15) % 24;
+  return lst < 0 ? lst + 24 : lst;
+}
+function altOf(raH, decD, date){
+  const H = (lstHours(date, GEO.lon) - raH) * 15 * Math.PI/180;
+  const dec = decD*Math.PI/180, lat = GEO.lat*Math.PI/180;
+  const s = Math.sin(lat)*Math.sin(dec) + Math.cos(lat)*Math.cos(dec)*Math.cos(H);
+  return Math.asin(Math.max(-1, Math.min(1, s)));
+}
+function centroidRaDec(c){
+  let x=0, y=0, dec=0;
+  c.stars.forEach(s => { const a = s.ra/24*2*Math.PI; x += Math.cos(a); y += Math.sin(a); dec += s.dec; });
+  let ra = Math.atan2(y,x)/(2*Math.PI)*24; if(ra < 0) ra += 24;
+  return { ra, dec: dec/c.stars.length };
+}
+const VIS_ALT = 12*Math.PI/180;
+function visibility(c){
+  const { ra, dec } = centroidRaDec(c);
+  if(90 - Math.abs(GEO.lat - dec) < 12) return { code:'never' };
+  const now = new Date();
+  if(altOf(ra, dec, now) > VIS_ALT) return { code:'now' };
+  for(let m=10; m<=300; m+=10){
+    const t = new Date(now.getTime() + m*60000);
+    if(altOf(ra, dec, t) > VIS_ALT) return { code:'soon', at:t };
+  }
+  for(let d=1; d<=370; d+=3){
+    const t = new Date(now); t.setDate(t.getDate()+d); t.setHours(22,0,0,0);
+    if(altOf(ra, dec, t) > VIS_ALT) return { code:'later', at:t };
+  }
+  return { code:'later', at:null };
+}
+const fmtTime = d => d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+const fmtDate = d => d.toLocaleDateString('fr-FR', { day:'numeric', month:'long' });
+
+/* ---------- médaillon ---------- */
+function medallionSVG(c){
+  let ras = c.stars.map(s => s.ra);
+  if(Math.max(...ras) - Math.min(...ras) > 12) ras = ras.map(r => r < 12 ? r+24 : r);
+  const decs = c.stars.map(s => s.dec);
+  const mR = Math.min(...ras), MR = Math.max(...ras), mD = Math.min(...decs), MD = Math.max(...decs);
+  const pts = c.stars.map((s,i) => ({
+    x: 28 + (1 - (ras[i]-mR)/((MR-mR)||1)) * 44,
+    y: 28 + (1 - (s.dec-mD)/((MD-mD)||1)) * 44
+  }));
+  let o = '<svg viewBox="0 0 100 100">';
+  o += '<circle cx="50" cy="50" r="49.6" fill="none" stroke="#E3E3C4" stroke-width="0.8"/>';
+  o += '<circle cx="50" cy="50" r="41" fill="none" stroke="rgba(227,227,196,.3)" stroke-width="0.8"/>';
+  c.lines.forEach(([a,b]) => {
+    o += '<line x1="'+pts[a].x.toFixed(1)+'" y1="'+pts[a].y.toFixed(1)+'" x2="'+pts[b].x.toFixed(1)+'" y2="'+pts[b].y.toFixed(1)+'" stroke="#E3E3C4" stroke-width="0.8"/>';
+  });
+  pts.forEach(p => { o += '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="1.7" fill="#E3E3C4"/>'; });
+  return o + '</svg>';
+}
+
+/* ---------- carte ---------- */
+let cardIdx = 0;
+const COLLECTED = new Set(['cas','lyr']);   /* démo : deux constellations captées */
+
+function renderCard(){
+  const c = CONSTELLATIONS[cardIdx];
+  const vis = visibility(c);
+  $('#medallion').innerHTML = medallionSVG(c);
+  $('#c-cat').textContent = c.cat;
+  $('#c-title').textContent = c.name;
+  $('#c-desc').textContent = c.desc;
+
+  const t = $('#c-vis-txt');
+  if(vis.code === 'now')       t.textContent = 'Visible maintenant';
+  else if(vis.code === 'soon') t.textContent = 'Vers ' + fmtTime(vis.at);
+  else if(vis.code === 'never')t.textContent = 'Autre hémisphère';
+  else                         t.textContent = vis.at ? ('Vers le ' + fmtDate(vis.at)) : 'Plus tard';
+
+  const got = COLLECTED.has(c.id);
+  const pill = $('#c-pill');
+  pill.textContent = got ? 'collectée' : 'non collectée';
+  pill.classList.toggle('got', got);
+
+  $('#c-pos').textContent = (cardIdx + 1) + ' / ' + CONSTELLATIONS.length;
+}
+
+/* Sélectionne la constellation dans le moteur. C'est la sélection qui
+   déclenche l'apparition en fondu du dessin de la figure : le moteur
+   ignore le réglage images_visible pour l'objet sélectionné. */
+let selTimer = null;
+function selectInEngine(idx, delayMs){
+  if(!STEL) return;
+  clearTimeout(selTimer);
+  const iau = IAU[CONSTELLATIONS[idx].id];
+  selTimer = setTimeout(() => {
+    try{
+      if(!iau){ STEL.core.selection = null; return; }
+      const obj = STEL.getObj('CON western ' + iau) || STEL.getObj('NAME ' + iau);
+      STEL.core.selection = obj || null;
+    }catch(e){ console.warn('[ekko] sélection impossible :', e); }
+  }, delayMs || 0);
+}
+
+/* Écoute les clics de l'utilisateur dans le ciel : quand il touche le nom
+   (ou le tracé) d'une constellation, le moteur la met en sélection et on
+   recale la carte du bas. Un clic sur une étoile ne change rien. */
+function watchSelection(stel){
+  stel.core.change('selection', () => {
+    const sel = stel.core.selection;
+    if(!sel) return;
+    let desigs;
+    try{ desigs = sel.designations(); }catch(e){ return; }
+    const con = desigs.find(d => d.indexOf('CON ') === 0);
+    if(!con) return;                       /* pas une constellation */
+    const idx = BY_IAU[con.split(' ').pop()];
+    if(idx === undefined) return;          /* figure hors des 53 d'Ekko */
+    if(idx === cardIdx) return;            /* déjà la bonne : rien à faire */
+    cardIdx = idx;
+    renderCard();
+  });
+}
+
+function goToCard(delta){
+  cardIdx = (cardIdx + delta + CONSTELLATIONS.length) % CONSTELLATIONS.length;
+  renderCard();
+  focusOnCard(1.2);
+  selectInEngine(cardIdx, 850);   /* le dessin apparaît à l'arrivée du vol */
+}
+$('#prev').onclick = () => goToCard(-1);
+$('#next').onclick = () => goToCard(1);
+addEventListener('keydown', e => {
+  if(e.key === 'ArrowLeft')  goToCard(-1);
+  if(e.key === 'ArrowRight') goToCard(1);
+});
+$('#tg-sky').onclick  = () => { $('#tg-sky').classList.add('on');  $('#tg-coll').classList.remove('on'); };
+$('#tg-coll').onclick = () => { $('#tg-coll').classList.add('on'); $('#tg-sky').classList.remove('on'); };
+
+/* ---------- Stellarium ---------- */
+let STEL = null;
+
+function focusOnCard(duration){
+  if(!STEL) return;
+  const c = CONSTELLATIONS[cardIdx], D2R = STEL.D2R;
+  let cx=0, cy=0, cz=0;
+  const vecs = c.stars.map(s => {
+    const v = STEL.s2c(s.ra*15*D2R, s.dec*D2R);
+    cx+=v[0]; cy+=v[1]; cz+=v[2];
+    return v;
+  });
+  const n = Math.hypot(cx,cy,cz) || 1;
+  const center = [cx/n, cy/n, cz/n];
+  let maxAng = 0;
+  vecs.forEach(v => {
+    const d = Math.max(-1, Math.min(1, v[0]*center[0] + v[1]*center[1] + v[2]*center[2]));
+    maxAng = Math.max(maxAng, Math.acos(d));
+  });
+  const fovDeg = Math.max(26, Math.min(95, (maxAng*STEL.R2D)*2.9 + 12));
+  try{
+    const observed = STEL.convertFrame(STEL.core.observer, 'ICRF', 'OBSERVED', center);
+    const dur = duration === 0 ? 0 : (duration || 1.2);
+    STEL.lookAt(observed, dur);
+    STEL.zoomTo(fovDeg * D2R, dur);
+    pulseReticle();
+  }catch(e){ console.warn('[ekko] recentrage impossible :', e); }
+}
+
+let reticleTimer;
+function pulseReticle(){
+  const r = $('#reticle');
+  r.classList.remove('on'); void r.offsetWidth; r.classList.add('on');
+  clearTimeout(reticleTimer);
+  reticleTimer = setTimeout(() => r.classList.remove('on'), 2600);
+}
+
+function applyEkkoFilters(stel){
+  const core = stel.core;
+  const set = fn => { try{ fn(); }catch(e){} };
+
+  /* tracés de constellations + leurs noms (en français, via translateFn) */
+  set(()=>{ core.constellations.lines_visible   = true;  });
+  set(()=>{ core.constellations.labels_visible  = true;  });
+  set(()=>{ core.constellations.images_visible  = false; });
+  set(()=>{ core.constellations.bounds_visible  = false; });
+  set(()=>{ core.constellations.lines_animation = false; });
+  set(()=>{ core.constellations.lines_color = [0.890, 0.890, 0.769, 0.55]; });
+
+  /* noms d'étoiles, également traduits */
+  set(()=>{ core.stars.visible        = true; });
+  set(()=>{ core.stars.labels_visible = true; });
+
+  /* tout le reste : désactivé */
+  set(()=>{ core.atmosphere.visible       = false; });
+  set(()=>{ core.landscapes.visible       = false; });
+  set(()=>{ core.landscapes.fog_visible   = false; });
+  set(()=>{ core.milkyway.visible         = false; });
+  set(()=>{ core.dsos.visible             = false; });
+  set(()=>{ core.dss.visible              = false; });
+  set(()=>{ core.planets.visible          = false; });
+  set(()=>{ core.satellites.visible       = false; });
+  set(()=>{ core.comets.visible           = false; });
+  set(()=>{ core.minor_planets.visible    = false; });
+  set(()=>{ core.lines.azimuthal.visible  = false; });
+  set(()=>{ core.lines.equatorial.visible = false; });
+  set(()=>{ core.lines.meridian.visible   = false; });
+  set(()=>{ core.lines.ecliptic.visible   = false; });
+}
+
+function boot(lat, lon){
+  GEO.lat = lat; GEO.lon = lon;
+  renderCard();
+  if(typeof StelWebEngine !== 'function'){
+    setStatus('Moteur Stellarium inaccessible — fond de secours affiché');
+    return;
+  }
+  setStatus('Chargement du moteur (WebAssembly)…');
+  try{
+    StelWebEngine({
+      wasmFile: ENGINE_WASM,
+      canvas: $('#stel-canvas'),
+      translateFn: translateFn,          /* <- noms français dans le canvas */
+      onReady: function(stel){
+        STEL = stel; window.stel = stel;
+        setStatus('Chargement des étoiles et constellations…');
+
+        /* Afacad dans le moteur de texte du canvas */
+        Promise.all([
+          stel.setFont('regular', AFACAD_TTF),
+          stel.setFont('bold', AFACAD_TTF)
+        ]).catch(e => console.warn('[ekko] Afacad non chargée dans le moteur :', e));
+
+        stel.core.stars.addDataSource({ url: SKYDATA + 'stars' });
+        stel.core.skycultures.addDataSource({ url: SKYDATA + 'skycultures/western', key: 'western' });
+
+        applyEkkoFilters(stel);
+        watchSelection(stel);
+        try{
+          stel.core.observer.latitude  = lat * stel.D2R;
+          stel.core.observer.longitude = lon * stel.D2R;
+          stel.core.observer.elevation = 0;
+          stel.core.observer.utc = stel.date2MJD(new Date());
+        }catch(e){ console.warn('[ekko] observer :', e); }
+
+        try{ stel.zoomTo(88 * stel.D2R, 0); }catch(e){}
+        setTimeout(() => { focusOnCard(1.6); selectInEngine(cardIdx, 1200); }, 1000);
+        setTimeout(() => { $('#fallback-stars').style.opacity = '0'; }, 1600);
+        hideStatus(2800);
+      }
+    });
+  }catch(e){
+    console.error(e);
+    setStatus('Échec du moteur — fond de secours affiché');
+  }
+}
+
+function zoomBy(f){
+  if(!STEL) return;
+  try{
+    const cur = STEL.core.fov * STEL.R2D;
+    STEL.zoomTo(Math.max(8, Math.min(120, cur*f)) * STEL.D2R, 0.35);
+  }catch(e){}
+}
+$('#z-in').onclick  = () => zoomBy(0.72);
+$('#z-out').onclick = () => zoomBy(1/0.72);
+
+renderCard();
+if(navigator.geolocation){
+  navigator.geolocation.getCurrentPosition(
+    p => boot(p.coords.latitude, p.coords.longitude),
+    () => boot(GEO.lat, GEO.lon),
+    { enableHighAccuracy:false, timeout:6000 }
+  );
+}else boot(GEO.lat, GEO.lon);
+</script>
+</body>
+</html>
