@@ -34,14 +34,27 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 /* ================= CIEL ================= */
 #stel-canvas{
   position:fixed;inset:0;width:100%;height:100%;z-index:1;touch-action:none;
-  /* ramène tracés + étoiles vers #E3E3C4 (couleur codée en dur dans le moteur) */
-  filter:sepia(.85) hue-rotate(17deg) saturate(.55) brightness(1.12);
+  /* Le moteur code en dur le cyan des tracés (0.65, 1, 1). La matrice
+     #ekko-tint le convertit exactement en #E3E3C4 tout en préservant les
+     teintes chaudes — indispensable depuis que les planètes et la Voie
+     lactée sont affichées, que l'ancien sepia() désaturait entièrement.
+     Pour revenir à un ciel aux couleurs brutes : supprimer cette ligne. */
+  filter:url(#ekko-tint);
 }
 #fallback-stars{position:fixed;inset:0;z-index:0;pointer-events:none;transition:opacity 1.2s}
+/* Ellipse 297 de la maquette : 2178 x 943 px dans un cadre de 1440 x 1024,
+   posée à 403 px du haut — elle dépasse donc de 322 px sous le bas de page.
+   Ramené en unités relatives : 151vw x 92vh, bottom -31.4vh. Fusion
+   color-dodge, comme dans Figma. */
 .horizon-glow{
-  position:fixed;left:50%;bottom:-46vh;transform:translateX(-50%);
-  width:151vw;height:92vh;z-index:2;pointer-events:none;mix-blend-mode:color-dodge;
-  background:radial-gradient(50% 50% at 50% 50%,rgba(58,110,128,.55) 0%,rgba(28,64,84,.22) 42%,transparent 72%);
+  position:fixed;left:50%;bottom:-31.4vh;transform:translateX(-50%);
+  width:151vw;height:92vh;z-index:2;pointer-events:none;
+  mix-blend-mode:color-dodge;
+  background:radial-gradient(50% 50% at 50% 50%,
+    rgba(96,170,196,.62) 0%,
+    rgba(58,118,146,.34) 34%,
+    rgba(30,68,92,.14) 58%,
+    transparent 74%);
 }
 
 /* ================= HEADER ================= */
@@ -240,6 +253,20 @@ a.account{text-decoration:none}
 </style>
 </head>
 <body>
+
+<!-- Matrice de teinte. Le cyan des tracés (0.65, 1, 1) devient
+     (0.89, 0.89, 0.77) soit #E3E3C4 pile ; le rouge de Mars et l'or de
+     Saturne restent chauds. color-interpolation-filters="sRGB" est
+     indispensable : en linearRGB les valeurs ne tomberaient pas juste. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="ekko-tint" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="
+      1    0.24 0    0 0
+      0    0.89 0    0 0
+      0    0    0.77 0 0
+      0    0    0    1 0"/>
+  </filter>
+</svg>
 
 <canvas id="fallback-stars"></canvas>
 <canvas id="stel-canvas"></canvas>
@@ -1205,14 +1232,19 @@ function applyEkkoFilters(stel){
   set(()=>{ core.stars.visible        = true; });
   set(()=>{ core.stars.labels_visible = true; });
 
+  /* Voie lactée : le fond laiteux de Stellarium, servi par un survey HiPS */
+  set(()=>{ core.milkyway.visible         = true;  });
+
+  /* Planètes : couleurs issues de planets.ini, phases et anneaux de Saturne
+     calculés par le moteur. Le zoom descend jusqu'à 1 seconde d'arc. */
+  set(()=>{ core.planets.visible          = true;  });
+
   /* tout le reste : désactivé */
   set(()=>{ core.atmosphere.visible       = false; });
   set(()=>{ core.landscapes.visible       = false; });
   set(()=>{ core.landscapes.fog_visible   = false; });
-  set(()=>{ core.milkyway.visible         = false; });
   set(()=>{ core.dsos.visible             = false; });
   set(()=>{ core.dss.visible              = false; });
-  set(()=>{ core.planets.visible          = false; });
   set(()=>{ core.satellites.visible       = false; });
   set(()=>{ core.comets.visible           = false; });
   set(()=>{ core.minor_planets.visible    = false; });
@@ -1247,6 +1279,14 @@ function boot(lat, lon){
 
         stel.core.stars.addDataSource({ url: SKYDATA + 'stars' });
         stel.core.skycultures.addDataSource({ url: SKYDATA + 'skycultures/western', key: 'western' });
+        /* fond de Voie lactée */
+        stel.core.milkyway.addDataSource({ url: SKYDATA + 'surveys/milkyway' });
+        /* textures de surface : seules la Lune et le Soleil en ont une.
+           On n'enregistre volontairement pas de clé « default » : elle
+           appliquerait la texture lunaire à toutes les autres planètes.
+           Sans elle, chacune garde sa couleur propre et ses anneaux. */
+        stel.core.planets.addDataSource({ url: SKYDATA + 'surveys/sso/moon', key: 'moon' });
+        stel.core.planets.addDataSource({ url: SKYDATA + 'surveys/sso/sun',  key: 'sun'  });
 
         applyEkkoFilters(stel);
         watchSelection(stel);
@@ -1269,11 +1309,17 @@ function boot(lat, lon){
   }
 }
 
+/* Le moteur autorise un champ minimal d'une seconde d'arc. On s'arrête à
+   0,005° (18″), largement suffisant pour remplir l'écran avec Jupiter, qui
+   fait une cinquantaine de secondes d'arc. Le pas s'affine automatiquement
+   en zoom serré, sinon un seul appui ferait sauter plusieurs planètes. */
+const FOV_MIN = 0.005, FOV_MAX = 120;
 function zoomBy(f){
   if(!STEL) return;
   try{
     const cur = STEL.core.fov * STEL.R2D;
-    STEL.zoomTo(Math.max(8, Math.min(120, cur*f)) * STEL.D2R, 0.35);
+    const k = cur < 0.5 ? Math.pow(f, 0.55) : f;
+    STEL.zoomTo(Math.max(FOV_MIN, Math.min(FOV_MAX, cur*k)) * STEL.D2R, 0.35);
   }catch(e){}
 }
 $('#z-in').onclick  = () => zoomBy(0.72);
