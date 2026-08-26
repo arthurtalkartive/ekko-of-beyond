@@ -11,7 +11,7 @@ Aucune étape de build. Deux fichiers HTML autonomes, plus un dossier
 
 | URL | Fichier | Rôle |
 |---|---|---|
-| `/` | `index.html` | Vue du ciel : 53 constellations, Voie lactée, planètes en couleur, noms en français, navigation par flèches avec recentrage caméra |
+| `/` | `index.html` | Vue du ciel : les 53 figures Ekko et elles seules, tracés en `#E3E3C4`, Voie lactée, planètes en couleur, noms en français, navigation par flèches avec recentrage caméra |
 | `/verification` | `verification.html` | Outil interne : superpose le tracé réel de Stellarium sur vos illustrations |
 
 Le bouton **Mon compte** de l'en-tête mène pour l'instant à
@@ -99,11 +99,14 @@ préversion, mais fait dépendre le site d'un dépôt que vous ne contrôlez
 pas. Copiez le dossier `skydata/` dans ce projet et remplacez la
 constante `SKYDATA` dans les deux pages.
 
-**3. Écrire le skyculture Ekko.** Le moteur affiche aujourd'hui les 88
-figures de la skyculture occidentale, pas seulement vos 53 : on ne peut
-pas filtrer figure par figure depuis JavaScript. Il faut un skyculture
-propre, qui portera aussi vos noms français, vos illustrations et vos
-trois astérismes — absents de tout catalogue.
+**3. Déposer vos illustrations.** Le skyculture Ekko est en place, mais
+sans dessins pour l'instant. Voir `skyculture/ekko/illustrations/LISEZ-MOI.md`.
+
+**4. Recompiler le moteur proprement.** Le binaire de `vendor/` a été
+édité directement pour obtenir des tracés couleur crème, faute de chaîne
+emscripten. La modification est validée et documentée dans
+`vendor/MODIFICATIONS.md`, mais une vraie recompilation reste préférable
+à terme.
 
 ## Structure
 
@@ -111,9 +114,13 @@ trois astérismes — absents de tout catalogue.
 .
 ├── index.html                  vue du ciel
 ├── verification.html           outil de vérification des figures
+├── skyculture/ekko/
+│   ├── index.json                  les 53 figures, tracés et noms français
+│   └── illustrations/              vos dessins WebP — voir son LISEZ-MOI
 ├── vendor/
 │   ├── stellarium-web-engine.js    moteur, AGPL-3.0
-│   ├── stellarium-web-engine.wasm  binaire, AGPL-3.0
+│   ├── stellarium-web-engine.wasm  binaire modifié, AGPL-3.0
+│   ├── MODIFICATIONS.md            ce qui a été changé dans le binaire
 │   └── Afacad-variable.ttf         police, OFL 1.1
 ├── vercel.json
 ├── NOTICE.md                   attributions et licences — à lire
