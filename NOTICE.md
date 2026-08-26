@@ -17,6 +17,12 @@ Le binaire embarqué provient d'un build compilé publié dans le fork
 `QHYCCD-QUARCS/QUARCS_stellarium-web-engine`, commit
 `e3ddb048e66e7b9bd49343b1ca59155927709e1c`.
 
+**Il a été modifié.** La couleur des tracés de constellations est passée
+du cyan d'origine à `#E3E3C4`, et celle des labels au blanc. L'AGPL
+impose de documenter et de rendre disponibles ces modifications :
+`vendor/MODIFICATIONS.md` en donne le détail exact, avec le diff
+équivalent au niveau des sources et la procédure de recompilation.
+
 **Ce que l'AGPL implique pour un déploiement Vercel.** L'article 13 de
 l'AGPL porte sur l'usage *via un réseau* : dès lors que des utilisateurs
 interagissent avec le logiciel à distance, vous devez leur offrir l'accès
@@ -34,18 +40,29 @@ Trois options, à trancher avant toute mise en production :
 
 ## 2. Données du ciel — chargées depuis un CDN
 
-Le catalogue d'étoiles, le skyculture occidental et ses illustrations
-sont chargés à l'exécution depuis jsDelivr, qui sert le miroir
-`liudonghua123/stellarium-web-engine` (branche `gh-pages`, commit
-`453e155185a6060711e533f9bf8d0334b2ae862f`).
+Le catalogue d'étoiles, le survey de la Voie lactée et les textures de la
+Lune et du Soleil sont chargés à l'exécution depuis jsDelivr, qui sert le
+miroir `liudonghua123/stellarium-web-engine` (branche `gh-pages`, commit
+`453e155185a6060711e533f9bf8d0334b2ae862f`). Licence CC BY-SA.
 
-Licences annoncées par ce skyculture : textes et données en CC BY-SA,
-illustrations sous Licence Art Libre, œuvres de **Johan Meuris**.
+Le skyculture occidental n'est **plus** utilisé par la carte : il est
+remplacé par `skyculture/ekko/`, qui ne contient que nos 53 figures. Les
+illustrations de **Johan Meuris**, sous Licence Art Libre, ne sont donc
+plus chargées par la page d'accueil. L'outil `/verification` continue de
+les afficher, à la demande, comme calque de comparaison — elles restent
+servies par le CDN et ne sont pas redistribuées dans ce dépôt.
 
-Ces fichiers ne sont pas redistribués dans ce dépôt. C'est volontaire :
-cela évite d'y introduire des œuvres copyleft. En contrepartie, le site
-dépend d'un dépôt tiers — voir la section « Avant la production » du
-README.
+## 2 bis. Skyculture Ekko
+
+`skyculture/ekko/index.json` est un fichier de données que nous
+produisons. Il en va autrement de son contenu :
+
+- les **tracés** (segments entre étoiles) sont repris du skyculture
+  occidental de Stellarium, donc **CC BY-SA** — attribution au projet
+  Stellarium requise ;
+- les **noms français** de constellations et d'étoiles, ainsi que les
+  trois astérismes Ekko, sont nos apports ;
+- les **coordonnées** viennent de la base HYG (section 3).
 
 ## 3. Coordonnées stellaires — base HYG
 
