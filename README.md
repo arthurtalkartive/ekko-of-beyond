@@ -11,7 +11,7 @@ Aucune étape de build. Deux fichiers HTML autonomes, plus un dossier
 
 | URL | Fichier | Rôle |
 |---|---|---|
-| `/` | `index.html` | Vue du ciel : 53 constellations, noms en français, navigation par flèches avec recentrage caméra |
+| `/` | `index.html` | Vue du ciel : 53 constellations, Voie lactée, planètes en couleur, noms en français, navigation par flèches avec recentrage caméra |
 | `/verification` | `verification.html` | Outil interne : superpose le tracé réel de Stellarium sur vos illustrations |
 
 Le bouton **Mon compte** de l'en-tête mène pour l'instant à
@@ -91,12 +91,13 @@ Trois chantiers, par ordre d'urgence.
 réseau. C'est une décision de fond, détaillée dans `NOTICE.md`. À
 trancher avant toute ouverture au public.
 
-**2. Internaliser les données du ciel.** Le catalogue d'étoiles, le
-skyculture et les illustrations sont chargés depuis jsDelivr, qui sert un
-miroir GitHub tiers. Ça convient parfaitement à une préversion, mais fait
-dépendre le site d'un dépôt que vous ne contrôlez pas. Copiez le dossier
-`skydata/` dans ce projet et remplacez la constante `SKYDATA` dans les
-deux pages.
+**2. Internaliser les données du ciel.** Cinq sources sont chargées depuis
+jsDelivr, qui sert un miroir GitHub tiers : le catalogue d'étoiles, le
+skyculture occidental et ses illustrations, le survey de la Voie lactée,
+et les textures de la Lune et du Soleil. Ça convient parfaitement à une
+préversion, mais fait dépendre le site d'un dépôt que vous ne contrôlez
+pas. Copiez le dossier `skydata/` dans ce projet et remplacez la
+constante `SKYDATA` dans les deux pages.
 
 **3. Écrire le skyculture Ekko.** Le moteur affiche aujourd'hui les 88
 figures de la skyculture occidentale, pas seulement vos 53 : on ne peut
