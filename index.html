@@ -32,14 +32,18 @@ body{
 button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 /* ================= CIEL ================= */
+/* Aucun filtre CSS sur le canvas : le ciel garde ses couleurs vraies.
+   Le moteur code en dur le cyan des tracés de constellations, dans
+   src/modules/constellations.c :
+       vec4_set(lines_color, 0.65, 1.0, 1.0, 0.4);
+   Aucun filtre global ne peut le convertir en #E3E3C4 sans abîmer le
+   reste : préserver les gris impose que chaque ligne de la matrice somme
+   à 1, et sous cette contrainte décyaniser les tracés revient à vider le
+   canal rouge, donc à détruire Mars, Saturne et les étoiles orangées.
+   La seule vraie solution est de recompiler le moteur avec la couleur
+   crème — une seule ligne à changer. */
 #stel-canvas{
   position:fixed;inset:0;width:100%;height:100%;z-index:1;touch-action:none;
-  /* Le moteur code en dur le cyan des tracés (0.65, 1, 1). La matrice
-     #ekko-tint le convertit exactement en #E3E3C4 tout en préservant les
-     teintes chaudes — indispensable depuis que les planètes et la Voie
-     lactée sont affichées, que l'ancien sepia() désaturait entièrement.
-     Pour revenir à un ciel aux couleurs brutes : supprimer cette ligne. */
-  filter:url(#ekko-tint);
 }
 #fallback-stars{position:fixed;inset:0;z-index:0;pointer-events:none;transition:opacity 1.2s}
 /* Ellipse 297 de la maquette : 2178 x 943 px dans un cadre de 1440 x 1024,
@@ -253,20 +257,6 @@ a.account{text-decoration:none}
 </style>
 </head>
 <body>
-
-<!-- Matrice de teinte. Le cyan des tracés (0.65, 1, 1) devient
-     (0.89, 0.89, 0.77) soit #E3E3C4 pile ; le rouge de Mars et l'or de
-     Saturne restent chauds. color-interpolation-filters="sRGB" est
-     indispensable : en linearRGB les valeurs ne tomberaient pas juste. -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="ekko-tint" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values="
-      1    0.24 0    0 0
-      0    0.89 0    0 0
-      0    0    0.77 0 0
-      0    0    0    1 0"/>
-  </filter>
-</svg>
 
 <canvas id="fallback-stars"></canvas>
 <canvas id="stel-canvas"></canvas>
