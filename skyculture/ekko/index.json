@@ -1,0 +1,2608 @@
+{
+ "id": "ekko",
+ "name": "Ekko of Beyond",
+ "region": "Europe",
+ "authors": "Ekko of Beyond",
+ "licence": "Propriétaire",
+ "introduction": "Les 53 constellations et astérismes du parcours Ekko of Beyond.",
+ "illustrations_bscale": 1,
+ "common_names": {
+  "HIP 677": [
+   {
+    "english": "Alphératz"
+   }
+  ],
+  "HIP 746": [
+   {
+    "english": "Caph"
+   }
+  ],
+  "HIP 1067": [
+   {
+    "english": "Algenib"
+   }
+  ],
+  "HIP 3179": [
+   {
+    "english": "Schédar"
+   }
+  ],
+  "HIP 3419": [
+   {
+    "english": "Diphda"
+   }
+  ],
+  "HIP 4427": [
+   {
+    "english": "Cih"
+   }
+  ],
+  "HIP 5447": [
+   {
+    "english": "Mirach"
+   }
+  ],
+  "HIP 6686": [
+   {
+    "english": "Ruchbah"
+   }
+  ],
+  "HIP 7097": [
+   {
+    "english": "Alpherg"
+   }
+  ],
+  "HIP 7588": [
+   {
+    "english": "Achernar"
+   }
+  ],
+  "HIP 8198": [
+   {
+    "english": "Torcular"
+   }
+  ],
+  "HIP 8645": [
+   {
+    "english": "Baten Kaitos"
+   }
+  ],
+  "HIP 8796": [
+   {
+    "english": "Mothallah"
+   }
+  ],
+  "HIP 8832": [
+   {
+    "english": "Mésarthim"
+   }
+  ],
+  "HIP 8886": [
+   {
+    "english": "Segin"
+   }
+  ],
+  "HIP 8903": [
+   {
+    "english": "Shératan"
+   }
+  ],
+  "HIP 9487": [
+   {
+    "english": "Alrescha"
+   }
+  ],
+  "HIP 9640": [
+   {
+    "english": "Almach"
+   }
+  ],
+  "HIP 9884": [
+   {
+    "english": "Hamal"
+   }
+  ],
+  "HIP 10826": [
+   {
+    "english": "Mira"
+   }
+  ],
+  "HIP 11767": [
+   {
+    "english": "Polaris"
+   }
+  ],
+  "HIP 12706": [
+   {
+    "english": "Kaffaljidhma"
+   }
+  ],
+  "HIP 13209": [
+   {
+    "english": "Bharani"
+   }
+  ],
+  "HIP 13268": [
+   {
+    "english": "Miram"
+   }
+  ],
+  "HIP 13701": [
+   {
+    "english": "Azha"
+   }
+  ],
+  "HIP 13847": [
+   {
+    "english": "Acamar"
+   }
+  ],
+  "HIP 14135": [
+   {
+    "english": "Menkar"
+   }
+  ],
+  "HIP 14576": [
+   {
+    "english": "Algol"
+   }
+  ],
+  "HIP 15197": [
+   {
+    "english": "Zibal"
+   }
+  ],
+  "HIP 15510": [
+   {
+    "english": "82 G. Eri"
+   }
+  ],
+  "HIP 15863": [
+   {
+    "english": "Mirfak"
+   }
+  ],
+  "HIP 16537": [
+   {
+    "english": "Ran"
+   }
+  ],
+  "HIP 17378": [
+   {
+    "english": "Rana"
+   }
+  ],
+  "HIP 17448": [
+   {
+    "english": "Atik"
+   }
+  ],
+  "HIP 17847": [
+   {
+    "english": "Atlas"
+   }
+  ],
+  "HIP 18614": [
+   {
+    "english": "Menkib"
+   }
+  ],
+  "HIP 20205": [
+   {
+    "english": "Prima Hyadum"
+   }
+  ],
+  "HIP 20455": [
+   {
+    "english": "Secunda Hyadum"
+   }
+  ],
+  "HIP 20535": [
+   {
+    "english": "Beemim"
+   }
+  ],
+  "HIP 20889": [
+   {
+    "english": "Ain"
+   }
+  ],
+  "HIP 20894": [
+   {
+    "english": "Chamukuy"
+   }
+  ],
+  "HIP 21393": [
+   {
+    "english": "Theemin"
+   }
+  ],
+  "HIP 21421": [
+   {
+    "english": "Aldébaran"
+   }
+  ],
+  "HIP 21594": [
+   {
+    "english": "Sceptrum"
+   }
+  ],
+  "HIP 22449": [
+   {
+    "english": "Tabit"
+   }
+  ],
+  "HIP 23015": [
+   {
+    "english": "Hassaleh"
+   }
+  ],
+  "HIP 23453": [
+   {
+    "english": "Saclateni"
+   }
+  ],
+  "HIP 23875": [
+   {
+    "english": "Cursa"
+   }
+  ],
+  "HIP 24436": [
+   {
+    "english": "Rigel"
+   }
+  ],
+  "HIP 24608": [
+   {
+    "english": "Capella"
+   }
+  ],
+  "HIP 25336": [
+   {
+    "english": "Bellatrix"
+   }
+  ],
+  "HIP 25428": [
+   {
+    "english": "Elnath"
+   }
+  ],
+  "HIP 25606": [
+   {
+    "english": "Nihal"
+   }
+  ],
+  "HIP 25930": [
+   {
+    "english": "Mintaka"
+   }
+  ],
+  "HIP 25985": [
+   {
+    "english": "Arneb"
+   }
+  ],
+  "HIP 26207": [
+   {
+    "english": "Meissa"
+   }
+  ],
+  "HIP 26311": [
+   {
+    "english": "Alnilam"
+   }
+  ],
+  "HIP 26451": [
+   {
+    "english": "Tianguan"
+   }
+  ],
+  "HIP 26634": [
+   {
+    "english": "Phact"
+   }
+  ],
+  "HIP 26727": [
+   {
+    "english": "Alnitak"
+   }
+  ],
+  "HIP 27366": [
+   {
+    "english": "Saïph"
+   }
+  ],
+  "HIP 27628": [
+   {
+    "english": "Wazn"
+   }
+  ],
+  "HIP 27989": [
+   {
+    "english": "Bételgeuse"
+   }
+  ],
+  "HIP 28360": [
+   {
+    "english": "Menkalinan"
+   }
+  ],
+  "HIP 28380": [
+   {
+    "english": "Mahasim"
+   }
+  ],
+  "HIP 29655": [
+   {
+    "english": "Propus"
+   }
+  ],
+  "HIP 30122": [
+   {
+    "english": "Furud"
+   }
+  ],
+  "HIP 30324": [
+   {
+    "english": "Mirzam"
+   }
+  ],
+  "HIP 30343": [
+   {
+    "english": "Tejat"
+   }
+  ],
+  "HIP 30438": [
+   {
+    "english": "Canopus"
+   }
+  ],
+  "HIP 31681": [
+   {
+    "english": "Alhéna"
+   }
+  ],
+  "HIP 32246": [
+   {
+    "english": "Mebsuta"
+   }
+  ],
+  "HIP 32349": [
+   {
+    "english": "Sirius"
+   }
+  ],
+  "HIP 32362": [
+   {
+    "english": "Alzirr"
+   }
+  ],
+  "HIP 33579": [
+   {
+    "english": "Adhara"
+   }
+  ],
+  "HIP 33856": [
+   {
+    "english": "Nganurganity"
+   }
+  ],
+  "HIP 34045": [
+   {
+    "english": "Muliphein"
+   }
+  ],
+  "HIP 34088": [
+   {
+    "english": "Mekbuda"
+   }
+  ],
+  "HIP 34444": [
+   {
+    "english": "Wezen"
+   }
+  ],
+  "HIP 35550": [
+   {
+    "english": "Wasat"
+   }
+  ],
+  "HIP 35904": [
+   {
+    "english": "Aludra"
+   }
+  ],
+  "HIP 36188": [
+   {
+    "english": "Goméisa"
+   }
+  ],
+  "HIP 36850": [
+   {
+    "english": "Castor"
+   }
+  ],
+  "HIP 37279": [
+   {
+    "english": "Procyon"
+   }
+  ],
+  "HIP 37826": [
+   {
+    "english": "Pollux"
+   }
+  ],
+  "HIP 39429": [
+   {
+    "english": "Naos"
+   }
+  ],
+  "HIP 39757": [
+   {
+    "english": "Tureis"
+   }
+  ],
+  "HIP 40526": [
+   {
+    "english": "Tarf"
+   }
+  ],
+  "HIP 41037": [
+   {
+    "english": "Avior"
+   }
+  ],
+  "HIP 41704": [
+   {
+    "english": "Muscida"
+   }
+  ],
+  "HIP 42402": [
+   {
+    "english": "Minchir"
+   }
+  ],
+  "HIP 42806": [
+   {
+    "english": "Asellus Borealis"
+   }
+  ],
+  "HIP 42911": [
+   {
+    "english": "Asellus Australis"
+   }
+  ],
+  "HIP 43109": [
+   {
+    "english": "Ashlesha"
+   }
+  ],
+  "HIP 44066": [
+   {
+    "english": "Acubens"
+   }
+  ],
+  "HIP 44127": [
+   {
+    "english": "Talitha"
+   }
+  ],
+  "HIP 44471": [
+   {
+    "english": "Alkaphrah"
+   }
+  ],
+  "HIP 45238": [
+   {
+    "english": "Miaplacidus"
+   }
+  ],
+  "HIP 45556": [
+   {
+    "english": "Aspidiske"
+   }
+  ],
+  "HIP 46390": [
+   {
+    "english": "Alphard"
+   }
+  ],
+  "HIP 47908": [
+   {
+    "english": "Ras Elased Australis"
+   }
+  ],
+  "HIP 48356": [
+   {
+    "english": "Zhang"
+   }
+  ],
+  "HIP 48455": [
+   {
+    "english": "Rasalas"
+   }
+  ],
+  "HIP 49669": [
+   {
+    "english": "Régulus"
+   }
+  ],
+  "HIP 50335": [
+   {
+    "english": "Adhafera"
+   }
+  ],
+  "HIP 50372": [
+   {
+    "english": "Tania Borealis"
+   }
+  ],
+  "HIP 50583": [
+   {
+    "english": "Algieba"
+   }
+  ],
+  "HIP 50801": [
+   {
+    "english": "Tania Australis"
+   }
+  ],
+  "HIP 53740": [
+   {
+    "english": "Alkès"
+   }
+  ],
+  "HIP 53910": [
+   {
+    "english": "Merak"
+   }
+  ],
+  "HIP 54061": [
+   {
+    "english": "Dubhé"
+   }
+  ],
+  "HIP 54872": [
+   {
+    "english": "Zosma"
+   }
+  ],
+  "HIP 54879": [
+   {
+    "english": "Chertan"
+   }
+  ],
+  "HIP 56211": [
+   {
+    "english": "Giausar"
+   }
+  ],
+  "HIP 57399": [
+   {
+    "english": "Taiyangshou"
+   }
+  ],
+  "HIP 57632": [
+   {
+    "english": "Dénébola"
+   }
+  ],
+  "HIP 58001": [
+   {
+    "english": "Phecda"
+   }
+  ],
+  "HIP 59199": [
+   {
+    "english": "Alchiba"
+   }
+  ],
+  "HIP 59747": [
+   {
+    "english": "Imaï"
+   }
+  ],
+  "HIP 59774": [
+   {
+    "english": "Megrez"
+   }
+  ],
+  "HIP 59803": [
+   {
+    "english": "Gienah"
+   }
+  ],
+  "HIP 60718": [
+   {
+    "english": "Acrux"
+   }
+  ],
+  "HIP 60965": [
+   {
+    "english": "Algorab"
+   }
+  ],
+  "HIP 61084": [
+   {
+    "english": "Gacrux"
+   }
+  ],
+  "HIP 61317": [
+   {
+    "english": "Chara"
+   }
+  ],
+  "HIP 61359": [
+   {
+    "english": "Kraz"
+   }
+  ],
+  "HIP 61941": [
+   {
+    "english": "Porrima"
+   }
+  ],
+  "HIP 62434": [
+   {
+    "english": "Mimosa"
+   }
+  ],
+  "HIP 62956": [
+   {
+    "english": "Alioth"
+   }
+  ],
+  "HIP 63090": [
+   {
+    "english": "Minelauva"
+   }
+  ],
+  "HIP 63125": [
+   {
+    "english": "Cor Caroli"
+   }
+  ],
+  "HIP 63608": [
+   {
+    "english": "Vindémiatrix"
+   }
+  ],
+  "HIP 64241": [
+   {
+    "english": "Diadem"
+   }
+  ],
+  "HIP 65378": [
+   {
+    "english": "Mizar"
+   }
+  ],
+  "HIP 65474": [
+   {
+    "english": "Spica"
+   }
+  ],
+  "HIP 66249": [
+   {
+    "english": "Heze"
+   }
+  ],
+  "HIP 67301": [
+   {
+    "english": "Alkaïd"
+   }
+  ],
+  "HIP 67927": [
+   {
+    "english": "Muphrid"
+   }
+  ],
+  "HIP 68702": [
+   {
+    "english": "Hadar"
+   }
+  ],
+  "HIP 68756": [
+   {
+    "english": "Thuban"
+   }
+  ],
+  "HIP 68933": [
+   {
+    "english": "Menkent"
+   }
+  ],
+  "HIP 69427": [
+   {
+    "english": "Kang"
+   }
+  ],
+  "HIP 69673": [
+   {
+    "english": "Arcturus"
+   }
+  ],
+  "HIP 69701": [
+   {
+    "english": "Syrma"
+   }
+  ],
+  "HIP 71075": [
+   {
+    "english": "Séginus"
+   }
+  ],
+  "HIP 71683": [
+   {
+    "english": "Rigil Kentaurus"
+   }
+  ],
+  "HIP 72105": [
+   {
+    "english": "Izar"
+   }
+  ],
+  "HIP 72607": [
+   {
+    "english": "Kochab"
+   }
+  ],
+  "HIP 72622": [
+   {
+    "english": "Zubénelgenubi"
+   }
+  ],
+  "HIP 73555": [
+   {
+    "english": "Nekkar"
+   }
+  ],
+  "HIP 73714": [
+   {
+    "english": "Brachium"
+   }
+  ],
+  "HIP 74785": [
+   {
+    "english": "Zubéneschamali"
+   }
+  ],
+  "HIP 75097": [
+   {
+    "english": "Pherkad"
+   }
+  ],
+  "HIP 75458": [
+   {
+    "english": "Edasich"
+   }
+  ],
+  "HIP 75695": [
+   {
+    "english": "Nusakan"
+   }
+  ],
+  "HIP 76267": [
+   {
+    "english": "Alphecca"
+   }
+  ],
+  "HIP 76333": [
+   {
+    "english": "Zubenelhakrabi"
+   }
+  ],
+  "HIP 77070": [
+   {
+    "english": "Unukalhaï"
+   }
+  ],
+  "HIP 77450": [
+   {
+    "english": "Gudja"
+   }
+  ],
+  "HIP 78265": [
+   {
+    "english": "Fang"
+   }
+  ],
+  "HIP 78401": [
+   {
+    "english": "Dschubba"
+   }
+  ],
+  "HIP 78820": [
+   {
+    "english": "Acrab"
+   }
+  ],
+  "HIP 79882": [
+   {
+    "english": "Yed Posterior"
+   }
+  ],
+  "HIP 80331": [
+   {
+    "english": "Athebyne"
+   }
+  ],
+  "HIP 80763": [
+   {
+    "english": "Antarès"
+   }
+  ],
+  "HIP 80816": [
+   {
+    "english": "Kornéphoros"
+   }
+  ],
+  "HIP 81266": [
+   {
+    "english": "Paikauhale"
+   }
+  ],
+  "HIP 82396": [
+   {
+    "english": "Larawag"
+   }
+  ],
+  "HIP 82514": [
+   {
+    "english": "Xamidimura"
+   }
+  ],
+  "HIP 83895": [
+   {
+    "english": "Aldhibah"
+   }
+  ],
+  "HIP 84012": [
+   {
+    "english": "Sabik"
+   }
+  ],
+  "HIP 84379": [
+   {
+    "english": "Sarin"
+   }
+  ],
+  "HIP 85670": [
+   {
+    "english": "Rastaban"
+   }
+  ],
+  "HIP 85693": [
+   {
+    "english": "Maasym"
+   }
+  ],
+  "HIP 85822": [
+   {
+    "english": "Yildun"
+   }
+  ],
+  "HIP 85927": [
+   {
+    "english": "Shaula"
+   }
+  ],
+  "HIP 86032": [
+   {
+    "english": "Rasalhague"
+   }
+  ],
+  "HIP 86228": [
+   {
+    "english": "Sargas"
+   }
+  ],
+  "HIP 86742": [
+   {
+    "english": "Cébalraï"
+   }
+  ],
+  "HIP 87585": [
+   {
+    "english": "Grumium"
+   }
+  ],
+  "HIP 87833": [
+   {
+    "english": "Eltanin"
+   }
+  ],
+  "HIP 88635": [
+   {
+    "english": "Alnasl"
+   }
+  ],
+  "HIP 89341": [
+   {
+    "english": "Polis"
+   }
+  ],
+  "HIP 89931": [
+   {
+    "english": "Kaus Media"
+   }
+  ],
+  "HIP 90185": [
+   {
+    "english": "Kaus Australis"
+   }
+  ],
+  "HIP 90496": [
+   {
+    "english": "Kaus Borealis"
+   }
+  ],
+  "HIP 91262": [
+   {
+    "english": "Véga"
+   }
+  ],
+  "HIP 92420": [
+   {
+    "english": "Sheliak"
+   }
+  ],
+  "HIP 92855": [
+   {
+    "english": "Nunki"
+   }
+  ],
+  "HIP 92946": [
+   {
+    "english": "Alya"
+   }
+  ],
+  "HIP 93194": [
+   {
+    "english": "Sulafat"
+   }
+  ],
+  "HIP 93506": [
+   {
+    "english": "Ascella"
+   }
+  ],
+  "HIP 93747": [
+   {
+    "english": "Okab"
+   }
+  ],
+  "HIP 94376": [
+   {
+    "english": "Altais"
+   }
+  ],
+  "HIP 95294": [
+   {
+    "english": "Arkab Posterior"
+   }
+  ],
+  "HIP 95347": [
+   {
+    "english": "Rukbat"
+   }
+  ],
+  "HIP 95947": [
+   {
+    "english": "Albiréo"
+   }
+  ],
+  "HIP 96757": [
+   {
+    "english": "Sham"
+   }
+  ],
+  "HIP 97165": [
+   {
+    "english": "Fawaris"
+   }
+  ],
+  "HIP 97278": [
+   {
+    "english": "Tarazed"
+   }
+  ],
+  "HIP 97649": [
+   {
+    "english": "Altaïr"
+   }
+  ],
+  "HIP 98036": [
+   {
+    "english": "Alshain"
+   }
+  ],
+  "HIP 100064": [
+   {
+    "english": "Algedi"
+   }
+  ],
+  "HIP 100345": [
+   {
+    "english": "Dabih"
+   }
+  ],
+  "HIP 100453": [
+   {
+    "english": "Sadr"
+   }
+  ],
+  "HIP 101421": [
+   {
+    "english": "Aldulfin"
+   }
+  ],
+  "HIP 101769": [
+   {
+    "english": "Rotanev"
+   }
+  ],
+  "HIP 101958": [
+   {
+    "english": "Sualocin"
+   }
+  ],
+  "HIP 102098": [
+   {
+    "english": "Deneb"
+   }
+  ],
+  "HIP 102488": [
+   {
+    "english": "Aljanah"
+   }
+  ],
+  "HIP 102618": [
+   {
+    "english": "Albali"
+   }
+  ],
+  "HIP 105199": [
+   {
+    "english": "Aldéramin"
+   }
+  ],
+  "HIP 106032": [
+   {
+    "english": "Alfirk"
+   }
+  ],
+  "HIP 106278": [
+   {
+    "english": "Sadalsuud"
+   }
+  ],
+  "HIP 106985": [
+   {
+    "english": "Nashira"
+   }
+  ],
+  "HIP 107315": [
+   {
+    "english": "Enif"
+   }
+  ],
+  "HIP 107556": [
+   {
+    "english": "Deneb Algedi"
+   }
+  ],
+  "HIP 109074": [
+   {
+    "english": "Sadalmélik"
+   }
+  ],
+  "HIP 109427": [
+   {
+    "english": "Biham"
+   }
+  ],
+  "HIP 110003": [
+   {
+    "english": "Ancha"
+   }
+  ],
+  "HIP 110395": [
+   {
+    "english": "Sadachbia"
+   }
+  ],
+  "HIP 112029": [
+   {
+    "english": "Homam"
+   }
+  ],
+  "HIP 112158": [
+   {
+    "english": "Matar"
+   }
+  ],
+  "HIP 112748": [
+   {
+    "english": "Sadalbari"
+   }
+  ],
+  "HIP 113136": [
+   {
+    "english": "Skat"
+   }
+  ],
+  "HIP 113368": [
+   {
+    "english": "Fomalhaut"
+   }
+  ],
+  "HIP 113881": [
+   {
+    "english": "Schéat"
+   }
+  ],
+  "HIP 113963": [
+   {
+    "english": "Markab"
+   }
+  ],
+  "HIP 116727": [
+   {
+    "english": "Erraï"
+   }
+  ]
+ },
+ "constellations": [
+  {
+   "id": "CON ekko UMa",
+   "iau": "UMa",
+   "common_name": {
+    "english": "Grande Ourse"
+   },
+   "lines": [
+    [
+     67301,
+     65378,
+     62956,
+     59774,
+     54061,
+     53910,
+     58001,
+     59774
+    ],
+    [
+     58001,
+     57399,
+     54539,
+     50372
+    ],
+    [
+     54539,
+     50801
+    ],
+    [
+     53910,
+     48402,
+     46853,
+     44471
+    ],
+    [
+     46853,
+     44127
+    ],
+    [
+     48402,
+     48319,
+     41704,
+     46733,
+     54061
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko UMi",
+   "iau": "UMi",
+   "common_name": {
+    "english": "Petite Ourse"
+   },
+   "lines": [
+    [
+     11767,
+     85822,
+     82080,
+     77055,
+     79822,
+     75097,
+     72607,
+     77055
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Cas",
+   "iau": "Cas",
+   "common_name": {
+    "english": "Cassiopée"
+   },
+   "lines": [
+    [
+     8886,
+     6686,
+     4427,
+     3179,
+     746
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Cep",
+   "iau": "Cep",
+   "common_name": {
+    "english": "Céphée"
+   },
+   "lines": [
+    [
+     109492,
+     112724,
+     106032,
+     105199,
+     109492
+    ],
+    [
+     112724,
+     116727,
+     106032
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Dra",
+   "iau": "Dra",
+   "common_name": {
+    "english": "Dragon"
+   },
+   "lines": [
+    [
+     87585,
+     87833,
+     85670,
+     85829,
+     87585,
+     94376,
+     97433,
+     94648,
+     89937,
+     83895,
+     80331,
+     78527,
+     75458,
+     68756,
+     61281,
+     56211
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Ari",
+   "iau": "Ari",
+   "common_name": {
+    "english": "Bélier"
+   },
+   "lines": [
+    [
+     13209,
+     9884,
+     8903,
+     8832
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Tau",
+   "iau": "Tau",
+   "common_name": {
+    "english": "Taureau"
+   },
+   "lines": [
+    [
+     25428,
+     21881,
+     20889
+    ],
+    [
+     21421,
+     26451
+    ],
+    [
+     20205,
+     20455
+    ],
+    [
+     20205,
+     18724,
+     15900
+    ],
+    [
+     21421,
+     20889
+    ],
+    [
+     21421,
+     20894,
+     20205
+    ],
+    [
+     20889,
+     20648,
+     20455,
+     17847
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Gem",
+   "iau": "Gem",
+   "common_name": {
+    "english": "Gémeaux"
+   },
+   "lines": [
+    [
+     31681,
+     34088,
+     35550,
+     35350,
+     32362
+    ],
+    [
+     35550,
+     36962,
+     37740
+    ],
+    [
+     36962,
+     37826
+    ],
+    [
+     36962,
+     36046,
+     34693,
+     36850
+    ],
+    [
+     34693,
+     33018
+    ],
+    [
+     34693,
+     32246,
+     30883
+    ],
+    [
+     32246,
+     30343,
+     29655,
+     28734
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Cnc",
+   "iau": "Cnc",
+   "common_name": {
+    "english": "Cancer"
+   },
+   "lines": [
+    [
+     43103,
+     42806,
+     40843
+    ],
+    [
+     42806,
+     42911,
+     40526
+    ],
+    [
+     42911,
+     44066
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Leo",
+   "iau": "Leo",
+   "common_name": {
+    "english": "Lion"
+   },
+   "lines": [
+    [
+     57632,
+     54879,
+     49669,
+     49583,
+     50583,
+     54872,
+     57632
+    ],
+    [
+     50583,
+     50335,
+     48455,
+     47908
+    ],
+    [
+     54872,
+     54879
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Vir",
+   "iau": "Vir",
+   "common_name": {
+    "english": "Vierge"
+   },
+   "lines": [
+    [
+     57380,
+     60030,
+     61941,
+     65474,
+     69427,
+     69701,
+     71957
+    ],
+    [
+     65474,
+     66249,
+     68520,
+     72220
+    ],
+    [
+     66249,
+     63090,
+     63608
+    ],
+    [
+     63090,
+     61941
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Lib",
+   "iau": "Lib",
+   "common_name": {
+    "english": "Balance"
+   },
+   "lines": [
+    [
+     77853,
+     76333,
+     74785,
+     72622,
+     73714,
+     76333
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Sco",
+   "iau": "Sco",
+   "common_name": {
+    "english": "Scorpion"
+   },
+   "lines": [
+    [
+     85927,
+     86670,
+     87073,
+     86228,
+     84143,
+     82671,
+     82514,
+     82396,
+     81266,
+     80763,
+     78401
+    ],
+    [
+     80763,
+     78265
+    ],
+    [
+     80763,
+     78820
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Sgr",
+   "iau": "Sgr",
+   "common_name": {
+    "english": "Sagittaire"
+   },
+   "lines": [
+    [
+     89931,
+     90496
+    ],
+    [
+     89642,
+     90185,
+     88635,
+     87072
+    ],
+    [
+     88635,
+     89931,
+     90185,
+     93506,
+     92041,
+     89931
+    ],
+    [
+     92041,
+     90496,
+     89341
+    ],
+    [
+     93506,
+     93864,
+     92855,
+     92041
+    ],
+    [
+     92855,
+     93085,
+     93683,
+     94820,
+     95168
+    ],
+    [
+     93864,
+     96406,
+     98688,
+     98412,
+     98032,
+     95347
+    ],
+    [
+     98032,
+     95294
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Cap",
+   "iau": "Cap",
+   "common_name": {
+    "english": "Capricorne"
+   },
+   "lines": [
+    [
+     100064,
+     100345,
+     104139,
+     105515,
+     106985,
+     107556
+    ],
+    [
+     105515,
+     105881,
+     104139
+    ],
+    [
+     100345,
+     102485
+    ],
+    [
+     104139,
+     102978
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Aqr",
+   "iau": "Aqr",
+   "common_name": {
+    "english": "Verseau"
+   },
+   "lines": [
+    [
+     106278,
+     109074,
+     110395,
+     110960,
+     111497,
+     112961,
+     114855,
+     115438
+    ],
+    [
+     109074,
+     110003,
+     109139
+    ],
+    [
+     110003,
+     111123,
+     112716,
+     113136,
+     114341
+    ],
+    [
+     102618,
+     106278
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Psc",
+   "iau": "Psc",
+   "common_name": {
+    "english": "Poissons"
+   },
+   "lines": [
+    [
+     4889,
+     5742
+    ],
+    [
+     4889,
+     6193,
+     5742,
+     7097,
+     8198,
+     9487,
+     8833,
+     7884,
+     7007,
+     4906,
+     3760,
+     1645,
+     118268,
+     116771,
+     116928,
+     115738,
+     114971,
+     115830,
+     116771
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Ori",
+   "iau": "Ori",
+   "common_name": {
+    "english": "Orion"
+   },
+   "lines": [
+    [
+     26727,
+     26311,
+     25930
+    ],
+    [
+     28691,
+     29426,
+     29038,
+     27913
+    ],
+    [
+     29426,
+     28614,
+     27989,
+     26727,
+     27366,
+     24436,
+     25930,
+     25336,
+     26207,
+     27989
+    ],
+    [
+     25336,
+     22449,
+     22549,
+     22730,
+     23123
+    ],
+    [
+     22449,
+     22509,
+     22845
+    ],
+    [
+     29038,
+     28614
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko CMa",
+   "iau": "CMa",
+   "common_name": {
+    "english": "Grand Chien"
+   },
+   "lines": [
+    [
+     33160,
+     34045,
+     33347,
+     32349,
+     33977,
+     34444,
+     35037,
+     35904
+    ],
+    [
+     33579,
+     33856,
+     34444
+    ],
+    [
+     33856,
+     33152,
+     31592,
+     31416
+    ],
+    [
+     31592,
+     30324
+    ],
+    [
+     31592,
+     32349
+    ],
+    [
+     33579,
+     32759
+    ],
+    [
+     30122,
+     33579
+    ],
+    [
+     33347,
+     33160
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko CMi",
+   "iau": "CMi",
+   "common_name": {
+    "english": "Petit Chien"
+   },
+   "lines": [
+    [
+     37279,
+     36188
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Aur",
+   "iau": "Aur",
+   "common_name": {
+    "english": "Cocher"
+   },
+   "lines": [
+    [
+     28380,
+     28360,
+     24608,
+     23453,
+     23015
+    ],
+    [
+     25428,
+     23015
+    ],
+    [
+     25428,
+     28380
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Eri",
+   "iau": "Eri",
+   "common_name": {
+    "english": "Éridan"
+   },
+   "lines": [
+    [
+     7588,
+     9007,
+     10602,
+     11407,
+     12413,
+     12486,
+     13847,
+     15510,
+     17797,
+     17874,
+     20042,
+     20535,
+     21393,
+     17651,
+     16611,
+     15474,
+     14146,
+     12843,
+     13701,
+     15197,
+     16537,
+     17378,
+     21444,
+     22109,
+     22701,
+     23875,
+     23972,
+     21594
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Lep",
+   "iau": "Lep",
+   "common_name": {
+    "english": "Lièvre"
+   },
+   "lines": [
+    [
+     28910,
+     28103,
+     27288,
+     25985,
+     24305
+    ],
+    [
+     25985,
+     27654,
+     27072,
+     25606,
+     23685
+    ],
+    [
+     25985,
+     25606
+    ],
+    [
+     24305,
+     24845
+    ],
+    [
+     24305,
+     24327
+    ],
+    [
+     23685,
+     24305
+    ],
+    [
+     24327,
+     24244
+    ],
+    [
+     24845,
+     24873
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Mon",
+   "iau": "Mon",
+   "common_name": {
+    "english": "Licorne"
+   },
+   "lines": [
+    [
+     29651,
+     30867,
+     34769,
+     30419,
+     29151
+    ],
+    [
+     34769,
+     39863,
+     37447
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Col",
+   "iau": "Col",
+   "common_name": {
+    "english": "Colombe"
+   },
+   "lines": [
+    [
+     30277,
+     29807,
+     28199,
+     27628,
+     28328
+    ],
+    [
+     27628,
+     26634,
+     25859
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Boo",
+   "iau": "Boo",
+   "common_name": {
+    "english": "Bouvier"
+   },
+   "lines": [
+    [
+     71795,
+     69673,
+     72105,
+     74666,
+     73555,
+     71075,
+     71053,
+     69673,
+     67927,
+     67459
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Hya",
+   "iau": "Hya",
+   "common_name": {
+    "english": "Hydre"
+   },
+   "lines": [
+    [
+     42799,
+     42402,
+     42313,
+     43109,
+     43234,
+     42799
+    ],
+    [
+     43234,
+     43813,
+     45336,
+     46776,
+     46509,
+     46390,
+     48356,
+     49841,
+     51069,
+     52943,
+     56343,
+     57936,
+     64166,
+     64962
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Crv",
+   "iau": "Crv",
+   "common_name": {
+    "english": "Corbeau"
+   },
+   "lines": [
+    [
+     61174,
+     60965,
+     59803,
+     59316,
+     59199
+    ],
+    [
+     59316,
+     61359,
+     60965
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Crt",
+   "iau": "Crt",
+   "common_name": {
+    "english": "Coupe"
+   },
+   "lines": [
+    [
+     53740,
+     54682,
+     55705,
+     55282,
+     53740
+    ],
+    [
+     55282,
+     55687,
+     56633,
+     58188,
+     57283,
+     55705
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Com",
+   "iau": "Com",
+   "common_name": {
+    "english": "Chevelure de Bérénice"
+   },
+   "lines": [
+    [
+     64241,
+     64394,
+     60742
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko CVn",
+   "iau": "CVn",
+   "common_name": {
+    "english": "Chiens de chasse"
+   },
+   "lines": [
+    [
+     61317,
+     63125
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Her",
+   "iau": "Her",
+   "common_name": {
+    "english": "Hercule"
+   },
+   "lines": [
+    [
+     86414,
+     87808,
+     85112,
+     84606,
+     84380,
+     81833,
+     81126,
+     79992,
+     77760
+    ],
+    [
+     81833,
+     81693,
+     80816,
+     80170
+    ],
+    [
+     81693,
+     83207,
+     85693,
+     84379
+    ],
+    [
+     86974,
+     87933,
+     88794
+    ],
+    [
+     83207,
+     84380
+    ],
+    [
+     86974,
+     85693
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko CrB",
+   "iau": "CrB",
+   "common_name": {
+    "english": "Couronne boréale"
+   },
+   "lines": [
+    [
+     76127,
+     75695,
+     76267,
+     76952,
+     77512,
+     78159,
+     78493
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Cyg",
+   "iau": "Cyg",
+   "common_name": {
+    "english": "Cygne"
+   },
+   "lines": [
+    [
+     94779,
+     95853,
+     97165,
+     100453,
+     102098
+    ],
+    [
+     100453,
+     102488,
+     104732,
+     107310
+    ],
+    [
+     100453,
+     98110,
+     95947
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Lyr",
+   "iau": "Lyr",
+   "common_name": {
+    "english": "Lyre"
+   },
+   "lines": [
+    [
+     91262,
+     91971,
+     92420,
+     93194,
+     92791,
+     91971
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Aql",
+   "iau": "Aql",
+   "common_name": {
+    "english": "Aigle"
+   },
+   "lines": [
+    [
+     98036,
+     97649,
+     97278
+    ],
+    [
+     97649,
+     95501,
+     97804
+    ],
+    [
+     99473,
+     97804
+    ],
+    [
+     95501,
+     93747,
+     93244
+    ],
+    [
+     95501,
+     93805
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Oph",
+   "iau": "Oph",
+   "common_name": {
+    "english": "Serpentaire"
+   },
+   "lines": [
+    [
+     86032,
+     86742
+    ],
+    [
+     84012,
+     86742
+    ],
+    [
+     86032,
+     83000,
+     79882,
+     81377,
+     84012,
+     85755
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Ser",
+   "iau": "Ser",
+   "common_name": {
+    "english": "Serpent"
+   },
+   "lines": [
+    [
+     77516,
+     77622,
+     77070,
+     76276,
+     77233,
+     78072,
+     77450,
+     77233
+    ],
+    [
+     92946,
+     89962,
+     86565,
+     86263,
+     84880
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Del",
+   "iau": "Del",
+   "common_name": {
+    "english": "Dauphin"
+   },
+   "lines": [
+    [
+     101421,
+     101769,
+     101958,
+     102532,
+     102281,
+     101769
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Sge",
+   "iau": "Sge",
+   "common_name": {
+    "english": "Flèche"
+   },
+   "lines": [
+    [
+     96837,
+     97365,
+     96757
+    ],
+    [
+     97365,
+     98337,
+     98920
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko And",
+   "iau": "And",
+   "common_name": {
+    "english": "Andromède"
+   },
+   "lines": [
+    [
+     677,
+     3092,
+     5447
+    ],
+    [
+     9640,
+     5447,
+     4436,
+     3881
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Per",
+   "iau": "Per",
+   "common_name": {
+    "english": "Persée"
+   },
+   "lines": [
+    [
+     17448,
+     18246,
+     18614,
+     18532,
+     17358,
+     15863,
+     14328,
+     13268
+    ],
+    [
+     15863,
+     14576,
+     14354,
+     13254
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Peg",
+   "iau": "Peg",
+   "common_name": {
+    "english": "Pégase"
+   },
+   "lines": [
+    [
+     1067,
+     113963
+    ],
+    [
+     113881,
+     112158,
+     109352
+    ],
+    [
+     113881,
+     112748,
+     112440,
+     109176,
+     107354
+    ],
+    [
+     113963,
+     112447,
+     112029,
+     109427,
+     107315
+    ],
+    [
+     677,
+     113881
+    ],
+    [
+     677,
+     1067
+    ],
+    [
+     113881,
+     113963
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Cet",
+   "iau": "Cet",
+   "common_name": {
+    "english": "Baleine"
+   },
+   "lines": [
+    [
+     10324,
+     11484
+    ],
+    [
+     8102,
+     3419,
+     1562
+    ],
+    [
+     3419,
+     5364,
+     6537,
+     8645,
+     11345,
+     12390,
+     12770,
+     11783,
+     8102
+    ],
+    [
+     10826,
+     12390
+    ],
+    [
+     10826,
+     12387,
+     12706,
+     14135,
+     13954,
+     12828,
+     11484,
+     12093,
+     12706
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Tri",
+   "iau": "Tri",
+   "common_name": {
+    "english": "Triangle"
+   },
+   "lines": [
+    [
+     10670,
+     10064,
+     8796,
+     10670
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko PsA",
+   "iau": "PsA",
+   "common_name": {
+    "english": "Poisson austral"
+   },
+   "lines": [
+    [
+     113368,
+     111954,
+     108661,
+     107608,
+     109422,
+     111188,
+     113246
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Cru",
+   "iau": "Cru",
+   "common_name": {
+    "english": "Croix du Sud"
+   },
+   "lines": [
+    [
+     61084,
+     60718
+    ],
+    [
+     62434,
+     59747
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Cen",
+   "iau": "Cen",
+   "common_name": {
+    "english": "Centaure"
+   },
+   "lines": [
+    [
+     71683,
+     68702,
+     66657,
+     68002,
+     68282,
+     67472,
+     67464,
+     65936,
+     65109
+    ],
+    [
+     67464,
+     68933
+    ],
+    [
+     67472,
+     71352,
+     73334
+    ],
+    [
+     68002,
+     61932,
+     60823,
+     59196,
+     56480,
+     56561
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko Car",
+   "iau": "Car",
+   "common_name": {
+    "english": "Carène"
+   },
+   "lines": [
+    [
+     45238,
+     50099,
+     52419,
+     52468,
+     54463,
+     53253,
+     51232,
+     50371,
+     45556
+    ],
+    [
+     42568,
+     41037,
+     30438
+    ],
+    [
+     45080,
+     45556
+    ],
+    [
+     45080,
+     42568
+    ],
+    [
+     30438,
+     31685
+    ],
+    [
+     41037,
+     39429
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko LMC",
+   "iau": "LMC",
+   "common_name": {
+    "english": "Grand Nuage de Magellan"
+   }
+  },
+  {
+   "id": "CON ekko TDE",
+   "iau": "TDE",
+   "common_name": {
+    "english": "Triangle d’été"
+   },
+   "lines": [
+    [
+     91262,
+     102098,
+     97649,
+     91262
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko TDH",
+   "iau": "TDH",
+   "common_name": {
+    "english": "Triangle d’hiver"
+   },
+   "lines": [
+    [
+     27989,
+     32349,
+     37279,
+     27989
+    ]
+   ]
+  },
+  {
+   "id": "CON ekko HDH",
+   "iau": "HDH",
+   "common_name": {
+    "english": "Hexagone d’hiver"
+   },
+   "lines": [
+    [
+     24608,
+     21421,
+     24436,
+     32349,
+     37279,
+     37826,
+     24608
+    ]
+   ]
+  }
+ ]
+}
