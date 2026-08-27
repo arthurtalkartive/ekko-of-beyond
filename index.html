@@ -31,6 +31,41 @@ body{
 }
 button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
+/* ================= SPLASHSCREEN =================
+   Fond degrade et champ d'etoiles statique, tracés fins animes (Lottie),
+   badge anime au centre (Lottie, 3 s exactement). Le fondu vers
+   l'interface est declenche a la fin de l'animation du badge. */
+#splash{
+  position:fixed;inset:0;z-index:100;overflow:hidden;
+  background:linear-gradient(180deg,#000 0%,#0A1931 100%);
+  opacity:1;transition:opacity .85s ease;
+}
+#splash.out{opacity:0;pointer-events:none}
+#splash.gone{display:none}
+#splash-stars{position:absolute;inset:0;opacity:.5}
+/* meme ellipse que la carte : 2178 x 943 dans un cadre de 1440 x 1024,
+   posee a 403 px du haut, fusion color-dodge */
+#splash-glow{
+  position:absolute;left:50%;bottom:-31.4vh;transform:translateX(-50%);
+  width:151vw;height:92vh;pointer-events:none;mix-blend-mode:color-dodge;
+  background:radial-gradient(50% 50% at 50% 50%,
+    rgba(96,170,196,.62) 0%, rgba(58,118,146,.34) 34%,
+    rgba(30,68,92,.14) 58%, transparent 74%);
+}
+/* Les cercles debordent volontairement du cadre 1920 x 1080 de l'animation :
+   on laisse donc le SVG deborder au lieu de le rogner. */
+#splash-fond{
+  position:absolute;left:calc(50% - 21.5px);top:50%;
+  transform:translate(-50%,-50%);
+  width:max(135vw,135vh);aspect-ratio:1920 / 1080;
+  pointer-events:none;opacity:.92;
+}
+#splash-fond svg{overflow:visible!important}
+#splash-badge{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(250px,46vw);aspect-ratio:281 / 271;pointer-events:none;
+}
+
 /* ================= CIEL ================= */
 /* Aucun filtre CSS sur le canvas : le ciel garde ses couleurs vraies.
    Le moteur code en dur le cyan des tracés de constellations, dans
@@ -258,6 +293,13 @@ a.account{text-decoration:none}
 </head>
 <body>
 
+<div id="splash">
+  <canvas id="splash-stars"></canvas>
+  <div id="splash-glow"></div>
+  <div id="splash-fond"></div>
+  <div id="splash-badge"></div>
+</div>
+
 <canvas id="fallback-stars"></canvas>
 <canvas id="stel-canvas"></canvas>
 <div class="horizon-glow"></div>
@@ -433,6 +475,7 @@ a.account{text-decoration:none}
 </div>
 
 
+<script src="/vendor/lottie_light.min.js"></script>
 <script src="/vendor/stellarium-web-engine.js"></script>
 <script>
 /* stars: [nom, RA(h), Dec(deg), magnitude, info] */
@@ -1051,6 +1094,86 @@ fetch('/skyculture/ekko/roll-adjust.json', { cache: 'no-store' })
 
 const BY_IAU = {};
 CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
+
+/* ============================================================
+   SPLASHSCREEN
+   Duree calee sur l'animation du badge : 180 images a 60 i/s, soit
+   exactement 3 s. On attend son evenement « complete » plutot que de
+   coder la duree en dur, pour que le remplacement du fichier Lottie
+   ajuste automatiquement la duree du splash.
+   ============================================================ */
+(function(){
+  const splash = document.getElementById('splash');
+  if(!splash) return;
+
+  /* champ d'etoiles statique, densite plus forte vers le bas */
+  (function stars(){
+    const c = document.getElementById('splash-stars');
+    if(!c) return;
+    const x = c.getContext('2d');
+    const draw = function(){
+      const w = innerWidth, h = innerHeight, dpr = Math.min(devicePixelRatio, 2);
+      c.width = w * dpr; c.height = h * dpr;
+      x.scale(dpr, dpr);
+      x.clearRect(0, 0, w, h);
+      const n = Math.round(w * h / 1400);
+      for(let i = 0; i < n; i++){
+        const px = Math.random() * w;
+        /* racine carree : les etoiles se densifient vers le bas */
+        const py = Math.sqrt(Math.random()) * h;
+        const r = Math.random() < 0.9 ? 0.55 : 1.15;
+        x.fillStyle = 'rgba(227,227,196,' + (0.10 + Math.random() * 0.55).toFixed(3) + ')';
+        x.beginPath(); x.arc(px, py, r, 0, 7); x.fill();
+      }
+    };
+    draw();
+    /* pas de redessin au redimensionnement : le splash ne vit que 3 s */
+  })();
+
+  let done = false;
+  const finish = function(){
+    if(done) return;
+    done = true;
+    splash.classList.add('out');
+    setTimeout(function(){ splash.classList.add('gone'); }, 950);
+  };
+
+  /* Filet de securite : si le lecteur ou un fichier manque, on ne bloque
+     jamais l'interface. Le splash s'efface au plus tard apres 6 s. */
+  const guard = setTimeout(finish, 6000);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(typeof lottie === 'undefined'){
+    console.warn('[ekko] lecteur Lottie absent : splash abrege');
+    clearTimeout(guard); setTimeout(finish, 600);
+    return;
+  }
+  if(reduced){
+    clearTimeout(guard); setTimeout(finish, 400);
+    return;
+  }
+
+  try{
+    lottie.loadAnimation({
+      container: document.getElementById('splash-fond'),
+      renderer: 'svg', loop: true, autoplay: true,
+      path: '/assets/lottie/fond.json',
+    });
+    const badge = lottie.loadAnimation({
+      container: document.getElementById('splash-badge'),
+      renderer: 'svg', loop: false, autoplay: true,
+      path: '/assets/lottie/badge.json',
+    });
+    badge.addEventListener('complete', function(){ clearTimeout(guard); finish(); });
+    badge.addEventListener('data_failed', function(){
+      console.warn('[ekko] badge.json illisible');
+      clearTimeout(guard); finish();
+    });
+  }catch(e){
+    console.warn('[ekko] splash :', e);
+    clearTimeout(guard); finish();
+  }
+})();
 
 /* ---------- fond étoilé de secours ---------- */
 (function(){
