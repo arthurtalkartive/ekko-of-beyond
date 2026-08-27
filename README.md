@@ -61,6 +61,53 @@ vercel --prod # production
 - `Permissions-Policy` autorisant géolocalisation, gyroscope et
   accéléromètre pour votre propre origine
 
+## Écriture depuis l'outil de vérification
+
+L'outil `/verification` peut écrire directement dans ce dépôt : valider un
+angle ou une illustration déclenche un commit, et Vercel redéploie derrière.
+C'est la fonction `api/save.js` qui s'en charge, via l'API Contents de
+GitHub.
+
+Sans configuration, cette écriture est simplement désactivée : l'outil
+retombe sur le téléchargement du fichier et l'affichage du bloc à reporter
+à la main. Rien ne casse.
+
+### Les quatre variables d'environnement
+
+Dans Vercel, **Settings → Environment Variables** :
+
+| Variable | Valeur |
+|---|---|
+| `GITHUB_TOKEN` | jeton d'accès fin, permission **Contents: read and write** sur ce dépôt uniquement |
+| `GITHUB_REPO` | `votre-compte/ekko-of-beyond` |
+| `GITHUB_BRANCH` | `main` |
+| `EKKO_ADMIN_KEY` | un mot de passe que vous choisissez |
+
+Le jeton se crée sur github.com dans **Settings → Developer settings →
+Personal access tokens → Fine-grained tokens**. Limitez-le à ce seul dépôt
+et à la permission Contents en écriture : il n'a besoin de rien d'autre.
+
+Redéployez après avoir ajouté les variables — Vercel ne les injecte pas
+dans un déploiement déjà construit.
+
+### À l'usage
+
+Ouvrez `/verification`, saisissez votre `EKKO_ADMIN_KEY` dans le champ en
+haut du panneau. Elle reste dans l'onglet, n'est jamais écrite sur le
+disque, et ne part que vers votre propre fonction.
+
+Ce qui est écrit :
+
+- un angle validé va dans `skyculture/ekko/roll-adjust.json` ;
+- une illustration validée remplace `skyculture/ekko/illustrations/<id>.webp`.
+
+Comptez une minute entre le commit et la mise en ligne, le temps du
+redéploiement. Chaque validation produit un commit distinct : l'historique
+Git vous sert de journal, et un retour en arrière reste toujours possible.
+
+Deux garde-fous côté serveur : l'identifiant de figure doit être un code de
+trois lettres minuscules, et une illustration est refusée au-delà de 3,5 Mo.
+
 ## Contraintes d'exécution à connaître
 
 **HTTPS obligatoire.** La géolocalisation ne fonctionne que sur origine
@@ -114,8 +161,12 @@ emscripten. La modification est validée et documentée dans
 .
 ├── index.html                  vue du ciel
 ├── verification.html           outil de vérification des figures
+├── api/
+│   └── save.js                     écrit angles et illustrations dans le dépôt
 ├── skyculture/ekko/
 │   ├── index.json                  les 53 figures, tracés et noms français
+│   ├── description.md              requis par le moteur pour activer la culture
+│   ├── roll-adjust.json            corrections d'angle, écrites par l'outil
 │   └── illustrations/              vos dessins WebP — voir son LISEZ-MOI
 ├── vendor/
 │   ├── stellarium-web-engine.js    moteur, AGPL-3.0
