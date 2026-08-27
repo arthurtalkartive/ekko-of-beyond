@@ -1246,6 +1246,30 @@ CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
   }
 })();
 
+/* ============================================================
+   CONSOLE DE DIAGNOSTIC
+   Ajoutez ?debug a l'adresse pour afficher en bas a gauche ce que le
+   moteur repond a chaque clic : pointeur de l'objet, designations, et
+   figure resolue. Sans ce parametre, dbg() ne fait rien.
+   ============================================================ */
+const DEBUG = /(^|[?&])debug($|[=&])/.test(location.search);
+let dbgBox = null;
+function dbg(msg){
+  if(!DEBUG) return;
+  console.log('[ekko] ' + msg);
+  if(!dbgBox){
+    dbgBox = document.createElement('div');
+    dbgBox.style.cssText = 'position:fixed;left:10px;bottom:10px;z-index:60;max-width:52vw;'
+      + 'max-height:38vh;overflow:auto;background:rgba(3,6,10,.92);border:1px solid rgba(227,227,196,.3);'
+      + 'border-radius:10px;padding:10px 12px;font:12px/1.5 ui-monospace,monospace;color:#E3E3C4;'
+      + 'white-space:pre-wrap;word-break:break-all';
+    document.body.appendChild(dbgBox);
+  }
+  const t = new Date().toLocaleTimeString('fr-FR');
+  dbgBox.textContent = t + '  ' + msg + '\n' + dbgBox.textContent;
+  if(dbgBox.textContent.length > 4000) dbgBox.textContent = dbgBox.textContent.slice(0, 4000);
+}
+
 /* ---------- fond étoilé de secours ---------- */
 (function(){
   const c = $('#fallback-stars'), x = c.getContext('2d');
@@ -1466,9 +1490,13 @@ function pollSelection(){
   const ptr = sel ? sel.v : 0;
   if(ptr === lastSelPtr) return;
   lastSelPtr = ptr;
-  if(!sel) return;
+  if(!sel){ dbg('selection vidée (clic à plus de 18 px de tout objet)'); return; }
 
+  let desigs = '(illisible)';
+  try{ desigs = sel.designations().join(' / '); }catch(e){ desigs = 'erreur : ' + e.message; }
   const idx = figureFromSelection(sel);
+  dbg('selection ' + ptr + ' -> ' + desigs + ' => '
+      + (idx < 0 ? 'non resolue' : CONSTELLATIONS[idx].name));
   if(idx < 0) return;          /* ni figure d'Ekko, ni etoile connue */
   if(idx === cardIdx) return;  /* deja la bonne : c'est notre propre selection */
 
@@ -1481,8 +1509,28 @@ function pollSelection(){
   selectInEngine(idx, 850);
 }
 
+/* Declencheur principal : l'attribut « clicks ».
+
+   Le module movements incremente core->clicks a chaque clic et appelle
+   module_changed(core, "clicks") — c'est la seule notification emise sur
+   ce chemin, et elle est verifiable dans le code. La selection, elle,
+   change bien (obj_set_attr(core, "selection", obj)) mais sans aucune
+   notification : d'ou l'inefficacite d'un ecouteur pose sur elle.
+
+   La surveillance periodique reste en second rideau, pour les selections
+   qui ne viendraient pas d'un clic. */
 function watchSelection(stel){
   lastSelPtr = 0;
+  try{
+    stel.core.change('clicks', function(){
+      dbg('clic detecte');
+      /* la selection est posee par le moteur juste avant la notification */
+      pollSelection();
+    });
+    dbg('ecouteur « clicks » installe');
+  }catch(e){
+    dbg('ecouteur « clicks » refuse : ' + e.message);
+  }
   setInterval(pollSelection, 200);
 }
 
