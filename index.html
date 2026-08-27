@@ -1036,12 +1036,18 @@ const ORIENT = {"uma":[10.84915,55.2506,11.59772,64.47226],"umi":[14.62017,79.38
 const ROLL_SIGN = 1;
 
 /* Corrections d'angle, en degres, ajoutees a l'orientation calculee.
-   Cette table est produite par l'outil /verification : reglez l'angle a
-   l'oeil, validez, puis collez ici le bloc qu'il vous donne. Une entree
-   absente vaut zero. */
-const ROLL_ADJUST = {
-  // exemple : her: 26.5,
-};
+   La table vit dans skyculture/ekko/roll-adjust.json, ecrite directement
+   dans le depot par l'outil /verification. On la charge au demarrage ;
+   une entree absente vaut zero, et un fichier absent ne casse rien. */
+let ROLL_ADJUST = {};
+fetch('/skyculture/ekko/roll-adjust.json', { cache: 'no-store' })
+  .then(function(r){ return r.ok ? r.json() : {}; })
+  .then(function(t){
+    ROLL_ADJUST = t || {};
+    /* le fichier peut arriver apres le premier cadrage : on rejoue */
+    if(STEL) orientToFigure(cardIdx, 0.6);
+  })
+  .catch(function(){});
 
 const BY_IAU = {};
 CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
