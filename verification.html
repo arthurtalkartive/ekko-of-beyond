@@ -19,6 +19,7 @@ button,select,input{font-family:inherit;color:inherit}
   padding:calc(16px + var(--st)) 16px calc(16px + var(--sb));gap:14px;overflow:auto}
 #cv{background:#000;border:1px solid var(--c20);border-radius:6px;max-width:100%;
   max-height:calc(100vh - 120px);image-rendering:auto;display:block}
+#cv{transition:transform .12s linear}
 #cap{font-size:12px;opacity:.55;text-align:center;line-height:1.5;max-width:640px}
 
 aside{width:340px;flex:none;background:var(--panel);border-left:1px solid var(--c20);
@@ -49,6 +50,9 @@ input[type=range]{width:100%;accent-color:#E3E3C4}
 .box{font-size:11.5px;line-height:1.6;font-variant-numeric:tabular-nums;background:rgba(227,227,196,.05);
   border:1px solid var(--c20);border-radius:8px;padding:10px;margin-top:8px;word-break:break-word}
 .box b{font-weight:700}
+code.snip{display:block;white-space:pre-wrap;word-break:break-all;font-family:ui-monospace,monospace;
+  font-size:11px;line-height:1.5;background:#04070B;border:1px solid var(--c20);border-radius:6px;
+  padding:9px;margin-top:8px;max-height:150px;overflow:auto;color:var(--cream)}
 .tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   border:1px solid var(--c50);border-radius:999px;padding:2px 7px;margin-left:6px;opacity:.85}
 .tag.ex{border-color:#9BD9B0;color:#9BD9B0}
@@ -110,6 +114,29 @@ input[type=range]{width:100%;accent-color:#E3E3C4}
     <input type="range" id="r-ov" min="0" max="100" value="100">
     <div class="row">Magnitude limite <span class="v" id="v-mag">6,5</span></div>
     <input type="range" id="r-mag" min="30" max="70" value="65">
+  </div>
+
+  <div class="grp">
+    <h2>Angle de la figure</h2>
+    <div class="row">Rotation <span class="v" id="v-rot">0,0°</span></div>
+    <input type="range" id="r-rot" min="-1800" max="1800" value="0" step="5">
+    <div class="two">
+      <button class="btn" id="b-rot-m90">− 90°</button>
+      <button class="btn" id="b-rot-p90">+ 90°</button>
+    </div>
+    <div class="two">
+      <button class="btn" id="b-rot-180">± 180°</button>
+      <button class="btn" id="b-rot-0">Remettre à 0</button>
+    </div>
+    <button class="btn pri" id="b-rot-valider">Valider cet angle</button>
+    <div class="box" id="rot-out">Tournez jusqu'à ce que la figure soit dans le bon sens, puis validez.</div>
+    <div class="two">
+      <button class="btn" id="b-rot-copier">Copier le bloc</button>
+      <button class="btn" id="b-rot-vider">Tout effacer</button>
+    </div>
+    <div class="note">L'angle validé s'ajoute à l'orientation calculée par la
+    carte. Le bloc obtenu se colle dans <b>ROLL_ADJUST</b>, en haut du script
+    d'<b>index.html</b>.</div>
   </div>
 
   <div class="grp">
@@ -324,7 +351,12 @@ function loadRef(){
 }
 
 /* ---------- branchements ---------- */
-sel.onchange = () => { cur = +sel.value; describe(); loadRef(); draw(); };
+sel.onchange = () => {
+  cur = +sel.value; describe(); loadRef(); draw();
+  const t = rotLoad();
+  rotSet(t[CONS[cur].id] !== undefined ? t[CONS[cur].id] : 0);
+  rotRender();
+};
 $('#file').onchange = e => {
   const f = e.target.files[0]; if(!f) return;
   const im = new Image();
@@ -418,6 +450,82 @@ function validerIllustration(){
             + ' {"pos": [x, y], "hip": 0}, {"pos": [x, y], "hip": 0}]}</code>');
   }, 'image/webp', 0.92);
 }
+/* ------------------------------------------------------------------
+   Reglage manuel de l'angle.
+
+   La carte calcule l'orientation depuis l'homographie des ancres, en
+   supposant que le haut du fichier correspond au haut de la figure. Quand
+   le dessin est cadre autrement, cette hypothese tombe. On mesure donc
+   l'ecart a l'oeil : on fait tourner l'ensemble — illustration et trace,
+   solidaires — jusqu'a ce que la figure soit droite, et l'angle obtenu
+   vient s'ajouter au calcul.
+
+   Les angles valides sont conserves dans le navigateur, ce qui permet d'en
+   regler plusieurs de suite avant de reporter le bloc dans index.html.
+   ------------------------------------------------------------------ */
+const ROT_KEY = 'ekko-roll-adjust';
+let rot = 0;
+
+function rotLoad(){
+  try{ return JSON.parse(localStorage.getItem(ROT_KEY)) || {}; }catch(e){ return {}; }
+}
+function rotSave(t){
+  try{ localStorage.setItem(ROT_KEY, JSON.stringify(t)); }catch(e){}
+}
+function rotApply(){
+  $('#cv').style.transform = 'rotate(' + rot.toFixed(1) + 'deg)';
+  $('#v-rot').textContent = rot.toFixed(1).replace('.', ',') + '°';
+}
+function rotSet(v){
+  rot = ((v + 180) % 360 + 360) % 360 - 180;
+  $('#r-rot').value = Math.round(rot * 10);
+  rotApply();
+}
+function rotSnippet(){
+  const t = rotLoad();
+  const ks = Object.keys(t).sort();
+  if(!ks.length) return null;
+  return 'const ROLL_ADJUST = {\n'
+    + ks.map(k => '  ' + k + ': ' + t[k]).join(',\n')
+    + '\n};';
+}
+function rotRender(){
+  const t = rotLoad();
+  const n = Object.keys(t).length;
+  const mine = t[CONS[cur].id];
+  const out = $('#rot-out');
+  let h = mine === undefined
+    ? 'Aucun angle validé pour <b>' + CONS[cur].n + '</b>.'
+    : 'Angle validé pour <b>' + CONS[cur].n + '</b> : <b>' + mine + '°</b>.';
+  h += ' ' + n + ' figure' + (n > 1 ? 's' : '') + ' réglée' + (n > 1 ? 's' : '') + ' au total.';
+  const snip = rotSnippet();
+  if(snip) h += '<code class="snip" id="snip">' + snip.replace(/</g, '&lt;') + '</code>';
+  out.innerHTML = h;
+}
+
+$('#r-rot').oninput = e => { rot = e.target.value / 10; rotApply(); };
+$('#b-rot-m90').onclick = () => rotSet(rot - 90);
+$('#b-rot-p90').onclick = () => rotSet(rot + 90);
+$('#b-rot-180').onclick = () => rotSet(rot + 180);
+$('#b-rot-0').onclick   = () => rotSet(0);
+$('#b-rot-valider').onclick = () => {
+  const t = rotLoad();
+  t[CONS[cur].id] = Math.round(rot * 10) / 10;
+  rotSave(t);
+  rotRender();
+};
+$('#b-rot-copier').onclick = () => {
+  const snip = rotSnippet();
+  if(!snip){ $('#rot-out').innerHTML = 'Rien à copier : validez d\'abord un angle.'; return; }
+  navigator.clipboard.writeText(snip).then(
+    () => { const o = $('#rot-out'); const p = o.innerHTML;
+            o.innerHTML = '<b>Bloc copié.</b> Collez-le dans index.html, en remplacement de ROLL_ADJUST.'
+              + '<code class="snip">' + snip.replace(/</g, '&lt;') + '</code>'; },
+    () => { $('#rot-out').innerHTML = 'Copie refusée par le navigateur : sélectionnez le bloc à la main.'
+              + '<code class="snip">' + snip.replace(/</g, '&lt;') + '</code>'; });
+};
+$('#b-rot-vider').onclick = () => { rotSave({}); rotRender(); };
+
 $('#b-valider').onclick = validerIllustration;
 
 $('#b-png').onclick = () => {
@@ -428,6 +536,7 @@ $('#b-png').onclick = () => {
 };
 
 describe(); draw();
+(function(){ const t = rotLoad(); rotSet(t[CONS[cur].id] !== undefined ? t[CONS[cur].id] : 0); rotRender(); })();
 </script>
 </body>
 </html>
