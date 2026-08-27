@@ -14,6 +14,12 @@
 
 const GH = 'https://api.github.com';
 
+/* Reponse JSON, toujours sans cache. */
+function json(res, code, body) {
+  res.setHeader('Cache-Control', 'no-store');
+  return res.status(code).json(body);
+}
+
 function env(name, fallback) {
   const v = process.env[name];
   return v === undefined || v === '' ? fallback : v;
@@ -67,30 +73,50 @@ const ID_RE = /^[a-z]{3}$/;
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Méthode non autorisée : utilisez POST.' });
-  }
-
   const adminKey = env('EKKO_ADMIN_KEY');
   const token = env('GITHUB_TOKEN');
   const repo = env('GITHUB_REPO');
   const branch = env('GITHUB_BRANCH', 'main');
 
-  if (!adminKey || !token || !repo) {
-    return res.status(503).json({
-      error: 'Écriture non configurée sur ce déploiement.',
-      detail: 'Définissez GITHUB_TOKEN, GITHUB_REPO et EKKO_ADMIN_KEY dans les variables ' +
-              "d'environnement Vercel, puis redéployez.",
-      missing: [
-        !token && 'GITHUB_TOKEN',
-        !repo && 'GITHUB_REPO',
-        !adminKey && 'EKKO_ADMIN_KEY',
-      ].filter(Boolean),
+  const missing = [
+    !token && 'GITHUB_TOKEN',
+    !repo && 'GITHUB_REPO',
+    !adminKey && 'EKKO_ADMIN_KEY',
+  ].filter(Boolean);
+
+  /* GET sert de sonde d'etat : l'outil de verification l'interroge au
+     chargement pour savoir s'il peut ecrire, et afficher un diagnostic
+     precis au lieu d'un echec muet. Aucun secret n'est renvoye, juste
+     les noms des variables absentes. */
+  if (req.method === 'GET') {
+    return json(res, 200, {
+      route: 'ok',
+      configured: missing.length === 0,
+      missing,
+      repo: repo || null,
+      branch,
     });
   }
 
-  if (req.headers['x-ekko-key'] !== adminKey) {
-    return res.status(401).json({ error: "Clé d'administration invalide." });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Méthode non autorisée : utilisez GET ou POST.' });
+  }
+
+  if (missing.length) {
+    return json(res, 503, {
+      error: 'Écriture non configurée sur ce déploiement.',
+      detail: 'Définissez ces variables dans Vercel (Settings → Environment Variables), ' +
+              'puis redéployez.',
+      missing,
+    });
+  }
+
+  const given = req.headers['x-ekko-key'];
+  if (!given) {
+    return json(res, 401, { error: "Clé d'administration absente : saisissez-la dans le panneau." });
+  }
+  if (given !== adminKey) {
+    return json(res, 401, { error: "Clé d'administration incorrecte." });
   }
 
   const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
