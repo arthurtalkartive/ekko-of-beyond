@@ -565,9 +565,47 @@ $('#adm-key').oninput = e => {
   try{ sessionStorage.setItem(KEY_STORE, e.target.value); }catch(err){}
 };
 
+/* Etat de l'ecriture, verifie au chargement. Sans cela, un echec ne se
+   manifestait qu'au moment de valider, avec un message peu parlant. */
+let writeReady = false;
+(async function probe(){
+  const note = $('#adm-note');
+  const base = "Necessaire pour que « Valider » ecrive directement dans le depot. "
+             + "La cle reste dans cet onglet et n'est jamais enregistree sur le disque.";
+  note.innerHTML = 'Verification de l\'ecriture…';
+  let res, data;
+  try{
+    res = await fetch('/api/save', { method: 'GET', cache: 'no-store' });
+  }catch(e){
+    note.innerHTML = '<span class="fit-bad">Fonction /api/save injoignable.</span> '
+      + 'Verifiez que le fichier <b>api/save.js</b> est bien present dans le depot.';
+    return;
+  }
+  if(res.status === 404){
+    note.innerHTML = '<span class="fit-bad">La route /api/save n\'existe pas (404).</span> '
+      + 'Le fichier <b>api/save.js</b> n\'est pas deploye : ajoutez-le a la racine du depot, '
+      + 'dans un dossier <b>api/</b>, puis poussez.';
+    return;
+  }
+  try{ data = await res.json(); }catch(e){ data = {}; }
+  if(data.configured){
+    writeReady = true;
+    const key = ($('#adm-key').value || '').trim();
+    note.innerHTML = '<span class="fit-ok">Ecriture disponible</span> sur <b>'
+      + (data.repo || '?') + '</b>, branche <b>' + (data.branch || 'main') + '</b>. '
+      + (key ? 'Cle saisie.' : 'Saisissez votre cle EKKO_ADMIN_KEY ci-dessus.');
+    return;
+  }
+  note.innerHTML = '<span class="fit-bad">Ecriture non configuree.</span> Variables absentes dans '
+    + 'Vercel : <b>' + ((data.missing || []).join(', ') || 'inconnues') + '</b>.'
+    + '<br><br>Settings &rarr; Environment Variables, puis <b>redeployez</b> : Vercel n\'injecte '
+    + 'pas les variables dans un deploiement deja construit.<br><br>' + base;
+})();
+
 async function apiSave(payload){
+  /* On appelle le serveur meme sans cle : c'est lui qui sait s'il est
+     configure, et son message est plus utile qu'un refus local. */
   const key = ($('#adm-key').value || '').trim();
-  if(!key) return { ok:false, local:true, error:"Renseignez la clé d'administration pour écrire dans le dépôt." };
   let res, data;
   try{
     res = await fetch('/api/save', {
@@ -589,7 +627,8 @@ function apiMessage(r){
   let h = '<span class="fit-bad">' + r.error + '</span>';
   if(r.detail) h += '<br>' + r.detail;
   if(r.missing && r.missing.length) h += '<br>Variables manquantes : <b>' + r.missing.join(', ') + '</b>.';
-  if(r.local) h += '<br><br>En attendant, l\'angle est conservé dans ce navigateur et le bloc ci-dessous reste utilisable.';
+  h += '<br><br>La valeur reste conservée dans ce navigateur, et le bloc ci-dessous reste utilisable '
+     + 'pour la reporter à la main.';
   return h;
 }
 
