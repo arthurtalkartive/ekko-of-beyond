@@ -1022,6 +1022,19 @@ const IAU = {
      donne un code propre, ce qui leur vaut désormais tracé et sélection. */
   lmc:'LMC', tde:'TDE', tdh:'TDH', hdh:'HDH'
 };
+/* Orientation de chaque illustration, calculee hors ligne a partir de son
+   homographie : position celeste du centre de l'image, puis d'un point
+   situe plus haut dans l'image. Format [ raCentre, decCentre, raHaut,
+   decHaut ], ascension droite en heures.
+
+   Les illustrations de Stellarium ne sont pas dessinees le nord celeste
+   vers le haut : Hercule est a 154 degres du nord, Cassiopee a 178. Se
+   contenter d'aligner le nord ne redresserait donc rien. */
+const ORIENT = {"uma":[10.84915,55.2506,11.59772,64.47226],"umi":[14.62017,79.38024,13.37398,81.56665],"cas":[1.1108,60.7877,1.12545,56.78795],"cep":[22.90984,64.85772,21.97011,62.87196],"dra":[16.56152,64.49136,16.6048,55.00088],"ari":[2.46,20.79279,2.24865,22.92878],"tau":[4.28057,17.46342,4.44769,23.85096],"gem":[6.91395,23.82012,7.01848,28.25145],"cnc":[8.61596,20.22407,8.82441,24.01152],"leo":[10.74272,14.55767,10.39219,20.58578],"vir":[13.40548,2.15945,13.04078,10.26152],"lib":[15.48467,-19.76847,15.24078,-17.48069],"sco":[16.75336,-31.93849,16.76158,-26.66454],"sgr":[19.08395,-31.14658,18.89039,-25.6084],"cap":[20.99577,-16.7519,20.82952,-13.65922],"aqr":[22.26032,-13.31058,21.94823,-6.95009],"psc":[0.58143,9.77658,0.17606,16.30222],"ori":[5.66017,3.08915,5.48063,8.25524],"cma":[6.81833,-22.11242,6.93611,-18.09946],"cmi":[7.61105,7.43857,7.65134,9.68423],"aur":[5.59659,37.66549,5.97448,40.90911],"eri":[3.67446,-27.75667,3.4181,-17.20766],"lep":[5.58092,-17.82726,5.64564,-14.85092],"mon":[7.22813,-0.22309,7.22386,5.80964],"col":[6.02085,-36.904,6.2189,-35.39694],"boo":[14.48089,27.89517,15.03093,31.71566],"hya":[10.63005,-11.8496,10.30227,0.189],"crv":[12.36901,-19.69124,12.34015,-17.71039],"crt":[11.45904,-15.75113,11.63705,-14.18589],"com":[12.67005,23.40701,12.68935,27.1634],"her":[16.9535,33.78115,17.18134,27.60213],"crb":[15.74543,29.34055,15.67801,30.54931],"cyg":[20.62854,39.90423,20.71124,46.53249],"lyr":[18.83754,35.06806,18.77771,37.41926],"aql":[19.52878,6.55644,19.47518,14.20932],"oph":[17.27029,-4.59751,17.20501,6.44919],"del":[20.70754,12.59489,20.67117,14.08875],"sge":[19.86475,18.80919,19.89973,19.54037],"and":[1.13696,38.21115,0.60958,36.22743],"per":[3.57198,44.88777,3.67822,50.62069],"peg":[23.10855,19.2396,22.63267,12.2486],"cet":[1.64065,-2.42781,1.95296,5.59113],"tri":[1.99475,31.75704,1.90801,33.31205],"psa":[22.23294,-31.4945,22.45037,-33.42949],"cru":[12.49204,-60.21804,12.61847,-59.45115],"cen":[13.43455,-47.9653,13.23226,-39.35931],"car":[8.34955,-49.15772,8.40016,-37.91124]};
+
+/* Si les figures apparaissent tournees de 180 degres, passer a -1. */
+const ROLL_SIGN = 1;
+
 const BY_IAU = {};
 CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
 
@@ -1128,6 +1141,32 @@ function renderCard(){
 /* Sélectionne la constellation dans le moteur. C'est la sélection qui
    déclenche l'apparition en fondu du dessin de la figure : le moteur
    ignore le réglage images_visible pour l'objet sélectionné. */
+/* Fait pivoter la vue pour que la figure apparaisse dans le sens ou elle
+   a ete dessinee. Le repere OBSERVED du moteur a le zenith en (0,0,1) :
+   sans roulis, le haut de l'ecran pointe donc vers le zenith. On mesure
+   l'angle entre cette direction et le haut de l'image, et on le donne a
+   l'attribut roll de l'observateur. */
+function orientToFigure(idx){
+  if(!STEL) return;
+  const o = ORIENT[CONSTELLATIONS[idx].id];
+  if(!o){ try{ STEL.core.observer.roll = 0; }catch(e){} return; }
+  const D2R = STEL.D2R;
+  const dot = (a,b) => a[0]*b[0] + a[1]*b[1] + a[2]*b[2];
+  const nrm = v => { const n = Math.hypot(v[0],v[1],v[2]) || 1; return [v[0]/n, v[1]/n, v[2]/n]; };
+  const crs = (a,b) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+  try{
+    const obs = STEL.core.observer;
+    const c = nrm(STEL.convertFrame(obs, 'ICRF', 'OBSERVED', STEL.s2c(o[0]*15*D2R, o[1]*D2R)));
+    const u = nrm(STEL.convertFrame(obs, 'ICRF', 'OBSERVED', STEL.s2c(o[2]*15*D2R, o[3]*D2R)));
+    const Z = [0, 0, 1];
+    if(Math.abs(dot(Z, c)) > 0.999) return;   /* figure au zenith : le haut n'est pas defini */
+    const tang = v => { const d = dot(v, c); return nrm([v[0]-d*c[0], v[1]-d*c[1], v[2]-d*c[2]]); };
+    const up = tang(u), u0 = tang(Z);
+    const theta = Math.atan2(dot(crs(u0, up), c), dot(u0, up));
+    obs.roll = ROLL_SIGN * theta;
+  }catch(e){ console.warn('[ekko] orientation impossible :', e); }
+}
+
 let selTimer = null;
 function selectInEngine(idx, delayMs){
   if(!STEL) return;
@@ -1158,6 +1197,7 @@ function watchSelection(stel){
     if(idx === cardIdx) return;            /* déjà la bonne : rien à faire */
     cardIdx = idx;
     renderCard();
+    orientToFigure(idx);
   });
 }
 
@@ -1165,6 +1205,7 @@ function goToCard(delta){
   cardIdx = (cardIdx + delta + CONSTELLATIONS.length) % CONSTELLATIONS.length;
   renderCard();
   focusOnCard(1.2);
+  orientToFigure(cardIdx);
   selectInEngine(cardIdx, 850);   /* le dessin apparaît à l'arrivée du vol */
 }
 $('#prev').onclick = () => goToCard(-1);
@@ -1342,7 +1383,7 @@ function boot(lat, lon){
         }catch(e){ console.warn('[ekko] observer :', e); }
 
         try{ stel.zoomTo(88 * stel.D2R, 0); }catch(e){}
-        setTimeout(() => { focusOnCard(1.6); selectInEngine(cardIdx, 1200); }, 1000);
+        setTimeout(() => { focusOnCard(1.6); orientToFigure(cardIdx); selectInEngine(cardIdx, 1200); }, 1000);
         setTimeout(() => { $('#fallback-stars').style.opacity = '0'; }, 1600);
         hideStatus(2800);
       }
