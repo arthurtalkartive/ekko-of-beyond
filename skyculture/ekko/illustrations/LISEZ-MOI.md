@@ -18,12 +18,25 @@ vérification.
 ## Deux contraintes techniques
 
 **Trait clair sur fond noir.** Le moteur compose les illustrations en
-mélange additif : le noir pur devient totalement transparent, seuls les
-pixels clairs apparaissent. Un dessin sombre sur fond blanc remplirait
-l'écran de blanc. Dessinez en `#E3E3C4` sur noir.
+mélange additif — `PAINTER_ADD` dans son code source. Le noir pur devient
+donc totalement transparent de lui-même, sans qu'il soit besoin d'un canal
+alpha, et seuls les pixels clairs apparaissent. Un dessin sombre sur fond
+blanc remplirait l'écran de blanc. Dessinez en `#E3E3C4` sur noir, et
+n'essayez pas de détourer : c'est inutile et ça dégrade l'image.
 
-**512 × 512 pixels.** C'est le format des illustrations d'origine et
-celui auquel les ancres de référence correspondent.
+**Résolution : 1024 ou 2048 pixels, carré.** Les illustrations d'origine
+de Stellarium ne font que 512 px, d'où leur aspect pixelisé en zoom. Vous
+pouvez déposer bien plus grand sans rien changer d'autre : les ancres sont
+normalisées en coordonnées relatives par le moteur, donc elles restent
+valables quelle que soit la taille du fichier. Laissez `size` tel quel
+dans `index.json`.
+
+Ne montez pas au-delà de 2048. Deux raisons. Le moteur charge la texture
+sans mipmap, et il masque l'illustration dès que le champ de vision
+descend sous la moitié du diamètre de la figure : celle-ci n'est donc
+jamais affichée à plus de deux fois la taille de l'écran, ce qui plafonne
+la résolution utile. Et une texture de 2048 px pèse 16 Mo en mémoire
+vidéo une fois décodée.
 
 ## Déclarer une illustration
 
