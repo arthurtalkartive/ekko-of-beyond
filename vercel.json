@@ -4,6 +4,24 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/skyculture/ekko/roll-adjust.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
       "source": "/vendor/(.*).wasm",
       "headers": [
         {
