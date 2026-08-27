@@ -1035,6 +1035,14 @@ const ORIENT = {"uma":[10.84915,55.2506,11.59772,64.47226],"umi":[14.62017,79.38
 /* Si les figures apparaissent tournees de 180 degres, passer a -1. */
 const ROLL_SIGN = 1;
 
+/* Corrections d'angle, en degres, ajoutees a l'orientation calculee.
+   Cette table est produite par l'outil /verification : reglez l'angle a
+   l'oeil, validez, puis collez ici le bloc qu'il vous donne. Une entree
+   absente vaut zero. */
+const ROLL_ADJUST = {
+  // exemple : her: 26.5,
+};
+
 const BY_IAU = {};
 CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
 
@@ -1146,10 +1154,35 @@ function renderCard(){
    sans roulis, le haut de l'ecran pointe donc vers le zenith. On mesure
    l'angle entre cette direction et le haut de l'image, et on le donne a
    l'attribut roll de l'observateur. */
-function orientToFigure(idx){
+/* Anime le roulis jusqu'a la valeur voulue, par le chemin le plus court et
+   avec la meme duree que le vol de camera : les deux mouvements se
+   deroulent alors ensemble, sans le saut d'une rotation instantanee. */
+let rollAnim = null;
+function animateRoll(target, dur){
+  cancelAnimationFrame(rollAnim);
+  let from = 0;
+  try{ from = STEL.core.observer.roll || 0; }catch(e){}
+  const TAU = Math.PI * 2;
+  const delta = ((target - from + Math.PI) % TAU + TAU) % TAU - Math.PI;
+  if(!dur || Math.abs(delta) < 1e-4){
+    try{ STEL.core.observer.roll = target; }catch(e){}
+    return;
+  }
+  const t0 = performance.now(), ms = dur * 1000;
+  const step = function(now){
+    const k = Math.min(1, (now - t0) / ms);
+    /* meme courbe que le vol : acceleration puis freinage */
+    const e = k < 0.5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3) / 2;
+    try{ STEL.core.observer.roll = from + delta * e; }catch(err){}
+    if(k < 1) rollAnim = requestAnimationFrame(step);
+  };
+  rollAnim = requestAnimationFrame(step);
+}
+
+function orientToFigure(idx, dur){
   if(!STEL) return;
   const o = ORIENT[CONSTELLATIONS[idx].id];
-  if(!o){ try{ STEL.core.observer.roll = 0; }catch(e){} return; }
+  if(!o){ animateRoll(0, dur); return; }
   const D2R = STEL.D2R;
   const dot = (a,b) => a[0]*b[0] + a[1]*b[1] + a[2]*b[2];
   const nrm = v => { const n = Math.hypot(v[0],v[1],v[2]) || 1; return [v[0]/n, v[1]/n, v[2]/n]; };
@@ -1163,7 +1196,8 @@ function orientToFigure(idx){
     const tang = v => { const d = dot(v, c); return nrm([v[0]-d*c[0], v[1]-d*c[1], v[2]-d*c[2]]); };
     const up = tang(u), u0 = tang(Z);
     const theta = Math.atan2(dot(crs(u0, up), c), dot(u0, up));
-    obs.roll = ROLL_SIGN * theta;
+    const adj = (ROLL_ADJUST[CONSTELLATIONS[idx].id] || 0) * D2R;
+    animateRoll(ROLL_SIGN * theta + adj, dur);
   }catch(e){ console.warn('[ekko] orientation impossible :', e); }
 }
 
@@ -1197,7 +1231,7 @@ function watchSelection(stel){
     if(idx === cardIdx) return;            /* déjà la bonne : rien à faire */
     cardIdx = idx;
     renderCard();
-    orientToFigure(idx);
+    orientToFigure(idx, 1.0);
   });
 }
 
@@ -1205,7 +1239,7 @@ function goToCard(delta){
   cardIdx = (cardIdx + delta + CONSTELLATIONS.length) % CONSTELLATIONS.length;
   renderCard();
   focusOnCard(1.2);
-  orientToFigure(cardIdx);
+  orientToFigure(cardIdx, 1.2);
   selectInEngine(cardIdx, 850);   /* le dessin apparaît à l'arrivée du vol */
 }
 $('#prev').onclick = () => goToCard(-1);
@@ -1383,7 +1417,7 @@ function boot(lat, lon){
         }catch(e){ console.warn('[ekko] observer :', e); }
 
         try{ stel.zoomTo(88 * stel.D2R, 0); }catch(e){}
-        setTimeout(() => { focusOnCard(1.6); orientToFigure(cardIdx); selectInEngine(cardIdx, 1200); }, 1000);
+        setTimeout(() => { focusOnCard(1.6); orientToFigure(cardIdx, 1.6); selectInEngine(cardIdx, 1200); }, 1000);
         setTimeout(() => { $('#fallback-stars').style.opacity = '0'; }, 1600);
         hideStatus(2800);
       }
