@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Ekko of Beyond · Vue du ciel</title>
+<link rel="preload" as="image" href="/assets/img/splash-background.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -42,16 +43,16 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 #splash.out{opacity:0;pointer-events:none}
 #splash.gone{display:none}
-#splash-stars{position:absolute;inset:0;opacity:.5}
-/* meme ellipse que la carte : 2178 x 943 dans un cadre de 1440 x 1024,
-   posee a 403 px du haut, fusion color-dodge */
-#splash-glow{
-  position:absolute;left:50%;bottom:-31.4vh;transform:translateX(-50%);
-  width:151vw;height:92vh;pointer-events:none;mix-blend-mode:color-dodge;
-  background:radial-gradient(50% 50% at 50% 50%,
-    rgba(96,170,196,.62) 0%, rgba(58,118,146,.34) 34%,
-    rgba(30,68,92,.14) 58%, transparent 74%);
+/* Fond etoile fourni : il porte deja le degrade et la lueur turquoise du
+   bas. On n'ajoute donc pas l'ellipse en color-dodge par-dessus, elle
+   surexposerait la partie basse. Le degrade sous l'image sert de fond
+   d'attente pendant son chargement, puis l'image apparait en fondu. */
+#splash-bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center bottom;
+  opacity:0;transition:opacity .45s ease;
 }
+#splash-bg.ready{opacity:1}
 /* Les cercles debordent volontairement du cadre 1920 x 1080 de l'animation :
    on laisse donc le SVG deborder au lieu de le rogner. */
 #splash-fond{
@@ -294,8 +295,7 @@ a.account{text-decoration:none}
 <body>
 
 <div id="splash">
-  <canvas id="splash-stars"></canvas>
-  <div id="splash-glow"></div>
+  <img id="splash-bg" src="/assets/img/splash-background.webp" alt="" decoding="async">
   <div id="splash-fond"></div>
   <div id="splash-badge"></div>
 </div>
@@ -1106,28 +1106,17 @@ CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
   const splash = document.getElementById('splash');
   if(!splash) return;
 
-  /* champ d'etoiles statique, densite plus forte vers le bas */
-  (function stars(){
-    const c = document.getElementById('splash-stars');
-    if(!c) return;
-    const x = c.getContext('2d');
-    const draw = function(){
-      const w = innerWidth, h = innerHeight, dpr = Math.min(devicePixelRatio, 2);
-      c.width = w * dpr; c.height = h * dpr;
-      x.scale(dpr, dpr);
-      x.clearRect(0, 0, w, h);
-      const n = Math.round(w * h / 1400);
-      for(let i = 0; i < n; i++){
-        const px = Math.random() * w;
-        /* racine carree : les etoiles se densifient vers le bas */
-        const py = Math.sqrt(Math.random()) * h;
-        const r = Math.random() < 0.9 ? 0.55 : 1.15;
-        x.fillStyle = 'rgba(227,227,196,' + (0.10 + Math.random() * 0.55).toFixed(3) + ')';
-        x.beginPath(); x.arc(px, py, r, 0, 7); x.fill();
-      }
-    };
-    draw();
-    /* pas de redessin au redimensionnement : le splash ne vit que 3 s */
+  /* fondu d'apparition de l'image de fond */
+  (function bg(){
+    const img = document.getElementById('splash-bg');
+    if(!img) return;
+    if(img.complete && img.naturalWidth) img.classList.add('ready');
+    else {
+      img.addEventListener('load', function(){ img.classList.add('ready'); });
+      img.addEventListener('error', function(){
+        console.warn('[ekko] image de fond du splash introuvable');
+      });
+    }
   })();
 
   let done = false;
