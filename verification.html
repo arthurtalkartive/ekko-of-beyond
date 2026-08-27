@@ -34,6 +34,8 @@ aside .sub{font-size:12px;opacity:.5;line-height:1.5;margin-bottom:16px}
 .grp h2{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;opacity:.6;margin-bottom:11px}
 .row{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;margin:9px 0 5px}
 .row .v{opacity:.6;font-variant-numeric:tabular-nums;font-size:12px}
+input[type=password]{width:100%;background:rgba(227,227,196,.07);border:1px solid var(--c20);
+  border-radius:8px;padding:9px 10px;font-size:13px;outline:none;color:var(--cream)}
 select{width:100%;background:rgba(227,227,196,.07);border:1px solid var(--c20);border-radius:8px;
   padding:9px 10px;font-size:13px;outline:none}
 select option{color:#111}
@@ -117,6 +119,14 @@ code.snip{display:block;white-space:pre-wrap;word-break:break-all;font-family:ui
   </div>
 
   <div class="grp">
+    <h2>Écriture dans le dépôt</h2>
+    <input type="password" id="adm-key" placeholder="Clé d'administration" autocomplete="off">
+    <div class="note" id="adm-note">Nécessaire pour que « Valider » écrive
+    directement dans le dépôt. La clé reste dans cet onglet et n'est jamais
+    enregistrée sur le disque.</div>
+  </div>
+
+  <div class="grp">
     <h2>Angle de la figure</h2>
     <div class="row">Rotation <span class="v" id="v-rot">0,0°</span></div>
     <input type="range" id="r-rot" min="-1800" max="1800" value="0" step="5">
@@ -128,20 +138,21 @@ code.snip{display:block;white-space:pre-wrap;word-break:break-all;font-family:ui
       <button class="btn" id="b-rot-180">± 180°</button>
       <button class="btn" id="b-rot-0">Remettre à 0</button>
     </div>
-    <button class="btn pri" id="b-rot-valider">Valider cet angle</button>
+    <button class="btn pri" id="b-rot-valider">Valider l'angle — écrire dans le dépôt</button>
     <div class="box" id="rot-out">Tournez jusqu'à ce que la figure soit dans le bon sens, puis validez.</div>
     <div class="two">
       <button class="btn" id="b-rot-copier">Copier le bloc</button>
       <button class="btn" id="b-rot-vider">Tout effacer</button>
     </div>
     <div class="note">L'angle validé s'ajoute à l'orientation calculée par la
-    carte. Le bloc obtenu se colle dans <b>ROLL_ADJUST</b>, en haut du script
-    d'<b>index.html</b>.</div>
+    carte. Il est écrit dans <b>skyculture/ekko/roll-adjust.json</b> et pris en
+    compte après le redéploiement, en une minute environ. Le bloc ci-dessous
+    n'est qu'un filet de secours si l'écriture directe est indisponible.</div>
   </div>
 
   <div class="grp">
     <h2>Valider cette illustration</h2>
-    <button class="btn pri" id="b-valider">Valider pour la carte</button>
+    <button class="btn pri" id="b-valider">Valider — écrire dans le dépôt</button>
     <div class="box" id="valid-out">Importez une image, vérifiez la correspondance, puis validez.</div>
   </div>
 
@@ -418,11 +429,24 @@ function validerIllustration(){
   g.clearRect(0, 0, N, N);
   g.drawImage(myImg, 0, 0, N, N);
 
-  cv.toBlob(function(blob){
-    const url = URL.createObjectURL(blob);
-    const lien = document.createElement('a');
-    lien.href = url; lien.download = c.id + '.webp'; lien.click();
-    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  cv.toBlob(async function(blob){
+    const dataUrl = await new Promise(function(ok){
+      const fr = new FileReader();
+      fr.onload = function(){ ok(fr.result); };
+      fr.readAsDataURL(blob);
+    });
+
+    out.innerHTML = 'Envoi de l\'illustration au dépôt…';
+    const r = await apiSave({ type: 'illustration', id: c.id, dataUrl: dataUrl });
+
+    /* Si l'écriture directe n'est pas disponible, on retombe sur le
+       téléchargement : l'utilisateur dépose le fichier lui-même. */
+    if(!r.ok){
+      const url = URL.createObjectURL(blob);
+      const lien = document.createElement('a');
+      lien.href = url; lien.download = c.id + '.webp'; lien.click();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    }
 
     const bloc = c.a ? true : null;
     const note = src < 1024
@@ -430,8 +454,20 @@ function validerIllustration(){
         + ' redessinez en 1024 ou 2048 px pour un rendu net en zoom.</span>'
       : (src > MAXP ? ' Source de ' + src + ' px ramenee a ' + N + '.' : '');
 
-    out.innerHTML =
-      '<b>' + c.n + '</b> — fichier <b>' + c.id + '.webp</b> telecharge ('
+    if(r.ok){
+      out.innerHTML = apiMessage(r)
+        + '<br><br><b>' + c.n + '</b> — <b>' + c.id + '.webp</b> écrit dans '
+        + 'skyculture/ekko/illustrations/ (' + Math.round(blob.size / 1024)
+        + ' Ko, ' + N + ' x ' + N + ').' + note
+        + (c.a ? '<br><br>Les ancres de cette figure sont déjà déclarées et'
+               + ' restent valables quelle que soit la résolution.'
+               : '<br><br><span class="fit-mid">Cette figure n\'a pas encore'
+               + ' d\'ancres : ajoutez son bloc <b>image</b> dans index.json.</span>');
+      return;
+    }
+
+    out.innerHTML = apiMessage(r) + '<br><br>'
+      + '<b>' + c.n + '</b> — fichier <b>' + c.id + '.webp</b> telecharge ('
       + Math.round(blob.size / 1024) + ' Ko, ' + N + ' x ' + N + ').' + note
       + '<br><br>Pour qu\'il remplace l\'illustration actuelle pour tout le monde :'
       + '<br>1. déposer le fichier dans <b>skyculture/ekko/illustrations/</b>'
@@ -508,11 +544,66 @@ $('#b-rot-m90').onclick = () => rotSet(rot - 90);
 $('#b-rot-p90').onclick = () => rotSet(rot + 90);
 $('#b-rot-180').onclick = () => rotSet(rot + 180);
 $('#b-rot-0').onclick   = () => rotSet(0);
-$('#b-rot-valider').onclick = () => {
+/* ------------------------------------------------------------------
+   Écriture réelle dans le dépôt.
+
+   Un site statique n'a rien d'inscriptible depuis le navigateur. On passe
+   donc par /api/save, une fonction serverless qui commite sur GitHub via
+   l'API Contents. Vercel redéploie ensuite tout seul : l'angle validé et
+   l'illustration validée deviennent le code du projet.
+
+   Si la fonction n'est pas configurée — variables d'environnement
+   absentes — on retombe sur l'ancien fonctionnement : conservation locale
+   et bloc à reporter à la main.
+   ------------------------------------------------------------------ */
+const KEY_STORE = 'ekko-admin-key';
+try{
+  const k = sessionStorage.getItem(KEY_STORE);
+  if(k) $('#adm-key').value = k;
+}catch(e){}
+$('#adm-key').oninput = e => {
+  try{ sessionStorage.setItem(KEY_STORE, e.target.value); }catch(err){}
+};
+
+async function apiSave(payload){
+  const key = ($('#adm-key').value || '').trim();
+  if(!key) return { ok:false, local:true, error:"Renseignez la clé d'administration pour écrire dans le dépôt." };
+  let res, data;
+  try{
+    res = await fetch('/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-ekko-key': key },
+      body: JSON.stringify(payload),
+    });
+  }catch(e){
+    return { ok:false, local:true, error: 'Fonction /api/save injoignable : ' + e.message };
+  }
+  try{ data = await res.json(); }catch(e){ data = {}; }
+  if(res.ok) return { ok:true, data };
+  return { ok:false, local: res.status === 503, error: data.error || ('Erreur ' + res.status),
+           detail: data.detail, missing: data.missing };
+}
+
+function apiMessage(r){
+  if(r.ok) return '<b>' + (r.data.message || 'Enregistré.') + '</b>';
+  let h = '<span class="fit-bad">' + r.error + '</span>';
+  if(r.detail) h += '<br>' + r.detail;
+  if(r.missing && r.missing.length) h += '<br>Variables manquantes : <b>' + r.missing.join(', ') + '</b>.';
+  if(r.local) h += '<br><br>En attendant, l\'angle est conservé dans ce navigateur et le bloc ci-dessous reste utilisable.';
+  return h;
+}
+
+$('#b-rot-valider').onclick = async () => {
+  const angle = Math.round(rot * 10) / 10;
   const t = rotLoad();
-  t[CONS[cur].id] = Math.round(rot * 10) / 10;
+  t[CONS[cur].id] = angle;
   rotSave(t);
   rotRender();
+  const out = $('#rot-out');
+  out.innerHTML = 'Écriture dans le dépôt…';
+  const r = await apiSave({ type: 'angle', id: CONS[cur].id, angle });
+  rotRender();
+  out.insertAdjacentHTML('afterbegin', apiMessage(r) + '<br><br>');
 };
 $('#b-rot-copier').onclick = () => {
   const snip = rotSnippet();
