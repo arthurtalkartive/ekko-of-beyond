@@ -1447,22 +1447,43 @@ function figureFromSelection(sel){
   return -1;
 }
 
-function watchSelection(stel){
-  stel.core.change('selection', () => {
-    const sel = stel.core.selection;
-    if(!sel) return;
-    const idx = figureFromSelection(sel);
-    if(idx < 0) return;          /* ni figure d'Ekko, ni etoile connue */
-    if(idx === cardIdx) return;  /* deja la bonne : c'est notre propre selection */
+/* On surveille la selection au lieu de l'ecouter.
 
-    /* Meme sequence que la navigation par les fleches : la carte suit, la
-       camera vole en se redressant, puis le dessin apparait en fondu. */
-    cardIdx = idx;
-    renderCard();
-    focusOnCard(1.2);
-    orientToFigure(idx, 1.2);
-    selectInEngine(idx, 850);
-  });
+   Le moteur expose core.selection comme une simple propriete : aucun
+   appel a module_changed("selection") n'existe dans tout core.c. Un
+   ecouteur pose via core.change('selection', ...) ne se declenche donc
+   jamais quand l'utilisateur clique — c'etait la raison pour laquelle ni
+   le recadrage ni la mise a jour de la carte ne fonctionnaient.
+
+   On compare donc le pointeur de l'objet selectionne a intervalle court.
+   Le cout est negligeable, et cela couvre tous les chemins : clic sur le
+   nom, sur le trace, sur une etoile. */
+let lastSelPtr = 0;
+function pollSelection(){
+  if(!STEL) return;
+  let sel = null;
+  try{ sel = STEL.core.selection; }catch(e){ return; }
+  const ptr = sel ? sel.v : 0;
+  if(ptr === lastSelPtr) return;
+  lastSelPtr = ptr;
+  if(!sel) return;
+
+  const idx = figureFromSelection(sel);
+  if(idx < 0) return;          /* ni figure d'Ekko, ni etoile connue */
+  if(idx === cardIdx) return;  /* deja la bonne : c'est notre propre selection */
+
+  /* Meme sequence que la navigation par les fleches : la carte suit, la
+     camera vole en se redressant, puis le dessin apparait en fondu. */
+  cardIdx = idx;
+  renderCard();
+  focusOnCard(1.2);
+  orientToFigure(idx, 1.2);
+  selectInEngine(idx, 850);
+}
+
+function watchSelection(stel){
+  lastSelPtr = 0;
+  setInterval(pollSelection, 200);
 }
 
 function goToCard(delta){
