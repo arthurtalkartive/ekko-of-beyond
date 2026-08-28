@@ -1123,6 +1123,76 @@ const HIP_OWNER = {"677":"and","746":"cas","1067":"peg","1562":"cet","1645":"psc
 const BY_IAU = {};
 CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
 
+/* ------------------------------------------------------------------
+   Badge du splash : video si elle existe, animation Lottie sinon.
+
+   La video doit etre muette et marquee playsinline, seule facon d'obtenir
+   la lecture automatique sur mobile. La duree du splash suit son
+   evenement « ended », comme elle suivait la fin de l'animation Lottie.
+   ------------------------------------------------------------------ */
+const BADGE_VIDEOS = ['/assets/video/badge.webm', '/assets/video/badge.mp4'];
+function startBadge(container, onDone){
+  if(!container){ onDone(); return; }
+
+  const fallbackToLottie = function(why){
+    if(why) console.info('[ekko] badge en video indisponible (' + why + ') : Lottie utilise');
+    container.innerHTML = '';
+    if(typeof lottie === 'undefined'){ onDone(); return; }
+    try{
+      const anim = lottie.loadAnimation({
+        container: container, renderer: 'svg', loop: false, autoplay: true,
+        path: '/assets/lottie/badge.json',
+      });
+      anim.addEventListener('complete', onDone);
+      anim.addEventListener('data_failed', function(){ onDone(); });
+    }catch(e){ onDone(); }
+  };
+
+  const v = document.createElement('video');
+  v.muted = true; v.defaultMuted = true; v.playsInline = true;
+  v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+  v.autoplay = true; v.loop = false; v.preload = 'auto';
+  v.setAttribute('aria-hidden', 'true');
+
+  /* on ne garde que les formats que le navigateur declare savoir lire */
+  const usable = BADGE_VIDEOS.filter(function(src){
+    const type = src.endsWith('.webm') ? 'video/webm' : 'video/mp4';
+    return v.canPlayType(type) !== '';
+  });
+  if(!usable.length){ fallbackToLottie('aucun format supporte'); return; }
+
+  let settled = false;
+  const give = function(why){ if(settled) return; settled = true; fallbackToLottie(why); };
+
+  /* si rien n'a demarre en 2,5 s, on n'attend pas davantage */
+  const wait = setTimeout(function(){ give('delai depasse'); }, 2500);
+
+  v.addEventListener('playing', function(){
+    if(settled) return;
+    settled = true; clearTimeout(wait);
+  });
+  v.addEventListener('ended', function(){ onDone(); });
+  /* Une source qui repond 404 ou qui n'est pas decodable declenche
+     « error ». On tente alors la suivante, et on ne bascule sur Lottie
+     qu'une fois la liste epuisee. */
+  v.addEventListener('error', function(){
+    if(settled) return;
+    if(i < usable.length){ tryNext(); return; }
+    clearTimeout(wait); give('aucune source lisible');
+  });
+
+  let i = 0;
+  const tryNext = function(){
+    if(i >= usable.length){ clearTimeout(wait); give('aucune source valide'); return; }
+    v.src = usable[i++];
+    v.load();
+    const p = v.play();
+    if(p && p.catch) p.catch(function(){ if(!settled) tryNext(); });
+  };
+  container.appendChild(v);
+  tryNext();
+}
+
 /* ============================================================
    SPLASHSCREEN
    Duree calee sur l'animation du badge : 180 images a 60 i/s, soit
@@ -1179,73 +1249,16 @@ CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
     });
   }catch(e){ console.warn('[ekko] traces :', e); }
 
-  startBadge(document.getElementById('splash-badge'), function(){
+  try{
+    startBadge(document.getElementById('splash-badge'), function(){
+      clearTimeout(guard); finish();
+    });
+  }catch(e){
+    console.warn('[ekko] badge :', e);
     clearTimeout(guard); finish();
-  });
+  }
 })();
 
-/* ------------------------------------------------------------------
-   Badge du splash : video si elle existe, animation Lottie sinon.
-
-   La video doit etre muette et marquee playsinline, seule facon d'obtenir
-   la lecture automatique sur mobile. La duree du splash suit son
-   evenement « ended », comme elle suivait la fin de l'animation Lottie.
-   ------------------------------------------------------------------ */
-const BADGE_VIDEOS = ['/assets/video/badge.webm', '/assets/video/badge.mp4'];
-function startBadge(container, onDone){
-  if(!container){ onDone(); return; }
-
-  const fallbackToLottie = function(why){
-    if(why) console.info('[ekko] badge en video indisponible (' + why + ') : Lottie utilise');
-    container.innerHTML = '';
-    if(typeof lottie === 'undefined'){ onDone(); return; }
-    try{
-      const anim = lottie.loadAnimation({
-        container: container, renderer: 'svg', loop: false, autoplay: true,
-        path: '/assets/lottie/badge.json',
-      });
-      anim.addEventListener('complete', onDone);
-      anim.addEventListener('data_failed', function(){ onDone(); });
-    }catch(e){ onDone(); }
-  };
-
-  const v = document.createElement('video');
-  v.muted = true; v.defaultMuted = true; v.playsInline = true;
-  v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-  v.autoplay = true; v.loop = false; v.preload = 'auto';
-  v.setAttribute('aria-hidden', 'true');
-
-  /* on ne garde que les formats que le navigateur declare savoir lire */
-  const usable = BADGE_VIDEOS.filter(function(src){
-    const type = src.endsWith('.webm') ? 'video/webm' : 'video/mp4';
-    return v.canPlayType(type) !== '';
-  });
-  if(!usable.length){ fallbackToLottie('aucun format supporte'); return; }
-
-  let settled = false;
-  const give = function(why){ if(settled) return; settled = true; fallbackToLottie(why); };
-
-  /* si rien n'a demarre en 2,5 s, on n'attend pas davantage */
-  const wait = setTimeout(function(){ give('delai depasse'); }, 2500);
-
-  v.addEventListener('playing', function(){
-    if(settled) return;
-    settled = true; clearTimeout(wait);
-  });
-  v.addEventListener('ended', function(){ onDone(); });
-  v.addEventListener('error', function(){ clearTimeout(wait); give('fichier illisible'); });
-
-  let i = 0;
-  const tryNext = function(){
-    if(i >= usable.length){ clearTimeout(wait); give('aucune source valide'); return; }
-    v.src = usable[i++];
-    v.load();
-    const p = v.play();
-    if(p && p.catch) p.catch(function(){ if(!settled) tryNext(); });
-  };
-  container.appendChild(v);
-  tryNext();
-}
 
 /* ============================================================
    CONSOLE DE DIAGNOSTIC
