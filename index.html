@@ -4,24 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Ekko of Beyond · Vue du ciel</title>
-<script>
-/* Garde d'acces posee avant tout rendu, pour eviter que la carte
-   n'apparaisse une fraction de seconde a un visiteur non connecte.
-   On lit directement le jeton depose par Supabase dans localStorage :
-   c'est synchrone, la ou getSession() est asynchrone. */
-(function(){
-  try{
-    var found = false;
-    for(var i = 0; i < localStorage.length; i++){
-      var k = localStorage.key(i);
-      if(k && k.indexOf('sb-') === 0 && k.indexOf('-auth-token') > 0){ found = true; break; }
-    }
-    /* Si Supabase n'est pas encore configure, on ne redirige pas : le site
-       reste consultable pendant la mise en place. */
-    if(!found && !location.hash) window.__ekkoNeedsAuth = true;
-  }catch(e){}
-})();
-</script>
 <link rel="preload" as="image" href="/assets/img/splash-background.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,6 +65,16 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 #splash-badge{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:min(250px,46vw);aspect-ratio:281 / 271;pointer-events:none;
+}
+/* Le badge en video. Son fond noir n'est pas une couche alpha : il n'y a
+   rien a retirer. On le neutralise par fusion « screen », ou le noir
+   n'ajoute rien et seuls les pixels clairs apparaissent — exactement le
+   principe du melange additif dont se sert le moteur pour les
+   illustrations de constellations. Si un jour la video porte une vraie
+   couche alpha (WebM VP9 en yuva420p), remplacez screen par normal. */
+#splash-badge video{
+  width:100%;height:100%;object-fit:contain;display:block;
+  mix-blend-mode:screen;
 }
 
 /* ================= CIEL ================= */
@@ -155,35 +147,6 @@ a.account{text-decoration:none}
   width:68px;height:53px;z-index:11;pointer-events:none;overflow:hidden;
 }
 .hd-drop svg{width:100%;height:100%;display:block;overflow:visible}
-
-/* ================= PANNEAU DE COMPTE ================= */
-button.account{cursor:pointer}
-#acct-veil{position:fixed;inset:0;z-index:18;background:rgba(4,7,13,.45);
-  opacity:0;pointer-events:none;transition:opacity .25s}
-#acct-veil.on{opacity:1;pointer-events:auto}
-#acct{
-  position:fixed;right:18px;top:calc(var(--hd-h) + var(--safe-t) + 18px);z-index:19;
-  width:260px;padding:18px;border-radius:16px;
-  border:1px solid var(--c20);background:rgba(6,12,18,.96);backdrop-filter:blur(14px);
-  display:flex;flex-direction:column;gap:2px;
-  opacity:0;transform:translateY(-8px);pointer-events:none;
-  transition:opacity .25s,transform .25s;
-}
-#acct.on{opacity:1;transform:translateY(0);pointer-events:auto}
-.acct-head{margin-bottom:10px}
-.acct-name{font-size:17px;font-weight:700;letter-spacing:.02em}
-.acct-mail{font-size:12px;opacity:.55;word-break:break-all;margin-top:2px}
-.acct-prog{font-size:12px;opacity:.7;padding:9px 0;border-top:1px solid var(--c20);
-  border-bottom:1px solid var(--c20);margin-bottom:8px}
-.acct-prog span{font-weight:700;font-variant-numeric:tabular-nums}
-.acct-link{display:block;padding:9px 0;font-size:12.5px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;text-decoration:none;color:var(--cream);opacity:.8;
-  background:none;border:none;text-align:left;cursor:pointer;width:100%}
-.acct-link:hover{opacity:1}
-.acct-link.out{color:#E39A8A;margin-top:6px}
-@media (max-width:820px){
-  #acct{right:12px;left:12px;width:auto;top:calc(var(--hd-h) + var(--safe-t) + 12px)}
-}
 
 /* ================= TOGGLE ================= */
 .toggle-wrap{
@@ -427,7 +390,7 @@ button.account{cursor:pointer}
 </svg>
   </div>
 
-  <button class="account" id="btn-account" aria-label="Mon compte" aria-haspopup="true">
+  <a class="account" id="btn-account" href="/verification" aria-label="Outil de vérification des figures">
     <span class="ico">
 <svg viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15.662 22.1333L8.19531 10.6666H22.5953L15.662 22.1333Z" stroke="#E3E3C4" stroke-width="0.8"/>
@@ -436,24 +399,10 @@ button.account{cursor:pointer}
 <circle cx="15.3949" cy="13.6" r="13.2" stroke="#E3E3C4" stroke-width="0.8"/>
 </svg>
     </span>
-    <span class="lbl" id="account-name">Mon compte</span>
-  </button>
+    <span class="lbl">Mon compte</span>
+  </a>
 </header>
 
-<!-- panneau de compte, ouvert depuis l'en-tete -->
-<div id="acct-veil"></div>
-<div id="acct">
-  <div class="acct-head">
-    <div class="acct-name" id="acct-name">—</div>
-    <div class="acct-mail" id="acct-mail"></div>
-  </div>
-  <div class="acct-prog">
-    <span id="acct-count">0</span> / 53 constellations captées
-  </div>
-  <a class="acct-link" href="/verification">Vérification des figures</a>
-  <a class="acct-link" id="acct-admin" href="/admin" style="display:none">Gestion des comptes</a>
-  <button class="acct-link out" id="acct-out">Déconnexion</button>
-</div>
 
 <!-- défonce : hairline plein écran + tab chanfreiné centré sous le logo -->
 <div class="hd-edge">
@@ -537,9 +486,6 @@ button.account{cursor:pointer}
 </div>
 
 
-<script src="/vendor/supabase.min.js"></script>
-<script src="/assets/js/ekko-config.js"></script>
-<script src="/assets/js/ekko-auth.js"></script>
 <script src="/vendor/lottie_light.min.js"></script>
 <script src="/vendor/stellarium-web-engine.js"></script>
 <script>
@@ -1224,27 +1170,82 @@ CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
     return;
   }
 
+  /* les traces animees restent en Lottie */
   try{
     lottie.loadAnimation({
       container: document.getElementById('splash-fond'),
       renderer: 'svg', loop: true, autoplay: true,
       path: '/assets/lottie/fond.json',
     });
-    const badge = lottie.loadAnimation({
-      container: document.getElementById('splash-badge'),
-      renderer: 'svg', loop: false, autoplay: true,
-      path: '/assets/lottie/badge.json',
-    });
-    badge.addEventListener('complete', function(){ clearTimeout(guard); finish(); });
-    badge.addEventListener('data_failed', function(){
-      console.warn('[ekko] badge.json illisible');
-      clearTimeout(guard); finish();
-    });
-  }catch(e){
-    console.warn('[ekko] splash :', e);
+  }catch(e){ console.warn('[ekko] traces :', e); }
+
+  startBadge(document.getElementById('splash-badge'), function(){
     clearTimeout(guard); finish();
-  }
+  });
 })();
+
+/* ------------------------------------------------------------------
+   Badge du splash : video si elle existe, animation Lottie sinon.
+
+   La video doit etre muette et marquee playsinline, seule facon d'obtenir
+   la lecture automatique sur mobile. La duree du splash suit son
+   evenement « ended », comme elle suivait la fin de l'animation Lottie.
+   ------------------------------------------------------------------ */
+const BADGE_VIDEOS = ['/assets/video/badge.webm', '/assets/video/badge.mp4'];
+function startBadge(container, onDone){
+  if(!container){ onDone(); return; }
+
+  const fallbackToLottie = function(why){
+    if(why) console.info('[ekko] badge en video indisponible (' + why + ') : Lottie utilise');
+    container.innerHTML = '';
+    if(typeof lottie === 'undefined'){ onDone(); return; }
+    try{
+      const anim = lottie.loadAnimation({
+        container: container, renderer: 'svg', loop: false, autoplay: true,
+        path: '/assets/lottie/badge.json',
+      });
+      anim.addEventListener('complete', onDone);
+      anim.addEventListener('data_failed', function(){ onDone(); });
+    }catch(e){ onDone(); }
+  };
+
+  const v = document.createElement('video');
+  v.muted = true; v.defaultMuted = true; v.playsInline = true;
+  v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+  v.autoplay = true; v.loop = false; v.preload = 'auto';
+  v.setAttribute('aria-hidden', 'true');
+
+  /* on ne garde que les formats que le navigateur declare savoir lire */
+  const usable = BADGE_VIDEOS.filter(function(src){
+    const type = src.endsWith('.webm') ? 'video/webm' : 'video/mp4';
+    return v.canPlayType(type) !== '';
+  });
+  if(!usable.length){ fallbackToLottie('aucun format supporte'); return; }
+
+  let settled = false;
+  const give = function(why){ if(settled) return; settled = true; fallbackToLottie(why); };
+
+  /* si rien n'a demarre en 2,5 s, on n'attend pas davantage */
+  const wait = setTimeout(function(){ give('delai depasse'); }, 2500);
+
+  v.addEventListener('playing', function(){
+    if(settled) return;
+    settled = true; clearTimeout(wait);
+  });
+  v.addEventListener('ended', function(){ onDone(); });
+  v.addEventListener('error', function(){ clearTimeout(wait); give('fichier illisible'); });
+
+  let i = 0;
+  const tryNext = function(){
+    if(i >= usable.length){ clearTimeout(wait); give('aucune source valide'); return; }
+    v.src = usable[i++];
+    v.load();
+    const p = v.play();
+    if(p && p.catch) p.catch(function(){ if(!settled) tryNext(); });
+  };
+  container.appendChild(v);
+  tryNext();
+}
 
 /* ============================================================
    CONSOLE DE DIAGNOSTIC
@@ -1346,9 +1347,21 @@ function medallionSVG(c){
 
 /* ---------- carte ---------- */
 let cardIdx = 0;
-/* Progression du compte connecte, chargee depuis Supabase. Vide tant que
-   la session n'est pas connue ou si Supabase n'est pas configure. */
-let COLLECTED = new Set();
+/* Progression. En attendant la mise en place des comptes, elle est
+   conservee dans le navigateur : rien a configurer, et l'etat survit aux
+   rechargements. Le jour ou l'authentification arrive, il suffira de
+   remplacer ces deux fonctions de lecture et d'ecriture. */
+const PROGRESS_KEY = 'ekko-collected';
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    return new Set(raw ? JSON.parse(raw) : []);
+  }catch(e){ return new Set(); }
+}
+function saveProgress(){
+  try{ localStorage.setItem(PROGRESS_KEY, JSON.stringify([...COLLECTED])); }catch(e){}
+}
+let COLLECTED = loadProgress();
 
 function renderCard(){
   const c = CONSTELLATIONS[cardIdx];
@@ -1579,83 +1592,22 @@ $('#tg-sky').onclick  = () => { $('#tg-sky').classList.add('on');  $('#tg-coll')
 $('#tg-coll').onclick = () => { $('#tg-coll').classList.add('on'); $('#tg-sky').classList.remove('on'); };
 
 /* ============================================================
-   COMPTE ET PROGRESSION
+   PROGRESSION
+   Points d'entree que le player audio appellera en fin d'ecoute.
    ============================================================ */
-function refreshAccountPanel(){
-  const n = COLLECTED.size;
-  const c = document.getElementById('acct-count');
-  if(c) c.textContent = n;
-}
-
-/* Marque une constellation comme captee. C'est le point d'entree que le
-   player audio appellera en fin d'ecoute. */
-window.ekkoCollect = async function(id){
+window.ekkoCollect = function(id){
   if(COLLECTED.has(id)) return false;
   COLLECTED.add(id);
+  saveProgress();
   renderCard();
-  refreshAccountPanel();
-  if(window.Ekko && Ekko.user) await Ekko.collect(id);
   return true;
 };
-window.ekkoUncollect = async function(id){
-  if(!COLLECTED.has(id)) return false;
-  COLLECTED.delete(id);
+window.ekkoUncollect = function(id){
+  if(!COLLECTED.delete(id)) return false;
+  saveProgress();
   renderCard();
-  refreshAccountPanel();
-  if(window.Ekko && Ekko.user) await Ekko.uncollect(id);
   return true;
 };
-
-(function accountPanel(){
-  const btn = document.getElementById('btn-account');
-  const box = document.getElementById('acct');
-  const veil = document.getElementById('acct-veil');
-  if(!btn || !box) return;
-  const close = function(){ box.classList.remove('on'); veil.classList.remove('on'); };
-  btn.onclick = function(e){
-    e.preventDefault();
-    const on = box.classList.toggle('on');
-    veil.classList.toggle('on', on);
-  };
-  veil.onclick = close;
-  addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
-  const out = document.getElementById('acct-out');
-  if(out) out.onclick = function(){
-    if(window.Ekko && Ekko.signOut) Ekko.signOut();
-    else location.replace('/auth');
-  };
-})();
-
-if(window.Ekko){
-  Ekko.ready().then(async function(){
-    /* Personne n'est connecte : on renvoie vers l'entree du parcours.
-       Si Supabase n'est pas configure, on laisse la carte accessible. */
-    if(Ekko.configured && !Ekko.user){ location.replace('/auth'); return; }
-    if(!Ekko.configured){
-      const nm = document.getElementById('acct-name');
-      if(nm) nm.textContent = 'Hors ligne';
-      const ml = document.getElementById('acct-mail');
-      if(ml) ml.textContent = 'Supabase non configuré';
-      return;
-    }
-    const nm = document.getElementById('account-name');
-    if(nm) nm.textContent = Ekko.displayName();
-    const an = document.getElementById('acct-name');
-    if(an) an.textContent = [Ekko.profile && Ekko.profile.first_name,
-                            Ekko.profile && Ekko.profile.last_name]
-                            .filter(Boolean).join(' ') || Ekko.displayName();
-    const am = document.getElementById('acct-mail');
-    if(am) am.textContent = (Ekko.profile && Ekko.profile.email) || Ekko.user.email || '';
-    if(Ekko.isAdmin()){
-      const ad = document.getElementById('acct-admin');
-      if(ad) ad.style.display = 'block';
-    }
-    COLLECTED = await Ekko.loadProgress();
-    renderCard();
-    refreshAccountPanel();
-    if(typeof refreshSkyStates === 'function'){ try{ refreshSkyStates(); }catch(e){} }
-  });
-}
 
 /* ---------- Stellarium ---------- */
 let STEL = null;
