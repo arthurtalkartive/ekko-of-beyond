@@ -1448,21 +1448,50 @@ function selectInEngine(idx, delayMs){
 /* Écoute les clics de l'utilisateur dans le ciel : quand il touche le nom
    (ou le tracé) d'une constellation, le moteur la met en sélection et on
    recale la carte du bas. Un clic sur une étoile ne change rien. */
+/* Liste fiable des designations d'un objet.
+
+   sel.designations() est inutilisable : son callback JS empile des
+   POINTEURS vers un buffer de pile que le C reecrit a chaque appel, et la
+   conversion en chaines n'a lieu qu'apres la boucle. Toutes les entrees
+   pointent donc vers la meme adresse et se retrouvent identiques ; apres
+   deduplication il ne reste que la derniere. C'est ce que montrait la
+   console : « NAME UMa » seul, sans le « CON ekko UMa » pourtant emis
+   juste avant par le moteur.
+
+   obj_get_json_data, lui, copie chaque chaine dans un tableau JSON. On
+   passe donc par jsonData.names, qui renvoie la liste complete. */
+function designationsOf(sel){
+  try{
+    const d = sel.jsonData;
+    if(d && Array.isArray(d.names) && d.names.length) return d.names;
+  }catch(e){}
+  /* filet : la derniere designation, seule rescapee de designations() */
+  try{ return sel.designations() || []; }catch(e){ return []; }
+}
+
 /* Resout la figure visee par une selection : soit l'objet est une
    constellation, soit c'est une etoile et on remonte a la figure qui la
    contient. Renvoie l'index de la carte, ou -1. */
 function figureFromSelection(sel){
-  let desigs;
-  try{ desigs = sel.designations(); }catch(e){ return -1; }
+  const desigs = designationsOf(sel);
 
+  /* 1. « CON ekko UMa » : la figure elle-meme */
   const con = desigs.find(function(d){ return d.indexOf('CON ') === 0; });
   if(con){
     const idx = BY_IAU[con.split(' ').pop()];
-    return idx === undefined ? -1 : idx;
+    if(idx !== undefined) return idx;
   }
+
+  /* 2. « NAME UMa » : le code IAU, seul rescape quand jsonData manque */
+  for(let i = 0; i < desigs.length; i++){
+    const m = /^NAME\s+(\S+)$/.exec(desigs[i]);
+    if(m && BY_IAU[m[1]] !== undefined) return BY_IAU[m[1]];
+  }
+
+  /* 3. « HIP 91262 » : une etoile, on remonte a sa figure */
   const hip = desigs.find(function(d){ return /^HIP \d+$/.test(d); });
   if(hip){
-    const eid = HIP_OWNER[hip.slice(4)];
+    const eid = HIP_OWNER[hip.slice(4).trim()];
     if(eid){
       const idx = CONSTELLATIONS.findIndex(function(c){ return c.id === eid; });
       if(idx >= 0) return idx;
@@ -1492,8 +1521,7 @@ function pollSelection(){
   lastSelPtr = ptr;
   if(!sel){ dbg('selection vidée (clic à plus de 18 px de tout objet)'); return; }
 
-  let desigs = '(illisible)';
-  try{ desigs = sel.designations().join(' / '); }catch(e){ desigs = 'erreur : ' + e.message; }
+  const desigs = designationsOf(sel).join(' / ') || '(aucune)';
   const idx = figureFromSelection(sel);
   dbg('selection ' + ptr + ' -> ' + desigs + ' => '
       + (idx < 0 ? 'non resolue' : CONSTELLATIONS[idx].name));
