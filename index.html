@@ -238,6 +238,82 @@ a.account{text-decoration:none}
   font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--cream-50);pointer-events:none;white-space:nowrap}
 
+/* ================= COLLECTION =================
+   Second mode de navigation : la liste des 53 figures, filtrable par
+   categorie. Le ciel reste derriere, assombri par un voile pour que les
+   cartes se lisent. */
+#coll-scrim{
+  position:fixed;inset:0;z-index:7;pointer-events:none;
+  background:rgba(4,8,14,.62);opacity:0;transition:opacity .35s ease;
+}
+body.collection #coll-scrim{opacity:1}
+
+#collection{
+  position:fixed;left:0;right:0;bottom:0;
+  top:calc(var(--hd-h) + var(--safe-t) + 62px);
+  z-index:8;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:0 0 calc(50px + var(--safe-b));
+  opacity:0;pointer-events:none;transition:opacity .35s ease;
+}
+body.collection #collection{opacity:1;pointer-events:auto}
+
+/* Les filtres restent en tete du defilement : leur hauteur varie selon la
+   largeur d'ecran, une position collante evite de la coder en dur. */
+.coll-filters{
+  position:sticky;top:0;z-index:2;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+  padding:74px 20px 22px;
+  background:linear-gradient(180deg,rgba(4,8,14,.92) 0%,rgba(4,8,14,.86) 62%,transparent 100%);
+}
+.filt{
+  padding:12px 26px;border-radius:20000px;cursor:pointer;
+  border:1px solid var(--c50);
+  background:linear-gradient(180deg,rgba(227,227,196,.02) 0%,rgba(227,227,196,.1) 100%);
+  font-weight:700;font-size:16px;line-height:normal;text-transform:uppercase;
+  color:var(--cream);white-space:nowrap;transition:background .2s,color .2s,border-color .2s;
+}
+.filt:hover{background:linear-gradient(180deg,rgba(227,227,196,.08) 0%,rgba(227,227,196,.2) 100%)}
+.filt.on{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+
+.coll-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;
+  width:min(1135px,calc(100% - 40px));margin:0 auto;
+}
+/* La carte du bas est reutilisee telle quelle, seule sa largeur change. */
+.coll-grid .card{width:100%;cursor:default;transition:border-color .2s,box-shadow .2s,transform .2s}
+.coll-grid .card:hover{
+  border-color:var(--cream);
+  box-shadow:0 20px 54px rgba(0,0,0,.5), 0 0 0 1px rgba(227,227,196,.35);
+  transform:translateY(-2px);
+}
+.coll-empty{
+  grid-column:1 / -1;text-align:center;padding:50px 20px;
+  font-size:15px;color:var(--cream);opacity:.55;
+}
+.coll-count{
+  width:min(1135px,calc(100% - 40px));margin:0 auto 14px;
+  font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cream);opacity:.5;
+}
+
+/* Les commandes propres au ciel s'effacent en mode collection. */
+body.collection .card-row,
+body.collection .c-pos,
+body.collection .zoom,
+body.collection #reticle{opacity:0;pointer-events:none}
+.card-row,.c-pos,.zoom{transition:opacity .3s ease}
+
+@media (max-width:900px){
+  .coll-grid{grid-template-columns:1fr}
+  .coll-filters{gap:10px;padding:64px 14px 18px}
+  .filt{padding:10px 18px;font-size:14px}
+}
+@media (max-width:520px){
+  #collection{top:calc(var(--hd-h) + var(--safe-t) + 46px)}
+  .filt{padding:9px 14px;font-size:13px}
+  .coll-grid,.coll-count{width:calc(100% - 24px)}
+}
+
 /* ================= RETICULE ================= */
 #reticle{
   position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.84);
@@ -446,6 +522,13 @@ a.account{text-decoration:none}
   <button class="zbtn" id="z-in" aria-label="Zoomer"><svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
   <button class="zbtn" id="z-out" aria-label="Dézoomer"><svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
 </div>
+
+<div id="coll-scrim"></div>
+<section id="collection" aria-label="Collection des constellations">
+  <div class="coll-filters" id="coll-filters"></div>
+  <div class="coll-count" id="coll-count"></div>
+  <div class="coll-grid" id="coll-grid"></div>
+</section>
 
 <div class="c-pos" id="c-pos">1 / 53</div>
 
@@ -1695,8 +1778,127 @@ addEventListener('keydown', e => {
   if(e.key === 'ArrowLeft')  goToCard(-1);
   if(e.key === 'ArrowRight') goToCard(1);
 });
-$('#tg-sky').onclick  = () => { $('#tg-sky').classList.add('on');  $('#tg-coll').classList.remove('on'); };
-$('#tg-coll').onclick = () => { $('#tg-coll').classList.add('on'); $('#tg-sky').classList.remove('on'); };
+/* ============================================================
+   COLLECTION
+   Liste des 53 figures, filtrable par categorie. Les cartes reprennent
+   exactement le composant de la carte du bas : meme balisage, meme
+   mise en forme, seule la largeur change.
+   ============================================================ */
+const FILTERS = [
+  { key: '*',                 label: 'Voir tout' },
+  { key: 'Circumpolaires',    label: 'Circumpolaires' },
+  { key: 'Zodiaque',          label: 'Zodiaque' },
+  { key: 'Hiver',             label: 'Hiver' },
+  { key: 'Printemps',         label: 'Printemps' },
+  { key: 'Été',               label: 'Été' },
+  { key: 'Automne',           label: 'Automne' },
+  { key: 'Ciel austral',      label: 'Ciel austral' },
+  /* le libelle de la maquette differe de la valeur stockee dans CATS */
+  { key: 'Astérisme',         label: 'Astérismes vedettes' },
+];
+let collFilter = '*';
+let collBuilt = false;
+
+function visChipText(vis){
+  if(vis.code === 'now')   return 'Visible maintenant';
+  if(vis.code === 'soon')  return 'Vers ' + fmtTime(vis.at);
+  if(vis.code === 'never') return 'Autre hémisphère';
+  return vis.at ? ('Vers le ' + fmtDate(vis.at)) : 'Plus tard';
+}
+
+/* Une carte de la liste. Meme structure que celle du bas, pour qu'un seul
+   jeu de styles serve aux deux. */
+function collCard(c){
+  const vis = visibility(c);
+  const got = COLLECTED.has(c.id);
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.dataset.cat = c.cat;
+  el.dataset.id = c.id;
+  el.innerHTML =
+    '<div class="medallion">' + medallionSVG(c) + '</div>' +
+    '<div class="card-body">' +
+      '<div class="chips">' +
+        '<span class="chip cat">' + c.cat + '</span>' +
+        '<span class="chip vis">' +
+          '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1">' +
+          '<path d="M1.2 6.6 6.9 1.2l2 2.3-5.7 5.3z"/><path d="M3.2 8.8 1.6 10M7 1.4l.9 1"/></svg>' +
+          '<span>' + visChipText(vis) + '</span>' +
+        '</span>' +
+      '</div>' +
+      '<div class="card-txt">' +
+        '<div class="c-title">' + c.name + '</div>' +
+        '<div class="c-desc">' + c.desc + '</div>' +
+      '</div>' +
+      '<div class="c-state">' +
+        '<span class="ln"></span><span class="r7"></span><span class="d5"></span>' +
+        '<span class="pill' + (got ? ' got' : '') + '">'
+          + (got ? 'collectée' : 'non collectée') + '</span>' +
+      '</div>' +
+    '</div>';
+  return el;
+}
+
+function buildCollection(){
+  const filters = document.getElementById('coll-filters');
+  filters.innerHTML = '';
+  FILTERS.forEach(function(f){
+    const b = document.createElement('button');
+    b.className = 'filt' + (f.key === collFilter ? ' on' : '');
+    b.textContent = f.label;
+    b.dataset.key = f.key;
+    b.onclick = function(){
+      collFilter = f.key;
+      filters.querySelectorAll('.filt').forEach(function(x){
+        x.classList.toggle('on', x.dataset.key === collFilter);
+      });
+      applyCollFilter();
+    };
+    filters.appendChild(b);
+  });
+
+  const grid = document.getElementById('coll-grid');
+  grid.innerHTML = '';
+  CONSTELLATIONS.forEach(function(c){ grid.appendChild(collCard(c)); });
+  const empty = document.createElement('div');
+  empty.className = 'coll-empty';
+  empty.id = 'coll-none';
+  empty.textContent = 'Aucune figure dans cette catégorie.';
+  empty.style.display = 'none';
+  grid.appendChild(empty);
+
+  collBuilt = true;
+  applyCollFilter();
+}
+
+function applyCollFilter(){
+  const grid = document.getElementById('coll-grid');
+  let shown = 0;
+  grid.querySelectorAll('.card').forEach(function(el){
+    const ok = collFilter === '*' || el.dataset.cat === collFilter;
+    el.style.display = ok ? '' : 'none';
+    if(ok) shown++;
+  });
+  const none = document.getElementById('coll-none');
+  if(none) none.style.display = shown ? 'none' : '';
+  const label = collFilter === '*' ? 'figures' : ('figures — ' + collFilter);
+  document.getElementById('coll-count').textContent = shown + ' ' + label;
+}
+
+function showCollection(on){
+  document.body.classList.toggle('collection', on);
+  $('#tg-coll').classList.toggle('on', on);
+  $('#tg-sky').classList.toggle('on', !on);
+  if(on){
+    /* construction differee : 53 cartes et autant de medaillons, inutile de
+       les fabriquer avant le premier affichage */
+    if(!collBuilt) buildCollection();
+    document.getElementById('collection').scrollTop = 0;
+  }
+}
+
+$('#tg-sky').onclick  = function(){ showCollection(false); };
+$('#tg-coll').onclick = function(){ showCollection(true); };
 
 /* ============================================================
    PROGRESSION
