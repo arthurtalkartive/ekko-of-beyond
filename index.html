@@ -21,6 +21,13 @@
   --safe-b:env(safe-area-inset-bottom,0px);
   /* géométrie du header, reprise de la maquette */
   --hd-h:89px;      /* hauteur de la barre */
+  /* Position et hauteur du selecteur Vue du ciel / Collection. La hauteur
+     se deduit du bouton : 15 px de marge, 18 px de texte en interligne
+     normal (soit environ 22 px), 15 px de marge, plus 1 px de bordure de
+     part et d'autre. Ces deux valeurs servent a poser les filtres de la
+     collection a exactement 24 px sous le selecteur. */
+  --tg-top:162px;
+  --tg-h:54px;
   --notch-d:9px;    /* profondeur de la défonce */
   --notch-w:348px;  /* largeur totale de la défonce */
 }
@@ -150,7 +157,7 @@ a.account{text-decoration:none}
 /* ================= TOGGLE ================= */
 .toggle-wrap{
   position:fixed;left:50%;transform:translateX(-50%);
-  top:calc(162px + var(--safe-t));z-index:11;
+  top:calc(var(--tg-top) + var(--safe-t));z-index:11;
   display:flex;align-items:center;
 }
 .orn{display:flex;align-items:center;gap:5px;flex:none}
@@ -242,15 +249,24 @@ a.account{text-decoration:none}
    Second mode de navigation : la liste des 53 figures, filtrable par
    categorie. Le ciel reste derriere, assombri par un voile pour que les
    cartes se lisent. */
-#coll-scrim{
+/* Fond de la collection : le meme ciel etoile que le splash, pas la carte
+   interactive. Il est opaque, il masque donc entierement le moteur — qui
+   continue de tourner derriere, invisible. */
+#coll-bg{
   position:fixed;inset:0;z-index:7;pointer-events:none;
-  background:rgba(4,8,14,.62);opacity:0;transition:opacity .35s ease;
+  background:linear-gradient(180deg,#000 0%,#0A1931 100%);
+  opacity:0;transition:opacity .35s ease;
 }
-body.collection #coll-scrim{opacity:1}
+#coll-bg img{
+  width:100%;height:100%;display:block;
+  object-fit:cover;object-position:center bottom;
+}
+body.collection #coll-bg{opacity:1}
 
 #collection{
   position:fixed;left:0;right:0;bottom:0;
-  top:calc(var(--hd-h) + var(--safe-t) + 62px);
+  /* bord inferieur du selecteur, plus les 24 px d'ecart demandes */
+  top:calc(var(--tg-top) + var(--safe-t) + var(--tg-h) + 24px);
   z-index:8;overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding:0 0 calc(50px + var(--safe-b));
   opacity:0;pointer-events:none;transition:opacity .35s ease;
@@ -262,7 +278,7 @@ body.collection #collection{opacity:1;pointer-events:auto}
 .coll-filters{
   position:sticky;top:0;z-index:2;
   display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
-  padding:74px 20px 22px;
+  padding:0 20px 22px;
   background:linear-gradient(180deg,rgba(4,8,14,.92) 0%,rgba(4,8,14,.86) 62%,transparent 100%);
 }
 .filt{
@@ -305,11 +321,10 @@ body.collection #reticle{opacity:0;pointer-events:none}
 
 @media (max-width:900px){
   .coll-grid{grid-template-columns:1fr}
-  .coll-filters{gap:10px;padding:64px 14px 18px}
+  .coll-filters{gap:10px;padding:0 14px 18px}
   .filt{padding:10px 18px;font-size:14px}
 }
 @media (max-width:520px){
-  #collection{top:calc(var(--hd-h) + var(--safe-t) + 46px)}
   .filt{padding:9px 14px;font-size:13px}
   .coll-grid,.coll-count{width:calc(100% - 24px)}
 }
@@ -349,7 +364,8 @@ body.collection #reticle{opacity:0;pointer-events:none}
 .account .lbl{display:none}
   .account .ico{width:26px;height:26.6px}
   .hd-drop{width:54px;height:42px}
-  .toggle-wrap{top:calc(112px + var(--safe-t))}
+  :root{--tg-top:112px;--tg-h:42px}
+  .toggle-wrap{top:calc(var(--tg-top) + var(--safe-t))}
   .tg{padding:11px 26px;font-size:14px}
   .tg + .tg{padding-left:20px}
   .tg.on{padding-left:26px;padding-right:26px}
@@ -523,7 +539,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
   <button class="zbtn" id="z-out" aria-label="Dézoomer"><svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
 </div>
 
-<div id="coll-scrim"></div>
+<div id="coll-bg"><img src="/assets/img/splash-background.webp" alt="" decoding="async"></div>
 <section id="collection" aria-label="Collection des constellations">
   <div class="coll-filters" id="coll-filters"></div>
   <div class="coll-count" id="coll-count"></div>
