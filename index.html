@@ -1130,8 +1130,12 @@ CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
    la lecture automatique sur mobile. La duree du splash suit son
    evenement « ended », comme elle suivait la fin de l'animation Lottie.
    ------------------------------------------------------------------ */
-const BADGE_VIDEOS = ['/assets/video/badge.webm', '/assets/video/badge.mp4'];
-function startBadge(container, onDone){
+/* Ordre d'essai. Le MP4 est en tete parce que c'est le fichier fourni :
+   on evite ainsi une requete en 404 vers le WebM a chaque splash. Si vous
+   ajoutez un jour un WebM en VP9 avec vraie couche alpha, remettez-le en
+   premier — il sera alors le format prefere. */
+const BADGE_VIDEOS = ['/assets/video/badge.mp4', '/assets/video/badge.webm'];
+function startBadge(container, onDone, onStart){
   if(!container){ onDone(); return; }
 
   const fallbackToLottie = function(why){
@@ -1165,12 +1169,22 @@ function startBadge(container, onDone){
   const give = function(why){ if(settled) return; settled = true; fallbackToLottie(why); };
 
   /* si rien n'a demarre en 2,5 s, on n'attend pas davantage */
-  const wait = setTimeout(function(){ give('delai depasse'); }, 2500);
+  /* Delai genereux : le splash se charge en concurrence avec le moteur et
+     ses tuiles d'etoiles. Trop court, on basculerait sur Lottie alors que la
+     video allait s'afficher. */
+  const wait = setTimeout(function(){ give('delai depasse'); }, 5000);
 
-  v.addEventListener('playing', function(){
+  /* « loadeddata » suffit a prouver que le fichier est lisible ; on n'attend
+     pas « playing », qui peut tarder sur mobile. */
+  const accept = function(){
     if(settled) return;
     settled = true; clearTimeout(wait);
-  });
+    /* On previent l'appelant de la duree reelle, pour qu'il n'interrompe pas
+       une video plus longue que son propre garde-fou. */
+    if(onStart && isFinite(v.duration) && v.duration > 0) onStart(v.duration * 1000);
+  };
+  v.addEventListener('loadeddata', accept);
+  v.addEventListener('playing', accept);
   v.addEventListener('ended', function(){ onDone(); });
   /* Une source qui repond 404 ou qui n'est pas decodable declenche
      « error ». On tente alors la suivante, et on ne bascule sur Lottie
@@ -1227,7 +1241,7 @@ function startBadge(container, onDone){
 
   /* Filet de securite : si le lecteur ou un fichier manque, on ne bloque
      jamais l'interface. Le splash s'efface au plus tard apres 6 s. */
-  const guard = setTimeout(finish, 6000);
+  let guard = setTimeout(finish, 6000);
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if(typeof lottie === 'undefined'){
@@ -1252,6 +1266,11 @@ function startBadge(container, onDone){
   try{
     startBadge(document.getElementById('splash-badge'), function(){
       clearTimeout(guard); finish();
+    }, function(durationMs){
+      /* La video est plus longue que le garde-fou par defaut : on le
+         repousse, sinon le splash serait coupe avant la fin. */
+      clearTimeout(guard);
+      guard = setTimeout(finish, durationMs + 2500);
     });
   }catch(e){
     console.warn('[ekko] badge :', e);
