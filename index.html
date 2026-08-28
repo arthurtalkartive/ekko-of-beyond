@@ -74,7 +74,6 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
    couche alpha (WebM VP9 en yuva420p), remplacez screen par normal. */
 #splash-badge video{
   width:100%;height:100%;object-fit:contain;display:block;
-  mix-blend-mode:screen;
 }
 
 /* ================= CIEL ================= */
@@ -1135,6 +1134,31 @@ CONSTELLATIONS.forEach((c, i) => { if(IAU[c.id]) BY_IAU[IAU[c.id]] = i; });
    ajoutez un jour un WebM en VP9 avec vraie couche alpha, remettez-le en
    premier — il sera alors le format prefere. */
 const BADGE_VIDEOS = ['/assets/video/badge.mp4', '/assets/video/badge.webm'];
+
+/* Resolution de travail du canevas. Le badge s'affiche a 250 px : au-dela
+   de 360 on paie des pixels pour rien, et la boucle de detourage coute
+   proportionnellement. */
+const BADGE_CANVAS_MAX = 360;
+
+/* ------------------------------------------------------------------
+   Badge du splash : video si elle existe, animation Lottie sinon.
+
+   Le fond noir de la video n'est pas une couche alpha. Premier reflexe :
+   le neutraliser par mix-blend-mode « screen ». Mais Chrome ignore les
+   modes de fusion sur un <video> — l'element est confie au compositeur
+   graphique, qui ne relit pas l'arriere-plan et retombe sur un rendu
+   normal. Resultat : un carre noir bien visible.
+
+   On fabrique donc une vraie transparence. La video est jouee hors ecran
+   et recopiee image par image dans un canevas, ou l'alpha de chaque pixel
+   devient sa propre luminosite : le noir disparait, les halos restent
+   semi-transparents. Le canevas, lui, est un element ordinaire qui se
+   compose normalement.
+
+   La video doit etre muette et playsinline, seule facon d'obtenir la
+   lecture automatique sur mobile. La duree du splash suit son evenement
+   « ended », et onStart transmet la duree reelle a l'appelant.
+   ------------------------------------------------------------------ */
 function startBadge(container, onDone, onStart){
   if(!container){ onDone(); return; }
 
@@ -1157,52 +1181,103 @@ function startBadge(container, onDone, onStart){
   v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
   v.autoplay = true; v.loop = false; v.preload = 'auto';
   v.setAttribute('aria-hidden', 'true');
+  /* hors ecran mais bien dans le document : un element en display:none
+     ne produit plus d'images a recopier. */
+  v.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none';
 
-  /* on ne garde que les formats que le navigateur declare savoir lire */
   const usable = BADGE_VIDEOS.filter(function(src){
     const type = src.endsWith('.webm') ? 'video/webm' : 'video/mp4';
     return v.canPlayType(type) !== '';
   });
   if(!usable.length){ fallbackToLottie('aucun format supporte'); return; }
 
-  let settled = false;
-  const give = function(why){ if(settled) return; settled = true; fallbackToLottie(why); };
-
-  /* si rien n'a demarre en 2,5 s, on n'attend pas davantage */
+  let settled = false, raf = 0, keying = true;
+  const give = function(why){
+    if(settled) return;
+    settled = true;
+    cancelAnimationFrame(raf);
+    fallbackToLottie(why);
+  };
   /* Delai genereux : le splash se charge en concurrence avec le moteur et
-     ses tuiles d'etoiles. Trop court, on basculerait sur Lottie alors que la
-     video allait s'afficher. */
+     ses tuiles d'etoiles. Trop court, on basculerait sur Lottie alors que
+     la video allait s'afficher. */
   const wait = setTimeout(function(){ give('delai depasse'); }, 5000);
 
-  /* « loadeddata » suffit a prouver que le fichier est lisible ; on n'attend
-     pas « playing », qui peut tarder sur mobile. */
+  const cv = document.createElement('canvas');
+  cv.style.cssText = 'width:100%;height:100%;display:block;object-fit:contain';
+  const ctx = cv.getContext('2d', { willReadFrequently: true });
+
+  /* Repli du repli : si la lecture des pixels est refusee — video servie
+     depuis une autre origine, canevas contamine — on affiche la video
+     telle quelle avec la fusion « screen ». Imparfait sur Chrome, mais
+     preferable a un ecran vide. */
+  const showRaw = function(){
+    keying = false;
+    cancelAnimationFrame(raf);
+    if(cv.parentNode) cv.parentNode.removeChild(cv);
+    v.style.cssText = 'width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:screen';
+  };
+
+  const draw = function(){
+    if(!keying) return;
+    if(v.readyState >= 2 && cv.width){
+      try{
+        ctx.drawImage(v, 0, 0, cv.width, cv.height);
+        const img = ctx.getImageData(0, 0, cv.width, cv.height);
+        const a = img.data;
+        for(let i = 0; i < a.length; i += 4){
+          /* alpha = luminosite du pixel : le noir devient transparent,
+             les gris intermediaires du halo restent translucides */
+          const r = a[i], g = a[i+1], b = a[i+2];
+          a[i+3] = r > g ? (r > b ? r : b) : (g > b ? g : b);
+        }
+        ctx.putImageData(img, 0, 0);
+      }catch(e){
+        console.info('[ekko] detourage impossible (' + e.name + ') : fusion « screen » utilisee');
+        showRaw();
+        return;
+      }
+    }
+    raf = requestAnimationFrame(draw);
+  };
+
   const accept = function(){
     if(settled) return;
     settled = true; clearTimeout(wait);
-    /* On previent l'appelant de la duree reelle, pour qu'il n'interrompe pas
-       une video plus longue que son propre garde-fou. */
+    const w = v.videoWidth || 512, h = v.videoHeight || 512;
+    const k = Math.min(1, BADGE_CANVAS_MAX / Math.max(w, h));
+    cv.width = Math.max(1, Math.round(w * k));
+    cv.height = Math.max(1, Math.round(h * k));
+    raf = requestAnimationFrame(draw);
+    /* On previent l'appelant de la duree reelle, pour qu'il n'interrompe
+       pas une video plus longue que son propre garde-fou. */
     if(onStart && isFinite(v.duration) && v.duration > 0) onStart(v.duration * 1000);
   };
   v.addEventListener('loadeddata', accept);
   v.addEventListener('playing', accept);
-  v.addEventListener('ended', function(){ onDone(); });
+  v.addEventListener('ended', function(){
+    cancelAnimationFrame(raf);
+    onDone();
+  });
+
   /* Une source qui repond 404 ou qui n'est pas decodable declenche
      « error ». On tente alors la suivante, et on ne bascule sur Lottie
      qu'une fois la liste epuisee. */
+  let i = 0;
+  const tryNext = function(){
+    if(i >= usable.length){ clearTimeout(wait); give('aucune source lisible'); return; }
+    v.src = usable[i++];
+    v.load();
+    const p = v.play();
+    if(p && p.catch) p.catch(function(){ if(!settled) tryNext(); });
+  };
   v.addEventListener('error', function(){
     if(settled) return;
     if(i < usable.length){ tryNext(); return; }
     clearTimeout(wait); give('aucune source lisible');
   });
 
-  let i = 0;
-  const tryNext = function(){
-    if(i >= usable.length){ clearTimeout(wait); give('aucune source valide'); return; }
-    v.src = usable[i++];
-    v.load();
-    const p = v.play();
-    if(p && p.catch) p.catch(function(){ if(!settled) tryNext(); });
-  };
+  container.appendChild(cv);
   container.appendChild(v);
   tryNext();
 }
