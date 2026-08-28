@@ -275,11 +275,13 @@ body.collection #collection{opacity:1;pointer-events:auto}
 
 /* Les filtres restent en tete du defilement : leur hauteur varie selon la
    largeur d'ecran, une position collante evite de la coder en dur. */
+/* Les filtres defilent avec la liste. Ils etaient en position collante,
+   ce qui obligeait a poser un fond opaque derriere pour masquer les cartes
+   passant dessous — d'ou la bande noire. Sans epinglage, plus besoin de
+   fond : le ciel etoile reste visible de bout en bout. */
 .coll-filters{
-  position:sticky;top:0;z-index:2;
   display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
   padding:0 20px 22px;
-  background:linear-gradient(180deg,rgba(4,8,14,.92) 0%,rgba(4,8,14,.86) 62%,transparent 100%);
 }
 .filt{
   padding:12px 26px;border-radius:20000px;cursor:pointer;
