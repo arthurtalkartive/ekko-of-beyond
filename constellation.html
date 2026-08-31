@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ekko of Beyond · En savoir plus</title>
+<link rel="preload" as="image" href="/assets/img/splash-background.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#E3E3C4; --c50:rgba(227,227,196,.5); --c20:rgba(227,227,196,.2);
+  --w30:rgba(255,255,255,.3); --ink:#050B14;
+  --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Afacad',system-ui,sans-serif;color:var(--cream);background:#04070B}
+button{font-family:inherit;color:inherit}
+a{color:inherit}
+img,video{max-width:100%;display:block}
+
+/* ---------- en-tête ---------- */
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;
+  padding:calc(14px + var(--st)) 26px 14px;
+  background:linear-gradient(180deg,rgba(3,6,10,.96),rgba(3,6,10,.62));
+  border-bottom:1px solid var(--c20);backdrop-filter:blur(12px)}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  border:1px solid var(--c50);border-radius:999px;padding:9px 16px;font-size:11.5px;
+  font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.8;
+  transition:opacity .2s,background .2s;white-space:nowrap}
+.back:hover{opacity:1;background:rgba(227,227,196,.08)}
+.top .sp{flex:1}
+.top .where{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.45;white-space:nowrap}
+
+/* ---------- la constellation, ciel réel isolé ---------- */
+.hero{position:relative;height:min(64vh,620px);min-height:380px;overflow:hidden;
+  background:linear-gradient(180deg,#000,#0A1931)}
+/* Aucun événement de pointeur : la navigation dans le ciel est donc
+   impossible sur cette fiche, comme demandé. */
+#sky{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .veil{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(4,7,11,.55) 0%,transparent 26%,transparent 58%,#04070B 100%)}
+.hero .cap{position:absolute;left:0;right:0;bottom:0;padding:0 26px 30px;text-align:center}
+.hero .cat{display:inline-block;padding:3px 12px;border-radius:2000px;background:var(--w30);
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;opacity:.85}
+.hero h1{margin-top:12px;font-size:clamp(34px,7vw,58px);font-weight:700;
+  text-transform:uppercase;line-height:1.03}
+.hero .latin{margin-top:2px;font-size:16px;font-style:italic;opacity:.55}
+.hero .live{position:absolute;left:22px;top:18px;display:inline-flex;align-items:center;gap:7px;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.45}
+.hero .live i{width:5px;height:5px;border-radius:50%;background:var(--cream)}
+
+main{position:relative;z-index:1}
+.wrap{width:min(1080px,100%);margin:0 auto;padding:0 24px}
+.narrow{width:min(700px,100%);margin:0 auto}
+
+/* ---------- onglets ---------- */
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:34px 24px 12px;
+  position:sticky;top:calc(52px + var(--st));z-index:20;
+  background:linear-gradient(180deg,#04070B 40%,rgba(4,7,11,.7) 100%)}
+.tab{padding:11px 28px;border-radius:20000px;cursor:pointer;border:1px solid var(--c50);
+  background:linear-gradient(180deg,rgba(227,227,196,.02),rgba(227,227,196,.1));
+  font-weight:700;font-size:15px;text-transform:uppercase;white-space:nowrap;
+  transition:background .2s,color .2s,border-color .2s}
+.tab:hover{background:linear-gradient(180deg,rgba(227,227,196,.08),rgba(227,227,196,.2))}
+.tab.on{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.pane{display:none;padding-bottom:70px}
+.pane.on{display:block}
+
+/* ---------- blocs éditoriaux ---------- */
+.b-lead{font-size:clamp(20px,2.4vw,26px);line-height:1.5;padding:44px 0 10px;
+  font-weight:400}
+.b-lead::first-letter{font-size:2.6em;float:left;line-height:.82;padding:6px 12px 0 0;
+  font-weight:700}
+.b-text{padding:16px 0}
+.b-text h3{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  opacity:.5;margin-bottom:14px}
+.b-text p{font-size:17px;line-height:1.72;opacity:.86}
+.b-text p + p{margin-top:15px}
+
+.b-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  border-top:1px solid var(--c20);border-bottom:1px solid var(--c20);margin:40px 0}
+.b-stats > div{padding:24px 22px;border-left:1px solid var(--c20)}
+.b-stats > div:first-child{border-left:none}
+.b-stats .v{font-size:30px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.b-stats .u{font-size:13px;opacity:.55;margin-left:5px;font-weight:400}
+.b-stats .l{margin-top:9px;font-size:12.5px;line-height:1.5;opacity:.6}
+
+figure{margin:38px 0}
+figure.wide{width:min(1080px,100%);margin-left:auto;margin-right:auto}
+.frame{border:1px solid var(--c20);border-radius:12px;overflow:hidden;background:#020407;
+  position:relative}
+.frame img,.frame svg{width:100%;height:auto;display:block}
+.frame.lit img{mix-blend-mode:screen}
+figcaption{margin-top:11px;font-size:13.5px;line-height:1.6;opacity:.62}
+figcaption b{font-weight:700;opacity:.85}
+figcaption .credit{display:block;margin-top:4px;font-size:11.5px;opacity:.6}
+.missing{padding:44px 26px;text-align:center;font-size:13px;line-height:1.7;opacity:.45}
+.missing code{font-family:ui-monospace,monospace;font-size:12px}
+.missing a{text-decoration:underline}
+
+.b-split{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;margin:44px 0}
+.b-split.rev > .media{order:2}
+.b-split h3{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  opacity:.5;margin-bottom:13px}
+.b-split p{font-size:16.5px;line-height:1.7;opacity:.86}
+.b-split p + p{margin-top:13px}
+.b-split figure{margin:0}
+
+.b-quote{margin:48px 0;padding:0 0 0 26px;border-left:2px solid var(--cream)}
+.b-quote p{font-size:clamp(21px,2.4vw,27px);line-height:1.45;font-style:italic}
+.b-quote .who{margin-top:14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+
+.b-video{margin:44px 0}
+.ratio{position:relative;padding-top:56.25%;border:1px solid var(--c20);border-radius:12px;
+  overflow:hidden;background:#020407}
+.ratio iframe,.ratio video,.ratio .missing{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ratio .missing{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:pointer}
+.playbtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:70px;height:70px;border-radius:50%;border:1px solid var(--cream);
+  background:rgba(4,7,11,.55);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s}
+.playbtn:hover{background:rgba(227,227,196,.22)}
+.playbtn svg{width:24px;height:24px;margin-left:3px}
+
+.b-warn{margin:40px 0;border:1px solid rgba(227,208,138,.45);border-radius:12px;
+  padding:20px 22px;background:rgba(227,208,138,.06);font-size:15px;line-height:1.65}
+.b-warn h3{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:9px;color:#E3D08A}
+
+.b-links{margin:52px 0 0;border-top:1px solid var(--c20);padding-top:26px}
+.b-links h3{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  opacity:.5;margin-bottom:16px}
+.lk{display:flex;gap:14px;align-items:baseline;text-decoration:none;padding:13px 0;
+  border-bottom:1px solid rgba(227,227,196,.1);transition:opacity .2s}
+.lk:hover{opacity:.65}
+.lk .kind{flex:none;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--c50);border-radius:2000px;padding:2px 8px;opacity:.8}
+.lk .kind.watch{border-color:#E3D08A;color:#E3D08A}
+.lk .kind.look{border-color:#9BD9B0;color:#9BD9B0}
+.lk .kind.deep{border-color:#A8B8E0;color:#A8B8E0}
+.lk .body{flex:1}
+.lk .t{font-size:16px;font-weight:700;line-height:1.3}
+.lk .n{margin-top:4px;font-size:13.5px;line-height:1.55;opacity:.6}
+.lk .src{flex:none;font-size:11px;opacity:.42;text-align:right;max-width:150px}
+
+.cms{border-top:1px solid var(--c20);margin-top:40px;padding:24px 0 0;
+  font-size:12.5px;line-height:1.7;opacity:.4}
+.soon{text-align:center;padding:70px 20px;font-size:15px;opacity:.5;line-height:1.7}
+
+@media (max-width:760px){
+  .wrap{padding:0 16px}
+  .b-split{grid-template-columns:1fr;gap:22px}
+  .b-split.rev > .media{order:0}
+  .b-stats > div{border-left:none;border-top:1px solid var(--c20)}
+  .b-stats > div:first-child{border-top:none}
+  .top{padding-left:14px;padding-right:14px}
+  .top .where{display:none}
+  .tabs{gap:9px;padding:24px 14px 10px}
+  .tab{padding:10px 18px;font-size:13.5px}
+  .lk{flex-wrap:wrap}
+  .lk .src{text-align:left;max-width:none}
+  .b-lead{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a class="back" href="/">&larr;&nbsp; Collection</a>
+  <span class="sp"></span>
+  <span class="where" id="where">En savoir plus</span>
+</div>
+
+<section class="hero">
+  <canvas id="sky"></canvas>
+  <div class="veil"></div>
+  <div class="live"><i></i><span id="live">Ciel réel</span></div>
+  <div class="cap">
+    <span class="cat" id="cat"></span>
+    <h1 id="name">—</h1>
+    <div class="latin" id="latin"></div>
+  </div>
+</section>
+
+<main>
+  <nav class="tabs" id="tabs"></nav>
+  <div id="panes"></div>
+  <div class="wrap"><p class="cms" id="cms"></p></div>
+</main>
+<script src="/vendor/stellarium-web-engine.js"></script>
+<script>
+const CONS = [{"id":"uma","n":"Grande Ourse","l":"Ursa Major","d":"La nymphe Callisto, changée en ourse par la jalousie d'Héra, veille sur le nord depuis que Zeus l'a projetée dans le ciel.","a":"Cinq de ses étoiles sont nées du même nuage et dérivent ensemble dans la galaxie depuis 300 millions d'années.","c":"Circumpolaires","s":[[11.062,61.75,1.8,"Dubhe"],[11.031,56.38,2.4,"Merak"],[11.897,53.69,2.4,"Phecda"],[12.257,57.03,3.3,"Megrez"],[12.9,55.96,1.8,"Alioth"],[13.399,54.93,2.2,"Mizar"],[13.792,49.31,1.9,"Alkaïd"]],"L":[[0,1],[1,2],[2,3],[3,0],[3,4],[4,5],[5,6]]},{"id":"umi","n":"Petite Ourse","l":"Ursa Minor","d":"Arcas, fils de Callisto, transformé en ourson et placé près de sa mère. Au bout de sa queue brille l'étoile qui ne bouge jamais.","a":"L'étoile Polaire est alignée avec l'axe de la Terre : tout le ciel semble pivoter autour d'elle chaque nuit.","c":"Circumpolaires","s":[[2.53,89.26,2,"Polaris"],[14.845,74.16,2.1,"Kochab"],[15.345,71.83,3,"Pherkad"],[17.537,86.59,4.4,"Yildun"]],"L":[[0,3],[3,1],[1,2]]},{"id":"cas","n":"Cassiopée","l":"Cassiopeia","d":"Reine condamnée pour sa vanité à tourner autour du pôle, tantôt sur son trône, tantôt la tête en bas. Son W signe le ciel du nord.","a":"Ses champs d'étoiles cachent le rémanent de la supernova observée par Tycho Brahé en 1572.","c":"Circumpolaires","s":[[0.153,59.15,2.3,"Caph"],[0.675,56.54,2.2,"Schedar"],[0.945,60.72,2.4,"Tsih"],[1.43,60.24,2.7,"Ruchbah"],[1.907,63.67,3.4,"Segin"]],"L":[[0,1],[1,2],[2,3],[3,4]]},{"id":"cep","n":"Céphée","l":"Cepheus","d":"Roi d'Éthiopie, époux de Cassiopée et père d'Andromède, placé près des siens pour l'éternité. Sa maison pointue veille sur le pôle.","a":"Delta Cephei donna son nom aux céphéides, ces étoiles-phares qui permettent de mesurer les distances dans l'Univers.","c":"Circumpolaires","s":[[21.31,62.59,2.5,"Alderamin"],[21.478,70.56,3.2,"Alfirk"],[23.656,77.63,3.2,"Errai"],[22.181,58.2,3.4,"Zeta Cep"],[22.828,66.2,3.5,"Iota Cep"]],"L":[[0,1],[1,2],[2,4],[4,3],[3,0]]},{"id":"dra","n":"Dragon","l":"Draco","d":"Ladon, le dragon qui gardait les pommes d'or des Hespérides, terrassé par Héraclès puis enroulé autour du pôle.","a":"Thuban, dans sa queue, était l'étoile polaire des bâtisseurs de pyramides il y a 4 700 ans.","c":"Circumpolaires","s":[[17.943,51.49,2.2,"Eltanin"],[17.507,52.3,2.8,"Rastaban"],[17.892,56.87,3.7,"Grumium"],[17.146,65.71,3.2,"Zeta Dra"],[15.415,58.97,3.3,"Edasich"],[14.073,64.38,3.7,"Thuban"],[12.558,69.79,3.9,"Kappa Dra"],[11.523,69.33,3.8,"Giausar"]],"L":[[0,1],[1,2],[2,0],[2,3],[3,4],[4,5],[5,6],[6,7]]},{"id":"ari","n":"Bélier","l":"Aries","d":"Le bélier à la toison d'or qui sauva Phrixos en traversant les mers, et dont la dépouille lança la quête des Argonautes.","a":"Hamal servait de repère aux temples grecs : plusieurs sont alignés sur son lever d'il y a 2 500 ans.","c":"Zodiaque","s":[[2.12,23.46,2,"Hamal"],[1.911,20.81,2.6,"Sheratan"],[1.892,19.29,3.9,"Mesarthim"],[2.833,27.26,3.6,"41 Ari"]],"L":[[3,0],[0,1],[1,2]]},{"id":"tau","n":"Taureau","l":"Taurus","d":"Zeus, métamorphosé en taureau blanc, enleva la princesse Europe. Seul l'avant de l'animal émerge des flots célestes.","a":"Deux amas visibles à l'œil nu : les Hyades, son mufle, et les Pléiades, les sept sœurs voilées de bleu.","c":"Zodiaque","s":[[4.599,16.51,0.9,"Aldébaran"],[5.438,28.61,1.7,"Elnath"],[5.627,21.14,3,"Tianguan"],[3.791,24.11,2.9,"Alcyone"],[4.477,19.18,3.5,"Aïn"]],"L":[[3,4],[4,0],[0,2],[4,1]]},{"id":"gem","n":"Gémeaux","l":"Gemini","d":"Castor le mortel et Pollux l'immortel : à la mort du premier, son frère partagea son immortalité pour ne jamais le quitter.","a":"C'est près de Castor que Pluton fut découverte en 1930, et Pollux héberge une planète géante confirmée.","c":"Zodiaque","s":[[7.577,31.89,1.6,"Castor"],[7.755,28.03,1.1,"Pollux"],[6.629,16.4,1.9,"Alhena"],[7.335,21.98,3.5,"Wasat"],[6.732,25.13,3,"Mebsuta"]],"L":[[0,4],[4,2],[1,3],[3,2],[0,1]]},{"id":"cnc","n":"Cancer","l":"Cancer","d":"Le crabe envoyé par Héra pour pincer Héraclès pendant son combat contre l'Hydre. Écrasé d'un coup de talon, il gagna le ciel.","a":"En son cœur brille la Ruche, un essaim de mille étoiles que Galilée fut le premier à résoudre à la lunette.","c":"Zodiaque","s":[[8.975,11.86,4.3,"Acubens"],[8.275,9.19,3.5,"Al Tarf"],[8.721,21.47,4.7,"Asellus Borealis"],[8.745,18.15,3.9,"Asellus Australis"],[8.778,28.76,4,"Iota Cnc"]],"L":[[2,3],[3,0],[3,1],[2,4]]},{"id":"leo","n":"Lion","l":"Leo","d":"Le lion de Némée, à la peau impénétrable, premier des douze travaux d'Héraclès. Sa crinière dessine une faucille renversée.","a":"Chaque novembre, les étoiles filantes des Léonides semblent jaillir de sa crinière.","c":"Zodiaque","s":[[10.14,11.97,1.4,"Régulus"],[11.818,14.57,2.1,"Dénébola"],[10.333,19.84,2,"Algieba"],[11.235,20.52,2.6,"Zosma"],[9.764,23.77,3,"Ras Elased"]],"L":[[4,2],[2,0],[2,3],[3,1],[0,1]]},{"id":"vir","n":"Vierge","l":"Virgo","d":"Déméter ou Astrée, déesse des moissons et de la justice, dernière immortelle à quitter la Terre, un épi de blé à la main.","a":"Derrière ses étoiles s'étend l'amas de la Vierge : des milliers de galaxies vers lesquelles la nôtre est attirée.","c":"Zodiaque","s":[[13.42,-11.16,1,"Spica"],[12.694,-1.45,2.7,"Porrima"],[12.927,3.4,3.4,"Auva"],[13.036,10.96,2.8,"Vindemiatrix"],[12.331,-0.67,3.9,"Zaniah"],[13.578,-0.6,3.4,"Heze"]],"L":[[4,1],[1,2],[2,3],[1,5],[5,0]]},{"id":"lib","n":"Balance","l":"Libra","d":"Les plateaux où Astrée pesait les âmes. Ses étoiles portent encore les noms des pinces du Scorpion voisin, dont elle fut détachée.","a":"Zubeneschamali passe pour la seule étoile verdâtre visible à l'œil nu — un mystère optique jamais élucidé.","c":"Zodiaque","s":[[14.848,-16.04,2.7,"Zubenelgenubi"],[15.283,-9.38,2.6,"Zubeneschamali"],[15.592,-14.79,3.9,"Zubenelakrab"],[15.068,-25.28,3.3,"Sigma Lib"]],"L":[[0,1],[1,2],[2,0],[0,3]]},{"id":"sco","n":"Scorpion","l":"Scorpius","d":"Le scorpion qui piqua Orion. Quand l'un se lève, l'autre se couche : les deux ennemis se poursuivent éternellement.","a":"Placée au centre du système solaire, Antarès engloutirait Mars, et sa couleur rivalise avec la planète rouge.","c":"Zodiaque","s":[[16.49,-26.43,1,"Antarès"],[16.091,-19.81,2.6,"Acrab"],[16.006,-22.62,2.3,"Dschubba"],[17.622,-42.99,1.9,"Sargas"],[17.56,-37.1,1.6,"Shaula"]],"L":[[1,2],[2,0],[0,3],[3,4]]},{"id":"sgr","n":"Sagittaire","l":"Sagittarius","d":"Le centaure archer, flèche pointée sur le cœur du Scorpion pour venger Orion. Ses étoiles dessinent une théière familière.","a":"Derrière sa théière se cache le centre de la Voie lactée et son trou noir de quatre millions de soleils.","c":"Zodiaque","s":[[18.097,-30.42,3,"Alnasl"],[18.35,-29.83,2.7,"Kaus Media"],[18.403,-34.38,1.8,"Kaus Australis"],[18.466,-25.42,2.8,"Kaus Borealis"],[18.762,-26.99,3.2,"Phi Sgr"],[18.921,-26.3,2,"Nunki"],[19.043,-29.88,2.6,"Ascella"]],"L":[[0,1],[1,2],[2,6],[6,4],[4,1],[1,3],[3,4],[4,5],[5,6]]},{"id":"cap","n":"Capricorne","l":"Capricornus","d":"Le dieu Pan, mi-chèvre mi-poisson depuis qu'il plongea dans le Nil pour fuir le monstre Typhon.","a":"C'est dans le Capricorne que Neptune fut découverte en 1846, par le calcul avant l'observation.","c":"Zodiaque","s":[[20.301,-12.54,3.6,"Algedi"],[20.35,-14.78,3.1,"Dabih"],[20.864,-26.92,4.1,"Omega Cap"],[21.444,-22.41,3.7,"Zeta Cap"],[21.784,-16.13,2.9,"Deneb Algedi"],[21.668,-16.66,3.7,"Nashira"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]]},{"id":"aqr","n":"Verseau","l":"Aquarius","d":"Ganymède, l'échanson des dieux enlevé par l'aigle de Zeus, versant l'eau céleste dans la gueule du Poisson austral.","a":"Sa région du ciel, pauvre en étoiles brillantes, était la « Mer » des Babyloniens, peuplée de créatures aquatiques.","c":"Zodiaque","s":[[20.794,-9.5,3.8,"Albali"],[21.526,-5.57,2.9,"Sadalsuud"],[22.096,-0.32,3,"Sadalmelik"],[22.361,-1.39,3.8,"Sadachbia"],[22.877,-7.58,3.7,"Lambda Aqr"],[22.911,-15.82,3.3,"Skat"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,5]]},{"id":"psc","n":"Poissons","l":"Pisces","d":"Aphrodite et Éros, changés en poissons pour fuir Typhon, liés par un ruban pour ne pas se perdre dans le fleuve.","a":"Le point vernal, origine des coordonnées célestes, se trouve aujourd'hui chez les Poissons.","c":"Zodiaque","s":[[2.034,2.76,3.8,"Alrescha"],[1.525,15.35,3.6,"Eta Psc"],[1.756,9.16,4.3,"Omicron Psc"],[23.988,6.86,4,"Omega Psc"],[23.286,3.28,3.7,"Gamma Psc"],[23.7,1.78,4.5,"Lambda Psc"]],"L":[[1,2],[2,0],[0,3],[3,4],[4,5],[5,3]]},{"id":"ori","n":"Orion","l":"Orion","d":"Chasseur géant terrassé par un scorpion envoyé par Gaïa. Zeus le plaça à l'opposé exact de son ennemi, pour que jamais ils ne se croisent.","a":"Sous son baudrier, la nébuleuse M42 est une pouponnière d'étoiles visible à l'œil nu, à 1 350 années-lumière.","c":"Hiver","s":[[5.919,7.41,0.5,"Bételgeuse"],[5.242,-8.2,0.1,"Rigel"],[5.418,6.35,1.6,"Bellatrix"],[5.679,-1.94,1.8,"Alnitak"],[5.603,-1.2,1.7,"Alnilam"],[5.533,-0.3,2.2,"Mintaka"],[5.796,-9.67,2.1,"Saïph"]],"L":[[0,2],[2,5],[5,4],[4,3],[3,6],[6,1],[1,5],[0,3]]},{"id":"cma","n":"Grand Chien","l":"Canis Major","d":"Laelaps, le chien de chasse qui n'échouait jamais, suit son maître Orion à travers le ciel d'hiver, museau levé vers Sirius.","a":"Sirius n'est qu'à 8,6 années-lumière : c'est sa proximité, plus que sa puissance, qui en fait la plus brillante du ciel.","c":"Hiver","s":[[6.752,-16.72,-1.5,"Sirius"],[6.378,-17.96,2,"Mirzam"],[7.14,-26.39,1.8,"Wezen"],[6.977,-28.97,1.5,"Adhara"],[7.401,-29.3,2.4,"Aludra"]],"L":[[1,0],[0,2],[2,3],[2,4]]},{"id":"cmi","n":"Petit Chien","l":"Canis Minor","d":"Le second chien d'Orion, ou Maera, la chienne fidèle qui révéla aux hommes la tombe de son maître Icarios.","a":"Procyon signifie « avant le chien » : elle se lève quelques minutes avant Sirius sous nos latitudes.","c":"Hiver","s":[[7.655,5.22,0.4,"Procyon"],[7.453,8.29,2.9,"Gomeisa"]],"L":[[0,1]]},{"id":"aur","n":"Cocher","l":"Auriga","d":"Érichthonios, roi boiteux d'Athènes, inventeur du char à quatre chevaux, portant une chèvre et ses chevreaux sur l'épaule.","a":"Capella, « la petite chèvre », est en réalité deux géantes dorées qui se tournent autour en 104 jours.","c":"Hiver","s":[[5.278,46,0.1,"Capella"],[5.995,44.95,1.9,"Menkalinan"],[5.995,37.21,2.7,"Mahasim"],[4.95,33.17,2.7,"Hassaleh"],[5.033,43.82,3,"Almaaz"],[5.438,28.61,1.7,"Elnath"]],"L":[[0,1],[1,2],[2,5],[5,3],[3,4],[4,0]]},{"id":"eri","n":"Éridan","l":"Eridanus","d":"Le fleuve où s'abîma Phaéton, foudroyé pour avoir perdu le contrôle du char du Soleil. Il serpente d'Orion jusqu'au grand sud.","a":"Le fleuve céleste coule sur 60 degrés, de Rigel jusqu'à Achernar, invisible depuis l'Europe.","c":"Hiver","s":[[5.131,-5.09,2.8,"Cursa"],[3.967,-13.51,3,"Zaurak"],[3.721,-9.76,3.5,"Rana"],[2.94,-8.9,3.9,"Azha"],[2.971,-40.3,2.9,"Acamar"],[1.629,-57.24,0.5,"Achernar"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,5]]},{"id":"lep","n":"Lièvre","l":"Lepus","d":"Le lièvre que poursuit éternellement le Grand Chien, placé aux pieds d'Orion par Hermès pour honorer sa vitesse.","a":"Il abrite l'Écarlate de Hind, une étoile carbone d'un rouge si profond qu'on la dirait une goutte de sang.","c":"Hiver","s":[[5.545,-17.82,2.6,"Arneb"],[5.471,-20.76,2.8,"Nihal"],[5.091,-22.37,3.2,"Eps Lep"],[5.216,-16.21,3.3,"Mu Lep"],[5.783,-14.82,3.5,"Zeta Lep"],[5.741,-22.45,3.6,"Gamma Lep"]],"L":[[3,0],[0,4],[0,1],[1,2],[1,5],[2,3]]},{"id":"mon","n":"Licorne","l":"Monoceros","d":"Créature discrète glissée entre les deux Chiens au XVIIe siècle : ses étoiles pâles se cachent dans l'éclat du Triangle d'hiver.","a":"Ses nébuleuses de la Rosette et du Cône comptent parmi les plus belles pouponnières d'étoiles de la galaxie.","c":"Hiver","s":[[6.248,-6.27,4,"Gamma Mon"],[6.48,-7.03,3.7,"Beta Mon"],[7.197,-0.49,4.2,"Delta Mon"],[7.687,-9.55,3.9,"Alpha Mon"],[8.143,-2.98,4.3,"Zeta Mon"]],"L":[[0,1],[1,2],[2,3],[3,4]]},{"id":"col","n":"Colombe","l":"Columba","d":"La colombe de l'Arche, envoyée par Noé chercher la terre ferme, ou celle des Argonautes, guidant le navire entre les rochers.","a":"Elle abrite une « étoile en fuite », éjectée d'Orion il y a 2,5 millions d'années.","c":"Hiver","s":[[5.661,-34.07,2.6,"Phact"],[5.849,-35.77,3.1,"Wazn"],[6.369,-33.44,3.9,"Delta Col"],[5.52,-35.47,3.9,"Eps Col"],[5.985,-42.82,4,"Eta Col"]],"L":[[3,0],[0,1],[1,2],[1,4]]},{"id":"boo","n":"Bouvier","l":"Boötes","d":"Le gardien des ourses, qui pousse la Grande Casserole autour du pôle. Son cerf-volant s'élève dans le ciel de printemps.","a":"Suivez la courbe du manche de la Grande Ourse : elle mène droit à Arcturus.","c":"Printemps","s":[[14.261,19.18,-0.1,"Arcturus"],[14.75,27.07,2.4,"Izar"],[15.258,33.31,3.5,"Delta Boo"],[15.032,40.39,3.5,"Nekkar"],[14.535,38.31,3,"Seginus"],[13.911,18.4,2.7,"Muphrid"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,0],[0,5]]},{"id":"hya","n":"Hydre","l":"Hydra","d":"Le serpent d'eau aux têtes renaissantes vaincu par Héraclès. La plus vaste constellation du ciel s'étire sur un quart de l'horizon.","a":"Il faut plus de six heures pour que l'Hydre entière se lève, de la tête à la queue.","c":"Printemps","s":[[8.78,6.42,3.4,"Eps Hya"],[8.628,5.7,4.1,"Delta Hya"],[8.72,3.4,4.3,"Eta Hya"],[8.923,5.95,3.1,"Zeta Hya"],[9.46,-8.66,2,"Alphard"],[10.827,-16.19,3.1,"Nu Hya"],[13.316,-23.17,3,"Gamma Hya"]],"L":[[0,1],[1,2],[2,3],[3,0],[3,4],[4,5],[5,6]]},{"id":"crv","n":"Corbeau","l":"Corvus","d":"L'oiseau d'Apollon, puni pour son mensonge : condamné à la soif éternelle, la Coupe à jamais hors de portée de son bec.","a":"Ses quatre étoiles pointent vers Spica ; à côté, deux galaxies en collision forment les célèbres Antennes.","c":"Printemps","s":[[12.263,-17.54,2.6,"Gienah"],[12.573,-23.4,2.6,"Kraz"],[12.498,-16.52,3,"Algorab"],[12.168,-22.62,3,"Minkar"],[12.14,-24.73,4,"Alchiba"]],"L":[[0,2],[2,1],[1,3],[3,0],[3,4]]},{"id":"crt","n":"Coupe","l":"Crater","d":"La coupe d'Apollon, que le Corbeau devait remplir à la source et qu'il rapporta trop tard, perdant la confiance du dieu.","a":"Constellation discrète du printemps : ses étoiles pâles dessinent un calice posé sur le dos de l'Hydre.","c":"Printemps","s":[[10.996,-18.3,4.1,"Alkes"],[11.194,-22.83,4.5,"Beta Crt"],[11.415,-17.68,4.1,"Gamma Crt"],[11.322,-14.78,3.6,"Delta Crt"],[11.41,-10.86,4.8,"Eps Crt"],[11.611,-9.8,4.7,"Theta Crt"]],"L":[[0,1],[1,2],[2,3],[3,0],[3,4],[4,5]]},{"id":"com","n":"Chevelure de Bérénice","l":"Coma Berenices","d":"La chevelure de la reine Bérénice, offerte aux dieux pour le retour de son époux, dérobée du temple et retrouvée dans le ciel.","a":"Derrière ses étoiles diffuses se cache un mur de milliers de galaxies.","c":"Printemps","s":[[13.166,17.53,4.3,"Alpha Com"],[13.198,27.88,4.2,"Beta Com"],[12.449,28.27,4.4,"Gamma Com"]],"L":[[2,1],[1,0]]},{"id":"cvn","n":"Chiens de chasse","l":"Canes Venatici","d":"Astérion et Chara, les deux lévriers du Bouvier, lancés à la poursuite des ourses autour du pôle.","a":"Cor Caroli, « le cœur de Charles », fut nommée en mémoire du roi décapité Charles Ier d'Angleterre.","c":"Printemps","s":[[12.934,38.32,2.9,"Cor Caroli"],[12.562,41.36,4.2,"Chara"]],"L":[[0,1]]},{"id":"her","n":"Hercule","l":"Hercules","d":"Le héros aux douze travaux, agenouillé dans le ciel, un pied posé sur la tête du Dragon vaincu.","a":"Dans sa Clé de voûte scintille M13 : un demi-million d'étoiles en boule, destinataire du message d'Arecibo en 1974.","c":"Été","s":[[16.688,31.6,2.8,"Zeta Her"],[17.005,30.93,3.9,"Eps Her"],[17.251,36.81,3.2,"Pi Her"],[16.715,38.92,3.5,"Eta Her"],[16.503,21.49,2.8,"Kornephoros"],[17.251,24.84,3.1,"Delta Her"],[17.244,14.39,3.1,"Rasalgethi"]],"L":[[0,1],[1,2],[2,3],[3,0],[0,4],[1,5],[5,6]]},{"id":"crb","n":"Couronne boréale","l":"Corona Borealis","d":"Le diadème d'Ariane, offert par Dionysos et lancé vers le ciel le soir de leurs noces, ses joyaux devenus étoiles.","a":"T CrB, la « Blaze Star », est une nova récurrente qui s'embrase environ tous les 80 ans.","c":"Été","s":[[15.549,31.36,4.1,"Theta CrB"],[15.464,29.11,3.7,"Nusakan"],[15.578,26.71,2.2,"Alphecca"],[15.713,26.3,3.8,"Gamma CrB"],[15.826,26.07,4.6,"Delta CrB"],[15.959,26.88,4.1,"Eps CrB"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,5]]},{"id":"cyg","n":"Cygne","l":"Cygnus","d":"Zeus prit la forme d'un cygne pour séduire Léda. L'oiseau vole le long de la Voie lactée, ailes déployées : la Croix du Nord.","a":"Il contient Cygnus X-1, le premier trou noir jamais identifié, dévorant l'étoile géante qui l'accompagne.","c":"Été","s":[[20.69,45.28,1.3,"Deneb"],[20.371,40.26,2.2,"Sadr"],[20.77,33.97,2.5,"Gienah Cyg"],[19.749,45.13,2.9,"Fawaris"],[19.512,27.96,3.1,"Albireo"]],"L":[[0,1],[1,2],[1,3],[1,4]]},{"id":"lyr","n":"Lyre","l":"Lyra","d":"L'instrument d'Orphée, dont la musique fit fléchir Hadès lui-même. À sa mort, Zeus plaça la lyre parmi les étoiles.","a":"Véga fut l'étoile Polaire il y a 14 000 ans et le sera de nouveau : l'axe de la Terre oscille comme une toupie.","c":"Été","s":[[18.616,38.78,0,"Véga"],[18.834,33.36,3.5,"Sheliak"],[18.982,32.69,3.2,"Sulafat"],[18.908,36.9,4.3,"Delta Lyr"],[18.746,37.61,4.4,"Zeta Lyr"]],"L":[[0,4],[4,3],[3,2],[2,1],[1,4]]},{"id":"aql","n":"Aigle","l":"Aquila","d":"L'aigle de Zeus, porteur de la foudre, qui enleva Ganymède pour en faire l'échanson des dieux.","a":"Altaïr tourne sur elle-même en 9 heures à peine, contre 25 jours pour le Soleil : sa silhouette en est déformée.","c":"Été","s":[[19.846,8.87,0.8,"Altaïr"],[19.771,10.61,2.7,"Tarazed"],[19.922,6.41,3.7,"Alshain"],[19.09,13.86,3,"Okab"]],"L":[[1,0],[0,2],[1,3]]},{"id":"oph","n":"Serpentaire","l":"Ophiuchus · 13e signe","d":"Asclépios, dieu de la médecine, qui apprit du serpent à ressusciter les morts — foudroyé par Zeus pour avoir défié l'ordre du monde.","a":"Le Soleil le traverse trois semaines par an : c'est le « treizième signe » que l'astrologie ignore.","c":"Été","s":[[17.582,12.56,2.1,"Rasalhague"],[17.724,4.57,2.8,"Cebalrai"],[17.173,-15.72,2.4,"Sabik"],[16.619,-10.57,2.6,"Zeta Oph"],[16.305,-4.69,3.2,"Yed Posterior"],[16.239,-3.69,2.7,"Yed Prior"],[16.961,9.38,3.2,"Kappa Oph"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,0]]},{"id":"ser","n":"Serpent","l":"Serpens","d":"Le serpent d'Asclépios, seule constellation coupée en deux : la tête d'un côté du Serpentaire, la queue de l'autre.","a":"Dans sa queue s'ouvre la nébuleuse de l'Aigle et ses Piliers de la création, immortalisés par Hubble.","c":"Été","s":[[15.94,15.66,3.9,"Gamma Ser"],[15.769,15.42,3.7,"Beta Ser"],[15.738,6.43,2.6,"Unukalhai"],[15.827,-3.43,3.5,"Mu Ser"],[18.355,-2.9,3.3,"Eta Ser"],[18.937,4.2,4.6,"Alya"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,5]]},{"id":"del","n":"Dauphin","l":"Delphinus","d":"Le dauphin qui convainquit Amphitrite d'épouser Poséidon, ou celui qui sauva le poète Arion des flots.","a":"Ses deux étoiles principales cachent le nom inversé d'un astronome farceur : Nicolaus Venator.","c":"Été","s":[[20.661,15.91,3.8,"Sualocin"],[20.626,14.6,3.6,"Rotanev"],[20.777,16.12,4.3,"Gamma Del"],[20.724,15.07,4.4,"Delta Del"],[20.554,11.3,4,"Aldulfin"]],"L":[[0,2],[2,3],[3,1],[1,0],[1,4]]},{"id":"sge","n":"Flèche","l":"Sagitta","d":"La flèche d'Héraclès qui délivra Prométhée en tuant l'aigle dévoreur, figée en plein vol dans la Voie lactée.","a":"Troisième plus petite constellation du ciel, elle se glisse entre l'Aigle et le Cygne.","c":"Été","s":[[19.668,18.01,4.4,"Sham"],[19.684,17.48,4.4,"Beta Sge"],[19.789,18.53,3.8,"Delta Sge"],[19.979,19.49,3.5,"Gamma Sge"]],"L":[[0,2],[1,2],[2,3]]},{"id":"and","n":"Andromède","l":"Andromeda","d":"Fille de Cassiopée, enchaînée à un rocher pour apaiser un monstre marin, sauvée par Persée.","a":"Elle héberge M31 : l'objet le plus lointain visible à l'œil nu, dont la lumière a voyagé 2,5 millions d'années.","c":"Automne","s":[[0.14,29.09,2.1,"Alpheratz"],[1.162,35.62,2.1,"Mirach"],[2.065,42.33,2.3,"Almach"],[0.656,30.86,3.3,"Delta And"]],"L":[[0,3],[3,1],[1,2]]},{"id":"per","n":"Persée","l":"Perseus","d":"Le héros au casque d'invisibilité, brandissant la tête de Méduse dont l'œil clignote encore : l'étoile Algol.","a":"Chaque mois d'août, les Perséides semblent jaillir de son épée : la plus célèbre pluie d'étoiles filantes.","c":"Automne","s":[[3.405,49.86,1.8,"Mirfak"],[3.136,40.96,2.1,"Algol"],[3.08,53.51,2.9,"Gamma Per"],[3.715,47.79,3,"Delta Per"],[3.964,40.01,2.9,"Eps Per"],[3.902,31.88,2.9,"Zeta Per"]],"L":[[2,0],[0,3],[3,4],[4,5],[0,1]]},{"id":"peg","n":"Pégase","l":"Pegasus","d":"Le cheval ailé né du sang de Méduse, monture de Bellérophon. Son grand carré ouvre le ciel d'automne.","a":"C'est autour de 51 Pegasi que fut découverte en 1995 la première planète orbitant une étoile semblable au Soleil.","c":"Automne","s":[[23.079,15.21,2.5,"Markab"],[23.063,28.08,2.4,"Scheat"],[0.22,15.18,2.8,"Algenib"],[0.14,29.09,2.1,"Alpheratz"],[21.736,9.88,2.4,"Enif"],[22.691,10.83,3.4,"Homam"],[22.717,30.22,2.9,"Matar"]],"L":[[0,1],[1,3],[3,2],[2,0],[0,5],[5,4],[1,6]]},{"id":"cet","n":"Baleine","l":"Cetus","d":"Le monstre marin envoyé dévorer Andromède, pétrifié par Persée avec la tête de Méduse.","a":"Mira, « la merveilleuse », fut la première étoile variable connue : elle apparaît et disparaît en 11 mois.","c":"Automne","s":[[3.038,4.09,2.5,"Menkar"],[2.722,3.24,3.5,"Kaffaljidhma"],[2.322,-2.98,3,"Mira"],[1.858,-10.34,3.7,"Baten Kaitos"],[1.4,-8.18,3.6,"Theta Cet"],[1.143,-10.18,3.4,"Eta Cet"],[0.726,-17.99,2,"Diphda"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]]},{"id":"tri","n":"Triangle","l":"Triangulum","d":"Simple delta de lumière, vu comme le delta du Nil par les Égyptiens et la Sicile par les Romains.","a":"Il abrite M33, la troisième grande galaxie de notre groupe local, juste à la limite de l'œil nu.","c":"Automne","s":[[1.885,29.58,3.4,"Mothallah"],[2.159,34.99,3,"Beta Tri"],[2.289,33.85,4,"Gamma Tri"]],"L":[[0,1],[1,2],[2,0]]},{"id":"psa","n":"Poisson austral","l":"Piscis Austrinus","d":"Le grand poisson qui but l'eau versée par le Verseau, parent des deux Poissons du zodiaque.","a":"Fomalhaut est entourée d'un immense anneau de poussière, photographié directement par Hubble.","c":"Automne","s":[[22.961,-29.62,1.2,"Fomalhaut"],[22.678,-27.04,4.2,"Eps PsA"],[22.525,-32.35,4.3,"Beta PsA"],[22.874,-32.88,4.5,"Gamma PsA"]],"L":[[0,1],[1,2],[2,3],[3,0]]},{"id":"cru","n":"Croix du Sud","l":"Crux","d":"Invisible d'Europe depuis l'Antiquité à cause de la lente oscillation de la Terre, devenue la boussole des navigateurs du sud.","a":"La plus petite constellation du ciel borde le Sac de Charbon, un nuage sombre qui troue la Voie lactée.","c":"Ciel austral","s":[[12.443,-63.1,0.8,"Acrux"],[12.795,-59.69,1.3,"Mimosa"],[12.519,-57.11,1.6,"Gacrux"],[12.253,-58.75,2.8,"Imai"]],"L":[[0,2],[1,3]]},{"id":"cen","n":"Centaure","l":"Centaurus","d":"Chiron, le centaure savant, précepteur d'Achille et d'Asclépios, qui offrit son immortalité pour délivrer Prométhée.","a":"Alpha du Centaure est le système stellaire le plus proche du Soleil : Proxima et sa planète ne sont qu'à 4,2 années-lumière.","c":"Ciel austral","s":[[14.66,-60.83,-0.3,"Alpha Cen"],[14.064,-60.37,0.6,"Hadar"],[14.111,-36.37,2.1,"Menkent"],[12.692,-48.96,2.2,"Gamma Cen"],[13.665,-53.47,2.3,"Eps Cen"]],"L":[[0,1],[1,4],[4,3],[4,2]]},{"id":"car","n":"Carène","l":"Carina","d":"La coque du navire Argo, si vaste qu'il fallut découper la constellation en trois : la Carène, les Voiles et la Poupe.","a":"Eta Carinae, monstre de cent masses solaires, frôla l'explosion en 1843 : la prochaine supernova pourrait être elle.","c":"Ciel austral","s":[[6.399,-52.7,-0.7,"Canopus"],[9.22,-69.72,1.7,"Miaplacidus"],[8.375,-59.51,1.9,"Avior"],[9.285,-59.28,2.2,"Aspidiske"],[10.716,-64.39,2.7,"Theta Car"]],"L":[[0,2],[2,3],[3,4],[4,1],[1,2]]},{"id":"lmc","n":"Grand Nuage de Magellan","l":"Nubecula Major","d":"Nuage laiteux du ciel austral, guide des navigateurs polynésiens bien avant que Magellan ne lui laisse son nom.","a":"Ce n'est pas une constellation mais une galaxie entière, satellite de la nôtre : 30 milliards d'étoiles à 160 000 années-lumière.","c":"Ciel austral","s":[[5.393,-69.76,1,"Coeur du Nuage"],[5.645,-69.1,2,"La Tarentule"],[5.13,-70.5,2.5,"Bord ouest"],[5.35,-68.3,2.5,"Bord nord"],[5.5,-71.2,2.5,"Bord sud"]],"L":[]},{"id":"tde","n":"Triangle d’été","l":"Astérisme","d":"Trois reines de trois constellations — la Lyre, le Cygne et l'Aigle — réunies en un triangle qui domine toutes les nuits d'été.","a":"Ce n'est pas une constellation officielle mais un repère : trouvez-le, et tout le ciel d'été s'ordonne autour.","c":"Astérisme","s":[[18.616,38.78,0,"Véga"],[20.69,45.28,1.3,"Deneb"],[19.846,8.87,0.8,"Altaïr"]],"L":[[0,1],[1,2],[2,0]]},{"id":"tdh","n":"Triangle d’hiver","l":"Astérisme","d":"Trois feux au cœur des nuits froides : l'épaule d'Orion, le Grand Chien et le Petit Chien, presque équilatéraux.","a":"Le triangle encercle une des zones les plus discrètes du ciel, la Licorne, et le fleuve de la Voie lactée d'hiver.","c":"Astérisme","s":[[5.919,7.41,0.5,"Bételgeuse"],[6.752,-16.72,-1.5,"Sirius"],[7.655,5.22,0.4,"Procyon"]],"L":[[0,1],[1,2],[2,0]]},{"id":"hdh","n":"Hexagone d’hiver","l":"Astérisme","d":"Six constellations se donnent la main autour d'Orion : le grand anneau de lumière des soirs d'hiver.","a":"L'hexagone relie six des étoiles les plus brillantes du ciel — le plus grand repère céleste visible d'Europe.","c":"Astérisme","s":[[5.278,46,0.1,"Capella"],[4.599,16.51,0.9,"Aldébaran"],[5.242,-8.2,0.1,"Rigel"],[6.752,-16.72,-1.5,"Sirius"],[7.655,5.22,0.4,"Procyon"],[7.755,28.03,1.1,"Pollux"]],"L":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]]}]
+;
+const ORIENT = {"uma":[10.84915,55.2506,11.59772,64.47226],"umi":[14.62017,79.38024,13.37398,81.56665],"cas":[1.1108,60.7877,1.12545,56.78795],"cep":[22.90984,64.85772,21.97011,62.87196],"dra":[16.56152,64.49136,16.6048,55.00088],"ari":[2.46,20.79279,2.24865,22.92878],"tau":[4.28057,17.46342,4.44769,23.85096],"gem":[6.91395,23.82012,7.01848,28.25145],"cnc":[8.61596,20.22407,8.82441,24.01152],"leo":[10.74272,14.55767,10.39219,20.58578],"vir":[13.40548,2.15945,13.04078,10.26152],"lib":[15.48467,-19.76847,15.24078,-17.48069],"sco":[16.75336,-31.93849,16.76158,-26.66454],"sgr":[19.08395,-31.14658,18.89039,-25.6084],"cap":[20.99577,-16.7519,20.82952,-13.65922],"aqr":[22.26032,-13.31058,21.94823,-6.95009],"psc":[0.58143,9.77658,0.17606,16.30222],"ori":[5.66017,3.08915,5.48063,8.25524],"cma":[6.81833,-22.11242,6.93611,-18.09946],"cmi":[7.61105,7.43857,7.65134,9.68423],"aur":[5.59659,37.66549,5.97448,40.90911],"eri":[3.67446,-27.75667,3.4181,-17.20766],"lep":[5.58092,-17.82726,5.64564,-14.85092],"mon":[7.22813,-0.22309,7.22386,5.80964],"col":[6.02085,-36.904,6.2189,-35.39694],"boo":[14.48089,27.89517,15.03093,31.71566],"hya":[10.63005,-11.8496,10.30227,0.189],"crv":[12.36901,-19.69124,12.34015,-17.71039],"crt":[11.45904,-15.75113,11.63705,-14.18589],"com":[12.67005,23.40701,12.68935,27.1634],"her":[16.9535,33.78115,17.18134,27.60213],"crb":[15.74543,29.34055,15.67801,30.54931],"cyg":[20.62854,39.90423,20.71124,46.53249],"lyr":[18.83754,35.06806,18.77771,37.41926],"aql":[19.52878,6.55644,19.47518,14.20932],"oph":[17.27029,-4.59751,17.20501,6.44919],"del":[20.70754,12.59489,20.67117,14.08875],"sge":[19.86475,18.80919,19.89973,19.54037],"and":[1.13696,38.21115,0.60958,36.22743],"per":[3.57198,44.88777,3.67822,50.62069],"peg":[23.10855,19.2396,22.63267,12.2486],"cet":[1.64065,-2.42781,1.95296,5.59113],"tri":[1.99475,31.75704,1.90801,33.31205],"psa":[22.23294,-31.4945,22.45037,-33.42949],"cru":[12.49204,-60.21804,12.61847,-59.45115],"cen":[13.43455,-47.9653,13.23226,-39.35931],"car":[8.34955,-49.15772,8.40016,-37.91124]};
+const IAU = {"uma":"UMa","umi":"UMi","cas":"Cas","cep":"Cep","dra":"Dra","ari":"Ari","tau":"Tau","gem":"Gem","cnc":"Cnc","leo":"Leo","vir":"Vir","lib":"Lib","sco":"Sco","sgr":"Sgr","cap":"Cap","aqr":"Aqr","psc":"Psc","ori":"Ori","cma":"CMa","cmi":"CMi","aur":"Aur","eri":"Eri","lep":"Lep","mon":"Mon","col":"Col","boo":"Boo","hya":"Hya","crv":"Crv","crt":"Crt","com":"Com","cvn":"CVn","her":"Her","crb":"CrB","cyg":"Cyg","lyr":"Lyr","aql":"Aql","oph":"Oph","ser":"Ser","del":"Del","sge":"Sge","and":"And","per":"Per","peg":"Peg","cet":"Cet","tri":"Tri","psa":"PsA","cru":"Cru","cen":"Cen","car":"Car","lmc":"LMC","tde":"TDE","tdh":"TDH","hdh":"HDH"};
+
+/* ============================================================
+   CONTENUS ÉDITORIAUX
+
+   Chaque onglet est une SUITE DE BLOCS typés, et non une liste de
+   cartes. C'est ce qui donne un rythme de lecture — et c'est aussi
+   directement modélisable : une table de blocs, un type, un ordre, une
+   charge utile en JSON.
+
+   Types disponibles :
+     lead    chapeau, avec lettrine
+     text    { h?, p:[...] }
+     stats   [{ v, u?, l }]
+     figure  { src | svg, alt?, cap, credit?, lit?, wide?, link? }
+     split   { h?, p:[...], media:{figure}, rev? }
+     quote   { p, who }
+     video   { yt? | src?, poster?, cap, credit? }
+     warn    { h?, p }
+     links   [{ kind, title, src, note, url }]
+
+   Un onglet absent n'affiche pas son bouton : l'astrologie ne concerne
+   pas toutes les figures, elle ne s'invente donc pas.
+   ============================================================ */
+
+/* ---------- visuels fabriqués, sans dépendance externe ---------- */
+
+/* Comparaison d'échelle : le Soleil face aux deux géantes d'Orion.
+   Rayons en unités solaires, valeurs médianes des estimations. */
+function svgScale(){
+  const W = 1000, H = 430;
+  const items = [
+    { n:'Soleil',     r:1,    c:'#E3E3C4' },
+    { n:'Rigel',      r:74,   c:'#BFD4F2' },
+    { n:'Bételgeuse', r:850,  c:'#E3A87C' },
+  ];
+  const max = 850, pad = 30;
+  const scale = (H - pad*2) / (max*2);
+  let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
+  o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
+  /* Bételgeuse, arc partiel : son disque dépasse largement du cadre */
+  const bx = 250, by = H/2 + 30, br = 850*scale;
+  o += '<circle cx="' + bx + '" cy="' + by + '" r="' + br.toFixed(1)
+     + '" fill="rgba(227,168,124,.16)" stroke="#E3A87C" stroke-width="1.5"/>';
+  const rx = 700, ry = H/2, rr = Math.max(2, 74*scale);
+  o += '<circle cx="' + rx + '" cy="' + ry + '" r="' + rr.toFixed(1)
+     + '" fill="rgba(191,212,242,.25)" stroke="#BFD4F2" stroke-width="1.5"/>';
+  const sx = 850, sy = H/2, sr = Math.max(1.4, 1*scale);
+  o += '<circle cx="' + sx + '" cy="' + sy + '" r="' + sr.toFixed(2) + '" fill="#E3E3C4"/>';
+  const lbl = function(x, y, t, s, anchor){
+    return '<text x="' + x + '" y="' + y + '" text-anchor="' + (anchor||'middle')
+      + '" font-family="Afacad,sans-serif" font-size="15" font-weight="700"'
+      + ' fill="rgba(227,227,196,.9)" letter-spacing="1.5">' + t + '</text>'
+      + '<text x="' + x + '" y="' + (y+18) + '" text-anchor="' + (anchor||'middle')
+      + '" font-family="Afacad,sans-serif" font-size="12.5" fill="rgba(227,227,196,.5)">'
+      + s + '</text>';
+  };
+  o += lbl(bx, 26, 'BÉTELGEUSE', '≈ 850 rayons solaires');
+  o += lbl(rx, ry - rr - 40, 'RIGEL', '≈ 74 rayons solaires');
+  o += lbl(sx, sy + 34, 'SOLEIL', '1 rayon solaire');
+  o += '<line x1="' + (sx) + '" y1="' + (sy + 10) + '" x2="' + sx + '" y2="' + (sy + 20)
+     + '" stroke="rgba(227,227,196,.5)"/>';
+  return o + '</svg>';
+}
+
+/* Le Baudrier : trois étoiles alignées à l'œil, très éloignées les unes
+   des autres en profondeur. Distances en années-lumière. */
+function svgDepth(){
+  const W = 1000, H = 360;
+  const stars = [
+    { n:'Mintaka', d:1200, y:120 },
+    { n:'Alnilam', d:2000, y:190 },
+    { n:'Alnitak', d:1260, y:260 },
+  ];
+  const maxD = 2200, x0 = 120, x1 = 930;
+  let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
+  o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
+  o += '<text x="' + x0 + '" y="34" font-family="Afacad,sans-serif" font-size="12"'
+     + ' letter-spacing="2.4" fill="rgba(227,227,196,.45)">DISTANCE DEPUIS LA TERRE</text>';
+  /* graduations */
+  for(let d = 0; d <= 2000; d += 500){
+    const x = x0 + (d/maxD)*(x1-x0);
+    o += '<line x1="' + x.toFixed(1) + '" y1="60" x2="' + x.toFixed(1) + '" y2="' + (H-46)
+       + '" stroke="rgba(227,227,196,.09)"/>';
+    o += '<text x="' + x.toFixed(1) + '" y="' + (H-26) + '" text-anchor="middle"'
+       + ' font-family="Afacad,sans-serif" font-size="12" fill="rgba(227,227,196,.4)">'
+       + (d ? d + ' a.l.' : 'Terre') + '</text>';
+  }
+  o += '<circle cx="' + x0 + '" cy="' + (H/2) + '" r="5" fill="#8FD0C9"/>';
+  stars.forEach(function(s){
+    const x = x0 + (s.d/maxD)*(x1-x0);
+    o += '<line x1="' + x0 + '" y1="' + (H/2) + '" x2="' + x.toFixed(1) + '" y2="' + s.y
+       + '" stroke="rgba(227,227,196,.22)" stroke-dasharray="3 5"/>';
+    o += '<circle cx="' + x.toFixed(1) + '" cy="' + s.y + '" r="7" fill="#E3E3C4"/>';
+    o += '<text x="' + (x-14).toFixed(1) + '" y="' + (s.y+5) + '" text-anchor="end"'
+       + ' font-family="Afacad,sans-serif" font-size="15" font-weight="700"'
+       + ' fill="rgba(227,227,196,.9)">' + s.n + '</text>';
+    o += '<text x="' + (x+16).toFixed(1) + '" y="' + (s.y+5) + '"'
+       + ' font-family="Afacad,sans-serif" font-size="12.5"'
+       + ' fill="rgba(227,227,196,.5)">' + s.d + ' a.l.</text>';
+  });
+  return o + '</svg>';
+}
+
+/* Orion comme boussole : les alignements qui mènent aux voisines. */
+function svgCompass(){
+  const W = 1000, H = 520;
+  /* positions en pixels, dessinées à la main d'après le ciel réel */
+  const P = {
+    bet:[430,150], bel:[560,168], alnitak:[452,258], alnilam:[492,252], mintaka:[532,246],
+    rig:[540,392], sai:[420,382],
+    sir:[300,470], ald:[720,130], pro:[210,300],
+  };
+  const dot = function(p, r, c){
+    return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + r + '" fill="' + (c||'#E3E3C4') + '"/>';
+  };
+  const txt = function(p, t, dx, dy, o2){
+    return '<text x="' + (p[0]+dx) + '" y="' + (p[1]+dy) + '" font-family="Afacad,sans-serif"'
+      + ' font-size="14" fill="rgba(227,227,196,' + (o2||0.85) + ')">' + t + '</text>';
+  };
+  let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
+  o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
+  /* silhouette d'Orion */
+  [['bet','bel'],['bel','mintaka'],['mintaka','alnilam'],['alnilam','alnitak'],
+   ['alnitak','sai'],['sai','rig'],['rig','mintaka'],['bet','alnitak']].forEach(function(s){
+    o += '<line x1="' + P[s[0]][0] + '" y1="' + P[s[0]][1] + '" x2="' + P[s[1]][0]
+       + '" y2="' + P[s[1]][1] + '" stroke="#E3E3C4" stroke-width="1.4" opacity=".75"/>';
+  });
+  /* alignements prolongés */
+  [['mintaka','ald','Aldébaran'],['alnitak','sir','Sirius'],['bel','pro','Procyon']].forEach(function(a){
+    const A = P[a[0]], B = P[a[1]];
+    o += '<line x1="' + A[0] + '" y1="' + A[1] + '" x2="' + B[0] + '" y2="' + B[1]
+       + '" stroke="#8FD0C9" stroke-width="1" stroke-dasharray="5 6" opacity=".7"/>';
+  });
+  ['bet','bel','alnitak','alnilam','mintaka','rig','sai'].forEach(function(k){
+    o += dot(P[k], k === 'bet' || k === 'rig' ? 7 : 5);
+  });
+  ['sir','ald','pro'].forEach(function(k){ o += dot(P[k], 6, '#8FD0C9'); });
+  o += txt(P.bet, 'Bételgeuse', -96, 4);
+  o += txt(P.bel, 'Bellatrix', 14, 4);
+  o += txt(P.rig, 'Rigel', 14, 6);
+  o += txt(P.sai, 'Saïph', -54, 16);
+  o += txt(P.mintaka, 'le Baudrier', 22, 34, .55);
+  o += txt(P.sir, 'Sirius', -60, 4, .8);
+  o += txt(P.ald, 'Aldébaran', 14, 4, .8);
+  o += txt(P.pro, 'Procyon', -76, 4, .8);
+  o += '<text x="40" y="44" font-family="Afacad,sans-serif" font-size="12"'
+     + ' letter-spacing="2.4" fill="rgba(227,227,196,.45)">ORION, BOUSSOLE DU CIEL D\u2019HIVER</text>';
+  return o + '</svg>';
+}
+
+const IMG = '/assets/img/constellations/ori/';
+
+const CONTENT = {
+  ori: {
+    science: [
+      { t:'lead', p:"Orion n'est pas qu'un dessin. Contrairement à presque toutes les "
+        + "constellations, dont les étoiles n'ont aucun lien entre elles et ne se "
+        + "trouvent alignées que par un hasard de perspective, une grande partie de "
+        + "ses astres appartient réellement au même ensemble : le complexe nuageux "
+        + "d'Orion, la pouponnière d'étoiles la plus proche de nous. C'est, à ce "
+        + "titre, l'un des laboratoires les plus scrutés du ciel." },
+
+      { t:'stats', v:[
+        { v:'≈ 1 350', u:'a.l.', l:"Distance de la nébuleuse d'Orion. Les estimations publiées s'échelonnent de 1 300 à 1 500 années-lumière." },
+        { v:'≈ 2 800', u:'étoiles', l:"Dans une sphère de 20 années-lumière autour de l'amas du Trapèze, au cœur de M42." },
+        { v:'≈ 700', u:'a.l.', l:"Distance de Bételgeuse — valeur encore débattue, de 550 à 725 selon les travaux." },
+        { v:'21', u:'octobre', l:"Maximum des Orionides, la pluie d'étoiles filantes qui semble jaillir de la constellation." },
+      ]},
+
+      { t:'text', h:'Deux géantes aux deux extrémités', p:[
+        "L'épaule et le pied du chasseur portent deux étoiles que tout oppose. "
+        + "Bételgeuse est une supergéante rouge en fin de vie, si vaste que placée au "
+        + "centre du système solaire elle engloberait l'orbite de Mars. Sa surface "
+        + "n'atteint que 3 300 °C environ, d'où sa couleur orangée.",
+        "Rigel, à l'autre bout, est une supergéante bleue de 12 000 °C. Plus petite "
+        + "mais infiniment plus chaude, elle rayonne dans le blanc-bleu. Les deux se "
+        + "voient à l'œil nu depuis n'importe quel point habité de la planète, "
+        + "puisqu'Orion est posée sur l'équateur céleste." ]},
+
+      { t:'figure', svg:'scale', wide:true,
+        cap:"L'échelle réelle, à taille comparable. Le disque du Soleil, à droite, tient dans un pixel.",
+        credit:"Schéma Ekko of Beyond, rayons médians des estimations publiées." },
+
+      { t:'split', h:"Le Baudrier n'est pas une ligne", p:[
+        "Les trois étoiles du Baudrier semblent parfaitement alignées. Elles ne le "
+        + "sont pas du tout : Alnilam, celle du milieu, se trouve environ 800 "
+        + "années-lumière plus loin que ses deux voisines.",
+        "L'alignement que nous voyons n'existe que depuis la Terre. Déplacez "
+        + "l'observateur de quelques centaines d'années-lumière et la figure du "
+        + "chasseur se défait entièrement." ],
+        media:{ svg:'depth', cap:"Les trois étoiles du Baudrier, replacées à leur distance réelle.",
+                credit:"Schéma Ekko of Beyond." } },
+
+      { t:'text', h:"L'affaire Bételgeuse", p:[
+        "À l'hiver 2019-2020, Bételgeuse a perdu près des deux tiers de son éclat. "
+        + "La baisse était visible à l'œil nu, et certains y ont vu l'annonce d'une "
+        + "supernova imminente. Les images du Very Large Telescope ont tranché "
+        + "autrement : l'étoile s'était partiellement voilée derrière un nuage de "
+        + "poussière qu'elle avait elle-même expulsé.",
+        "En juillet 2026, la même équipe a réglé une seconde énigme, vieille d'un "
+        + "siècle : Bételgeuse possède une compagne. Baptisée Siwarha, elle boucle "
+        + "son orbite en six ans et explique le rythme lent qui intriguait les "
+        + "observateurs depuis les années 1920." ]},
+
+      { t:'quote', p:"C'est l'aboutissement d'une quête longue d'un siècle.",
+        who:"Miguel Montargès, Observatoire de Paris — PSL, juillet 2026" },
+
+      { t:'figure', src:IMG + 'betelgeuse-sphere.jpg', page:'https://www.eso.org/public/france/news/eso2003/',
+        cap:"La surface de Bételgeuse résolue par l'instrument SPHERE en décembre 2019. L'assombrissement de l'hémisphère sud est net.",
+        credit:"ESO / M. Montargès et al." },
+
+      { t:'split', rev:true, h:"La boussole du ciel d'hiver", p:[
+        "Orion sert de point de départ à toute la voûte hivernale. Prolongez la "
+        + "ligne du Baudrier vers le bas à gauche : vous tombez sur Sirius, l'étoile "
+        + "la plus brillante du ciel. Vers le haut à droite : Aldébaran, l'œil du "
+        + "Taureau.",
+        "C'est la raison pour laquelle on apprend toujours Orion en premier." ],
+        media:{ svg:'compass', cap:"Les alignements qui font d'Orion un point de repère.",
+                credit:"Schéma Ekko of Beyond." } },
+
+      { t:'figure', src:IMG + 'orion-bar-webb.jpg', page:'https://esawebb.org/images/weic2411a/',
+        wide:true,
+        cap:"La barre d'Orion vue par le télescope Webb : le front où le rayonnement des jeunes étoiles du Trapèze érode le nuage qui les a fait naître. Les spectres y ont révélé près de 600 signatures chimiques.",
+        credit:"ESA/Webb, NASA, CSA, PDRs4All ERS Team" },
+
+      { t:'video', src:IMG + 'zoom-tete-de-cheval.mp4', poster:IMG + 'tete-de-cheval-webb.jpg',
+        page:'https://esawebb.org/videos/weic2411c/',
+        cap:"Un plongé continu depuis la constellation entière jusqu'au détail du Webb sur la nébuleuse de la Tête de Cheval.",
+        credit:"ESA/Webb, NASA, CSA, ESA/Euclid, ESO" },
+
+      { t:'links', v:[
+        { kind:'read', title:"Le mystère de la baisse de luminosité de Bételgeuse résolu", src:'ESO',
+          note:"Le communiqué qui écarte l'hypothèse de la supernova.",
+          url:'https://www.eso.org/public/france/news/eso2109/' },
+        { kind:'read', title:"Bételgeuse possède bien une étoile compagnon", src:'ESO',
+          note:"L'annonce de Siwarha, juillet 2026.",
+          url:'https://www.eso.org/public/news/eso2611/' },
+        { kind:'read', title:"La preuve par l'image", src:'Observatoire de Paris — PSL',
+          note:"La même découverte racontée en français par l'équipe qui l'a faite.",
+          url:'https://observatoiredeparis.psl.eu/la-preuve-par-l-image.html' },
+        { kind:'read', title:"Webb photographie la nébuleuse de la Tête de Cheval", src:'ESA/Webb',
+          note:"Barnard 33 dans le nuage moléculaire Orion B.",
+          url:'https://esawebb.org/news/weic2411/' },
+        { kind:'look', title:"Euclid, Hubble et Webb côte à côte", src:'ESA/Webb',
+          note:"Trois instruments, trois échelles, le même objet.",
+          url:'https://esawebb.org/images/weic2411c/' },
+        { kind:'look', title:"Tête de Cheval, 23ᵉ anniversaire de Hubble", src:'ESA/Hubble',
+          note:"L'image de 2013 en infrarouge proche.",
+          url:'https://esahubble.org/images/heic1307a/' },
+        { kind:'watch', title:"L'éclat de Bételgeuse en 2019-2020", src:'ESO',
+          note:"Animation reconstruite à partir des observations du VLT.",
+          url:'https://www.eso.org/public/france/videos/eso2109b/' },
+        { kind:'deep', title:"VLT/SPHERE imaging of the candidate companion of Betelgeuse",
+          src:'Astronomy & Astrophysics, 2026',
+          note:"Montargès, Boccaletti et al. L'article de la découverte. En anglais.",
+          url:'https://www.aanda.org/10.1051/0004-6361/202661023' },
+        { kind:'deep', title:"Betelgeuse: Detection of the Expanding Wake of the Companion Star",
+          src:'arXiv, 2026', note:"Dupree et al. Le sillage vu par Hubble. En anglais, accès libre.",
+          url:'https://arxiv.org/pdf/2601.00470' },
+        { kind:'deep', title:"Dossier pédagogique : la constellation d'Orion", src:'Cité des sciences',
+          note:"Livret d'observation en français, magnitudes à l'appui.",
+          url:'https://www.cite-sciences.fr/fileadmin/fileadmin_CSI/fichiers/vous-etes/enseignant/Documents-pedagogiques/_documents/Ressources-en-ligne/Gazette01-Orion.pdf' },
+      ]},
+    ],
+
+    mytho: [
+      { t:'lead', p:"Parce qu'elle est posée sur l'équateur céleste, Orion se voit "
+        + "depuis presque toute la Terre habitée. C'est la constellation la plus "
+        + "universellement racontée : un chasseur en Grèce, un dieu en Égypte, un "
+        + "guerrier en Mésopotamie, et des dizaines d'autres figures ailleurs." },
+
+      { t:'stats', v:[
+        { v:'≈ 150', u:'apr. J.-C.', l:"L'Almageste de Ptolémée livre le premier recensement scientifique connu des étoiles d'Orion." },
+        { v:'3', u:'étoiles', l:"Le Baudrier — Alnitak, Alnilam, Mintaka — que la tradition française appelle « les Trois Rois »." },
+        { v:'7', u:'sœurs', l:"Les Pléiades, que le chasseur poursuit sans fin d'un bout à l'autre du ciel." },
+      ]},
+
+      { t:'figure', src:'/skyculture/ekko/illustrations/ori.webp', lit:true,
+        cap:"La figure du chasseur telle qu'elle est plaquée sur le ciel dans la carte interactive, calée sur les étoiles par trois ancres.",
+        credit:"Illustration du skyculture, d'après Johan Meuris — Licence Art Libre." },
+
+      { t:'text', h:'Le géant, la déesse et le scorpion', p:[
+        "Les versions grecques ne s'accordent pas, et c'est ce qui les rend "
+        + "intéressantes. Orion naît d'un présent des dieux à Hyriée, roi de Thèbes, "
+        + "qui se désolait de n'avoir pas d'enfant. Chasseur hors pair, il se vante "
+        + "de pouvoir tuer toutes les bêtes de la Terre.",
+        "L'arrogance lui coûte la vie. Gaïa lui envoie un scorpion ; ailleurs, c'est "
+        + "une flèche d'Artémis qui l'abat. Zeus le place ensuite parmi les étoiles — "
+        + "et le scorpion avec lui, à l'autre bout du ciel. Les deux constellations "
+        + "ne sont jamais visibles ensemble : quand le Scorpion se lève, Orion se "
+        + "couche. La mise en scène est parfaite, et sans doute délibérée." ]},
+
+      { t:'text', h:"Osiris et la crue du Nil", p:[
+        "En Égypte, Orion est Sah, associé à Osiris, dieu de la mort et de la "
+        + "résurrection. Son lever héliaque — le moment de l'année où la "
+        + "constellation réapparaît juste avant l'aube — servait de repère "
+        + "calendaire, lié au cycle du Nil et donc à la fertilité des terres. Les "
+        + "prêtres-astronomes en tiraient une prévision agricole d'une valeur "
+        + "considérable." ]},
+
+      { t:'warn', h:'Un point de vigilance',
+        p:"On lit très souvent que le Baudrier aurait inspiré l'implantation des "
+        + "pyramides de Gizeh. Cette « théorie de la corrélation d'Orion », "
+        + "popularisée dans les années 1990, n'est pas retenue par les égyptologues : "
+        + "l'alignement invoqué ne correspond qu'imparfaitement, et aucune source "
+        + "égyptienne ne l'évoque. Le lien entre Orion, Sah et Osiris est en "
+        + "revanche solidement attesté — de même que l'usage calendaire du lever "
+        + "héliaque. Il vaut la peine de distinguer les deux." },
+
+      { t:'links', v:[
+        { kind:'read', title:"La constellation d'Orion, ou la Main montée au ciel", src:'Jean-Pierre Luminet',
+          note:"L'astrophysicien remonte aux sources : Ptolémée, Aratos, les manuscrits médiévaux. Le texte le plus riche de cette sélection.",
+          url:'https://blogs.futura-sciences.com/luminet/2021/12/12/la-constellation-dorion-ou-la-main-montee-au-ciel/' },
+        { kind:'read', title:"Orion : mythes et observations", src:'Passion Astronomie',
+          note:"Le récit grec et le rôle d'Osiris dans le calendrier égyptien.",
+          url:'https://www.passion-astronomie.com/la-constellation-dorion-mythes-et-observations' },
+        { kind:'read', title:"Incursion dans la constellation d'Orion", src:'Astroshop',
+          note:"Un tour du monde des interprétations, puisqu'Orion se voit des deux hémisphères.",
+          url:'https://www.astroshop.de/fr/magazine/astuces-pratiques/observation/incursions-dans-les-constellations/orion/i,1273' },
+        { kind:'read', title:"L'étymologie arabe des étoiles d'Orion", src:'Wikipédia',
+          note:"Deux figures arabes distinctes, al-Ğawzā' et al-Ğabbār, dont les noms se sont mélangés.",
+          url:'https://fr.wikipedia.org/wiki/Orion_(constellation)' },
+        { kind:'read', title:"Découvrez une constellation d'hiver : Orion", src:'Parc aux Étoiles',
+          note:"Une entrée en douceur, écrite pour le grand public.",
+          url:'https://parcauxetoiles.gpseo.fr/actualites/decouvrez-une-constellation-dhiver-orion' },
+      ]},
+    ],
+
+    astro: [
+      { t:'warn', h:'Ce que vaut cet onglet',
+        p:"Il documente une tradition culturelle, pas un savoir vérifié. "
+        + "L'astrologie n'a pas de fondement scientifique établi : aucune étude "
+        + "contrôlée n'a mis en évidence d'effet des positions célestes sur les "
+        + "caractères ou les événements. Ces textes valent comme patrimoine et "
+        + "comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté "
+        + "de l'onglet Science et non à sa place." },
+
+      { t:'lead', p:"Orion n'appartient pas au zodiaque : le Soleil ne la traverse "
+        + "jamais, elle n'a donc aucun signe associé. Ce que la tradition lui prête "
+        + "passe par ses « étoiles fixes » — Bételgeuse, Rigel, Bellatrix — dont on "
+        + "lit les significations depuis Ptolémée." },
+
+      { t:'stats', v:[
+        { v:'0', u:'signe', l:"L'écliptique, chemin apparent du Soleil, passe à côté d'Orion." },
+        { v:'1923', u:'', l:"Parution de la compilation de Vivian Robson, encore la référence des astrologues sur les étoiles fixes." },
+        { v:'≈ 28', u:'degrés', l:"Décalage accumulé par la précession depuis l'Antiquité : les signes ne coïncident plus avec les constellations dont ils portent le nom." },
+      ]},
+
+      { t:'text', h:'Des lectures contradictoires', p:[
+        "La tradition attribue à Bételgeuse les honneurs militaires et la fortune, "
+        + "à Rigel la gloire et l'habileté mécanique. Mais en compilant les sources, "
+        + "le site Constellations of Words montre lui-même que ces lectures se "
+        + "contredisent d'un auteur à l'autre — Ptolémée, Lilly, Alvidas ne "
+        + "s'accordent ni sur les planètes gouvernantes ni sur les effets.",
+        "C'est précisément cette instabilité qui rend le corpus intéressant à lire "
+        + "comme document historique : on y suit deux mille ans de réinterprétations "
+        + "successives d'un même point lumineux." ]},
+
+      { t:'links', v:[
+        { kind:'deep', title:"The Fixed Stars and Constellations in Astrology",
+          src:'Vivian E. Robson, 1923 — Internet Archive',
+          note:"L'ouvrage de référence, numérisé et librement consultable. En anglais.",
+          url:'https://archive.org/details/in.ernet.dli.2015.128091' },
+        { kind:'read', title:"Bételgeuse dans la tradition des étoiles fixes", src:'Constellations of Words',
+          note:"Les lectures successives, de Ptolémée à Robson, avec leurs sources — et leurs contradictions.",
+          url:'https://www.constellationsofwords.com/betelguese/' },
+        { kind:'read', title:"Rigel dans la tradition des étoiles fixes", src:'Constellations of Words',
+          note:"Avec un détour par la mythologie nordique, où l'étoile marque l'orteil d'Orvandil.",
+          url:'https://www.constellationsofwords.com/rigel/' },
+        { kind:'read', title:"Introduction aux étoiles fixes", src:'Constellations of Words',
+          note:"Le cadre général, et les raisonnements — parfois franchement circulaires — sur lesquels il s'appuie.",
+          url:'https://www.constellationsofwords.com/introduction-to-the-fixed-stars/' },
+      ]},
+    ],
+  },
+};
+
+const SVGS = { scale: svgScale, depth: svgDepth, compass: svgCompass };
+
+/* ============================================================
+   RENDU DES BLOCS
+   ============================================================ */
+const $ = function(s){ return document.querySelector(s); };
+const esc = function(s){
+  return String(s == null ? '' : s).replace(/[<>&"]/g, function(c){
+    return ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c];
+  });
+};
+
+function currentId(){
+  const p = new URLSearchParams(location.search).get('id');
+  return (p && CONS.some(function(c){ return c.id === p; })) ? p : 'ori';
+}
+const cid = currentId();
+const C = CONS.find(function(c){ return c.id === cid; });
+
+$('#cat').textContent = C.c;
+$('#name').textContent = C.n;
+$('#latin').textContent = C.l === 'Astérisme' ? 'Astérisme' : C.l;
+$('#where').textContent = 'En savoir plus · ' + C.n;
+document.title = 'Ekko of Beyond · ' + C.n;
+
+/* Un visuel manquant n'affiche pas une image cassée : il annonce le
+   fichier attendu et renvoie vers la page d'origine. */
+function missing(path, page){
+  return '<div class="missing">Visuel à déposer<br><code>' + esc(path) + '</code>'
+    + (page ? '<br><a href="' + esc(page) + '" target="_blank" rel="noopener">'
+              + 'Télécharger depuis la source &nearr;</a>' : '') + '</div>';
+}
+
+function figureHTML(f, wide){
+  let inner;
+  if(f.svg && SVGS[f.svg]) inner = SVGS[f.svg]();
+  else if(f.src) inner = '<img src="' + esc(f.src) + '" alt="' + esc(f.alt || '')
+    + '" loading="lazy" onerror="this.parentNode.innerHTML=' + "'" + '__MISS__' + "'" + '">';
+  else inner = missing('(source absente)');
+  let h = '<figure' + (wide ? ' class="wide"' : '') + '>'
+    + '<div class="frame' + (f.lit ? ' lit' : '') + '">' + inner + '</div>';
+  if(f.cap || f.credit){
+    h += '<figcaption>' + esc(f.cap || '')
+      + (f.credit ? '<span class="credit">' + esc(f.credit) + '</span>' : '')
+      + '</figcaption>';
+  }
+  return h + '</figure>';
+}
+/* on injecte le repli après coup, pour ne pas se battre avec les guillemets */
+function withFallback(html, path, page){
+  return html.replace('__MISS__', missing(path, page).replace(/'/g, '&#39;').replace(/"/g, '&quot;'));
+}
+
+function videoHTML(b){
+  let inner;
+  if(b.yt){
+    inner = '<iframe src="https://www.youtube-nocookie.com/embed/' + esc(b.yt)
+      + '" title="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"'
+      + ' allowfullscreen loading="lazy"></iframe>';
+  }else if(b.src){
+    /* Lecture à la demande : rien n'est téléchargé avant le clic. */
+    inner = '<video controls preload="none"' + (b.poster ? ' poster="' + esc(b.poster) + '"' : '')
+      + ' onerror="this.parentNode.innerHTML=' + "'" + '__MISS__' + "'" + '">'
+      + '<source src="' + esc(b.src) + '" type="video/mp4"></video>';
+  }else inner = missing('(vidéo absente)');
+  let h = '<div class="b-video"><div class="ratio">' + inner + '</div>';
+  if(b.cap || b.credit){
+    h += '<figcaption>' + esc(b.cap || '')
+      + (b.credit ? '<span class="credit">' + esc(b.credit) + '</span>' : '') + '</figcaption>';
+  }
+  return h + '</div>';
+}
+
+function blockHTML(b){
+  switch(b.t){
+    case 'lead':
+      return '<div class="narrow"><p class="b-lead">' + esc(b.p) + '</p></div>';
+
+    case 'text':
+      return '<div class="narrow"><div class="b-text">'
+        + (b.h ? '<h3>' + esc(b.h) + '</h3>' : '')
+        + b.p.map(function(x){ return '<p>' + esc(x) + '</p>'; }).join('')
+        + '</div></div>';
+
+    case 'stats':
+      return '<div class="b-stats">' + b.v.map(function(f){
+        return '<div><div class="v">' + esc(f.v)
+          + (f.u ? '<span class="u">' + esc(f.u) + '</span>' : '')
+          + '</div><div class="l">' + esc(f.l) + '</div></div>';
+      }).join('') + '</div>';
+
+    case 'figure':
+      return withFallback(
+        (b.wide ? '' : '<div class="narrow">') + figureHTML(b, b.wide) + (b.wide ? '' : '</div>'),
+        b.src || '', b.page);
+
+    case 'split':
+      return '<div class="b-split' + (b.rev ? ' rev' : '') + '">'
+        + '<div class="media">' + withFallback(figureHTML(b.media), b.media.src || '', b.media.page) + '</div>'
+        + '<div class="body">' + (b.h ? '<h3>' + esc(b.h) + '</h3>' : '')
+        + b.p.map(function(x){ return '<p>' + esc(x) + '</p>'; }).join('')
+        + '</div></div>';
+
+    case 'quote':
+      return '<div class="narrow"><blockquote class="b-quote"><p>&laquo;&nbsp;'
+        + esc(b.p) + '&nbsp;&raquo;</p><div class="who">' + esc(b.who) + '</div></blockquote></div>';
+
+    case 'video':
+      return withFallback('<div class="narrow">' + videoHTML(b) + '</div>', b.src || '', b.page);
+
+    case 'warn':
+      return '<div class="narrow"><div class="b-warn">'
+        + (b.h ? '<h3>' + esc(b.h) + '</h3>' : '') + esc(b.p) + '</div></div>';
+
+    case 'links':
+      return '<div class="narrow"><div class="b-links"><h3>Toutes les sources</h3>'
+        + b.v.map(function(i){
+            return '<a class="lk" href="' + esc(i.url) + '" target="_blank" rel="noopener noreferrer">'
+              + '<span class="kind ' + esc(i.kind) + '">'
+              + ({ read:'à lire', look:'image', watch:'vidéo', deep:'source' }[i.kind] || 'lien')
+              + '</span><span class="body"><span class="t">' + esc(i.title) + '</span>'
+              + (i.note ? '<span class="n">' + esc(i.note) + '</span>' : '')
+              + '</span><span class="src">' + esc(i.src) + '</span></a>';
+          }).join('')
+        + '</div></div>';
+  }
+  return '';
+}
+
+/* ---------- onglets : seuls ceux qui ont du contenu ---------- */
+const LABELS = { science:'Science', mytho:'Mythologie', astro:'Astrologie' };
+const ORDER = ['science', 'mytho', 'astro'];
+/* Le contenu vient de content/<id>.json quand il existe — c'est ce que le
+   Studio écrit dans le dépôt — et du contenu inscrit dans cette page
+   sinon. On peut donc éditer sans code sans avoir tout basculé d'un coup. */
+let content = CONTENT[cid] || {};
+let keys = [];
+
+const tabsEl = $('#tabs'), panesEl = $('#panes');
+
+function buildTabs(){
+  keys = ORDER.filter(function(k){ return content[k] && content[k].length; });
+  tabsEl.innerHTML = '';
+  panesEl.innerHTML = '';
+
+if(!keys.length){
+  panesEl.innerHTML = '<div class="soon">Les contenus de cette figure restent à écrire.<br>'
+    + 'Ils seront saisis depuis le back-office une fois Supabase en place.</div>';
+  tabsEl.style.display = 'none';
+}else{
+  /* un seul onglet : pas de sélecteur, il n'y a rien à choisir */
+  if(keys.length === 1) tabsEl.style.display = 'none';
+  keys.forEach(function(k, i){
+    if(keys.length > 1){
+      const b = document.createElement('button');
+      b.className = 'tab' + (i === 0 ? ' on' : '');
+      b.textContent = LABELS[k];
+      b.dataset.key = k;
+      tabsEl.appendChild(b);
+    }
+    const p = document.createElement('div');
+    p.className = 'pane' + (i === 0 ? ' on' : '');
+    p.id = 'pane-' + k;
+    p.innerHTML = '<div class="wrap">' + content[k].map(blockHTML).join('') + '</div>';
+    panesEl.appendChild(p);
+  });
+
+  tabsEl.onclick = function(e){
+    const b = e.target.closest('.tab');
+    if(!b) return;
+    tabsEl.querySelectorAll('.tab').forEach(function(x){ x.classList.toggle('on', x === b); });
+    panesEl.querySelectorAll('.pane').forEach(function(p){
+      p.classList.toggle('on', p.id === 'pane-' + b.dataset.key);
+    });
+    history.replaceState(null, '', location.pathname + '?id=' + cid + '#' + b.dataset.key);
+  };
+
+  const want = location.hash.replace('#', '');
+  const wb = want && tabsEl.querySelector('.tab[data-key="' + want + '"]');
+  if(wb) wb.click();
+}
+}
+
+buildTabs();
+fetch('/content/' + cid + '.json', { cache: 'no-store' })
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(d){
+    if(!d || !Object.keys(d).length) return;
+    content = d;
+    tabsEl.style.display = '';
+    buildTabs();
+  })
+  .catch(function(){});
+
+$('#cms').textContent = 'Cette page est composée de blocs typés — chapeau, chiffres clés, '
+  + 'texte, figure, texte-et-image, citation, vidéo, encadré, sources. C\u2019est la '
+  + 'structure que reprendra le back-office : une table de blocs, un type, un ordre, '
+  + 'et le contenu en JSON. Un onglet sans contenu ne s\u2019affiche pas.';
+
+/* ============================================================
+   LE CIEL RÉEL, UNE SEULE FIGURE, NAVIGATION BLOQUÉE
+
+   Trois réglages font tout le travail :
+
+   1. show_only_pointed = true — c'est le comportement par défaut du
+      moteur, que la carte désactive. Il n'affiche que la figure située au
+      centre de l'écran, plus celle qui est sélectionnée. En centrant sur
+      notre constellation et en la sélectionnant, elle reste donc seule.
+   2. pointer-events: none sur le canvas — les gestes du moteur sont posés
+      sur cet élément, les couper suffit à interdire toute navigation.
+   3. time_speed = 0 — le ciel est figé sur l'instant du chargement, la
+      figure ne dérive donc pas pendant la lecture.
+   ============================================================ */
+const ENGINE_JS   = '/vendor/stellarium-web-engine.js';
+const ENGINE_WASM = '/vendor/stellarium-web-engine-ekko2.wasm';
+const SKYDATA     = 'https://cdn.jsdelivr.net/gh/liudonghua123/stellarium-web-engine@453e155185a6060711e533f9bf8d0334b2ae862f/skydata/';
+const AFACAD_TTF  = '/vendor/Afacad-variable.ttf';
+const D2R = Math.PI / 180;
+
+/* même convention que la carte : le repère OBSERVED du moteur est
+   gaucher, l'angle signé sort donc inversé */
+const ROLL_SIGN = -1;
+let ROLL_ADJUST = {};
+
+let STEL = null;
+
+function skyFilters(stel){
+  const core = stel.core, set = function(f){ try{ f(); }catch(e){} };
+  set(function(){ core.constellations.lines_visible      = true;  });
+  set(function(){ core.constellations.labels_visible     = false; });  /* le titre est dans la page */
+  set(function(){ core.constellations.images_visible     = false; });  /* la sélection l'affichera */
+  set(function(){ core.constellations.bounds_visible     = false; });
+  set(function(){ core.constellations.lines_animation    = false; });
+  set(function(){ core.constellations.show_only_pointed  = true;  });
+  set(function(){ core.stars.visible        = true;  });
+  set(function(){ core.stars.labels_visible = true;  });
+  set(function(){ core.milkyway.visible     = true;  });
+  ['atmosphere','landscapes','dsos','dss','planets','satellites','comets','minor_planets']
+    .forEach(function(m){ set(function(){ core[m].visible = false; }); });
+  ['azimuthal','equatorial','meridian','ecliptic']
+    .forEach(function(l){ set(function(){ core.lines[l].visible = false; }); });
+  set(function(){ core.time_speed = 0; });   /* ciel figé */
+}
+
+function activateSkyculture(stel){
+  const designate = function(){
+    try{ stel.core.skycultures.current_id = 'ekko'; }catch(e){}
+  };
+  designate();
+  let n = 0;
+  const t = setInterval(function(){
+    n++;
+    let ok = false;
+    try{ ok = !!stel.getObj('CON ekko ' + (IAU[cid] || '')); }catch(e){}
+    if(ok || n > 40){ clearInterval(t); if(ok) frameFigure(stel); return; }
+    designate();
+  }, 400);
+}
+
+/* Centrage : on demande sa position au moteur, et le champ se déduit de
+   l'étendue réelle de la figure. */
+function frameFigure(stel){
+  const iau = IAU[cid];
+  try{
+    let ctr = null;
+    if(iau){
+      const o = stel.getObj('CON ekko ' + iau);
+      if(o){
+        const rd = o.getInfo('radec', stel.core.observer);
+        if(rd) ctr = [rd[0], rd[1], rd[2]];
+        stel.core.selection = o;      /* la figure reste seule, et son dessin apparaît */
+      }
+    }
+    if(!ctr){
+      /* barycentre de nos propres étoiles, en secours */
+      let x = 0, y = 0, z = 0;
+      C.s.forEach(function(s){
+        const ra = s[0]*15*D2R, dec = s[1]*D2R;
+        x += Math.cos(dec)*Math.cos(ra); y += Math.cos(dec)*Math.sin(ra); z += Math.sin(dec);
+      });
+      ctr = [x, y, z];
+    }
+    const ob = stel.convertFrame(stel.core.observer, 'ICRF', 'OBSERVED', ctr);
+    stel.lookAt(ob, 0);
+    stel.zoomTo(figureFov() * D2R, 0);
+    applyRoll(stel);
+  }catch(e){ console.warn('[ekko] cadrage :', e); }
+}
+
+function figureFov(){
+  /* rayon angulaire maximal depuis le barycentre, puis marge */
+  let x = 0, y = 0, z = 0;
+  const v = C.s.map(function(s){
+    const ra = s[0]*15*D2R, dec = s[1]*D2R;
+    const u = [Math.cos(dec)*Math.cos(ra), Math.cos(dec)*Math.sin(ra), Math.sin(dec)];
+    x += u[0]; y += u[1]; z += u[2];
+    return u;
+  });
+  const n = Math.hypot(x, y, z) || 1; x /= n; y /= n; z /= n;
+  let max = 0;
+  v.forEach(function(u){
+    const d = Math.max(-1, Math.min(1, u[0]*x + u[1]*y + u[2]*z));
+    max = Math.max(max, Math.acos(d) / D2R);
+  });
+  return Math.max(22, Math.min(95, max * 2.7 + 10));
+}
+
+/* Redressement : le haut de l'illustration pointe vers le haut de l'écran. */
+function applyRoll(stel){
+  const o = ORIENT[cid];
+  if(!o){ try{ stel.core.observer.roll = 0; }catch(e){} return; }
+  const dot = function(a, b){ return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]; };
+  const nrm = function(v){ const n = Math.hypot(v[0],v[1],v[2]) || 1; return [v[0]/n,v[1]/n,v[2]/n]; };
+  const crs = function(a, b){ return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; };
+  try{
+    const obs = stel.core.observer;
+    const c = nrm(stel.convertFrame(obs, 'ICRF', 'OBSERVED', stel.s2c(o[0]*15*D2R, o[1]*D2R)));
+    const u = nrm(stel.convertFrame(obs, 'ICRF', 'OBSERVED', stel.s2c(o[2]*15*D2R, o[3]*D2R)));
+    const Z = [0, 0, 1];
+    if(Math.abs(dot(Z, c)) > 0.999) return;
+    const tang = function(v){ const d = dot(v, c); return nrm([v[0]-d*c[0], v[1]-d*c[1], v[2]-d*c[2]]); };
+    const up = tang(u), u0 = tang(Z);
+    const theta = Math.atan2(dot(crs(u0, up), c), dot(u0, up));
+    const adj = (ROLL_ADJUST[cid] || 0) * D2R;
+    obs.roll = ROLL_SIGN * (theta + adj);
+  }catch(e){ console.warn('[ekko] orientation :', e); }
+}
+
+function bootSky(lat, lon){
+  if(typeof StelWebEngine !== 'function'){
+    $('#live').textContent = 'Ciel indisponible';
+    return;
+  }
+  StelWebEngine({
+    wasmFile: ENGINE_WASM,
+    canvas: document.getElementById('sky'),
+    translateFn: function(d, s){ return s; },
+    onReady: function(stel){
+      STEL = stel;
+      Promise.all([stel.setFont('regular', AFACAD_TTF), stel.setFont('bold', AFACAD_TTF)])
+        .catch(function(){});
+      stel.core.stars.addDataSource({ url: SKYDATA + 'stars' });
+      stel.core.skycultures.addDataSource({ url: '/skyculture/ekko', key: 'ekko' });
+      stel.core.milkyway.addDataSource({ url: SKYDATA + 'surveys/milkyway' });
+      skyFilters(stel);
+      try{
+        stel.core.observer.latitude  = lat * D2R;
+        stel.core.observer.longitude = lon * D2R;
+        stel.core.observer.utc = stel.date2MJD(new Date());
+      }catch(e){}
+      activateSkyculture(stel);
+      $('#live').textContent = 'Ciel réel, figé';
+    }
+  });
+}
+
+/* corrections d'angle validées depuis l'outil de vérification */
+fetch('/skyculture/ekko/roll-adjust.json', { cache: 'no-store' })
+  .then(function(r){ return r.ok ? r.json() : {}; })
+  .then(function(t){ ROLL_ADJUST = t || {}; if(STEL) applyRoll(STEL); })
+  .catch(function(){});
+
+const FB = { lat: 41.39, lon: 2.17 };
+if(navigator.geolocation){
+  navigator.geolocation.getCurrentPosition(
+    function(p){ bootSky(p.coords.latitude, p.coords.longitude); },
+    function(){ bootSky(FB.lat, FB.lon); }, { timeout: 6000 });
+}else bootSky(FB.lat, FB.lon);
+</script>
+</body>
+</html>
