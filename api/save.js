@@ -92,6 +92,31 @@ const NAME_RE = /^[a-z0-9][a-z0-9._-]{0,58}$/;
 const PAYLOAD_MAX = 4300000;                          /* marge sous 4,5 Mo */
 const MEDIA_MAX = Math.floor(PAYLOAD_MAX / 4 * 3);    /* ≈ 3,0 Mo de fichier */
 
+/* Ajoute une figure a content/index.json si elle n'y est pas deja.
+   Le fichier est un simple tableau d'identifiants, lu par la carte. */
+const INDEX_PATH = CONTENT_DIR + 'index.json';
+
+async function addToIndex(id, branch) {
+  const existing = await readFile(INDEX_PATH, branch);
+  let list = [];
+  if (existing) {
+    try {
+      /* readFile renvoie deja un Buffer decode, pas du base64. */
+      const parsed = JSON.parse(existing.content.toString('utf8'));
+      if (Array.isArray(parsed)) list = parsed.filter((x) => ID_RE.test(String(x)));
+    } catch (e) {
+      /* fichier illisible : on le reconstruit plutot que d'abandonner */
+    }
+  }
+  if (list.indexOf(id) >= 0) return 'deja present';
+  list.push(id);
+  list.sort();
+  const out = Buffer.from(JSON.stringify(list) + '\n', 'utf8');
+  await writeFile(INDEX_PATH, out, `Index des fiches : ajout de ${id}`, branch,
+                  existing ? existing.sha : undefined);
+  return 'ajoute';
+}
+
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
 
@@ -204,8 +229,21 @@ export default async function handler(req, res) {
         const path = CONTENT_DIR + id + '/' + tab + '.json';
         const existing = await readFile(path, branch);
         await writeFile(path, out, `Fiche ${id} — ${tab}`, branch, existing ? existing.sha : undefined);
+
+        /* Tenue a jour de content/index.json : la carte s'en sert pour savoir
+           quels boutons « En savoir plus » activer. Sans cela, il faudrait
+           penser a modifier le code a chaque nouvelle fiche — donc l'oublier
+           un jour. */
+        let indexed = null;
+        try {
+          indexed = await addToIndex(id, branch);
+        } catch (e) {
+          /* l'echec de l'index ne doit pas faire echouer l'enregistrement */
+          indexed = 'erreur : ' + e.message;
+        }
+
         return json(res, 200, {
-          ok: true, id, tab, bytes: out.length, path,
+          ok: true, id, tab, bytes: out.length, path, indexed,
           message: `Onglet ${tab} enregistré (${Math.round(out.length / 1024)} Ko). ` +
                    'Vercel redéploie, comptez une minute.',
         });
