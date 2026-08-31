@@ -76,6 +76,13 @@ label.f > span{display:block;font-size:10px;font-weight:700;letter-spacing:.16em
 .upmsg{display:block;margin-top:6px;font-size:12px;line-height:1.5;opacity:.7}
 .upmsg.err{color:#E39A8A;opacity:1}
 .upmsg.ok{color:#9BD9B0;opacity:1}
+.upmsg code{display:inline-block;margin-top:5px;padding:4px 8px;border-radius:6px;
+  background:rgba(227,227,196,.08);font-family:ui-monospace,monospace;font-size:11.5px;
+  color:var(--cream);word-break:break-all}
+.upmsg .cp{margin-left:6px;padding:4px 10px;border:1px solid var(--c50);border-radius:6px;
+  background:rgba(227,227,196,.06);cursor:pointer;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em}
+.upmsg .cp:hover{background:rgba(227,227,196,.18)}
 .row-l{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
 .row-l input{flex:1}
 .row-l button{flex:none;width:32px;height:37px;border:1px solid var(--c20);border-radius:8px;
@@ -143,12 +150,17 @@ const SCHEMA = {
                                         ['media.cap','Image : légende','area'], ['media.credit','Image : crédit','text'],
                                         ['rev','Image à droite','bool'] ] },
   quote:  { label:'Citation',  fields:[ ['p','Citation','area'], ['who','Attribution','text'] ] },
-  video:  { label:'Vidéo',     fields:[ ['src','Fichier MP4','media'], ['yt','Identifiant YouTube','text'],
-                                        ['poster','Vignette','media'], ['cap','Légende','area'],
+  video:  { label:'Vidéo',     fields:[ ['url','Lien de la vidéo','video'],
+                                        ['src','ou fichier déposé ici — 3 Mo maximum','media'],
+                                        ['poster','Vignette du fichier','media'], ['cap','Légende','area'],
                                         ['credit','Crédit','text'], ['page','Lien vers la source','text'] ] },
   warn:   { label:'Encadré',   fields:[ ['h','Titre','text'], ['p','Texte','area'] ] },
   links:  { label:'Sources',   fields:[ ['v','Liens','links'] ] },
 };
+
+/* Même plafond que api/save.js : 4,3 Mo de charge encodée, soit environ
+   3 Mo de fichier brut une fois le tiers du base64 retiré. */
+const MEDIA_MAX = Math.floor(4300000 / 4 * 3);
 
 let CID = 'ori', TAB = 'science';
 let DATA = {};          /* { science:[blocs], mytho:[...], astro:[...] } */
@@ -157,6 +169,22 @@ let dirty = false;
 function setMsg(t, k){ const m = $('#msg'); m.innerHTML = t || ''; m.className = 'msg' + (k ? ' ' + k : ''); }
 function esc(s){ return String(s == null ? '' : s).replace(/[<>&"]/g, function(c){
   return ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c]; }); }
+
+/* Reconnaissance de la plateforme, à seule fin d'informer : le rendu réel
+   est fait par la fiche. On veut juste dire tout de suite « c'est bien un
+   lien YouTube » plutôt que de laisser découvrir le problème en ligne. */
+function videoKind(url){
+  const u = String(url || '').trim();
+  if(!u) return null;
+  if(/^\//.test(u) || /\.(mp4|webm|ogv|mov)(\?|#|$)/i.test(u)) return 'Fichier vidéo';
+  let h;
+  try{ h = new URL(u).hostname.replace(/^www\./, ''); }catch(e){ return false; }
+  if(/(^|\.)youtube\.com$|^youtu\.be$|^youtube-nocookie\.com$/.test(h)) return 'YouTube';
+  if(/(^|\.)vimeo\.com$/.test(h)) return 'Vimeo';
+  if(/(^|\.)dailymotion\.com$|^dai\.ly$/.test(h)) return 'Dailymotion';
+  if(/\/(embed|player)\b/.test(new URL(u).pathname)) return h;
+  return false;
+}
 
 /* Le serveur n'accepte que des noms sobres : on nettoie ici plutôt que de
    renvoyer une erreur pour un simple accent ou une majuscule. */
@@ -276,6 +304,13 @@ function fieldHTML(b, f, i){
         }).join('\n'))
       + '</textarea></label>';
   }
+  if(kind === 'video'){
+    return '<label class="f"><span>' + esc(label)
+      + ' — YouTube, Vimeo, Dailymotion, ou adresse directe d\'un .mp4</span>'
+      + '<input type="text" data-p="' + path + '" data-video="1" value="' + esc(v || '') + '"'
+        + ' placeholder="https://www.youtube.com/watch?v=…"></label>'
+      + '<span class="upmsg vidmsg"></span>';
+  }
   if(kind === 'media'){
     /* Le chemin reste modifiable a la main, mais le bouton depose le
        fichier dans le depot et remplit le champ tout seul. */
@@ -333,6 +368,25 @@ function renderBlocks(){
         dirty = true; renderTabs(); renderBlocks();
       };
     });
+    /* retour immédiat sur le lien vidéo saisi */
+    el.querySelectorAll('[data-video]').forEach(function(inp){
+      const msg = inp.closest('label').nextElementSibling;
+      const check = function(){
+        const k = videoKind(inp.value);
+        if(!msg) return;
+        if(k === null){ msg.className = 'upmsg vidmsg'; msg.textContent = ''; }
+        else if(k === false){
+          msg.className = 'upmsg vidmsg err';
+          msg.textContent = 'Plateforme non reconnue : la fiche affichera un simple lien.';
+        }else{
+          msg.className = 'upmsg vidmsg ok';
+          msg.textContent = k + ' reconnu.';
+        }
+      };
+      inp.addEventListener('input', check);
+      check();
+    });
+
     /* dépôt d'un fichier : il part dans le dépôt et remplit le champ */
     el.querySelectorAll('.pick').forEach(function(btn){
       const file = el.querySelector('.hidden-file[data-for="' + btn.dataset.for + '"]');
@@ -344,6 +398,34 @@ function renderBlocks(){
         if(!f) return;
         file.value = '';
         const name = normalizeName(f.name);
+
+        /* Contrôle avant l'envoi. Vercel plafonne le corps d'une requête de
+           fonction à 4,5 Mo, et le base64 ajoute un tiers : au-delà
+           d'environ 3 Mo de fichier, inutile de tenter — autant l'annoncer
+           tout de suite avec la marche à suivre. */
+        if(f.size > MEDIA_MAX){
+          const path = '/assets/img/constellations/' + CID + '/' + name;
+          msg.className = 'upmsg err';
+          msg.innerHTML = 'Fichier de ' + (f.size/1048576).toFixed(1) + ' Mo : trop lourd pour '
+            + 'cet envoi (' + (MEDIA_MAX/1048576).toFixed(1) + ' Mo maximum). Vercel plafonne le '
+            + 'corps d\'une requête de fonction à 4,5 Mo et le codage base64 ajoute un tiers ; '
+            + 'cette limite vient de la plateforme.'
+            + '<br><br><b>Pour une vidéo</b>, le plus simple est le champ « Identifiant YouTube » '
+            + 'juste en dessous : pas de poids dans le dépôt, et la lecture s\'adapte au réseau.'
+            + '<br><br><b>Pour héberger le fichier malgré tout</b>, déposez-le directement sur '
+            + 'GitHub — glisser-déposer dans <code>assets/img/constellations/' + CID + '/</code>, '
+            + 'jusqu\'à 25 Mo — puis collez ce chemin dans le champ :'
+            + '<br><code class="copyme">' + esc(path) + '</code> '
+            + '<button type="button" class="cp">Copier</button>';
+          const cp = msg.querySelector('.cp');
+          if(cp) cp.onclick = function(ev){
+            ev.stopPropagation();
+            navigator.clipboard.writeText(path).then(
+              function(){ cp.textContent = 'Copié'; },
+              function(){ cp.textContent = 'Copie refusée'; });
+          };
+          return;
+        }
         msg.className = 'upmsg';
         msg.textContent = 'Envoi de ' + name + ' (' + Math.round(f.size/1024) + ' Ko)…';
         btn.disabled = true;
@@ -367,8 +449,10 @@ function renderBlocks(){
             msg.textContent = d.message || 'Enregistré.';
           }else{
             msg.className = 'upmsg err';
-            msg.textContent = (d.error || ('Erreur ' + res.status))
-              + (d.missing ? ' Variables manquantes : ' + d.missing.join(', ') + '.' : '');
+            msg.innerHTML = esc(d.error || ('Erreur ' + res.status))
+              + (d.detail ? '<br>' + esc(d.detail) : '')
+              + (d.alternatives ? '<br><br>' + d.alternatives.map(esc).join('<br><br>') : '')
+              + (d.missing ? '<br>Variables manquantes : ' + esc(d.missing.join(', ')) + '.' : '');
           }
         }catch(x){
           msg.className = 'upmsg err';
