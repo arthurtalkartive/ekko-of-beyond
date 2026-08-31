@@ -70,6 +70,14 @@ async function writeFile(path, buffer, message, branch, sha) {
 const ANGLES_PATH = 'skyculture/ekko/roll-adjust.json';
 const ID_RE = /^[a-z]{3}$/;
 const CONTENT_DIR = 'content/';
+const MEDIA_DIR = 'assets/img/constellations/';
+/* Extensions admises et leur type MIME attendu. On refuse tout le reste :
+   ce dossier n'a pas à recevoir de fichiers arbitraires. */
+const MEDIA_KINDS = {
+  jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp',
+  svg: 'image/svg+xml', mp4: 'video/mp4', webm: 'video/webm',
+};
+const NAME_RE = /^[a-z0-9][a-z0-9._-]{0,58}$/;
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
@@ -182,6 +190,40 @@ export default async function handler(req, res) {
       });
     }
 
+    /* ---------- fichier joint a une fiche ---------- */
+    if (type === 'media') {
+      const name = String(body.name || '').toLowerCase().trim();
+      const ext = name.split('.').pop();
+      if (!NAME_RE.test(name) || !MEDIA_KINDS[ext]) {
+        return json(res, 400, {
+          error: 'Nom de fichier invalide. Lettres minuscules, chiffres, point, tiret ' +
+                 'et souligne uniquement, avec une extension parmi : ' +
+                 Object.keys(MEDIA_KINDS).join(', ') + '.',
+        });
+      }
+      const data = String(body.dataUrl || '');
+      const m = data.match(/^data:([^;]+);base64,(.+)$/);
+      if (!m) return json(res, 400, { error: 'Fichier attendu en data URL base64.' });
+      const buf = Buffer.from(m[2], 'base64');
+      if (buf.length > 3_500_000) {
+        return json(res, 413, {
+          error: `Fichier trop lourd (${Math.round(buf.length / 1024)} Ko, 3,5 Mo maximum). ` +
+                 'Compressez-le avant de le deposer.',
+        });
+      }
+      const path = MEDIA_DIR + id + '/' + name;
+      const existing = await readFile(path, branch);
+      await writeFile(path, buf, `Media ${id}/${name}`, branch, existing ? existing.sha : undefined);
+      return json(res, 200, {
+        ok: true, id, name, bytes: buf.length,
+        /* le chemin public, a recopier tel quel dans le bloc */
+        src: '/' + path,
+        message: `${name} enregistre (${Math.round(buf.length / 1024)} Ko)` +
+                 (existing ? ', en remplacement du precedent' : '') +
+                 '. Vercel redeploie, comptez une minute.',
+      });
+    }
+
     /* ---------- illustration ---------- */
     if (type === 'illustration') {
       const data = String(body.dataUrl || '');
@@ -205,7 +247,7 @@ export default async function handler(req, res) {
       });
     }
 
-    return res.status(400).json({ error: 'Type inconnu : « angle », « illustration » ou « content » attendu.' });
+    return res.status(400).json({ error: 'Type inconnu : « angle », « illustration », « content » ou « media » attendu.' });
   } catch (e) {
     return res.status(500).json({ error: String(e.message || e) });
   }
