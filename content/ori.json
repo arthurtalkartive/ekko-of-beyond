@@ -41,21 +41,23 @@
    "t": "figure",
    "svg": "scale",
    "wide": true,
-   "cap": "L'échelle réelle, à taille comparable. Le disque du Soleil, à droite, tient dans un pixel.",
+   "cap": "L'échelle réelle, à taille comparable. Le disque du Soleil, à droite, tient dans un pixel. Survolez chaque astre.",
    "credit": "Schéma Ekko of Beyond, rayons médians des estimations publiées."
   },
   {
-   "t": "split",
+   "t": "text",
    "h": "Le Baudrier n'est pas une ligne",
    "p": [
     "Les trois étoiles du Baudrier semblent parfaitement alignées. Elles ne le sont pas du tout : Alnilam, celle du milieu, se trouve environ 800 années-lumière plus loin que ses deux voisines.",
     "L'alignement que nous voyons n'existe que depuis la Terre. Déplacez l'observateur de quelques centaines d'années-lumière et la figure du chasseur se défait entièrement."
-   ],
-   "media": {
-    "svg": "depth",
-    "cap": "Les trois étoiles du Baudrier, replacées à leur distance réelle.",
-    "credit": "Schéma Ekko of Beyond."
-   }
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "depth",
+   "wide": true,
+   "cap": "Les trois étoiles du Baudrier, replacées à leur distance réelle. Survolez chaque étoile.",
+   "credit": "Schéma Ekko of Beyond."
   },
   {
    "t": "text",
@@ -78,18 +80,19 @@
    "credit": "ESO / M. Montargès et al."
   },
   {
-   "t": "split",
-   "rev": true,
+   "t": "text",
    "h": "La boussole du ciel d'hiver",
    "p": [
     "Orion sert de point de départ à toute la voûte hivernale. Prolongez la ligne du Baudrier vers le bas à gauche : vous tombez sur Sirius, l'étoile la plus brillante du ciel. Vers le haut à droite : Aldébaran, l'œil du Taureau.",
     "C'est la raison pour laquelle on apprend toujours Orion en premier."
-   ],
-   "media": {
-    "svg": "compass",
-    "cap": "Les alignements qui font d'Orion un point de repère.",
-    "credit": "Schéma Ekko of Beyond."
-   }
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "cap": "Les alignements qui font d'Orion un point de repère. Survolez les étoiles pour les identifier.",
+   "credit": "Schéma Ekko of Beyond."
   },
   {
    "t": "figure",
