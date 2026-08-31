@@ -284,12 +284,29 @@ const IAU = {"uma":"UMa","umi":"UMi","cas":"Cas","cep":"Cep","dra":"Dra","ari":"
 
 /* ---------- visuels fabriqués, sans dépendance externe ---------- */
 
-/* Zone sensible : un cercle transparent plus large que le point, avec son
-   texte d'infobulle. Le halo n'apparaît qu'au survol. */
+/* ============================================================
+   SCHÉMAS PARAMÉTRÉS
+
+   Les trois schémas d'Orion etaient dessines en dur pour Orion : aucune
+   autre figure ne pouvait en avoir. Ils sont desormais pilotes par les
+   donnees du bloc, ce qui les rend disponibles pour les 53 figures sans
+   ecrire une ligne de code de plus.
+
+   Un bloc figure s'ecrit :
+     { "t":"figure", "svg":"scale", "wide":true, "data":{...}, "cap":"…" }
+
+   Cinq types :
+     scale     comparaison de rayons stellaires, en rayons solaires
+     depth     distances reelles derriere un alignement apparent
+     compass   la figure elle-meme, avec des visees vers ses voisines
+     timeline  une chronologie
+     bars      une comparaison chiffree quelconque
+
+   Chaque point porte une zone sensible et son infobulle.
+   ============================================================ */
+
+/* Zone sensible : un cercle transparent plus large que le point. */
 function hot(cx, cy, r, title, body, note){
-  /* Trois attributs distincts plutôt qu'une chaîne à séparateur : un
-     caractère de contrôle serait invalide en XML, et le SVG cesserait
-     d'être analysable par autre chose qu'un navigateur indulgent. */
   const at = function(v){
     return String(v == null ? '' : v)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -297,175 +314,327 @@ function hot(cx, cy, r, title, body, note){
   };
   return '<g class="hot" tabindex="0" data-t="' + at(title) + '"'
     + ' data-b="' + at(body) + '" data-n="' + at(note || '') + '">'
-    /* Halo et zone de clic bornés : un rayon proportionnel donnerait un
-       cercle démesuré sur un disque comme celui de Bételgeuse, et
-       recouvrirait les zones voisines. */
     + '<circle class="halo" cx="' + cx + '" cy="' + cy + '" r="' + (r + 9).toFixed(1)
       + '" fill="none" stroke="#E3E3C4" stroke-width="1.4"/>'
     + '<circle cx="' + cx + '" cy="' + cy + '" r="' + Math.max(18, r).toFixed(1)
       + '" fill="transparent"/></g>';
 }
 
-/* Comparaison d'échelle : le Soleil face aux deux géantes d'Orion.
-   Rayons en unités solaires, valeurs médianes des estimations. */
-function svgScale(){
-  const W = 1000, H = 470;
-  const max = 850, pad = 40;
-  const scale = (H - pad*2) / (max*2);
-  let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
-  o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
-  const lbl = function(x, y, t, s2, anchor){
-    return '<text x="' + x + '" y="' + y + '" text-anchor="' + (anchor||'middle')
-      + '" font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
-      + ' fill="rgba(227,227,196,.9)" letter-spacing="1.6">' + t + '</text>'
-      + '<text x="' + x + '" y="' + (y+19) + '" text-anchor="' + (anchor||'middle')
-      + '" font-family="Afacad,sans-serif" font-size="13" fill="rgba(227,227,196,.5)">'
-      + s2 + '</text>';
-  };
-  const bx = 270, by = H/2 + 34, br = 850*scale;
-  o += '<circle cx="' + bx + '" cy="' + by + '" r="' + br.toFixed(1)
-     + '" fill="rgba(227,168,124,.16)" stroke="#E3A87C" stroke-width="1.5"/>';
-  const rx = 700, ry = H/2 + 34, rr = Math.max(2.5, 74*scale);
-  o += '<circle cx="' + rx + '" cy="' + ry + '" r="' + rr.toFixed(1)
-     + '" fill="rgba(191,212,242,.25)" stroke="#BFD4F2" stroke-width="1.5"/>';
-  const sx = 862, sy = H/2 + 34, sr = Math.max(1.6, 1*scale);
-  o += '<circle cx="' + sx + '" cy="' + sy + '" r="' + sr.toFixed(2) + '" fill="#E3E3C4"/>';
-  o += lbl(bx, 30, 'BÉTELGEUSE', '≈ 850 rayons solaires');
-  o += lbl(rx, ry - rr - 44, 'RIGEL', '≈ 74 rayons solaires');
-  o += lbl(sx, sy + 40, 'SOLEIL', '1 rayon solaire');
-  o += hot(bx, by, br, 'Bételgeuse',
-      "Supergéante rouge en fin de vie, environ 850 fois le rayon du Soleil. "
-    + "Placée au centre du système solaire, elle engloberait l'orbite de Mars. "
-    + "Sa surface n'atteint que 3 300 °C, d'où sa couleur orangée.",
-      'Alpha Orionis · magnitude 0,5 · ≈ 700 a.l.');
-  o += hot(rx, ry, Math.max(16, rr), 'Rigel',
-      "Supergéante bleue de 12 000 °C, sept fois plus chaude en surface que "
-    + "Bételgeuse. Bien plus petite, mais l'étoile la plus lumineuse de la "
-    + "constellation vue depuis la Terre.",
-      'Beta Orionis · magnitude 0,1 · ≈ 860 a.l.');
-  o += hot(sx, sy, 16, 'Le Soleil',
-      "À cette échelle, son disque tient dans un pixel. C'est une naine jaune "
-    + "très ordinaire — et c'est précisément ce qui rend la comparaison utile.",
-      'Rayon de référence : 1');
-  return o + '</svg>';
+const SV_CREAM = 'rgba(227,227,196,';
+function svTitle(t){
+  return '<text x="44" y="46" font-family="Afacad,sans-serif" font-size="13"'
+    + ' letter-spacing="2.6" fill="' + SV_CREAM + '.45)">' + esc(String(t || '').toUpperCase())
+    + '</text>';
+}
+function svLabel(x, y, main, sub, anchor){
+  let o = '<text x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="' + (anchor || 'middle')
+    + '" font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
+    + ' fill="' + SV_CREAM + '.9)" letter-spacing="1.4">' + esc(main) + '</text>';
+  if(sub) o += '<text x="' + x.toFixed(1) + '" y="' + (y + 19).toFixed(1) + '" text-anchor="'
+    + (anchor || 'middle') + '" font-family="Afacad,sans-serif" font-size="13"'
+    + ' fill="' + SV_CREAM + '.5)">' + esc(sub) + '</text>';
+  return o;
+}
+function svOpen(W, H){
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
+}
+function nfr(x){
+  /* espace insecable fine comme separateur de milliers */
+  return String(x).replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f');
 }
 
-/* Le Baudrier : trois étoiles alignées à l'œil, très éloignées les unes
-   des autres en profondeur. Distances en années-lumière. */
-function svgDepth(){
-  const W = 1000, H = 420;
-  const stars = [
-    { n:'Mintaka', d:1200, y:130, t:'Delta Orionis', m:'2,2',
-      x2:"Système multiple dominé par deux géantes bleues. C'est l'étoile la plus proche des trois, et la plus occidentale du Baudrier." },
-    { n:'Alnilam', d:2000, y:215, t:'Epsilon Orionis', m:'1,7',
-      x2:"La plus lointaine, et pourtant la plus brillante des trois : une supergéante bleue parmi les étoiles les plus lumineuses connues." },
-    { n:'Alnitak', d:1260, y:300, t:'Zeta Orionis', m:'1,8',
-      x2:"Système triple. Son rayonnement ultraviolet illumine la nébuleuse de la Flamme, juste à côté." },
-  ];
-  const maxD = 2200, x0 = 130, x1 = 900;
-  let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
-  o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
-  o += '<text x="' + x0 + '" y="38" font-family="Afacad,sans-serif" font-size="13"'
-     + ' letter-spacing="2.6" fill="rgba(227,227,196,.45)">DISTANCE DEPUIS LA TERRE</text>';
-  for(let d = 0; d <= 2000; d += 500){
-    const x = x0 + (d/maxD)*(x1-x0);
-    o += '<line x1="' + x.toFixed(1) + '" y1="64" x2="' + x.toFixed(1) + '" y2="' + (H-54)
-       + '" stroke="rgba(227,227,196,.09)"/>';
-    o += '<text x="' + x.toFixed(1) + '" y="' + (H-30) + '" text-anchor="middle"'
-       + ' font-family="Afacad,sans-serif" font-size="13" fill="rgba(227,227,196,.4)">'
-       + (d ? d + ' a.l.' : 'Terre') + '</text>';
+/* ---------- scale : rayons stellaires comparés ---------- */
+function svScale(d){
+  const items = (d.items || []).slice().sort(function(a, b){ return b.r - a.r; });
+  if(!items.length) return '';
+  const W = 1000, H = 480, gap = 34;
+  const rmax = items[0].r;
+  const sum = items.reduce(function(a, x){ return a + x.r; }, 0);
+  /* 96 px reserves en haut pour le titre et l'etiquette du plus gros disque,
+     56 en bas : sans cela l'etiquette se posait sur le cercle. */
+  const k = Math.min((H - 96 - 56) / (2 * rmax),
+                     (W - 120 - gap * (items.length - 1)) / (2 * sum));
+  /* le groupe est centre horizontalement, il ne colle plus a gauche */
+  const total = 2 * sum * k + gap * (items.length - 1);
+  let o = svOpen(W, H) + svTitle(d.title || 'Rayons comparés, à la même échelle');
+  let x = Math.max(40, (W - total) / 2), hots = '';
+  items.forEach(function(it){
+    const rr = Math.max(2, it.r * k);
+    const cx = x + rr, cy = 96 + rmax * k;
+    const col = it.c || '#E3E3C4';
+    o += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy + '" r="' + rr.toFixed(1)
+       + '" fill="' + col + '" fill-opacity="' + (rr > 12 ? '.16' : '1')
+       + '" stroke="' + col + '" stroke-width="1.5"/>';
+    /* l'etiquette va au-dessus du disque, ou en dessous s'il est minuscule */
+    const above = rr > 26;
+    o += svLabel(cx, above ? cy - rr - 32 : cy + rr + 34,
+                 it.n, it.sub || (nfr(it.r) + ' R\u2609'));
+    hots += hot(cx, cy, Math.max(16, rr), it.n, it.note || '',
+                nfr(it.r) + ' rayon' + (it.r > 1 ? 's' : '') + ' solaire' + (it.r > 1 ? 's' : ''));
+    x = cx + rr + gap;
+  });
+  return o + hots + '</svg>';
+}
+
+/* ---------- depth : distances réelles ---------- */
+function svDepth(d){
+  const st = (d.stars || []).slice().sort(function(a, b){ return a.d - b.d; });
+  if(!st.length) return '';
+  const W = 1000, rows = st.length;
+  const H = 150 + rows * 74;
+  const maxD = d.max || (Math.ceil(Math.max.apply(null, st.map(function(s){ return s.d; })) * 1.12 / 100) * 100);
+  const x0 = 140, x1 = 880;
+  let o = svOpen(W, H) + svTitle(d.title || 'Distance depuis la Terre');
+  const step = maxD <= 60 ? 10 : maxD <= 300 ? 50 : maxD <= 1200 ? 200 : 500;
+  for(let v = 0; v <= maxD; v += step){
+    const x = x0 + (v / maxD) * (x1 - x0);
+    o += '<line x1="' + x.toFixed(1) + '" y1="66" x2="' + x.toFixed(1) + '" y2="' + (H - 54)
+       + '" stroke="' + SV_CREAM + '.09)"/>';
+    o += '<text x="' + x.toFixed(1) + '" y="' + (H - 28) + '" text-anchor="middle"'
+       + ' font-family="Afacad,sans-serif" font-size="13" fill="' + SV_CREAM + '.4)">'
+       + (v ? nfr(v) + ' a.l.' : (d.origin || 'Terre')) + '</text>';
   }
-  o += '<circle cx="' + x0 + '" cy="' + (H/2) + '" r="6" fill="#8FD0C9"/>';
-  let hots = '';
-  stars.forEach(function(st){
-    const x = x0 + (st.d/maxD)*(x1-x0);
-    o += '<line x1="' + x0 + '" y1="' + (H/2) + '" x2="' + x.toFixed(1) + '" y2="' + st.y
-       + '" stroke="rgba(227,227,196,.22)" stroke-dasharray="3 5"/>';
-    o += '<circle cx="' + x.toFixed(1) + '" cy="' + st.y + '" r="8" fill="#E3E3C4"/>';
-    o += '<text x="' + (x-16).toFixed(1) + '" y="' + (st.y+6) + '" text-anchor="end"'
-       + ' font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
-       + ' fill="rgba(227,227,196,.9)">' + st.n + '</text>';
-    o += '<text x="' + (x+18).toFixed(1) + '" y="' + (st.y+6) + '"'
-       + ' font-family="Afacad,sans-serif" font-size="13.5"'
-       + ' fill="rgba(227,227,196,.5)">' + st.d + ' a.l.</text>';
-    hots += hot(x, st.y, 8, st.n, st.x2, st.t + ' · magnitude ' + st.m + ' · ' + st.d + ' a.l.');
-  });
-  hots += hot(x0, H/2, 6, 'La Terre',
-    "Le point de vue. C'est lui, et lui seul, qui fait apparaître les trois "
-    + "étoiles alignées : déplacez l'observateur de quelques centaines "
-    + "d'années-lumière et la figure du chasseur se défait.",
+  const oy = H / 2;
+  o += '<circle cx="' + x0 + '" cy="' + oy + '" r="6" fill="#8FD0C9"/>';
+  let hots = hot(x0, oy, 6, d.origin || 'La Terre',
+    d.originNote || "Le point de vue. C'est lui qui fait apparaitre les etoiles alignees.",
     'Origine du schéma');
+  st.forEach(function(s, i){
+    const x = x0 + (s.d / maxD) * (x1 - x0);
+    const y = 110 + i * 74;
+    o += '<line x1="' + x0 + '" y1="' + oy + '" x2="' + x.toFixed(1) + '" y2="' + y
+       + '" stroke="' + SV_CREAM + '.22)" stroke-dasharray="3 5"/>';
+    o += '<circle cx="' + x.toFixed(1) + '" cy="' + y + '" r="8" fill="#E3E3C4"/>';
+    o += '<text x="' + (x - 16).toFixed(1) + '" y="' + (y + 6) + '" text-anchor="end"'
+       + ' font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
+       + ' fill="' + SV_CREAM + '.9)">' + esc(s.n) + '</text>';
+    o += '<text x="' + (x + 18).toFixed(1) + '" y="' + (y + 6) + '"'
+       + ' font-family="Afacad,sans-serif" font-size="13.5" fill="' + SV_CREAM + '.5)">'
+       + nfr(s.d) + ' a.l.</text>';
+    hots += hot(x, y, 8, s.n, s.note || '', s.sub || (nfr(s.d) + ' années-lumière'));
+  });
   return o + hots + '</svg>';
 }
 
-/* Orion comme boussole : les alignements qui mènent aux voisines. */
-function svgCompass(){
+/* ---------- compass : la figure et ses visées ----------
+   Les positions viennent des coordonnees reelles embarquees dans CONS :
+   le trace de la figure courante, et les etoiles cibles cherchees par leur
+   nom dans les autres figures. Rien n'est dessine a la main. */
+function findStar(name){
+  const want = String(name).toLowerCase();
+  for(let i = 0; i < CONS.length; i++){
+    const st = CONS[i].s;
+    for(let j = 0; j < st.length; j++){
+      if(String(st[j][3] || '').toLowerCase() === want) return { ra: st[j][0], dec: st[j][1], cid: CONS[i].id };
+    }
+  }
+  return null;
+}
+function svCompass(d){
+  const D2R = Math.PI / 180;
+  const targets = (d.targets || []).map(function(t){
+    const p = findStar(t.star);
+    return p ? { ra: p.ra, dec: p.dec, t: t } : null;
+  }).filter(Boolean);
+
+  const own = C.s.map(function(s){ return { ra: s[0], dec: s[1], mag: s[2], n: s[3] }; });
+  /* Le cadrage se fait sur la FIGURE seule. Inclure des cibles lointaines
+     comme Polaris reduisait la constellation a un amas illisible ; les
+     cibles sont donc reportees au bord du cadre, dans leur direction
+     reelle. La direction reste juste, l'echelle ne l'est plus — c'est le
+     compromis d'une carte de reperage. */
+  const all = own;
+
+  /* projection stereographique centree sur la figure */
+  let cx = 0, cy = 0, cz = 0;
+  const uv = all.map(function(p){
+    const ra = p.ra * 15 * D2R, dec = p.dec * D2R;
+    const u = [Math.cos(dec) * Math.cos(ra), Math.cos(dec) * Math.sin(ra), Math.sin(dec)];
+    cx += u[0]; cy += u[1]; cz += u[2];
+    return u;
+  });
+  const n = Math.hypot(cx, cy, cz) || 1; cx /= n; cy /= n; cz /= n;
+  const ra0 = Math.atan2(cy, cx), dec0 = Math.asin(Math.max(-1, Math.min(1, cz)));
+  const proj = function(raH, decD){
+    const ra = raH * 15 * D2R, dec = decD * D2R, dr = ra - ra0;
+    const den = 1 + Math.sin(dec0) * Math.sin(dec) + Math.cos(dec0) * Math.cos(dec) * Math.cos(dr);
+    const kk = 2 / (Math.abs(den) < 1e-9 ? 1e-9 : den);
+    return [kk * Math.cos(dec) * Math.sin(dr),
+            kk * (Math.cos(dec0) * Math.sin(dec) - Math.sin(dec0) * Math.cos(dec) * Math.cos(dr))];
+  };
+  const pts = all.map(function(p){ return proj(p.ra, p.dec); });
+  const xs = pts.map(function(p){ return p[0]; }), ys = pts.map(function(p){ return p[1]; });
+  const spanX = Math.max.apply(null, xs) - Math.min.apply(null, xs);
+  const spanY = Math.max.apply(null, ys) - Math.min.apply(null, ys);
   const W = 1000, H = 560;
-  const P = {
-    bet:[430,160], bel:[570,178], alnitak:[452,278], alnilam:[494,271], mintaka:[536,264],
-    rig:[548,424], sai:[418,412],
-    sir:[300,506], ald:[742,138], pro:[200,318],
-  };
-  const dot = function(p, r, c){
-    return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + r + '" fill="' + (c||'#E3E3C4') + '"/>';
-  };
-  const txt = function(p, t, dx, dy, op){
-    return '<text x="' + (p[0]+dx) + '" y="' + (p[1]+dy) + '" font-family="Afacad,sans-serif"'
-      + ' font-size="15" fill="rgba(227,227,196,' + (op||0.85) + ')">' + t + '</text>';
-  };
-  let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
-  o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
-  [['bet','bel'],['bel','mintaka'],['mintaka','alnilam'],['alnilam','alnitak'],
-   ['alnitak','sai'],['sai','rig'],['rig','mintaka'],['bet','alnitak']].forEach(function(sg){
-    o += '<line x1="' + P[sg[0]][0] + '" y1="' + P[sg[0]][1] + '" x2="' + P[sg[1]][0]
-       + '" y2="' + P[sg[1]][1] + '" stroke="#E3E3C4" stroke-width="1.5" opacity=".75"/>';
+  /* la figure occupe la moitie du cadre, la couronne exterieure recoit les cibles */
+  const k = Math.min(400 / (spanX || 1e-6), 210 / (spanY || 1e-6));
+  const mx = (Math.max.apply(null, xs) + Math.min.apply(null, xs)) / 2;
+  const my = (Math.max.apply(null, ys) + Math.min.apply(null, ys)) / 2;
+  const CX = W / 2, CY = H / 2 + 14;
+  /* nord en haut, est a gauche : convention des cartes du ciel */
+  const S = pts.map(function(p){ return [CX - (p[0] - mx) * k, CY - (p[1] - my) * k]; });
+
+  /* Cibles : direction vraie, distance forcee au bord du cadre. */
+  const T = targets.map(function(x){
+    const q = proj(x.ra, x.dec);
+    let dx = -(q[0] - mx), dy = -(q[1] - my);
+    const n2 = Math.hypot(dx, dy) || 1;
+    dx /= n2; dy /= n2;
+    /* rayon maximal tenant dans le cadre pour cette direction */
+    const rx = (W / 2 - 130) / Math.max(0.001, Math.abs(dx));
+    const ry = (H / 2 - 66) / Math.max(0.001, Math.abs(dy));
+    const rr = Math.min(rx, ry);
+    return [CX + dx * rr, CY + dy * rr];
   });
-  [['mintaka','ald'],['alnitak','sir'],['bel','pro']].forEach(function(a){
-    const A = P[a[0]], B = P[a[1]];
-    o += '<line x1="' + A[0] + '" y1="' + A[1] + '" x2="' + B[0] + '" y2="' + B[1]
-       + '" stroke="#8FD0C9" stroke-width="1.1" stroke-dasharray="5 6" opacity=".7"/>';
+
+  let o = svOpen(W, H) + svTitle(d.title || (C.n + ', et ce qu\'elle permet de trouver'));
+  /* le trace de la figure */
+  (C.L || []).forEach(function(seg){
+    const a = S[seg[0]], b = S[seg[1]];
+    if(!a || !b) return;
+    o += '<line x1="' + a[0].toFixed(1) + '" y1="' + a[1].toFixed(1) + '" x2="' + b[0].toFixed(1)
+       + '" y2="' + b[1].toFixed(1) + '" stroke="#E3E3C4" stroke-width="1.5" opacity=".75"/>';
   });
-  ['bet','bel','alnitak','alnilam','mintaka','rig','sai'].forEach(function(k){
-    o += dot(P[k], k === 'bet' || k === 'rig' ? 8 : 6);
+  /* les visees, en pointille */
+  targets.forEach(function(x, i){
+    const from = x.t.from ? own.findIndex(function(s){
+      return String(s.n || '').toLowerCase() === String(x.t.from).toLowerCase(); }) : -1;
+    const a = S[from >= 0 ? from : 0], b = T[i];
+    o += '<line x1="' + a[0].toFixed(1) + '" y1="' + a[1].toFixed(1) + '" x2="' + b[0].toFixed(1)
+       + '" y2="' + b[1].toFixed(1) + '" stroke="#8FD0C9" stroke-width="1.1"'
+       + ' stroke-dasharray="5 6" opacity=".7"/>';
   });
-  ['sir','ald','pro'].forEach(function(k){ o += dot(P[k], 7, '#8FD0C9'); });
-  o += txt(P.bet, 'Bételgeuse', -102, 5);
-  o += txt(P.bel, 'Bellatrix', 16, 5);
-  o += txt(P.rig, 'Rigel', 16, 7);
-  o += txt(P.sai, 'Saïph', -58, 18);
-  o += txt(P.mintaka, 'le Baudrier', 24, 36, .55);
-  o += txt(P.sir, 'Sirius', -64, 5, .8);
-  o += txt(P.ald, 'Aldébaran', 16, 5, .8);
-  o += txt(P.pro, 'Procyon', -80, 5, .8);
-  o += '<text x="44" y="48" font-family="Afacad,sans-serif" font-size="13"'
-     + ' letter-spacing="2.6" fill="rgba(227,227,196,.45)">ORION, BOUSSOLE DU CIEL D\u2019HIVER</text>';
   let hots = '';
-  hots += hot(P.bet[0], P.bet[1], 8, 'Bételgeuse',
-    "L'épaule du chasseur. Sa teinte orangée se repère à l'œil nu, en contraste direct avec le bleu de Rigel.",
-    'Magnitude 0,5 · supergéante rouge');
-  hots += hot(P.rig[0], P.rig[1], 8, 'Rigel',
-    "Le pied. L'étoile la plus brillante de la constellation, et la sixième du ciel entier.",
-    'Magnitude 0,1 · supergéante bleue');
-  hots += hot(P.bel[0], P.bel[1], 6, 'Bellatrix',
-    "La seconde épaule. Prolongez la ligne qui vient de Bételgeuse : elle mène à Procyon.",
-    'Magnitude 1,6 · géante bleue');
-  hots += hot(P.sai[0], P.sai[1], 6, 'Saïph',
-    "Le second pied. Souvent négligée, alors qu'elle est aussi chaude que Rigel — sa lumière est simplement plus absorbée.",
-    'Magnitude 2,1 · supergéante bleue');
-  hots += hot(P.alnilam[0], P.alnilam[1], 6, 'Le Baudrier',
-    "Les trois étoiles les plus reconnaissables du ciel, appelées « les Trois Rois » en français. C'est d'elles que partent les deux alignements.",
-    'Alnitak · Alnilam · Mintaka');
-  hots += hot(P.sir[0], P.sir[1], 7, 'Sirius',
-    "L'étoile la plus brillante du ciel nocturne. Prolongez la ligne du Baudrier vers le bas à gauche : vous tombez dessus.",
-    'Grand Chien · magnitude −1,5 · 8,6 a.l.');
-  hots += hot(P.ald[0], P.ald[1], 7, 'Aldébaran',
-    "L'œil du Taureau, orangé lui aussi. Même méthode, dans l'autre sens : le Baudrier prolongé vers le haut à droite.",
-    'Taureau · magnitude 0,9 · 65 a.l.');
-  hots += hot(P.pro[0], P.pro[1], 7, 'Procyon',
-    "La brillante du Petit Chien. On l'atteint en prolongeant la ligne Bellatrix — Bételgeuse vers l'ouest.",
-    'Petit Chien · magnitude 0,4 · 11 a.l.');
+  own.forEach(function(s, i){
+    const r = Math.max(4.5, 7.6 - s.mag * 0.9);
+    o += '<circle cx="' + S[i][0].toFixed(1) + '" cy="' + S[i][1].toFixed(1) + '" r="' + r.toFixed(1)
+       + '" fill="#E3E3C4"/>';
+    if(s.n){
+      o += '<text x="' + (S[i][0] + r + 10).toFixed(1) + '" y="' + (S[i][1] + 5).toFixed(1) + '"'
+         + ' font-family="Afacad,sans-serif" font-size="15" fill="' + SV_CREAM + '.85)">'
+         + esc(s.n) + '</text>';
+      const note = (d.notes && d.notes[s.n]) || '';
+      hots += hot(S[i][0], S[i][1], r, s.n, note, 'Magnitude ' + s.mag);
+    }
+  });
+  targets.forEach(function(x, i){
+    const p = T[i];
+    o += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="7" fill="#8FD0C9"/>';
+    /* l'etiquette part vers l'exterieur, pour ne pas revenir sur la figure */
+    const right = p[0] >= CX;
+    o += '<text x="' + (p[0] + (right ? 16 : -16)).toFixed(1) + '" y="' + (p[1] + 5).toFixed(1) + '"'
+       + ' text-anchor="' + (right ? 'start' : 'end') + '"'
+       + ' font-family="Afacad,sans-serif" font-size="15" fill="' + SV_CREAM + '.8)">'
+       + esc(x.t.label || x.t.star) + '</text>';
+    hots += hot(p[0], p[1], 7, x.t.label || x.t.star, x.t.note || '', x.t.sub || '');
+  });
   return o + hots + '</svg>';
 }
+
+/* ---------- timeline : une chronologie ---------- */
+function svTimeline(d){
+  const ev = (d.events || []).slice().sort(function(a, b){ return a.y - b.y; });
+  if(!ev.length) return '';
+  const W = 1000, H = 400;
+  /* Espacement REGULIER, et non proportionnel aux dates : une chronologie
+     dont les evenements se pressent sur deux siecles et s'espacent sur
+     mille ans devient illisible en echelle vraie. Ce qui compte ici est la
+     sequence, pas la metrique. */
+  const x0 = 150, x1 = 850, axis = H / 2 + 18;
+  let o = svOpen(W, H) + svTitle(d.title || 'Repères chronologiques');
+  o += '<line x1="' + x0 + '" y1="' + axis + '" x2="' + x1 + '" y2="' + axis
+     + '" stroke="' + SV_CREAM + '.28)" stroke-width="1.2"/>';
+  let hots = '';
+  ev.forEach(function(e, i){
+    const x = ev.length === 1 ? (x0 + x1) / 2
+              : x0 + (i / (ev.length - 1)) * (x1 - x0);
+    const up = i % 2 === 0;
+    const ty = up ? axis - 34 : axis + 34;
+    o += '<line x1="' + x.toFixed(1) + '" y1="' + axis + '" x2="' + x.toFixed(1) + '" y2="'
+       + (up ? axis - 20 : axis + 20) + '" stroke="' + SV_CREAM + '.35)"/>';
+    o += '<circle cx="' + x.toFixed(1) + '" cy="' + axis + '" r="7" fill="#E3E3C4"/>';
+    o += '<text x="' + x.toFixed(1) + '" y="' + ty + '" text-anchor="middle"'
+       + ' font-family="Afacad,sans-serif" font-size="17" font-weight="700"'
+       + ' fill="' + SV_CREAM + '.9)">' + esc(e.when || String(e.y)) + '</text>';
+    /* le libelle est coupe en lignes courtes pour ne pas deborder */
+    const words = String(e.label || '').split(' ');
+    const lines = [];
+    let cur = '';
+    /* largeur de coupe deduite du nombre d'evenements : plus ils sont
+       nombreux, plus les colonnes sont etroites */
+    const col = (x1 - x0) / Math.max(1, ev.length - 1);
+    const wrap = Math.max(11, Math.min(24, Math.floor(col / 7)));
+    words.forEach(function(w){
+      if((cur + ' ' + w).trim().length > wrap){ lines.push(cur.trim()); cur = w; }
+      else cur += ' ' + w;
+    });
+    if(cur.trim()) lines.push(cur.trim());
+    lines.slice(0, 3).forEach(function(l, j){
+      o += '<text x="' + x.toFixed(1) + '" y="' + (ty + (up ? -22 - (lines.length - 1 - j) * 19 : 24 + j * 19))
+         + '" text-anchor="middle" font-family="Afacad,sans-serif" font-size="13.5"'
+         + ' fill="' + SV_CREAM + '.55)">' + esc(l) + '</text>';
+    });
+    hots += hot(x, axis, 7, e.when || String(e.y), e.note || e.label || '', e.label || '');
+  });
+  return o + hots + '</svg>';
+}
+
+/* ---------- bars : une comparaison chiffrée ---------- */
+function svBars(d){
+  const it = (d.items || []).slice();
+  if(!it.length) return '';
+  const W = 1000, H = 130 + it.length * 62;
+  const x0 = 250, x1 = 860;
+  const max = Math.max.apply(null, it.map(function(x){ return x.v; })) || 1;
+  let o = svOpen(W, H) + svTitle(d.title || 'Comparaison');
+  let hots = '';
+  it.forEach(function(x, i){
+    const y = 96 + i * 62;
+    const w = Math.max(3, (x.v / max) * (x1 - x0));
+    o += '<text x="' + (x0 - 22) + '" y="' + (y + 15) + '" text-anchor="end"'
+       + ' font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
+       + ' fill="' + SV_CREAM + '.9)">' + esc(x.n) + '</text>';
+    o += '<rect x="' + x0 + '" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="4"'
+       + ' fill="' + (x.c || '#E3E3C4') + '" fill-opacity=".3" stroke="' + (x.c || '#E3E3C4')
+       + '" stroke-width="1.2"/>';
+    o += '<text x="' + (x0 + w + 14).toFixed(1) + '" y="' + (y + 16) + '"'
+       + ' font-family="Afacad,sans-serif" font-size="14" fill="' + SV_CREAM + '.6)">'
+       + esc(x.sub || (nfr(x.v) + (d.unit ? ' ' + d.unit : ''))) + '</text>';
+    hots += hot(x0 + w / 2, y + 11, 11, x.n, x.note || '',
+                x.sub || (nfr(x.v) + (d.unit ? ' ' + d.unit : '')));
+  });
+  return o + hots + '</svg>';
+}
+
+/* Repli : les trois schémas d'Orion, écrits avant la mise en paramètres. */
+const SVG_FALLBACK = {
+  scale: { items: [
+    { n:'Bételgeuse', r:850, c:'#E3A87C',
+      note:"Supergéante rouge en fin de vie. Placée au centre du système solaire, elle engloberait l'orbite de Mars." },
+    { n:'Rigel', r:74, c:'#BFD4F2',
+      note:"Supergéante bleue de 12 000 °C, sept fois plus chaude en surface que Bételgeuse." },
+    { n:'Soleil', r:1,
+      note:"À cette échelle, son disque tient dans un pixel. Une naine jaune très ordinaire." }]},
+  depth: { title:'Distance depuis la Terre', stars: [
+    { n:'Mintaka', d:1200, note:"Système multiple dominé par deux géantes bleues. La plus proche des trois." },
+    { n:'Alnilam', d:2000, note:"La plus lointaine, et pourtant la plus brillante des trois." },
+    { n:'Alnitak', d:1260, note:"Système triple, qui illumine la nébuleuse de la Flamme juste à côté." }]},
+  compass: { title:"Orion, boussole du ciel d'hiver", targets: [
+    { star:'Sirius', from:'Alnitak', label:'Sirius',
+      note:"L'étoile la plus brillante du ciel nocturne. Prolongez la ligne du Baudrier vers le bas à gauche." },
+    { star:'Aldébaran', from:'Mintaka', label:'Aldébaran',
+      note:"L'œil du Taureau. Même méthode, dans l'autre sens." }]},
+};
+
+const SVGS = {
+  scale:    function(d){ return svScale(d || SVG_FALLBACK.scale); },
+  depth:    function(d){ return svDepth(d || SVG_FALLBACK.depth); },
+  compass:  function(d){ return svCompass(d || SVG_FALLBACK.compass); },
+  timeline: function(d){ return svTimeline(d || {}); },
+  bars:     function(d){ return svBars(d || {}); },
+};
 
 const IMG = '/assets/img/constellations/ori/';
 
@@ -697,7 +866,6 @@ const CONTENT = {
   },
 };
 
-const SVGS = { scale: svgScale, depth: svgDepth, compass: svgCompass };
 
 /* ============================================================
    RENDU DES BLOCS
@@ -739,7 +907,7 @@ function missing(path, page){
 
 function figureHTML(f, wide){
   let inner;
-  if(f.svg && SVGS[f.svg]) inner = SVGS[f.svg]();
+  if(f.svg && SVGS[f.svg]) inner = SVGS[f.svg](f.data);
   else if(f.src) inner = '<img src="' + esc(f.src) + '" alt="' + esc(f.alt || '')
     + '" loading="lazy" onerror="this.parentNode.innerHTML=' + "'" + '__MISS__' + "'" + '">';
   else inner = missing('(source absente)');
