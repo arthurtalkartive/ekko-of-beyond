@@ -98,7 +98,9 @@ label.f > span{display:block;font-size:10px;font-weight:700;letter-spacing:.16em
   <a class="mini" href="/">Carte</a>
   <a class="mini" id="prev" href="/constellation?id=ori" target="_blank">Aperçu</a>
   <button class="mini" id="b-json">JSON</button>
-  <button class="mini pri" id="b-save">Enregistrer</button>
+  <button class="mini" id="b-import">Importer</button>
+  <button class="mini pri" id="b-save">Enregistrer l'onglet</button>
+  <input type="file" id="f-import" accept="application/json,.json" style="display:none">
 </header>
 
 <main>
@@ -224,19 +226,34 @@ async function load(id){
   $('#prev').href = '/constellation?id=' + id;
   setMsg('Chargement…');
   DATA = {};
-  try{
-    const r = await fetch('/content/' + id + '.json', { cache:'no-store' });
-    if(r.ok) DATA = await r.json();
-  }catch(e){}
+  /* Un fichier par onglet. On les demande tous les trois : un manquant
+     signifie simplement que l'onglet n'est pas encore redige. */
+  await Promise.all(TAB_ORDER.map(function(t){
+    return fetch('/content/' + id + '/' + t + '.json', { cache:'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){ if(d && Array.isArray(d.blocks) && d.blocks.length) DATA[t] = d.blocks; })
+      .catch(function(){});
+  }));
+  if(!Object.keys(DATA).length){
+    /* ancien format : un seul fichier pour les trois onglets */
+    try{
+      const r = await fetch('/content/' + id + '.json', { cache:'no-store' });
+      if(r.ok){
+        const d = await r.json();
+        TAB_ORDER.forEach(function(t){ if(Array.isArray(d[t]) && d[t].length) DATA[t] = d[t]; });
+      }
+    }catch(e){}
+  }
   if(!Object.keys(DATA).length && window.CONTENT_DEFAULT && CONTENT_DEFAULT[id]){
     /* rien dans le dépôt : on repart du contenu écrit dans la page */
     DATA = JSON.parse(JSON.stringify(CONTENT_DEFAULT[id]));
-    setMsg('Aucun fichier <code>content/' + id + '.json</code> : les blocs affichés viennent du '
-      + 'contenu par défaut de la fiche. Enregistrez pour créer le fichier.', 'ok');
+    setMsg('Aucun fichier dans <code>content/' + id + '/</code> : les blocs affichés viennent '
+      + 'du contenu par défaut de la fiche. Enregistrez pour créer les fichiers.', 'ok');
   }else if(!Object.keys(DATA).length){
     setMsg('Fiche vide. Ajoutez des blocs, puis enregistrez.');
   }else{
-    setMsg('Chargé depuis <code>content/' + id + '.json</code>.', 'ok');
+    setMsg('Chargé depuis <code>content/' + id + '/</code> — '
+      + TAB_ORDER.filter(function(t){ return DATA[t]; }).join(', ') + '.', 'ok');
   }
   dirty = false;
   TAB = TAB_ORDER.find(function(k){ return DATA[k] && DATA[k].length; }) || 'science';
@@ -514,18 +531,15 @@ try{ const k = sessionStorage.getItem(KEY_STORE); if(k) $('#key').value = k; }ca
 $('#key').oninput = function(e){ try{ sessionStorage.setItem(KEY_STORE, e.target.value); }catch(x){} };
 
 $('#b-save').onclick = async function(){
-  /* on ne garde que les onglets non vides : un onglet vide ne doit pas
-     faire apparaître un bouton sur la fiche */
-  const clean = {};
-  TAB_ORDER.forEach(function(k){ if((DATA[k] || []).length) clean[k] = DATA[k]; });
-
+  /* On enregistre l'onglet affiche, et lui seul : un fichier par onglet,
+     donc aucun risque d'ecraser le travail fait ailleurs. */
   this.disabled = true;
-  setMsg('Écriture dans le dépôt…');
+  setMsg('Écriture de l\'onglet ' + TABS[TAB] + '…');
   try{
     const res = await fetch('/api/save', {
       method:'POST',
       headers:{ 'Content-Type':'application/json', 'x-ekko-key':($('#key').value || '').trim() },
-      body: JSON.stringify({ type:'content', id:CID, blocks:clean }),
+      body: JSON.stringify({ type:'content', id:CID, tab:TAB, blocks:(DATA[TAB] || []) }),
     });
     let d = {}; try{ d = await res.json(); }catch(e){}
     if(res.ok){ dirty = false; setMsg('<b>' + (d.message || 'Enregistré.') + '</b>', 'ok'); }
@@ -539,16 +553,83 @@ $('#b-save').onclick = async function(){
   this.disabled = false;
 };
 
+/* ---------- import d'un fichier d'onglet ----------
+   La compétence de rédaction produit exactement ce format :
+     { "constellation": "ori", "tab": "mytho", "blocks": [ ... ] }
+   On vérifie la cible avant de remplacer quoi que ce soit — importer la
+   mythologie d'Orion dans l'onglet science d'Andromède serait fâcheux. */
+$('#b-import').onclick = function(){ $('#f-import').click(); };
+$('#f-import').onchange = async function(){
+  const f = this.files[0];
+  this.value = '';
+  if(!f) return;
+  let doc;
+  try{
+    doc = JSON.parse(await f.text());
+  }catch(e){
+    setMsg('Fichier illisible : ' + e.message, 'err');
+    return;
+  }
+
+  /* on accepte aussi un simple tableau de blocs, ou l'ancien format à
+     trois onglets, pour ne pas bloquer sur une question de forme */
+  let blocks = null, tab = null, cst = null;
+  if(Array.isArray(doc)){ blocks = doc; }
+  else if(doc && Array.isArray(doc.blocks)){
+    blocks = doc.blocks; tab = doc.tab || null; cst = doc.constellation || null;
+  }
+  else if(doc && typeof doc === 'object'){
+    const k = TAB_ORDER.filter(function(t){ return Array.isArray(doc[t]); });
+    if(k.length){
+      if(!confirm('Ce fichier contient ' + k.length + ' onglet(s) : ' + k.join(', ')
+        + '. Les importer tous ?')) return;
+      k.forEach(function(t){ DATA[t] = doc[t]; });
+      dirty = true; TAB = k[0]; renderTabs(); renderBlocks();
+      setMsg('Importé : ' + k.join(', ') + '. Enregistrez chaque onglet pour le publier.', 'ok');
+      return;
+    }
+  }
+  if(!blocks){
+    setMsg('Format non reconnu. Attendu : un objet avec un tableau <code>blocks</code>.', 'err');
+    return;
+  }
+
+  if(cst && cst !== CID){
+    const c = CONS.find(function(x){ return x.id === cst; });
+    if(!confirm('Ce fichier vise ' + (c ? c.n : cst) + ', pas ' + CONS.find(function(x){
+      return x.id === CID; }).n + '. Importer quand même ici ?')) return;
+  }
+  if(tab && TAB_ORDER.indexOf(tab) >= 0 && tab !== TAB){
+    if(!confirm('Ce fichier vise l\'onglet ' + TABS[tab] + '. Basculer dessus ?')) tab = TAB;
+    else TAB = tab;
+  }
+
+  const n = (DATA[TAB] || []).length;
+  if(n && !confirm('L\'onglet ' + TABS[TAB] + ' contient déjà ' + n
+    + ' bloc(s). Ils seront remplacés. Continuer ?')) return;
+
+  /* on signale les types inconnus plutôt que de les avaler en silence */
+  const bad = blocks.filter(function(b){ return !b || !SCHEMA[b.t]; })
+                    .map(function(b){ return (b && b.t) || '(sans type)'; });
+  DATA[TAB] = blocks;
+  dirty = true;
+  renderTabs(); renderBlocks();
+  setMsg('Importé dans l\'onglet ' + TABS[TAB] + ' : ' + blocks.length + ' bloc(s).'
+    + (bad.length ? ' <b>Types inconnus :</b> ' + bad.join(', ') + '.' : '')
+    + ' Vérifiez, puis enregistrez pour publier.', bad.length ? 'err' : 'ok');
+};
+
 $('#b-json').onclick = function(){
-  const clean = {};
-  TAB_ORDER.forEach(function(k){ if((DATA[k] || []).length) clean[k] = DATA[k]; });
-  const txt = JSON.stringify(clean, null, 1);
+  /* Meme enveloppe que celle attendue a l'import : ce qui sort ici peut
+     etre re-importe tel quel, ou relu par la competence de redaction. */
+  const doc = { constellation: CID, tab: TAB, blocks: (DATA[TAB] || []) };
+  const txt = JSON.stringify(doc, null, 1);
   const w = window.open('', '_blank');
   w.document.write('<pre style="font:12px/1.5 ui-monospace,monospace;background:#04070B;'
     + 'color:#E3E3C4;padding:20px;margin:0;white-space:pre-wrap">'
     + txt.replace(/[<>&]/g, function(c){ return ({'<':'&lt;','>':'&gt;','&':'&amp;'})[c]; })
     + '</pre>');
-  w.document.title = 'content/' + CID + '.json';
+  w.document.title = 'content/' + CID + '/' + TAB + '.json';
 };
 
 sel.onchange = function(){
