@@ -69,6 +69,7 @@ async function writeFile(path, buffer, message, branch, sha) {
 
 const ANGLES_PATH = 'skyculture/ekko/roll-adjust.json';
 const ID_RE = /^[a-z]{3}$/;
+const CONTENT_DIR = 'content/';
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
@@ -157,6 +158,30 @@ export default async function handler(req, res) {
       });
     }
 
+    /* ---------- contenu editorial d'une fiche ---------- */
+    if (type === 'content') {
+      const blocks = body.blocks;
+      if (!blocks || typeof blocks !== 'object') {
+        return json(res, 400, { error: "Contenu attendu sous forme d'objet." });
+      }
+      /* On refuse un contenu manifestement trop gros : il ne s'agit pas de
+         stocker des images en base64 dans un fichier de texte. */
+      const out = Buffer.from(JSON.stringify(blocks, null, 1) + '\n', 'utf8');
+      if (out.length > 400000) {
+        return json(res, 413, {
+          error: `Contenu trop volumineux (${Math.round(out.length / 1024)} Ko, 400 Ko maximum).`,
+        });
+      }
+      const path = CONTENT_DIR + id + '.json';
+      const existing = await readFile(path, branch);
+      await writeFile(path, out, `Fiche ${id}`, branch, existing ? existing.sha : undefined);
+      return json(res, 200, {
+        ok: true, id, bytes: out.length,
+        message: `Fiche enregistrée (${Math.round(out.length / 1024)} Ko). ` +
+                 'Vercel redéploie, comptez une minute.',
+      });
+    }
+
     /* ---------- illustration ---------- */
     if (type === 'illustration') {
       const data = String(body.dataUrl || '');
@@ -180,7 +205,7 @@ export default async function handler(req, res) {
       });
     }
 
-    return res.status(400).json({ error: 'Type inconnu : « angle » ou « illustration » attendu.' });
+    return res.status(400).json({ error: 'Type inconnu : « angle », « illustration » ou « content » attendu.' });
   } catch (e) {
     return res.status(500).json({ error: String(e.message || e) });
   }
