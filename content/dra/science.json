@@ -1,0 +1,115 @@
+{
+ "constellation": "dra",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Dragon s'enroule autour du pôle sur près d'un huitième du ciel, et il garde une trace que rien d'autre ne conserve : l'adresse de l'ancien nord. Thuban indiquait le pôle quand on bâtissait les pyramides."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "≈ 4 800",
+     "u": "ans",
+     "l": "Époque où Thuban indiquait presque exactement le pôle nord céleste."
+    },
+    {
+     "v": "> 25",
+     "u": "degrés",
+     "l": "Distance qui sépare aujourd'hui Thuban du pôle. La précession l'a écartée d'autant."
+    },
+    {
+     "v": "≈ 303",
+     "u": "a.l.",
+     "l": "Distance de Thuban, une géante chaude à 9 800 K, trois cents fois plus lumineuse que le Soleil."
+    },
+    {
+     "v": "8 et 9",
+     "u": "octobre",
+     "l": "Maximum des Draconides, dont le radiant se trouve dans la tête du Dragon."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "L'étoile polaire des pyramides",
+   "p": [
+    "Vers 2800 avant notre ère, l'axe de la Terre pointait à quelques minutes d'arc de Thuban. C'était l'étoile du nord à l'apogée de l'Égypte antique, et plusieurs temples semblent avoir été orientés en référence à elle.",
+    "La précession l'a depuis reléguée à plus de vingt-cinq degrés du pôle, et à la huitième place par l'éclat dans sa propre constellation. Elle garde pourtant la lettre alpha que Bayer lui avait attribuée : le souvenir d'un titre perdu."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Et double, par-dessus le marché",
+   "p": [
+    "En 2020, l'analyse des données du satellite TESS a révélé que Thuban est une binaire à éclipses : les deux étoiles passent l'une devant l'autre, ce qui permet de peser le système avec une précision rare.",
+    "Le compagnon boucle son orbite en un peu plus de cinquante et un jours, sur une trajectoire nettement allongée. L'ancienne étoile polaire n'avait pas fini de livrer ses secrets."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/dra.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du dragon plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Une pluie capricieuse",
+   "p": [
+    "Les Draconides sont l'essaim le plus imprévisible de l'année. La plupart des ans, quelques météores par heure. Mais lorsque la Terre traverse un filament de poussière fraîchement déposé, cela devient une tempête : 1933 et 1946 restent dans les mémoires, et en 2011 les observateurs ont compté jusqu'à quatre cents météores par heure.",
+    "La cause est une comète : 21P/Giacobini-Zinner, découverte par le Français Michel Giacobini en 1900, qui revient tous les six ans et huit mois. Un noyau de moins de deux kilomètres de rayon, chimiquement atypique — appauvri en molécules carbonées au point de servir de prototype à une classe entière de comètes."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "L'œil de chat",
+   "p": [
+    "Le Dragon abrite NGC 6543, la nébuleuse de l'Œil de Chat : les couches expulsées par une étoile mourante, disposées en coquilles concentriques d'une géométrie déconcertante. Elle fut l'une des premières nébuleuses planétaires dont on obtint le spectre, en 1864, prouvant qu'il s'agissait de gaz et non d'un amas d'étoiles.",
+    "Plus discrète, la galaxie naine du Dragon est l'un des systèmes satellites les plus pauvres en étoiles connus autour de la Voie lactée — et l'un des plus riches en matière noire, ce qui en fait un terrain d'étude privilégié."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Alpha Draconis",
+     "src": "Wikipédia",
+     "note": "Thuban en détail : la précession, la binaire spectroscopique, l'étymologie arabe du nom.",
+     "url": "https://fr.wikipedia.org/wiki/Alpha_Draconis"
+    },
+    {
+     "kind": "read",
+     "title": "Dragon (constellation)",
+     "src": "Wikipédia",
+     "note": "L'ensemble de la constellation, le radiant des Draconides et les objets du ciel profond.",
+     "url": "https://fr.wikipedia.org/wiki/Dragon_(constellation)"
+    },
+    {
+     "kind": "read",
+     "title": "L'ancienne étoile polaire est double à éclipses",
+     "src": "Futura Sciences",
+     "note": "La découverte de 2020 par TESS, racontée en français.",
+     "url": "https://www.futura-sciences.com/sciences/actualites/astronomie-ancienne-etoile-polaire-double-eclipses-79148/"
+    },
+    {
+     "kind": "deep",
+     "title": "The 2011 October Draconids outburst",
+     "src": "Trigo-Rodríguez et al., MNRAS, 2013 — arXiv",
+     "note": "L'analyse de la tempête de 2011 et de la masse livrée à la Terre par la comète. En anglais.",
+     "url": "https://arxiv.org/pdf/1304.7635"
+    },
+    {
+     "kind": "deep",
+     "title": "Ground-based and Spitzer observations of comet 21P/Giacobini-Zinner",
+     "src": "Pittichová et al. — arXiv",
+     "note": "Le corps parent des Draconides : rayon du noyau, activité, couleurs de la chevelure. En anglais.",
+     "url": "https://arxiv.org/pdf/0806.3582"
+    }
+   ]
+  }
+ ]
+}

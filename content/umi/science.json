@@ -1,0 +1,86 @@
+{
+ "constellation": "umi",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Polaris ne marque le nord que par un accident de calendrier. L'axe de la Terre décrit un cône en vingt-six mille ans, et le pôle céleste dérive lentement parmi les étoiles. Nous vivons simplement à l'époque où il passe près d'une étoile brillante."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "≈ 26 000",
+     "u": "ans",
+     "l": "Durée du cycle de précession de l'axe terrestre. Le pôle céleste change donc d'adresse en permanence."
+    },
+    {
+     "v": "3",
+     "u": "étoiles",
+     "l": "Polaris est un système triple. Sa composante principale est la céphéide classique la plus proche de nous."
+    },
+    {
+     "v": "320 à 450",
+     "u": "a.l.",
+     "l": "Distance de Polaris. L'écart entre les mesures reste inhabituellement large pour une étoile si célèbre."
+    },
+    {
+     "v": "≈ 2800",
+     "u": "av. J.-C.",
+     "l": "À cette époque, le pôle nord céleste se tenait près de Thuban, dans le Dragon."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une étoile polaire par intérim",
+   "p": [
+    "Vers 2800 avant notre ère, l'étoile du nord était Thuban. Dans quelques millénaires, ce sera Gamma Cephei, puis Alderamin, puis Véga. Polaris finira par s'éloigner du pôle comme Thuban s'en est éloignée.",
+    "Et le cycle ne se referme jamais tout à fait : les étoiles se déplacent aussi. Dans vingt-six mille ans, le ciel ne retrouvera pas exactement la configuration d'aujourd'hui."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une céphéide qui s'essouffle",
+   "p": [
+    "Polaris n'est pas une étoile fixe au sens propre : c'est une céphéide, une étoile qui se dilate et se contracte périodiquement. La plus proche de nous, ce qui en fait un maillon précieux de l'échelle des distances cosmiques — voir l'onglet Science de Céphée.",
+    "Particularité : l'amplitude de ses pulsations a nettement diminué au cours du vingtième siècle, un comportement encore mal expliqué. Des observations récentes ont par ailleurs mesuré directement sa période de rotation, une première pour une céphéide classique."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/umi.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure de la Petite Ourse plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Une casserole en réduction",
+   "p": [
+    "La Petite Ourse reprend le dessin de sa grande sœur en plus petit et plus pâle : quatre étoiles pour le récipient, trois pour le manche, Polaris au bout. Seules Polaris, Kochab et Pherkad se repèrent facilement sous un ciel de ville.",
+    "Kochab et Pherkad sont parfois appelées les Gardiennes du pôle : elles tournent autour de Polaris en une nuit, comme deux sentinelles."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Polaris, l'étoile polaire : nom, couleur et faits",
+     "src": "Star Walk",
+     "note": "Le système triple, la précession, la succession des futures étoiles polaires. En français.",
+     "url": "https://starwalk.space/fr/news/polaris-north-star"
+    },
+    {
+     "kind": "read",
+     "title": "Céphéide",
+     "src": "Wikipédia",
+     "note": "Le mécanisme de pulsation, utile pour comprendre ce que fait réellement Polaris.",
+     "url": "https://fr.wikipedia.org/wiki/C%C3%A9ph%C3%A9ide"
+    }
+   ]
+  }
+ ]
+}

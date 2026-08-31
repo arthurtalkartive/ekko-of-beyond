@@ -1,0 +1,112 @@
+{
+ "constellation": "uma",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Presque partout où la Grande Ourse se voit, on y a vu un animal poursuivi. En Grèce une nymphe changée en ourse, chez les Algonquins un ours traqué par des chasseurs, en Sibérie un élan. Cette convergence n'est pas un hasard, et depuis quinze ans elle se mesure."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "18",
+     "u": "versions",
+     "l": "Le corpus analysé par Julien d'Huy pour reconstituer le récit d'origine, en 2012."
+    },
+    {
+     "v": "> 15 000",
+     "u": "ans",
+     "l": "L'âge que ces méthodes attribuent au proto-mythe de la Chasse cosmique."
+    },
+    {
+     "v": "7",
+     "u": "bœufs",
+     "l": "Septentrion vient de septem triones, les sept bœufs de labour : la Casserole vue comme un attelage."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/uma.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure de l'ourse telle qu'elle est plaquée sur le ciel dans la carte interactive, calée sur les étoiles par trois ancres. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Callisto, l'ourse malgré elle",
+   "p": [
+    "La version grecque est une histoire de jalousie. Callisto, nymphe suivante d'Artémis, est aimée de Zeus et met au monde Arcas. Héra, ou Artémis selon les auteurs, la change en ourse.",
+    "Des années plus tard, Arcas devenu chasseur croise sa mère et s'apprête à la tuer sans la reconnaître. Zeus les projette tous deux au ciel avant le geste fatal : la Grande et la Petite Ourse. Héra, furieuse, obtient qu'elles ne se baignent jamais dans l'océan — ce qui explique pourquoi elles ne se couchent pas."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Reconstituer un mythe comme on reconstitue un gène",
+   "p": [
+    "Julien d'Huy a appliqué aux mythes les outils de la phylogénétique : plus deux versions divergent, plus elles se sont séparées tôt. En codant dix-huit variantes en quarante-quatre mythèmes, il a fait remonter l'arbre.",
+    "Le récit reconstruit tient en deux phrases : « Un unique cervidé est pourchassé par un seul chasseur. L'animal est vivant quand il devient la constellation de la Grande Ourse. » Un argument fort de la méthode : le motif est absent des autres continents, et absent de l'Arctique où la constellation est pourtant bien visible. Il ne doit donc rien au hasard."
+   ]
+  },
+  {
+   "t": "quote",
+   "p": "Un unique cervidé est pourchassé par un seul chasseur. L'animal est vivant quand il devient la constellation de la Grande Ourse.",
+   "who": "Julien d'Huy, reconstitution du proto-mythe, Préhistoire du Sud-Ouest, 2012"
+  },
+  {
+   "t": "warn",
+   "h": "Un point de vigilance",
+   "p": "On lit souvent que les ressemblances entre les versions européennes et amérindiennes prouveraient une diffusion par le détroit de Béring. D'Huy lui-même a nuancé : d'après les travaux statistiques ultérieurs, ces points communs ne reposent que sur quelques traits superficiels et ne résistent pas à un changement de codage. Il s'agirait d'une coïncidence plutôt que d'une parenté. La convergence des mythes est solide ; l'itinéraire précis, non."
+  },
+  {
+   "t": "text",
+   "h": "Casserole, charrue, chariot, grande cuillère",
+   "p": [
+    "Le français dit la Casserole, l'anglais le Grand Puisoir, l'allemand le Grand Chariot, l'ancien latin les sept bœufs de labour. Chaque langue a projeté sur les mêmes sept étoiles l'objet le plus familier de son quotidien.",
+    "Une version compte plus que les autres : dans les chants des esclaves fugitifs du sud des États-Unis, la « gourde à boire » désignait la Casserole, et la suivre menait au nord. Une constellation devenue instrument de libération."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "Un ours dans les étoiles, recherche phylogénétique sur un mythe préhistorique",
+     "src": "Julien d'Huy, Préhistoire du Sud-Ouest, 2012 — HAL",
+     "note": "L'article fondateur, en accès libre. Méthode, codage et arbre reconstruit.",
+     "url": "https://hal.science/hal-00825883"
+    },
+    {
+     "kind": "read",
+     "title": "Ce que les mythes disaient, il y a 20 000 ans",
+     "src": "Hominidés",
+     "note": "Une synthèse accessible de la méthode, avec la bibliographie complète de d'Huy.",
+     "url": "https://www.hominides.com/articles/ce-que-les-mythes-disaient-il-y-a-20-000-ans/"
+    },
+    {
+     "kind": "read",
+     "title": "Une nuit dans les étoiles : peut-on reconstruire la préhistoire par les étoiles ?",
+     "src": "Julien d'Huy, SERPE, 2019",
+     "note": "C'est ici que l'auteur nuance lui-même le lien Eurasie — Amérique du Nord.",
+     "url": "https://www.serpe.org/JulienDHuyNuitDansLesEtoilesN68-2019.php"
+    },
+    {
+     "kind": "deep",
+     "title": "Comment se transmettent les traditions mythologiques",
+     "src": "Cosmogonies, La Découverte — Cairn",
+     "note": "Le chapitre qui confronte l'approche phylogénétique aux méthodes structurale et aréologique.",
+     "url": "https://shs.cairn.info/cosmogonies--9782348059667-page-135?lang=fr"
+    },
+    {
+     "kind": "read",
+     "title": "Constellation de la Grande Ourse",
+     "src": "Ciel de nuit",
+     "note": "Le tour des interprétations culturelles, avec les références aux travaux de d'Huy.",
+     "url": "https://www.ciel-de-nuit.com/constellation-de-la-grande-ourse"
+    }
+   ]
+  }
+ ]
+}

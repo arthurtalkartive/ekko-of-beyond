@@ -1,0 +1,66 @@
+{
+ "constellation": "umi",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "La Petite Ourse est la seule constellation dont la fonction ait précédé le récit. Avant d'être une ourse, elle a été un instrument : le seul repère fixe d'un ciel qui tourne, et donc l'outil de tous ceux qui devaient retrouver le nord."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "2",
+     "u": "noms grecs",
+     "l": "Cynosura, « la queue du chien », et Phoenice, du nom des marins qui s'en servaient."
+    },
+    {
+     "v": "1",
+     "u": "étoile",
+     "l": "Il suffit de Polaris pour connaître à la fois le nord et sa propre latitude."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/umi.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure de la Petite Ourse plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Arcas, le fils qui devint constellation",
+   "p": [
+    "La Petite Ourse ne se raconte pas seule. Dans la version grecque la plus répandue, elle est Arcas, fils de Callisto, sur le point de tuer sa mère changée en ourse sans la reconnaître. Zeus les envoie tous deux au ciel avant le geste.",
+    "D'autres auteurs y voient plutôt une des nymphes qui élevèrent Zeus enfant en Crète. Le flottement est révélateur : cette figure discrète a moins intéressé les conteurs que les navigateurs."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "L'étoile des Phéniciens",
+   "p": [
+    "Les Grecs appelaient parfois cette constellation Phoenice, du nom des Phéniciens, réputés pour s'y fier en pleine mer. L'autre nom grec, Cynosura, signifie « la queue du chien » — l'origine du mot cynosure, qui désigne encore ce vers quoi tous les regards convergent.",
+    "L'usage est d'une élégance rare : la hauteur de Polaris au-dessus de l'horizon donne directement la latitude de l'observateur. Une seule mesure, un seul coup d'œil, et l'on sait où l'on se trouve sur le globe."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Un point de vigilance",
+   "p": "On attribue souvent aux navigateurs de l'Antiquité l'usage de « l'étoile polaire » comme s'il s'agissait de Polaris. À l'époque d'Homère, Polaris se tenait à plusieurs degrés du pôle et décrivait un cercle bien visible dans la nuit : elle indiquait le nord approximativement, pas exactement. Sa position actuelle, à moins d'un degré, est une commodité récente."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Polaris, l'étoile polaire",
+     "src": "Star Walk",
+     "note": "Comprend l'histoire des noms et l'usage en navigation. En français.",
+     "url": "https://starwalk.space/fr/news/polaris-north-star"
+    }
+   ]
+  }
+ ]
+}

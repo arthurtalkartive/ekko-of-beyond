@@ -1,0 +1,76 @@
+{
+ "constellation": "cep",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Céphée est le père, l'époux, le roi — et la figure la plus effacée de sa propre histoire. Autour de lui, sa femme se vante, sa fille est enchaînée, un héros la sauve, un monstre est vaincu. Lui, il assiste."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "6",
+     "u": "figures",
+     "l": "Céphée fait partie du seul groupe de constellations voisines qui racontent une même histoire."
+    },
+    {
+     "v": "« le bras droit »",
+     "u": "",
+     "l": "Sens d'Alderamin, son étoile la plus brillante, d'après l'arabe al-dhirāʿ al-yamīn."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/cep.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du roi Céphée plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Un roi devant un oracle",
+   "p": [
+    "Céphée règne sur l'Éthiopie — au sens grec du terme, qui désignait vaguement les terres du sud. Quand le monstre envoyé par Poséidon ravage ses côtes, l'oracle d'Ammon lui donne le seul remède : livrer sa fille.",
+    "Il obéit. C'est ce qui rend le personnage intéressant, et dérangeant : un souverain qui sacrifie son enfant à la raison d'État. Persée arrive à temps, mais rien dans le mythe n'absout le père."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une figure sans forme",
+   "p": [
+    "Céphée n'a pas de dessin reconnaissable. Cinq étoiles moyennes formant une sorte de maison d'enfant, coincée entre Cassiopée et le Dragon. Aucun astérisme mémorable, aucun surnom populaire.",
+    "C'est peut-être pour cela que la constellation est si peu racontée hors du cycle de Persée : on ne fabrique pas de légendes autour d'une figure qu'on ne sait pas montrer du doigt."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le nord de demain",
+   "p": [
+    "Le temps rendra justice à Céphée. La précession de l'axe terrestre y conduit le pôle nord céleste : dans quelques millénaires, Gamma Cephei puis Alderamin serviront d'étoiles polaires.",
+    "Le roi discret deviendra donc, à son tour, la constellation autour de laquelle tout le ciel tourne."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Polaris, l'étoile polaire",
+     "src": "Star Walk",
+     "note": "La succession des étoiles polaires, où figurent Gamma Cephei et Alderamin. En français.",
+     "url": "https://starwalk.space/fr/news/polaris-north-star"
+    },
+    {
+     "kind": "read",
+     "title": "Céphée (constellation)",
+     "src": "Wikipédia",
+     "note": "Le mythe, l'étymologie des noms d'étoiles et les objets remarquables.",
+     "url": "https://fr.wikipedia.org/wiki/C%C3%A9ph%C3%A9e_(constellation)"
+    }
+   ]
+  }
+ ]
+}

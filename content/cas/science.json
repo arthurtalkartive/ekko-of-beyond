@@ -1,0 +1,121 @@
+{
+ "constellation": "cas",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Cassiopée abrite deux étoiles qui ont explosé, et l'une est si jeune que la lumière de sa mort nous atteint encore. Cassiopée A est le plus récent rémanent de supernova connu dans notre Galaxie : une aubaine pour qui veut faire de la médecine légale stellaire."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "≈ 340",
+     "u": "ans",
+     "l": "Âge de l'explosion qui a produit Cassiopée A, le plus jeune rémanent connu de la Voie lactée."
+    },
+    {
+     "v": "≈ 13",
+     "u": "a.l.",
+     "l": "Diamètre actuel de la bulle de plasma de Cassiopée A, encore en expansion."
+    },
+    {
+     "v": "1572",
+     "u": "",
+     "l": "Année de la supernova de Tycho, aussi brillante que Vénus et visible en plein jour."
+    },
+    {
+     "v": "5",
+     "u": "étoiles",
+     "l": "Le W qui rend la figure reconnaissable au premier coup d'œil, à l'opposé de la Grande Ourse par rapport au pôle."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/cas/cassiopee-a-webb.jpg",
+   "wide": true,
+   "page": "https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_reveals_new_details_in_Cassiopeia_A",
+   "cap": "Cassiopée A vue par l'instrument infrarouge moyen du télescope Webb. Les filaments sont la coquille de matière expulsée qui percute le gaz que l'étoile avait perdu avant d'exploser.",
+   "credit": "NASA, ESA, CSA, STScI, D. Milisavljevic (Purdue), T. Temim (Princeton), I. De Looze (Gand)"
+  },
+  {
+   "t": "text",
+   "h": "Une autopsie stellaire",
+   "p": [
+    "Cassiopée A est l'objet rêvé pour comprendre la mort d'une étoile massive. Assez jeune pour que les débris n'aient pas encore eu le temps de se mélanger au milieu interstellaire, assez proche — environ onze mille années-lumière — pour qu'on en distingue le détail.",
+    "Le Webb y a détecté de minuscules nœuds de gaz issus de l'étoile elle-même : soufre, oxygène, argon, néon. En observant leur disposition, on remonte à la structure en couches qu'avait l'astre avant l'explosion. C'est de la médecine légale appliquée à une étoile."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le monstre vert",
+   "p": [
+    "En avril 2023, les premières images infrarouges du Webb ont révélé dans la coquille interne une structure en filaments verts, aussitôt surnommée le « monstre vert ». Elle était absente des images en lumière visible et n'apparaissait pas dans l'infrarouge proche.",
+    "Les observations ultérieures ont tranché : cette structure s'est formée avant l'explosion. Ce n'est pas un débris, c'est la trace du vent que l'étoile soufflait de son vivant, éclairée aujourd'hui par le choc."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Deux supernovas, deux célébrités",
+   "p": [
+    "Cassiopée A n'a laissé aucune trace fiable dans les archives : on ignore la date exacte de l'explosion, ce qui vaut à la supernova le nom prudent de SN 1667, souvent suivi d'un point d'interrogation.",
+    "Celle de 1572, en revanche, fut un événement européen. Tycho Brahe l'observa et en tira un argument décisif contre l'immuabilité des cieux d'Aristote. Aussi brillante que Vénus, visible en plein jour, elle s'éteignit à l'œil nu en deux ans."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/cas/supernova-tycho-wise.jpg",
+   "page": "https://science.nasa.gov/photojournal/tychos-supernova-remnant/",
+   "cap": "Le rémanent de la supernova de Tycho, invisible en lumière visible, révélé dans l'infrarouge par le télescope WISE.",
+   "credit": "NASA / JPL-Caltech / UCLA"
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Webb reveals new details in Cassiopeia A",
+     "src": "ESA",
+     "note": "Le communiqué de l'image infrarouge moyen. En anglais.",
+     "url": "https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_reveals_new_details_in_Cassiopeia_A"
+    },
+    {
+     "kind": "read",
+     "title": "Le télescope James-Webb révèle de spectaculaires images des restes de Cassiopée A",
+     "src": "Futura Sciences",
+     "note": "La même actualité en français, avec le détail du rayonnement synchrotron et des échos lumineux.",
+     "url": "https://www.futura-sciences.com/sciences/actualites/astronomie-telescope-james-webb-revele-spectaculaires-images-restes-supernova-cassiopee-110033/"
+    },
+    {
+     "kind": "read",
+     "title": "Le mystérieux « monstre vert » de Cassiopée A enfin expliqué",
+     "src": "Sciencepost",
+     "note": "L'explication de la structure verte, formée avant l'explosion.",
+     "url": "https://sciencepost.fr/mysterieux-monstre-vert-cassiopee-enfin-explique/"
+    },
+    {
+     "kind": "look",
+     "title": "Webb sheds light on an exploded star",
+     "src": "NASA",
+     "note": "L'image NIRCam en pleine résolution, avec les crédits à conserver. En anglais.",
+     "url": "https://www.nasa.gov/image-article/webb-sheds-light-on-an-exploded-star"
+    },
+    {
+     "kind": "look",
+     "title": "Tycho's Supernova Remnant",
+     "src": "NASA",
+     "note": "L'image WISE et sa notice. Domaine public. En anglais.",
+     "url": "https://science.nasa.gov/photojournal/tychos-supernova-remnant/"
+    },
+    {
+     "kind": "watch",
+     "title": "Cassiopeia A Zoom",
+     "src": "NASA",
+     "note": "Un plongé depuis le ciel à l'œil nu jusqu'à l'image du Webb. En anglais.",
+     "url": "https://science.nasa.gov/asset/webb/cassiopeia-a-zoom"
+    }
+   ]
+  }
+ ]
+}

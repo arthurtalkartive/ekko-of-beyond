@@ -1,0 +1,69 @@
+{
+ "constellation": "cas",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Cassiopée est la seule constellation dont la punition soit inscrite dans le mouvement du ciel. Attachée à son trône, elle tourne autour du pôle et se retrouve la tête en bas la moitié du temps. Le châtiment n'est pas raconté : il se voit."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "6",
+     "u": "figures",
+     "l": "Cassiopée, Céphée, Andromède, Persée, la Baleine et Pégase : une même histoire répartie sur six constellations voisines."
+    },
+    {
+     "v": "toute",
+     "u": "l'année",
+     "l": "Circumpolaire depuis l'Europe : elle ne se couche jamais, et donc n'échappe jamais à sa peine."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/cas.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La reine sur son trône, telle qu'elle est plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Une vantardise et ses conséquences",
+   "p": [
+    "Cassiopée, reine d'Éthiopie, se déclare plus belle que les Néréides — ou proclame que sa fille Andromède l'est, selon les auteurs. Poséidon, époux de l'une d'elles, envoie un monstre marin ravager les côtes du royaume.",
+    "L'oracle est sans appel : pour apaiser le dieu, il faut livrer Andromède au monstre. On l'enchaîne à un rocher. Persée, revenant de tuer Méduse, la délivre — et le monstre, la Baleine, se retrouve lui aussi au ciel."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "La seule famille complète du ciel",
+   "p": [
+    "Aucun autre récit n'occupe autant de constellations contiguës. Cassiopée et Céphée, les parents ; Andromède, la fille ; Persée, le sauveur ; la Baleine, le monstre ; Pégase, la monture née du sang de Méduse.",
+    "En automne, toute l'histoire est levée en même temps au-dessus de l'horizon. C'est probablement la meilleure entrée en mythologie céleste qu'on puisse offrir à un enfant : un seul geste du bras raconte six figures."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le W et la boussole",
+   "p": [
+    "Cinq étoiles en zigzag, à l'opposé de la Grande Ourse par rapport à Polaris. Quand l'une se couche vers l'horizon, l'autre culmine : les deux se relaient toute l'année pour indiquer le nord.",
+    "Le W devient M quand la reine passe la tête en bas. Les marins connaissaient bien cette bascule, qui donnait l'heure de la nuit autant que la direction."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Cassiopée (constellation)",
+     "src": "Wikipédia",
+     "note": "Le récit mythologique, l'histoire du nom et le détail des étoiles du W.",
+     "url": "https://fr.wikipedia.org/wiki/Cassiop%C3%A9e_(constellation)"
+    }
+   ]
+  }
+ ]
+}

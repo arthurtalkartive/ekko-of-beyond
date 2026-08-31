@@ -1,0 +1,86 @@
+{
+ "constellation": "dra",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Un dragon qui ne dort jamais, enroulé autour du pôle, gardant un trésor qu'il perdra. La figure a servi à trop de traditions pour n'en désigner qu'une : gardien grec, monstre primordial mésopotamien, repère égyptien."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "8e",
+     "u": "du ciel",
+     "l": "Par la taille : le Dragon serpente sur près d'un huitième de la voûte, entre les deux Ourses et Hercule."
+    },
+    {
+     "v": "« serpent »",
+     "u": "",
+     "l": "Sens de Thuban, de l'arabe al-thuʿbān : le nom arabe de la constellation entière."
+    },
+    {
+     "v": "11e",
+     "u": "travail",
+     "l": "Celui des pommes d'or des Hespérides, gardées par le dragon Ladon."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/dra.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du dragon plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Ladon, gardien des pommes d'or",
+   "p": [
+    "Dans la version grecque la plus répandue, le Dragon est Ladon, la créature aux cent têtes qui veillait sur le jardin des Hespérides et ses pommes d'or. Héraclès le tue pour accomplir son onzième travail.",
+    "La disposition du ciel appuie le récit : Hercule se dresse juste à côté, et son pied semble écraser la tête du Dragon. Les figures voisines se répondent — un détail que les Anciens notaient volontiers et que nous avons pris l'habitude d'ignorer."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Tiamat, plus ancienne que la Grèce",
+   "p": [
+    "En Mésopotamie, cette région du ciel se rattache à Tiamat, la déesse-serpent des eaux primordiales, vaincue et démembrée par Marduk pour fabriquer le monde. Le motif du dragon gardien d'un ordre ancien, tué par un héros fondateur, précède largement le mythe grec.",
+    "On le retrouve chez les Celtes, où le dragon est lié à la souveraineté, et dans une bonne part des traditions eurasiennes. Le Dragon céleste est moins un personnage qu'un rôle."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le seul dragon qui ait servi de boussole",
+   "p": [
+    "L'usage égyptien est d'une autre nature : Thuban n'était pas un récit mais un instrument. Étoile du nord pendant des siècles, elle a probablement orienté des temples.",
+    "Il faut rester prudent avec ces alignements — la littérature populaire en attribue plus qu'il n'en est démontré. Mais que Thuban ait tenu la place du pôle à l'époque des grandes pyramides est, lui, un fait de mécanique céleste, calculable et vérifiable."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Un point de vigilance",
+   "p": "Le Dragon revient souvent dans les théories qui prêtent aux monuments antiques des alignements stellaires précis. La position de Thuban à l'époque est certaine, puisqu'elle se calcule. L'intention des bâtisseurs, elle, ne se déduit pas d'une coïncidence géométrique : elle demande des sources écrites ou des séries d'alignements que l'on n'a pas toujours. Distinguer les deux évite bien des raccourcis."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Dragon (constellation)",
+     "src": "Wikipédia",
+     "note": "Le mythe de Ladon, les traditions celtiques et l'orientation des temples égyptiens.",
+     "url": "https://fr.wikipedia.org/wiki/Dragon_(constellation)"
+    },
+    {
+     "kind": "read",
+     "title": "Alpha Draconis",
+     "src": "Wikipédia",
+     "note": "L'étymologie arabe de Thuban et son rôle d'étoile polaire dans l'Égypte antique.",
+     "url": "https://fr.wikipedia.org/wiki/Alpha_Draconis"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,105 @@
+{
+ "constellation": "uma",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "La Casserole n'est pas une constellation. C'est un astérisme, sept étoiles découpées dans une figure bien plus vaste — la troisième du ciel par la taille. Et sur ces sept, cinq voyagent réellement ensemble dans la Galaxie. Les deux autres ne font que passer."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "1 280",
+     "u": "degrés carrés",
+     "l": "Troisième constellation du ciel par la taille, derrière l'Hydre et la Vierge."
+    },
+    {
+     "v": "7",
+     "u": "objets de Messier",
+     "l": "M40, M81, M82, M97, M101, M108 et M109 : un record pour une figure circumpolaire."
+    },
+    {
+     "v": "≈ 80",
+     "u": "a.l.",
+     "l": "Distance du courant de la Grande Ourse, l'essaim d'étoiles auquel appartiennent cinq des sept."
+    },
+    {
+     "v": "11,8",
+     "u": "minutes d'arc",
+     "l": "Écart entre Mizar et Alcor, le test de vue le plus ancien de l'astronomie."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Cinq sœurs et deux intruses",
+   "p": [
+    "Merak, Phecda, Megrez, Alioth et Mizar partagent la même vitesse et la même direction dans la Galaxie : elles sont nées ensemble, il y a quelques centaines de millions d'années, et forment ce qu'on appelle le courant de la Grande Ourse.",
+    "Dubhe et Alkaïd, aux deux extrémités, n'en font pas partie. Elles filent dans une autre direction. Conséquence : la Casserole se déforme. Dans cinquante mille ans, le manche se sera cassé et personne ne reconnaîtra plus une casserole."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Mizar, laboratoire des étoiles doubles",
+   "p": [
+    "Aucune étoile n'a autant servi à l'histoire de l'astronomie. Mizar et son cavalier Alcor forment une double visible à l'œil nu, connue depuis l'Antiquité et longtemps utilisée comme test d'acuité.",
+    "Mizar seule est la première double découverte au télescope, par Riccioli en 1650 ; la première double photographiée, par Bond en 1857 ; et la première binaire spectroscopique, annoncée par Pickering en 1889. On lui compte aujourd'hui quatre composantes."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Un couple de galaxies pour les jumelles",
+   "p": [
+    "Prolongez la diagonale du récipient depuis Phecda vers Dubhe, et reportez la même distance : vous tombez sur M81 et M82. Deux galaxies dans le même champ, à environ douze millions d'années-lumière, dont Hubble a mesuré la distance en 1993 grâce à une trentaine de céphéides.",
+    "Elles s'attirent. M81 est une spirale bien dessinée ; M82, surnommée le Cigare, montre les cicatrices de cette rencontre — une flambée de formation d'étoiles déclenchée par les forces de marée. Deux destins pour deux galaxies voisines."
+   ]
+  },
+  {
+   "t": "quote",
+   "p": "Mizar sert de test de vue en astronomie depuis au moins mille ans.",
+   "who": "Sur l'écart de 11,8 minutes d'arc qui la sépare d'Alcor"
+  },
+  {
+   "t": "text",
+   "h": "Le vide le plus célèbre du ciel",
+   "p": [
+    "En 1995, Hubble a braqué son regard dix jours d'affilée sur une minuscule région de la Grande Ourse, choisie précisément parce qu'elle semblait vide. Le champ profond y a révélé des milliers de galaxies lointaines.",
+    "C'est peut-être le plus grand service rendu par cette constellation : avoir offert un morceau de ciel assez banal pour qu'on ose y regarder longtemps."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Grande Ourse — étoiles principales et courant stellaire",
+     "src": "Techno-Science",
+     "note": "Le détail du système de Mizar et la liste des cinq étoiles qui voyagent ensemble.",
+     "url": "https://www.techno-science.net/glossaire-definition/Grande-Ourse-page-2.html"
+    },
+    {
+     "kind": "read",
+     "title": "Guide de la Grande Ourse",
+     "src": "Star Walk",
+     "note": "Ce qu'on voit à l'œil nu, aux jumelles et au petit télescope. En français.",
+     "url": "https://starwalk.space/fr/news/ursa-major-constellation-guide"
+    },
+    {
+     "kind": "read",
+     "title": "M81 et M82, un duo galactique remarquable",
+     "src": "Stelvision",
+     "note": "Une fiche d'observation avec la méthode de repérage depuis la Casserole.",
+     "url": "https://www.stelvision.com/astro/fiche-observation/m81-m82-duo-galactique/"
+    },
+    {
+     "kind": "read",
+     "title": "Les objets du ciel profond de la Grande Ourse",
+     "src": "Terre Mystérieuse",
+     "note": "Magnitudes, coordonnées et instrument conseillé pour chacun des sept Messier.",
+     "url": "https://terremysterieuse.com/grande-ourse/"
+    }
+   ]
+  }
+ ]
+}

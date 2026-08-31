@@ -1,0 +1,84 @@
+{
+ "constellation": "uma",
+ "tab": "astro",
+ "blocks": [
+  {
+   "t": "warn",
+   "h": "Ce que vaut cet onglet",
+   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
+  },
+  {
+   "t": "lead",
+   "p": "La Grande Ourse n'appartient pas au zodiaque : le Soleil ne la traverse jamais. Si elle a droit à cet onglet, c'est qu'elle porte Alkaïd — l'une des quinze étoiles que la magie astrologique médiévale tenait pour les plus puissantes du ciel."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "15",
+     "u": "étoiles",
+     "l": "Les étoiles behéniennes recensées par Agrippa dans le De Occulta Philosophia, imprimé en 1533."
+    },
+    {
+     "v": "1",
+     "u": "seule ici",
+     "l": "Alkaïd, au bout du manche de la Casserole. Aucune autre étoile de la figure ne figure sur la liste."
+    },
+    {
+     "v": "0",
+     "u": "signe",
+     "l": "L'écliptique, chemin apparent du Soleil, passe loin de la Grande Ourse."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Les quinze étoiles d'Agrippa",
+   "p": [
+    "La liste vient du monde arabe, transmise à l'Europe par Agrippa en 1533, qui en attribue l'origine à Hermès Trismégiste. Quinze étoiles, chacune dotée d'une nature planétaire, d'une pierre, d'une plante et d'un sceau, destinées à la confection de talismans.",
+    "Alkaïd y figure, aux côtés d'Algol, des Pléiades, d'Aldébaran, de Capella, de Sirius, de Procyon, de Régulus, d'Algorab, de Spica, d'Arcturus, d'Alphecca, d'Antarès, de Véga et de Deneb Algedi. La tradition lui prête une nature saturnienne et une réputation sombre — ce qui, dans un corpus où presque chaque auteur contredit le précédent, vaut surtout comme témoignage sur l'imaginaire de l'époque."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Un corpus qui se contredit",
+   "p": [
+    "En compilant les sources, on découvre que les lectures d'une même étoile diffèrent d'un auteur à l'autre : Ptolémée, Lilly, Robson ne s'accordent ni sur les planètes gouvernantes ni sur les effets, et les manuscrits du De Quindecim Stellis varient entre eux sur les pierres et les plantes.",
+    "C'est précisément cette instabilité qui rend le corpus intéressant à lire comme document historique. On y suit deux mille ans de réinterprétations successives d'un même point lumineux."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "The Fixed Stars and Constellations in Astrology",
+     "src": "Vivian E. Robson, 1923 — Internet Archive",
+     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
+     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
+    },
+    {
+     "kind": "read",
+     "title": "Introduction aux étoiles fixes",
+     "src": "Constellations of Words",
+     "note": "Le cadre général, et les raisonnements — parfois franchement circulaires — sur lesquels il s'appuie. En anglais.",
+     "url": "https://www.constellationsofwords.com/introduction-to-the-fixed-stars/"
+    },
+    {
+     "kind": "read",
+     "title": "The Behenian Fixed Stars: The Fifteen Stars of Medieval Astrology",
+     "src": "AstroAk",
+     "note": "L'histoire de la liste et sa transmission par Agrippa. En anglais.",
+     "url": "https://www.astroak.com/en/blog/behenian-fixed-stars"
+    },
+    {
+     "kind": "read",
+     "title": "The 15 Behenian Stars",
+     "src": "Orphic Astrology",
+     "note": "Les correspondances détaillées, avec les sources anciennes citées. En anglais.",
+     "url": "https://orphicastrology.com/fixedstars/behenian"
+    }
+   ]
+  }
+ ]
+}

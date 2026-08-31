@@ -1,0 +1,129 @@
+{
+ "constellation": "cep",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Céphée est discrète, et pourtant elle contient l'étoile qui a permis de mesurer l'univers. Delta Cephei a donné son nom à toute une classe d'astres, et c'est en les observant qu'on a compris que les galaxies sont des galaxies."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "5,37",
+     "u": "jours",
+     "l": "Période de pulsation de Delta Cephei. Sa régularité est ce qui rend la méthode fiable."
+    },
+    {
+     "v": "1784",
+     "u": "",
+     "l": "John Goodricke découvre sa variabilité. Il a vingt ans et il est sourd depuis l'enfance."
+    },
+    {
+     "v": "1912",
+     "u": "",
+     "l": "Henrietta Leavitt publie la relation période-luminosité sur vingt-cinq céphéides du Petit Nuage de Magellan."
+    },
+    {
+     "v": "≈ 1 000",
+     "u": "× le Soleil",
+     "l": "Rayon de Mu Cephei, l'Étoile Grenat de Herschel : l'une des plus vastes étoiles connues."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une chandelle dont on connaît la puissance",
+   "p": [
+    "Une céphéide se dilate et se contracte périodiquement, et son éclat varie au même rythme. Leavitt a découvert que plus la période est longue, plus l'étoile est intrinsèquement lumineuse.",
+    "L'idée est d'une simplicité redoutable. Mesurez la période — c'est gratuit, il suffit d'attendre — vous en déduisez la luminosité réelle. Comparez-la à l'éclat apparent, vous obtenez la distance. Une chandelle dont on connaît la puissance devient un mètre-ruban."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Ce que cette étoile a changé",
+   "p": [
+    "En 1912, on ignorait encore si les « nébuleuses spirales » appartenaient à la Voie lactée ou s'il s'agissait d'autres galaxies. La question fut tranchée en repérant des céphéides dans l'une d'elles et en appliquant la loi de Leavitt : elles étaient bien trop loin pour être chez nous.",
+    "La méthode reste le premier barreau de l'échelle des distances cosmiques. Aujourd'hui encore, les mesures du taux d'expansion de l'univers s'appuient sur des céphéides étalonnées par les parallaxes de Hubble et de Gaia."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/cep.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du roi Céphée plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "L'étalon avait un compagnon caché",
+   "p": [
+    "En 2015, une équipe genevoise a montré que Delta Cephei elle-même est double. Le compagnon était passé inaperçu, trop peu lumineux.",
+    "Ce n'est pas une anecdote : les binaires compliquent l'étalonnage de la relation période-luminosité et peuvent biaiser les distances. L'étoile qui sert de mètre depuis un siècle demandait donc une correction — un rappel utile que même les fondations se révisent."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "L'Étoile Grenat",
+   "p": [
+    "Mu Cephei porte un nom donné par William Herschel, frappé par sa couleur : l'Étoile Grenat. C'est une supergéante rouge parmi les plus vastes connues, si distendue qu'elle engloberait l'orbite de Saturne.",
+    "Céphée abrite aussi VV Cephei, un système où une supergéante et une compagne bleue s'éclipsent mutuellement sur une période de plus de vingt ans. Une constellation modeste, un catalogue d'extrêmes."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Un premier indicateur de distances : les étoiles céphéides",
+     "src": "Observatoire de Paris",
+     "note": "La méthode expliquée pas à pas, avec la courbe de lumière de Delta Cephei. En français.",
+     "url": "https://media4.obspm.fr/public/ressources_lu/pages_galaxies/ceph.html"
+    },
+    {
+     "kind": "read",
+     "title": "Les céphéides comme étalon primaire",
+     "src": "Observatoire de Paris",
+     "note": "L'étalonnage de la relation, de Leavitt à Hertzsprung et Shapley. En français.",
+     "url": "https://media4.obspm.fr/public/ressources_lu/pages_etalonnage-primaire/cepheides-apprendre.html"
+    },
+    {
+     "kind": "read",
+     "title": "Le compagnon caché de Delta Cephei",
+     "src": "Université de Genève",
+     "note": "Le communiqué de 2015 et ses conséquences sur la mesure des distances. En français.",
+     "url": "https://www.unige.ch/medias/2015/cdp150512"
+    },
+    {
+     "kind": "read",
+     "title": "Céphéide",
+     "src": "Wikipédia",
+     "note": "Le mécanisme kappa, l'histoire de la découverte et le rôle de Michel Luizet à Lyon.",
+     "url": "https://fr.wikipedia.org/wiki/C%C3%A9ph%C3%A9ide"
+    },
+    {
+     "kind": "read",
+     "title": "Relation période-luminosité",
+     "src": "Wikipédia",
+     "note": "La loi de Leavitt et sa formulation moderne, étalonnée sur dix céphéides par Hubble.",
+     "url": "https://fr.wikipedia.org/wiki/Relation_p%C3%A9riode-luminosit%C3%A9"
+    },
+    {
+     "kind": "deep",
+     "title": "The Legacy of Henrietta Leavitt: A Re-analysis of the First Cepheid Period-Luminosity Relation",
+     "src": "arXiv, 2025",
+     "note": "Les données originales de 1912 reprises avec les mesures modernes. En anglais, accès libre.",
+     "url": "https://arxiv.org/pdf/2502.17438"
+    },
+    {
+     "kind": "deep",
+     "title": "The Cepheid Extragalactic Distance Scale: Past, Present and Future",
+     "src": "arXiv, 2023",
+     "note": "Une revue complète de l'échelle des distances par céphéides. En anglais, accès libre.",
+     "url": "https://arxiv.org/pdf/2308.02474"
+    }
+   ]
+  }
+ ]
+}
