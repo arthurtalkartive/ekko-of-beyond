@@ -2062,7 +2062,22 @@ $('#tg-coll').onclick = function(){ showCollection(true); };
    fiche detaillee — seules les figures dont la fiche est ecrite sont
    cliquables.
    ============================================================ */
-const FICHES = ['ori'];
+/* Figures dont la fiche est redigee. La liste faisait foi a la main quand
+   seule Orion existait ; elle est desormais chargee depuis
+   content/index.json, que l'API met a jour a chaque enregistrement. La
+   valeur ci-dessous ne sert que de repli, le temps du chargement. */
+let FICHES = ['ori'];
+
+fetch('/content/index.json', { cache: 'no-store' })
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(list){
+    if(!Array.isArray(list) || !list.length) return;
+    FICHES = list;
+    /* les boutons deja affiches doivent etre reconstruits */
+    if(typeof cardIdx === 'number') renderCard();
+    if(collBuilt) buildCollection();
+  })
+  .catch(function(){});
 
 function actionsHTML(c){
   const ready = FICHES.indexOf(c.id) >= 0;
