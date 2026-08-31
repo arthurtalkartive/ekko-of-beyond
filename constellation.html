@@ -16,6 +16,13 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:'Afacad',system-ui,sans-serif;color:var(--cream);background:#04070B}
+/* Fond de page : le ciel étoilé du splash, assombri de moitié pour que le
+   texte reste lisible. Le voile est un réglage à part, facile à ajuster. */
+#pagebg{position:fixed;inset:0;z-index:0;pointer-events:none}
+#pagebg img{width:100%;height:100%;object-fit:cover;object-position:center bottom;
+  opacity:0;transition:opacity .5s ease}
+#pagebg img.ready{opacity:1}
+#pagebg .ov{position:absolute;inset:0;background:rgba(0,0,0,.5)}
 button{font-family:inherit;color:inherit}
 a{color:inherit}
 img,video{max-width:100%;display:block}
@@ -58,7 +65,8 @@ main{position:relative;z-index:1}
 /* ---------- onglets ---------- */
 .tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:34px 24px 12px;
   position:sticky;top:calc(52px + var(--st));z-index:20;
-  background:linear-gradient(180deg,#04070B 40%,rgba(4,7,11,.7) 100%)}
+  background:linear-gradient(180deg,rgba(4,7,11,.9) 45%,rgba(4,7,11,0) 100%);
+  backdrop-filter:blur(6px)}
 .tab{padding:11px 28px;border-radius:20000px;cursor:pointer;border:1px solid var(--c50);
   background:linear-gradient(180deg,rgba(227,227,196,.02),rgba(227,227,196,.1));
   font-weight:700;font-size:15px;text-transform:uppercase;white-space:nowrap;
@@ -88,7 +96,11 @@ main{position:relative;z-index:1}
 .b-stats .l{margin-top:9px;font-size:12.5px;line-height:1.5;opacity:.6}
 
 figure{margin:38px 0}
-figure.wide{width:min(1080px,100%);margin-left:auto;margin-right:auto}
+/* Les schémas gagnent à respirer : ils sortent de la colonne de texte et
+   vont jusqu'à 1320 px, centrés. */
+figure.wide{width:min(1320px,calc(100vw - 48px));margin-left:50%;
+  transform:translateX(-50%);margin-top:52px;margin-bottom:52px}
+@media (max-width:820px){ figure.wide{width:calc(100vw - 32px);margin-top:36px;margin-bottom:36px} }
 .frame{border:1px solid var(--c20);border-radius:12px;overflow:hidden;background:#020407;
   position:relative}
 .frame img,.frame svg{width:100%;height:auto;display:block}
@@ -124,6 +136,21 @@ figcaption .credit{display:block;margin-top:4px;font-size:11.5px;opacity:.6}
   cursor:pointer;transition:background .2s}
 .playbtn:hover{background:rgba(227,227,196,.22)}
 .playbtn svg{width:24px;height:24px;margin-left:3px}
+
+/* Zones sensibles des schémas : un curseur d'aide et une infobulle qui
+   suit le pointeur. Les zones sont des cercles transparents posés dans le
+   SVG, plus larges que les points pour rester attrapables au doigt. */
+.hot{cursor:help}
+.hot:hover circle.halo,.hot:focus circle.halo{opacity:.5}
+.hot circle.halo{opacity:0;transition:opacity .18s}
+#tip{position:fixed;z-index:60;max-width:290px;padding:11px 13px;border-radius:10px;
+  border:1px solid var(--c50);background:rgba(4,8,14,.97);backdrop-filter:blur(8px);
+  font-size:13px;line-height:1.5;pointer-events:none;opacity:0;
+  transform:translateY(5px);transition:opacity .15s,transform .15s}
+#tip.on{opacity:1;transform:translateY(0)}
+#tip b{display:block;font-size:14px;font-weight:700;margin-bottom:4px}
+#tip .k{display:block;margin-top:6px;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;opacity:.5}
 
 .b-warn{margin:40px 0;border:1px solid rgba(227,208,138,.45);border-radius:12px;
   padding:20px 22px;background:rgba(227,208,138,.06);font-size:15px;line-height:1.65}
@@ -168,6 +195,9 @@ figcaption .credit{display:block;margin-top:4px;font-size:11.5px;opacity:.6}
 </style>
 </head>
 <body>
+
+<div id="tip" role="tooltip"></div>
+<div id="pagebg"><img src="/assets/img/splash-background.webp" alt="" decoding="async"><div class="ov"></div></div>
 
 <div class="top">
   <a class="back" href="/">&larr;&nbsp; Collection</a>
@@ -223,128 +253,187 @@ const IAU = {"uma":"UMa","umi":"UMi","cas":"Cas","cep":"Cep","dra":"Dra","ari":"
 
 /* ---------- visuels fabriqués, sans dépendance externe ---------- */
 
+/* Zone sensible : un cercle transparent plus large que le point, avec son
+   texte d'infobulle. Le halo n'apparaît qu'au survol. */
+function hot(cx, cy, r, title, body, note){
+  /* Trois attributs distincts plutôt qu'une chaîne à séparateur : un
+     caractère de contrôle serait invalide en XML, et le SVG cesserait
+     d'être analysable par autre chose qu'un navigateur indulgent. */
+  const at = function(v){
+    return String(v == null ? '' : v)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
+  return '<g class="hot" tabindex="0" data-t="' + at(title) + '"'
+    + ' data-b="' + at(body) + '" data-n="' + at(note || '') + '">'
+    /* Halo et zone de clic bornés : un rayon proportionnel donnerait un
+       cercle démesuré sur un disque comme celui de Bételgeuse, et
+       recouvrirait les zones voisines. */
+    + '<circle class="halo" cx="' + cx + '" cy="' + cy + '" r="' + (r + 9).toFixed(1)
+      + '" fill="none" stroke="#E3E3C4" stroke-width="1.4"/>'
+    + '<circle cx="' + cx + '" cy="' + cy + '" r="' + Math.max(18, r).toFixed(1)
+      + '" fill="transparent"/></g>';
+}
+
 /* Comparaison d'échelle : le Soleil face aux deux géantes d'Orion.
    Rayons en unités solaires, valeurs médianes des estimations. */
 function svgScale(){
-  const W = 1000, H = 430;
-  const items = [
-    { n:'Soleil',     r:1,    c:'#E3E3C4' },
-    { n:'Rigel',      r:74,   c:'#BFD4F2' },
-    { n:'Bételgeuse', r:850,  c:'#E3A87C' },
-  ];
-  const max = 850, pad = 30;
+  const W = 1000, H = 470;
+  const max = 850, pad = 40;
   const scale = (H - pad*2) / (max*2);
   let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
   o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
-  /* Bételgeuse, arc partiel : son disque dépasse largement du cadre */
-  const bx = 250, by = H/2 + 30, br = 850*scale;
+  const lbl = function(x, y, t, s2, anchor){
+    return '<text x="' + x + '" y="' + y + '" text-anchor="' + (anchor||'middle')
+      + '" font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
+      + ' fill="rgba(227,227,196,.9)" letter-spacing="1.6">' + t + '</text>'
+      + '<text x="' + x + '" y="' + (y+19) + '" text-anchor="' + (anchor||'middle')
+      + '" font-family="Afacad,sans-serif" font-size="13" fill="rgba(227,227,196,.5)">'
+      + s2 + '</text>';
+  };
+  const bx = 270, by = H/2 + 34, br = 850*scale;
   o += '<circle cx="' + bx + '" cy="' + by + '" r="' + br.toFixed(1)
      + '" fill="rgba(227,168,124,.16)" stroke="#E3A87C" stroke-width="1.5"/>';
-  const rx = 700, ry = H/2, rr = Math.max(2, 74*scale);
+  const rx = 700, ry = H/2 + 34, rr = Math.max(2.5, 74*scale);
   o += '<circle cx="' + rx + '" cy="' + ry + '" r="' + rr.toFixed(1)
      + '" fill="rgba(191,212,242,.25)" stroke="#BFD4F2" stroke-width="1.5"/>';
-  const sx = 850, sy = H/2, sr = Math.max(1.4, 1*scale);
+  const sx = 862, sy = H/2 + 34, sr = Math.max(1.6, 1*scale);
   o += '<circle cx="' + sx + '" cy="' + sy + '" r="' + sr.toFixed(2) + '" fill="#E3E3C4"/>';
-  const lbl = function(x, y, t, s, anchor){
-    return '<text x="' + x + '" y="' + y + '" text-anchor="' + (anchor||'middle')
-      + '" font-family="Afacad,sans-serif" font-size="15" font-weight="700"'
-      + ' fill="rgba(227,227,196,.9)" letter-spacing="1.5">' + t + '</text>'
-      + '<text x="' + x + '" y="' + (y+18) + '" text-anchor="' + (anchor||'middle')
-      + '" font-family="Afacad,sans-serif" font-size="12.5" fill="rgba(227,227,196,.5)">'
-      + s + '</text>';
-  };
-  o += lbl(bx, 26, 'BÉTELGEUSE', '≈ 850 rayons solaires');
-  o += lbl(rx, ry - rr - 40, 'RIGEL', '≈ 74 rayons solaires');
-  o += lbl(sx, sy + 34, 'SOLEIL', '1 rayon solaire');
-  o += '<line x1="' + (sx) + '" y1="' + (sy + 10) + '" x2="' + sx + '" y2="' + (sy + 20)
-     + '" stroke="rgba(227,227,196,.5)"/>';
+  o += lbl(bx, 30, 'BÉTELGEUSE', '≈ 850 rayons solaires');
+  o += lbl(rx, ry - rr - 44, 'RIGEL', '≈ 74 rayons solaires');
+  o += lbl(sx, sy + 40, 'SOLEIL', '1 rayon solaire');
+  o += hot(bx, by, br, 'Bételgeuse',
+      "Supergéante rouge en fin de vie, environ 850 fois le rayon du Soleil. "
+    + "Placée au centre du système solaire, elle engloberait l'orbite de Mars. "
+    + "Sa surface n'atteint que 3 300 °C, d'où sa couleur orangée.",
+      'Alpha Orionis · magnitude 0,5 · ≈ 700 a.l.');
+  o += hot(rx, ry, Math.max(16, rr), 'Rigel',
+      "Supergéante bleue de 12 000 °C, sept fois plus chaude en surface que "
+    + "Bételgeuse. Bien plus petite, mais l'étoile la plus lumineuse de la "
+    + "constellation vue depuis la Terre.",
+      'Beta Orionis · magnitude 0,1 · ≈ 860 a.l.');
+  o += hot(sx, sy, 16, 'Le Soleil',
+      "À cette échelle, son disque tient dans un pixel. C'est une naine jaune "
+    + "très ordinaire — et c'est précisément ce qui rend la comparaison utile.",
+      'Rayon de référence : 1');
   return o + '</svg>';
 }
 
 /* Le Baudrier : trois étoiles alignées à l'œil, très éloignées les unes
    des autres en profondeur. Distances en années-lumière. */
 function svgDepth(){
-  const W = 1000, H = 360;
+  const W = 1000, H = 420;
   const stars = [
-    { n:'Mintaka', d:1200, y:120 },
-    { n:'Alnilam', d:2000, y:190 },
-    { n:'Alnitak', d:1260, y:260 },
+    { n:'Mintaka', d:1200, y:130, t:'Delta Orionis', m:'2,2',
+      x2:"Système multiple dominé par deux géantes bleues. C'est l'étoile la plus proche des trois, et la plus occidentale du Baudrier." },
+    { n:'Alnilam', d:2000, y:215, t:'Epsilon Orionis', m:'1,7',
+      x2:"La plus lointaine, et pourtant la plus brillante des trois : une supergéante bleue parmi les étoiles les plus lumineuses connues." },
+    { n:'Alnitak', d:1260, y:300, t:'Zeta Orionis', m:'1,8',
+      x2:"Système triple. Son rayonnement ultraviolet illumine la nébuleuse de la Flamme, juste à côté." },
   ];
-  const maxD = 2200, x0 = 120, x1 = 930;
+  const maxD = 2200, x0 = 130, x1 = 900;
   let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
   o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
-  o += '<text x="' + x0 + '" y="34" font-family="Afacad,sans-serif" font-size="12"'
-     + ' letter-spacing="2.4" fill="rgba(227,227,196,.45)">DISTANCE DEPUIS LA TERRE</text>';
-  /* graduations */
+  o += '<text x="' + x0 + '" y="38" font-family="Afacad,sans-serif" font-size="13"'
+     + ' letter-spacing="2.6" fill="rgba(227,227,196,.45)">DISTANCE DEPUIS LA TERRE</text>';
   for(let d = 0; d <= 2000; d += 500){
     const x = x0 + (d/maxD)*(x1-x0);
-    o += '<line x1="' + x.toFixed(1) + '" y1="60" x2="' + x.toFixed(1) + '" y2="' + (H-46)
+    o += '<line x1="' + x.toFixed(1) + '" y1="64" x2="' + x.toFixed(1) + '" y2="' + (H-54)
        + '" stroke="rgba(227,227,196,.09)"/>';
-    o += '<text x="' + x.toFixed(1) + '" y="' + (H-26) + '" text-anchor="middle"'
-       + ' font-family="Afacad,sans-serif" font-size="12" fill="rgba(227,227,196,.4)">'
+    o += '<text x="' + x.toFixed(1) + '" y="' + (H-30) + '" text-anchor="middle"'
+       + ' font-family="Afacad,sans-serif" font-size="13" fill="rgba(227,227,196,.4)">'
        + (d ? d + ' a.l.' : 'Terre') + '</text>';
   }
-  o += '<circle cx="' + x0 + '" cy="' + (H/2) + '" r="5" fill="#8FD0C9"/>';
-  stars.forEach(function(s){
-    const x = x0 + (s.d/maxD)*(x1-x0);
-    o += '<line x1="' + x0 + '" y1="' + (H/2) + '" x2="' + x.toFixed(1) + '" y2="' + s.y
+  o += '<circle cx="' + x0 + '" cy="' + (H/2) + '" r="6" fill="#8FD0C9"/>';
+  let hots = '';
+  stars.forEach(function(st){
+    const x = x0 + (st.d/maxD)*(x1-x0);
+    o += '<line x1="' + x0 + '" y1="' + (H/2) + '" x2="' + x.toFixed(1) + '" y2="' + st.y
        + '" stroke="rgba(227,227,196,.22)" stroke-dasharray="3 5"/>';
-    o += '<circle cx="' + x.toFixed(1) + '" cy="' + s.y + '" r="7" fill="#E3E3C4"/>';
-    o += '<text x="' + (x-14).toFixed(1) + '" y="' + (s.y+5) + '" text-anchor="end"'
-       + ' font-family="Afacad,sans-serif" font-size="15" font-weight="700"'
-       + ' fill="rgba(227,227,196,.9)">' + s.n + '</text>';
-    o += '<text x="' + (x+16).toFixed(1) + '" y="' + (s.y+5) + '"'
-       + ' font-family="Afacad,sans-serif" font-size="12.5"'
-       + ' fill="rgba(227,227,196,.5)">' + s.d + ' a.l.</text>';
+    o += '<circle cx="' + x.toFixed(1) + '" cy="' + st.y + '" r="8" fill="#E3E3C4"/>';
+    o += '<text x="' + (x-16).toFixed(1) + '" y="' + (st.y+6) + '" text-anchor="end"'
+       + ' font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
+       + ' fill="rgba(227,227,196,.9)">' + st.n + '</text>';
+    o += '<text x="' + (x+18).toFixed(1) + '" y="' + (st.y+6) + '"'
+       + ' font-family="Afacad,sans-serif" font-size="13.5"'
+       + ' fill="rgba(227,227,196,.5)">' + st.d + ' a.l.</text>';
+    hots += hot(x, st.y, 8, st.n, st.x2, st.t + ' · magnitude ' + st.m + ' · ' + st.d + ' a.l.');
   });
-  return o + '</svg>';
+  hots += hot(x0, H/2, 6, 'La Terre',
+    "Le point de vue. C'est lui, et lui seul, qui fait apparaître les trois "
+    + "étoiles alignées : déplacez l'observateur de quelques centaines "
+    + "d'années-lumière et la figure du chasseur se défait.",
+    'Origine du schéma');
+  return o + hots + '</svg>';
 }
 
 /* Orion comme boussole : les alignements qui mènent aux voisines. */
 function svgCompass(){
-  const W = 1000, H = 520;
-  /* positions en pixels, dessinées à la main d'après le ciel réel */
+  const W = 1000, H = 560;
   const P = {
-    bet:[430,150], bel:[560,168], alnitak:[452,258], alnilam:[492,252], mintaka:[532,246],
-    rig:[540,392], sai:[420,382],
-    sir:[300,470], ald:[720,130], pro:[210,300],
+    bet:[430,160], bel:[570,178], alnitak:[452,278], alnilam:[494,271], mintaka:[536,264],
+    rig:[548,424], sai:[418,412],
+    sir:[300,506], ald:[742,138], pro:[200,318],
   };
   const dot = function(p, r, c){
     return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + r + '" fill="' + (c||'#E3E3C4') + '"/>';
   };
-  const txt = function(p, t, dx, dy, o2){
+  const txt = function(p, t, dx, dy, op){
     return '<text x="' + (p[0]+dx) + '" y="' + (p[1]+dy) + '" font-family="Afacad,sans-serif"'
-      + ' font-size="14" fill="rgba(227,227,196,' + (o2||0.85) + ')">' + t + '</text>';
+      + ' font-size="15" fill="rgba(227,227,196,' + (op||0.85) + ')">' + t + '</text>';
   };
   let o = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
   o += '<rect width="' + W + '" height="' + H + '" fill="#020407"/>';
-  /* silhouette d'Orion */
   [['bet','bel'],['bel','mintaka'],['mintaka','alnilam'],['alnilam','alnitak'],
-   ['alnitak','sai'],['sai','rig'],['rig','mintaka'],['bet','alnitak']].forEach(function(s){
-    o += '<line x1="' + P[s[0]][0] + '" y1="' + P[s[0]][1] + '" x2="' + P[s[1]][0]
-       + '" y2="' + P[s[1]][1] + '" stroke="#E3E3C4" stroke-width="1.4" opacity=".75"/>';
+   ['alnitak','sai'],['sai','rig'],['rig','mintaka'],['bet','alnitak']].forEach(function(sg){
+    o += '<line x1="' + P[sg[0]][0] + '" y1="' + P[sg[0]][1] + '" x2="' + P[sg[1]][0]
+       + '" y2="' + P[sg[1]][1] + '" stroke="#E3E3C4" stroke-width="1.5" opacity=".75"/>';
   });
-  /* alignements prolongés */
-  [['mintaka','ald','Aldébaran'],['alnitak','sir','Sirius'],['bel','pro','Procyon']].forEach(function(a){
+  [['mintaka','ald'],['alnitak','sir'],['bel','pro']].forEach(function(a){
     const A = P[a[0]], B = P[a[1]];
     o += '<line x1="' + A[0] + '" y1="' + A[1] + '" x2="' + B[0] + '" y2="' + B[1]
-       + '" stroke="#8FD0C9" stroke-width="1" stroke-dasharray="5 6" opacity=".7"/>';
+       + '" stroke="#8FD0C9" stroke-width="1.1" stroke-dasharray="5 6" opacity=".7"/>';
   });
   ['bet','bel','alnitak','alnilam','mintaka','rig','sai'].forEach(function(k){
-    o += dot(P[k], k === 'bet' || k === 'rig' ? 7 : 5);
+    o += dot(P[k], k === 'bet' || k === 'rig' ? 8 : 6);
   });
-  ['sir','ald','pro'].forEach(function(k){ o += dot(P[k], 6, '#8FD0C9'); });
-  o += txt(P.bet, 'Bételgeuse', -96, 4);
-  o += txt(P.bel, 'Bellatrix', 14, 4);
-  o += txt(P.rig, 'Rigel', 14, 6);
-  o += txt(P.sai, 'Saïph', -54, 16);
-  o += txt(P.mintaka, 'le Baudrier', 22, 34, .55);
-  o += txt(P.sir, 'Sirius', -60, 4, .8);
-  o += txt(P.ald, 'Aldébaran', 14, 4, .8);
-  o += txt(P.pro, 'Procyon', -76, 4, .8);
-  o += '<text x="40" y="44" font-family="Afacad,sans-serif" font-size="12"'
-     + ' letter-spacing="2.4" fill="rgba(227,227,196,.45)">ORION, BOUSSOLE DU CIEL D\u2019HIVER</text>';
-  return o + '</svg>';
+  ['sir','ald','pro'].forEach(function(k){ o += dot(P[k], 7, '#8FD0C9'); });
+  o += txt(P.bet, 'Bételgeuse', -102, 5);
+  o += txt(P.bel, 'Bellatrix', 16, 5);
+  o += txt(P.rig, 'Rigel', 16, 7);
+  o += txt(P.sai, 'Saïph', -58, 18);
+  o += txt(P.mintaka, 'le Baudrier', 24, 36, .55);
+  o += txt(P.sir, 'Sirius', -64, 5, .8);
+  o += txt(P.ald, 'Aldébaran', 16, 5, .8);
+  o += txt(P.pro, 'Procyon', -80, 5, .8);
+  o += '<text x="44" y="48" font-family="Afacad,sans-serif" font-size="13"'
+     + ' letter-spacing="2.6" fill="rgba(227,227,196,.45)">ORION, BOUSSOLE DU CIEL D\u2019HIVER</text>';
+  let hots = '';
+  hots += hot(P.bet[0], P.bet[1], 8, 'Bételgeuse',
+    "L'épaule du chasseur. Sa teinte orangée se repère à l'œil nu, en contraste direct avec le bleu de Rigel.",
+    'Magnitude 0,5 · supergéante rouge');
+  hots += hot(P.rig[0], P.rig[1], 8, 'Rigel',
+    "Le pied. L'étoile la plus brillante de la constellation, et la sixième du ciel entier.",
+    'Magnitude 0,1 · supergéante bleue');
+  hots += hot(P.bel[0], P.bel[1], 6, 'Bellatrix',
+    "La seconde épaule. Prolongez la ligne qui vient de Bételgeuse : elle mène à Procyon.",
+    'Magnitude 1,6 · géante bleue');
+  hots += hot(P.sai[0], P.sai[1], 6, 'Saïph',
+    "Le second pied. Souvent négligée, alors qu'elle est aussi chaude que Rigel — sa lumière est simplement plus absorbée.",
+    'Magnitude 2,1 · supergéante bleue');
+  hots += hot(P.alnilam[0], P.alnilam[1], 6, 'Le Baudrier',
+    "Les trois étoiles les plus reconnaissables du ciel, appelées « les Trois Rois » en français. C'est d'elles que partent les deux alignements.",
+    'Alnitak · Alnilam · Mintaka');
+  hots += hot(P.sir[0], P.sir[1], 7, 'Sirius',
+    "L'étoile la plus brillante du ciel nocturne. Prolongez la ligne du Baudrier vers le bas à gauche : vous tombez dessus.",
+    'Grand Chien · magnitude −1,5 · 8,6 a.l.');
+  hots += hot(P.ald[0], P.ald[1], 7, 'Aldébaran',
+    "L'œil du Taureau, orangé lui aussi. Même méthode, dans l'autre sens : le Baudrier prolongé vers le haut à droite.",
+    'Taureau · magnitude 0,9 · 65 a.l.');
+  hots += hot(P.pro[0], P.pro[1], 7, 'Procyon',
+    "La brillante du Petit Chien. On l'atteint en prolongeant la ligne Bellatrix — Bételgeuse vers l'ouest.",
+    'Petit Chien · magnitude 0,4 · 11 a.l.');
+  return o + hots + '</svg>';
 }
 
 const IMG = '/assets/img/constellations/ori/';
@@ -377,18 +466,20 @@ const CONTENT = {
         + "puisqu'Orion est posée sur l'équateur céleste." ]},
 
       { t:'figure', svg:'scale', wide:true,
-        cap:"L'échelle réelle, à taille comparable. Le disque du Soleil, à droite, tient dans un pixel.",
+        cap:"L'échelle réelle, à taille comparable. Le disque du Soleil, à droite, tient dans un pixel. Survolez chaque astre.",
         credit:"Schéma Ekko of Beyond, rayons médians des estimations publiées." },
 
-      { t:'split', h:"Le Baudrier n'est pas une ligne", p:[
+      { t:'text', h:"Le Baudrier n'est pas une ligne", p:[
         "Les trois étoiles du Baudrier semblent parfaitement alignées. Elles ne le "
         + "sont pas du tout : Alnilam, celle du milieu, se trouve environ 800 "
         + "années-lumière plus loin que ses deux voisines.",
         "L'alignement que nous voyons n'existe que depuis la Terre. Déplacez "
         + "l'observateur de quelques centaines d'années-lumière et la figure du "
-        + "chasseur se défait entièrement." ],
-        media:{ svg:'depth', cap:"Les trois étoiles du Baudrier, replacées à leur distance réelle.",
-                credit:"Schéma Ekko of Beyond." } },
+        + "chasseur se défait entièrement." ]},
+
+      { t:'figure', svg:'depth', wide:true,
+        cap:"Les trois étoiles du Baudrier, replacées à leur distance réelle. Survolez chaque étoile.",
+        credit:"Schéma Ekko of Beyond." },
 
       { t:'text', h:"L'affaire Bételgeuse", p:[
         "À l'hiver 2019-2020, Bételgeuse a perdu près des deux tiers de son éclat. "
@@ -408,14 +499,16 @@ const CONTENT = {
         cap:"La surface de Bételgeuse résolue par l'instrument SPHERE en décembre 2019. L'assombrissement de l'hémisphère sud est net.",
         credit:"ESO / M. Montargès et al." },
 
-      { t:'split', rev:true, h:"La boussole du ciel d'hiver", p:[
+      { t:'text', h:"La boussole du ciel d'hiver", p:[
         "Orion sert de point de départ à toute la voûte hivernale. Prolongez la "
         + "ligne du Baudrier vers le bas à gauche : vous tombez sur Sirius, l'étoile "
         + "la plus brillante du ciel. Vers le haut à droite : Aldébaran, l'œil du "
         + "Taureau.",
-        "C'est la raison pour laquelle on apprend toujours Orion en premier." ],
-        media:{ svg:'compass', cap:"Les alignements qui font d'Orion un point de repère.",
-                credit:"Schéma Ekko of Beyond." } },
+        "C'est la raison pour laquelle on apprend toujours Orion en premier." ]},
+
+      { t:'figure', svg:'compass', wide:true,
+        cap:"Les alignements qui font d'Orion un point de repère. Survolez les étoiles pour les identifier.",
+        credit:"Schéma Ekko of Beyond." },
 
       { t:'figure', src:IMG + 'orion-bar-webb.jpg', page:'https://esawebb.org/images/weic2411a/',
         wide:true,
@@ -586,6 +679,13 @@ const esc = function(s){
   });
 };
 
+(function(){
+  const img = document.querySelector('#pagebg img');
+  if(!img) return;
+  if(img.complete && img.naturalWidth) img.classList.add('ready');
+  else img.addEventListener('load', function(){ img.classList.add('ready'); });
+})();
+
 function currentId(){
   const p = new URLSearchParams(location.search).get('id');
   return (p && CONS.some(function(c){ return c.id === p; })) ? p : 'ori';
@@ -702,6 +802,51 @@ function blockHTML(b){
   }
   return '';
 }
+
+/* ---------- infobulle des schémas ----------
+   Une seule infobulle pour toute la page, positionnée au pointeur. Les
+   zones sensibles sont posées par la fonction hot() dans chaque SVG, et
+   sont focalisables au clavier — la souris n'est pas le seul moyen. */
+(function(){
+  const tip = document.getElementById('tip');
+  if(!tip) return;
+
+  const show = function(el, x, y){
+    tip.innerHTML = '<b>' + esc(el.dataset.t || '') + '</b>' + esc(el.dataset.b || '')
+      + (el.dataset.n ? '<span class="k">' + esc(el.dataset.n) + '</span>' : '');
+    tip.classList.add('on');
+    place(x, y);
+  };
+  const place = function(x, y){
+    const r = tip.getBoundingClientRect();
+    let left = x + 16, top = y + 16;
+    if(left + r.width > innerWidth - 12) left = x - r.width - 16;
+    if(top + r.height > innerHeight - 12) top = y - r.height - 16;
+    tip.style.left = Math.max(12, left) + 'px';
+    tip.style.top  = Math.max(12, top) + 'px';
+  };
+  const hide = function(){ tip.classList.remove('on'); };
+
+  document.addEventListener('pointerover', function(e){
+    const h = e.target.closest && e.target.closest('.hot');
+    if(h) show(h, e.clientX, e.clientY);
+  });
+  document.addEventListener('pointermove', function(e){
+    if(tip.classList.contains('on')) place(e.clientX, e.clientY);
+  });
+  document.addEventListener('pointerout', function(e){
+    if(e.target.closest && e.target.closest('.hot')) hide();
+  });
+  /* au clavier : l'infobulle se pose près de la zone focalisée */
+  document.addEventListener('focusin', function(e){
+    const h = e.target.closest && e.target.closest('.hot');
+    if(!h) return;
+    const b = h.getBoundingClientRect();
+    show(h, b.left + b.width/2, b.top + b.height/2);
+  });
+  document.addEventListener('focusout', hide);
+  addEventListener('scroll', hide, { passive:true });
+})();
 
 /* ---------- onglets : seuls ceux qui ont du contenu ---------- */
 const LABELS = { science:'Science', mytho:'Mythologie', astro:'Astrologie' };
