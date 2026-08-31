@@ -1,0 +1,190 @@
+{
+ "constellation": "ori",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Orion n'est pas qu'un dessin. Contrairement à presque toutes les constellations, dont les étoiles n'ont aucun lien entre elles et ne se trouvent alignées que par un hasard de perspective, une grande partie de ses astres appartient réellement au même ensemble : le complexe nuageux d'Orion, la pouponnière d'étoiles la plus proche de nous. C'est, à ce titre, l'un des laboratoires les plus scrutés du ciel."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "≈ 1 350",
+     "u": "a.l.",
+     "l": "Distance de la nébuleuse d'Orion. Les estimations publiées s'échelonnent de 1 300 à 1 500 années-lumière."
+    },
+    {
+     "v": "≈ 2 800",
+     "u": "étoiles",
+     "l": "Dans une sphère de 20 années-lumière autour de l'amas du Trapèze, au cœur de M42."
+    },
+    {
+     "v": "≈ 700",
+     "u": "a.l.",
+     "l": "Distance de Bételgeuse — valeur encore débattue, de 550 à 725 selon les travaux."
+    },
+    {
+     "v": "21",
+     "u": "octobre",
+     "l": "Maximum des Orionides, la pluie d'étoiles filantes qui semble jaillir de la constellation."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Deux géantes aux deux extrémités",
+   "p": [
+    "L'épaule et le pied du chasseur portent deux étoiles que tout oppose. Bételgeuse est une supergéante rouge en fin de vie, si vaste que placée au centre du système solaire elle engloberait l'orbite de Mars. Sa surface n'atteint que 3 300 °C environ, d'où sa couleur orangée.",
+    "Rigel, à l'autre bout, est une supergéante bleue de 12 000 °C. Plus petite mais infiniment plus chaude, elle rayonne dans le blanc-bleu. Les deux se voient à l'œil nu depuis n'importe quel point habité de la planète, puisqu'Orion est posée sur l'équateur céleste."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "scale",
+   "wide": true,
+   "cap": "L'échelle réelle, à taille comparable. Le disque du Soleil, à droite, tient dans un pixel. Survolez chaque astre.",
+   "credit": "Schéma Ekko of Beyond, rayons médians des estimations publiées."
+  },
+  {
+   "t": "text",
+   "h": "Le Baudrier n'est pas une ligne",
+   "p": [
+    "Les trois étoiles du Baudrier semblent parfaitement alignées. Elles ne le sont pas du tout : Alnilam, celle du milieu, se trouve environ 800 années-lumière plus loin que ses deux voisines.",
+    "L'alignement que nous voyons n'existe que depuis la Terre. Déplacez l'observateur de quelques centaines d'années-lumière et la figure du chasseur se défait entièrement."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "depth",
+   "wide": true,
+   "cap": "Les trois étoiles du Baudrier, replacées à leur distance réelle. Survolez chaque étoile.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "L'affaire Bételgeuse",
+   "p": [
+    "À l'hiver 2019-2020, Bételgeuse a perdu près des deux tiers de son éclat. La baisse était visible à l'œil nu, et certains y ont vu l'annonce d'une supernova imminente. Les images du Very Large Telescope ont tranché autrement : l'étoile s'était partiellement voilée derrière un nuage de poussière qu'elle avait elle-même expulsé.",
+    "En juillet 2026, la même équipe a réglé une seconde énigme, vieille d'un siècle : Bételgeuse possède une compagne. Baptisée Siwarha, elle boucle son orbite en six ans et explique le rythme lent qui intriguait les observateurs depuis les années 1920."
+   ]
+  },
+  {
+   "t": "quote",
+   "p": "C'est l'aboutissement d'une quête longue d'un siècle.",
+   "who": "Miguel Montargès, Observatoire de Paris — PSL, juillet 2026"
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/ori/betelgeuse-sphere.jpg",
+   "page": "https://www.eso.org/public/france/news/eso2003/",
+   "cap": "La surface de Bételgeuse résolue par l'instrument SPHERE en décembre 2019. L'assombrissement de l'hémisphère sud est net.",
+   "credit": "ESO / M. Montargès et al."
+  },
+  {
+   "t": "text",
+   "h": "La boussole du ciel d'hiver",
+   "p": [
+    "Orion sert de point de départ à toute la voûte hivernale. Prolongez la ligne du Baudrier vers le bas à gauche : vous tombez sur Sirius, l'étoile la plus brillante du ciel. Vers le haut à droite : Aldébaran, l'œil du Taureau.",
+    "C'est la raison pour laquelle on apprend toujours Orion en premier."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "cap": "Les alignements qui font d'Orion un point de repère. Survolez les étoiles pour les identifier.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/ori/orion-bar-webb.jpg",
+   "page": "https://esawebb.org/images/weic2411a/",
+   "wide": true,
+   "cap": "La barre d'Orion vue par le télescope Webb : le front où le rayonnement des jeunes étoiles du Trapèze érode le nuage qui les a fait naître. Les spectres y ont révélé près de 600 signatures chimiques.",
+   "credit": "ESA/Webb, NASA, CSA, PDRs4All ERS Team"
+  },
+  {
+   "t": "video",
+   "url": "",
+   "page": "https://esawebb.org/videos/weic2411c/",
+   "cap": "Un plongé continu depuis la constellation entière jusqu'au détail du Webb sur la nébuleuse de la Tête de Cheval.",
+   "credit": "ESA/Webb, NASA, CSA, ESA/Euclid, ESO"
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Le mystère de la baisse de luminosité de Bételgeuse résolu",
+     "src": "ESO",
+     "note": "Le communiqué qui écarte l'hypothèse de la supernova.",
+     "url": "https://www.eso.org/public/france/news/eso2109/"
+    },
+    {
+     "kind": "read",
+     "title": "Bételgeuse possède bien une étoile compagnon",
+     "src": "ESO",
+     "note": "L'annonce de Siwarha, juillet 2026.",
+     "url": "https://www.eso.org/public/news/eso2611/"
+    },
+    {
+     "kind": "read",
+     "title": "La preuve par l'image",
+     "src": "Observatoire de Paris — PSL",
+     "note": "La même découverte racontée en français par l'équipe qui l'a faite.",
+     "url": "https://observatoiredeparis.psl.eu/la-preuve-par-l-image.html"
+    },
+    {
+     "kind": "read",
+     "title": "Webb photographie la nébuleuse de la Tête de Cheval",
+     "src": "ESA/Webb",
+     "note": "Barnard 33 dans le nuage moléculaire Orion B.",
+     "url": "https://esawebb.org/news/weic2411/"
+    },
+    {
+     "kind": "look",
+     "title": "Euclid, Hubble et Webb côte à côte",
+     "src": "ESA/Webb",
+     "note": "Trois instruments, trois échelles, le même objet.",
+     "url": "https://esawebb.org/images/weic2411c/"
+    },
+    {
+     "kind": "look",
+     "title": "Tête de Cheval, 23ᵉ anniversaire de Hubble",
+     "src": "ESA/Hubble",
+     "note": "L'image de 2013 en infrarouge proche.",
+     "url": "https://esahubble.org/images/heic1307a/"
+    },
+    {
+     "kind": "watch",
+     "title": "L'éclat de Bételgeuse en 2019-2020",
+     "src": "ESO",
+     "note": "Animation reconstruite à partir des observations du VLT.",
+     "url": "https://www.eso.org/public/france/videos/eso2109b/"
+    },
+    {
+     "kind": "deep",
+     "title": "VLT/SPHERE imaging of the candidate companion of Betelgeuse",
+     "src": "Astronomy & Astrophysics, 2026",
+     "note": "Montargès, Boccaletti et al. L'article de la découverte. En anglais.",
+     "url": "https://www.aanda.org/10.1051/0004-6361/202661023"
+    },
+    {
+     "kind": "deep",
+     "title": "Betelgeuse: Detection of the Expanding Wake of the Companion Star",
+     "src": "arXiv, 2026",
+     "note": "Dupree et al. Le sillage vu par Hubble. En anglais, accès libre.",
+     "url": "https://arxiv.org/pdf/2601.00470"
+    },
+    {
+     "kind": "deep",
+     "title": "Dossier pédagogique : la constellation d'Orion",
+     "src": "Cité des sciences",
+     "note": "Livret d'observation en français, magnitudes à l'appui.",
+     "url": "https://www.cite-sciences.fr/fileadmin/fileadmin_CSI/fichiers/vous-etes/enseignant/Documents-pedagogiques/_documents/Ressources-en-ligne/Gazette01-Orion.pdf"
+    }
+   ]
+  }
+ ]
+}
