@@ -152,6 +152,31 @@ figcaption .credit{display:block;margin-top:4px;font-size:11.5px;opacity:.6}
 #tip .k{display:block;margin-top:6px;font-size:11px;letter-spacing:.1em;
   text-transform:uppercase;opacity:.5}
 
+/* Image cliquable : plein ecran avec voile et legende dessous. */
+.frame.zoom img{cursor:zoom-in}
+#lb{position:fixed;inset:0;z-index:80;display:none;
+  background:rgba(2,4,8,.94);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;flex-direction:column;
+  gap:18px;padding:38px 24px;opacity:0;transition:opacity .22s}
+#lb.on{display:flex}
+#lb.vis{opacity:1}
+#lb img{max-width:min(1500px,94vw);max-height:76vh;width:auto;height:auto;
+  border:1px solid var(--c20);border-radius:10px;background:#020407}
+#lb .cap{max-width:760px;text-align:center;font-size:14.5px;line-height:1.6;opacity:.78}
+#lb .cap .credit{display:block;margin-top:6px;font-size:12px;opacity:.6}
+#lb .close{position:absolute;right:22px;top:calc(18px + var(--st));
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--c50);
+  background:rgba(227,227,196,.06);cursor:pointer;font-size:20px;line-height:1}
+#lb .close:hover{background:rgba(227,227,196,.2)}
+#lb .hint{position:absolute;left:0;right:0;bottom:calc(14px + var(--sb));
+  text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.35}
+
+/* Redressement : la figure du skyculture est dessinee de biais par rapport
+   a l'ecran. On lui applique l'angle valide dans l'outil de verification,
+   et on la reduit juste assez pour que ses coins ne soient pas rognes. */
+.frame.roll{display:flex;align-items:center;justify-content:center}
+.frame.roll img{transition:transform .3s ease}
+
 .b-warn{margin:40px 0;border:1px solid rgba(227,208,138,.45);border-radius:12px;
   padding:20px 22px;background:rgba(227,208,138,.06);font-size:15px;line-height:1.65}
 .b-warn h3{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
@@ -197,6 +222,12 @@ figcaption .credit{display:block;margin-top:4px;font-size:11.5px;opacity:.6}
 <body>
 
 <div id="tip" role="tooltip"></div>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image en plein écran">
+  <button class="close" id="lb-close" aria-label="Fermer">&times;</button>
+  <img id="lb-img" src="" alt="">
+  <div class="cap" id="lb-cap"></div>
+  <div class="hint">Cliquez ou appuyez sur Échap pour fermer</div>
+</div>
 <div id="pagebg"><img src="/assets/img/splash-background.webp" alt="" decoding="async"><div class="ov"></div></div>
 
 <div class="top">
@@ -567,8 +598,8 @@ const CONTENT = {
         { v:'7', u:'sœurs', l:"Les Pléiades, que le chasseur poursuit sans fin d'un bout à l'autre du ciel." },
       ]},
 
-      { t:'figure', src:'/skyculture/ekko/illustrations/ori.webp', lit:true,
-        cap:"La figure du chasseur telle qu'elle est plaquée sur le ciel dans la carte interactive, calée sur les étoiles par trois ancres.",
+      { t:'figure', src:'/skyculture/ekko/illustrations/ori.webp', lit:true, roll:true,
+        cap:"La figure du chasseur telle qu'elle est plaquée sur le ciel dans la carte interactive, calée sur les étoiles par trois ancres. Cliquez pour l'agrandir.",
         credit:"Illustration du skyculture, d'après Johan Meuris — Licence Art Libre." },
 
       { t:'text', h:'Le géant, la déesse et le scorpion', p:[
@@ -713,8 +744,15 @@ function figureHTML(f, wide){
   else if(f.src) inner = '<img src="' + esc(f.src) + '" alt="' + esc(f.alt || '')
     + '" loading="lazy" onerror="this.parentNode.innerHTML=' + "'" + '__MISS__' + "'" + '">';
   else inner = missing('(source absente)');
+  const cls = ['frame'];
+  if(f.lit) cls.push('lit');
+  if(f.roll) cls.push('roll');
+  if(f.src && !f.svg) cls.push('zoom');   /* seules les vraies images s'ouvrent */
   let h = '<figure' + (wide ? ' class="wide"' : '') + '>'
-    + '<div class="frame' + (f.lit ? ' lit' : '') + '">' + inner + '</div>';
+    + '<div class="' + cls.join(' ') + '"'
+    + (f.cap ? ' data-cap="' + String(f.cap).replace(/"/g, '&quot;') + '"' : '')
+    + (f.credit ? ' data-credit="' + String(f.credit).replace(/"/g, '&quot;') + '"' : '')
+    + '>' + inner + '</div>';
   if(f.cap || f.credit){
     h += '<figcaption>' + esc(f.cap || '')
       + (f.credit ? '<span class="credit">' + esc(f.credit) + '</span>' : '')
@@ -801,6 +839,58 @@ function blockHTML(b){
         + '</div></div>';
   }
   return '';
+}
+
+/* ---------- plein écran ---------- */
+(function(){
+  const lb = document.getElementById('lb');
+  const im = document.getElementById('lb-img');
+  const cp = document.getElementById('lb-cap');
+  if(!lb) return;
+
+  const open = function(src, cap, credit, transform){
+    im.src = src;
+    /* on reprend le redressement, sinon l'image s'ouvrirait de biais */
+    im.style.transform = transform || '';
+    cp.innerHTML = esc(cap || '')
+      + (credit ? '<span class="credit">' + esc(credit) + '</span>' : '');
+    lb.classList.add('on');
+    requestAnimationFrame(function(){ lb.classList.add('vis'); });
+    document.body.style.overflow = 'hidden';
+  };
+  const close = function(){
+    lb.classList.remove('vis');
+    setTimeout(function(){ lb.classList.remove('on'); im.src = ''; }, 220);
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('click', function(e){
+    const img = e.target.closest('.frame.zoom img');
+    if(img){
+      const fr = img.closest('.frame');
+      open(img.currentSrc || img.src, fr.dataset.cap, fr.dataset.credit,
+           img.style.transform);
+      return;
+    }
+    if(e.target.closest('#lb')) close();
+  });
+  addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && lb.classList.contains('on')) close();
+  });
+})();
+
+/* ---------- redressement des figures du skyculture ----------
+   L'angle est celui que vous validez dans l'outil de vérification : une
+   rotation horaire, mesurée dans le repère de l'image. On réduit ensuite
+   l'image de juste ce qu'il faut pour que ses coins restent dans le cadre. */
+var FIG_ROLL = 0;
+function applyFigureRoll(){
+  const a = Number(FIG_ROLL) || 0;
+  const r = a * Math.PI / 180;
+  const k = 1 / (Math.abs(Math.cos(r)) + Math.abs(Math.sin(r)));
+  document.querySelectorAll('.frame.roll img').forEach(function(img){
+    img.style.transform = a ? ('rotate(' + a + 'deg) scale(' + k.toFixed(4) + ')') : '';
+  });
 }
 
 /* ---------- infobulle des schémas ----------
@@ -900,6 +990,7 @@ if(!keys.length){
   const wb = want && tabsEl.querySelector('.tab[data-key="' + want + '"]');
   if(wb) wb.click();
 }
+  applyFigureRoll();
 }
 
 buildTabs();
@@ -1078,7 +1169,13 @@ function bootSky(lat, lon){
 /* corrections d'angle validées depuis l'outil de vérification */
 fetch('/skyculture/ekko/roll-adjust.json', { cache: 'no-store' })
   .then(function(r){ return r.ok ? r.json() : {}; })
-  .then(function(t){ ROLL_ADJUST = t || {}; if(STEL) applyRoll(STEL); })
+  .then(function(t){
+    ROLL_ADJUST = t || {};
+    if(STEL) applyRoll(STEL);
+    /* le même angle redresse les illustrations affichées dans la page */
+    FIG_ROLL = ROLL_ADJUST[cid] || 0;
+    applyFigureRoll();
+  })
   .catch(function(){});
 
 const FB = { lat: 41.39, lon: 2.17 };
