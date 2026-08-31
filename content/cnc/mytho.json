@@ -1,0 +1,88 @@
+{
+ "constellation": "cnc",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Cancer est au ciel pour avoir échoué. Envoyé mordre le talon d'Héraclès en pleine bataille, le crabe fut écrasé d'un coup de pied. Il n'a même pas ralenti le héros — et c'est pourtant ce qui lui a valu les étoiles."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "2e",
+     "u": "travail",
+     "l": "Celui de l'Hydre de Lerne, pendant lequel Héra envoya le crabe au secours du monstre."
+    },
+    {
+     "v": "2",
+     "u": "ânes",
+     "l": "Asellus Borealis et Asellus Australis, montés par Dionysos et Silène contre les Titans."
+    },
+    {
+     "v": "« la crèche »",
+     "u": "",
+     "l": "Sens de Praesepe en latin, et de Phatnê en grec : la mangeoire où se nourrissent les deux ânes."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/cnc.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du crabe plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Un allié écrasé",
+   "p": [
+    "Pendant qu'Héraclès affronte l'Hydre de Lerne, Héra, qui le poursuit d'une haine constante, envoie un crabe géant lui pincer le pied pour le déséquilibrer.",
+    "Le héros l'écrase sans même interrompre son combat. Héra, par reconnaissance pour la tentative, place la bête parmi les étoiles. Un hommage aux vaincus qui dit beaucoup de la logique de ces récits : le ciel n'est pas réservé aux vainqueurs."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une mangeoire et deux ânes",
+   "p": [
+    "L'amas central portait sa propre histoire, indépendante du crabe. Grecs et Romains y voyaient une crèche, une mangeoire, flanquée de deux ânes qui s'y nourrissent : Asellus Borealis, l'âne du Nord, et Asellus Australis, l'âne du Sud.",
+    "Ératosthène rapporte que Dionysos et Silène montaient ces ânes lors de la bataille contre les Titans, et que le braiment des bêtes terrifia les géants au point de donner la victoire aux dieux. En remerciement, les ânes furent portés au ciel avec leur mangeoire."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une petite nuée",
+   "p": [
+    "Aratos, vers 260 avant notre ère, décrit l'amas comme « une petite nuée ». C'est la plus juste description qu'on puisse en donner à l'œil nu, et elle rappelle que ces objets étaient connus et nommés longtemps avant qu'on sache ce qu'ils étaient.",
+    "La Crèche a d'ailleurs servi de baromètre : les Anciens tenaient sa disparition dans une nuit claire pour un signe de mauvais temps à venir. Ce n'était pas absurde — l'humidité atmosphérique estompe le premier les objets diffus."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Messier 44",
+     "src": "Observatoire de Paris — catalogue Messier",
+     "note": "Le récit d'Ératosthène, la description d'Aratos et les données des deux Ânes.",
+     "url": "http://messier.obspm.fr/f/m044.html"
+    },
+    {
+     "kind": "read",
+     "title": "M44 (amas ouvert)",
+     "src": "Wikipédia",
+     "note": "La légende de la crèche et des ânes, et l'ancienneté de la connaissance de l'amas.",
+     "url": "https://fr.wikipedia.org/wiki/M44_(amas_ouvert)"
+    },
+    {
+     "kind": "read",
+     "title": "Amas de la Crèche (M44)",
+     "src": "Star Walk",
+     "note": "L'origine des différents noms de l'amas à travers les cultures. En français.",
+     "url": "https://starwalk.space/fr/news/m44-beehive-cluster"
+    }
+   ]
+  }
+ ]
+}

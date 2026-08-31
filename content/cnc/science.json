@@ -1,0 +1,115 @@
+{
+ "constellation": "cnc",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Cancer est la plus pâle des douze figures du zodiaque : pas une seule étoile de deuxième magnitude, un Y renversé qu'il faut deviner. Son intérêt est ailleurs — en son centre flotte l'un des amas les plus proches de nous, visible à l'œil nu depuis la préhistoire."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "≈ 590",
+     "u": "a.l.",
+     "l": "Distance de l'amas de la Crèche. Les mesures d'Hipparcos et les diagrammes infrarouges convergent autour de 182 parsecs."
+    },
+    {
+     "v": "≈ 730",
+     "u": "millions d'années",
+     "l": "Âge de l'amas — le même que celui des Hyades, dans le Taureau."
+    },
+    {
+     "v": "≈ 1 000",
+     "u": "étoiles",
+     "l": "Population de la Crèche. Une vingtaine se détachent aux jumelles."
+    },
+    {
+     "v": "1610",
+     "u": "",
+     "l": "Galilée résout l'amas en étoiles avec sa lunette grossissant trente-cinq fois."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Deux amas jumeaux séparés par le ciel",
+   "p": [
+    "L'amas de la Crèche a le même âge et le même mouvement dans la Galaxie que les Hyades, à l'autre bout du ciel d'hiver. La coïncidence est trop précise pour être fortuite : les deux amas se sont probablement formés du même nuage moléculaire avant de se séparer.",
+    "Deux fratries d'étoiles nées ensemble, aujourd'hui à quarante degrés l'une de l'autre. Comparer leurs populations est devenu un exercice classique pour tester les modèles d'évolution stellaire — mêmes conditions initiales, deux histoires."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/cnc.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du crabe plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Un laboratoire de naines blanches",
+   "p": [
+    "La Crèche contient plusieurs naines blanches, les cendres d'étoiles autrefois plus massives que le Soleil. Comme l'âge de l'amas est connu, on peut relier la masse actuelle de chaque naine à la masse de l'étoile dont elle provient.",
+    "C'est ce qu'on appelle la relation masse initiale — masse finale, et l'amas du Cancer est l'un des rares endroits où elle se mesure proprement. Une constellation sans éclat qui rend des services considérables."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le tropique qui a déménagé",
+   "p": [
+    "Le tropique du Cancer porte ce nom parce que, il y a deux mille ans, le Soleil s'y trouvait au solstice d'été — le point le plus haut de sa course annuelle.",
+    "La précession l'a depuis déplacé : le Soleil du solstice de juin se tient aujourd'hui dans le Taureau. Le tropique, lui, garde son nom. Comme le point vernal dans le Bélier, c'est une toponymie céleste figée sur un état du ciel révolu."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Sur la route des planètes",
+   "p": [
+    "L'amas se trouve presque exactement sur l'écliptique, le chemin apparent du Soleil et des planètes. Conséquence agréable pour les observateurs : Vénus, Mars ou Jupiter viennent régulièrement s'y poser.",
+    "Le Cancer abrite aussi M67, l'un des amas ouverts les plus âgés connus — plusieurs milliards d'années, là où la plupart se dispersent en quelques centaines de millions. Un survivant."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "M44 (amas ouvert)",
+     "src": "Wikipédia",
+     "note": "Distances mesurées, âge, population, et la parenté avec les Hyades.",
+     "url": "https://fr.wikipedia.org/wiki/M44_(amas_ouvert)"
+    },
+    {
+     "kind": "read",
+     "title": "Messier 44",
+     "src": "Observatoire de Paris — catalogue Messier",
+     "note": "La notice de référence : magnitudes et types spectraux des Ânes, et le récit d'Ératosthène.",
+     "url": "http://messier.obspm.fr/f/m044.html"
+    },
+    {
+     "kind": "read",
+     "title": "M44, un amas bourdonnant d'étoiles",
+     "src": "Stelvision",
+     "note": "Fiche d'observation, avec la méthode de repérage dans une constellation peu visible.",
+     "url": "https://www.stelvision.com/astro/fiche-observation/m44-un-amas-bourdonnant-detoiles/"
+    },
+    {
+     "kind": "read",
+     "title": "Amas de la Crèche (M44)",
+     "src": "Star Walk",
+     "note": "Un tour d'horizon en français, avec l'origine des noms Crèche, Praesepe et Ruche.",
+     "url": "https://starwalk.space/fr/news/m44-beehive-cluster"
+    },
+    {
+     "kind": "read",
+     "title": "M44 — amas de la Crèche",
+     "src": "Astroclub de la Girafe",
+     "note": "C'est ici qu'est exposée la parenté de mouvement entre la Crèche et les Hyades.",
+     "url": "https://www.astroclubdelagirafe.fr/2011/02/28/m44-amas-de-la-creche/"
+    }
+   ]
+  }
+ ]
+}

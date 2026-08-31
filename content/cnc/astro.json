@@ -1,0 +1,77 @@
+{
+ "constellation": "cnc",
+ "tab": "astro",
+ "blocks": [
+  {
+   "t": "warn",
+   "h": "Ce que vaut cet onglet",
+   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
+  },
+  {
+   "t": "lead",
+   "p": "Le Cancer ne porte aucune étoile behénienne, mais il abrite l'un des rares objets non stellaires que la tradition ait retenu : la Crèche, Praesepe, traitée comme une entité à part entière dans les listes d'étoiles fixes."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "4e",
+     "u": "signe",
+     "l": "Position dans le zodiaque tropical, compté depuis le point vernal."
+    },
+    {
+     "v": "1",
+     "u": "amas",
+     "l": "Praesepe figure parmi les objets majeurs de la tradition, aux côtés des étoiles proprement dites."
+    },
+    {
+     "v": "≈ 28",
+     "u": "degrés",
+     "l": "Décalage accumulé entre le signe et la constellation de même nom."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Un amas traité comme une étoile",
+   "p": [
+    "Les listes d'étoiles fixes recensent presque exclusivement des astres ponctuels. Praesepe fait exception : sa nature nébuleuse à l'œil nu lui a valu une entrée propre, avec sa nature planétaire et sa signification.",
+    "La tradition l'associe à l'obscurité, à la cécité, aux choses cachées — une lecture que sa seule apparence explique. Un objet flou, qui disparaît quand l'air s'épaissit, ne pouvait guère recevoir d'autre attribution. Là encore, le sens vient du regard, pas du ciel."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le tropique et le solstice",
+   "p": [
+    "Le signe du Cancer commence conventionnellement au solstice d'été, comme le Bélier commence à l'équinoxe de printemps. C'est de là que le tropique du Cancer tire son nom.",
+    "Le Soleil du solstice a depuis quitté le Cancer pour le Taureau. Le signe, lui, reste arrimé au solstice : l'astrologie tropicale suit les saisons, pas les constellations. Le rappeler évite le reproche le plus courant qu'on lui adresse — mais souligne aussi que ses noms de figures ne renvoient plus à rien de visible."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "The Fixed Stars and Constellations in Astrology",
+     "src": "Vivian E. Robson, 1923 — Internet Archive",
+     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
+     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
+    },
+    {
+     "kind": "read",
+     "title": "The Fixed Stars in Longitude Order",
+     "src": "Astro-Seek",
+     "note": "La liste des étoiles fixes de la tradition, où Praesepe figure parmi les objets majeurs. En anglais.",
+     "url": "https://horoscopes.astro-seek.com/the-fixed-stars-in-longitude-order"
+    },
+    {
+     "kind": "read",
+     "title": "Introduction aux étoiles fixes",
+     "src": "Constellations of Words",
+     "note": "Le cadre général de la tradition. En anglais.",
+     "url": "https://www.constellationsofwords.com/introduction-to-the-fixed-stars/"
+    }
+   ]
+  }
+ ]
+}

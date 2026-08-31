@@ -1,0 +1,130 @@
+{
+ "constellation": "tau",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Taureau contient les deux amas les plus proches de nous, l'œil rouge le plus célèbre du ciel, et le vestige d'une étoile dont la mort fut consignée par des astronomes chinois en juillet 1054. Peu de constellations offrent autant à si peu de frais."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "≈ 444",
+     "u": "a.l.",
+     "l": "Distance des Pléiades. La valeur reste discutée selon les instruments : les estimations vont de 390 à 480 années-lumière."
+    },
+    {
+     "v": "≈ 100",
+     "u": "millions d'années",
+     "l": "Âge de l'amas des Pléiades. Il se dispersera dans environ 250 millions d'années."
+    },
+    {
+     "v": "1 500",
+     "u": "km/s",
+     "l": "Vitesse d'expansion de la nébuleuse du Crabe. Ses changements se mesurent sur quatre mois."
+    },
+    {
+     "v": "3 semaines",
+     "u": "",
+     "l": "Durée pendant laquelle la supernova de 1054 resta visible en plein jour."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Deux amas, deux âges",
+   "p": [
+    "Les Hyades forment le V de la tête du taureau : c'est l'amas ouvert le plus proche de nous, et l'un des plus étudiés. Les Pléiades, un peu plus loin, sont plus jeunes et plus serrées.",
+    "L'amas des Pléiades compte environ trois mille étoiles, dont une douzaine visibles à l'œil nu. Il s'étend sur deux degrés, quatre fois le diamètre apparent de la Lune. Sa faible densité le condamne : dans deux cent cinquante millions d'années, ses étoiles se seront dispersées et l'amas n'existera plus."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/tau.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du taureau plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "L'étoile invitée de 1054",
+   "p": [
+    "En juillet 1054, les astronomes chinois de la dynastie Song consignent l'apparition d'une étoile nouvelle dans le Taureau. Elle atteint une magnitude comprise entre −3 et −5, reste visible en plein jour pendant trois semaines, et disparaît à l'œil nu en avril 1056.",
+    "En Occident, presque aucune trace. Ce sont les chroniques chinoises et japonaises qui ont permis, neuf siècles plus tard, de datter précisément l'explosion. SN 1054 fait partie des huit supernovas galactiques dont nous possédons un témoignage écrit."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Pourquoi le catalogue Messier commence ici",
+   "p": [
+    "En 1758, Charles Messier guette le retour de la comète de Halley. Il repère une tache nébuleuse dans le Taureau et croit un instant l'avoir trouvée. C'était la nébuleuse du Crabe.",
+    "Agacé par sa propre erreur, il entreprend de recenser tous les objets flous susceptibles d'être confondus avec des comètes. Le Crabe devient le premier de la liste : M1. Le catalogue le plus utilisé de l'astronomie amateur est né d'une méprise."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Un pulsar au cœur",
+   "p": [
+    "Au centre de la nébuleuse tourne ce qui reste de l'étoile : une étoile à neutrons de quelques kilomètres, le pulsar du Crabe. C'est le pulsar le plus énergétique connu, rayonnant environ deux cents mille fois plus que le Soleil, sur une gamme de fréquences couvrant près de dix-huit ordres de grandeur.",
+    "Son existence avait été prédite avant d'être observée : Franco Pacini avança qu'une étoile à neutrons était seule capable d'expliquer l'éclairement de la nébuleuse. La découverte des pulsars, peu après, lui donna raison."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/tau/nebuleuse-du-crabe.jpg",
+   "wide": true,
+   "page": "https://www.esa.int/Space_in_Member_States/France/La_Nebuleuse_du_Crabe",
+   "cap": "La nébuleuse du Crabe en composite : l'infrarouge de Herschel en rouge révèle la poussière, l'optique de Hubble en bleu montre l'oxygène et le soufre.",
+   "credit": "ESA / Herschel / PACS / MESS Key Programme Supernova Remnant Team ; NASA, ESA et Allison Loll / Jeff Hester (Arizona State University)"
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "La Nébuleuse du Crabe",
+     "src": "ESA",
+     "note": "Le composite Herschel et Hubble, avec l'explication du pulsar. En français.",
+     "url": "https://www.esa.int/Space_in_Member_States/France/La_Nebuleuse_du_Crabe"
+    },
+    {
+     "kind": "read",
+     "title": "SN 1054",
+     "src": "Wikipédia",
+     "note": "L'article le plus complet en français : chroniques chinoises, identification moderne, rôle historique.",
+     "url": "https://fr.wikipedia.org/wiki/SN_1054"
+    },
+    {
+     "kind": "read",
+     "title": "La nébuleuse du Crabe, hier et aujourd'hui",
+     "src": "Jean-Pierre Luminet",
+     "note": "L'astrophysicien retrace la redécouverte de l'objet et la prédiction de l'étoile à neutrons.",
+     "url": "https://blogs.futura-sciences.com/luminet/2015/10/12/la-nebuleuse-du-crabe-hier-et-aujourdhui/"
+    },
+    {
+     "kind": "read",
+     "title": "Nébuleuse du Crabe",
+     "src": "Wikipédia",
+     "note": "Le pulsar, son énergie, et l'origine du nom donné par lord Rosse dans les années 1840.",
+     "url": "https://fr.wikipedia.org/wiki/N%C3%A9buleuse_du_Crabe"
+    },
+    {
+     "kind": "read",
+     "title": "Pléiades (astronomie)",
+     "src": "Wikipédia",
+     "note": "La distance débattue, l'âge, la dispersion à venir et le nom des neuf étoiles principales.",
+     "url": "https://fr.wikipedia.org/wiki/Pl%C3%A9iades_(astronomie)"
+    },
+    {
+     "kind": "read",
+     "title": "M45, l'amas des Pléiades",
+     "src": "Le Journal de l'Astronomie",
+     "note": "Une fiche d'observation, avec les nébuleuses par réflexion qui entourent les étoiles bleues.",
+     "url": "https://journaldelastronomie.fr/amas/les-pleiades-m45/"
+    }
+   ]
+  }
+ ]
+}

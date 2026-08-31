@@ -1,0 +1,77 @@
+{
+ "constellation": "ari",
+ "tab": "astro",
+ "blocks": [
+  {
+   "t": "warn",
+   "h": "Ce que vaut cet onglet",
+   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
+  },
+  {
+   "t": "lead",
+   "p": "Le Bélier ouvre le zodiaque, et il le doit à une coïncidence qui n'a plus cours. Il y a deux mille ans, le Soleil y franchissait l'équateur au premier jour du printemps. Aujourd'hui il le franchit dans les Poissons — mais le premier signe s'appelle toujours le Bélier."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "0",
+     "u": "degré",
+     "l": "Le signe du Bélier commence conventionnellement au point vernal, quelle que soit la constellation qui s'y trouve."
+    },
+    {
+     "v": "≈ 28",
+     "u": "degrés",
+     "l": "Décalage accumulé par la précession depuis l'Antiquité entre les signes et les constellations de même nom."
+    },
+    {
+     "v": "0",
+     "u": "étoile behénienne",
+     "l": "Aucune des quinze étoiles majeures de la tradition médiévale ne se trouve dans le Bélier."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le signe et la constellation ne sont pas la même chose",
+   "p": [
+    "C'est le malentendu le plus répandu sur l'astrologie, et le Bélier en est le cas d'école. L'astrologie occidentale dominante est tropicale : ses douze signes sont douze secteurs de trente degrés découpés à partir du point vernal, pas les constellations visibles.",
+    "Les deux coïncidaient à peu près quand le système a été fixé. La précession les a séparés d'environ vingt-huit degrés, soit presque un signe entier. Quand un horoscope dit « Soleil en Bélier », le Soleil se trouve, dans le ciel réel, devant les Poissons."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Ce que la tradition retient du Bélier",
+   "p": [
+    "Faute d'étoile fixe majeure, la littérature astrologique parle peu des astres du Bélier eux-mêmes. Robson mentionne Hamal et Sheratan sans leur consacrer les développements qu'il réserve à Algol ou à Aldébaran.",
+    "L'intérêt du Bélier dans ce corpus est ailleurs : c'est le point zéro, le commencement conventionnel. Une place de tête obtenue par la géométrie du ciel, et conservée par habitude longtemps après que la géométrie a changé."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "The Fixed Stars and Constellations in Astrology",
+     "src": "Vivian E. Robson, 1923 — Internet Archive",
+     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
+     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
+    },
+    {
+     "kind": "read",
+     "title": "Introduction aux étoiles fixes",
+     "src": "Constellations of Words",
+     "note": "Le cadre général de la tradition des étoiles fixes. En anglais.",
+     "url": "https://www.constellationsofwords.com/introduction-to-the-fixed-stars/"
+    },
+    {
+     "kind": "read",
+     "title": "Bélier (constellation)",
+     "src": "Wikipédia",
+     "note": "Le glissement du point vernal, expliqué du point de vue astronomique.",
+     "url": "https://fr.wikipedia.org/wiki/B%C3%A9lier_(constellation)"
+    }
+   ]
+  }
+ ]
+}

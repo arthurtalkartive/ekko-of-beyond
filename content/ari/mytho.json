@@ -1,0 +1,88 @@
+{
+ "constellation": "ari",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Bélier est le point de départ de la plus longue aventure de la mythologie grecque. Sa toison, accrochée à un chêne au bout du monde connu, lancera Jason et cinquante héros sur les mers. Mais l'histoire commence par une fuite d'enfants."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "1er",
+     "u": "signe",
+     "l": "Le Bélier ouvrait le zodiaque parce que l'équinoxe de printemps, début de l'année antique, s'y produisait."
+    },
+    {
+     "v": "2",
+     "u": "enfants",
+     "l": "Phrixos et Hellé, sauvés du sacrifice par un bélier ailé à la laine d'or."
+    },
+    {
+     "v": "« bélier »",
+     "u": "",
+     "l": "Sens de Hamal, de l'arabe ħamal, qui désignait d'abord la constellation entière."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/ari.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du bélier plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Une marâtre, un sacrifice, une évasion",
+   "p": [
+    "Athamas, roi de Béotie, répudie Néphélé pour épouser Ino. Jalouse des deux enfants du premier lit, Ino ourdit un complot qui doit conduire Phrixos et Hellé au sacrifice.",
+    "Un bélier ailé à la toison d'or surgit — envoyé par Néphélé, par Hermès ou par Zeus selon les auteurs. Les deux enfants montent sur son dos et s'envolent. Au-dessus du détroit qui sépare la Grèce de l'Asie, Hellé se penche et tombe. Elle se noie, et le détroit portera son nom : l'Hellespont, aujourd'hui les Dardanelles."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "La toison et le dragon",
+   "p": [
+    "Phrixos atteint seul la Colchide, à l'extrémité orientale de la mer Noire. Il y sacrifie le bélier à Zeus — geste ingrat qui trouble encore les lecteurs modernes — et suspend la toison à un chêne sacré, gardée par un dragon.",
+    "Une génération plus tard, Jason armera l'Argo pour aller la chercher. Toute l'épopée des Argonautes découle de cette fuite d'enfants, et le bélier sacrifié se retrouve au ciel."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une toison peut-être bien réelle",
+   "p": [
+    "Les historiens rapprochent souvent le mythe d'une technique attestée en Colchide, la Géorgie actuelle : on plongeait des peaux de mouton dans les rivières pour retenir les paillettes d'or emportées par le courant.",
+    "Une toison littéralement chargée d'or, au bout d'un long voyage vers l'est. L'hypothèse est séduisante et souvent citée ; elle reste une interprétation, pas une preuve."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Le Bélier à la Toison d'Or",
+     "src": "Astroclub Andromède",
+     "note": "Le récit complet, avec la généalogie des personnages et le destin d'Hellé.",
+     "url": "https://www.astroclub-andromede.fr/431+le-by-lier-y-la-toison-d-aoor.html"
+    },
+    {
+     "kind": "read",
+     "title": "Le bélier à la toison d'or : entre mythe et astronomie",
+     "src": "Astroclub Andromède",
+     "note": "C'est ici que figure l'hypothèse de l'orpaillage aux peaux de mouton en Colchide.",
+     "url": "https://www.astroclub-andromede.fr/431le-by-lier-y-la-toison-d-aoor-html/"
+    },
+    {
+     "kind": "read",
+     "title": "Bélier (constellation)",
+     "src": "Wikipédia",
+     "note": "Pourquoi le Bélier a ouvert le zodiaque, et le glissement du point vernal vers les Poissons.",
+     "url": "https://fr.wikipedia.org/wiki/B%C3%A9lier_(constellation)"
+    }
+   ]
+  }
+ ]
+}

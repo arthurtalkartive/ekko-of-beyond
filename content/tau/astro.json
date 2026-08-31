@@ -1,0 +1,84 @@
+{
+ "constellation": "tau",
+ "tab": "astro",
+ "blocks": [
+  {
+   "t": "warn",
+   "h": "Ce que vaut cet onglet",
+   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
+  },
+  {
+   "t": "lead",
+   "p": "Aucune autre constellation ne porte deux des quinze étoiles behéniennes. Le Taureau a Aldébaran et les Pléiades — et Aldébaran est de surcroît l'une des quatre étoiles royales de Perse. C'est, dans ce corpus, la figure la plus chargée du ciel."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "2",
+     "u": "behéniennes",
+     "l": "Aldébaran et Alcyone, la principale des Pléiades. Le Taureau est le seul à en compter deux."
+    },
+    {
+     "v": "4",
+     "u": "royales",
+     "l": "Aldébaran, Régulus, Antarès et Fomalhaut : les quatre étoiles qui gardaient, dit-on, les quartiers du ciel perse."
+    },
+    {
+     "v": "≈ 28",
+     "u": "degrés",
+     "l": "Décalage entre le signe du Taureau et la constellation du même nom, accumulé par la précession."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Aldébaran, l'œil du taureau",
+   "p": [
+    "La tradition lui attribue une nature martiale : honneurs militaires, courage, et la ruine qui les accompagne. Ptolémée déjà la classait parmi les étoiles de nature Mars, et Agrippa lui associe une pierre et un sceau pour la confection de talismans.",
+    "Sa position, presque exactement sur l'écliptique, explique une partie de son prestige : la Lune la masque régulièrement, et les planètes la croisent. Une étoile que le ciel désigne sans arrêt finit par attirer les commentaires."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Les Pléiades, la pluie et le deuil",
+   "p": [
+    "Dans la liste behénienne, l'entrée ne désigne pas une étoile isolée mais l'amas entier, parfois sous le nom d'Alcyone. La tradition l'associe à la pluie, aux voyages en mer et au chagrin — une lecture que le calendrier suffit à expliquer : le coucher héliaque de l'amas annonçait la saison des tempêtes et la fermeture de la navigation.",
+    "C'est l'un des rares cas où la signification astrologique se laisse retracer jusqu'à un fait observable. Le reste du corpus tient rarement une telle cohérence."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "The Fixed Stars and Constellations in Astrology",
+     "src": "Vivian E. Robson, 1923 — Internet Archive",
+     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
+     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
+    },
+    {
+     "kind": "read",
+     "title": "The 15 Behenian Stars",
+     "src": "Orphic Astrology",
+     "note": "Les correspondances détaillées, avec les sources anciennes citées. En anglais.",
+     "url": "https://orphicastrology.com/fixedstars/behenian"
+    },
+    {
+     "kind": "read",
+     "title": "The Behenian Fixed Stars",
+     "src": "AstroAk",
+     "note": "L'histoire de la liste et sa transmission par Agrippa en 1533. En anglais.",
+     "url": "https://www.astroak.com/en/blog/behenian-fixed-stars"
+    },
+    {
+     "kind": "read",
+     "title": "Behenian Fixed Stars",
+     "src": "Astro-Seek",
+     "note": "Les longitudes zodiacales actuelles des quinze étoiles, utiles pour situer le décalage. En anglais.",
+     "url": "https://horoscopes.astro-seek.com/behenian-fixed-stars-astrology"
+    }
+   ]
+  }
+ ]
+}

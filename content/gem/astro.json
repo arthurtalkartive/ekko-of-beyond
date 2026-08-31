@@ -1,0 +1,70 @@
+{
+ "constellation": "gem",
+ "tab": "astro",
+ "blocks": [
+  {
+   "t": "warn",
+   "h": "Ce que vaut cet onglet",
+   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
+  },
+  {
+   "t": "lead",
+   "p": "Les Gémeaux ne portent aucune des quinze étoiles behéniennes. Leur place dans cet onglet vient uniquement de leur statut de signe du zodiaque — et l'essentiel de ce qu'il y a à en dire concerne l'écart entre ce signe et la constellation."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "0",
+     "u": "behénienne",
+     "l": "Ni Castor ni Pollux ne figurent parmi les quinze étoiles majeures de la magie astrologique médiévale."
+    },
+    {
+     "v": "3e",
+     "u": "signe",
+     "l": "Position dans le zodiaque tropical, comptée depuis le point vernal."
+    },
+    {
+     "v": "≈ 28",
+     "u": "degrés",
+     "l": "Décalage accumulé entre le signe et la constellation de même nom."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Un onglet court, et c'est normal",
+   "p": [
+    "La tradition astrologique parle des Gémeaux comme signe, abondamment, et de leurs étoiles presque pas. Robson consacre à Castor et Pollux des notices brèves, sans les développements qu'il réserve à Algol ou à Antarès.",
+    "Nous préférons le dire que le combler. Un onglet mince est une information : il indique que le corpus historique, sur cette figure, n'a pas grand-chose de spécifique à offrir."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Ce que la dualité doit au ciel",
+   "p": [
+    "Le thème de la gémellité, du double et de l'ambivalence attaché à ce signe précède l'astrologie savante : il tient à la figure elle-même, deux étoiles brillantes et voisines d'éclat comparable.",
+    "C'est un mécanisme récurrent dans ce corpus, et instructif : l'aspect visuel d'une constellation détermine sa signification bien plus souvent que l'inverse. On lit dans le ciel ce qu'on y a mis."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "The Fixed Stars and Constellations in Astrology",
+     "src": "Vivian E. Robson, 1923 — Internet Archive",
+     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
+     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
+    },
+    {
+     "kind": "read",
+     "title": "Introduction aux étoiles fixes",
+     "src": "Constellations of Words",
+     "note": "Le cadre général de la tradition, et ses raisonnements parfois circulaires. En anglais.",
+     "url": "https://www.constellationsofwords.com/introduction-to-the-fixed-stars/"
+    }
+   ]
+  }
+ ]
+}

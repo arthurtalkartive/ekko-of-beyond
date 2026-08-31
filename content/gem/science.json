@@ -1,0 +1,115 @@
+{
+ "constellation": "gem",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Les Gémeaux donnent la plus belle pluie d'étoiles filantes de l'année, et elle ne vient pas d'une comète. Son corps parent est un astéroïde rocheux qui passe si près du Soleil que sa surface atteint mille degrés — un objet dont on ne sait toujours pas bien comment il perd de la matière."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "14",
+     "u": "décembre",
+     "l": "Maximum des Géminides, avec jusqu'à 120 météores par heure. L'essaim court du 4 au 17 décembre."
+    },
+    {
+     "v": "0,14",
+     "u": "unité astronomique",
+     "l": "Périhélie de 3200 Phaéthon : deux fois plus près du Soleil que Mercure."
+    },
+    {
+     "v": "≈ 34",
+     "u": "a.l.",
+     "l": "Distance de Pollux, l'étoile géante la plus proche de la Terre. Une planète y a été détectée."
+    },
+    {
+     "v": "6",
+     "u": "étoiles",
+     "l": "Castor n'est pas une étoile mais un système sextuple : trois paires en orbite les unes autour des autres."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une pluie sans comète",
+   "p": [
+    "Presque toutes les pluies d'étoiles filantes proviennent de comètes : la glace se sublime, la poussière se libère, la Terre traverse la traînée. Les Géminides font exception.",
+    "Leur corps parent, découvert en 1983 par le satellite infrarouge IRAS, est 3200 Phaéthon : un astéroïde de cinq à six kilomètres, sur une orbite d'astéroïde et non de comète. Il n'a jamais montré la moindre activité liée à l'eau, et pour une bonne raison — son orbite tient entièrement dans la zone où la glace ne survit pas."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/gem.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure des jumeaux plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Une comète de roche",
+   "p": [
+    "Comment un astéroïde peut-il alimenter un essaim ? L'hypothèse retenue est thermique : à chaque passage au périhélie, la surface monte au-delà de mille kelvins, la roche se fissure, des grains sont éjectés. D'où le surnom de « comète de roche ».",
+    "Les météores en portent la signature : les grains des Géminides sont dix fois plus denses que la poussière cométaire ordinaire. Deux à trois grammes par centimètre cube contre trois dixièmes. Ce ne sont pas des flocons, ce sont des cailloux."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Une famille d'objets",
+   "p": [
+    "Phaéthon n'est pas seul. Deux astéroïdes kilométriques, 2005 UD et 1999 YC, partagent son orbite de façon trop précise pour que ce soit un hasard. L'ensemble forme le complexe Phaéthon-Géminides.",
+    "L'indice le plus élégant est chromatique : Phaéthon et 2005 UD sont tous deux optiquement bleus, une teinte que ne présentent que 4 % des astéroïdes. Deux frères bleus sur la même orbite : le complexe résulte probablement de la rupture d'un corps plus gros."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Castor et Pollux ne se ressemblent pas",
+   "p": [
+    "Les deux étoiles qui donnent leur nom aux jumeaux n'ont presque rien en commun. Pollux est une géante orange à trente-quatre années-lumière, la plus proche de nous dans sa catégorie, avec une planète géante en orbite.",
+    "Castor n'est pas une étoile du tout : c'est un système de six astres, groupés en trois paires qui tournent les unes autour des autres. À l'œil nu, un seul point. Le ciel simplifie beaucoup de choses."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Geminids",
+     "src": "Wikipédia",
+     "note": "Dates, taux horaire, vitesse d'entrée et statut particulier de l'essaim. En anglais.",
+     "url": "https://en.wikipedia.org/wiki/Geminids"
+    },
+    {
+     "kind": "look",
+     "title": "La couvée de Phaéthon",
+     "src": "APOD en français",
+     "note": "L'astéroïde photographié en mouvement, et les images radar d'Arecibo de 2017.",
+     "url": "https://www.cidehom.com/apod.php?_date=241212"
+    },
+    {
+     "kind": "deep",
+     "title": "The Dust Tail of Asteroid (3200) Phaethon",
+     "src": "Jewitt et al. — arXiv",
+     "note": "La détection de la perte de matière au périhélie, cœur de l'hypothèse thermique. En anglais.",
+     "url": "https://arxiv.org/pdf/1306.3741"
+    },
+    {
+     "kind": "deep",
+     "title": "Activity in Geminid Parent (3200) Phaethon",
+     "src": "arXiv",
+     "note": "Les paramètres orbitaux, le lien avec 2005 UD et 1999 YC, et l'argument de la couleur bleue. En anglais.",
+     "url": "https://arxiv.org/pdf/1009.2710"
+    },
+    {
+     "kind": "deep",
+     "title": "WISE/NEOWISE Multi-Epoch Imaging of the Geminid-related Asteroids",
+     "src": "arXiv, 2022",
+     "note": "Le complexe Phaéthon-Géminides observé dans l'infrarouge, et la chimie du sodium des météores. En anglais.",
+     "url": "https://arxiv.org/pdf/2208.12089"
+    }
+   ]
+  }
+ ]
+}

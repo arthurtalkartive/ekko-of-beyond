@@ -1,0 +1,100 @@
+{
+ "constellation": "ari",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Bélier est une constellation pauvre en spectacle et riche en histoire. Trois étoiles moyennes, presque rien à voir au télescope — et pourtant l'origine de toutes les coordonnées célestes porte encore son nom."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "≈ 66",
+     "u": "a.l.",
+     "l": "Distance de Hamal, la plus brillante. Une géante orange autour de laquelle une planète a été détectée."
+    },
+    {
+     "v": "5 000",
+     "u": "ans",
+     "l": "Période orbitale des deux composantes de Mesarthim, séparées d'au moins 500 unités astronomiques."
+    },
+    {
+     "v": "> 1 000",
+     "u": "× la Terre",
+     "l": "Intensité du champ magnétique de gamma² Arietis, une étoile dite « particulière »."
+    },
+    {
+     "v": "2",
+     "u": "× la Voie lactée",
+     "l": "Taille de NGC 772, une spirale que le Bélier abrite presque en secret."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le point gamma",
+   "p": [
+    "Il y a un peu plus de deux mille ans, le Soleil franchissait l'équateur céleste — l'équinoxe de printemps — entre les cornes du Bélier. Ce point de croisement servait d'origine à toutes les mesures du ciel, et on l'appelait le premier point du Bélier.",
+    "La précession l'a depuis fait glisser dans les Poissons. Mais l'origine des coordonnées célestes s'appelle toujours le point vernal ou point gamma, et le symbole du Bélier, qui rappelle deux cornes, sert encore à le désigner. Une adresse a changé de quartier sans changer de nom."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Mesarthim, pionnière des doubles",
+   "p": [
+    "Gamma Arietis est l'une des premières étoiles doubles reconnues comme telles au télescope. Deux composantes presque jumelles, de magnitudes 4,75 et 4,83, séparées d'au moins cinq cents unités astronomiques.",
+    "La plus brillante porte le suffixe « p » dans sa classification, pour particulière : son champ magnétique dépasse mille fois celui de la Terre. Le Bélier réserve ses curiosités à qui accepte de regarder de près."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/ari.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du bélier plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Une étoile en fuite",
+   "p": [
+    "53 Arietis n'a l'air de rien : une étoile bleue-blanche de magnitude 6,13, à quelque sept cent cinquante années-lumière. Elle fait pourtant partie des rares « étoiles évadées », expulsées de leur lieu de naissance à très grande vitesse.",
+    "On soupçonne l'explosion d'une compagne, ou l'éjection par un amas jeune. Ces astres traversent la Galaxie sans plus rien devoir à personne."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Bélier (constellation)",
+     "src": "Wikipédia",
+     "note": "Le détail des étoiles, Mesarthim, l'étoile évadée 53 Arietis et l'histoire du point vernal.",
+     "url": "https://fr.wikipedia.org/wiki/B%C3%A9lier_(constellation)"
+    },
+    {
+     "kind": "read",
+     "title": "Constellation du Bélier",
+     "src": "Astrosurf",
+     "note": "Une fiche d'observation courte et ancienne, avec le repérage depuis les Pléiades.",
+     "url": "http://www.astrosurf.com/astro_virtu/constell/f_co_ari.htm"
+    },
+    {
+     "kind": "read",
+     "title": "Le Bélier",
+     "src": "Le Journal de l'Astronomie",
+     "note": "Ce qu'on peut réellement observer, sans survendre une constellation modeste.",
+     "url": "https://journaldelastronomie.fr/constellation/le-belier/"
+    },
+    {
+     "kind": "read",
+     "title": "Hamal, l'ancienne étoile de l'équinoxe",
+     "src": "Meteorologia en Red",
+     "note": "Le rôle calendaire de Hamal et la mécanique de la précession.",
+     "url": "https://fr.meteorologiaenred.com/Hamal--l'ancienne-%C3%A9toile-de-l'%C3%A9quinoxe-en-B%C3%A9lier.html"
+    }
+   ]
+  }
+ ]
+}

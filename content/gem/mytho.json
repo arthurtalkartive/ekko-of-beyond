@@ -1,0 +1,74 @@
+{
+ "constellation": "gem",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Castor et Pollux ont le même berceau et deux destins opposés : l'un est mortel, l'autre pas. Le mythe résout cette injustice par un arrangement qui n'appartient qu'à eux — ils se partagent l'immortalité, un jour chacun."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "1",
+     "u": "jour sur deux",
+     "l": "Le partage conclu par Pollux : une journée aux Enfers, une journée sur l'Olympe, à tour de rôle."
+    },
+    {
+     "v": "2",
+     "u": "pères",
+     "l": "Pollux fils de Zeus, Castor fils du roi Tyndare. Une même mère, Léda, et deux paternités."
+    },
+    {
+     "v": "« les Dioscures »",
+     "u": "",
+     "l": "Leur nom collectif : littéralement les jeunes garçons de Zeus."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/gem.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure des jumeaux plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Deux frères, une seule immortalité",
+   "p": [
+    "Léda met au monde deux garçons de deux pères : Pollux, engendré par Zeus, est immortel ; Castor, fils du roi Tyndare, ne l'est pas. Ils grandissent inséparables, l'un dompteur de chevaux, l'autre boxeur.",
+    "Quand Castor meurt dans une querelle, Pollux refuse de lui survivre et demande à Zeus de partager son immortalité. Le dieu accepte : les deux frères alterneront, une journée aux Enfers, une journée parmi les dieux. Une solution que la mythologie n'accorde à personne d'autre."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le ciel raconte l'alternance",
+   "p": [
+    "L'arrangement se lit dans le ciel. Vues de Grèce, les deux étoiles se lèvent et se couchent à quelque temps d'écart : quand l'une paraît au crépuscule, l'autre est encore sous l'horizon. Chacune passe à son tour dans le monde d'en bas.",
+    "Que le mythe décrive le phénomène ou que le phénomène ait inspiré le mythe, on ne le saura pas. Mais l'accord entre les deux est trop précis pour être fortuit."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Les protecteurs des marins",
+   "p": [
+    "Les Dioscures étaient les patrons des navigateurs. Leur signe : les feux Saint-Elme, ces lueurs bleutées qui apparaissent au sommet des mâts pendant les orages — une décharge électrique que les Anciens tenaient pour une visite.",
+    "Deux flammes signifiaient la présence des deux frères, donc le salut. Une seule flamme, l'un des deux seulement, donc le naufrage. Rome leur consacra un temple sur le Forum, dont trois colonnes se dressent encore."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Gémeaux (constellation)",
+     "src": "Wikipédia",
+     "note": "Le mythe des Dioscures, l'étymologie des noms d'étoiles et les objets de la constellation.",
+     "url": "https://fr.wikipedia.org/wiki/G%C3%A9meaux_(constellation)"
+    }
+   ]
+  }
+ ]
+}

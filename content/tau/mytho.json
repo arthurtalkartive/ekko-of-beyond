@@ -1,0 +1,107 @@
+{
+ "constellation": "tau",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Les Pléiades sont peut-être l'objet du ciel le plus anciennement raconté après le Soleil et la Lune. Sept sœurs poursuivies, dont une manque toujours — et ce détail précis se retrouve d'un bout à l'autre du monde habité."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "7",
+     "u": "sœurs",
+     "l": "Filles d'Atlas et de Pléioné dans la version grecque. Leurs demi-sœurs, les Hyades, forment l'amas voisin."
+    },
+    {
+     "v": "9",
+     "u": "visibles",
+     "l": "On distingue jusqu'à neuf étoiles à l'œil nu, malgré le nom de sept sœurs. Le chiffre sept était tenu pour faste."
+    },
+    {
+     "v": "1600",
+     "u": "av. J.-C.",
+     "l": "Le disque de Nebra, plus ancienne représentation connue de la voûte céleste, y figure un groupe de sept points."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/tau.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du taureau plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Zeus déguisé en taureau",
+   "p": [
+    "Le taureau, c'est Zeus. Pour enlever Europe, fille du roi de Tyr, il prend la forme d'un taureau blanc d'une douceur trompeuse. La jeune femme monte sur son dos, il s'élance vers la mer et l'emporte en Crète.",
+    "Le ciel n'en montre que la moitié : la figure s'arrête au poitrail, le reste du corps est sous l'eau. Une constellation tronquée qui raconte un enlèvement en cours."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "La Pléiade perdue",
+   "p": [
+    "Les Grecs comptaient sept sœurs mais n'en voyaient que six clairement, et ils avaient une explication : Mérope, honteuse d'avoir aimé un mortel, se cache. Ou Électre, qui ne supporte pas la chute de Troie.",
+    "Ce motif de la sœur manquante se retrouve en Australie, en Afrique, en Asie et en Amérique. Des astronomes australiens y ont vu la trace d'un récit extrêmement ancien, peut-être antérieur aux grandes migrations humaines — l'amas ayant pu paraître plus dispersé, et donc plus lisible, à une époque reculée."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Un point de vigilance",
+   "p": "On lit parfois que le mythe des Sept Sœurs serait « la plus vieille histoire du monde », vieille de cent mille ans. C'est une hypothèse, avancée par des chercheurs australiens et largement reprise par la presse. Elle repose sur la convergence des récits et sur le mouvement propre des étoiles de l'amas, pas sur une source datable. La convergence des mythes est un fait ; la datation, une reconstruction fragile. À raconter comme telle."
+  },
+  {
+   "t": "text",
+   "h": "Un calendrier avant d'être une légende",
+   "p": [
+    "L'usage précède partout le récit. Le lever héliaque des Pléiades, leur réapparition juste avant l'aube, annonçait les moissons dans tout l'hémisphère nord — un repère que les prêtres et chamanes du Néolithique surveillaient de près.",
+    "En Nouvelle-Zélande, ce lever s'appelle Matariki et ouvre le nouvel an maori, célébré en juin par des chants, des danses et l'hommage aux ancêtres. La fête est aujourd'hui jour férié. Un amas d'étoiles devenu institution."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Pléiades (astronomie)",
+     "src": "Wikipédia",
+     "note": "La section culturelle : Néolithique, disque de Nebra, et la poursuite d'Orion.",
+     "url": "https://fr.wikipedia.org/wiki/Pl%C3%A9iades_(astronomie)"
+    },
+    {
+     "kind": "read",
+     "title": "Matariki",
+     "src": "Encyclopédie de l'Histoire du Monde",
+     "note": "Le nouvel an maori et le lever héliaque de l'amas, expliqués en français.",
+     "url": "https://www.worldhistory.org/trans/fr/1-19856/matariki/"
+    },
+    {
+     "kind": "read",
+     "title": "Les Pléiades, premier mythe de l'humanité ?",
+     "src": "Dynamythe",
+     "note": "L'examen du motif de la Pléiade perdue, et de ce que l'hypothèse australienne vaut réellement.",
+     "url": "https://dynamythe.kessel.media/posts/pst_beacadb8910648ad828ed38d4418a37c/les-pleiades-premier-mythe-de-lhumanite"
+    },
+    {
+     "kind": "read",
+     "title": "Les sept sœurs : légende australienne et constellation",
+     "src": "Voyage en Australie",
+     "note": "La version yindjibarndi, où la poursuite est inscrite dans le paysage autant que dans le ciel.",
+     "url": "https://www.voyage-en-australie.fr/les-sept-soeurs-histoire-australienne-constellation-et-conte-millenaire/"
+    },
+    {
+     "kind": "read",
+     "title": "Mythes de la constellation des sept sœurs",
+     "src": "Atlantico",
+     "note": "La reprise en français de l'hypothèse des cent mille ans, à lire avec la prudence de l'encadré ci-dessus.",
+     "url": "https://atlantico.fr/article/decryptage/mythes-de-la-constellation-des-sept-soeurs-selon-des-astronomes-australiens-la-plus-vieille-histoire-racontee-dans-le-monde-pourrait-bien-letre-depuis-100-000-ans"
+    }
+   ]
+  }
+ ]
+}
