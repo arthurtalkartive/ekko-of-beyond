@@ -546,8 +546,7 @@ const CONTENT = {
         cap:"La barre d'Orion vue par le télescope Webb : le front où le rayonnement des jeunes étoiles du Trapèze érode le nuage qui les a fait naître. Les spectres y ont révélé près de 600 signatures chimiques.",
         credit:"ESA/Webb, NASA, CSA, PDRs4All ERS Team" },
 
-      { t:'video', src:IMG + 'zoom-tete-de-cheval.mp4', poster:IMG + 'tete-de-cheval-webb.jpg',
-        page:'https://esawebb.org/videos/weic2411c/',
+      { t:'video', url:'', page:'https://esawebb.org/videos/weic2411c/',
         cap:"Un plongé continu depuis la constellation entière jusqu'au détail du Webb sur la nébuleuse de la Tête de Cheval.",
         credit:"ESA/Webb, NASA, CSA, ESA/Euclid, ESO" },
 
@@ -765,18 +764,94 @@ function withFallback(html, path, page){
   return html.replace('__MISS__', missing(path, page).replace(/'/g, '&#39;').replace(/"/g, '&quot;'));
 }
 
+/* Transforme un lien collé en source intégrable.
+
+   Le champ accepte n'importe quelle adresse : on reconnaît les grandes
+   plateformes et on retombe sur un lien cliquable pour le reste, plutôt
+   que d'afficher un cadre vide. Renvoie soit { embed } pour un iframe,
+   soit { file } pour un fichier à lire directement, soit { link } quand la
+   plateforme n'est pas reconnue. */
+function resolveVideo(raw){
+  const url = String(raw || '').trim();
+  if(!url) return null;
+
+  /* fichier servi par nos soins, ou lien direct vers un média */
+  if(/^\//.test(url) || /\.(mp4|webm|ogv|mov)(\?|#|$)/i.test(url)) return { file: url };
+
+  let u;
+  try{ u = new URL(url, location.origin); }catch(e){ return { link: url }; }
+  const host = u.hostname.replace(/^www\./, '');
+  const seg = u.pathname.split('/').filter(Boolean);
+
+  /* départ dans la vidéo, sous ses différentes écritures */
+  const startOf = function(){
+    const t = u.searchParams.get('t') || u.searchParams.get('start') || '';
+    const m = /^(?:(\d+)h)?(?:(\d+)m)?(\d+)s?$/.exec(t);
+    if(m) return (+(m[1]||0))*3600 + (+(m[2]||0))*60 + (+m[3]);
+    return /^\d+$/.test(t) ? +t : 0;
+  };
+
+  /* YouTube : watch, youtu.be, shorts, live, embed */
+  if(/(^|\.)youtube\.com$|^youtu\.be$|^youtube-nocookie\.com$/.test(host)){
+    let id = u.searchParams.get('v') || '';
+    if(!id && host === 'youtu.be') id = seg[0] || '';
+    if(!id && (seg[0] === 'shorts' || seg[0] === 'live' || seg[0] === 'embed')) id = seg[1] || '';
+    if(!/^[\w-]{6,20}$/.test(id)) return { link: url };
+    const st = startOf();
+    return { embed: 'https://www.youtube-nocookie.com/embed/' + id
+      + '?rel=0&modestbranding=1' + (st ? '&start=' + st : ''), what: 'YouTube' };
+  }
+
+  /* Vimeo : vimeo.com/ID, /channels/x/ID, player.vimeo.com/video/ID */
+  if(/(^|\.)vimeo\.com$/.test(host)){
+    const id = seg.filter(function(x){ return /^\d{6,}$/.test(x); })[0];
+    if(!id) return { link: url };
+    /* le jeton h= des vidéos non répertoriées doit être conservé */
+    const h = u.searchParams.get('h') || (seg[seg.indexOf(id) + 1] || '');
+    return { embed: 'https://player.vimeo.com/video/' + id
+      + (/^[0-9a-f]{6,}$/i.test(h) ? '?h=' + h : ''), what: 'Vimeo' };
+  }
+
+  /* Dailymotion : dailymotion.com/video/ID, dai.ly/ID */
+  if(/(^|\.)dailymotion\.com$|^dai\.ly$/.test(host)){
+    const id = host === 'dai.ly' ? seg[0] : (seg[0] === 'video' ? seg[1] : seg[seg.length-1]);
+    if(!id) return { link: url };
+    return { embed: 'https://geo.dailymotion.com/player.html?video=' + id, what: 'Dailymotion' };
+  }
+
+  /* déjà une adresse d'intégration : on la laisse passer telle quelle */
+  if(/\/(embed|player)\b/.test(u.pathname)) return { embed: u.href, what: host };
+
+  return { link: url };
+}
+
 function videoHTML(b){
   let inner;
-  if(b.yt){
-    inner = '<iframe src="https://www.youtube-nocookie.com/embed/' + esc(b.yt)
-      + '" title="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"'
+  const v = resolveVideo(b.url || b.yt && ('https://youtu.be/' + b.yt));
+  if(v && v.embed){
+    inner = '<iframe src="' + esc(v.embed) + '" title="' + esc(b.cap || 'Vidéo') + '"'
+      + ' allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen"'
+      + ' referrerpolicy="strict-origin-when-cross-origin"'
       + ' allowfullscreen loading="lazy"></iframe>';
+  }else if(v && v.link){
+    inner = '<div class="missing">Plateforme non reconnue.<br>'
+      + '<a href="' + esc(v.link) + '" target="_blank" rel="noopener">Ouvrir la vidéo &nearr;</a></div>';
+  }else if(v && v.file){
+    /* Lecture à la demande : rien n'est téléchargé avant le clic. */
+    inner = '<video controls preload="none"' + (b.poster ? ' poster="' + esc(b.poster) + '"' : '')
+      + '><source src="' + esc(v.file) + '"></video>';
   }else if(b.src){
     /* Lecture à la demande : rien n'est téléchargé avant le clic. */
     inner = '<video controls preload="none"' + (b.poster ? ' poster="' + esc(b.poster) + '"' : '')
       + ' onerror="this.parentNode.innerHTML=' + "'" + '__MISS__' + "'" + '">'
       + '<source src="' + esc(b.src) + '" type="video/mp4"></video>';
-  }else inner = missing('(vidéo absente)');
+  }else{
+    inner = '<div class="missing">Aucune vidéo pour ce bloc.<br>'
+      + 'Collez un lien YouTube, Vimeo ou Dailymotion dans le Studio.'
+      + (b.page ? '<br><a href="' + esc(b.page) + '" target="_blank" rel="noopener">'
+                  + 'Voir la source &nearr;</a>' : '')
+      + '</div>';
+  }
   let h = '<div class="b-video"><div class="ratio">' + inner + '</div>';
   if(b.cap || b.credit){
     h += '<figcaption>' + esc(b.cap || '')
