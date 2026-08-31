@@ -1069,15 +1069,41 @@ if(!keys.length){
 }
 
 buildTabs();
-fetch('/content/' + cid + '.json', { cache: 'no-store' })
-  .then(function(r){ return r.ok ? r.json() : null; })
-  .then(function(d){
-    if(!d || !Object.keys(d).length) return;
-    content = d;
-    tabsEl.style.display = '';
-    buildTabs();
-  })
-  .catch(function(){});
+
+/* Un fichier par onglet : content/<id>/<onglet>.json. On les demande tous
+   les trois en parallele, un manquant n'est pas une erreur — c'est un
+   onglet non redige. L'ancien fichier unique reste lu en secours, le temps
+   que toutes les fiches soient migrees. */
+(function loadContent(){
+  const one = function(tab){
+    return fetch('/content/' + cid + '/' + tab + '.json', { cache:'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        return (d && Array.isArray(d.blocks) && d.blocks.length) ? [tab, d.blocks] : null;
+      })
+      .catch(function(){ return null; });
+  };
+  Promise.all(ORDER.map(one)).then(function(res){
+    const found = {};
+    res.forEach(function(x){ if(x) found[x[0]] = x[1]; });
+    if(Object.keys(found).length){
+      content = found;
+      tabsEl.style.display = '';
+      buildTabs();
+      return;
+    }
+    /* rien par onglet : on tente l'ancien fichier unique */
+    return fetch('/content/' + cid + '.json', { cache:'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if(!d || !Object.keys(d).length) return;
+        content = d;
+        tabsEl.style.display = '';
+        buildTabs();
+      })
+      .catch(function(){});
+  });
+})();
 
 $('#cms').textContent = 'Cette page est composée de blocs typés — chapeau, chiffres clés, '
   + 'texte, figure, texte-et-image, citation, vidéo, encadré, sources. C\u2019est la '
