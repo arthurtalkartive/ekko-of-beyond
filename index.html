@@ -4,6 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Ekko of Beyond · Vue du ciel</title>
+<script>
+/* Le splash ne se joue qu'une fois par session. On décide AVANT tout
+   rendu, sinon il apparaîtrait le temps d'une image à chaque retour sur
+   la carte. sessionStorage plutôt que localStorage : rouvrir le site
+   demain doit à nouveau donner l'ouverture complète. */
+(function(){
+  try{
+    if(sessionStorage.getItem('ekko-splash-seen') === '1'){
+      document.documentElement.className += ' no-splash';
+    }else{
+      sessionStorage.setItem('ekko-splash-seen', '1');
+    }
+  }catch(e){}
+})();
+</script>
 <link rel="preload" as="image" href="/assets/img/splash-background.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +65,8 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 #splash.out{opacity:0;pointer-events:none}
 #splash.gone{display:none}
+/* session déjà entamée : le splash n'est même pas affiché */
+html.no-splash #splash{display:none}
 /* Fond etoile fourni : il porte deja le degrade et la lueur turquoise du
    bas. On n'ajoute donc pas l'ellipse en color-dodge par-dessus, elle
    surexposerait la partie basse. Le degrade sous l'image sert de fond
@@ -244,6 +261,27 @@ a.account{text-decoration:none}
   bottom:calc(152px + var(--safe-b));z-index:11;
   font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--cream-50);pointer-events:none;white-space:nowrap}
+
+/* ================= SOUS-MENU DU COMPTE ================= */
+button.account{cursor:pointer}
+#menu-veil{position:fixed;inset:0;z-index:18;background:rgba(4,7,13,.4);
+  opacity:0;pointer-events:none;transition:opacity .22s}
+#menu-veil.on{opacity:1;pointer-events:auto}
+#menu{
+  position:fixed;right:18px;top:calc(var(--hd-h) + var(--safe-t) + 10px);z-index:19;
+  min-width:236px;padding:10px;border-radius:14px;
+  border:1px solid var(--c20);background:rgba(6,12,18,.97);backdrop-filter:blur(14px);
+  display:flex;flex-direction:column;
+  opacity:0;transform:translateY(-8px);pointer-events:none;
+  transition:opacity .22s,transform .22s;
+}
+#menu.on{opacity:1;transform:translateY(0);pointer-events:auto}
+.mi{display:block;padding:11px 13px;border-radius:9px;text-decoration:none;
+  font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--cream);opacity:.85;transition:background .18s,opacity .18s}
+.mi:hover{background:rgba(227,227,196,.1);opacity:1}
+.mi.off{opacity:.3;pointer-events:none}
+@media (max-width:820px){ #menu{right:12px;left:12px;min-width:0} }
 
 /* ================= ACTIONS AU SURVOL =================
    Deux boutons révélés au survol de la carte, dans la vue du ciel comme
@@ -530,7 +568,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
 </svg>
   </div>
 
-  <a class="account" id="btn-account" href="/verification" aria-label="Outil de vérification des figures">
+  <button class="account" id="btn-account" aria-label="Mon compte" aria-haspopup="true" aria-expanded="false">
     <span class="ico">
 <svg viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15.662 22.1333L8.19531 10.6666H22.5953L15.662 22.1333Z" stroke="#E3E3C4" stroke-width="0.8"/>
@@ -540,8 +578,17 @@ body.collection #reticle{opacity:0;pointer-events:none}
 </svg>
     </span>
     <span class="lbl">Mon compte</span>
-  </a>
+  </button>
 </header>
+
+<!-- sous-menu du compte : provisoire, en attendant l'espace membre -->
+<div id="menu-veil"></div>
+<nav id="menu" aria-label="Mon compte">
+  <a class="mi" href="/verification">Vérification des figures</a>
+  <a class="mi" href="/studio">Studio des contenus</a>
+  <span class="mi off" title="Disponible avec les comptes">Ma progression</span>
+  <span class="mi off" title="Disponible avec les comptes">Déconnexion</span>
+</nav>
 
 
 <!-- défonce : hairline plein écran + tab chanfreiné centré sous le logo -->
@@ -1455,6 +1502,12 @@ function startBadge(container, onDone, onStart){
     }
   })();
 
+  /* rien à jouer si le splash a déjà été vu dans cette session */
+  if(document.documentElement.classList.contains('no-splash')){
+    splash.classList.add('out', 'gone');
+    return;
+  }
+
   let done = false;
   const finish = function(){
     if(done) return;
@@ -1968,6 +2021,26 @@ function showCollection(on){
 
 $('#tg-sky').onclick  = function(){ showCollection(false); };
 $('#tg-coll').onclick = function(){ showCollection(true); };
+
+/* ---------- sous-menu du compte ---------- */
+(function(){
+  const btn = document.getElementById('btn-account');
+  const box = document.getElementById('menu');
+  const veil = document.getElementById('menu-veil');
+  if(!btn || !box) return;
+  const close = function(){
+    box.classList.remove('on'); veil.classList.remove('on');
+    btn.setAttribute('aria-expanded', 'false');
+  };
+  btn.onclick = function(e){
+    e.preventDefault(); e.stopPropagation();
+    const on = box.classList.toggle('on');
+    veil.classList.toggle('on', on);
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+  };
+  veil.onclick = close;
+  addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+})();
 
 /* ============================================================
    ACTIONS D'UNE CARTE
