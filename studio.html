@@ -65,6 +65,17 @@ label.f > span{display:block;font-size:10px;font-weight:700;letter-spacing:.16em
 .add button:hover{background:rgba(227,227,196,.1)}
 .note{font-size:12.5px;line-height:1.65;opacity:.5;margin-top:10px}
 .empty{padding:34px;text-align:center;opacity:.5;font-size:14px;border:1px dashed var(--c20);border-radius:12px}
+.up{display:flex;gap:8px}
+.up input[type=text]{flex:1}
+.up .pick{flex:none;padding:0 15px;border:1px solid var(--c50);border-radius:9px;
+  background:rgba(227,227,196,.06);cursor:pointer;font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.up .pick:hover{background:rgba(227,227,196,.16)}
+.up .pick[disabled]{opacity:.4;pointer-events:none}
+.hidden-file{display:none}
+.upmsg{display:block;margin-top:6px;font-size:12px;line-height:1.5;opacity:.7}
+.upmsg.err{color:#E39A8A;opacity:1}
+.upmsg.ok{color:#9BD9B0;opacity:1}
 .row-l{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
 .row-l input{flex:1}
 .row-l button{flex:none;width:32px;height:37px;border:1px solid var(--c20);border-radius:8px;
@@ -122,17 +133,18 @@ const SCHEMA = {
   lead:   { label:'Chapeau',   fields:[ ['p','Texte','area'] ] },
   text:   { label:'Texte',     fields:[ ['h','Intertitre','text'], ['p','Paragraphes','list'] ] },
   stats:  { label:'Chiffres',  fields:[ ['v','Chiffres','stats'] ] },
-  figure: { label:'Image',     fields:[ ['src','Chemin du fichier','text'], ['svg','Schéma généré (scale, depth, compass)','text'],
+  figure: { label:'Image',     fields:[ ['src','Fichier image','media'], ['svg','Schéma généré (scale, depth, compass)','text'],
                                         ['cap','Légende','area'], ['credit','Crédit','text'],
                                         ['page','Lien vers la source','text'],
-                                        ['wide','Pleine largeur','bool'], ['lit','Fusion écran (trait clair sur noir)','bool'] ] },
+                                        ['wide','Pleine largeur','bool'], ['lit','Fusion écran (trait clair sur noir)','bool'],
+                                        ['roll','Redresser selon l\'angle validé','bool'] ] },
   split:  { label:'Texte + image', fields:[ ['h','Intertitre','text'], ['p','Paragraphes','list'],
-                                        ['media.src','Image : chemin','text'], ['media.svg','Image : schéma généré','text'],
+                                        ['media.src','Image : fichier','media'], ['media.svg','Image : schéma généré','text'],
                                         ['media.cap','Image : légende','area'], ['media.credit','Image : crédit','text'],
                                         ['rev','Image à droite','bool'] ] },
   quote:  { label:'Citation',  fields:[ ['p','Citation','area'], ['who','Attribution','text'] ] },
-  video:  { label:'Vidéo',     fields:[ ['src','Fichier MP4','text'], ['yt','Identifiant YouTube','text'],
-                                        ['poster','Vignette','text'], ['cap','Légende','area'],
+  video:  { label:'Vidéo',     fields:[ ['src','Fichier MP4','media'], ['yt','Identifiant YouTube','text'],
+                                        ['poster','Vignette','media'], ['cap','Légende','area'],
                                         ['credit','Crédit','text'], ['page','Lien vers la source','text'] ] },
   warn:   { label:'Encadré',   fields:[ ['h','Titre','text'], ['p','Texte','area'] ] },
   links:  { label:'Sources',   fields:[ ['v','Liens','links'] ] },
@@ -145,6 +157,18 @@ let dirty = false;
 function setMsg(t, k){ const m = $('#msg'); m.innerHTML = t || ''; m.className = 'msg' + (k ? ' ' + k : ''); }
 function esc(s){ return String(s == null ? '' : s).replace(/[<>&"]/g, function(c){
   return ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c]; }); }
+
+/* Le serveur n'accepte que des noms sobres : on nettoie ici plutôt que de
+   renvoyer une erreur pour un simple accent ou une majuscule. */
+function normalizeName(name){
+  const i = name.lastIndexOf('.');
+  let base = (i > 0 ? name.slice(0, i) : name);
+  const ext = (i > 0 ? name.slice(i + 1) : '').toLowerCase();
+  base = base.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+             .toLowerCase().replace(/[^a-z0-9._-]+/g, '-')
+             .replace(/^[._-]+|-+$/g, '').slice(0, 40) || 'fichier';
+  return base + (ext ? '.' + ext : '');
+}
 
 /* accès à un champ imbriqué, du type media.src */
 function getf(o, path){
@@ -252,6 +276,18 @@ function fieldHTML(b, f, i){
         }).join('\n'))
       + '</textarea></label>';
   }
+  if(kind === 'media'){
+    /* Le chemin reste modifiable a la main, mais le bouton depose le
+       fichier dans le depot et remplit le champ tout seul. */
+    return '<label class="f"><span>' + esc(label) + '</span>'
+      + '<div class="up">'
+      + '<input type="text" data-p="' + path + '" value="' + esc(v || '') + '"'
+        + ' placeholder="/assets/img/constellations/…">'
+      + '<button type="button" class="pick" data-for="' + path + '">Déposer</button>'
+      + '<input type="file" class="hidden-file" data-for="' + path + '"'
+        + ' accept="image/jpeg,image/png,image/webp,image/svg+xml,video/mp4,video/webm">'
+      + '</div><span class="upmsg"></span></label>';
+  }
   return '<label class="f"><span>' + esc(label) + '</span>'
     + '<input type="text" data-p="' + path + '" value="' + esc(v || '') + '"></label>';
 }
@@ -297,6 +333,51 @@ function renderBlocks(){
         dirty = true; renderTabs(); renderBlocks();
       };
     });
+    /* dépôt d'un fichier : il part dans le dépôt et remplit le champ */
+    el.querySelectorAll('.pick').forEach(function(btn){
+      const file = el.querySelector('.hidden-file[data-for="' + btn.dataset.for + '"]');
+      const txt  = el.querySelector('input[type=text][data-p="' + btn.dataset.for + '"]');
+      const msg  = btn.closest('label').querySelector('.upmsg');
+      btn.onclick = function(e){ e.stopPropagation(); file.click(); };
+      file.onchange = async function(){
+        const f = file.files[0];
+        if(!f) return;
+        file.value = '';
+        const name = normalizeName(f.name);
+        msg.className = 'upmsg';
+        msg.textContent = 'Envoi de ' + name + ' (' + Math.round(f.size/1024) + ' Ko)…';
+        btn.disabled = true;
+        try{
+          const dataUrl = await new Promise(function(ok, ko){
+            const r = new FileReader();
+            r.onload = function(){ ok(r.result); };
+            r.onerror = function(){ ko(new Error('Lecture impossible')); };
+            r.readAsDataURL(f);
+          });
+          const res = await fetch('/api/save', {
+            method:'POST',
+            headers:{ 'Content-Type':'application/json', 'x-ekko-key':($('#key').value || '').trim() },
+            body: JSON.stringify({ type:'media', id:CID, name:name, dataUrl:dataUrl }),
+          });
+          let d = {}; try{ d = await res.json(); }catch(x){}
+          if(res.ok){
+            txt.value = d.src;
+            txt.dispatchEvent(new Event('change'));
+            msg.className = 'upmsg ok';
+            msg.textContent = d.message || 'Enregistré.';
+          }else{
+            msg.className = 'upmsg err';
+            msg.textContent = (d.error || ('Erreur ' + res.status))
+              + (d.missing ? ' Variables manquantes : ' + d.missing.join(', ') + '.' : '');
+          }
+        }catch(x){
+          msg.className = 'upmsg err';
+          msg.textContent = x.message;
+        }
+        btn.disabled = false;
+      };
+    });
+
     /* saisie : on écrit directement dans le modèle */
     el.querySelectorAll('[data-p]').forEach(function(inp){
       const handler = function(){
