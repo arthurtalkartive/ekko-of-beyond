@@ -101,39 +101,41 @@
       ]
     },
     {
-      "t": "split",
+      "t": "figure",
+      "svg": "scale",
+      "data": {
+        "title": "Rayons comparés",
+        "items": [
+          {
+            "n": "Dubhé",
+            "r": 30,
+            "c": "#E8B27C",
+            "note": "Géante orange. Placée à la place du Soleil, elle avalerait l'orbite de Mercure."
+          },
+          {
+            "n": "Alioth",
+            "r": 4,
+            "c": "#CFE0FA",
+            "note": "Étoile blanche de la séquence principale, trois fois la masse du Soleil."
+          },
+          {
+            "n": "Soleil",
+            "r": 1,
+            "note": "Pour l'échelle."
+          }
+        ]
+      },
+      "wide": true,
+      "cap": "Dubhé, géante orange en fin de vie, contre Alioth, encore en pleine jeunesse. Le disque du Soleil donne l'échelle. Survolez chaque astre.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
       "h": "Sept étoiles d'éclat comparable, et rien de commun",
       "p": [
         "L'égalité d'éclat des sept étoiles est ce qui rend la figure si reconnaissable. Elle est aussi une coïncidence complète : elles n'ont ni la même taille, ni la même couleur, ni le même destin.",
         "Dubhé est une géante orange en fin de vie, gonflée à une trentaine de fois le diamètre du Soleil. Alioth, quatre fois plus large que le Soleil, brûle encore son hydrogène. Regardez attentivement un soir de ciel pur : Dubhé est la seule des sept à tirer franchement sur l'orangé."
-      ],
-      "media": {
-        "svg": "scale",
-        "data": {
-          "title": "Rayons comparés",
-          "items": [
-            {
-              "n": "Dubhé",
-              "r": 30,
-              "c": "#E8B27C",
-              "note": "Géante orange. Placée à la place du Soleil, elle avalerait l'orbite de Mercure."
-            },
-            {
-              "n": "Alioth",
-              "r": 4,
-              "c": "#CFE0FA",
-              "note": "Étoile blanche de la séquence principale, trois fois la masse du Soleil."
-            },
-            {
-              "n": "Soleil",
-              "r": 1,
-              "note": "Pour l'échelle."
-            }
-          ]
-        },
-        "cap": "Deux des sept étoiles, à l'échelle.",
-        "credit": "Schéma Ekko of Beyond."
-      }
+      ]
     },
     {
       "t": "text",
@@ -217,19 +219,20 @@
       "credit": "NASA, ESA, CSA, A. Smercina (STScI), T. Williams (University of Manchester), A. Pagan (STScI), N. Bartmann (ESA/Webb). Musique : Stellardrone — Twilight"
     },
     {
-      "t": "split",
-      "rev": true,
+      "t": "figure",
+      "src": "/assets/img/constellations/uma/m101-hubble.jpg",
+      "page": "https://esahubble.org/images/heic0602a/",
+      "wide": true,
+      "cap": "Le portrait de M101 assemblé à partir de 51 poses de Hubble, complétées par des images au sol.",
+      "credit": "ESA & NASA — données Hubble : K. D. Kuntz (GSFC), F. Bresolin (University of Hawaii), J. Trauger (JPL), J. Mould (NOAO), Y.-H. Chu (University of Illinois). Traitement : Davide De Martin (ESA/Hubble). Image au sol : CFHT / J.-C. Cuillandre / Coelum"
+    },
+    {
+      "t": "text",
       "h": "Le Moulinet, et l'explosion de mai 2023",
       "p": [
         "M101 est deux fois plus large que la Voie lactée et nous fait face, ce qui en fait le modèle des spirales dites « grand design ». Les estimations de distance vont de 21 à 25 millions d'années-lumière selon la méthode employée.",
         "Le 19 mai 2023, l'astronome japonais Koichi Itagaki y repère un point lumineux nouveau. SN 2023ixf sera la supernova de type II la plus proche depuis une décennie, observable dans un télescope d'amateur. Les images d'archives ont permis de retrouver l'étoile avant l'explosion : une supergéante rouge enveloppée de poussière, dont la masse initiale reste débattue, entre douze et dix-neuf fois celle du Soleil."
-      ],
-      "media": {
-        "src": "/assets/img/constellations/uma/m101-hubble.jpg",
-        "page": "https://esahubble.org/images/heic0602a/",
-        "cap": "Le portrait de M101 assemblé à partir de 51 poses de Hubble, complétées par des images au sol.",
-        "credit": "ESA & NASA — données Hubble : K. D. Kuntz (GSFC), F. Bresolin (University of Hawaii), J. Trauger (JPL), J. Mould (NOAO), Y.-H. Chu (University of Illinois). Traitement : Davide De Martin (ESA/Hubble). Image au sol : CFHT / J.-C. Cuillandre / Coelum"
-      }
+      ]
     },
     {
       "t": "text",
