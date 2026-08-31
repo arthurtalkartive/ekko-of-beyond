@@ -79,6 +79,19 @@ const MEDIA_KINDS = {
 };
 const NAME_RE = /^[a-z0-9][a-z0-9._-]{0,58}$/;
 
+/* Plafond reel d'un envoi.
+
+   Vercel limite le corps d'une requete de fonction a 4,5 Mo, et c'est une
+   contrainte d'infrastructure : ni vercel.json ni le code ne peuvent la
+   lever. Or un fichier transmis en base64 grossit d'un tiers. Le vrai
+   plafond pour un fichier brut est donc d'environ 3 Mo.
+
+   On mesure la charge encodee, pas le fichier : c'est elle que la
+   plateforme compte. Sinon un fichier de 3,4 Mo passait notre controle
+   puis se faisait rejeter par Vercel avec un 413 sans explication. */
+const PAYLOAD_MAX = 4300000;                          /* marge sous 4,5 Mo */
+const MEDIA_MAX = Math.floor(PAYLOAD_MAX / 4 * 3);    /* ≈ 3,0 Mo de fichier */
+
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
 
@@ -166,9 +179,38 @@ export default async function handler(req, res) {
       });
     }
 
-    /* ---------- contenu editorial d'une fiche ---------- */
+    /* ---------- contenu editorial d'une fiche ----------
+       Un fichier par onglet : content/<id>/<onglet>.json. Cette separation
+       rend chaque onglet importable et modifiable independamment, sans
+       toucher aux deux autres. */
     if (type === 'content') {
+      const TABS = ['science', 'mytho', 'astro'];
+      const tab = String(body.tab || '');
       const blocks = body.blocks;
+      if (tab && TABS.indexOf(tab) < 0) {
+        return json(res, 400, { error: 'Onglet inconnu : science, mytho ou astro attendu.' });
+      }
+      if (tab) {
+        if (!Array.isArray(blocks)) {
+          return json(res, 400, { error: 'Blocs attendus sous forme de tableau.' });
+        }
+        const doc = { constellation: id, tab: tab, blocks: blocks };
+        const out = Buffer.from(JSON.stringify(doc, null, 1) + '\n', 'utf8');
+        if (out.length > 400000) {
+          return json(res, 413, {
+            error: `Contenu trop volumineux (${Math.round(out.length / 1024)} Ko, 400 Ko maximum).`,
+          });
+        }
+        const path = CONTENT_DIR + id + '/' + tab + '.json';
+        const existing = await readFile(path, branch);
+        await writeFile(path, out, `Fiche ${id} — ${tab}`, branch, existing ? existing.sha : undefined);
+        return json(res, 200, {
+          ok: true, id, tab, bytes: out.length, path,
+          message: `Onglet ${tab} enregistré (${Math.round(out.length / 1024)} Ko). ` +
+                   'Vercel redéploie, comptez une minute.',
+        });
+      }
+      /* sans onglet : ancien format, un seul fichier pour les trois */
       if (!blocks || typeof blocks !== 'object') {
         return json(res, 400, { error: "Contenu attendu sous forme d'objet." });
       }
@@ -205,10 +247,20 @@ export default async function handler(req, res) {
       const m = data.match(/^data:([^;]+);base64,(.+)$/);
       if (!m) return json(res, 400, { error: 'Fichier attendu en data URL base64.' });
       const buf = Buffer.from(m[2], 'base64');
-      if (buf.length > 3_500_000) {
+      if (m[2].length > PAYLOAD_MAX || buf.length > MEDIA_MAX) {
         return json(res, 413, {
-          error: `Fichier trop lourd (${Math.round(buf.length / 1024)} Ko, 3,5 Mo maximum). ` +
-                 'Compressez-le avant de le deposer.',
+          error: `Fichier de ${(buf.length / 1048576).toFixed(1)} Mo : trop lourd pour cette voie ` +
+                 `(environ ${(MEDIA_MAX / 1048576).toFixed(1)} Mo maximum).`,
+          detail: "Vercel plafonne le corps d'une requete de fonction a 4,5 Mo, et le codage " +
+                  'base64 ajoute un tiers au poids du fichier. Cette limite vient de la ' +
+                  'plateforme et ne peut pas etre relevee.',
+          alternatives: [
+            "Video : renseignez le champ « Identifiant YouTube » du bloc au lieu du fichier. " +
+            "C'est la meilleure option au-dela de quelques megaoctets.",
+            'Fichier a heberger quand meme : deposez-le directement sur GitHub, par ' +
+            `glisser-deposer dans assets/img/constellations/${id}/ (jusqu'a 25 Mo), ` +
+            'puis recopiez son chemin dans le champ.',
+          ],
         });
       }
       const path = MEDIA_DIR + id + '/' + name;
@@ -230,8 +282,12 @@ export default async function handler(req, res) {
       const m = data.match(/^data:image\/(webp|png|jpeg);base64,(.+)$/);
       if (!m) return res.status(400).json({ error: 'Image attendue en data URL WebP, PNG ou JPEG.' });
       const buf = Buffer.from(m[2], 'base64');
-      if (buf.length > 3_500_000) {
-        return res.status(413).json({ error: `Image trop lourde (${Math.round(buf.length / 1024)} Ko, 3,5 Mo maximum).` });
+      if (m[2].length > PAYLOAD_MAX || buf.length > MEDIA_MAX) {
+        return json(res, 413, {
+          error: `Image de ${(buf.length / 1048576).toFixed(1)} Mo : trop lourde ` +
+                 `(environ ${(MEDIA_MAX / 1048576).toFixed(1)} Mo maximum).`,
+          detail: "Plafond impose par Vercel sur le corps d'une requete de fonction.",
+        });
       }
       const path = `skyculture/ekko/illustrations/${id}.webp`;
       const existing = await readFile(path, branch);
