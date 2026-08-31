@@ -106,10 +106,11 @@
   },
   {
    "t": "video",
-   "url": "",
+   "url": "https://youtu.be/UdHnF9Go_DQ",
    "page": "https://esawebb.org/videos/weic2411c/",
    "cap": "Un plongé continu depuis la constellation entière jusqu'au détail du Webb sur la nébuleuse de la Tête de Cheval.",
-   "credit": "ESA/Webb, NASA, CSA, ESA/Euclid, ESO"
+   "credit": "ESA/Webb, NASA, CSA, ESA/Euclid, ESO",
+   "poster": "/assets/img/constellations/ori/frame-1.png"
   },
   {
    "t": "links",
