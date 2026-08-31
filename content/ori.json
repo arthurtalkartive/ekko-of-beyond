@@ -215,7 +215,8 @@
    "t": "figure",
    "src": "/skyculture/ekko/illustrations/ori.webp",
    "lit": true,
-   "cap": "La figure du chasseur telle qu'elle est plaquée sur le ciel dans la carte interactive, calée sur les étoiles par trois ancres.",
+   "roll": true,
+   "cap": "La figure du chasseur telle qu'elle est plaquée sur le ciel dans la carte interactive, calée sur les étoiles par trois ancres. Cliquez pour l'agrandir.",
    "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
   },
   {
