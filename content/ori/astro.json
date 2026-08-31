@@ -1,0 +1,76 @@
+{
+ "constellation": "ori",
+ "tab": "astro",
+ "blocks": [
+  {
+   "t": "warn",
+   "h": "Ce que vaut cet onglet",
+   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
+  },
+  {
+   "t": "lead",
+   "p": "Orion n'appartient pas au zodiaque : le Soleil ne la traverse jamais, elle n'a donc aucun signe associé. Ce que la tradition lui prête passe par ses « étoiles fixes » — Bételgeuse, Rigel, Bellatrix — dont on lit les significations depuis Ptolémée."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "0",
+     "u": "signe",
+     "l": "L'écliptique, chemin apparent du Soleil, passe à côté d'Orion."
+    },
+    {
+     "v": "1923",
+     "u": "",
+     "l": "Parution de la compilation de Vivian Robson, encore la référence des astrologues sur les étoiles fixes."
+    },
+    {
+     "v": "≈ 28",
+     "u": "degrés",
+     "l": "Décalage accumulé par la précession depuis l'Antiquité : les signes ne coïncident plus avec les constellations dont ils portent le nom."
+    }
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Des lectures contradictoires",
+   "p": [
+    "La tradition attribue à Bételgeuse les honneurs militaires et la fortune, à Rigel la gloire et l'habileté mécanique. Mais en compilant les sources, le site Constellations of Words montre lui-même que ces lectures se contredisent d'un auteur à l'autre — Ptolémée, Lilly, Alvidas ne s'accordent ni sur les planètes gouvernantes ni sur les effets.",
+    "C'est précisément cette instabilité qui rend le corpus intéressant à lire comme document historique : on y suit deux mille ans de réinterprétations successives d'un même point lumineux."
+   ]
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "The Fixed Stars and Constellations in Astrology",
+     "src": "Vivian E. Robson, 1923 — Internet Archive",
+     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
+     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
+    },
+    {
+     "kind": "read",
+     "title": "Bételgeuse dans la tradition des étoiles fixes",
+     "src": "Constellations of Words",
+     "note": "Les lectures successives, de Ptolémée à Robson, avec leurs sources — et leurs contradictions.",
+     "url": "https://www.constellationsofwords.com/betelguese/"
+    },
+    {
+     "kind": "read",
+     "title": "Rigel dans la tradition des étoiles fixes",
+     "src": "Constellations of Words",
+     "note": "Avec un détour par la mythologie nordique, où l'étoile marque l'orteil d'Orvandil.",
+     "url": "https://www.constellationsofwords.com/rigel/"
+    },
+    {
+     "kind": "read",
+     "title": "Introduction aux étoiles fixes",
+     "src": "Constellations of Words",
+     "note": "Le cadre général, et les raisonnements — parfois franchement circulaires — sur lesquels il s'appuie.",
+     "url": "https://www.constellationsofwords.com/introduction-to-the-fixed-stars/"
+    }
+   ]
+  }
+ ]
+}

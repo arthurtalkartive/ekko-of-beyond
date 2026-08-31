@@ -1,0 +1,98 @@
+{
+ "constellation": "ori",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Parce qu'elle est posée sur l'équateur céleste, Orion se voit depuis presque toute la Terre habitée. C'est la constellation la plus universellement racontée : un chasseur en Grèce, un dieu en Égypte, un guerrier en Mésopotamie, et des dizaines d'autres figures ailleurs."
+  },
+  {
+   "t": "stats",
+   "v": [
+    {
+     "v": "≈ 150",
+     "u": "apr. J.-C.",
+     "l": "L'Almageste de Ptolémée livre le premier recensement scientifique connu des étoiles d'Orion."
+    },
+    {
+     "v": "3",
+     "u": "étoiles",
+     "l": "Le Baudrier — Alnitak, Alnilam, Mintaka — que la tradition française appelle « les Trois Rois »."
+    },
+    {
+     "v": "7",
+     "u": "sœurs",
+     "l": "Les Pléiades, que le chasseur poursuit sans fin d'un bout à l'autre du ciel."
+    }
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/ori.webp",
+   "lit": true,
+   "roll": true,
+   "cap": "La figure du chasseur telle qu'elle est plaquée sur le ciel dans la carte interactive, calée sur les étoiles par trois ancres. Cliquez pour l'agrandir.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Le géant, la déesse et le scorpion",
+   "p": [
+    "Les versions grecques ne s'accordent pas, et c'est ce qui les rend intéressantes. Orion naît d'un présent des dieux à Hyriée, roi de Thèbes, qui se désolait de n'avoir pas d'enfant. Chasseur hors pair, il se vante de pouvoir tuer toutes les bêtes de la Terre.",
+    "L'arrogance lui coûte la vie. Gaïa lui envoie un scorpion ; ailleurs, c'est une flèche d'Artémis qui l'abat. Zeus le place ensuite parmi les étoiles — et le scorpion avec lui, à l'autre bout du ciel. Les deux constellations ne sont jamais visibles ensemble : quand le Scorpion se lève, Orion se couche. La mise en scène est parfaite, et sans doute délibérée."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Osiris et la crue du Nil",
+   "p": [
+    "En Égypte, Orion est Sah, associé à Osiris, dieu de la mort et de la résurrection. Son lever héliaque — le moment de l'année où la constellation réapparaît juste avant l'aube — servait de repère calendaire, lié au cycle du Nil et donc à la fertilité des terres. Les prêtres-astronomes en tiraient une prévision agricole d'une valeur considérable."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Un point de vigilance",
+   "p": "On lit très souvent que le Baudrier aurait inspiré l'implantation des pyramides de Gizeh. Cette « théorie de la corrélation d'Orion », popularisée dans les années 1990, n'est pas retenue par les égyptologues : l'alignement invoqué ne correspond qu'imparfaitement, et aucune source égyptienne ne l'évoque. Le lien entre Orion, Sah et Osiris est en revanche solidement attesté — de même que l'usage calendaire du lever héliaque. Il vaut la peine de distinguer les deux."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "La constellation d'Orion, ou la Main montée au ciel",
+     "src": "Jean-Pierre Luminet",
+     "note": "L'astrophysicien remonte aux sources : Ptolémée, Aratos, les manuscrits médiévaux. Le texte le plus riche de cette sélection.",
+     "url": "https://blogs.futura-sciences.com/luminet/2021/12/12/la-constellation-dorion-ou-la-main-montee-au-ciel/"
+    },
+    {
+     "kind": "read",
+     "title": "Orion : mythes et observations",
+     "src": "Passion Astronomie",
+     "note": "Le récit grec et le rôle d'Osiris dans le calendrier égyptien.",
+     "url": "https://www.passion-astronomie.com/la-constellation-dorion-mythes-et-observations"
+    },
+    {
+     "kind": "read",
+     "title": "Incursion dans la constellation d'Orion",
+     "src": "Astroshop",
+     "note": "Un tour du monde des interprétations, puisqu'Orion se voit des deux hémisphères.",
+     "url": "https://www.astroshop.de/fr/magazine/astuces-pratiques/observation/incursions-dans-les-constellations/orion/i,1273"
+    },
+    {
+     "kind": "read",
+     "title": "L'étymologie arabe des étoiles d'Orion",
+     "src": "Wikipédia",
+     "note": "Deux figures arabes distinctes, al-Ğawzā' et al-Ğabbār, dont les noms se sont mélangés.",
+     "url": "https://fr.wikipedia.org/wiki/Orion_(constellation)"
+    },
+    {
+     "kind": "read",
+     "title": "Découvrez une constellation d'hiver : Orion",
+     "src": "Parc aux Étoiles",
+     "note": "Une entrée en douceur, écrite pour le grand public.",
+     "url": "https://parcauxetoiles.gpseo.fr/actualites/decouvrez-une-constellation-dhiver-orion"
+    }
+   ]
+  }
+ ]
+}
