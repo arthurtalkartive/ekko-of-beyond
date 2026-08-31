@@ -245,6 +245,53 @@ a.account{text-decoration:none}
   font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--cream-50);pointer-events:none;white-space:nowrap}
 
+/* ================= ACTIONS AU SURVOL =================
+   Deux boutons révélés au survol de la carte, dans la vue du ciel comme
+   dans la liste. La rangée est présente mais repliée : on anime sa
+   hauteur, ce qui évite de déplacer la mise en page au chargement.
+
+   Sur les appareils sans survol, elle reste ouverte en permanence — un
+   bouton inaccessible au doigt n'aurait aucun intérêt. */
+.c-acts{
+  display:flex;gap:12px;align-items:stretch;width:100%;
+  max-height:0;opacity:0;overflow:hidden;
+  transition:max-height .28s ease,opacity .22s ease,margin-top .28s ease;
+  margin-top:0;
+}
+.card:hover .c-acts,.card:focus-within .c-acts{max-height:46px;opacity:1;margin-top:12px}
+@media (hover:none){ .c-acts{max-height:46px;opacity:1;margin-top:12px} }
+
+.act{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:8px 24px;border-radius:20000px;border:1px solid transparent;
+  font-weight:700;font-size:14px;line-height:normal;text-transform:uppercase;
+  text-align:center;white-space:nowrap;text-decoration:none;cursor:pointer;
+  transition:background .2s,opacity .2s,border-color .2s;
+}
+/* Collecter : pleine largeur restante, avec l'ornement en filet */
+.act.collect{flex:1 1 0;min-width:0;background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.act.collect:hover{background:#EFEFD6}
+.act.collect .orn{display:flex;flex:1 1 auto;min-width:14px;align-items:center;gap:3px}
+.act.collect .orn .ln{flex:1 1 auto;height:1px;background:rgba(6,10,16,.55)}
+.act.collect .orn .r7{width:7px;height:7px;border-radius:50%;border:1px solid var(--ink);flex:none}
+.act.collect .orn .d5{width:5px;height:5px;border-radius:50%;background:var(--ink);flex:none}
+/* En savoir plus : contour clair, largeur au contenu */
+.act.more{flex:none;padding:8px 32px;border-color:rgba(255,255,255,.5);color:#fff}
+.act.more:hover{background:rgba(255,255,255,.1);border-color:#fff}
+.act.more.off{opacity:.3;pointer-events:none}
+
+@media (max-width:560px){
+  .c-acts{gap:8px}
+  .card:hover .c-acts,.card:focus-within .c-acts,
+  .c-acts{max-height:0}
+  .card:hover .c-acts,.card:focus-within .c-acts{max-height:92px}
+  @media (hover:none){ .c-acts{max-height:92px} }
+  .c-acts{flex-direction:column}
+  .act{padding:9px 18px;font-size:13px}
+  .act.more{padding:9px 18px}
+  .act.collect .orn{display:none}
+}
+
 /* ================= COLLECTION =================
    Second mode de navigation : la liste des 53 figures, filtrable par
    categorie. Le ciel reste derriere, assombri par un voile pour que les
@@ -575,6 +622,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
         <span class="ln"></span><span class="r7"></span><span class="d5"></span>
         <span class="pill" id="c-pill">non collectée</span>
       </div>
+      <div class="c-acts" id="c-acts"></div>
     </div>
   </div>
 
@@ -1590,6 +1638,8 @@ function renderCard(){
   pill.textContent = got ? 'collectée' : 'non collectée';
   pill.classList.toggle('got', got);
 
+  $('#c-acts').innerHTML = actionsHTML(c);
+
   $('#c-pos').textContent = (cardIdx + 1) + ' / ' + CONSTELLATIONS.length;
 }
 
@@ -1853,6 +1903,7 @@ function collCard(c){
         '<span class="pill' + (got ? ' got' : '') + '">'
           + (got ? 'collectée' : 'non collectée') + '</span>' +
       '</div>' +
+      '<div class="c-acts">' + actionsHTML(c) + '</div>' +
     '</div>';
   return el;
 }
@@ -1917,6 +1968,35 @@ function showCollection(on){
 
 $('#tg-sky').onclick  = function(){ showCollection(false); };
 $('#tg-coll').onclick = function(){ showCollection(true); };
+
+/* ============================================================
+   ACTIONS D'UNE CARTE
+
+   « Collecter l'ekko » menera au player audio ; le bouton est en place
+   mais volontairement inerte pour l'instant. « En savoir plus » ouvre la
+   fiche detaillee — seules les figures dont la fiche est ecrite sont
+   cliquables.
+   ============================================================ */
+const FICHES = ['ori'];
+
+function actionsHTML(c){
+  const ready = FICHES.indexOf(c.id) >= 0;
+  return '<button class="act collect" type="button" data-act="collect" data-id="' + c.id + '"'
+      + ' title="Bientot : l\'ecoute de l\'ekko">'
+      + '<span>Collecter l\'ekko</span>'
+      + '<span class="orn"><span class="ln"></span><span class="r7"></span><span class="d5"></span></span>'
+      + '</button>'
+    + (ready
+        ? '<a class="act more" href="/constellation?id=' + c.id + '">En savoir plus</a>'
+        : '<span class="act more off" title="Fiche a venir">En savoir plus</span>');
+}
+
+/* Un clic sur « Collecter » ne doit pas se propager : dans le ciel il
+   declencherait un deplacement de camera. */
+document.addEventListener('click', function(e){
+  if(!e.target.closest('[data-act="collect"]')) return;
+  e.preventDefault(); e.stopPropagation();
+});
 
 /* ============================================================
    PROGRESSION
