@@ -36,14 +36,6 @@
       ]
     },
     {
-      "t": "text",
-      "h": "Callisto, et le désaccord des sources",
-      "p": [
-        "Le récit grec le plus connu tient en quelques lignes. Callisto, fille du roi d'Arcadie Lycaon, chasse aux côtés d'Artémis et lui a fait vœu de chasteté. Zeus prend les traits de la déesse pour l'approcher. Callisto tombe enceinte, la grossesse est découverte lors d'un bain, et la jeune fille devient ourse. Quinze ans plus tard son fils Arcas, chasseur, la met en joue sans savoir qui il vise. Zeus intervient et les place tous deux au ciel.",
-        "C'est la suite du détail qui est instructive. Chez Ovide et Pausanias, la métamorphose est l'œuvre d'Héra jalouse. Dans la version que le Pseudo-Ératosthène attribue à Hésiode, c'est Artémis qui punit la perte de la virginité, et Callisto met au monde un ourson plutôt qu'un enfant, ce qui supprime la scène de la chasse. Chez le Pseudo-Apollodore, c'est Zeus lui-même qui transforme sa maîtresse pour cacher l'affaire. Arcas devient la Petite Ourse chez les uns, l'étoile Arcturus dans le Bouvier chez les autres. Aucune version n'est la bonne : elles témoignent d'un récit qui a vécu longtemps, de bouche en bouche, avant d'être écrit."
-      ]
-    },
-    {
       "t": "figure",
       "src": "/skyculture/ekko/illustrations/uma.webp",
       "lit": true,
@@ -54,9 +46,54 @@
     },
     {
       "t": "text",
+      "h": "Callisto, et le désaccord des sources",
+      "p": [
+        "Le récit grec le plus connu tient en quelques lignes. Callisto, fille du roi d'Arcadie Lycaon, chasse aux côtés d'Artémis et lui a fait vœu de chasteté. Zeus prend les traits de la déesse pour l'approcher. Callisto tombe enceinte, la grossesse est découverte lors d'un bain, et la jeune fille devient ourse. Quinze ans plus tard son fils Arcas, chasseur, la met en joue sans savoir qui il vise. Zeus intervient et les place tous deux au ciel.",
+        "C'est la suite du détail qui est instructive. Chez Ovide et Pausanias, la métamorphose est l'œuvre d'Héra jalouse. Dans la version que le Pseudo-Ératosthène attribue à Hésiode, c'est Artémis qui punit la perte de la virginité, et Callisto met au monde un ourson plutôt qu'un enfant, ce qui supprime la scène de la chasse. Chez le Pseudo-Apollodore, c'est Zeus lui-même qui transforme sa maîtresse pour cacher l'affaire. Arcas devient la Petite Ourse chez les uns, l'étoile Arcturus dans le Bouvier chez les autres. Aucune version n'est la bonne : elles témoignent d'un récit qui a vécu longtemps, de bouche en bouche, avant d'être écrit."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/uma/rubens-diane-callisto-prado.jpg",
+      "page": "https://www.museodelprado.es/en/the-collection/art-work/diana-and-callisto/3d8e9266-14b6-4d66-ac5e-9ded947911cf",
+      "wide": true,
+      "cap": "Le premier épisode : Diane découvre la grossesse de Callisto et la chasse de sa suite. Rubens avait copié à Madrid le tableau que Titien avait consacré à la même scène, et il le reprend ici en adoucissant la dureté de la déesse. Toile peinte vers 1635 pour le pavillon de chasse de Philippe IV.",
+      "credit": "Pierre Paul Rubens, « Diane et Callisto » — Museo Nacional del Prado, Madrid (P01671)"
+    },
+    {
+      "t": "text",
+      "h": "La métamorphose, puis la flèche",
+      "p": [
+        "Les graveurs du XVIᵉ siècle ont fait des Métamorphoses d'Ovide un feuilleton illustré. Hendrick Goltzius, le plus grand burin de son temps, avait entrepris de mettre en images les deux cent cinquante récits du poème ; il n'en a achevé que les deux premiers livres, dont celui qui contient Callisto. Ces planches ont circulé partout en Europe et ont servi de modèle aux peintres pendant deux siècles.",
+        "Dans la scène de la métamorphose, Héra descend de son char tiré par des paons, à gauche. À droite, dans le même cadre, l'ourse s'éloigne déjà : le graveur montre les deux instants à la fois, avant et après, ce que la peinture ne se permet presque jamais."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/uma/goltzius-junon-callisto-ourse.jpg",
+      "page": "https://www.artic.edu/artworks/278725/juno-turning-callisto-into-a-bear-from-ovid-s-metamorphoses-book-2",
+      "wide": true,
+      "cap": "Junon transforme Callisto en ourse. Le char aux paons à gauche, la métamorphose au centre, l'animal qui s'enfuit à droite. Le texte latin gravé sous l'image résume l'épisode en deux vers.",
+      "credit": "Atelier de Hendrick Goltzius, gravure, 1590 — Art Institute of Chicago (2023.1232.28)"
+    },
+    {
+      "t": "quote",
+      "p": "Hésiode raconte que la Grande Ourse est la fille de Lycaon ; elle habitait l'Arcadie.",
+      "who": "Pseudo-Ératosthène, Catastérismes"
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/uma/goltzius-arcas-fleche-callisto.jpg",
+      "page": "https://www.rijksmuseum.nl/nl/collectie/BI-1892-3357-30",
+      "wide": true,
+      "cap": "L'instant suivant, et le dernier : Arcas bande son arc sur l'ourse qui est sa mère. Jupiter intervient avant que la flèche ne parte, et les enlève tous deux au ciel. C'est cette scène, la catastérisation, qui explique la constellation. Tirage tardif d'une planche gravée vers 1590.",
+      "credit": "Atelier de Hendrick Goltzius, d'après Hendrick Goltzius — Rijksmuseum, Amsterdam (BI-1892-3357-30)"
+    },
+    {
+      "t": "text",
       "h": "Une figure qui ne se couche jamais",
       "p": [
-        "Le mythe ne s'arrête pas à la métamorphose. Héra, furieuse de voir sa rivale honorée d'une place au ciel, va trouver Océan et Téthys, à qui revient d'accueillir les astres dans leurs flots, et obtient qu'ils refusent l'ourse. Callisto est condamnée à tourner sans jamais se reposer.",
+        "Le mythe ne s'arrête pas à la catastérisation. Héra, furieuse de voir sa rivale honorée d'une place au ciel, va trouver Océan et Téthys, à qui revient d'accueillir les astres dans leurs flots, et obtient qu'ils refusent l'ourse. Callisto est condamnée à tourner sans jamais se reposer.",
         "C'est là que le récit devient précieux : il explique une observation. Homère notait déjà que cette figure est la seule à ne jamais se baigner dans l'Océan. Vue de Grèce, la Grande Ourse ne descend pas sous l'horizon. Le mythe n'habille pas le ciel, il rend compte de ce qu'on y voit. Au-dessus de 41° de latitude nord, aucune de ses sept étoiles ne se couche, ce qui vaut pour toute la France métropolitaine."
       ]
     },
@@ -132,9 +169,12 @@
       ]
     },
     {
-      "t": "quote",
-      "p": "Hésiode raconte que la Grande Ourse est la fille de Lycaon ; elle habitait l'Arcadie.",
-      "who": "Pseudo-Ératosthène, Catastérismes"
+      "t": "figure",
+      "src": "/assets/img/constellations/uma/urania-mirror-ursa-major-1825.jpg",
+      "page": "https://www.loc.gov/item/2002695502/",
+      "wide": true,
+      "cap": "Comment on apprenait le ciel en 1825. Cette carte à jouer coloriée à la main est percée de trous dont le diamètre correspond à l'éclat de chaque étoile : tenue devant une lampe, elle rend la figure telle qu'on la voit dehors. Neuvième planche du jeu « Urania's Mirror », publié à Londres comme l'ouvrage d'« une jeune dame » et en réalité dessiné par un maître de Rugby School.",
+      "credit": "Sidney Hall, eau-forte coloriée à la main, 1825 — Library of Congress, Prints & Photographs Division (LC-USZC4-10058)"
     },
     {
       "t": "text",
@@ -199,11 +239,11 @@
     },
     {
       "t": "figure",
-      "src": "/assets/img/constellations/uma/casserole-udupi.jpg",
-      "page": "https://astro4edu.org/fr/resources/media/Qf45Sg7sn35",
+      "src": "/assets/img/constellations/uma/senenmut-plafond-astronomique-met.jpg",
+      "page": "https://www.metmuseum.org/art/collection/search/544566",
       "wide": true,
-      "cap": "Les sept étoiles photographiées en mai 2021 depuis Udupi, en Inde, inclinées de 135°. Vues de cette latitude, ce sont les saptarṣi et non une casserole : l'orientation change le dessin qu'on y projette.",
-      "credit": "Arya Anthony / UAI OAE — CC BY 4.0"
+      "cap": "Le plus ancien diagramme céleste connu, peint vers 1470 avant notre ère au plafond de la tombe de Senenmout, intendant de la reine Hatchepsout. Le ciel du nord y est organisé autour de Msḫtjw, la Cuisse du taureau. La tombe est fermée au public : ce que l'on voit ici est le fac-similé réalisé à la détrempe par l'expédition égyptienne du Metropolitan Museum.",
+      "credit": "Charles K. Wilkinson, fac-similé du plafond de la tombe de Senenmout (TT 353) — The Metropolitan Museum of Art (48.105.52), Open Access CC0"
     },
     {
       "t": "warn",
@@ -213,6 +253,41 @@
     {
       "t": "links",
       "v": [
+        {
+          "kind": "look",
+          "title": "Ursa Major, planche 9 d'« Urania's Mirror »",
+          "src": "Library of Congress",
+          "note": "La carte perforée de 1825 en haute résolution, sans restriction de publication connue aux États-Unis.",
+          "url": "https://www.loc.gov/item/2002695502/"
+        },
+        {
+          "kind": "look",
+          "title": "Junon transformant Callisto en ourse",
+          "src": "Art Institute of Chicago",
+          "note": "La gravure de l'atelier Goltzius, avec sa notice et ses vers latins transcrits.",
+          "url": "https://www.artic.edu/artworks/278725/juno-turning-callisto-into-a-bear-from-ovid-s-metamorphoses-book-2"
+        },
+        {
+          "kind": "look",
+          "title": "Arcas dirige sa flèche vers Callisto",
+          "src": "Rijksmuseum",
+          "note": "La planche de la catastérisation, téléchargeable librement comme tout le domaine public du musée.",
+          "url": "https://www.rijksmuseum.nl/nl/collectie/BI-1892-3357-30"
+        },
+        {
+          "kind": "look",
+          "title": "Diane et Callisto, de Rubens",
+          "src": "Museo Nacional del Prado",
+          "note": "La notice du Prado explique ce que Rubens change à la version de Titien qu'il avait copiée.",
+          "url": "https://www.museodelprado.es/en/the-collection/art-work/diana-and-callisto/3d8e9266-14b6-4d66-ac5e-9ded947911cf"
+        },
+        {
+          "kind": "look",
+          "title": "Le plafond astronomique de Senenmout",
+          "src": "The Metropolitan Museum of Art",
+          "note": "Le fac-similé de Wilkinson, en CC0, avec la notice égyptologique du musée.",
+          "url": "https://www.metmuseum.org/art/collection/search/544566"
+        },
         {
           "kind": "read",
           "title": "Muin/Ourse et les sept chasseurs",
@@ -249,18 +324,11 @@
           "url": "https://media.afastronomie.fr/Expo-CMC/pdf/Contes/La_chasse_a_lours.pdf"
         },
         {
-          "kind": "look",
-          "title": "La Grande Ourse aux quatre saisons",
+          "kind": "watch",
+          "title": "La Grande Ourse et la comète Neowise",
           "src": "UAI OAE",
-          "note": "L'image de la mosaïque, avec sa légende détaillée et le fichier en pleine résolution.",
-          "url": "https://astro4edu.org/fr/resources/media/4g12Pr80kF84"
-        },
-        {
-          "kind": "read",
-          "title": "Grande Ourse, glossaire multilingue",
-          "src": "UAI OAE",
-          "note": "Le tour du monde des noms de la figure, en une page et dans onze langues.",
-          "url": "https://astro4edu.org/fr/resources/glossary/term/39/"
+          "note": "L'accéléré à télécharger, avec sa fiche et son DOI.",
+          "url": "https://astro4edu.org/fr/resources/media/AB430t11jX43"
         },
         {
           "kind": "deep",
@@ -282,13 +350,6 @@
           "src": "Égypte nilotique et méditerranéenne",
           "note": "Les travaux d'égyptologie sur la figure et sa place dans les textes funéraires.",
           "url": "https://enim-egyptologie.fr/index.php?n=Grande+Ourse&page=mot-cle"
-        },
-        {
-          "kind": "watch",
-          "title": "La Grande Ourse et la comète Neowise",
-          "src": "UAI OAE",
-          "note": "L'accéléré à télécharger, avec sa fiche et son DOI.",
-          "url": "https://astro4edu.org/fr/resources/media/AB430t11jX43"
         }
       ]
     }
