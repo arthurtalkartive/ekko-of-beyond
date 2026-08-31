@@ -1,105 +1,363 @@
 {
- "constellation": "uma",
- "tab": "science",
- "blocks": [
-  {
-   "t": "lead",
-   "p": "La Casserole n'est pas une constellation. C'est un astérisme, sept étoiles découpées dans une figure bien plus vaste — la troisième du ciel par la taille. Et sur ces sept, cinq voyagent réellement ensemble dans la Galaxie. Les deux autres ne font que passer."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "uma",
+  "tab": "science",
+  "blocks": [
     {
-     "v": "1 280",
-     "u": "degrés carrés",
-     "l": "Troisième constellation du ciel par la taille, derrière l'Hydre et la Vierge."
+      "t": "lead",
+      "p": "La plupart des constellations sont des trompe-l'œil : des étoiles sans rapport que la perspective aligne. La Casserole, elle, est en partie vraie. Cinq de ses sept étoiles sont nées du même nuage et voyagent ensemble à travers la Galaxie. Les deux autres, placées justement aux extrémités de la figure, s'en vont dans la direction opposée."
     },
     {
-     "v": "7",
-     "u": "objets de Messier",
-     "l": "M40, M81, M82, M97, M101, M108 et M109 : un record pour une figure circumpolaire."
+      "t": "stats",
+      "v": [
+        {
+          "v": "1 280",
+          "u": "deg²",
+          "l": "Troisième plus vaste des 88 constellations, juste derrière l'Hydre et la Vierge."
+        },
+        {
+          "v": "418",
+          "u": "millions d'années",
+          "l": "Âge du courant d'étoiles, établi en février 2026 par trois méthodes indépendantes qui convergent."
+        },
+        {
+          "v": "25,7",
+          "u": "degrés",
+          "l": "L'écart entre Dubhé et Alkaïd. Bras tendu, cela fait environ deux mains ouvertes et demie."
+        },
+        {
+          "v": "6",
+          "u": "étoiles",
+          "l": "Ce que l'œil prend pour Mizar et sa voisine Alcor : trois paires emboîtées les unes dans les autres."
+        },
+        {
+          "v": "8,30",
+          "u": "a.l.",
+          "l": "Distance de Lalande 21185, quatrième système stellaire le plus proche du Soleil. Invisible à l'œil nu."
+        },
+        {
+          "v": "41",
+          "u": "degrés",
+          "l": "Latitude au-delà de laquelle aucune des sept étoiles ne se couche jamais. Paris est à 48°, Marseille à 43°."
+        }
+      ]
     },
     {
-     "v": "≈ 80",
-     "u": "a.l.",
-     "l": "Distance du courant de la Grande Ourse, l'essaim d'étoiles auquel appartiennent cinq des sept."
+      "t": "text",
+      "h": "Une famille, et deux passants",
+      "p": [
+        "En 1868, l'astronome britannique Richard Proctor compare les déplacements des étoiles de la Casserole et remarque quelque chose d'étrange : cinq d'entre elles filent vers un même point du ciel, situé dans le Sagittaire. Merak, Phecda, Megrez, Alioth et Mizar ne sont pas voisines par hasard. Elles se tiennent toutes entre 78 et 83 années-lumière, partagent la même composition chimique et le même âge. C'est le courant d'étoiles le plus proche de nous.",
+        "Dubhé et Alkaïd n'en sont pas. Plus lointaines, elles se déplacent presque à contre-courant. Et comme elles occupent les deux bouts de la figure, la conséquence est élégante : dans cent mille ans, la Casserole ne sera pas devenue méconnaissable, elle aura simplement été étirée par les deux extrémités."
+      ]
     },
     {
-     "v": "11,8",
-     "u": "minutes d'arc",
-     "l": "Écart entre Mizar et Alcor, le test de vue le plus ancien de l'astronomie."
+      "t": "figure",
+      "svg": "depth",
+      "wide": true,
+      "data": {
+        "title": "Distance réelle des étoiles de la Casserole",
+        "origin": "Terre",
+        "stars": [
+          {
+            "n": "Mizar",
+            "d": 78,
+            "note": "La plus proche des sept. Membre du courant, et à elle seule un système de six étoiles."
+          },
+          {
+            "n": "Merak",
+            "d": 80,
+            "note": "Son nom vient de l'arabe « le bas-ventre du Grand Ours ». Membre du courant."
+          },
+          {
+            "n": "Megrez",
+            "d": 81,
+            "note": "La plus discrète des sept, magnitude 3,3. C'est elle qui relie le manche à la cuve."
+          },
+          {
+            "n": "Alioth",
+            "d": 83,
+            "note": "La plus brillante de la constellation. Son atmosphère est chimiquement bariolée, enrichie par endroits en europium et en chrome."
+          },
+          {
+            "n": "Alkaïd",
+            "d": 104,
+            "note": "Étrangère au courant. Une étoile bleue de 20 000 °C, six fois plus massive que le Soleil."
+          },
+          {
+            "n": "Dubhé",
+            "d": 124,
+            "note": "La plus lointaine, et pourtant la deuxième plus brillante. Étrangère au courant elle aussi."
+          }
+        ]
+      },
+      "cap": "Phecda, absente ici pour la lisibilité, se tient à 83 années-lumière, aux côtés d'Alioth. Survolez chaque étoile.",
+      "credit": "Schéma Ekko of Beyond, d'après les distances Gaia."
+    },
+    {
+      "t": "text",
+      "h": "Ce qu'on appelle un courant",
+      "p": [
+        "Le nom exact de cet ensemble fait débat depuis un siècle. Amas ouvert en train de se dissoudre ? Association ? Simple flot d'étoiles aux trajectoires voisines mais d'âges mêlés ? Les astronomes ont successivement proposé « superamas de Sirius », « association de la Grande Ourse », et l'on s'accorde aujourd'hui sur le terme prudent de groupe. Sirius, longtemps donnée comme membre, a été écartée en 2003.",
+        "En février 2026, une équipe de l'université du Wisconsin a repris le problème avec les données de Gaia : 1 172 étoiles à moins de 100 parsecs partagent le mouvement du groupe. Trois horloges indépendantes — le lithium résiduel, la vitesse de rotation, la variabilité lumineuse — donnent le même verdict, 418 millions d'années. Détail qui fait sourire : le Soleil, lui, traverse cette région sans appartenir au groupe. Nous sommes des touristes à l'intérieur d'une famille."
+      ]
+    },
+    {
+      "t": "split",
+      "h": "Sept étoiles d'éclat comparable, et rien de commun",
+      "p": [
+        "L'égalité d'éclat des sept étoiles est ce qui rend la figure si reconnaissable. Elle est aussi une coïncidence complète : elles n'ont ni la même taille, ni la même couleur, ni le même destin.",
+        "Dubhé est une géante orange en fin de vie, gonflée à une trentaine de fois le diamètre du Soleil. Alioth, quatre fois plus large que le Soleil, brûle encore son hydrogène. Regardez attentivement un soir de ciel pur : Dubhé est la seule des sept à tirer franchement sur l'orangé."
+      ],
+      "media": {
+        "svg": "scale",
+        "data": {
+          "title": "Rayons comparés",
+          "items": [
+            {
+              "n": "Dubhé",
+              "r": 30,
+              "c": "#E8B27C",
+              "note": "Géante orange. Placée à la place du Soleil, elle avalerait l'orbite de Mercure."
+            },
+            {
+              "n": "Alioth",
+              "r": 4,
+              "c": "#CFE0FA",
+              "note": "Étoile blanche de la séquence principale, trois fois la masse du Soleil."
+            },
+            {
+              "n": "Soleil",
+              "r": 1,
+              "note": "Pour l'échelle."
+            }
+          ]
+        },
+        "cap": "Deux des sept étoiles, à l'échelle.",
+        "credit": "Schéma Ekko of Beyond."
+      }
+    },
+    {
+      "t": "text",
+      "h": "Le test de vue le plus ancien du monde",
+      "p": [
+        "Au coude du manche, Mizar est accompagnée d'une étoile plus faible, à douze minutes d'arc : Alcor. La distinguer à l'œil nu demande une bonne vue et un ciel correct, et cette épreuve traverse les siècles. L'astronome persan al-Qazwini la mentionne au XIIIᵉ siècle ; le nom arabe d'Alcor signifie « l'oubliée » ou « la négligée ».",
+        "Puis les instruments s'en sont mêlés, et le couple n'a cessé de se démultiplier. Mizar s'est révélée double, puis chacune de ses deux composantes double à son tour. En 2009, alors qu'il cherchait des exoplanètes autour d'Alcor, Eric Mamajek y a trouvé une naine rouge. Six étoiles, là où l'œil n'en voit qu'une et demie."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Mizar et Alcor, quatre siècles de dédoublements",
+        "events": [
+          {
+            "y": 1617,
+            "label": "Castelli voit Mizar double à la lunette",
+            "note": "Il l'écrit à Galilée le 7 janvier ; Galilée vérifie et note ses mesures une semaine plus tard. C'est la première étoile double résolue au télescope."
+          },
+          {
+            "y": 1857,
+            "label": "Première étoile double photographiée",
+            "note": "George Phillips Bond obtient l'image de Mizar. La photographie entre dans l'astronomie stellaire par cette étoile."
+          },
+          {
+            "y": 1889,
+            "label": "Mizar A, première binaire spectroscopique",
+            "note": "Edward Pickering détecte le dédoublement des raies : deux étoiles trop serrées pour être séparées, révélées par leur spectre."
+          },
+          {
+            "y": 1908,
+            "label": "Premier système quintuple connu",
+            "note": "Mizar B se révèle double elle aussi. Avec Alcor, le compte monte à cinq."
+          },
+          {
+            "y": 2009,
+            "label": "Alcor B complète le sextuple",
+            "note": "Une naine rouge trouvée par hasard, au cours d'une chasse aux planètes. Deux équipes concluent indépendamment la même chose."
+          }
+        ]
+      },
+      "cap": "Chaque progrès instrumental a ajouté une étoile. Survolez les étapes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "warn",
+      "h": "Deux précisions qui circulent mal",
+      "p": "On attribue très souvent la découverte de Mizar double à Giovanni Riccioli, en 1650. L'erreur remonte à un ouvrage de 1899 et s'est recopiée depuis : la lettre de Benedetto Castelli à Galilée, datée du 7 janvier 1617, la précède de trente-trois ans. Par ailleurs, le mot « sextuple » demande de la prudence. Mizar et Alcor sont séparées de 0,5 à 1,5 année-lumière, une distance énorme pour un système lié ; les publications de 2009 concluent à un lien gravitationnel probable, sans que la démonstration soit tenue pour définitive par tous."
+    },
+    {
+      "t": "text",
+      "h": "Une fenêtre ouverte sur les galaxies",
+      "p": [
+        "La Grande Ourse regarde loin du plan de la Voie lactée, là où ni gaz ni poussière ne font écran. Le résultat est un champ exceptionnellement dégagé : des centaines de galaxies y sont cataloguées, dont trois figurent parmi les plus photographiées du ciel. M81, spirale majestueuse à 11,6 millions d'années-lumière. M82, sa voisine, dix fois plus prolifique en étoiles nouvelles que notre Galaxie. Et M101, le Moulinet, vue exactement de face.",
+        "La région réserve aussi une cible de télescope familial : au fond de la casserole, M97, la nébuleuse du Hibou. Un anneau de gaz soufflé il y a six mille ans par une étoile comparable au Soleil, à quelque 2 400 années-lumière. Deux zones plus sombres y dessinent les yeux d'un rapace."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/uma/m82-webb-hubble.jpg",
+      "page": "https://esawebb.org/images/weic2612a/",
+      "wide": true,
+      "cap": "M82, la galaxie du Cigare, vue par Webb et Hubble. Les panaches en sablier sont de la matière expulsée par-dessus et par-dessous le disque : jaune pour le gaz ionisé, orange pour les grains de poussière plus éloignés. Cliquez pour agrandir.",
+      "credit": "NASA, ESA, CSA, A. Smercina (STScI), T. Williams (University of Manchester). Traitement : A. Pagan (STScI)"
+    },
+    {
+      "t": "text",
+      "h": "Ce que Webb a compté en juin 2026",
+      "p": [
+        "M82 fabrique des étoiles à un rythme intenable, probablement déclenché par sa rencontre passée avec M81. Vue en lumière visible, son cœur est noyé de poussière. Il a fallu 65 heures d'observation avec la caméra proche infrarouge de Webb pour percer ce voile.",
+        "Le communiqué publié le 23 juin 2026 donne un chiffre difficile à se représenter : 16,5 millions d'étoiles distinguées une à une. Et ce n'est qu'une fraction du total, l'immense majorité restant trop faible pour être vue. L'image montre aussi que le disque est déformé, ses deux côtés n'ayant pas le même rayon — la signature d'une fusion violente."
+      ]
+    },
+    {
+      "t": "video",
+      "url": "https://www.youtube.com/watch?v=X8vpMVniBr0",
+      "page": "https://esawebb.org/videos/weic2612a/",
+      "cap": "Un panoramique lent sur le disque de M82, du cœur bleuté aux panaches de poussière.",
+      "credit": "NASA, ESA, CSA, A. Smercina (STScI), T. Williams (University of Manchester), A. Pagan (STScI), N. Bartmann (ESA/Webb). Musique : Stellardrone — Twilight"
+    },
+    {
+      "t": "split",
+      "rev": true,
+      "h": "Le Moulinet, et l'explosion de mai 2023",
+      "p": [
+        "M101 est deux fois plus large que la Voie lactée et nous fait face, ce qui en fait le modèle des spirales dites « grand design ». Les estimations de distance vont de 21 à 25 millions d'années-lumière selon la méthode employée.",
+        "Le 19 mai 2023, l'astronome japonais Koichi Itagaki y repère un point lumineux nouveau. SN 2023ixf sera la supernova de type II la plus proche depuis une décennie, observable dans un télescope d'amateur. Les images d'archives ont permis de retrouver l'étoile avant l'explosion : une supergéante rouge enveloppée de poussière, dont la masse initiale reste débattue, entre douze et dix-neuf fois celle du Soleil."
+      ],
+      "media": {
+        "src": "/assets/img/constellations/uma/m101-hubble.jpg",
+        "page": "https://esahubble.org/images/heic0602a/",
+        "cap": "Le portrait de M101 assemblé à partir de 51 poses de Hubble, complétées par des images au sol.",
+        "credit": "ESA & NASA — données Hubble : K. D. Kuntz (GSFC), F. Bresolin (University of Hawaii), J. Trauger (JPL), J. Mould (NOAO), Y.-H. Chu (University of Illinois). Traitement : Davide De Martin (ESA/Hubble). Image au sol : CFHT / J.-C. Cuillandre / Coelum"
+      }
+    },
+    {
+      "t": "text",
+      "h": "Des planètes dans le voisinage immédiat",
+      "p": [
+        "Deux systèmes planétaires de la constellation méritent le détour. Le premier tient à une étoile invisible à l'œil nu, Lalande 21185, cataloguée en 1801 à l'Observatoire de Paris. À 8,30 années-lumière, c'est la naine rouge la plus brillante de l'hémisphère nord et le quatrième système stellaire le plus proche du nôtre. Une planète d'environ trois masses terrestres y a été confirmée grâce au spectrographe SOPHIE de l'Observatoire de Haute-Provence ; une seconde, beaucoup plus lointaine, reste discutée d'une équipe à l'autre.",
+        "Le second est 47 Ursae Majoris, baptisée Chalawan, un jumeau du Soleil à 45 années-lumière. La planète géante découverte autour d'elle en 1996 fut la première trouvée sur une orbite longue et presque circulaire, loin de son étoile — à l'inverse des géantes brûlantes qui dominaient alors les découvertes. Une seconde géante s'y est ajoutée en 2002. Ensemble, elles rappellent Jupiter et Saturne, en masse comme en disposition."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "compass",
+      "wide": true,
+      "data": {
+        "title": "La Casserole, point de départ du ciel du nord",
+        "targets": [
+          {
+            "star": "Polaris",
+            "from": "Dubhé",
+            "label": "Polaris",
+            "sub": "Petite Ourse",
+            "note": "Prolongez cinq fois l'écart Merak — Dubhé. Vous tenez le nord vrai."
+          },
+          {
+            "star": "Arcturus",
+            "from": "Alkaïd",
+            "label": "Arcturus",
+            "sub": "Bouvier",
+            "note": "Suivez la courbe du manche vers l'extérieur. En continuant l'arc, on atteint Spica dans la Vierge."
+          },
+          {
+            "star": "Régulus",
+            "from": "Phecda",
+            "label": "Régulus",
+            "sub": "Lion",
+            "note": "Reportez une dizaine de fois l'écart Megrez — Phecda, à travers le fond de la casserole."
+          }
+        ],
+        "notes": {
+          "Mizar": "Double visible à l'œil nu avec Alcor, si le ciel est noir.",
+          "Dubhé": "La seule des sept à tirer sur l'orangé.",
+          "Alkaïd": "La plus chaude, et l'une des deux qui ne font pas partie du courant."
+        }
+      },
+      "cap": "Les visées classiques depuis la Casserole. Les cibles lointaines sont reportées au bord du cadre, dans leur direction vraie.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "read",
+          "title": "Webb dénombre les étoiles de la galaxie du Cigare",
+          "src": "ESA/Webb, 23 juin 2026",
+          "note": "Le communiqué d'où viennent les 16,5 millions d'étoiles et les 65 heures d'observation. En anglais.",
+          "url": "https://esawebb.org/news/weic2612/"
+        },
+        {
+          "kind": "deep",
+          "title": "A Multi-Method Age Determination for the Ursa Major Moving Group",
+          "src": "The Astronomical Journal, février 2026",
+          "note": "L'article qui fixe l'âge du courant à 418 millions d'années. En anglais.",
+          "url": "https://iopscience.iop.org/article/10.3847/1538-3881/ae38be"
+        },
+        {
+          "kind": "look",
+          "title": "Le plus grand portrait de spirale jamais publié par Hubble",
+          "src": "ESA/Hubble",
+          "note": "M101 en 16 000 pixels de large, avec les fichiers en pleine résolution à télécharger.",
+          "url": "https://esahubble.org/images/heic0602a/"
+        },
+        {
+          "kind": "read",
+          "title": "Qu'est-ce que la Grande Ourse ?",
+          "src": "Cité de l'espace",
+          "note": "La fiche la plus soignée en français sur les sept étoiles, distance et magnitude comprises.",
+          "url": "https://www.cite-espace.com/centre_ressources/quest-ce-que-la-grande-ourse/"
+        },
+        {
+          "kind": "deep",
+          "title": "Discovery of a Faint Companion to Alcor",
+          "src": "Mamajek et al., 2009",
+          "note": "La découverte d'Alcor B, avec en annexe la mise au point historique sur Castelli et Riccioli. En anglais.",
+          "url": "https://arxiv.org/pdf/0911.5028"
+        },
+        {
+          "kind": "read",
+          "title": "Une super-Terre à seulement huit années-lumière",
+          "src": "CNRS Terre & Univers",
+          "note": "La planète de Lalande 21185, racontée par l'équipe française qui l'a confirmée.",
+          "url": "https://www.insu.cnrs.fr/fr/cnrsinfo/une-super-terre-seulement-8-annees-lumiere-de-la-terre-decouverte-par-lobservatoire-de"
+        },
+        {
+          "kind": "look",
+          "title": "M81, la spirale de Bode par Hubble",
+          "src": "ESA/Hubble",
+          "note": "La voisine de M82, résolue jusqu'aux étoiles individuelles.",
+          "url": "https://esahubble.org/images/heic0710a/"
+        },
+        {
+          "kind": "watch",
+          "title": "Panoramique sur M82",
+          "src": "ESA/Webb",
+          "note": "Trente secondes pour parcourir le disque et ses panaches. Fichiers 4K téléchargeables.",
+          "url": "https://esawebb.org/videos/weic2612a/"
+        },
+        {
+          "kind": "read",
+          "title": "À la découverte des étoiles doubles Mizar et Alcor",
+          "src": "Jean-Baptiste Feldmann, Futura",
+          "note": "Le récit du dédoublement successif, en français et sans jargon.",
+          "url": "https://blogs.futura-sciences.com/feldmann/2017/06/18/a-decouverte-etoiles-doubles-mizar-alcor/"
+        },
+        {
+          "kind": "deep",
+          "title": "SN 2023ixf in Messier 101: A Variable Red Supergiant as the Progenitor Candidate",
+          "src": "The Astrophysical Journal Letters, 2023",
+          "note": "L'identification de l'étoile disparue, à partir des archives Hubble et Spitzer. En anglais.",
+          "url": "https://iopscience.iop.org/article/10.3847/2041-8213/ace4ca"
+        },
+        {
+          "kind": "deep",
+          "title": "Spectroscopic properties of cool Ursa Major group members",
+          "src": "Astronomy & Astrophysics, 2009",
+          "note": "Pour qui veut comprendre pourquoi on hésite entre « amas », « association » et « courant ». En anglais.",
+          "url": "https://www.aanda.org/articles/aa/full_html/2009/47/aa12660-09/aa12660-09.html"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Cinq sœurs et deux intruses",
-   "p": [
-    "Merak, Phecda, Megrez, Alioth et Mizar partagent la même vitesse et la même direction dans la Galaxie : elles sont nées ensemble, il y a quelques centaines de millions d'années, et forment ce qu'on appelle le courant de la Grande Ourse.",
-    "Dubhe et Alkaïd, aux deux extrémités, n'en font pas partie. Elles filent dans une autre direction. Conséquence : la Casserole se déforme. Dans cinquante mille ans, le manche se sera cassé et personne ne reconnaîtra plus une casserole."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Mizar, laboratoire des étoiles doubles",
-   "p": [
-    "Aucune étoile n'a autant servi à l'histoire de l'astronomie. Mizar et son cavalier Alcor forment une double visible à l'œil nu, connue depuis l'Antiquité et longtemps utilisée comme test d'acuité.",
-    "Mizar seule est la première double découverte au télescope, par Riccioli en 1650 ; la première double photographiée, par Bond en 1857 ; et la première binaire spectroscopique, annoncée par Pickering en 1889. On lui compte aujourd'hui quatre composantes."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Un couple de galaxies pour les jumelles",
-   "p": [
-    "Prolongez la diagonale du récipient depuis Phecda vers Dubhe, et reportez la même distance : vous tombez sur M81 et M82. Deux galaxies dans le même champ, à environ douze millions d'années-lumière, dont Hubble a mesuré la distance en 1993 grâce à une trentaine de céphéides.",
-    "Elles s'attirent. M81 est une spirale bien dessinée ; M82, surnommée le Cigare, montre les cicatrices de cette rencontre — une flambée de formation d'étoiles déclenchée par les forces de marée. Deux destins pour deux galaxies voisines."
-   ]
-  },
-  {
-   "t": "quote",
-   "p": "Mizar sert de test de vue en astronomie depuis au moins mille ans.",
-   "who": "Sur l'écart de 11,8 minutes d'arc qui la sépare d'Alcor"
-  },
-  {
-   "t": "text",
-   "h": "Le vide le plus célèbre du ciel",
-   "p": [
-    "En 1995, Hubble a braqué son regard dix jours d'affilée sur une minuscule région de la Grande Ourse, choisie précisément parce qu'elle semblait vide. Le champ profond y a révélé des milliers de galaxies lointaines.",
-    "C'est peut-être le plus grand service rendu par cette constellation : avoir offert un morceau de ciel assez banal pour qu'on ose y regarder longtemps."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "read",
-     "title": "Grande Ourse — étoiles principales et courant stellaire",
-     "src": "Techno-Science",
-     "note": "Le détail du système de Mizar et la liste des cinq étoiles qui voyagent ensemble.",
-     "url": "https://www.techno-science.net/glossaire-definition/Grande-Ourse-page-2.html"
-    },
-    {
-     "kind": "read",
-     "title": "Guide de la Grande Ourse",
-     "src": "Star Walk",
-     "note": "Ce qu'on voit à l'œil nu, aux jumelles et au petit télescope. En français.",
-     "url": "https://starwalk.space/fr/news/ursa-major-constellation-guide"
-    },
-    {
-     "kind": "read",
-     "title": "M81 et M82, un duo galactique remarquable",
-     "src": "Stelvision",
-     "note": "Une fiche d'observation avec la méthode de repérage depuis la Casserole.",
-     "url": "https://www.stelvision.com/astro/fiche-observation/m81-m82-duo-galactique/"
-    },
-    {
-     "kind": "read",
-     "title": "Les objets du ciel profond de la Grande Ourse",
-     "src": "Terre Mystérieuse",
-     "note": "Magnitudes, coordonnées et instrument conseillé pour chacun des sept Messier.",
-     "url": "https://terremysterieuse.com/grande-ourse/"
-    }
-   ]
-  }
- ]
+  ]
 }
