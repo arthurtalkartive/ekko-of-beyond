@@ -1,66 +1,297 @@
 {
- "constellation": "umi",
- "tab": "mytho",
- "blocks": [
-  {
-   "t": "lead",
-   "p": "La Petite Ourse est la seule constellation dont la fonction ait précédé le récit. Avant d'être une ourse, elle a été un instrument : le seul repère fixe d'un ciel qui tourne, et donc l'outil de tous ceux qui devaient retrouver le nord."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "umi",
+  "tab": "mytho",
+  "blocks": [
     {
-     "v": "2",
-     "u": "noms grecs",
-     "l": "Cynosura, « la queue du chien », et Phoenice, du nom des marins qui s'en servaient."
+      "t": "lead",
+      "p": "Voici la constellation la plus utile du ciel du nord, et la plus mal nommée. Son plus ancien nom grec ne parle pas d'ourse mais de chien : Kynosoura, « la queue du chien ». Personne n'a jamais pu dire de quel chien. Les Grecs la tenaient des Phéniciens, qui naviguaient déjà avec elle, et l'histoire qu'ils lui ont attachée est si mince que les auteurs antiques eux-mêmes semblent gênés de la raconter."
     },
     {
-     "v": "1",
-     "u": "étoile",
-     "l": "Il suffit de Polaris pour connaître à la fois le nord et sa propre latitude."
-    }
-   ]
-  },
-  {
-   "t": "figure",
-   "src": "/skyculture/ekko/illustrations/umi.webp",
-   "lit": true,
-   "roll": true,
-   "cap": "La figure de la Petite Ourse plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
-   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
-  },
-  {
-   "t": "text",
-   "h": "Arcas, le fils qui devint constellation",
-   "p": [
-    "La Petite Ourse ne se raconte pas seule. Dans la version grecque la plus répandue, elle est Arcas, fils de Callisto, sur le point de tuer sa mère changée en ourse sans la reconnaître. Zeus les envoie tous deux au ciel avant le geste.",
-    "D'autres auteurs y voient plutôt une des nymphes qui élevèrent Zeus enfant en Crète. Le flottement est révélateur : cette figure discrète a moins intéressé les conteurs que les navigateurs."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "L'étoile des Phéniciens",
-   "p": [
-    "Les Grecs appelaient parfois cette constellation Phoenice, du nom des Phéniciens, réputés pour s'y fier en pleine mer. L'autre nom grec, Cynosura, signifie « la queue du chien » — l'origine du mot cynosure, qui désigne encore ce vers quoi tous les regards convergent.",
-    "L'usage est d'une élégance rare : la hauteur de Polaris au-dessus de l'horizon donne directement la latitude de l'observateur. Une seule mesure, un seul coup d'œil, et l'on sait où l'on se trouve sur le globe."
-   ]
-  },
-  {
-   "t": "warn",
-   "h": "Un point de vigilance",
-   "p": "On attribue souvent aux navigateurs de l'Antiquité l'usage de « l'étoile polaire » comme s'il s'agissait de Polaris. À l'époque d'Homère, Polaris se tenait à plusieurs degrés du pôle et décrivait un cercle bien visible dans la nuit : elle indiquait le nord approximativement, pas exactement. Sa position actuelle, à moins d'un degré, est une commodité récente."
-  },
-  {
-   "t": "links",
-   "v": [
+      "t": "stats",
+      "v": [
+        {
+          "v": "kynosoura",
+          "l": "« Queue de chien » en grec, le nom le plus ancien de la constellation. Aucune constellation voisine n'a jamais été un chien : l'origine reste obscure."
+        },
+        {
+          "v": "2,0",
+          "u": "magnitude",
+          "l": "L'éclat de Polaris. Elle n'est que la quarante-huitième étoile la plus brillante du ciel. Sa célébrité ne doit rien à sa lumière."
+        },
+        {
+          "v": "56ᵉ",
+          "u": "sur 88",
+          "l": "Sa place au classement des constellations par la taille. Elle couvre 256 degrés carrés, cinq fois moins que la Grande Ourse."
+        },
+        {
+          "v": "2",
+          "u": "gardiennes",
+          "l": "Kochab et Pherkad, les deux Farqadain des astronomes arabes, qui tournent autour du pôle comme si elles le surveillaient."
+        },
+        {
+          "v": "1 345",
+          "u": "étoiles",
+          "l": "Le compte de l'atlas céleste de Dunhuang, VIIIᵉ siècle, dont le dernier panneau est consacré à la région du pôle."
+        }
+      ]
+    },
     {
-     "kind": "read",
-     "title": "Polaris, l'étoile polaire",
-     "src": "Star Walk",
-     "note": "Comprend l'histoire des noms et l'usage en navigation. En français.",
-     "url": "https://starwalk.space/fr/news/polaris-north-star"
+      "t": "figure",
+      "src": "/skyculture/ekko/illustrations/umi.webp",
+      "lit": true,
+      "roll": true,
+      "wide": true,
+      "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Le dessin reprend celui de sa grande voisine, queue démesurée comprise, alors que rien dans la tradition grecque ancienne n'en fait vraiment une ourse.",
+      "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+    },
+    {
+      "t": "text",
+      "h": "La queue d'un chien inconnu",
+      "p": [
+        "Le nom « Petite Ourse » est tardif. Chez les Grecs, la constellation s'appelait Kynosoura, mot à mot la queue du chien, de kunos, chien, et oura, queue. Le problème saute aux yeux dès qu'on l'écrit : pour qu'une constellation soit la queue d'un chien, il faut un chien à proximité. Il n'y en a jamais eu. Aucune figure voisine, dans aucune tradition connue, ne correspond.",
+        "Les hypothèses ne manquent pas, et aucune ne convainc tout à fait. Une variante du mythe de Callisto remplace son fils Arcas par son chien, que Zeus place au ciel à côté d'elle. Une autre suppose une lecture archaïque où la Grande Ourse était une vache, le Bouvier son berger, et la Petite Ourse le chien du troupeau. Le mot a peut-être fini par désigner autre chose que son sens littéral. En français, il a laissé une trace inattendue : c'est de lui que vient « cynosure », le point vers lequel tous les regards convergent."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/umi/urania-mirror-draco-ursa-minor-1825.jpg",
+      "page": "https://www.loc.gov/pictures/item/2002695394/",
+      "wide": true,
+      "cap": "Le Dragon et la Petite Ourse sur la première planche du jeu « Urania's Mirror », Londres, 1825. Le corps du Dragon s'enroule autour de la petite ourse et la sépare de la grande : c'est exactement la disposition qu'Aratos décrivait vingt et un siècles plus tôt. Les trous percés dans le carton correspondent à l'éclat des étoiles.",
+      "credit": "Sidney Hall, eau-forte coloriée à la main, 1825 — Library of Congress, Prints & Photographs Division (LC-USZC4-10050)"
+    },
+    {
+      "t": "text",
+      "h": "Deux nourrices, et un embarras",
+      "p": [
+        "La version grecque la plus citée fait des deux Ourses les nourrices de Zeus. Rhéa vient d'accoucher en Crète et doit cacher l'enfant à Cronos, qui dévore sa progéniture. Elle le confie à des nymphes de la grotte du mont Ida. Deux d'entre elles s'appellent Héliké et Kynosoura, et c'est pour les récompenser de leur vigilance qu'elles brillent au ciel. Aratos le raconte au IIIᵉ siècle avant notre ère, en s'appuyant sur un poète antérieur, Aglaosthène, qui l'écrivait dans ses « Naxika ».",
+        "Sauf que cette histoire tient mal debout, et il faut le dire. Dans l'immense majorité des sources, la nourrice de Zeus n'est pas une paire de nymphes-ourses mais une chèvre, Amalthée, éventuellement accompagnée des nymphes Adrastée et Ida — deux noms qui ne sont pas ceux des Ourses. Héliké et Kynosoura n'apparaissent qu'à la marge de la tradition. Le récit a probablement été fabriqué après coup pour expliquer un nom qu'on ne comprenait déjà plus."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/umi/poussin-nourriture-jupiter-dulwich.jpg",
+      "page": "https://www.dulwichpicturegallery.org.uk/explore/explore-the-collection/the-nurture-of-jupiter/",
+      "wide": true,
+      "cap": "La scène telle que la peinture l'a retenue : au sommet du mont Ida, un berger maintient la chèvre Amalthée par les cornes tandis qu'une nymphe la soulève pour que l'enfant boive. Derrière, une seconde nymphe recueille du miel dans un tronc. Ce sont ces deux femmes que la version rapportée par Aratos identifie aux deux Ourses. Toile de Nicolas Poussin, vers 1636.",
+      "credit": "Nicolas Poussin, « La Nourriture de Jupiter » — Dulwich Picture Gallery, Londres"
+    },
+    {
+      "t": "quote",
+      "p": "Les Phéniciens se dirigent par la Cynosure dans leurs voyages sur mer.",
+      "who": "Aratos de Soles, Les Phénomènes, IIIᵉ siècle av. J.-C."
+    },
+    {
+      "t": "text",
+      "h": "La constellation des Phéniciens",
+      "p": [
+        "Aratos écrit une phrase qui vaut tout le reste : les Grecs s'orientent avec la grande, les Phéniciens avec la petite. Et il donne la raison, purement technique : la petite est moins visible, mais les navigateurs la préfèrent parce qu'elle décrit un cercle plus serré autour du pôle. Elle indique donc mieux le nord.",
+        "Diogène Laërce nous rapporte, d'après Callimaque, que c'est Thalès de Milet qui aurait signalé aux Grecs cette constellation dont les Phéniciens réglaient leur navigation, au VIᵉ siècle avant notre ère. D'où son surnom antique : Phoinikē, la Phénicienne. Voilà l'essentiel de l'affaire. La Petite Ourse n'est pas une figure née d'un récit, c'est un instrument emprunté à des marins, auquel on a greffé une légende plus tard."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Les lectures successives de la région du pôle",
+        "events": [
+          {
+            "y": -1000,
+            "when": "avant Thalès",
+            "label": "Les Phéniciens naviguent avec elle",
+            "note": "Les marins de Tyr et de Sidon règlent leur route sur cette constellation discrète, parce qu'elle tourne au plus près du pôle."
+          },
+          {
+            "y": -580,
+            "when": "VIᵉ s. av. J.-C.",
+            "label": "Thalès la signale aux Grecs",
+            "note": "Callimaque le rapporte, Diogène Laërce le transmet. D'où le surnom de Phoinikē, la Phénicienne."
+          },
+          {
+            "y": -270,
+            "when": "IIIᵉ s. av. J.-C.",
+            "label": "Aratos en fait une nourrice de Zeus",
+            "note": "Kynosoura et Héliké, nymphes de la grotte de l'Ida. Une version tardive et marginale, sans doute forgée pour expliquer un nom devenu obscur."
+          },
+          {
+            "y": 700,
+            "when": "VIIIᵉ siècle",
+            "label": "Dunhuang : l'Enceinte pourpre interdite",
+            "note": "L'atlas chinois consacre son dernier panneau au pôle. La région est le palais de l'empereur céleste, et Kochab y porte le nom d'Empereur."
+          },
+          {
+            "y": 964,
+            "label": "al-Sufi fixe les noms arabes",
+            "note": "al-Dubb al-Asghar, la Petite Ourse, et les deux Farqadain qui serviront à trouver la direction de La Mecque."
+          },
+          {
+            "y": 1603,
+            "label": "Bayer et les « Gardiennes du Pôle »",
+            "note": "Kochab et Pherkad prennent en Europe le nom qu'elles gardent : les deux étoiles qui montent la garde autour de Polaris."
+          }
+        ]
+      },
+      "cap": "Les étapes sont espacées régulièrement : c'est l'ordre qui compte. Survolez-les.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Les deux veaux et la direction de La Mecque",
+      "p": [
+        "Les astronomes arabes ont hérité la figure des Grecs sous le nom d'al-Dubb al-Asghar, l'Ours mineur, et y ont superposé leur propre lecture, comme pour la Grande Ourse : un second cercueil, plus petit, suivi de ses pleureuses. Mais ce sont surtout deux étoiles qui les ont retenus. Kochab, dont le nom signifie « l'étoile du nord », et Pherkad, sa voisine. Ensemble elles forment al-Farqadain, les deux veaux, ou selon les auteurs les deux jeunes gazelles.",
+        "Leur usage était pratique. Prolongez l'alignement des deux étoiles du fond du cercueil de la Grande Ourse, vous tombez sur Polaris ; repérez ensuite les Farqadain à l'autre bout de la Petite Ourse, et vous tenez de quoi déterminer la qibla, la direction de La Mecque, où que vous soyez. Un voyageur pouvait prier juste sans instrument. Deux traces amusantes subsistent dans nos catalogues : Yildun, le nom de delta de la Petite Ourse, est simplement le mot turc pour « étoile » ; et Pherkad a produit en français la forme Facardin, par contamination avec le nom francisé d'un émir druze du XVIIᵉ siècle."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/umi/al-sufi-petite-ourse-marsh144.jpg",
+      "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
+      "wide": true,
+      "cap": "La Petite Ourse dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. Comme toutes les figures du livre, elle est dessinée deux fois : telle qu'on la voit dans le ciel, et telle qu'elle apparaît retournée sur un globe céleste. Les étoiles sont numérotées et reprises dans la table en marge.",
+      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+    },
+    {
+      "t": "text",
+      "h": "Le palais de l'empereur céleste",
+      "p": [
+        "La tradition chinoise ne voit ici ni ourse ni chien, mais le centre du pouvoir. La région du pôle forme Ziwei, l'Enceinte pourpre interdite, résidence de l'empereur céleste, dont la Cité interdite de Pékin est le décalque terrestre. Les étoiles de la Petite Ourse s'y répartissent entre deux astérismes, Beiji, le Pôle nord, et Gouchen, la Disposition courbe.",
+        "Le détail le plus parlant vient de l'atlas de Dunhuang, peint au VIIIᵉ siècle. Dans l'astérisme du Pôle nord, une étoile est nommée Di, l'Empereur. Ce n'est pas Polaris. C'est Kochab, qui était alors, et depuis longtemps, l'étoile la plus proche du pôle. La cartographie chinoise a gardé le souvenir d'un état du ciel que la précession avait déjà commencé à défaire."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/umi/dunhuang-region-polaire.jpg",
+      "page": "https://idp.bl.uk/collection/7861395E5F814419BA05483EAB254832/",
+      "wide": true,
+      "cap": "Le dernier panneau de l'atlas céleste de Dunhuang : la région circumpolaire, en projection azimutale. Le rouleau, long de quatre mètres et tracé à deux encres sur papier fin, porte 1 345 étoiles groupées en 257 astérismes. C'est le plus ancien atlas céleste complet conservé, toutes civilisations confondues. Il a été rapporté des grottes de Mogao par Aurel Stein en 1907.",
+      "credit": "Manuscrit Or.8210/S.3326 — The British Library, International Dunhuang Programme"
+    },
+    {
+      "t": "text",
+      "h": "Le clou, le piquet, celles qui ne bougent pas",
+      "p": [
+        "Là où l'on ne raconte pas d'histoire, on décrit ce qu'on voit, et cela donne souvent mieux. Chez les Touaregs, Polaris est Tatrit ta-n-tasmana, l'Étoile du Nord, mais le récit est plus précis : c'est le piquet auquel un chamelon est attaché, et il tourne autour en attendant que revienne Talemt, la chamelle, sa mère, qu'il va téter. Chez les peuples du Nord, le vocabulaire est celui de la menuiserie : le clou du ciel, le pieu doré. Les Yakoutes en font le nombril du ciel.",
+        "La formulation la plus sobre est inuite. Les trois étoiles brillantes de la constellation, Polaris, Kochab et Pherkad, sont Nuutuittut, « celles qui ne bougent jamais ». Avec une remarque qui vaut d'être notée : à ces latitudes, Polaris monte si haut au-dessus de l'horizon qu'elle ne sert plus à rien pour s'orienter. Le peuple qui vit le plus près du pôle est celui pour qui l'étoile polaire est la plus inutile."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "compass",
+      "wide": true,
+      "data": {
+        "title": "Le Dragon passe entre les deux Ourses",
+        "targets": [
+          {
+            "star": "Dubhé",
+            "from": "Kochab",
+            "label": "Dubhé",
+            "sub": "Grande Ourse",
+            "note": "La grande voisine. Prolongez cinq fois l'écart Merak — Dubhé dans l'autre sens et vous revenez ici, sur Polaris."
+          },
+          {
+            "star": "Thuban",
+            "from": "Pherkad",
+            "label": "Thuban",
+            "sub": "Dragon",
+            "note": "L'étoile polaire du temps des pyramides. Le corps du Dragon s'insinue entre les deux Ourses, comme le décrit Aratos."
+          }
+        ],
+        "notes": {
+          "Polaris": "Stella Maris chez les Assyriens, le nombril du ciel chez les Yakoutes, le clou ou le piquet chez les peuples du Nord.",
+          "Kochab": "« L'étoile du nord » en arabe. Elle a porté ce titre pour de bon jusque vers l'an mille, et les Chinois l'appelaient l'Empereur.",
+          "Pherkad": "Avec Kochab, les deux Farqadain : les veaux, ou les gardiennes du pôle."
+        }
+      },
+      "cap": "La disposition qu'Aratos décrit au IIIᵉ siècle avant notre ère se vérifie encore ce soir dans le ciel.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "warn",
+      "h": "Deux idées reçues à écarter",
+      "p": "La première : Polaris ne serait pas l'étoile des marins de toute antiquité. À l'époque d'Hipparque, au IIᵉ siècle avant notre ère, aucune étoile brillante ne se trouvait vraiment près du pôle, et l'astronome s'étonnait qu'Eudoxe ait pu en mentionner une. Les Phéniciens s'orientaient avec la constellation entière, pas avec une étoile fixe, et Polaris n'a pris son rôle qu'au fil des siècles suivants, à mesure que la précession l'y amenait. La seconde : Polaris n'est pas l'étoile la plus brillante du ciel. C'est une erreur si répandue qu'elle mérite d'être dite deux fois. De magnitude 2, elle arrive vers la quarante-huitième place. Ce qui la rend précieuse n'est pas son éclat, c'est sa position."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "look",
+          "title": "Le Dragon et la Petite Ourse, planche 1 d'« Urania's Mirror »",
+          "src": "Library of Congress",
+          "note": "La carte perforée de 1825 en haute résolution, sans restriction de publication connue aux États-Unis.",
+          "url": "https://www.loc.gov/pictures/item/2002695394/"
+        },
+        {
+          "kind": "look",
+          "title": "L'atlas céleste de Dunhuang",
+          "src": "The British Library, International Dunhuang Programme",
+          "note": "Le rouleau entier, panneau par panneau, avec la notice du conservateur. En anglais.",
+          "url": "https://idp.bl.uk/collection/7861395E5F814419BA05483EAB254832/"
+        },
+        {
+          "kind": "look",
+          "title": "La Nourriture de Jupiter, de Poussin",
+          "src": "Dulwich Picture Gallery",
+          "note": "La notice du musée décrit la scène personnage par personnage. En anglais.",
+          "url": "https://www.dulwichpicturegallery.org.uk/explore/explore-the-collection/the-nurture-of-jupiter/"
+        },
+        {
+          "kind": "deep",
+          "title": "The Dunhuang Chinese Sky: A Comprehensive Study of the Oldest Known Star Atlas",
+          "src": "Bonnet-Bidaud, Praderie et Whitfield, 2009",
+          "note": "L'étude de référence, par une équipe de l'Observatoire de Paris et de la British Library. C'est d'elle que vient l'identification de Kochab comme l'Empereur. En anglais.",
+          "url": "https://arxiv.org/pdf/0906.3034"
+        },
+        {
+          "kind": "deep",
+          "title": "Les Phénomènes d'Aratos",
+          "src": "Traduction française du XIXᵉ siècle",
+          "note": "Le passage sur les deux Ourses et le Dragon, dans son intégralité. La source antique la plus utile pour cet onglet.",
+          "url": "https://cral-perso.univ-lyon1.fr/labo/fc/cdroms/docu_astro/doc_histoire/aratus2.pdf"
+        },
+        {
+          "kind": "look",
+          "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
+          "src": "Bodleian Library, Oxford",
+          "note": "Les cinquante-sept planches numérisées du plus ancien exemplaire conservé du Livre des étoiles fixes.",
+          "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
+        },
+        {
+          "kind": "read",
+          "title": "Comment trouver la qibla grâce à l'étoile polaire",
+          "src": "APBIF",
+          "note": "La méthode expliquée pas à pas, avec les noms arabes des étoiles. En français.",
+          "url": "https://apbif.fr/comment-trouver-la-qiblah-grace-a-l-etoile-polaire"
+        },
+        {
+          "kind": "look",
+          "title": "Al-Sufi et al-Qazwini, manuscrit relié",
+          "src": "Library of Congress",
+          "note": "Un exemplaire tardif qui associe le Livre des étoiles fixes aux Merveilles de la création. Consultable en ligne.",
+          "url": "https://www.loc.gov/item/2021667391/"
+        },
+        {
+          "kind": "read",
+          "title": "Science et légendes grecques",
+          "src": "Charles-Henri Eyraud, ENS de Lyon",
+          "note": "Un dossier clair sur les catastérismes grecs et leurs variantes, dont Cynosure. En français.",
+          "url": "https://www.ens-lyon.fr/RELIE/Cadrans/activpedago/TextesCours/SourcesDoc/Legendes.pdf"
+        },
+        {
+          "kind": "deep",
+          "title": "Astronomical arguments in Newton's Chronology",
+          "src": "arXiv, 2012",
+          "note": "Contient le passage sur l'étonnement d'Hipparque face à la mention d'une étoile polaire par Eudoxe. En français dans le texte cité.",
+          "url": "https://arxiv.org/pdf/1212.4943"
+        },
+        {
+          "kind": "read",
+          "title": "Gamma Ursae Minoris",
+          "src": "Wikipédia en français",
+          "note": "Pour la généalogie des noms de Pherkad, Alpherkadein et l'étrange Facardin.",
+          "url": "https://fr.wikipedia.org/wiki/Gamma_Ursae_Minoris"
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }

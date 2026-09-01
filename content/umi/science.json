@@ -1,86 +1,316 @@
 {
- "constellation": "umi",
- "tab": "science",
- "blocks": [
-  {
-   "t": "lead",
-   "p": "Polaris ne marque le nord que par un accident de calendrier. L'axe de la Terre décrit un cône en vingt-six mille ans, et le pôle céleste dérive lentement parmi les étoiles. Nous vivons simplement à l'époque où il passe près d'une étoile brillante."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "umi",
+  "tab": "science",
+  "blocks": [
     {
-     "v": "≈ 26 000",
-     "u": "ans",
-     "l": "Durée du cycle de précession de l'axe terrestre. Le pôle céleste change donc d'adresse en permanence."
+      "t": "lead",
+      "p": "Toute la réputation de la Petite Ourse tient à une étoile qui ne bouge pas. Sauf qu'elle bouge : elle décrit un petit cercle autour du pôle, elle gonfle et se dégonfle tous les quatre jours, elle est en réalité trois étoiles, sa surface est couverte de taches, et personne ne s'accorde sur sa distance à deux cents années-lumière près. L'étoile la plus fiable du ciel est aussi l'une des plus mal connues."
     },
     {
-     "v": "3",
-     "u": "étoiles",
-     "l": "Polaris est un système triple. Sa composante principale est la céphéide classique la plus proche de nous."
+      "t": "stats",
+      "v": [
+        {
+          "v": "0,46",
+          "u": "degré",
+          "l": "L'écart minimal entre Polaris et le pôle nord céleste, atteint vers 2100. Ensuite, elle s'en éloignera pendant des millénaires."
+        },
+        {
+          "v": "256",
+          "u": "deg²",
+          "l": "Cinquante-sixième constellation par la taille, sur quatre-vingt-huit. La Grande Ourse est cinq fois plus vaste."
+        },
+        {
+          "v": "5,13",
+          "u": "masses solaires",
+          "l": "La masse de Polaris, mesurée en 2024. L'estimation précédente donnait 3,45 : elle a augmenté de moitié d'un coup."
+        },
+        {
+          "v": "3,97",
+          "u": "jours",
+          "l": "Le cycle sur lequel Polaris se dilate et se contracte. C'est la céphéide la plus proche de nous."
+        },
+        {
+          "v": "46",
+          "u": "fois le Soleil",
+          "l": "Son diamètre, mesuré directement en combinant la lumière de six télescopes."
+        },
+        {
+          "v": "199",
+          "u": "années-lumière",
+          "l": "L'écart entre l'estimation la plus courte et la plus longue de sa distance. Le désaccord n'est toujours pas tranché."
+        }
+      ]
     },
     {
-     "v": "320 à 450",
-     "u": "a.l.",
-     "l": "Distance de Polaris. L'écart entre les mesures reste inhabituellement large pour une étoile si célèbre."
+      "t": "text",
+      "h": "Elle n'est pas au pôle",
+      "p": [
+        "L'axe de rotation de la Terre pointe vers un point précis du ciel, et Polaris n'est pas exactement dessus. Elle en est aujourd'hui à un peu plus d'un demi-degré, soit à peu près le diamètre apparent de la Lune. Résultat : au lieu de rester immobile, elle décrit chaque nuit un petit cercle, trop serré pour que l'œil le remarque, mais parfaitement visible en pose longue.",
+        "Nous vivons pourtant la meilleure période de tout le cycle. Le pôle continue de se rapprocher d'elle et l'écart tombera à 0,46 degré vers 2100. Depuis deux siècles environ, viser Polaris revient à viser le nord avec une précision qui suffit largement à s'orienter en marchant."
+      ]
     },
     {
-     "v": "≈ 2800",
-     "u": "av. J.-C.",
-     "l": "À cette époque, le pôle nord céleste se tenait près de Thuban, dans le Dragon."
+      "t": "figure",
+      "src": "/assets/img/constellations/umi/star-trails-cite-interdite.jpg",
+      "page": "https://astro4edu.org/fr/resources/media/Oi91Gk8vW60/",
+      "wide": true,
+      "cap": "Une heure de pose au-dessus de la Cité interdite, à Pékin, en mars 2022. Toutes les étoiles tracent des arcs concentriques ; au centre, le plus petit arc de tous est celui de Polaris, qui tourne elle aussi. Photographiée au smartphone.",
+      "credit": "Stephanie Ziyi Ye / UAI OAE — CC BY 4.0"
+    },
+    {
+      "t": "text",
+      "h": "La ronde des étoiles polaires",
+      "p": [
+        "La Terre est légèrement renflée à l'équateur, et ce bourrelet n'est pas aligné sur le plan de son orbite. Le Soleil et la Lune tirent dessus pour le redresser, et l'axe de rotation se met à décrire un cône, comme une toupie lancée de travers. Le tour complet prend environ vingt-six mille ans. Cela s'appelle la précession, et Hipparque l'avait déjà repérée au IIᵉ siècle avant notre ère.",
+        "La conséquence est que le titre d'étoile polaire change de titulaire. Il y a près de cinq mille ans, c'était Thuban, dans le Dragon, une étoile bien plus discrète. Un conduit de la pyramide de Khéops est orienté dans sa direction, et en 2020 le satellite TESS a découvert que c'était en fait une binaire à éclipses. Puis vint Kochab, la deuxième étoile de la Petite Ourse, dont le nom arabe signifie précisément « l'étoile du nord »."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Qui a tenu et qui tiendra le rôle",
+        "events": [
+          {
+            "y": -2800,
+            "when": "≈ 2800 av. J.-C.",
+            "label": "Thuban, dans le Dragon",
+            "note": "α Draconis, une étoile modeste. Un conduit de la pyramide de Khéops pointe dans sa direction. TESS a montré en 2020 qu'elle est double à éclipses."
+          },
+          {
+            "y": -1000,
+            "when": "≈ 1000 av. J.-C.",
+            "label": "Kochab prend le relais",
+            "note": "β Ursae Minoris, la deuxième de la Petite Ourse. Son nom arabe veut dire « l'étoile du nord ». Elle a tenu jusque vers l'an mille."
+          },
+          {
+            "y": 2026,
+            "when": "aujourd'hui",
+            "label": "Polaris, à un demi-degré du pôle",
+            "note": "Le rapprochement maximal se produira vers 2100. Aucune autre étoile du cycle ne s'approche autant : nous avons de la chance."
+          },
+          {
+            "y": 4000,
+            "when": "≈ an 4000",
+            "label": "Erraï, dans Céphée",
+            "note": "γ Cephei passera à quelques degrés du pôle seulement. Bien moins pratique que Polaris aujourd'hui."
+          },
+          {
+            "y": 10000,
+            "when": "≈ an 10 000",
+            "label": "Deneb, dans le Cygne",
+            "note": "Très brillante, mais à plusieurs degrés du pôle. Une indication grossière, pas un repère de navigation."
+          },
+          {
+            "y": 13700,
+            "when": "≈ an 13 700",
+            "label": "Véga, dans la Lyre",
+            "note": "Puis le cycle repart. Vers l'an 23 000, Thuban retrouvera la place qu'elle occupait au temps des pyramides."
+          }
+        ]
+      },
+      "cap": "Les étapes sont espacées régulièrement : c'est l'ordre qui compte, pas la durée. Survolez-les.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Une céphéide, et trois étoiles",
+      "p": [
+        "Polaris n'est pas une étoile ordinaire dont on aurait fait un repère : c'est une supergéante jaune qui pulse. Son diamètre augmente et diminue sur un cycle de trois jours et vingt-trois heures, et sa lumière suit. Elle appartient à la famille des céphéides, dont la propriété est précieuse au point d'être devenue un outil : plus une céphéide pulse lentement, plus elle est réellement lumineuse. Comparez sa luminosité vraie à son éclat apparent, et vous obtenez sa distance. C'est sur ce principe que repose une bonne partie de l'échelle des distances dans l'univers.",
+        "Polaris est la céphéide la plus proche de nous, donc la mieux placée pour calibrer la méthode. Elle est aussi triple : une compagne lointaine, Polaris B, visible dans une petite lunette, et une compagne serrée, Polaris Ab, qui boucle son orbite en une trentaine d'années et que sa faiblesse rend presque impossible à séparer de la supergéante."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/umi/polaris-surface-chara.png",
+      "page": "https://chara.gsu.edu/photos-videos/image-gallery/polaris",
+      "wide": true,
+      "cap": "La surface de Polaris, avril 2021. Ce n'est pas une vue d'artiste : six télescopes du mont Wilson ont été combinés pour former l'équivalent d'un instrument de 330 mètres, et la caméra MIRC-X a reconstruit l'image. Les taches sombres et claires se déplacent d'une année sur l'autre. Dans le ciel, Polaris est environ six cent mille fois plus petite que la pleine Lune.",
+      "credit": "MIRC-X / CHARA Array, Georgia State University — Evans et al., 2024"
+    },
+    {
+      "t": "text",
+      "h": "Ce que 2024 a changé",
+      "p": [
+        "En suivant l'orbite de la compagne serrée entre 2016 et 2021, l'équipe de Nancy Evans a pu peser la supergéante : 5,13 masses solaires, à cinq pour cent près. La valeur admise jusque-là, 3,45, était non seulement plus basse mais aussi trois fois moins précise. C'est la première fois qu'une céphéide voit sa masse déterminée directement par le mouvement orbital.",
+        "Le même travail a livré autre chose, que personne n'attendait : la première image de la surface d'une céphéide. Elle est tachetée, de grandes plages sombres et claires qui se redistribuent au fil des ans. Une variation de vitesse mesurée sur cent vingt jours pourrait bien être sa période de rotation. Reste un problème : avec cette masse, Polaris est trop lumineuse pour ce que prédisent les modèles d'évolution. Ce désaccord, connu sous le nom de problème de masse des céphéides, atteint une dizaine de pour cent selon qu'on calcule par l'évolution stellaire ou par la pulsation. Une hypothèse avancée est que Polaris soit le produit de la fusion de deux étoiles d'un ancien système triple."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "scale",
+      "wide": true,
+      "data": {
+        "title": "Polaris et le Soleil",
+        "items": [
+          {
+            "n": "Polaris",
+            "r": 46,
+            "c": "#FFF0CC",
+            "note": "Supergéante jaune, 6 015 °C en surface, mille deux cent soixante fois plus lumineuse que le Soleil. Son diamètre varie au cours du cycle de pulsation."
+          },
+          {
+            "n": "Soleil",
+            "r": 1,
+            "note": "Pour l'échelle. Placée au centre du système solaire, Polaris engloberait l'orbite de Mercure."
+          }
+        ]
+      },
+      "cap": "Le diamètre de Polaris a été mesuré par interférométrie, sans passer par un modèle.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "La distance qui refuse de se laisser mesurer",
+      "p": [
+        "Voilà le paradoxe : l'étoile la plus utile pour calibrer les distances cosmiques est une étoile dont la distance fait débat depuis vingt ans. Le problème est technique et un peu ironique. Polaris est trop brillante pour les instruments qui mesurent le mieux les parallaxes. Hipparcos l'a mesurée directement, mais sa précision sur les céphéides binaires a été contestée. Gaia, plus précis d'un ordre de grandeur, l'a purement et simplement écartée : elle sature ses détecteurs.",
+        "La solution employée depuis consiste à mesurer non pas Polaris mais sa compagne éloignée, Polaris B, huit fois moins brillante, et à supposer que les deux sont à la même distance. Gaia s'en est chargé, et c'est cette valeur, environ 447 années-lumière, qu'a retenue l'équipe de 2024. Mais Hubble, appliqué à la même compagne, avait donné quatre-vingts années-lumière de plus."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "bars",
+      "wide": true,
+      "data": {
+        "title": "Quatre mesures de la distance de Polaris",
+        "unit": "a.l.",
+        "items": [
+          {
+            "n": "Turner, 2013",
+            "v": 323,
+            "note": "Parallaxe déduite de l'analyse du spectre, et non d'une mesure géométrique. Contestée dès sa publication."
+          },
+          {
+            "n": "Hipparcos, 2007",
+            "v": 433,
+            "note": "Parallaxe trigonométrique directe sur Polaris elle-même. La valeur de référence pendant une quinzaine d'années."
+          },
+          {
+            "n": "Gaia, 2018",
+            "v": 447,
+            "note": "Mesurée sur Polaris B, la compagne éloignée. En bon accord avec Hipparcos. C'est la valeur adoptée aujourd'hui."
+          },
+          {
+            "n": "Hubble, 2018",
+            "v": 522,
+            "note": "Mesurée sur la même compagne, avec les capteurs de guidage de Hubble. Le résultat le plus long, et le plus difficile à concilier."
+          }
+        ]
+      },
+      "cap": "Deux mesures faites sur la même étoile, à la même époque, avec deux instruments spatiaux, et quatre-vingts années-lumière d'écart.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "warn",
+      "h": "Ce que ce désaccord met en jeu",
+      "p": "La distance de Polaris n'est pas un détail d'érudition. Elle détermine son mode de pulsation, et donc la façon dont elle se comporte comme étalon : avec la distance courte, Polaris pulse sur son mode fondamental ; avec la distance moyenne, sur le premier harmonique ; avec la distance longue, sur le second. Comme les céphéides servent de premier barreau à l'échelle qui mène jusqu'aux galaxies lointaines et à la mesure de l'expansion de l'univers, un doute persistant sur la plus proche d'entre elles est inconfortable. Les valeurs de Gaia et d'Hipparcos convergent aujourd'hui, ce qui rassure, mais aucune des deux n'a mesuré Polaris directement. Méfiez-vous des fiches qui donnent une distance au chiffre près sans dire laquelle."
+    },
+    {
+      "t": "text",
+      "h": "Derrière les étoiles",
+      "p": [
+        "La constellation est petite et pauvre en objets brillants, mais elle abrite deux choses remarquables. La première est NGC 6217, une spirale barrée que l'on trouve à 2,5 degrés à l'est-nord-est de Zêta de la Petite Ourse, accessible dès un télescope de dix centimètres. Elle a une place dans l'histoire de l'astronomie : c'est le premier objet céleste photographié par la caméra ACS de Hubble après sa réparation par les astronautes de la mission de mai 2009.",
+        "La seconde est invisible ou presque. La galaxie naine de la Petite Ourse, repérée en 1955 sur les plaques du relevé du Palomar, est une galaxie sphéroïdale à quelque deux cents mille années-lumière. Elle a connu un unique épisode de formation d'étoiles, il y a près de quatorze milliards d'années : elle est probablement aussi vieille que la Voie lactée. Et ses étoiles se déplacent beaucoup trop vite pour la matière visible qu'elle contient. Son rapport masse sur luminosité est estimé autour de quarante, et la dispersion des vitesses ne décroît pas quand on s'éloigne du centre. Traduction : elle est enveloppée d'un vaste halo de matière noire. C'est l'un des laboratoires de référence pour l'étudier."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/umi/ngc6217-hubble.jpg",
+      "page": "https://esahubble.org/images/heic0910s/",
+      "wide": true,
+      "cap": "NGC 6217, première image prise par la caméra ACS de Hubble remise en service en 2009. On y voit la barre d'étoiles en travers du centre, les couloirs de poussière, les amas bleus de jeunes étoiles et le rouge de l'hydrogène. Curiosité : les légendes officielles de la NASA et de l'ESA situent cette galaxie dans la Grande Ourse. Ses coordonnées, elles, la placent bien dans la Petite Ourse.",
+      "credit": "NASA, ESA et l'équipe Hubble SM4 ERO"
+    },
+    {
+      "t": "text",
+      "h": "Les Ursides, dernier rendez-vous de l'année",
+      "p": [
+        "Autour du 22 décembre, la Terre traverse la traînée de poussière de la comète 8P/Tuttle et les météores semblent jaillir d'un point situé près de Kochab. C'est le dernier essaim de l'année, actif du 17 au 26 décembre, et le plus mal aimé : dix météores par heure en temps normal, une nuit glaciale, et le voisinage immédiat de Noël. Les grains arrivent à 33 kilomètres par seconde.",
+        "Sauf que les Ursides réservent des surprises. En 1945, un observateur tchèque en a compté cent soixante-neuf en une heure ; en 1986, la pluie a de nouveau explosé. On sait aujourd'hui pourquoi : certains grains sont piégés dans une résonance avec Jupiter et dérivent lentement à l'écart de la comète, formant des paquets que la Terre rencontre parfois. Ceux qui produisent les sursauts actuels ont été libérés par la comète entre le IXᵉ et le XIVᵉ siècle. En comparant le modèle de l'essaim aux observations modernes, on en déduit même que l'activité de 8P/Tuttle n'a pas notablement changé au cours des cent dernières orbites, soit un millénaire. Un essaim de météores sert ici d'archive."
+      ]
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "deep",
+          "title": "The Orbit and Dynamical Mass of Polaris: Observations with the CHARA Array",
+          "src": "The Astrophysical Journal, août 2024",
+          "note": "L'article qui donne la masse, le rayon et les taches. En anglais.",
+          "url": "https://iopscience.iop.org/article/10.3847/1538-4357/ad5e7a"
+        },
+        {
+          "kind": "read",
+          "title": "New View of North Star Reveals Spotted Surface",
+          "src": "Georgia State University",
+          "note": "Le communiqué, avec les mots des chercheurs sur ce qu'ils espèrent comprendre ensuite. En anglais.",
+          "url": "https://news.gsu.edu/2024/08/20/new-view-of-north-star-reveals-spotted-surface-new-view-of-north-star-reveals-spotted-surface/"
+        },
+        {
+          "kind": "look",
+          "title": "Polaris, galerie d'images du CHARA Array",
+          "src": "Georgia State University",
+          "note": "La page d'origine de l'image de surface, avec l'explication de la méthode.",
+          "url": "https://chara.gsu.edu/photos-videos/image-gallery/polaris"
+        },
+        {
+          "kind": "read",
+          "title": "Repérer et comprendre l'étoile Polaire",
+          "src": "Stelvision",
+          "note": "L'explication la plus claire en français de la précession et de la succession des étoiles polaires.",
+          "url": "https://www.stelvision.com/astro/etoile-polaire/"
+        },
+        {
+          "kind": "deep",
+          "title": "Toward Ending the Polaris Parallax Debate",
+          "src": "Research Notes of the AAS, 2018",
+          "note": "Le point sur les quatre distances concurrentes, avec le tableau comparatif. En anglais.",
+          "url": "https://iopscience.iop.org/article/10.3847/2515-5172/aad2d0"
+        },
+        {
+          "kind": "deep",
+          "title": "Hubble Space Telescope Trigonometric Parallax of Polaris B",
+          "src": "The Astrophysical Journal, 2018",
+          "note": "La mesure la plus longue, et l'argumentaire de ses auteurs. À lire avec la précédente. En anglais.",
+          "url": "https://iopscience.iop.org/article/10.3847/1538-4357/aaa3f9"
+        },
+        {
+          "kind": "look",
+          "title": "Traînées d'étoiles au-dessus de la Cité interdite",
+          "src": "UAI OAE",
+          "note": "L'image en pleine résolution, avec sa légende détaillée et son DOI.",
+          "url": "https://astro4edu.org/fr/resources/media/Oi91Gk8vW60/"
+        },
+        {
+          "kind": "look",
+          "title": "NGC 6217 par Hubble",
+          "src": "ESA/Hubble",
+          "note": "La page de l'image, avec les fichiers à télécharger.",
+          "url": "https://esahubble.org/images/heic0910s/"
+        },
+        {
+          "kind": "read",
+          "title": "L'ancienne étoile polaire est double à éclipses",
+          "src": "Futura Sciences",
+          "note": "Ce que TESS a découvert sur Thuban, l'étoile polaire des bâtisseurs de pyramides.",
+          "url": "https://www.futura-sciences.com/sciences/actualites/astronomie-ancienne-etoile-polaire-double-eclipses-79148/"
+        },
+        {
+          "kind": "deep",
+          "title": "Comets and meteor showers",
+          "src": "Revue, 2022",
+          "note": "Le chapitre sur 8P/Tuttle et les Ursides, dont la résonance qui provoque les sursauts. En anglais.",
+          "url": "https://arxiv.org/pdf/2209.10654"
+        },
+        {
+          "kind": "read",
+          "title": "L'étoile Polaire, dossier pédagogique",
+          "src": "Cité des sciences et de l'industrie",
+          "note": "Le trajet du pôle céleste sur la sphère, expliqué et cartographié. En français, prévu pour enseigner.",
+          "url": "https://www.cite-sciences.fr/fileadmin/fileadmin_CSI/fichiers/vous-etes/enseignant/Documents-pedagogiques/_documents/Ressources-en-ligne/EtoilePolaire-enseignants.pdf"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Une étoile polaire par intérim",
-   "p": [
-    "Vers 2800 avant notre ère, l'étoile du nord était Thuban. Dans quelques millénaires, ce sera Gamma Cephei, puis Alderamin, puis Véga. Polaris finira par s'éloigner du pôle comme Thuban s'en est éloignée.",
-    "Et le cycle ne se referme jamais tout à fait : les étoiles se déplacent aussi. Dans vingt-six mille ans, le ciel ne retrouvera pas exactement la configuration d'aujourd'hui."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Une céphéide qui s'essouffle",
-   "p": [
-    "Polaris n'est pas une étoile fixe au sens propre : c'est une céphéide, une étoile qui se dilate et se contracte périodiquement. La plus proche de nous, ce qui en fait un maillon précieux de l'échelle des distances cosmiques — voir l'onglet Science de Céphée.",
-    "Particularité : l'amplitude de ses pulsations a nettement diminué au cours du vingtième siècle, un comportement encore mal expliqué. Des observations récentes ont par ailleurs mesuré directement sa période de rotation, une première pour une céphéide classique."
-   ]
-  },
-  {
-   "t": "figure",
-   "src": "/skyculture/ekko/illustrations/umi.webp",
-   "lit": true,
-   "roll": true,
-   "cap": "La figure de la Petite Ourse plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
-   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
-  },
-  {
-   "t": "text",
-   "h": "Une casserole en réduction",
-   "p": [
-    "La Petite Ourse reprend le dessin de sa grande sœur en plus petit et plus pâle : quatre étoiles pour le récipient, trois pour le manche, Polaris au bout. Seules Polaris, Kochab et Pherkad se repèrent facilement sous un ciel de ville.",
-    "Kochab et Pherkad sont parfois appelées les Gardiennes du pôle : elles tournent autour de Polaris en une nuit, comme deux sentinelles."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "read",
-     "title": "Polaris, l'étoile polaire : nom, couleur et faits",
-     "src": "Star Walk",
-     "note": "Le système triple, la précession, la succession des futures étoiles polaires. En français.",
-     "url": "https://starwalk.space/fr/news/polaris-north-star"
-    },
-    {
-     "kind": "read",
-     "title": "Céphéide",
-     "src": "Wikipédia",
-     "note": "Le mécanisme de pulsation, utile pour comprendre ce que fait réellement Polaris.",
-     "url": "https://fr.wikipedia.org/wiki/C%C3%A9ph%C3%A9ide"
-    }
-   ]
-  }
- ]
+  ]
 }
