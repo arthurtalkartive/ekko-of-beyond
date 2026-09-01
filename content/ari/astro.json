@@ -1,77 +1,247 @@
 {
- "constellation": "ari",
- "tab": "astro",
- "blocks": [
-  {
-   "t": "warn",
-   "h": "Ce que vaut cet onglet",
-   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
-  },
-  {
-   "t": "lead",
-   "p": "Le Bélier ouvre le zodiaque, et il le doit à une coïncidence qui n'a plus cours. Il y a deux mille ans, le Soleil y franchissait l'équateur au premier jour du printemps. Aujourd'hui il le franchit dans les Poissons — mais le premier signe s'appelle toujours le Bélier."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "ari",
+  "tab": "astro",
+  "blocks": [
     {
-     "v": "0",
-     "u": "degré",
-     "l": "Le signe du Bélier commence conventionnellement au point vernal, quelle que soit la constellation qui s'y trouve."
+      "t": "warn",
+      "h": "Ce que contient cet onglet",
+      "p": "L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères, la santé ou les événements. Ce qui suit documente une tradition, ses textes et son histoire, comme on documenterait la médecine des humeurs ou l'alchimie. Rien ici ne vaut prédiction, diagnostic ni conseil médical, et cet onglet ne se lit pas sur le même plan que l'onglet Science."
     },
     {
-     "v": "≈ 28",
-     "u": "degrés",
-     "l": "Décalage accumulé par la précession depuis l'Antiquité entre les signes et les constellations de même nom."
+      "t": "lead",
+      "p": "De tous les signes, le Bélier est celui où la mécanique se voit le mieux. C'est Ptolémée lui-même qui l'écrit : le zodiaque n'a aucun commencement, puisque c'est un cercle, et l'on a donc décidé que le Bélier serait le premier. Toute la primauté du signe tient à cette convention. Et si cette tradition a laissé des traces concrètes dans l'histoire, ce n'est pas par les horoscopes : c'est par la médecine, où pendant cinq siècles le Bélier a gouverné la tête et interdit d'y toucher au mauvais moment."
     },
     {
-     "v": "0",
-     "u": "étoile behénienne",
-     "l": "Aucune des quinze étoiles majeures de la tradition médiévale ne se trouve dans le Bélier."
+      "t": "stats",
+      "v": [
+        {
+          "v": "0°",
+          "u": "à 30°",
+          "l": "L'étendue du signe, comptée depuis le point vernal. Ce sont des degrés d'écliptique et non des étoiles : le signe et la constellation ne coïncident plus."
+        },
+        {
+          "v": "19°",
+          "u": "Bélier",
+          "l": "Le degré d'exaltation du Soleil dans la tradition. Ptolémée justifie cette place par le fait que les jours y croissent et que le Soleil commence à réchauffer les corps."
+        },
+        {
+          "v": "la tête",
+          "l": "La partie du corps que le Bélier gouverne dans la mélothésie. La règle médiévale interdisait de saigner un membre quand la Lune occupait le signe correspondant."
+        },
+        {
+          "v": "3",
+          "u": "décans",
+          "l": "Mars, le Soleil et Vénus, d'après Teukros au Iᵉʳ siècle. Ptolémée, lui, rejette purement et simplement la doctrine des décans."
+        },
+        {
+          "v": "XIᵉ",
+          "u": "siècle",
+          "l": "Le premier dessin isolé d'homme zodiacal, dans un manuscrit compilant Galien, Celse et Hippocrate. La doctrine écrite, elle, est bien plus ancienne."
+        }
+      ]
+    },
+    {
+      "t": "text",
+      "h": "Un commencement décidé, pas trouvé",
+      "p": [
+        "Le raisonnement de Ptolémée, au premier livre du Tetrabiblos, est d'une franchise que la tradition postérieure n'a pas conservée. Un cercle n'a pas de point de départ ; il faut donc en choisir un. Les astrologues, écrit-il, ont retenu le Bélier, où se produit l'équinoxe de printemps. Et il donne sa raison, qui relève de la physique des qualités élémentaires : le printemps est la saison la plus humide, or tous les animaux, dans leur premier âge, abondent en humidité. Le zodiaque est donc traité comme un être vivant dont on fait commencer la vie au printemps.",
+        "Ce système classe ensuite les signes par saisons : printemps humide pour le Bélier, le Taureau et les Gémeaux ; été chaud pour le Cancer, le Lion et la Vierge ; automne sec ; hiver froid. Tout tient debout, à une condition : que le Soleil entre effectivement dans le Bélier à l'équinoxe. C'était vrai quand Hipparque a défini le point vernal vers 130 avant notre ère. Ce ne l'est plus depuis l'an −67, et c'est le point de rupture dont est née la division entre astrologie tropicale, qui garde les saisons, et astrologie sidérale, qui garde les étoiles."
+      ]
+    },
+    {
+      "t": "quote",
+      "p": "Quoiqu'il n'ait aucun commencement au Zodiaque, vu que c'est un cercle.",
+      "who": "Ptolémée, Tetrabiblos, livre I, chapitre 10, dans une traduction française ancienne"
+    },
+    {
+      "t": "text",
+      "h": "Mars chez lui, le Soleil exalté, Saturne en chute",
+      "p": [
+        "La tradition attribue au Bélier un jeu de dignités planétaires : Mars y a son domicile, le Soleil son exaltation, Saturne sa chute, Vénus son exil. Ce qui rend le passage de Ptolémée intéressant, c'est qu'il argumente au lieu de décréter. Le Soleil est exalté au Bélier parce qu'en y entrant il monte vers la partie haute du ciel, que les jours croissent et qu'il commence à réchauffer les corps ; sa dépression tombe donc dans la Balance, à l'opposé. Et Saturne, qui doit occuper une position contraire à celle du Soleil, prend la Balance pour exaltation et le Bélier pour dépression. Le système se construit par symétries, pas par observations.",
+        "Sur les décans, ces subdivisions de dix degrés héritées de l'Égypte, Ptolémée est net : il les rejette. On connaît malgré tout leurs maîtres par Teukros, un auteur du Iᵉʳ siècle : le premier décan du Bélier est gouverné par Mars, le deuxième par le Soleil, le troisième par Vénus. Signalons aussi une hypothèse discutée à l'intérieur même du milieu astrologique, selon laquelle les degrés d'exaltation traditionnels ne seraient pas symboliques mais dériveraient de la position d'étoiles importantes, les Pléiades ou Antarès notamment. L'idée reste une conjecture."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "La fabrication d'un signe",
+        "events": [
+          {
+            "y": 50,
+            "when": "Iᵉʳ siècle",
+            "label": "Manilius écrit les correspondances du corps",
+            "note": "Dans l'Astronomica, puis chez Firmicus Maternus, la tête est attribuée au Bélier. Aucune image de cette époque ne nous est parvenue."
+          },
+          {
+            "y": 150,
+            "when": "IIᵉ siècle",
+            "label": "Ptolémée fixe la convention",
+            "note": "Le Tetrabiblos établit le Bélier comme premier signe à partir de l'équinoxe, justifie les dignités par symétrie, et écarte les décans."
+          },
+          {
+            "y": 1050,
+            "when": "XIᵉ siècle",
+            "label": "Le premier dessin",
+            "note": "Un manuscrit compilant Galien, Celse et Hippocrate porte la plus ancienne figure isolée d'homme zodiacal connue."
+          },
+          {
+            "y": 1250,
+            "when": "XIIIᵉ siècle",
+            "label": "L'homo signorum devient canonique",
+            "note": "La figure prend sa forme définitive, bras et jambes écartés, et porte déjà ce nom. Elle se multiplie dans les livres d'heures à partir du XIVᵉ siècle."
+          },
+          {
+            "y": 1416,
+            "label": "L'Homme anatomique de Chantilly",
+            "note": "Les frères de Limbourg peignent la version la plus célèbre de toutes, à la fin du calendrier des Très Riches Heures du duc de Berry."
+          },
+          {
+            "y": 1930,
+            "when": "XXᵉ siècle",
+            "label": "L'horoscope de presse",
+            "note": "Le signe solaire seul, détaché du reste de la technique astrologique, devient un produit de masse dans les journaux."
+          }
+        ]
+      },
+      "cap": "Deux mille ans de sédimentation, et un appauvrissement final. Survolez les étapes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Le Bélier gouverne la tête",
+      "p": [
+        "C'est ici que la tradition a le plus pesé sur la vie des gens. La mélothésie attribue chaque partie du corps humain à un signe : la tête au Bélier, chef de file de la série, le cou au Taureau, les épaules et les bras aux Gémeaux, et ainsi de suite jusqu'aux pieds pour les Poissons. La correspondance apparaît d'abord dans des textes, chez Manilius au Iᵉʳ siècle puis chez Firmicus Maternus, sans qu'aucune image contemporaine nous soit parvenue. Saint Augustin la mentionne déjà.",
+        "L'usage était opératoire, et c'est ce qui compte. La règle centrale de la médecine astrologique médiévale interdisait d'intervenir sur une partie du corps quand la Lune se trouvait dans le signe qui la gouverne. Les médecins avaient observé que la Lune haute provoquait de fortes marées ; ils en déduisaient qu'ouvrir une veine dans ces conditions risquait de déclencher une marée de sang. Saigner la tête ou opérer le crâne quand la Lune était au Bélier était donc à éviter. Les almanachs et les livres d'heures portaient cette figure pour que chacun puisse consulter le calendrier avant de laisser un barbier-chirurgien l'approcher."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/ari/melothesie-bnf.jpg",
+      "page": "https://essentiels.bnf.fr/fr/image/83b0b216-853b-45d1-ae98-d7de1e705964-zodiaque-medical-correspondances-entre-signes-et-parties-corps-humain",
+      "wide": true,
+      "cap": "La plus ancienne image de mélothésie zodiacale conservée dans un manuscrit. Les douze signes entourent une figure centrale que les spécialistes lisent tantôt comme le Soleil, tantôt comme le Christ, et les quatre saisons occupent les coins. Détail savoureux : la légende latine annonce les douze signes « selon les élucubrations des philosophes », et précise qu'on commencera par le Bélier. Le copiste prend ses distances tout en recopiant.",
+      "credit": "Bibliothèque nationale de France"
+    },
+    {
+      "t": "text",
+      "h": "Deux corps, et un écorché",
+      "p": [
+        "La version la plus célèbre de cette figure est française et date d'avant 1416. À la fin du calendrier des Très Riches Heures du duc de Berry, les frères de Limbourg peignent un jeune homme dédoublé, vu de face et de dos, les douze signes posés sur les parties du corps qu'ils gouvernent et répétés dans la double mandorle qui l'entoure. Les armes du duc occupent les coins supérieurs. Et aux quatre angles, quatre inscriptions latines classent les signes par complexion, tempérament et point cardinal. Celle du coin supérieur gauche concerne notre signe : le Bélier, le Lion et le Sagittaire sont chauds et secs, colériques, masculins, orientaux.",
+        "Un siècle plus tard, un manuscrit de la Wellcome Collection va plus loin dans une direction inattendue. Les signes y flottent dans des bulles autour du personnage, reliés par une cordelette à la partie du corps concernée, et surtout la figure a été disséquée : elle présente ses organes au lecteur. On est passé du schéma symbolique à quelque chose qui ressemble à une planche d'anatomie. Ces images n'étaient pas décoratives, elles servaient à travailler."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/ari/homme-anatomique-chantilly.jpg",
+      "page": "https://utpictura18.univ-amu.fr/notice/19788-homme-anatomique-tres-riches-heures-duc-berry-limbourg",
+      "wide": true,
+      "cap": "L'Homme anatomique des Très Riches Heures du duc de Berry, feuillet 14 verso. Regardez la tête : c'est là que le Bélier est posé, et c'est de lui que part la série qui descend jusqu'aux Poissons, aux pieds. Enluminure des frères de Limbourg, avant 1416.",
+      "credit": "Frères de Limbourg, Très Riches Heures du duc de Berry, Ms 65 f. 14v — Musée Condé, Chantilly"
+    },
+    {
+      "t": "text",
+      "h": "Trois mots, et une industrie",
+      "p": [
+        "L'astrologie contemporaine résume le signe en quelques traits, toujours les mêmes. L'astrologue Gustave Lambert Brahy le condense en trois mots : initiative, entreprise, audace. On y ajoute l'extraversion, le courage, l'indépendance, l'ambition, et en contrepartie l'irréflexion, le manque de diplomatie, l'agressivité. Le signe est associé à la couleur rouge et son opposé est la Balance.",
+        "Ce qui a changé au XXᵉ siècle n'est pas le contenu mais le format. La technique astrologique traditionnelle combinait le signe solaire avec l'ascendant, les positions des sept planètes, les dignités, les aspects et les maisons ; l'horoscope de presse a retenu le seul signe solaire et l'a distribué à des millions de lecteurs. C'est cette réduction, et non la doctrine ancienne, qui fait aujourd'hui l'essentiel de ce qu'on appelle astrologie dans le langage courant. Les astrologues traditionnels sont d'ailleurs les premiers à le dire."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/ari/homme-zodiacal-wellcome-ms349.jpg",
+      "page": "https://www.cabinet.ox.ac.uk/zodiac-man-0",
+      "wide": true,
+      "cap": "L'homme zodiacal disséqué du manuscrit Wellcome 349, feuillet 22 recto, fin du XVᵉ siècle. Les signes flottent dans des bulles et sont rattachés par une cordelette à l'organe ou au membre qu'ils gouvernent. Le Bélier tient le haut, au niveau de la tête.",
+      "credit": "Wellcome Collection, MS 349, f. 22r"
+    },
+    {
+      "t": "warn",
+      "h": "L'ère du Bélier, et une objection venue de l'intérieur",
+      "p": "On lit souvent que la période allant d'environ 2000 à 100 avant notre ère fut « l'ère du Bélier », et que cela expliquerait la place du mouton dans les religions de cette époque : les béliers d'Amon-Ra, l'agneau pascal, le bélier d'Abraham. Le récit est séduisant et il ne tient pas la chronologie. Pendant la plus grande partie de cette période, ces étoiles ne représentaient pas un bélier mais un ouvrier agricole, et elles occupaient la dernière station de l'écliptique babylonien, pas la première. Le bélier ne s'impose que tardivement, et sa place de tête plus tard encore. L'ère du Bélier est une construction rétrospective, bâtie après coup sur une figure qui n'existait pas encore. Une seconde objection vient du milieu astrologique lui-même : l'astrologue Jacques Halbronn fait remarquer que l'image de pionnier prêtée au Bélier cadre mal avec l'équinoxe de mars, puisque l'axe équinoxial est celui des demi-mesures, où la durée du jour poursuit simplement sa tendance, tandis que c'est l'axe des solstices qui marque les renversements."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "deep",
+          "title": "Tetrabiblos, livre I",
+          "src": "Ptolémée, via LacusCurtius, université de Chicago",
+          "note": "Le texte où le Bélier est établi comme premier signe et où les dignités sont justifiées par symétrie. En anglais.",
+          "url": "http://penelope.uchicago.edu/Thayer/e/roman/texts/ptolemy/tetrabiblos/1b*.html"
+        },
+        {
+          "kind": "look",
+          "title": "Zodiaque médical, la plus ancienne mélothésie manuscrite",
+          "src": "BnF Essentiels",
+          "note": "La notice de la Bibliothèque nationale, avec la transcription de la légende latine et sa traduction.",
+          "url": "https://essentiels.bnf.fr/fr/image/83b0b216-853b-45d1-ae98-d7de1e705964-zodiaque-medical-correspondances-entre-signes-et-parties-corps-humain"
+        },
+        {
+          "kind": "look",
+          "title": "L'Homme anatomique des Très Riches Heures",
+          "src": "Utpictura18, Aix-Marseille Université",
+          "note": "La notice savante du feuillet 14v, avec le détail des quatre inscriptions latines des angles. En français.",
+          "url": "https://utpictura18.univ-amu.fr/notice/19788-homme-anatomique-tres-riches-heures-duc-berry-limbourg"
+        },
+        {
+          "kind": "look",
+          "title": "L'homme zodiacal disséqué, Wellcome MS 349",
+          "src": "Cabinet, université d'Oxford",
+          "note": "La notice de ce manuscrit de la fin du XVᵉ siècle, et une réflexion sur la portée interculturelle de la figure. En anglais.",
+          "url": "https://www.cabinet.ox.ac.uk/zodiac-man-0"
+        },
+        {
+          "kind": "look",
+          "title": "Soixante-seize hommes zodiacaux",
+          "src": "Wikimedia Commons",
+          "note": "La catégorie qui rassemble les représentations d'homo signorum, dont beaucoup viennent de la Wellcome Collection.",
+          "url": "https://commons.wikimedia.org/wiki/Category:Homo_signorum"
+        },
+        {
+          "kind": "read",
+          "title": "Mélothésie",
+          "src": "Les clés du Moyen-Orient",
+          "note": "La correspondance complète des douze signes avec les parties du corps, et sa filiation néoplatonicienne. En français.",
+          "url": "https://www.lesclesdumoyenorient.com/Melothesie.html"
+        },
+        {
+          "kind": "deep",
+          "title": "Zodiacus, dictionnaire des Antiquités grecques et romaines",
+          "src": "Wikisource",
+          "note": "L'article érudit du XIXᵉ siècle sur la mélothésie antique et ses représentations. Long, précis, et en français.",
+          "url": "https://fr.wikisource.org/wiki/Dictionnaire_des_Antiquit%C3%A9s_grecques_et_romaines/Zodiacus"
+        },
+        {
+          "kind": "read",
+          "title": "Homme zodiacal",
+          "src": "Wikipédia en français",
+          "note": "L'histoire de la figure, du XIᵉ siècle à la Renaissance, avec la bibliographie savante dont l'article de Harry Bober au Warburg.",
+          "url": "https://fr.wikipedia.org/wiki/Homme_zodiacal"
+        },
+        {
+          "kind": "read",
+          "title": "Zodiac Man",
+          "src": "Wikipédia en anglais",
+          "note": "Pour la règle de la saignée et le raisonnement des médecins médiévaux sur les marées de sang.",
+          "url": "https://en.wikipedia.org/wiki/Zodiac_Man"
+        },
+        {
+          "kind": "read",
+          "title": "Bélier (astrologie)",
+          "src": "Wikipédia en français",
+          "note": "Les décans selon Teukros, les trois mots de Brahy et l'objection de Halbronn sur l'axe équinoxial.",
+          "url": "https://fr.wikipedia.org/wiki/B%C3%A9lier_(astrologie)"
+        },
+        {
+          "kind": "read",
+          "title": "Dignités planétaires",
+          "src": "Wikipédia en français",
+          "note": "Le tableau des domiciles, exaltations et chutes, avec les degrés précis et les débats sur leur origine.",
+          "url": "https://fr.wikipedia.org/wiki/Dignit%C3%A9s_plan%C3%A9taires"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Le signe et la constellation ne sont pas la même chose",
-   "p": [
-    "C'est le malentendu le plus répandu sur l'astrologie, et le Bélier en est le cas d'école. L'astrologie occidentale dominante est tropicale : ses douze signes sont douze secteurs de trente degrés découpés à partir du point vernal, pas les constellations visibles.",
-    "Les deux coïncidaient à peu près quand le système a été fixé. La précession les a séparés d'environ vingt-huit degrés, soit presque un signe entier. Quand un horoscope dit « Soleil en Bélier », le Soleil se trouve, dans le ciel réel, devant les Poissons."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Ce que la tradition retient du Bélier",
-   "p": [
-    "Faute d'étoile fixe majeure, la littérature astrologique parle peu des astres du Bélier eux-mêmes. Robson mentionne Hamal et Sheratan sans leur consacrer les développements qu'il réserve à Algol ou à Aldébaran.",
-    "L'intérêt du Bélier dans ce corpus est ailleurs : c'est le point zéro, le commencement conventionnel. Une place de tête obtenue par la géométrie du ciel, et conservée par habitude longtemps après que la géométrie a changé."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "deep",
-     "title": "The Fixed Stars and Constellations in Astrology",
-     "src": "Vivian E. Robson, 1923 — Internet Archive",
-     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
-     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
-    },
-    {
-     "kind": "read",
-     "title": "Introduction aux étoiles fixes",
-     "src": "Constellations of Words",
-     "note": "Le cadre général de la tradition des étoiles fixes. En anglais.",
-     "url": "https://www.constellationsofwords.com/introduction-to-the-fixed-stars/"
-    },
-    {
-     "kind": "read",
-     "title": "Bélier (constellation)",
-     "src": "Wikipédia",
-     "note": "Le glissement du point vernal, expliqué du point de vue astronomique.",
-     "url": "https://fr.wikipedia.org/wiki/B%C3%A9lier_(constellation)"
-    }
-   ]
-  }
- ]
+  ]
 }
