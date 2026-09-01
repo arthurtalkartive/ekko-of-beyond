@@ -1,305 +1,305 @@
 {
-  "constellation": "ari",
-  "tab": "science",
-  "blocks": [
+ "constellation": "ari",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Bélier est une petite constellation de trois étoiles pâles, sans nébuleuse spectaculaire ni amas remarquable. Elle porte pourtant le nom du point le plus important de la mécanique céleste, le zéro à partir duquel on compte les positions dans le ciel. Ce point a quitté la constellation il y a plus de deux mille ans, et personne n'a jamais changé son nom. Et sous ces trois étoiles se cache l'une des meilleures adresses connues pour chercher la vie ailleurs."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Le Bélier est une petite constellation de trois étoiles pâles, sans nébuleuse spectaculaire ni amas remarquable. Elle porte pourtant le nom du point le plus important de la mécanique céleste, le zéro à partir duquel on compte les positions dans le ciel. Ce point a quitté la constellation il y a plus de deux mille ans, et personne n'a jamais changé son nom. Et sous ces trois étoiles se cache l'une des meilleures adresses connues pour chercher la vie ailleurs."
+     "v": "−67",
+     "l": "L'année où le point vernal a quitté le Bélier pour les Poissons. L'astronomie continue pourtant de l'appeler « le premier point du Bélier »."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "−67",
-          "l": "L'année où le point vernal a quitté le Bélier pour les Poissons. L'astronomie continue pourtant de l'appeler « le premier point du Bélier »."
-        },
-        {
-          "v": "2597",
-          "l": "L'année où il quittera les Poissons pour le Verseau. Nous vivons le dernier tiers d'un séjour de deux mille six cents ans."
-        },
-        {
-          "v": "12,5",
-          "u": "années-lumière",
-          "l": "La distance de l'étoile de Teegarden, vingt-quatrième système stellaire le plus proche du nôtre, et pourtant introuvable jusqu'en 2003."
-        },
-        {
-          "v": "8",
-          "u": "milliards d'années",
-          "l": "L'âge estimé de cette étoile, presque le double de celui du Soleil. Ses planètes ont eu tout le temps du monde."
-        },
-        {
-          "v": "1664",
-          "l": "L'année où Robert Hooke, en poursuivant une comète, dédouble Mesarthim. C'est l'une des toutes premières étoiles doubles résolues au télescope."
-        },
-        {
-          "v": "60",
-          "u": "météores/heure",
-          "l": "Le débit des Ariétides, la plus forte pluie de l'année. Elle tombe en plein jour, et on ne la détecte qu'au radar."
-        }
-      ]
+     "v": "2597",
+     "l": "L'année où il quittera les Poissons pour le Verseau. Nous vivons le dernier tiers d'un séjour de deux mille six cents ans."
     },
     {
-      "t": "text",
-      "h": "Le point zéro a déménagé",
-      "p": [
-        "Deux fois par an, le Soleil traverse l'équateur céleste. Le passage du printemps définit un point précis, le point vernal, et ce point sert de zéro à tout le système de coordonnées équatoriales : c'est à partir de lui qu'on compte les ascensions droites de toutes les étoiles du ciel. Il y a quatre mille ans, il se trouvait dans le Bélier, et on l'a donc appelé le premier point du Bélier. Son symbole, ♈, est encore aujourd'hui celui de la constellation.",
-        "Sauf qu'il n'y est plus. L'axe de la Terre décrit son cône de précession, le point vernal glisse le long de l'écliptique d'un degré tous les soixante-douze ans, et il est entré dans les Poissons en l'an −67. Il y restera jusqu'en 2597, date à laquelle il passera dans le Verseau. Nous utilisons donc, pour définir l'origine des coordonnées célestes, un nom qui ne décrit plus rien depuis deux millénaires. C'est aussi pour cela que les astronomes fixent une époque de référence, J2000, plutôt que de recalculer les coordonnées chaque année."
-      ]
+     "v": "12,5",
+     "u": "années-lumière",
+     "l": "La distance de l'étoile de Teegarden, vingt-quatrième système stellaire le plus proche du nôtre, et pourtant introuvable jusqu'en 2003."
     },
     {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Le voyage du point vernal",
-        "events": [
-          {
-            "y": -2000,
-            "when": "vers 2000 av. J.-C.",
-            "label": "Le point vernal entre dans le Bélier",
-            "note": "Il y restera environ dix-neuf siècles. C'est pendant cette période que l'ordre du zodiaque se fixe, chez les Babyloniens puis chez les Grecs."
-          },
-          {
-            "y": -130,
-            "label": "Hipparque découvre la précession",
-            "note": "En comparant ses mesures à des catalogues plus anciens, il constate que les étoiles ont bougé. Le point vernal se trouve alors entre Mesarthim et les Poissons."
-          },
-          {
-            "y": -67,
-            "label": "Passage dans les Poissons",
-            "note": "Il y est encore. Le symbole ♈ que l'astronomie utilise pour désigner ce point est resté celui du Bélier."
-          },
-          {
-            "y": 150,
-            "when": "IIᵉ siècle",
-            "label": "Ptolémée grave la convention",
-            "note": "Dans l'Almageste : nous appellerons Bélier la première portion, à partir du point équinoxial du printemps. Le nom se détache définitivement de la constellation."
-          },
-          {
-            "y": 1930,
-            "label": "L'UAI trace les frontières des constellations",
-            "note": "Les quatre-vingt-huit figures reçoivent des contours officiels. Le décalage entre les noms hérités et le ciel réel devient mesurable au degré près."
-          },
-          {
-            "y": 2597,
-            "label": "Départ vers le Verseau",
-            "note": "Il faudra ensuite attendre environ vingt-deux mille ans pour que le point vernal revienne dans le Bélier."
-          }
-        ]
-      },
-      "cap": "Les étapes sont espacées régulièrement : c'est la séquence qui compte. Survolez-les.",
-      "credit": "Schéma Ekko of Beyond."
+     "v": "8",
+     "u": "milliards d'années",
+     "l": "L'âge estimé de cette étoile, presque le double de celui du Soleil. Ses planètes ont eu tout le temps du monde."
     },
     {
-      "t": "text",
-      "h": "Trois étoiles, et rien derrière",
-      "p": [
-        "Il faut le dire franchement : pour l'observateur, le Bélier est décevant. Trois étoiles seulement se repèrent facilement, Hamal, Sheratan et Mesarthim, qui dessinent une ligne brisée sans caractère. Les constellations voisines, Andromède et le Triangle, offrent de belles galaxies ; le Bélier, presque rien. Ce n'est jamais le premier choix pour une nuit d'observation d'automne.",
-        "La raison est géométrique. La constellation regarde loin du plan de la Voie lactée mais dans une direction pauvre en galaxies brillantes, et elle est petite. Reste que trois de ses habitants valent le détour, et qu'aucun des trois ne se voit à l'œil nu de la façon dont on s'y attend : une étoile double vieille de trois siècles et demi d'histoire, une naine rouge invisible qui abrite peut-être de l'eau liquide, et une pluie de météores qui tombe en plein jour."
-      ]
+     "v": "1664",
+     "l": "L'année où Robert Hooke, en poursuivant une comète, dédouble Mesarthim. C'est l'une des toutes premières étoiles doubles résolues au télescope."
     },
     {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Comment tomber dessus",
-        "targets": [
-          {
-            "star": "Alpheratz",
-            "from": "Sheratan",
-            "label": "Alpheratz",
-            "sub": "Andromède",
-            "note": "Le coin du Grand Carré de Pégase. Le Bélier se trouve à l'est et un peu au sud de cette figure, beaucoup plus facile à repérer."
-          },
-          {
-            "star": "Aldébaran",
-            "from": "Hamal",
-            "label": "Aldébaran",
-            "sub": "Taureau",
-            "note": "L'autre borne. Le Bélier occupe l'espace entre le Grand Carré et les Pléiades, sans rien de brillant au milieu."
-          }
-        ],
-        "notes": {
-          "Hamal": "De l'arabe raʾs al-ḥamal, « la tête du bélier ». La plus brillante des trois, une géante orange.",
-          "Sheratan": "« Les deux signes », en arabe, parce qu'elle marquait autrefois l'équinoxe de printemps avec sa voisine.",
-          "Mesarthim": "Son nom est né d'une faute de copie. Elle a longtemps partagé celui de Sheratan."
-        }
-      },
-      "cap": "La constellation se trouve par ses voisines, jamais par elle-même.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Mesarthim, 1664",
-      "p": [
-        "Robert Hooke est surtout connu pour avoir vu des cellules au microscope et publié la Micrographia. Mais en 1664, en poursuivant une comète à la lunette, il tombe sur autre chose : Mesarthim, la troisième étoile du Bélier, se dédouble sous son objectif en deux points de luminosité identique. C'est l'une des toutes premières étoiles doubles jamais résolues au télescope, quelques années seulement après les premières observations de ce genre par Huygens et Hodierna. Il faudra attendre 1685 et 1689 pour que deux jésuites français découvrent la duplicité d'Acrux depuis Le Cap et celle d'Alpha du Centaure depuis Pondichéry.",
-        "C'est toujours une des plus jolies cibles pour un petit instrument : deux étoiles blanches de magnitude quasi identique, séparées de sept secondes et demie d'arc, qui se séparent nettement dès cinquante fois de grossissement. Leur période orbitale dépasse cinq mille ans. Le nom, lui, est un accident : l'étoile partageait à l'origine celui de sa voisine Sheratan, la graphie s'est corrompue en « Sartai » dans les manuscrits médiévaux, et Bayer a cru y reconnaître un mot hébreu signifiant « les serviteurs ». L'erreur est passée dans les catalogues et n'en est jamais sortie."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "scale",
-      "wide": true,
-      "data": {
-        "title": "Une étoile de la taille d'une planète",
-        "items": [
-          {
-            "n": "Soleil",
-            "r": 1,
-            "note": "Pour l'échelle. Sa surface atteint 5 800 kelvins."
-          },
-          {
-            "n": "Teegarden",
-            "r": 0.11,
-            "c": "#E07A5F",
-            "note": "Naine rouge ultrafroide, 2 700 à 2 900 kelvins en surface, environ huit à dix pour cent de la masse du Soleil. L'une des plus petites étoiles connues."
-          },
-          {
-            "n": "Jupiter",
-            "r": 0.1,
-            "c": "#D9B48F",
-            "note": "Pour comparaison. L'écart de taille entre une planète géante et cette étoile est presque nul ; c'est la masse qui fait toute la différence."
-          }
-        ]
-      },
-      "cap": "Le seuil de l'allumage nucléaire ne se lit pas sur le diamètre.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "L'étoile qu'on n'a trouvée qu'en 2003",
-      "p": [
-        "Il y a quelque chose de vertigineux à savoir qu'une des vingt-cinq étoiles les plus proches du Soleil nous a échappé jusqu'au XXIᵉ siècle. L'étoile de Teegarden se trouve à douze années-lumière et demie, dans le Bélier, et elle est si peu lumineuse que personne ne l'avait repérée. C'est Bonnard Teegarden, astronome de la NASA, qui l'a extraite en 2003 de données collectées pour tout autre chose : le suivi des astéroïdes.",
-        "Sa taille explique tout. Elle pèse moins d'un dixième du Soleil, son diamètre en fait à peine plus d'un dixième, et sa surface plafonne autour de deux mille sept cents degrés. Elle rayonne surtout dans l'infrarouge. C'est aussi une vieille étoile, huit milliards d'années au moins, presque le double de l'âge du Soleil, et elle est remarquablement calme pour son type : peu d'éruptions, donc peu de rayonnement ultraviolet dur pour stériliser d'éventuelles atmosphères. Pour qui cherche des mondes habitables, cette tranquillité vaut de l'or."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/ari/teegarden-systeme-goettingen.jpg",
-      "page": "https://www.mpia.de/5356744/2019-04-carmenes",
-      "wide": true,
-      "cap": "Le système de Teegarden et les orbites de ses planètes, avec le système solaire en encart pour l'échelle. Tout tient dans un espace plus petit que l'orbite de Mercure : autour d'une étoile aussi froide, la zone tempérée se trouve très près.",
-      "credit": "Institut d'astrophysique, université de Göttingen"
-    },
-    {
-      "t": "text",
-      "h": "Trois planètes, et un regard en retour",
-      "p": [
-        "En juin 2019, l'équipe de Mathias Zechmeister annonce deux planètes détectées par la méthode des vitesses radiales avec le spectrographe CARMENES, installé au télescope de 3,5 mètres de l'observatoire de Calar Alto. Trois ans d'observation pour mesurer les infimes oscillations de l'étoile. Teegarden b et c ont des masses à peine supérieures à celle de la Terre, avec des périodes de cinq et onze jours. En 2024, une troisième planète est confirmée, plus lointaine. Le bilan actuel : b se trouve dans la zone habitable dite optimiste, c dans la zone habitable conservatrice, et d au-delà, avec des températures comparables à celles des lunes glacées de Jupiter. Teegarden b détient le plus haut indice de similarité avec la Terre jamais calculé.",
-        "Deux réserves, et une curiosité. Ces planètes ne transitent pas devant leur étoile vue depuis la Terre, ce qui interdit pour l'instant d'analyser leur atmosphère : il faudra les instruments de la génération suivante, l'ELT au sol ou la mission LIFE dans l'espace. Et l'étoile est si froide que la zone tempérée est très proche d'elle, ce qui rend les planètes probablement synchrones, une face éternellement éclairée. La curiosité, en revanche, est délicieuse : depuis Teegarden, la Terre passe devant le Soleil. Un observateur situé là-bas, avec nos instruments, pourrait détecter notre planète par la méthode des transits, celle-là même que nous ne pouvons pas appliquer chez lui."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/ari/ngc772-hubble.jpg",
-      "page": "https://esahubble.org/images/potw1945a/",
-      "wide": true,
-      "cap": "NGC 772, la seule galaxie vraiment remarquable de la constellation. Ce que Hubble montre ici est le cœur ; le grand bras spiral asymétrique, étiré par l'attraction d'une petite galaxie voisine, déborde du cadre. Le disque entier fait deux fois la largeur de la Voie lactée.",
-      "credit": "ESA/Hubble et NASA, A. Seth et al."
-    },
-    {
-      "t": "text",
-      "h": "La galaxie Tête de violon",
-      "p": [
-        "Son surnom vient de sa forme : un seul bras spiral, beaucoup plus long et plus lumineux que les autres, s'enroule vers l'extérieur comme la crosse d'une fougère ou la volute d'un violon. L'asymétrie n'est pas naturelle. Elle résulte de l'attraction d'une petite galaxie elliptique compagne, NGC 770, qui a étiré le bras sud en passant. Halton Arp l'avait rangée dans son atlas des galaxies particulières sous le numéro 78.",
-        "Sa distance est mal établie, et les fiches qui donnent un chiffre net simplifient : selon la méthode, on lit 106, 116 ou 130 millions d'années-lumière. Une chose est sûre en revanche, c'est sa taille, environ deux cent mille années-lumière de diamètre, soit le double de notre galaxie. Un détail statistique amusant s'y est produit en 2003 : deux supernovae y ont été repérées à trois semaines d'intervalle, SN 2003hl puis SN 2003iq. Elle reste accessible dès un télescope de cent cinquante millimètres, à l'est de Mesarthim."
-      ]
-    },
-    {
-      "t": "text",
-      "h": "La plus forte pluie de l'année, et personne ne la voit",
-      "p": [
-        "Chaque année entre la fin mai et le début juillet, avec un maximum autour du 7 juin, la Terre traverse un des courants de météoroïdes les plus denses qu'elle rencontre. Le radiant se trouve dans le Bélier, et le débit atteint une soixantaine de météores par heure. C'est la plus forte pluie diurne de l'année, et à peu près personne ne l'a jamais vue.",
-        "La raison est simple et cruelle : au moment du maximum, le radiant se trouve à une trentaine de degrés du Soleil. Quand les conditions sont idéales, il fait grand jour ; quand la nuit tombe, la source est déjà passée sous l'horizon. On ne dispose que d'une fenêtre étroite, la dernière heure d'obscurité avant l'aube, en regardant vers l'est. Les Ariétides n'ont d'ailleurs pas été découvertes à l'œil mais à l'oreille électronique : c'est le radiotélescope de Jodrell Bank, en Angleterre, qui a détecté leurs échos radar durant l'été 1947. Il a fallu deux ans de plus pour situer correctement leur radiant."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "Deux précisions sur les Ariétides",
-      "p": "La première concerne le corps parent, que beaucoup de fiches attribuent sans hésiter à la comète 96P/Machholz. La réalité est moins nette. L'orbite correspond à celle de 96P, mais aussi à celle de l'astéroïde (1566) Icare, et une partie du courant vient probablement du groupe de comètes rasantes de Marsden. Les trois objets appartiennent au même ensemble, le complexe de Machholz, qui alimente également les Quadrantides et les Aquariides, et qui est si évolué que démêler les filiations reste un problème ouvert. La modélisation la plus récente attribue l'essentiel du courant à une activité continue de 96P sur douze à vingt mille ans. La seconde précision porte sur le chiffre de soixante météores par heure : c'est un taux radar. À l'œil nu, dans la brève fenêtre avant l'aube, on en verra une poignée, et il faut un horizon est parfaitement dégagé."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "deep",
-          "title": "Teegarden's Star revisited : a nearby planetary system with at least three planets",
-          "src": "Astronomy & Astrophysics, avril 2024",
-          "note": "L'article qui ajoute la troisième planète et précise les deux autres. En anglais.",
-          "url": "https://arxiv.org/abs/2402.00923"
-        },
-        {
-          "kind": "read",
-          "title": "Deux planètes terrestres autour d'une des plus petites étoiles",
-          "src": "Max-Planck-Institut für Astronomie",
-          "note": "Le communiqué de 2019, avec les images du système et la remarque sur ce qu'un observateur de là-bas verrait de nous. En anglais.",
-          "url": "https://www.mpia.de/5356744/2019-04-carmenes"
-        },
-        {
-          "kind": "deep",
-          "title": "Two temperate Earth-mass planet candidates around Teegarden's Star",
-          "src": "Astronomy & Astrophysics, 2019",
-          "note": "La découverte initiale, par le consortium CARMENES. En anglais, en accès libre.",
-          "url": "https://arxiv.org/abs/1906.07196"
-        },
-        {
-          "kind": "deep",
-          "title": "Near the Runaway : the Climate and Habitability of Teegarden's Star b",
-          "src": "arXiv, octobre 2025",
-          "note": "Une simulation climatique en trois dimensions de la planète la plus prometteuse du système. En anglais.",
-          "url": "https://arxiv.org/pdf/2510.11940"
-        },
-        {
-          "kind": "look",
-          "title": "NGC 772, une rivale de la Voie lactée",
-          "src": "ESA/Hubble",
-          "note": "L'image de la semaine et sa notice, avec les fichiers en pleine résolution.",
-          "url": "https://esahubble.org/images/potw1945a/"
-        },
-        {
-          "kind": "read",
-          "title": "Le point vernal",
-          "src": "Wikipédia en français",
-          "note": "Les dates d'entrée et de sortie du point vernal dans chaque constellation, et son rôle dans les coordonnées équatoriales.",
-          "url": "https://fr.wikipedia.org/wiki/Point_vernal"
-        },
-        {
-          "kind": "read",
-          "title": "La précession des équinoxes",
-          "src": "Observatoire de Paris",
-          "note": "L'explication de référence en français, avec le portrait d'Hipparque conservé à l'Observatoire.",
-          "url": "https://bibnum.obspm.fr/la-precession-des-equinoxes"
-        },
-        {
-          "kind": "read",
-          "title": "Gamma Arietis, un joyau du ciel urbain d'automne",
-          "src": "Astroshop",
-          "note": "Les conseils d'observation de Mesarthim, grossissement par grossissement. En français.",
-          "url": "https://www.astroshop.de/fr/magazine/astuces-pratiques/observation/le-ciel-profond-en-ville/gamma-arietis-un-joyau-dans-le-ciel-urbain-automnal/i,1267"
-        },
-        {
-          "kind": "deep",
-          "title": "The age and the probable parent body of the daytime Arietid meteor shower",
-          "src": "Icarus, 2016",
-          "note": "L'étude qui modélise le courant et pèse les candidats au titre de corps parent. En anglais.",
-          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0019103516304961"
-        },
-        {
-          "kind": "deep",
-          "title": "Comets and meteor showers",
-          "src": "arXiv, 2022",
-          "note": "Le chapitre sur le complexe de Machholz, qui alimente à la fois les Ariétides, les Quadrantides et les Aquariides. En anglais.",
-          "url": "https://arxiv.org/pdf/2209.10654"
-        },
-        {
-          "kind": "read",
-          "title": "Ariétides",
-          "src": "Wikipédia en français",
-          "note": "Les dates, le radiant et l'histoire de la découverte au radar de Jodrell Bank en 1947.",
-          "url": "https://fr.wikipedia.org/wiki/Ari%C3%A9tides"
-        }
-      ]
+     "v": "60",
+     "u": "météores/heure",
+     "l": "Le débit des Ariétides, la plus forte pluie de l'année. Elle tombe en plein jour, et on ne la détecte qu'au radar."
     }
-  ]
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le point zéro a déménagé",
+   "p": [
+    "Deux fois par an, le Soleil traverse l'équateur céleste. Le passage du printemps définit un point précis, le point vernal, et ce point sert de zéro à tout le système de coordonnées équatoriales : c'est à partir de lui qu'on compte les ascensions droites de toutes les étoiles du ciel. Il y a quatre mille ans, il se trouvait dans le Bélier, et on l'a donc appelé le premier point du Bélier. Son symbole, ♈, est encore aujourd'hui celui de la constellation.",
+    "Sauf qu'il n'y est plus. L'axe de la Terre décrit son cône de précession, le point vernal glisse le long de l'écliptique d'un degré tous les soixante-douze ans, et il est entré dans les Poissons en l'an −67. Il y restera jusqu'en 2597, date à laquelle il passera dans le Verseau. Nous utilisons donc, pour définir l'origine des coordonnées célestes, un nom qui ne décrit plus rien depuis deux millénaires. C'est aussi pour cela que les astronomes fixent une époque de référence, J2000, plutôt que de recalculer les coordonnées chaque année."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Le voyage du point vernal",
+    "events": [
+     {
+      "y": -2000,
+      "when": "vers 2000 av. J.-C.",
+      "label": "Le point vernal entre dans le Bélier",
+      "note": "Il y restera environ dix-neuf siècles. C'est pendant cette période que l'ordre du zodiaque se fixe, chez les Babyloniens puis chez les Grecs."
+     },
+     {
+      "y": -130,
+      "label": "Hipparque découvre la précession",
+      "note": "En comparant ses mesures à des catalogues plus anciens, il constate que les étoiles ont bougé. Le point vernal se trouve alors entre Mesarthim et les Poissons."
+     },
+     {
+      "y": -67,
+      "label": "Passage dans les Poissons",
+      "note": "Il y est encore. Le symbole ♈ que l'astronomie utilise pour désigner ce point est resté celui du Bélier."
+     },
+     {
+      "y": 150,
+      "when": "IIᵉ siècle",
+      "label": "Ptolémée grave la convention",
+      "note": "Dans l'Almageste : nous appellerons Bélier la première portion, à partir du point équinoxial du printemps. Le nom se détache définitivement de la constellation."
+     },
+     {
+      "y": 1930,
+      "label": "L'UAI trace les frontières des constellations",
+      "note": "Les quatre-vingt-huit figures reçoivent des contours officiels. Le décalage entre les noms hérités et le ciel réel devient mesurable au degré près."
+     },
+     {
+      "y": 2597,
+      "label": "Départ vers le Verseau",
+      "note": "Il faudra ensuite attendre environ vingt-deux mille ans pour que le point vernal revienne dans le Bélier."
+     }
+    ]
+   },
+   "cap": "Les étapes sont espacées régulièrement : c'est la séquence qui compte. Survolez-les.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Trois étoiles, et rien derrière",
+   "p": [
+    "Il faut le dire franchement : pour l'observateur, le Bélier est décevant. Trois étoiles seulement se repèrent facilement, Hamal, Sheratan et Mesarthim, qui dessinent une ligne brisée sans caractère. Les constellations voisines, Andromède et le Triangle, offrent de belles galaxies ; le Bélier, presque rien. Ce n'est jamais le premier choix pour une nuit d'observation d'automne.",
+    "La raison est géométrique. La constellation regarde loin du plan de la Voie lactée mais dans une direction pauvre en galaxies brillantes, et elle est petite. Reste que trois de ses habitants valent le détour, et qu'aucun des trois ne se voit à l'œil nu de la façon dont on s'y attend : une étoile double vieille de trois siècles et demi d'histoire, une naine rouge invisible qui abrite peut-être de l'eau liquide, et une pluie de météores qui tombe en plein jour."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Comment tomber dessus",
+    "targets": [
+     {
+      "star": "Alpheratz",
+      "from": "Sheratan",
+      "label": "Alpheratz",
+      "sub": "Andromède",
+      "note": "Le coin du Grand Carré de Pégase. Le Bélier se trouve à l'est et un peu au sud de cette figure, beaucoup plus facile à repérer."
+     },
+     {
+      "star": "Aldébaran",
+      "from": "Hamal",
+      "label": "Aldébaran",
+      "sub": "Taureau",
+      "note": "L'autre borne. Le Bélier occupe l'espace entre le Grand Carré et les Pléiades, sans rien de brillant au milieu."
+     }
+    ],
+    "notes": {
+     "Hamal": "De l'arabe raʾs al-ḥamal, « la tête du bélier ». La plus brillante des trois, une géante orange.",
+     "Sheratan": "« Les deux signes », en arabe, parce qu'elle marquait autrefois l'équinoxe de printemps avec sa voisine.",
+     "Mesarthim": "Son nom est né d'une faute de copie. Elle a longtemps partagé celui de Sheratan."
+    }
+   },
+   "cap": "La constellation se trouve par ses voisines, jamais par elle-même.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Mesarthim, 1664",
+   "p": [
+    "Robert Hooke est surtout connu pour avoir vu des cellules au microscope et publié la Micrographia. Mais en 1664, en poursuivant une comète à la lunette, il tombe sur autre chose : Mesarthim, la troisième étoile du Bélier, se dédouble sous son objectif en deux points de luminosité identique. C'est l'une des toutes premières étoiles doubles jamais résolues au télescope, quelques années seulement après les premières observations de ce genre par Huygens et Hodierna. Il faudra attendre 1685 et 1689 pour que deux jésuites français découvrent la duplicité d'Acrux depuis Le Cap et celle d'Alpha du Centaure depuis Pondichéry.",
+    "C'est toujours une des plus jolies cibles pour un petit instrument : deux étoiles blanches de magnitude quasi identique, séparées de sept secondes et demie d'arc, qui se séparent nettement dès cinquante fois de grossissement. Leur période orbitale dépasse cinq mille ans. Le nom, lui, est un accident : l'étoile partageait à l'origine celui de sa voisine Sheratan, la graphie s'est corrompue en « Sartai » dans les manuscrits médiévaux, et Bayer a cru y reconnaître un mot hébreu signifiant « les serviteurs ». L'erreur est passée dans les catalogues et n'en est jamais sortie."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "scale",
+   "wide": true,
+   "data": {
+    "title": "Une étoile de la taille d'une planète",
+    "items": [
+     {
+      "n": "Soleil",
+      "r": 1,
+      "note": "Pour l'échelle. Sa surface atteint 5 800 kelvins."
+     },
+     {
+      "n": "Teegarden",
+      "r": 0.11,
+      "c": "#E07A5F",
+      "note": "Naine rouge ultrafroide, 2 700 à 2 900 kelvins en surface, environ huit à dix pour cent de la masse du Soleil. L'une des plus petites étoiles connues."
+     },
+     {
+      "n": "Jupiter",
+      "r": 0.1,
+      "c": "#D9B48F",
+      "note": "Pour comparaison. L'écart de taille entre une planète géante et cette étoile est presque nul ; c'est la masse qui fait toute la différence."
+     }
+    ]
+   },
+   "cap": "Le seuil de l'allumage nucléaire ne se lit pas sur le diamètre.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "L'étoile qu'on n'a trouvée qu'en 2003",
+   "p": [
+    "Il y a quelque chose de vertigineux à savoir qu'une des vingt-cinq étoiles les plus proches du Soleil nous a échappé jusqu'au XXIᵉ siècle. L'étoile de Teegarden se trouve à douze années-lumière et demie, dans le Bélier, et elle est si peu lumineuse que personne ne l'avait repérée. C'est Bonnard Teegarden, astronome de la NASA, qui l'a extraite en 2003 de données collectées pour tout autre chose : le suivi des astéroïdes.",
+    "Sa taille explique tout. Elle pèse moins d'un dixième du Soleil, son diamètre en fait à peine plus d'un dixième, et sa surface plafonne autour de deux mille sept cents degrés. Elle rayonne surtout dans l'infrarouge. C'est aussi une vieille étoile, huit milliards d'années au moins, presque le double de l'âge du Soleil, et elle est remarquablement calme pour son type : peu d'éruptions, donc peu de rayonnement ultraviolet dur pour stériliser d'éventuelles atmosphères. Pour qui cherche des mondes habitables, cette tranquillité vaut de l'or."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/ari/original.webp",
+   "page": "https://www.mpia.de/5356744/2019-04-carmenes",
+   "wide": true,
+   "cap": "Le système de Teegarden et les orbites de ses planètes, avec le système solaire en encart pour l'échelle. Tout tient dans un espace plus petit que l'orbite de Mercure : autour d'une étoile aussi froide, la zone tempérée se trouve très près.",
+   "credit": "Institut d'astrophysique, université de Göttingen"
+  },
+  {
+   "t": "text",
+   "h": "Trois planètes, et un regard en retour",
+   "p": [
+    "En juin 2019, l'équipe de Mathias Zechmeister annonce deux planètes détectées par la méthode des vitesses radiales avec le spectrographe CARMENES, installé au télescope de 3,5 mètres de l'observatoire de Calar Alto. Trois ans d'observation pour mesurer les infimes oscillations de l'étoile. Teegarden b et c ont des masses à peine supérieures à celle de la Terre, avec des périodes de cinq et onze jours. En 2024, une troisième planète est confirmée, plus lointaine. Le bilan actuel : b se trouve dans la zone habitable dite optimiste, c dans la zone habitable conservatrice, et d au-delà, avec des températures comparables à celles des lunes glacées de Jupiter. Teegarden b détient le plus haut indice de similarité avec la Terre jamais calculé.",
+    "Deux réserves, et une curiosité. Ces planètes ne transitent pas devant leur étoile vue depuis la Terre, ce qui interdit pour l'instant d'analyser leur atmosphère : il faudra les instruments de la génération suivante, l'ELT au sol ou la mission LIFE dans l'espace. Et l'étoile est si froide que la zone tempérée est très proche d'elle, ce qui rend les planètes probablement synchrones, une face éternellement éclairée. La curiosité, en revanche, est délicieuse : depuis Teegarden, la Terre passe devant le Soleil. Un observateur situé là-bas, avec nos instruments, pourrait détecter notre planète par la méthode des transits, celle-là même que nous ne pouvons pas appliquer chez lui."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/ari/potw1945a.jpg",
+   "page": "https://esahubble.org/images/potw1945a/",
+   "wide": true,
+   "cap": "NGC 772, la seule galaxie vraiment remarquable de la constellation. Ce que Hubble montre ici est le cœur ; le grand bras spiral asymétrique, étiré par l'attraction d'une petite galaxie voisine, déborde du cadre. Le disque entier fait deux fois la largeur de la Voie lactée.",
+   "credit": "ESA/Hubble et NASA, A. Seth et al."
+  },
+  {
+   "t": "text",
+   "h": "La galaxie Tête de violon",
+   "p": [
+    "Son surnom vient de sa forme : un seul bras spiral, beaucoup plus long et plus lumineux que les autres, s'enroule vers l'extérieur comme la crosse d'une fougère ou la volute d'un violon. L'asymétrie n'est pas naturelle. Elle résulte de l'attraction d'une petite galaxie elliptique compagne, NGC 770, qui a étiré le bras sud en passant. Halton Arp l'avait rangée dans son atlas des galaxies particulières sous le numéro 78.",
+    "Sa distance est mal établie, et les fiches qui donnent un chiffre net simplifient : selon la méthode, on lit 106, 116 ou 130 millions d'années-lumière. Une chose est sûre en revanche, c'est sa taille, environ deux cent mille années-lumière de diamètre, soit le double de notre galaxie. Un détail statistique amusant s'y est produit en 2003 : deux supernovae y ont été repérées à trois semaines d'intervalle, SN 2003hl puis SN 2003iq. Elle reste accessible dès un télescope de cent cinquante millimètres, à l'est de Mesarthim."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "La plus forte pluie de l'année, et personne ne la voit",
+   "p": [
+    "Chaque année entre la fin mai et le début juillet, avec un maximum autour du 7 juin, la Terre traverse un des courants de météoroïdes les plus denses qu'elle rencontre. Le radiant se trouve dans le Bélier, et le débit atteint une soixantaine de météores par heure. C'est la plus forte pluie diurne de l'année, et à peu près personne ne l'a jamais vue.",
+    "La raison est simple et cruelle : au moment du maximum, le radiant se trouve à une trentaine de degrés du Soleil. Quand les conditions sont idéales, il fait grand jour ; quand la nuit tombe, la source est déjà passée sous l'horizon. On ne dispose que d'une fenêtre étroite, la dernière heure d'obscurité avant l'aube, en regardant vers l'est. Les Ariétides n'ont d'ailleurs pas été découvertes à l'œil mais à l'oreille électronique : c'est le radiotélescope de Jodrell Bank, en Angleterre, qui a détecté leurs échos radar durant l'été 1947. Il a fallu deux ans de plus pour situer correctement leur radiant."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Deux précisions sur les Ariétides",
+   "p": "La première concerne le corps parent, que beaucoup de fiches attribuent sans hésiter à la comète 96P/Machholz. La réalité est moins nette. L'orbite correspond à celle de 96P, mais aussi à celle de l'astéroïde (1566) Icare, et une partie du courant vient probablement du groupe de comètes rasantes de Marsden. Les trois objets appartiennent au même ensemble, le complexe de Machholz, qui alimente également les Quadrantides et les Aquariides, et qui est si évolué que démêler les filiations reste un problème ouvert. La modélisation la plus récente attribue l'essentiel du courant à une activité continue de 96P sur douze à vingt mille ans. La seconde précision porte sur le chiffre de soixante météores par heure : c'est un taux radar. À l'œil nu, dans la brève fenêtre avant l'aube, on en verra une poignée, et il faut un horizon est parfaitement dégagé."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "Teegarden's Star revisited : a nearby planetary system with at least three planets",
+     "src": "Astronomy & Astrophysics, avril 2024",
+     "note": "L'article qui ajoute la troisième planète et précise les deux autres. En anglais.",
+     "url": "https://arxiv.org/abs/2402.00923"
+    },
+    {
+     "kind": "read",
+     "title": "Deux planètes terrestres autour d'une des plus petites étoiles",
+     "src": "Max-Planck-Institut für Astronomie",
+     "note": "Le communiqué de 2019, avec les images du système et la remarque sur ce qu'un observateur de là-bas verrait de nous. En anglais.",
+     "url": "https://www.mpia.de/5356744/2019-04-carmenes"
+    },
+    {
+     "kind": "deep",
+     "title": "Two temperate Earth-mass planet candidates around Teegarden's Star",
+     "src": "Astronomy & Astrophysics, 2019",
+     "note": "La découverte initiale, par le consortium CARMENES. En anglais, en accès libre.",
+     "url": "https://arxiv.org/abs/1906.07196"
+    },
+    {
+     "kind": "deep",
+     "title": "Near the Runaway : the Climate and Habitability of Teegarden's Star b",
+     "src": "arXiv, octobre 2025",
+     "note": "Une simulation climatique en trois dimensions de la planète la plus prometteuse du système. En anglais.",
+     "url": "https://arxiv.org/pdf/2510.11940"
+    },
+    {
+     "kind": "look",
+     "title": "NGC 772, une rivale de la Voie lactée",
+     "src": "ESA/Hubble",
+     "note": "L'image de la semaine et sa notice, avec les fichiers en pleine résolution.",
+     "url": "https://esahubble.org/images/potw1945a/"
+    },
+    {
+     "kind": "read",
+     "title": "Le point vernal",
+     "src": "Wikipédia en français",
+     "note": "Les dates d'entrée et de sortie du point vernal dans chaque constellation, et son rôle dans les coordonnées équatoriales.",
+     "url": "https://fr.wikipedia.org/wiki/Point_vernal"
+    },
+    {
+     "kind": "read",
+     "title": "La précession des équinoxes",
+     "src": "Observatoire de Paris",
+     "note": "L'explication de référence en français, avec le portrait d'Hipparque conservé à l'Observatoire.",
+     "url": "https://bibnum.obspm.fr/la-precession-des-equinoxes"
+    },
+    {
+     "kind": "read",
+     "title": "Gamma Arietis, un joyau du ciel urbain d'automne",
+     "src": "Astroshop",
+     "note": "Les conseils d'observation de Mesarthim, grossissement par grossissement. En français.",
+     "url": "https://www.astroshop.de/fr/magazine/astuces-pratiques/observation/le-ciel-profond-en-ville/gamma-arietis-un-joyau-dans-le-ciel-urbain-automnal/i,1267"
+    },
+    {
+     "kind": "deep",
+     "title": "The age and the probable parent body of the daytime Arietid meteor shower",
+     "src": "Icarus, 2016",
+     "note": "L'étude qui modélise le courant et pèse les candidats au titre de corps parent. En anglais.",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S0019103516304961"
+    },
+    {
+     "kind": "deep",
+     "title": "Comets and meteor showers",
+     "src": "arXiv, 2022",
+     "note": "Le chapitre sur le complexe de Machholz, qui alimente à la fois les Ariétides, les Quadrantides et les Aquariides. En anglais.",
+     "url": "https://arxiv.org/pdf/2209.10654"
+    },
+    {
+     "kind": "read",
+     "title": "Ariétides",
+     "src": "Wikipédia en français",
+     "note": "Les dates, le radiant et l'histoire de la découverte au radar de Jodrell Bank en 1947.",
+     "url": "https://fr.wikipedia.org/wiki/Ari%C3%A9tides"
+    }
+   ]
+  }
+ ]
 }
