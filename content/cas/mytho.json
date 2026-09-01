@@ -1,69 +1,302 @@
 {
- "constellation": "cas",
- "tab": "mytho",
- "blocks": [
-  {
-   "t": "lead",
-   "p": "Cassiopée est la seule constellation dont la punition soit inscrite dans le mouvement du ciel. Attachée à son trône, elle tourne autour du pôle et se retrouve la tête en bas la moitié du temps. Le châtiment n'est pas raconté : il se voit."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "cas",
+  "tab": "mytho",
+  "blocks": [
     {
-     "v": "6",
-     "u": "figures",
-     "l": "Cassiopée, Céphée, Andromède, Persée, la Baleine et Pégase : une même histoire répartie sur six constellations voisines."
+      "t": "lead",
+      "p": "Cassiopée n'est pas un personnage isolé dans le ciel : c'est le pivot d'une famille. Six constellations voisines racontent une seule histoire, et c'est le seul cas de ce genre sur les quatre-vingt-huit. Reste que le récit est plus incertain qu'il n'y paraît. On ne sait pas exactement de quoi la reine s'est vantée, on ne sait pas où se trouvait son royaume, et l'art européen a passé cinq siècles à effacer la couleur de peau de sa fille."
     },
     {
-     "v": "toute",
-     "u": "l'année",
-     "l": "Circumpolaire depuis l'Europe : elle ne se couche jamais, et donc n'échappe jamais à sa peine."
-    }
-   ]
-  },
-  {
-   "t": "figure",
-   "src": "/skyculture/ekko/illustrations/cas.webp",
-   "lit": true,
-   "roll": true,
-   "cap": "La reine sur son trône, telle qu'elle est plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
-   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
-  },
-  {
-   "t": "text",
-   "h": "Une vantardise et ses conséquences",
-   "p": [
-    "Cassiopée, reine d'Éthiopie, se déclare plus belle que les Néréides — ou proclame que sa fille Andromède l'est, selon les auteurs. Poséidon, époux de l'une d'elles, envoie un monstre marin ravager les côtes du royaume.",
-    "L'oracle est sans appel : pour apaiser le dieu, il faut livrer Andromède au monstre. On l'enchaîne à un rocher. Persée, revenant de tuer Méduse, la délivre — et le monstre, la Baleine, se retrouve lui aussi au ciel."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "La seule famille complète du ciel",
-   "p": [
-    "Aucun autre récit n'occupe autant de constellations contiguës. Cassiopée et Céphée, les parents ; Andromède, la fille ; Persée, le sauveur ; la Baleine, le monstre ; Pégase, la monture née du sang de Méduse.",
-    "En automne, toute l'histoire est levée en même temps au-dessus de l'horizon. C'est probablement la meilleure entrée en mythologie céleste qu'on puisse offrir à un enfant : un seul geste du bras raconte six figures."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Le W et la boussole",
-   "p": [
-    "Cinq étoiles en zigzag, à l'opposé de la Grande Ourse par rapport à Polaris. Quand l'une se couche vers l'horizon, l'autre culmine : les deux se relaient toute l'année pour indiquer le nord.",
-    "Le W devient M quand la reine passe la tête en bas. Les marins connaissaient bien cette bascule, qui donnait l'heure de la nuit autant que la direction."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
+      "t": "stats",
+      "v": [
+        {
+          "v": "6",
+          "u": "constellations",
+          "l": "Cassiopée, Céphée, Andromède, Persée, Pégase et la Baleine forment un seul récit, réparti sur une seule région du ciel."
+        },
+        {
+          "v": "575",
+          "u": "av. J.-C.",
+          "l": "La date de la plus ancienne image connue du mythe. Andromède y tient des pierres dans les mains, et aucun rocher n'est visible."
+        },
+        {
+          "v": "5",
+          "u": "étoiles",
+          "l": "Le W. Aratos y voyait une clé ou une porte pliante, les Bédouins une paume teinte au henné, les Chinois un cocher."
+        },
+        {
+          "v": "1992",
+          "l": "L'année où l'historienne de l'art Elizabeth McGrath publie « The Black Andromeda » et rouvre la question de la couleur de la princesse éthiopienne."
+        },
+        {
+          "v": "Iopé",
+          "l": "L'autre nom de Cassiopée selon Stéphane de Byzance, qui lui rattache la ville de Joppé, l'actuelle Jaffa. Le royaume aurait donc été au Levant, pas en Afrique."
+        }
+      ]
+    },
     {
-     "kind": "read",
-     "title": "Cassiopée (constellation)",
-     "src": "Wikipédia",
-     "note": "Le récit mythologique, l'histoire du nom et le détail des étoiles du W.",
-     "url": "https://fr.wikipedia.org/wiki/Cassiop%C3%A9e_(constellation)"
+      "t": "figure",
+      "src": "/skyculture/ekko/illustrations/cas.webp",
+      "lit": true,
+      "roll": true,
+      "wide": true,
+      "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Le trône se lit clairement dans la géométrie du W ; la reine beaucoup moins. C'est le fauteuil, plus que la femme, qui a traversé les siècles.",
+      "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+    },
+    {
+      "t": "text",
+      "h": "L'orgueil, et ce qu'on n'en sait pas",
+      "p": [
+        "Le récit est connu. Cassiopée, reine d'Éthiopie et femme de Céphée, se vante d'une beauté supérieure à celle des Néréides. Les nymphes de la mer se plaignent à Poséidon, qui envoie un monstre marin ravager les côtes du royaume. L'oracle d'Ammon exige un sacrifice : Andromède, la fille, est enchaînée à un rocher du rivage. Persée passe par là au retour de son combat contre Méduse, tue le monstre, obtient la main d'Andromède. Les dieux placent tout le monde au ciel.",
+        "Ce que les sources ne tranchent pas, en revanche, est le point de départ. De quoi Cassiopée s'est-elle vantée exactement ? Selon l'auteur, de sa propre beauté ou de celle de sa fille. La différence n'est pas mince : dans un cas la mère paie pour elle-même, dans l'autre elle sacrifie son enfant à sa vanité. Ses origines sont aussi floues : Nonnos en fait une nymphe, Stéphane de Byzance lui donne le nom d'Iopé, fille d'Éole, qui aurait donné son nom à la ville de Joppé. Le personnage le plus célèbre du ciel du nord est un composite mal recousu."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cas/amphore-corinthienne-andromede-berlin.jpg",
+      "page": "https://smb.museum-digital.de/object/9358",
+      "wide": true,
+      "cap": "La plus ancienne représentation connue du mythe, sur une amphore corinthienne trouvée à Cerveteri et peinte entre 575 et 550 avant notre ère. Les noms sont inscrits en toutes lettres : Ketos, Persée, Andromède. Regardez ses mains : elle tient elle aussi des pierres. Aucun rocher, aucune chaîne. La notice du musée qualifie cette version d'« très inhabituelle ».",
+      "credit": "Amphore corinthienne à panse, inv. F 1652 — Antikensammlung, Staatliche Museen zu Berlin"
+    },
+    {
+      "t": "text",
+      "h": "Condamnée à tourner la tête en bas",
+      "p": [
+        "La punition de la reine est la partie du mythe qui colle le mieux au ciel réel. Attachée à son trône, elle tourne sans fin autour du pôle, et se retrouve la moitié du temps renversée, position peu digne pour une souveraine. C'est une leçon d'humilité, et c'est aussi une observation exacte : sortez un soir de printemps et vous verrez le W franchement basculé, la reine cul par-dessus tête, alors qu'en automne elle est bien assise, haut dans le ciel.",
+        "Cette famille au complet dans une même région du ciel n'est pas un hasard de nomenclature. Les Grecs ont projeté un récit sur un voisinage, et le voisinage tient : Céphée le mari juste à côté, Andromède la fille juste en dessous, Persée le sauveur derrière elle, Pégase sa monture, et la Baleine plus bas, du côté de la mer. On peut littéralement suivre l'histoire du doigt."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "compass",
+      "wide": true,
+      "data": {
+        "title": "La famille au complet",
+        "targets": [
+          {
+            "star": "Alpheratz",
+            "from": "Caph",
+            "label": "Alpheratz",
+            "sub": "Andromède",
+            "note": "La fille. Son étoile la plus brillante est partagée avec Pégase, la monture de Persée : les deux figures se touchent."
+          },
+          {
+            "star": "Alderamin",
+            "from": "Caph",
+            "label": "Alderamin",
+            "sub": "Céphée",
+            "note": "Le mari, roi du royaume ravagé. Il tourne autour du pôle lui aussi, mais sans se renverser autant qu'elle."
+          },
+          {
+            "star": "Mirfak",
+            "from": "Ruchbah",
+            "label": "Mirfak",
+            "sub": "Persée",
+            "note": "Le sauveur. Entre lui et Cassiopée se trouve le Double Amas, l'une des plus belles cibles de jumelles du ciel."
+          }
+        ],
+        "notes": {
+          "Schedar": "De l'arabe al-sadr, « la poitrine ». Ptolémée y plaçait le cœur de la reine.",
+          "Caph": "De al-kaff al-khaḍīb, « la paume teinte au henné ». Le seul nom qui vienne d'une autre figure que la reine.",
+          "Ruchbah": "De rukbah, « le genou ». Là encore, une position sur le corps."
+        }
+      },
+      "cap": "La Baleine, le monstre du récit, se trouve plus au sud, hors du cadre : c'est la seule de la famille à rester basse sur l'horizon.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "warn",
+      "h": "« Éthiopie » ne désigne pas l'Éthiopie",
+      "p": "Les sources antiques situent le royaume de Céphée en Aithiopia, et il faut résister à la tentation de plaquer une carte moderne sur ce mot. Aithiopes signifie en grec « les visages brûlés » : c'est une désignation large, appliquée aux populations à peau sombre des confins méridionaux du monde connu, sans frontière précise. Le mythe lui-même circule avec deux cadres géographiques concurrents, l'un africain, l'autre levantin : la tradition qui fait de Cassiopée une Iopé rattache l'histoire à Joppé, l'actuelle Jaffa, et Hérodote fait de Persée et d'Andromède les ancêtres des Perses. Ce que les sources affirment sans ambiguïté, c'est que les Éthiopiens des Grecs avaient la peau noire. Ce qu'elles ne permettent pas, c'est de désigner un pays sur un atlas d'aujourd'hui."
+    },
+    {
+      "t": "text",
+      "h": "Andromède noire, Andromède blanche",
+      "p": [
+        "Le mythe est ancien : Sophocle et Euripide en avaient tiré des tragédies au Vᵉ siècle avant notre ère, et l'« Andromède » d'Euripide, en 412, était bien située en Éthiopie. Ovide, cinq siècles plus tard, décrit la princesse comme fusca, brune ou noire, et dans l'« Art d'aimer » il conseille aux femmes à la peau sombre de porter du blanc, comme Andromède le faisait. La beauté du personnage n'a jamais été discutée ; sa couleur, elle, a été discrètement corrigée.",
+        "Le plus intéressant est que la correction commence dans l'Antiquité même. Sur certains vases grecs, la cour de Céphée est peinte avec des traits africains marqués tandis qu'Andromède elle-même l'est beaucoup moins : une réticence à faire de l'héroïne une femme noire est déjà là. La Renaissance achève le travail et y ajoute autre chose. Chez Piero di Cosimo, vers 1510, Andromède est non seulement blanche mais plus claire que tous les personnages qui l'entourent. C'est ce tableau qu'Elizabeth McGrath a pris pour cible en 1992, dans un article du Journal of the Warburg and Courtauld Institutes qui a relancé la question. Le sujet reste vif : les adaptations contemporaines, cinéma compris, reconduisent presque toujours la version claire."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cas/piero-di-cosimo-andromede-uffizi.jpg",
+      "page": "https://www.uffizi.it/en/online-exhibitions/the-scenic-virtuality-of-a-painting-perseus-freeing-andromeda-by-piero-di-cosimo",
+      "wide": true,
+      "cap": "Piero di Cosimo raconte plusieurs épisodes dans un seul tableau, en cercle depuis le mont Atlas en haut à droite. Le panneau était destiné à la chambre nuptiale de Filippo Strozzi le Jeune, qui s'y est fait portraiturer en Céphée, l'homme au turban blanc à droite. Andromède, au centre, est la figure la plus claire de toute la composition. Vers 1510.",
+      "credit": "Piero di Cosimo, « Persée libérant Andromède » — Galerie des Offices, Florence"
+    },
+    {
+      "t": "quote",
+      "p": "Piero n'a jamais fait de tableau plus charmant ni plus achevé que celui-ci.",
+      "who": "Giorgio Vasari, Vies des meilleurs peintres, 1568"
+    },
+    {
+      "t": "text",
+      "h": "La Dame au fauteuil, et la main au henné",
+      "p": [
+        "Le ciel arabe médiéval a fait de la constellation Dhāt al-Kursī, la Dame au fauteuil, nom qu'on trouve chez al-Sufi en 964. Les noms des étoiles, eux, viennent directement de l'Almageste : Ptolémée avait décrit la position de chacune sur le corps de la reine, et les traducteurs arabes ont gardé l'anatomie. Schedar vient de al-sadr, la poitrine. Ruchbah de rukbah, le genou. Segin, à l'extrémité du W, est plus obscur.",
+        "Caph fait exception, et c'est la plus belle trouvaille de cet onglet. Le nom vient de al-kaff al-khaḍīb, la paume teinte au henné. Il n'appartient pas à la reine mais à une figure bédouine bien plus vaste, Thurayyā, une géante dont la tête était l'amas des Pléiades, dans le Taureau, et dont l'autre main se trouvait dans la Baleine. Une seule silhouette enjambait un tiers du ciel, et il ne nous en reste qu'un nom d'étoile, plus l'appellation al-Sanam al-Nāqah, la bosse du chameau, qui a désigné la même étoile."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cas/al-sufi-cassiopee-marsh144.jpg",
+      "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
+      "wide": true,
+      "cap": "Dhāt al-Kursī, la Dame au fauteuil, dans le « Livre des étoiles fixes » d'al-Sufi. Comme toutes les figures de l'ouvrage, elle est dessinée deux fois, une fois vue du ciel et une fois retournée comme sur un globe. Les étoiles sont numérotées et reprises dans la table en marge.",
+      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Six lectures des mêmes cinq étoiles",
+        "events": [
+          {
+            "y": -270,
+            "when": "IIIᵉ s. av. J.-C.",
+            "label": "Aratos y voit une clé",
+            "note": "Le poème des Phénomènes compare la forme du W à une clé ou à une porte pliante. La reine y est déjà, mais le dessin, lui, est un objet."
+          },
+          {
+            "y": 150,
+            "when": "IIᵉ siècle",
+            "label": "Ptolémée l'assied sur son trône",
+            "note": "L'Almageste place chaque étoile sur une partie du corps : la poitrine, le genou, la main. Ces descriptions donneront les noms arabes."
+          },
+          {
+            "y": 800,
+            "when": "avant al-Sufi",
+            "label": "Le ciel bédouin : la main au henné",
+            "note": "Ces étoiles forment la paume de Thurayyā, une figure géante dont la tête est les Pléiades et l'autre main la Baleine."
+          },
+          {
+            "y": 964,
+            "label": "al-Sufi : Dhāt al-Kursī, la Dame au fauteuil",
+            "note": "Le Livre des étoiles fixes fixe le nom arabe et transmet à l'Europe les positions de Ptolémée avec leur anatomie."
+          },
+          {
+            "y": 1679,
+            "label": "Royer lui donne un trône de marbre et une palme",
+            "note": "Dans l'atlas d'Augustin Royer, la reine tient une feuille de palmier de la main gauche et son vêtement de la droite."
+          },
+          {
+            "y": 1825,
+            "label": "Urania's Mirror la met sur une carte percée",
+            "note": "Une carte à jouer coloriée à la main, trouée aux positions des étoiles, à tenir devant une lampe pour retrouver la figure dehors."
+          }
+        ]
+      },
+      "cap": "Chaque culture a relu la même géométrie. Survolez les étapes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Wang Liang le cocher, et une route de montagne",
+      "p": [
+        "La Chine ne voit ici ni reine ni main, et surtout pas une seule figure : les étoiles de Cassiopée se répartissent entre trois grandes régions du ciel chinois, l'Enceinte pourpre interdite autour du pôle, la Tortue noire du Nord et le Tigre blanc de l'Ouest. Caph et Schedar appartiennent à Wang Liang, un cocher célèbre de la période des Printemps et Automnes, avec Achird, Kappa et Lambda de Cassiopée. Ruchbah fait partie de Gedao, une route escarpée traversant un territoire montagneux.",
+        "Le contraste est instructif. Le ciel grec projette un drame familial, avec des personnages, des fautes et des punitions. Le ciel chinois projette une administration et une géographie : des routes, des ponts, des fonctionnaires, un palais impérial. Ce ne sont pas deux façons de raconter la même chose, ce sont deux idées différentes de ce à quoi sert le ciel."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cas/urania-mirror-cassiopee-1825.jpg",
+      "page": "https://www.loc.gov/item/2002695396/",
+      "wide": true,
+      "cap": "Cassiopée sur son fauteuil, troisième planche du jeu « Urania's Mirror », Londres, 1825. Les cartes ont été publiées comme l'œuvre d'« une jeune dame » anonyme ; on sait aujourd'hui qu'elles ont été dessinées par un maître de Rugby School, le révérend Richard Rouse Bloxam, et gravées par Sidney Hall.",
+      "credit": "Sidney Hall, eau-forte coloriée à la main, 1825 — Library of Congress, Prints & Photographs Division (LC-USZC4-10052)"
+    },
+    {
+      "t": "text",
+      "h": "Ce que le mythe a laissé dans les catalogues",
+      "p": [
+        "Le récit continue de nommer des choses, et pas seulement des constellations. Le reste de supernova SNR G107.5-5.2, dans Cassiopée, s'appelle la nébuleuse des Néréides : les nymphes offensées ont fini par avoir leur objet céleste, à côté de la reine qui les avait insultées. L'amas ouvert NGC 7789 porte un autre nom, la Rose de Caroline, en hommage à Caroline Herschel, qui l'a découvert en 1783 et qui fut la première femme payée pour un travail d'astronome.",
+        "Et il y a une coïncidence qui mérite d'être dite. C'est exactement dans le W, entre la reine et son trône, qu'est apparue en novembre 1572 l'étoile nouvelle de Tycho Brahe, celle qui a démontré que le ciel change. La constellation de la vanité punie est celle où l'astronomie a cessé de croire à un firmament éternel. L'onglet Science raconte cette histoire-là."
+      ]
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "look",
+          "title": "Amphore corinthienne, Persée et Andromède",
+          "src": "Antikensammlung, Staatliche Museen zu Berlin",
+          "note": "La notice du musée sur la plus ancienne image du mythe, avec la remarque sur les pierres qu'Andromède tient en main. En allemand.",
+          "url": "https://smb.museum-digital.de/object/9358"
+        },
+        {
+          "kind": "look",
+          "title": "Persée libérant Andromède, de Piero di Cosimo",
+          "src": "Galerie des Offices",
+          "note": "L'exposition en ligne du musée, qui déplie le tableau détail par détail. En anglais.",
+          "url": "https://www.uffizi.it/en/online-exhibitions/the-scenic-virtuality-of-a-painting-perseus-freeing-andromeda-by-piero-di-cosimo"
+        },
+        {
+          "kind": "look",
+          "title": "Cassiopée, planche 3 d'« Urania's Mirror »",
+          "src": "Library of Congress",
+          "note": "La carte perforée de 1825 en haute résolution, sans restriction de publication connue aux États-Unis.",
+          "url": "https://www.loc.gov/item/2002695396/"
+        },
+        {
+          "kind": "look",
+          "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
+          "src": "Bodleian Library, Oxford",
+          "note": "Les cinquante-sept planches numérisées, dont la Dame au fauteuil.",
+          "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
+        },
+        {
+          "kind": "deep",
+          "title": "Race Matters : Black Andromeda in the Renaissance and in Contemporary Whitewashing",
+          "src": "Article d'histoire de l'art",
+          "note": "Reprend et prolonge l'étude d'Elizabeth McGrath de 1992 en partant du tableau de Piero di Cosimo. En anglais.",
+          "url": "https://www.academia.edu/164913350/RACE_MATTERS_BLACK_ANDROMEDA_IN_THE_RENAISSANCE_AND_IN_CONTEMPORARY_WHITEWASHING"
+        },
+        {
+          "kind": "read",
+          "title": "Andromeda and the Erasure of Black Beauty",
+          "src": "Retrospect Journal, université d'Édimbourg",
+          "note": "Le retour aux sources antiques, avec les passages d'Ovide sur la peau d'Andromède. En anglais.",
+          "url": "https://retrospectjournal.com/2024/03/03/andromeda-and-the-erasure-of-black-beauty/"
+        },
+        {
+          "kind": "read",
+          "title": "Was Andromeda Black ?",
+          "src": "The Root",
+          "note": "L'article qui a fait connaître le travail de McGrath au grand public, et qui explique ce que « Éthiopie » voulait dire en grec. En anglais.",
+          "url": "https://www.theroot.com/was-andromeda-black-1790874592"
+        },
+        {
+          "kind": "read",
+          "title": "Star Tales : Cassiopeia",
+          "src": "Ian Ridpath",
+          "note": "La meilleure synthèse sur les noms d'étoiles et l'iconographie de la constellation, source par source. En anglais.",
+          "url": "http://www.ianridpath.com/startales/cassiopeia.html"
+        },
+        {
+          "kind": "read",
+          "title": "Andromeda",
+          "src": "All Skies Encyclopaedia",
+          "note": "Les globes célestes antiques et les origines proche-orientales du monstre marin. Pour qui veut remonter plus haut que les Grecs. En anglais.",
+          "url": "https://ase.exopla.net/index.php/Andromeda"
+        },
+        {
+          "kind": "read",
+          "title": "Cassiopée (mythologie)",
+          "src": "Wikipédia en français",
+          "note": "Le récit et ses variantes, avec les renvois aux auteurs antiques. Le point de départ le plus commode en français.",
+          "url": "https://fr.wikipedia.org/wiki/Cassiop%C3%A9e_(mythologie)"
+        },
+        {
+          "kind": "read",
+          "title": "Beta Cassiopeiae",
+          "src": "Wikipédia en français",
+          "note": "Pour l'étymologie de Caph et la liste de ses graphies concurrentes, de Chaph à al-Sanam al-Nāqah.",
+          "url": "https://fr.wikipedia.org/wiki/Beta_Cassiopeiae"
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }

@@ -1,121 +1,318 @@
 {
- "constellation": "cas",
- "tab": "science",
- "blocks": [
-  {
-   "t": "lead",
-   "p": "Cassiopée abrite deux étoiles qui ont explosé, et l'une est si jeune que la lumière de sa mort nous atteint encore. Cassiopée A est le plus récent rémanent de supernova connu dans notre Galaxie : une aubaine pour qui veut faire de la médecine légale stellaire."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "cas",
+  "tab": "science",
+  "blocks": [
     {
-     "v": "≈ 340",
-     "u": "ans",
-     "l": "Âge de l'explosion qui a produit Cassiopée A, le plus jeune rémanent connu de la Voie lactée."
+      "t": "lead",
+      "p": "Aucune autre constellation n'a vu autant d'étoiles mourir sous nos yeux. Trois ont explosé là en cinq siècles. La première, vers 1181, a laissé un cadavre si étrange qu'on ne l'a identifié qu'en 2021. La deuxième, en 1572, a fissuré l'idée d'un ciel immuable et lancé l'astronomie moderne. La troisième est la plus proche, la plus récente, la mieux étudiée du ciel entier, et personne ne l'a vue exploser."
     },
     {
-     "v": "≈ 13",
-     "u": "a.l.",
-     "l": "Diamètre actuel de la bulle de plasma de Cassiopée A, encore en expansion."
+      "t": "stats",
+      "v": [
+        {
+          "v": "3",
+          "u": "supernovae",
+          "l": "Vers 1181, en 1572 et vers 1667. Aucune autre constellation n'en compte autant sur une période aussi courte."
+        },
+        {
+          "v": "11 000",
+          "u": "années-lumière",
+          "l": "La distance de Cassiopée A, le plus jeune reste de supernova connu dans notre galaxie."
+        },
+        {
+          "v": "100",
+          "u": "unités astronomiques",
+          "l": "La taille des plus fins filaments de débris que Webb distingue dans Cas A. En dessous, même lui ne résout plus rien."
+        },
+        {
+          "v": "170",
+          "u": "a.l.",
+          "l": "La distance qui sépare Cas A de « Baby Cas A ». Ce n'est pas un second objet mais un écho de lumière sur de la poussière lointaine."
+        },
+        {
+          "v": "450",
+          "u": "fois le Soleil",
+          "l": "Le diamètre de Rhô Cassiopeiae, l'une des douze hypergéantes jaunes connues dans toute la Galaxie."
+        },
+        {
+          "v": "60",
+          "u": "millions de degrés",
+          "l": "La température du plasma qui émet les rayons X de Gamma Cassiopeiae. Une anomalie vieille d'un demi-siècle, expliquée en 2026."
+        }
+      ]
     },
     {
-     "v": "1572",
-     "u": "",
-     "l": "Année de la supernova de Tycho, aussi brillante que Vénus et visible en plein jour."
+      "t": "text",
+      "h": "1572, la fissure dans le ciel d'Aristote",
+      "p": [
+        "Le 11 novembre 1572, Tycho Brahe lève les yeux et voit dans le W de Cassiopée une étoile qui n'y était pas. Elle monte jusqu'à rivaliser avec Vénus, puis décline lentement et disparaît en mars 1574. Brahe fait alors ce que personne n'avait fait : il mesure. Pas de parallaxe diurne, donc l'objet est plus loin que la Lune et les planètes. Aucun déplacement par rapport aux étoiles pendant des mois, donc ce n'est pas une planète. Conclusion inévitable et scandaleuse : une étoile nouvelle est apparue dans une région du ciel que la physique d'Aristote tenait pour éternelle et inchangeable.",
+        "Il publie l'année suivante « De nova stella », et ce petit livre pèse lourd dans l'histoire des sciences. Il ne prouve pas seulement qu'un ciel change ; il montre que la mesure précise tranche des questions que la philosophie ne tranchait pas. Quatre siècles et demi plus tard, en 2008, une équipe a capté l'écho de cette lumière réfléchie sur des nuages de poussière et en a pris le spectre. Verdict : SN 1572 était une supernova thermonucléaire de type Ia, la classe même qui sert aujourd'hui à mesurer l'expansion de l'univers. On dispute encore de savoir si l'explosion est venue d'une naine blanche gavée par une compagne ou de la fusion de deux naines blanches."
+      ]
     },
     {
-     "v": "5",
-     "u": "étoiles",
-     "l": "Le W qui rend la figure reconnaissable au premier coup d'œil, à l'opposé de la Grande Ourse par rapport au pôle."
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Cinq siècles d'explosions dans le W",
+        "events": [
+          {
+            "y": 1181,
+            "label": "Une étoile invitée dans les annales chinoises",
+            "note": "Signalée aussi au Japon, visible plusieurs mois. Son reste n'a été identifié qu'en 2021 : Pa 30, la nébuleuse de l'étoile zombie."
+          },
+          {
+            "y": 1572,
+            "label": "Tycho Brahe mesure une étoile nouvelle",
+            "note": "Elle rivalise avec Vénus et reste visible jusqu'en mars 1574. Sans parallaxe, donc au-delà de la Lune, dans un ciel censé immuable."
+          },
+          {
+            "y": 1667,
+            "when": "vers 1667",
+            "label": "Cassiopée A explose, et personne ne le note",
+            "note": "La date est calculée à rebours depuis l'expansion du reste. Les estimations récentes situent l'arrivée de la lumière entre 1662 et 1700."
+          },
+          {
+            "y": 1680,
+            "label": "Flamsteed catalogue « 3 Cassiopeiae »",
+            "note": "Une étoile de sixième magnitude à dix minutes d'arc de Cas A. On ne l'a jamais retrouvée depuis, et le débat n'est pas clos."
+          },
+          {
+            "y": 1948,
+            "label": "Ryle et Smith trouvent la plus forte source radio du ciel",
+            "note": "Cas A entre dans l'histoire par la radioastronomie. Sa contrepartie visible ne sera identifiée qu'en 1954, par Baade et Minkowski."
+          },
+          {
+            "y": 2023,
+            "label": "Webb résout les débris un par un",
+            "note": "MIRI en avril, NIRCam en décembre. Le reste de supernova le plus étudié du ciel redevient un objet neuf."
+          }
+        ]
+      },
+      "cap": "Les étapes sont espacées régulièrement : c'est la séquence qui compte. Survolez-les.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Cassiopée A, la plus jeune de toutes",
+      "p": [
+        "Elle n'a pas de nom poétique parce qu'elle a été trouvée par les ondes radio avant d'être vue. En 1948, Martin Ryle et Francis Graham-Smith détectent dans Cassiopée la source radio la plus intense du ciel après le Soleil. Il faudra six ans pour qu'un télescope optique montre ce qui l'émet : une coquille de débris en expansion, large de dix années-lumière, à onze mille années-lumière de nous.",
+        "Cas A est devenue le laboratoire par excellence de la mort des étoiles massives. Elle est jeune, donc encore dense et brillante. Elle est proche, donc résolue en détail. Et elle est complète : on y voit à la fois les couches profondes de l'étoile éjectées, l'onde de choc, le gaz que l'astre avait perdu avant d'exploser, et au centre l'étoile à neutrons qui reste. Chaque nouvelle génération d'instruments y revient, et chacune y trouve autre chose."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cas/cas-a-nircam-webb.jpg",
+      "page": "https://esawebb.org/images/weic2330a/",
+      "wide": true,
+      "cap": "Cassiopée A par la caméra proche infrarouge de Webb, décembre 2023. Les grumeaux orange et rose de la coquille interne sont du soufre, de l'oxygène, de l'argon et du néon arrachés à l'étoile. Le blanc laiteux qui ressemble à de la fumée de feu de camp est du rayonnement synchrotron : des particules chargées spiralant à très grande vitesse le long des lignes de champ magnétique. En bas à droite, la grosse tache striée est « Baby Cas A ». Cliquez pour agrandir.",
+      "credit": "NASA, ESA, CSA, STScI, D. Milisavljevic (Purdue University), T. Temim (Princeton University), I. De Looze (université de Gand)"
+    },
+    {
+      "t": "text",
+      "h": "Ce que Webb a trouvé dedans",
+      "p": [
+        "Le relevé publié en 2024 par l'équipe de Dan Milisavljevic a livré trois surprises. La première est un réseau de filaments en toile d'araignée, résolus à un centième de parsec, faits de matière qui n'a pas encore rencontré l'onde de choc. Leur forme raconte un mélange turbulent entre la couche d'oxygène froide de l'étoile et la matière chauffée par les neutrinos, dans les premières secondes de l'effondrement. Les plus fins mesurent moins de cent unités astronomiques. Les chercheurs parlent d'une étoile qui a éclaté « comme du verre ».",
+        "La deuxième est une nappe épaisse de poussière, vue en projection à l'intérieur du reste, criblée de petits trous ronds : des grumeaux de débris à très grande vitesse l'ont perforée de part en part. C'est l'explication du fameux « Green Monster », cette boucle verte repérée en avril 2023 et jugée alors incompréhensible. Une analyse en rayons X avec Chandra, en 2024, a confirmé qu'il s'agit non pas de débris de l'étoile mais du gaz qu'elle avait perdu avant d'exploser, et qu'il se trouve devant le reste, pas dedans. La troisième surprise est une trentaine d'échos lumineux qui dessinent la structure fine du milieu interstellaire alentour. Enfin, l'absence de signal a servi aussi : Webb ne voit rien de l'étoile à neutrons centrale au-delà de vingt nanojanskys, ce qui écarte l'hypothèse d'un disque de matière retombée autour d'elle."
+      ]
+    },
+    {
+      "t": "quote",
+      "p": "Après tant d'années passées à étudier Cas A, résoudre enfin ces détails est proprement incroyable.",
+      "who": "Dan Milisavljevic, université Purdue, décembre 2023"
+    },
+    {
+      "t": "video",
+      "url": "https://www.youtube.com/watch?v=V0yr2kVXmo8",
+      "page": "https://esawebb.org/videos/weic2330b/",
+      "cap": "Trente-trois secondes pour descendre du W de Cassiopée, tel qu'on le voit à l'œil nu, jusqu'à l'image de Webb.",
+      "credit": "NASA, ESA, CSA, STScI, A. Pagan (STScI). Remerciements : Akira Fujii, David Malin, Digitized Sky Survey"
+    },
+    {
+      "t": "warn",
+      "h": "Personne ne l'a vue exploser, et c'est une énigme",
+      "p": "L'expansion du reste, remontée à l'envers, place l'arrivée de la lumière autour de 1667, avec une fourchette qui va de 1662 à 1700. Or aucun observateur de cette époque ne signale clairement une étoile nouvelle dans Cassiopée. Un seul indice existe : le 16 août 1680, John Flamsteed catalogue une étoile de sixième magnitude, « 3 Cassiopeiae », qu'on n'a jamais retrouvée depuis. L'hypothèse est séduisante, mais la position de Flamsteed se trouve à dix minutes d'arc de Cas A, alors que son erreur moyenne sur les vingt autres étoiles relevées la même nuit était de vingt-trois secondes d'arc. Caroline Herschel a proposé une erreur de sextant sur une autre étoile ; d'autres évoquent la variable AR Cassiopeiae. Quant à l'« étoile de midi » de 1630, censée annoncer la naissance de Charles II, il s'agissait très probablement de Vénus. L'explication la plus solide reste que la supernova a été étouffée : la poussière interstellaire d'un côté, et de l'autre une étoile qui avait déjà perdu ses couches externes, ce qui l'aurait rendue nettement moins brillante que ses deux voisines de 1181 et 1572."
+    },
+    {
+      "t": "text",
+      "h": "L'étoile zombie de 1181",
+      "p": [
+        "En 1181, les astronomes chinois et japonais consignent une étoile invitée dans cette région du ciel. Puis rien pendant huit siècles : de toutes les supernovae historiques, c'était la seule dont on n'avait pas retrouvé le reste. L'histoire de sa redécouverte est belle. En 2013, un astronome amateur américain, Dana Patchick, repère sur des images infrarouges du satellite WISE une nébuleuse inconnue, qui prendra son nom : Pa 30. En octobre 2018, un amateur français, Pascal Le Dû, prend le spectre de son étoile centrale et y trouve des raies inexplicables. Il alerte un professionnel, Quentin Parker, qui travaillait déjà sur l'objet. En 2021, l'équipe publie l'identification.",
+        "Ce que Pa 30 contient n'a pas d'équivalent connu. Au centre, une étoile brûlante dont le spectre ne montre ni hydrogène ni hélium, et dont les rayons X révèlent des cendres de combustion du carbone. Autour, des filaments de soufre presque radiaux, répartis en symétrie sphérique, qui font ressembler l'objet à un pissenlit. L'interprétation retenue est une supernova de type Iax : la fusion de deux naines blanches qui a raté son explosion complète et laissé un survivant, ce qu'on appelle une étoile zombie. C'est la seule connue dans notre galaxie, sur une vingtaine ou une trentaine de cas répertoriés ailleurs. En 2024, une cartographie en trois dimensions au télescope Keck a mesuré les filaments : ils fuient à mille kilomètres par seconde, sans freiner, et la date d'explosion qu'on en déduit tombe sur 1152, à soixante-seize ans près. Les annales médiévales sont confirmées par la balistique."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cas/bulle-ngc7635-hubble.jpg",
+      "page": "https://esahubble.org/images/heic1608a/",
+      "wide": true,
+      "cap": "La nébuleuse de la Bulle, choisie par Hubble pour son vingt-sixième anniversaire en orbite. Ce n'est pas une bulle de savon mais un front de choc : le vent d'une étoile très massive, décentrée sur la droite, percute le gaz environnant à vitesse supersonique. Le diamètre de la sphère atteint sept à dix années-lumière.",
+      "credit": "NASA, ESA, Hubble Heritage Team"
+    },
+    {
+      "t": "text",
+      "h": "Deux étoiles du W qui méritent le détour",
+      "p": [
+        "L'étoile centrale du W, Gamma Cassiopeiae, est une célébrité discrète. En 1866, le jésuite Angelo Secchi remarque que ses raies d'hydrogène sont brillantes au lieu d'être sombres. C'est la première étoile de type Be jamais signalée, toute une classe née de cette observation : des astres chauds qui tournent si vite qu'ils s'entourent d'un disque de matière expulsée par l'équateur. Puis, en 1976, un satellite à rayons X détecte chez elle une émission dure et anormalement intense, dix fois celle des autres étoiles B, produite par un plasma à plus de soixante millions de degrés. L'énigme a tenu cinquante ans. En mars 2026, une équipe menée par Yaël Nazé, à l'université de Liège, a publié dans Astronomy & Astrophysics des observations du spectromètre Resolve du satellite XRISM qui relient enfin directement ces rayons X durs au mouvement orbital de la compagne invisible de Gamma Cas, dont la nature exacte reste à établir.",
+        "L'autre est Rhô Cassiopeiae, invisible à l'œil nu depuis un ciel de ville mais accessible aux jumelles. C'est une hypergéante jaune, l'une des douze connues dans toute la Galaxie, quatre cent cinquante fois plus large que le Soleil et un million de fois plus lumineuse. Tous les cinquante ans environ, elle expulse brutalement l'équivalent de dix mille masses terrestres ; le dernier sursaut date de 2000. C'est une candidate sérieuse au titre de la prochaine supernova visible dans la Voie lactée, ce qui ferait de Cassiopée la quatrième."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "scale",
+      "wide": true,
+      "data": {
+        "title": "Rayons comparés",
+        "items": [
+          {
+            "n": "Rhô Cas",
+            "r": 450,
+            "c": "#F5E2A8",
+            "note": "Hypergéante jaune à environ 3 400 années-lumière. Placée au centre du système solaire, elle avalerait l'orbite de la Terre."
+          },
+          {
+            "n": "Gamma Cas",
+            "r": 10,
+            "c": "#C8DCFA",
+            "note": "Sous-géante bleue de type B0,5, entourée d'un disque équatorial alimenté par sa rotation rapide."
+          },
+          {
+            "n": "Soleil",
+            "r": 1,
+            "note": "Pour l'échelle. À cette taille, son disque tient dans quelques pixels."
+          }
+        ]
+      },
+      "cap": "Les deux étoiles les plus intéressantes de la constellation ne sont pas les plus brillantes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Ce qu'on peut y voir soi-même",
+      "p": [
+        "Cassiopée traverse la Voie lactée, et cela se paie en amas d'étoiles. M52 est le plus facile, une jolie tache granuleuse aux jumelles, à un demi-degré de la nébuleuse de la Bulle sans avoir aucun rapport avec elle : l'amas est très en avant, sur la même ligne de visée. NGC 457 est le préféré des observateurs, surnommé l'amas du Hibou ou de la Chouette parce que deux étoiles brillantes y forment des yeux et deux chaînes d'étoiles des ailes déployées. NGC 663 et M103 complètent la liste.",
+        "Les nébuleuses demandent plus de patience. La Bulle réclame au minimum quinze centimètres de diamètre et un ciel noir ; le Cœur et l'Âme, deux vastes régions d'hydrogène ionisé voisines, sont surtout des cibles de photographie. Quant à Cassiopée A, inutile de chercher : c'est un objet radio et X, presque muet en lumière visible. Le W lui-même reste l'essentiel. Il ne se couche jamais aux latitudes françaises, et quand la Grande Ourse est trop basse sur l'horizon, c'est lui qui sert à retrouver le nord."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "compass",
+      "wide": true,
+      "data": {
+        "title": "Le W comme point de repère",
+        "targets": [
+          {
+            "star": "Polaris",
+            "from": "Schedar",
+            "label": "Polaris",
+            "sub": "Petite Ourse",
+            "note": "La méthode de secours quand la Grande Ourse rase l'horizon. Cassiopée et la Casserole sont de part et d'autre du pôle, l'une haute quand l'autre est basse."
+          },
+          {
+            "star": "Mirfak",
+            "from": "Ruchbah",
+            "label": "Mirfak",
+            "sub": "Persée",
+            "note": "Entre les deux se trouve le Double Amas de Persée, l'une des plus belles cibles de jumelles du ciel d'hiver."
+          }
+        ],
+        "notes": {
+          "Schedar": "La plus brillante du W, une géante orange.",
+          "Ruchbah": "Le nom vient de l'arabe pour « le genou » de la reine assise.",
+          "Segin": "L'extrémité du W, la plus discrète des cinq."
+        }
+      },
+      "cap": "Cassiopée ne se couche jamais depuis la France : elle est disponible toute l'année, à toute heure de la nuit.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "deep",
+          "title": "A JWST Survey of the Supernova Remnant Cassiopeia A",
+          "src": "The Astrophysical Journal Letters, 2024",
+          "note": "Le relevé complet : la toile d'araignée d'éjecta, la nappe percée, les échos lumineux, la limite sur l'étoile à neutrons. En anglais.",
+          "url": "https://arxiv.org/abs/2401.02477"
+        },
+        {
+          "kind": "read",
+          "title": "Webb livre une vue en haute définition d'une étoile explosée",
+          "src": "ESA/Webb, décembre 2023",
+          "note": "Le communiqué d'où viennent les 100 unités astronomiques et l'écho lumineux de Baby Cas A. En anglais.",
+          "url": "https://esawebb.org/news/weic2330/"
+        },
+        {
+          "kind": "look",
+          "title": "Cas A par NIRCam",
+          "src": "ESA/Webb",
+          "note": "La page de l'image, avec les fichiers en pleine résolution et la version annotée.",
+          "url": "https://esawebb.org/images/weic2330a/"
+        },
+        {
+          "kind": "watch",
+          "title": "Zoom sur Cas A",
+          "src": "ESA/Webb",
+          "note": "Le plongeon du W à l'œil nu jusqu'aux filaments. Fichier HD téléchargeable.",
+          "url": "https://esawebb.org/videos/weic2330b/"
+        },
+        {
+          "kind": "read",
+          "title": "Après plus d'un demi-siècle, les astronomes percent les secrets d'une étoile mystérieuse",
+          "src": "Yaël Nazé, The Conversation",
+          "note": "L'astronome de Liège raconte elle-même l'énigme de Gamma Cas et sa résolution. En français, et sans jargon.",
+          "url": "https://theconversation.com/apres-plus-dun-demi-siecle-les-astronomes-percent-les-secrets-dune-etoile-mysterieuse-278322"
+        },
+        {
+          "kind": "deep",
+          "title": "X-Ray Diagnostics of Cassiopeia A's « Green Monster »",
+          "src": "The Astrophysical Journal Letters, 2024",
+          "note": "L'article Chandra qui place la boucle verte devant le reste et l'attribue au gaz perdu avant l'explosion. En anglais.",
+          "url": "https://iopscience.iop.org/article/10.3847/2041-8213/ad2fc5"
+        },
+        {
+          "kind": "deep",
+          "title": "Tycho Brahe's 1572 supernova as a standard type Ia revealed from its light echo spectrum",
+          "src": "Nature, 2008",
+          "note": "Comment on prend le spectre d'une supernova vieille de quatre siècles. En anglais.",
+          "url": "https://arxiv.org/pdf/0810.5106"
+        },
+        {
+          "kind": "deep",
+          "title": "Expansion Properties of the Young Supernova Type Iax Remnant Pa 30",
+          "src": "The Astrophysical Journal Letters, octobre 2024",
+          "note": "La cartographie 3D au Keck qui date l'explosion de 1152, à soixante-seize ans près. En anglais.",
+          "url": "https://doi.org/10.3847/2041-8213/ad713b"
+        },
+        {
+          "kind": "read",
+          "title": "Un reste de supernova surréaliste et son étoile zombie",
+          "src": "Futura Sciences",
+          "note": "Le récit de Pa 30 en français, y compris le rôle des deux astronomes amateurs.",
+          "url": "https://www.futura-sciences.com/sciences/actualites/astronomie-reste-supernova-surrealiste-son-etoile-zombie-ressemble-pissenlit-117078/"
+        },
+        {
+          "kind": "look",
+          "title": "La nébuleuse de la Bulle",
+          "src": "ESA/Hubble",
+          "note": "L'image anniversaire en 7 857 pixels de large, plus le communiqué qui l'accompagne.",
+          "url": "https://esahubble.org/images/heic1608a/"
+        },
+        {
+          "kind": "deep",
+          "title": "On Cas A, Cassini, Comets and King Charles",
+          "src": "arXiv, 2013",
+          "note": "L'état du débat sur l'observation de Flamsteed, arguments pour et contre. En anglais.",
+          "url": "https://arxiv.org/pdf/1301.1855"
+        },
+        {
+          "kind": "deep",
+          "title": "The Optical Evolution of the Tycho Supernova Remnant over Three Decades",
+          "src": "arXiv, novembre 2025",
+          "note": "Trente ans de suivi optique du reste de 1572, et la meilleure synthèse récente sur cette supernova. En anglais.",
+          "url": "https://arxiv.org/pdf/2511.17763"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "t": "figure",
-   "src": "/assets/img/constellations/cas/cassiopee-a-webb.jpg",
-   "wide": true,
-   "page": "https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_reveals_new_details_in_Cassiopeia_A",
-   "cap": "Cassiopée A vue par l'instrument infrarouge moyen du télescope Webb. Les filaments sont la coquille de matière expulsée qui percute le gaz que l'étoile avait perdu avant d'exploser.",
-   "credit": "NASA, ESA, CSA, STScI, D. Milisavljevic (Purdue), T. Temim (Princeton), I. De Looze (Gand)"
-  },
-  {
-   "t": "text",
-   "h": "Une autopsie stellaire",
-   "p": [
-    "Cassiopée A est l'objet rêvé pour comprendre la mort d'une étoile massive. Assez jeune pour que les débris n'aient pas encore eu le temps de se mélanger au milieu interstellaire, assez proche — environ onze mille années-lumière — pour qu'on en distingue le détail.",
-    "Le Webb y a détecté de minuscules nœuds de gaz issus de l'étoile elle-même : soufre, oxygène, argon, néon. En observant leur disposition, on remonte à la structure en couches qu'avait l'astre avant l'explosion. C'est de la médecine légale appliquée à une étoile."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Le monstre vert",
-   "p": [
-    "En avril 2023, les premières images infrarouges du Webb ont révélé dans la coquille interne une structure en filaments verts, aussitôt surnommée le « monstre vert ». Elle était absente des images en lumière visible et n'apparaissait pas dans l'infrarouge proche.",
-    "Les observations ultérieures ont tranché : cette structure s'est formée avant l'explosion. Ce n'est pas un débris, c'est la trace du vent que l'étoile soufflait de son vivant, éclairée aujourd'hui par le choc."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Deux supernovas, deux célébrités",
-   "p": [
-    "Cassiopée A n'a laissé aucune trace fiable dans les archives : on ignore la date exacte de l'explosion, ce qui vaut à la supernova le nom prudent de SN 1667, souvent suivi d'un point d'interrogation.",
-    "Celle de 1572, en revanche, fut un événement européen. Tycho Brahe l'observa et en tira un argument décisif contre l'immuabilité des cieux d'Aristote. Aussi brillante que Vénus, visible en plein jour, elle s'éteignit à l'œil nu en deux ans."
-   ]
-  },
-  {
-   "t": "figure",
-   "src": "/assets/img/constellations/cas/supernova-tycho-wise.jpg",
-   "page": "https://science.nasa.gov/photojournal/tychos-supernova-remnant/",
-   "cap": "Le rémanent de la supernova de Tycho, invisible en lumière visible, révélé dans l'infrarouge par le télescope WISE.",
-   "credit": "NASA / JPL-Caltech / UCLA"
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "read",
-     "title": "Webb reveals new details in Cassiopeia A",
-     "src": "ESA",
-     "note": "Le communiqué de l'image infrarouge moyen. En anglais.",
-     "url": "https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_reveals_new_details_in_Cassiopeia_A"
-    },
-    {
-     "kind": "read",
-     "title": "Le télescope James-Webb révèle de spectaculaires images des restes de Cassiopée A",
-     "src": "Futura Sciences",
-     "note": "La même actualité en français, avec le détail du rayonnement synchrotron et des échos lumineux.",
-     "url": "https://www.futura-sciences.com/sciences/actualites/astronomie-telescope-james-webb-revele-spectaculaires-images-restes-supernova-cassiopee-110033/"
-    },
-    {
-     "kind": "read",
-     "title": "Le mystérieux « monstre vert » de Cassiopée A enfin expliqué",
-     "src": "Sciencepost",
-     "note": "L'explication de la structure verte, formée avant l'explosion.",
-     "url": "https://sciencepost.fr/mysterieux-monstre-vert-cassiopee-enfin-explique/"
-    },
-    {
-     "kind": "look",
-     "title": "Webb sheds light on an exploded star",
-     "src": "NASA",
-     "note": "L'image NIRCam en pleine résolution, avec les crédits à conserver. En anglais.",
-     "url": "https://www.nasa.gov/image-article/webb-sheds-light-on-an-exploded-star"
-    },
-    {
-     "kind": "look",
-     "title": "Tycho's Supernova Remnant",
-     "src": "NASA",
-     "note": "L'image WISE et sa notice. Domaine public. En anglais.",
-     "url": "https://science.nasa.gov/photojournal/tychos-supernova-remnant/"
-    },
-    {
-     "kind": "watch",
-     "title": "Cassiopeia A Zoom",
-     "src": "NASA",
-     "note": "Un plongé depuis le ciel à l'œil nu jusqu'à l'image du Webb. En anglais.",
-     "url": "https://science.nasa.gov/asset/webb/cassiopeia-a-zoom"
-    }
-   ]
-  }
- ]
+  ]
 }
