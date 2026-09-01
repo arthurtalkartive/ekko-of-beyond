@@ -1,275 +1,275 @@
 {
-  "constellation": "ari",
-  "tab": "mytho",
-  "blocks": [
+ "constellation": "ari",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le premier signe du zodiaque a commencé sa carrière comme journalier agricole. Dans les tablettes babyloniennes, ces étoiles ne dessinent pas un bélier mais un ouvrier des champs, et elles occupent la dernière station de l'écliptique, pas la première. Le bélier n'arrive que tard, la place de tête plus tard encore, et la toison d'or vient des Grecs. Rarement une constellation aura autant changé de métier."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Le premier signe du zodiaque a commencé sa carrière comme journalier agricole. Dans les tablettes babyloniennes, ces étoiles ne dessinent pas un bélier mais un ouvrier des champs, et elles occupent la dernière station de l'écliptique, pas la première. Le bélier n'arrive que tard, la place de tête plus tard encore, et la toison d'or vient des Grecs. Rarement une constellation aura autant changé de métier."
+     "v": "LÚ.ḪUN.GÁ",
+     "l": "« L'Ouvrier agricole », ou « le Journalier », le nom babylonien de ces étoiles avant qu'elles ne deviennent un bélier."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "LÚ.ḪUN.GÁ",
-          "l": "« L'Ouvrier agricole », ou « le Journalier », le nom babylonien de ces étoiles avant qu'elles ne deviennent un bélier."
-        },
-        {
-          "v": "441",
-          "u": "deg²",
-          "l": "Trente-neuvième constellation par la taille, soit un peu plus d'un pour cent de la sphère céleste."
-        },
-        {
-          "v": "4",
-          "u": "étoiles",
-          "l": "Le compte de celles qui se voient vraiment : Hamal, Sheratan, Mesarthim et 41 du Bélier. Le reste demande un ciel noir."
-        },
-        {
-          "v": "3",
-          "u": "animaux",
-          "l": "Un bélier chez les Grecs, deux inspecteurs jumeaux en Chine, un marsouin aux îles Marshall. Les mêmes étoiles, trois figures sans rapport."
-        },
-        {
-          "v": "1825",
-          "l": "L'année où une mouche se promène encore sur le dos du Bélier, sur les cartes célestes. Musca Borealis a depuis été abolie."
-        }
-      ]
+     "v": "441",
+     "u": "deg²",
+     "l": "Trente-neuvième constellation par la taille, soit un peu plus d'un pour cent de la sphère céleste."
     },
     {
-      "t": "figure",
-      "src": "/skyculture/ekko/illustrations/ari.webp",
-      "lit": true,
-      "roll": true,
-      "wide": true,
-      "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Trois étoiles pour un animal entier : la tête tient dans Hamal, les cornes dans Sheratan et Mesarthim, et le reste du corps est une extrapolation généreuse.",
-      "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+     "v": "4",
+     "u": "étoiles",
+     "l": "Le compte de celles qui se voient vraiment : Hamal, Sheratan, Mesarthim et 41 du Bélier. Le reste demande un ciel noir."
     },
     {
-      "t": "text",
-      "h": "D'abord un ouvrier agricole",
-      "p": [
-        "Le MUL.APIN est une compilation astronomique babylonienne écrite au XIIᵉ ou XIᵉ siècle avant notre ère, qui recense les levers et les couchers des étoiles et servait vraisemblablement de calendrier agricole. On y trouve les ancêtres de toutes nos constellations zodiacales. Celle qui correspond au Bélier s'appelle MUL LÚ.ḪUN.GÁ : l'Ouvrier agricole, ou le Journalier. Et elle n'ouvre pas la liste, elle la ferme : c'est la dernière station le long de l'écliptique. À cette époque, le point vernal se trouvait du côté des Pléiades.",
-        "Le passage de l'ouvrier au bélier se fait dans la période babylonienne tardive, et l'on ne sait pas exactement quand ni pourquoi. L'hypothèse la mieux étayée fait intervenir Dumuzi le Berger, l'époux de la déesse Inanna, dont le bélier était l'animal ; la figure se serait progressivement contaminée. Sur les kudurru, ces bornes frontières gravées entre 1350 et 1000 avant notre ère, un bélier zodiacal apparaît déjà, distinct des autres figures. Vers le VIIᵉ siècle, les néo-babyloniens révisent leur zodiaque et placent Hamal tout près du point vernal. L'ouvrier agricole est passé en tête de liste, transformé en mouton."
-      ]
+     "v": "3",
+     "u": "animaux",
+     "l": "Un bélier chez les Grecs, deux inspecteurs jumeaux en Chine, un marsouin aux îles Marshall. Les mêmes étoiles, trois figures sans rapport."
     },
     {
-      "t": "figure",
-      "src": "/assets/img/constellations/ari/belier-du-fourre-ur-british-museum.jpg",
-      "page": "https://smarthistory.org/ram-in-a-thicket-ur/",
-      "wide": true,
-      "cap": "Ce n'est pas une carte du ciel, mais l'animal que le ciel babylonien finira par adopter. Cette statuette d'or, d'argent, de lapis-lazuli et de coquillage a été trouvée par Leonard Woolley dans le « grand puits de la mort » du cimetière royal d'Ur, entre 1928 et 1929. Elle date de 2600 à 2400 avant notre ère. Woolley l'a baptisée « le bélier dans le fourré » d'après la Genèse, alors qu'il s'agit plus exactement d'un bouc dressé sur un arbuste pour en brouter les pousses.",
-      "credit": "« Ram in a Thicket », Ur, tombe PG 1237 — The British Museum, Londres (122200)"
-    },
-    {
-      "t": "text",
-      "h": "Chrysomallos, le bélier qui parle",
-      "p": [
-        "Les Grecs, eux, lui ont donné une biographie complète. Chrysomallos, littéralement « laine d'or », est le fils de Poséidon et de la princesse thrace Théophané, tous deux métamorphosés en moutons pour l'occasion. Il est ailé, ses cornes sont d'or, et il parle. Nephélé, une nymphe des nuages, l'envoie sauver ses deux enfants, Phrixos et Hellé, que leur belle-mère Ino veut faire sacrifier : elle avait fait griller les grains de semence pour provoquer une famine, puis truqué l'oracle censé y remédier.",
-        "Le bélier emporte les enfants dans les airs. Hellé lâche prise et tombe dans le détroit qui porte depuis son nom, l'Hellespont, aujourd'hui les Dardanelles. Phrixos parvient en Colchide, où le roi Éétès l'accueille et lui donne sa fille. Il sacrifie alors le bélier et cloue la toison dans un bois sacré, gardée par un dragon. Deux générations plus tard, Jason et les Argonautes viendront la chercher. En mars 2024, les fouilles de la maison de Léda, à Pompéi, ont mis au jour une fresque en parfait état représentant la scène : Phrixos sur le bélier cabré, assistant impuissant à la chute de sa sœur. Le directeur du site l'a résumée en une phrase, deux réfugiés en mer."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Ce que ces étoiles ont représenté",
-        "events": [
-          {
-            "y": -1150,
-            "when": "XIIᵉ-XIᵉ s. av. J.-C.",
-            "label": "Un ouvrier agricole",
-            "note": "MUL LÚ.ḪUN.GÁ dans le MUL.APIN, dernière station de l'écliptique. Le compendium sert de calendrier des travaux des champs."
-          },
-          {
-            "y": -1000,
-            "when": "1350 à 1000 av. J.-C.",
-            "label": "Un bélier apparaît sur les bornes",
-            "note": "Les kudurru, bornes frontières gravées, portent les premières images d'un bélier zodiacal nettement distinct des autres figures."
-          },
-          {
-            "y": -650,
-            "when": "VIIᵉ s. av. J.-C.",
-            "label": "Le zodiaque est révisé",
-            "note": "Le glissement de l'Ouvrier au Bélier tient probablement à Dumuzi le Berger, époux d'Inanna. Hamal se retrouve tout près du point vernal."
-          },
-          {
-            "y": -270,
-            "when": "IIIᵉ s. av. J.-C.",
-            "label": "Ératosthène explique sa pâleur",
-            "note": "Dans les Catastérismes, le bélier laisse sa toison d'or sur Terre et ne monte au ciel que dépouillé. C'est pourquoi il brille si peu."
-          },
-          {
-            "y": 964,
-            "label": "al-Sufi : al-Ḥamal",
-            "note": "Le ciel arabe garde le bélier. Hamal vient de raʾs al-ḥamal, la tête du bélier ; Sheratan de al-sharaṭān, les deux signes."
-          },
-          {
-            "y": 1825,
-            "label": "Une mouche sur le dos du bélier",
-            "note": "La planche 16 d'Urania's Mirror associe le Bélier à Musca Borealis, la Mouche boréale, constellation abolie depuis."
-          }
-        ]
-      },
-      "cap": "Trois mille ans de réattributions. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Pourquoi il brille si peu",
-      "p": [
-        "Reste une difficulté que les Grecs ont dû résoudre. Si cette constellation est la plus importante du zodiaque, celle qui porte le point de départ de l'année, pourquoi est-elle si terne ? Les mythographes ont fourni deux réponses, et elles ne disent pas la même chose.",
-        "Hygin, dans son Astronomie poétique, s'en tient au sacrifice : Phrixos immole le bélier à Zeus, cloue la toison dans le temple, et c'est Nephélé qui place l'image de l'animal au ciel. Il ajoute un détail admirable de cohérence, en notant que cette figure gouverne désormais la saison des semailles, précisément le blé qu'Ino avait fait griller pour déclencher toute l'affaire. Ératosthène, dans ses Catastérismes, propose autre chose et vise explicitement le problème de l'éclat : le bélier se dépouille lui-même de sa toison d'or, l'offre au roi de Colchide en souvenir, et monte au ciel nu. Sa pâleur n'est donc pas un défaut, c'est une conséquence. L'or est resté sur Terre."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/ari/urania-mirror-belier-1825.jpg",
-      "page": "https://commons.wikimedia.org/wiki/File:Sidney_Hall_-_Urania's_Mirror_-_Aries_and_Musca_Borealis.jpg",
-      "wide": true,
-      "cap": "Le Bélier et la Mouche boréale, seizième planche du jeu « Urania's Mirror », Londres, 1825. La petite constellation posée sur le dos du bélier a été proposée au XVIIᵉ siècle et abandonnée depuis : les cartes modernes ne la portent plus. Comme toutes les cartes du jeu, celle-ci est percée de trous calibrés sur l'éclat de chaque étoile, pour être tenue devant une lampe.",
-      "credit": "Sidney Hall, eau-forte coloriée à la main, 1825 — restauration Adam Cuerden, Wikimedia Commons, domaine public"
-    },
-    {
-      "t": "text",
-      "h": "Al-Ḥamal, la tête du bélier",
-      "p": [
-        "Le ciel arabe a hérité le bélier des Grecs et lui a donné le nom d'al-Ḥamal. Les noms des étoiles suivent l'anatomie, comme partout ailleurs dans ce vocabulaire. Hamal, la plus brillante, vient de raʾs al-ḥamal, la tête du bélier. Sheratan vient de al-sharaṭān, les deux signes, parce que ces étoiles ont marqué le passage de l'équinoxe de printemps. Botein, plus discrète, vient de al-buṭayn, le petit ventre.",
-        "Une lecture bédouine plus ancienne mérite d'être signalée, parce qu'elle déborde largement de la constellation : dans cette tradition, l'amas des Pléiades, qui appartient aujourd'hui au Taureau, formait la queue du bélier. La figure enjambait donc la frontière que l'Union astronomique internationale tracera en 1930, et englobait l'objet le plus spectaculaire de cette région du ciel. Les frontières modernes ont coupé la bête en deux."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/ari/al-sufi-belier-marsh144.jpg",
-      "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
-      "wide": true,
-      "cap": "Le Bélier dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. Comme toutes les figures de l'ouvrage, il est dessiné deux fois : tel qu'on le voit dans le ciel, et tel qu'il apparaît retourné sur un globe céleste. L'animal est représenté la tête tournée vers l'arrière, posture héritée de l'iconographie grecque.",
-      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
-    },
-    {
-      "t": "text",
-      "h": "Deux inspecteurs et un marsouin",
-      "p": [
-        "Ailleurs, personne n'a vu de bélier. En Chine, les étoiles du Bélier se répartissent entre des astérismes qui n'ont rien de pastoral, dont une paire d'inspecteurs jumeaux : le ciel chinois, comme on l'a vu pour Céphée et pour la Petite Ourse, est peuplé de fonctionnaires plutôt que d'animaux mythologiques. Aux îles Marshall, dans le Pacifique, les mêmes étoiles dessinent un marsouin, ce qui, pour une culture de navigateurs, se comprend mieux qu'un mouton.",
-        "Cette dispersion vaut la peine d'être notée, parce qu'elle contredit une idée reçue tenace. Le zodiaque n'est pas une lecture universelle du ciel : c'est une invention mésopotamienne, transmise aux Grecs, puis aux Arabes, puis à l'Europe, par une chaîne de traductions précise et documentée. Les cultures qui n'étaient pas sur cette chaîne ont vu tout autre chose au même endroit."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Les voisins de l'histoire",
-        "targets": [
-          {
-            "star": "Eltanin",
-            "from": "Hamal",
-            "label": "Eltanin",
-            "sub": "Dragon",
-            "note": "Le dragon qui gardait la Toison d'or en Colchide est l'une des quatre bêtes candidates au titre de constellation du Dragon."
-          },
-          {
-            "star": "Castor",
-            "from": "Sheratan",
-            "label": "Castor",
-            "sub": "Gémeaux",
-            "note": "Castor et Pollux ont tous deux embarqué sur l'Argo. Newton s'appuyait sur ces voisinages pour tenter de dater l'expédition des Argonautes."
-          }
-        ],
-        "notes": {
-          "Hamal": "De raʾs al-ḥamal, « la tête du bélier ». Elle se trouvait tout près du point vernal au VIIᵉ siècle avant notre ère.",
-          "Sheratan": "De al-sharaṭān, « les deux signes ». C'est le signal de l'équinoxe qui est nommé, pas l'animal.",
-          "Mesarthim": "Un nom né d'une faute de copie médiévale sur celui de sa voisine."
-        }
-      },
-      "cap": "La quête de la Toison d'or a laissé des traces sur une bonne partie de la voûte céleste.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "warn",
-      "h": "« Premier signe du zodiaque » demande des guillemets",
-      "p": "On lit partout que le Bélier ouvre le zodiaque, comme si c'était une donnée de nature. Trois précisions s'imposent. D'abord, dans le MUL.APIN babylonien, ces étoiles occupent la dernière station de l'écliptique et non la première, et à cette époque le point vernal se trouvait du côté des Pléiades, dans le Taureau. Ensuite, la place de tête ne lui est attribuée qu'après la révision néo-babylonienne du VIIᵉ siècle avant notre ère, puis fixée par Hipparque vers 130 avant notre ère et gravée par Ptolémée. Enfin, le point vernal a quitté le Bélier en l'an −67 : la primauté qu'on lui prête repose sur une configuration céleste qui a disparu il y a deux mille ans. Quant au passage de l'Ouvrier agricole au Bélier, sa date exacte reste indéterminée, faute d'images de la figure assez anciennes pour trancher."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "look",
-          "title": "Le Bélier et la Mouche boréale, planche 16 d'« Urania's Mirror »",
-          "src": "Wikimedia Commons",
-          "note": "La carte perforée de 1825 en haute résolution, dans une restauration soignée. Domaine public.",
-          "url": "https://commons.wikimedia.org/wiki/File:Sidney_Hall_-_Urania's_Mirror_-_Aries_and_Musca_Borealis.jpg"
-        },
-        {
-          "kind": "look",
-          "title": "Le jeu complet d'« Urania's Mirror »",
-          "src": "Library of Congress",
-          "note": "La notice de la boîte de trente-deux cartes, avec l'histoire de leur attribution mystérieuse à « une dame ».",
-          "url": "https://www.loc.gov/pictures/item/2013645050/"
-        },
-        {
-          "kind": "read",
-          "title": "Le « bélier dans le fourré » d'Ur",
-          "src": "Smarthistory",
-          "note": "La notice détaillée de l'objet du British Museum, matériaux compris, et l'origine biblique de son nom. En anglais.",
-          "url": "https://smarthistory.org/ram-in-a-thicket-ur/"
-        },
-        {
-          "kind": "look",
-          "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
-          "src": "Bodleian Library, Oxford",
-          "note": "Les cinquante-sept planches numérisées, dont celle du Bélier.",
-          "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
-        },
-        {
-          "kind": "read",
-          "title": "Le Bélier à la Toison d'or",
-          "src": "Repères Astro",
-          "note": "L'article qui met côte à côte les versions d'Hygin et d'Ératosthène, avec les passages traduits. En français.",
-          "url": "https://reperes-astro.fr/le-belier-a-la-toison-dor/"
-        },
-        {
-          "kind": "read",
-          "title": "Découverte d'une fresque de Phrixos et Hellé à Pompéi",
-          "src": "Archéoblogue",
-          "note": "Le compte rendu de la découverte de mars 2024 dans la maison de Léda, avec les mots du directeur du site. En français.",
-          "url": "https://archeoblogue.com/decouverte-archeologique/decouverte-dune-splendide-fresque-a-pompei-figurant-le-mythe-de-phrixos-et-dhelle/"
-        },
-        {
-          "kind": "read",
-          "title": "La Toison d'or",
-          "src": "World History Encyclopedia",
-          "note": "La généalogie de Chrysomallos et le récit complet, de Néphélé jusqu'à Jason. En français.",
-          "url": "https://www.worldhistory.org/trans/fr/1-20484/toison-dor/"
-        },
-        {
-          "kind": "read",
-          "title": "Aries, la constellation",
-          "src": "Constellation Guide",
-          "note": "La meilleure synthèse en ligne sur le passage de l'Ouvrier agricole au Bélier et le rôle de Dumuzi. En anglais.",
-          "url": "https://www.constellation-guide.com/constellation-list/aries-constellation/"
-        },
-        {
-          "kind": "read",
-          "title": "MUL.APIN",
-          "src": "Wikipédia en anglais",
-          "note": "Ce que contient le compendium babylonien, et comment il organise l'année idéale de douze mois de trente jours.",
-          "url": "https://en.wikipedia.org/wiki/MUL.APIN"
-        },
-        {
-          "kind": "read",
-          "title": "Chrysomallos",
-          "src": "Wikipédia en français",
-          "note": "La fiche du bélier ailé, ses parents et ses variantes. Le point de départ le plus commode.",
-          "url": "https://fr.wikipedia.org/wiki/Chrysomallos"
-        },
-        {
-          "kind": "read",
-          "title": "Urania's Mirror",
-          "src": "Ian Ridpath",
-          "note": "L'histoire du jeu de cartes, son prix en 1824 et l'enquête qui a identifié son auteur cent soixante-dix ans plus tard. En anglais.",
-          "url": "http://www.ianridpath.com/atlases/urania.html"
-        }
-      ]
+     "v": "1825",
+     "l": "L'année où une mouche se promène encore sur le dos du Bélier, sur les cartes célestes. Musca Borealis a depuis été abolie."
     }
-  ]
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/ari.webp",
+   "lit": true,
+   "roll": true,
+   "wide": true,
+   "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Trois étoiles pour un animal entier : la tête tient dans Hamal, les cornes dans Sheratan et Mesarthim, et le reste du corps est une extrapolation généreuse.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "D'abord un ouvrier agricole",
+   "p": [
+    "Le MUL.APIN est une compilation astronomique babylonienne écrite au XIIᵉ ou XIᵉ siècle avant notre ère, qui recense les levers et les couchers des étoiles et servait vraisemblablement de calendrier agricole. On y trouve les ancêtres de toutes nos constellations zodiacales. Celle qui correspond au Bélier s'appelle MUL LÚ.ḪUN.GÁ : l'Ouvrier agricole, ou le Journalier. Et elle n'ouvre pas la liste, elle la ferme : c'est la dernière station le long de l'écliptique. À cette époque, le point vernal se trouvait du côté des Pléiades.",
+    "Le passage de l'ouvrier au bélier se fait dans la période babylonienne tardive, et l'on ne sait pas exactement quand ni pourquoi. L'hypothèse la mieux étayée fait intervenir Dumuzi le Berger, l'époux de la déesse Inanna, dont le bélier était l'animal ; la figure se serait progressivement contaminée. Sur les kudurru, ces bornes frontières gravées entre 1350 et 1000 avant notre ère, un bélier zodiacal apparaît déjà, distinct des autres figures. Vers le VIIᵉ siècle, les néo-babyloniens révisent leur zodiaque et placent Hamal tout près du point vernal. L'ouvrier agricole est passé en tête de liste, transformé en mouton."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/ari/mid_00167730_001.jpg",
+   "page": "https://smarthistory.org/ram-in-a-thicket-ur/",
+   "wide": true,
+   "cap": "Ce n'est pas une carte du ciel, mais l'animal que le ciel babylonien finira par adopter. Cette statuette d'or, d'argent, de lapis-lazuli et de coquillage a été trouvée par Leonard Woolley dans le « grand puits de la mort » du cimetière royal d'Ur, entre 1928 et 1929. Elle date de 2600 à 2400 avant notre ère. Woolley l'a baptisée « le bélier dans le fourré » d'après la Genèse, alors qu'il s'agit plus exactement d'un bouc dressé sur un arbuste pour en brouter les pousses.",
+   "credit": "« Ram in a Thicket », Ur, tombe PG 1237 — The British Museum, Londres (122200)"
+  },
+  {
+   "t": "text",
+   "h": "Chrysomallos, le bélier qui parle",
+   "p": [
+    "Les Grecs, eux, lui ont donné une biographie complète. Chrysomallos, littéralement « laine d'or », est le fils de Poséidon et de la princesse thrace Théophané, tous deux métamorphosés en moutons pour l'occasion. Il est ailé, ses cornes sont d'or, et il parle. Nephélé, une nymphe des nuages, l'envoie sauver ses deux enfants, Phrixos et Hellé, que leur belle-mère Ino veut faire sacrifier : elle avait fait griller les grains de semence pour provoquer une famine, puis truqué l'oracle censé y remédier.",
+    "Le bélier emporte les enfants dans les airs. Hellé lâche prise et tombe dans le détroit qui porte depuis son nom, l'Hellespont, aujourd'hui les Dardanelles. Phrixos parvient en Colchide, où le roi Éétès l'accueille et lui donne sa fille. Il sacrifie alors le bélier et cloue la toison dans un bois sacré, gardée par un dragon. Deux générations plus tard, Jason et les Argonautes viendront la chercher. En mars 2024, les fouilles de la maison de Léda, à Pompéi, ont mis au jour une fresque en parfait état représentant la scène : Phrixos sur le bélier cabré, assistant impuissant à la chute de sa sœur. Le directeur du site l'a résumée en une phrase, deux réfugiés en mer."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Ce que ces étoiles ont représenté",
+    "events": [
+     {
+      "y": -1150,
+      "when": "XIIᵉ-XIᵉ s. av. J.-C.",
+      "label": "Un ouvrier agricole",
+      "note": "MUL LÚ.ḪUN.GÁ dans le MUL.APIN, dernière station de l'écliptique. Le compendium sert de calendrier des travaux des champs."
+     },
+     {
+      "y": -1000,
+      "when": "1350 à 1000 av. J.-C.",
+      "label": "Un bélier apparaît sur les bornes",
+      "note": "Les kudurru, bornes frontières gravées, portent les premières images d'un bélier zodiacal nettement distinct des autres figures."
+     },
+     {
+      "y": -650,
+      "when": "VIIᵉ s. av. J.-C.",
+      "label": "Le zodiaque est révisé",
+      "note": "Le glissement de l'Ouvrier au Bélier tient probablement à Dumuzi le Berger, époux d'Inanna. Hamal se retrouve tout près du point vernal."
+     },
+     {
+      "y": -270,
+      "when": "IIIᵉ s. av. J.-C.",
+      "label": "Ératosthène explique sa pâleur",
+      "note": "Dans les Catastérismes, le bélier laisse sa toison d'or sur Terre et ne monte au ciel que dépouillé. C'est pourquoi il brille si peu."
+     },
+     {
+      "y": 964,
+      "label": "al-Sufi : al-Ḥamal",
+      "note": "Le ciel arabe garde le bélier. Hamal vient de raʾs al-ḥamal, la tête du bélier ; Sheratan de al-sharaṭān, les deux signes."
+     },
+     {
+      "y": 1825,
+      "label": "Une mouche sur le dos du bélier",
+      "note": "La planche 16 d'Urania's Mirror associe le Bélier à Musca Borealis, la Mouche boréale, constellation abolie depuis."
+     }
+    ]
+   },
+   "cap": "Trois mille ans de réattributions. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Pourquoi il brille si peu",
+   "p": [
+    "Reste une difficulté que les Grecs ont dû résoudre. Si cette constellation est la plus importante du zodiaque, celle qui porte le point de départ de l'année, pourquoi est-elle si terne ? Les mythographes ont fourni deux réponses, et elles ne disent pas la même chose.",
+    "Hygin, dans son Astronomie poétique, s'en tient au sacrifice : Phrixos immole le bélier à Zeus, cloue la toison dans le temple, et c'est Nephélé qui place l'image de l'animal au ciel. Il ajoute un détail admirable de cohérence, en notant que cette figure gouverne désormais la saison des semailles, précisément le blé qu'Ino avait fait griller pour déclencher toute l'affaire. Ératosthène, dans ses Catastérismes, propose autre chose et vise explicitement le problème de l'éclat : le bélier se dépouille lui-même de sa toison d'or, l'offre au roi de Colchide en souvenir, et monte au ciel nu. Sa pâleur n'est donc pas un défaut, c'est une conséquence. L'or est resté sur Terre."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/ari/sidney_hall_-_urania-s_mirror_-_aries_an.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Sidney_Hall_-_Urania's_Mirror_-_Aries_and_Musca_Borealis.jpg",
+   "wide": true,
+   "cap": "Le Bélier et la Mouche boréale, seizième planche du jeu « Urania's Mirror », Londres, 1825. La petite constellation posée sur le dos du bélier a été proposée au XVIIᵉ siècle et abandonnée depuis : les cartes modernes ne la portent plus. Comme toutes les cartes du jeu, celle-ci est percée de trous calibrés sur l'éclat de chaque étoile, pour être tenue devant une lampe.",
+   "credit": "Sidney Hall, eau-forte coloriée à la main, 1825 — restauration Adam Cuerden, Wikimedia Commons, domaine public"
+  },
+  {
+   "t": "text",
+   "h": "Al-Ḥamal, la tête du bélier",
+   "p": [
+    "Le ciel arabe a hérité le bélier des Grecs et lui a donné le nom d'al-Ḥamal. Les noms des étoiles suivent l'anatomie, comme partout ailleurs dans ce vocabulaire. Hamal, la plus brillante, vient de raʾs al-ḥamal, la tête du bélier. Sheratan vient de al-sharaṭān, les deux signes, parce que ces étoiles ont marqué le passage de l'équinoxe de printemps. Botein, plus discrète, vient de al-buṭayn, le petit ventre.",
+    "Une lecture bédouine plus ancienne mérite d'être signalée, parce qu'elle déborde largement de la constellation : dans cette tradition, l'amas des Pléiades, qui appartient aujourd'hui au Taureau, formait la queue du bélier. La figure enjambait donc la frontière que l'Union astronomique internationale tracera en 1930, et englobait l'objet le plus spectaculaire de cette région du ciel. Les frontières modernes ont coupé la bête en deux."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/ari/book_of_the_fixed_stars_auv0189_aries.jpg",
+   "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
+   "wide": true,
+   "cap": "Le Bélier dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. Comme toutes les figures de l'ouvrage, il est dessiné deux fois : tel qu'on le voit dans le ciel, et tel qu'il apparaît retourné sur un globe céleste. L'animal est représenté la tête tournée vers l'arrière, posture héritée de l'iconographie grecque.",
+   "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+  },
+  {
+   "t": "text",
+   "h": "Deux inspecteurs et un marsouin",
+   "p": [
+    "Ailleurs, personne n'a vu de bélier. En Chine, les étoiles du Bélier se répartissent entre des astérismes qui n'ont rien de pastoral, dont une paire d'inspecteurs jumeaux : le ciel chinois, comme on l'a vu pour Céphée et pour la Petite Ourse, est peuplé de fonctionnaires plutôt que d'animaux mythologiques. Aux îles Marshall, dans le Pacifique, les mêmes étoiles dessinent un marsouin, ce qui, pour une culture de navigateurs, se comprend mieux qu'un mouton.",
+    "Cette dispersion vaut la peine d'être notée, parce qu'elle contredit une idée reçue tenace. Le zodiaque n'est pas une lecture universelle du ciel : c'est une invention mésopotamienne, transmise aux Grecs, puis aux Arabes, puis à l'Europe, par une chaîne de traductions précise et documentée. Les cultures qui n'étaient pas sur cette chaîne ont vu tout autre chose au même endroit."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Les voisins de l'histoire",
+    "targets": [
+     {
+      "star": "Eltanin",
+      "from": "Hamal",
+      "label": "Eltanin",
+      "sub": "Dragon",
+      "note": "Le dragon qui gardait la Toison d'or en Colchide est l'une des quatre bêtes candidates au titre de constellation du Dragon."
+     },
+     {
+      "star": "Castor",
+      "from": "Sheratan",
+      "label": "Castor",
+      "sub": "Gémeaux",
+      "note": "Castor et Pollux ont tous deux embarqué sur l'Argo. Newton s'appuyait sur ces voisinages pour tenter de dater l'expédition des Argonautes."
+     }
+    ],
+    "notes": {
+     "Hamal": "De raʾs al-ḥamal, « la tête du bélier ». Elle se trouvait tout près du point vernal au VIIᵉ siècle avant notre ère.",
+     "Sheratan": "De al-sharaṭān, « les deux signes ». C'est le signal de l'équinoxe qui est nommé, pas l'animal.",
+     "Mesarthim": "Un nom né d'une faute de copie médiévale sur celui de sa voisine."
+    }
+   },
+   "cap": "La quête de la Toison d'or a laissé des traces sur une bonne partie de la voûte céleste.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "warn",
+   "h": "« Premier signe du zodiaque » demande des guillemets",
+   "p": "On lit partout que le Bélier ouvre le zodiaque, comme si c'était une donnée de nature. Trois précisions s'imposent. D'abord, dans le MUL.APIN babylonien, ces étoiles occupent la dernière station de l'écliptique et non la première, et à cette époque le point vernal se trouvait du côté des Pléiades, dans le Taureau. Ensuite, la place de tête ne lui est attribuée qu'après la révision néo-babylonienne du VIIᵉ siècle avant notre ère, puis fixée par Hipparque vers 130 avant notre ère et gravée par Ptolémée. Enfin, le point vernal a quitté le Bélier en l'an −67 : la primauté qu'on lui prête repose sur une configuration céleste qui a disparu il y a deux mille ans. Quant au passage de l'Ouvrier agricole au Bélier, sa date exacte reste indéterminée, faute d'images de la figure assez anciennes pour trancher."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "look",
+     "title": "Le Bélier et la Mouche boréale, planche 16 d'« Urania's Mirror »",
+     "src": "Wikimedia Commons",
+     "note": "La carte perforée de 1825 en haute résolution, dans une restauration soignée. Domaine public.",
+     "url": "https://commons.wikimedia.org/wiki/File:Sidney_Hall_-_Urania's_Mirror_-_Aries_and_Musca_Borealis.jpg"
+    },
+    {
+     "kind": "look",
+     "title": "Le jeu complet d'« Urania's Mirror »",
+     "src": "Library of Congress",
+     "note": "La notice de la boîte de trente-deux cartes, avec l'histoire de leur attribution mystérieuse à « une dame ».",
+     "url": "https://www.loc.gov/pictures/item/2013645050/"
+    },
+    {
+     "kind": "read",
+     "title": "Le « bélier dans le fourré » d'Ur",
+     "src": "Smarthistory",
+     "note": "La notice détaillée de l'objet du British Museum, matériaux compris, et l'origine biblique de son nom. En anglais.",
+     "url": "https://smarthistory.org/ram-in-a-thicket-ur/"
+    },
+    {
+     "kind": "look",
+     "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
+     "src": "Bodleian Library, Oxford",
+     "note": "Les cinquante-sept planches numérisées, dont celle du Bélier.",
+     "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
+    },
+    {
+     "kind": "read",
+     "title": "Le Bélier à la Toison d'or",
+     "src": "Repères Astro",
+     "note": "L'article qui met côte à côte les versions d'Hygin et d'Ératosthène, avec les passages traduits. En français.",
+     "url": "https://reperes-astro.fr/le-belier-a-la-toison-dor/"
+    },
+    {
+     "kind": "read",
+     "title": "Découverte d'une fresque de Phrixos et Hellé à Pompéi",
+     "src": "Archéoblogue",
+     "note": "Le compte rendu de la découverte de mars 2024 dans la maison de Léda, avec les mots du directeur du site. En français.",
+     "url": "https://archeoblogue.com/decouverte-archeologique/decouverte-dune-splendide-fresque-a-pompei-figurant-le-mythe-de-phrixos-et-dhelle/"
+    },
+    {
+     "kind": "read",
+     "title": "La Toison d'or",
+     "src": "World History Encyclopedia",
+     "note": "La généalogie de Chrysomallos et le récit complet, de Néphélé jusqu'à Jason. En français.",
+     "url": "https://www.worldhistory.org/trans/fr/1-20484/toison-dor/"
+    },
+    {
+     "kind": "read",
+     "title": "Aries, la constellation",
+     "src": "Constellation Guide",
+     "note": "La meilleure synthèse en ligne sur le passage de l'Ouvrier agricole au Bélier et le rôle de Dumuzi. En anglais.",
+     "url": "https://www.constellation-guide.com/constellation-list/aries-constellation/"
+    },
+    {
+     "kind": "read",
+     "title": "MUL.APIN",
+     "src": "Wikipédia en anglais",
+     "note": "Ce que contient le compendium babylonien, et comment il organise l'année idéale de douze mois de trente jours.",
+     "url": "https://en.wikipedia.org/wiki/MUL.APIN"
+    },
+    {
+     "kind": "read",
+     "title": "Chrysomallos",
+     "src": "Wikipédia en français",
+     "note": "La fiche du bélier ailé, ses parents et ses variantes. Le point de départ le plus commode.",
+     "url": "https://fr.wikipedia.org/wiki/Chrysomallos"
+    },
+    {
+     "kind": "read",
+     "title": "Urania's Mirror",
+     "src": "Ian Ridpath",
+     "note": "L'histoire du jeu de cartes, son prix en 1824 et l'enquête qui a identifié son auteur cent soixante-dix ans plus tard. En anglais.",
+     "url": "http://www.ianridpath.com/atlases/urania.html"
+    }
+   ]
+  }
+ ]
 }
