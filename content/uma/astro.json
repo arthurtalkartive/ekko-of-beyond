@@ -1,289 +1,289 @@
 {
-  "constellation": "uma",
-  "tab": "astro",
-  "blocks": [
+ "constellation": "uma",
+ "tab": "astro",
+ "blocks": [
+  {
+   "t": "warn",
+   "h": "Ce que contient cet onglet",
+   "p": "L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ce qui suit documente une tradition, son histoire et ses textes, comme on documenterait l'alchimie ou la médecine des humeurs. Rien ici ne vaut prédiction ni conseil, et cet onglet ne se lit pas sur le même plan que l'onglet Science."
+  },
+  {
+   "t": "lead",
+   "p": "Le Soleil ne traverse jamais la Grande Ourse. Elle n'est d'aucun signe, d'aucune maison, et l'astrologie populaire n'a rien à en dire. Pourtant l'astrologie savante lui a réservé une place particulière, par une autre porte que celle du zodiaque : la doctrine des étoiles fixes. Et dans ce corpus, une de ses étoiles occupe une position singulière, celle de la seule étoile fixe à laquelle le grand manuel de magie médiéval consacre un talisman."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "warn",
-      "h": "Ce que contient cet onglet",
-      "p": "L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ce qui suit documente une tradition, son histoire et ses textes, comme on documenterait l'alchimie ou la médecine des humeurs. Rien ici ne vaut prédiction ni conseil, et cet onglet ne se lit pas sur le même plan que l'onglet Science."
+     "v": "0",
+     "u": "signe",
+     "l": "La Grande Ourse n'appartient pas au zodiaque. L'écliptique, la route du Soleil, passe des dizaines de degrés au sud de la figure."
     },
     {
-      "t": "lead",
-      "p": "Le Soleil ne traverse jamais la Grande Ourse. Elle n'est d'aucun signe, d'aucune maison, et l'astrologie populaire n'a rien à en dire. Pourtant l'astrologie savante lui a réservé une place particulière, par une autre porte que celle du zodiaque : la doctrine des étoiles fixes. Et dans ce corpus, une de ses étoiles occupe une position singulière, celle de la seule étoile fixe à laquelle le grand manuel de magie médiéval consacre un talisman."
+     "v": "15",
+     "u": "étoiles",
+     "l": "Les béhéniennes, sélection médiévale des étoiles jugées utiles à la magie. Alkaïd est la huitième de la liste."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "0",
-          "u": "signe",
-          "l": "La Grande Ourse n'appartient pas au zodiaque. L'écliptique, la route du Soleil, passe des dizaines de degrés au sud de la figure."
-        },
-        {
-          "v": "15",
-          "u": "étoiles",
-          "l": "Les béhéniennes, sélection médiévale des étoiles jugées utiles à la magie. Alkaïd est la huitième de la liste."
-        },
-        {
-          "v": "1",
-          "u": "talisman",
-          "l": "Sur les centaines de recettes du Picatrix, une seule concerne une étoile fixe. Elle concerne Alkaïd."
-        },
-        {
-          "v": "27°",
-          "u": "Vierge",
-          "l": "La longitude attribuée à Alkaïd en 2020. L'étoile n'est pas dans la Vierge pour autant : c'est une projection sur l'écliptique."
-        },
-        {
-          "v": "1°",
-          "u": "par 72 ans",
-          "l": "Le glissement des étoiles fixes sur le zodiaque, dû à la précession. Les tables des auteurs anciens sont donc toutes décalées."
-        }
-      ]
+     "v": "1",
+     "u": "talisman",
+     "l": "Sur les centaines de recettes du Picatrix, une seule concerne une étoile fixe. Elle concerne Alkaïd."
     },
     {
-      "t": "text",
-      "h": "Ptolémée, et la nature des étoiles",
-      "p": [
-        "Au IIᵉ siècle, dans le livre qui deviendra le manuel de référence de toute l'astrologie occidentale, Ptolémée procède à un inventaire méthodique. Il parcourt les constellations une à une et attribue à chacune la « nature » d'une ou deux planètes. Les étoiles brillantes de la Petite Ourse tiennent de Saturne et, plus faiblement, de Vénus. Celles de la Grande Ourse tiennent de Mars.",
-        "Le procédé mérite qu'on s'y arrête, car il fonde tout le reste. Ptolémée ne dit pas que ces étoiles agissent : il dit qu'elles ressemblent, qu'elles ont la même qualité. Les auteurs suivants transformeront ces analogies en influences, puis en prédictions. Un siècle après l'autre, une remarque de classement est devenue une doctrine."
-      ]
+     "v": "27°",
+     "u": "Vierge",
+     "l": "La longitude attribuée à Alkaïd en 2020. L'étoile n'est pas dans la Vierge pour autant : c'est une projection sur l'écliptique."
     },
     {
-      "t": "quote",
-      "p": "Les étoiles de la Grande Ourse sont de la nature de Mars.",
-      "who": "Ptolémée, Tetrabiblos, livre I, chapitre 9 — IIᵉ siècle"
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/uma/al-sufi-grande-ourse-marsh144.jpg",
-      "page": "https://commons.wikimedia.org/wiki/File:Al_Sufi_-_Book_of_Fixed_Stars_-_Ursa_Major_(The_Great_Bear)_-_Bodleian_Library_-_Marsh_144.jpg",
-      "wide": true,
-      "cap": "La Grande Ourse dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. Chaque constellation y est dessinée deux fois : telle qu'on la voit dans le ciel, et telle qu'elle apparaît retournée sur un globe céleste. C'est par ce livre, puis par ses traductions latines, que les noms d'étoiles arabes et les tables de Ptolémée sont parvenus à l'astrologie européenne.",
-      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
-    },
-    {
-      "t": "text",
-      "h": "Les quinze étoiles béhéniennes",
-      "p": [
-        "Le mot vient de l'arabe bahman, la racine. Quinze étoiles seulement, tenues pour des sources d'influence particulièrement concentrées, dont chacune est associée à une planète, à une pierre et à une plante. La liste circule d'abord dans le monde arabe sous l'autorité fictive d'Hermès Trismégiste, puis passe en Europe. Agrippa la reprend en 1533 dans sa « Philosophie occulte », avec pour chaque étoile un signe à graver.",
-        "Alkaïd y figure sous le nom de Cauda Ursae, la Queue de l'Ourse, en huitième position. C'est la seule étoile de la Grande Ourse retenue dans la liste. Les six autres du Chariot n'ont jamais eu droit à un sigil."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/uma/agrippa-sigil-cauda-ursae.png",
-      "page": "https://commons.wikimedia.org/wiki/File:Agrippa_Behenian_star_08_Cauda_ursae.svg",
-      "lit": true,
-      "wide": true,
-      "cap": "Le signe de Cauda Ursae, huitième des quinze étoiles béhéniennes. Gravé sur un métal ou une pierre au moment où une planète passait à moins de six degrés de l'étoile, il devait en capter l'influence. Ce tracé est un redessin moderne d'après l'édition d'Agrippa de 1531.",
-      "credit": "D'après Heinrich Cornelius Agrippa, De occulta philosophia, livre II — redessin, Wikimedia Commons"
-    },
-    {
-      "t": "text",
-      "h": "L'étoile de la vengeance",
-      "p": [
-        "Le Ghāyat al-Ḥakīm, compilé en al-Andalus au Xᵉ siècle et connu en Europe sous son titre latin de Picatrix, est le manuel de magie astrale le plus complet qui nous soit parvenu. Traduit en castillan puis en latin à la cour d'Alphonse X de Castille, il a nourri Ficin, Pic de la Mirandole et Agrippa. Il contient des centaines de recettes de talismans planétaires et zodiacaux.",
-        "Il n'en contient qu'une seule pour une étoile fixe, et c'est celle-là : Benethnays, « près du pôle », l'étoile de la vengeance. Le rite s'adresse à qui veut détourner de lui un ennemi. Il faut se tourner vers la région du ciel où se trouve alors l'étoile, jeter une fumigation sur les charbons, et prononcer la prière prescrite. Que cette unique exception soit tombée sur la queue de la Grande Ourse, la seule des sept dont le nom arabe évoque un cortège funèbre, n'est probablement pas un hasard."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Comment une remarque de classement est devenue une doctrine",
-        "events": [
-          {
-            "y": 150,
-            "when": "IIᵉ siècle",
-            "label": "Ptolémée range les constellations par « nature »",
-            "note": "Tetrabiblos I, 9. La Grande Ourse est dite de nature martienne. Ptolémée écrit une analogie, pas une influence."
-          },
-          {
-            "y": 960,
-            "when": "964",
-            "label": "al-Sufi illustre les 48 constellations",
-            "note": "Le Livre des étoiles fixes double chaque figure, vue du ciel et vue du globe. Il transmet Ptolémée et les noms arabes."
-          },
-          {
-            "y": 964,
-            "when": "Xᵉ siècle",
-            "label": "Le Ghāyat al-Ḥakīm compile la magie astrale",
-            "note": "Attribué longtemps à al-Majriti, il est aujourd'hui rendu à Maslama b. Qāsim al-Qurṭubī. Il contient le talisman de Benethnays."
-          },
-          {
-            "y": 1256,
-            "when": "XIIIᵉ siècle",
-            "label": "Traduction latine à la cour d'Alphonse X",
-            "note": "Le texte devient le Picatrix et entre dans la bibliothèque des lettrés européens, où il restera trois siècles."
-          },
-          {
-            "y": 1533,
-            "label": "Agrippa publie les sigils des béhéniennes",
-            "note": "La Philosophie occulte fixe pour longtemps l'iconographie des quinze étoiles. L'inquisiteur de Cologne condamnera l'ouvrage."
-          },
-          {
-            "y": 1923,
-            "label": "Robson écrit le manuel moderne",
-            "note": "Son recueil sur les étoiles fixes, sans cesse réédité, est la source de la quasi-totalité de ce qu'on lit aujourd'hui sur le sujet."
-          }
-        ]
-      },
-      "cap": "Dix-huit siècles de recopiage, de traduction et de réinterprétation. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Le deuil, ou la victoire, selon l'auteur",
-      "p": [
-        "Ce que la tradition prête à Alkaïd est un bon exemple de la façon dont ce corpus fonctionne. Robson, en 1923, décrit la constellation entière comme donnant un naturel calme, prudent, méfiant, maître de lui et patient, capable d'endurer beaucoup, mais susceptible d'une colère et d'un esprit de revanche considérables une fois provoqué. Sur Alkaïd en particulier, il retient le sens du nom arabe et l'idée de pleureuses.",
-        "Reinhold Ebertin, au XXᵉ siècle, va plus loin et associe l'étoile aux catastrophes collectives, éboulements, effondrements, désastres qui coûtent des vies. D'autres auteurs lui prêtent au contraire réussite, pouvoir et victoire sur les ennemis, et lui attribuent la nature de Jupiter là où Ptolémée voyait Mars. Les contradictions ne sont pas des accidents à corriger : elles sont la matière même de cette littérature, où chaque auteur relit ses prédécesseurs et ajoute sa couche."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Pourquoi « 27° de la Vierge » ne veut pas dire « dans la Vierge »",
-        "targets": [
-          {
-            "star": "Régulus",
-            "from": "Phecda",
-            "label": "Régulus",
-            "sub": "Lion",
-            "note": "Une vraie constellation du zodiaque. Le Soleil y passe, il ne passe jamais chez l'Ourse."
-          },
-          {
-            "star": "Spica",
-            "from": "Alkaïd",
-            "label": "Spica",
-            "sub": "Vierge",
-            "note": "La longitude d'Alkaïd est donnée dans la Vierge, mais l'étoile est très loin d'ici, au nord. On projette sa position sur la route du Soleil."
-          }
-        ],
-        "notes": {
-          "Alkaïd": "La seule étoile de la figure retenue parmi les quinze béhéniennes.",
-          "Dubhé": "Le nom vient de l'arabe al-dubb, l'ours.",
-          "Mizar": "Accompagnée d'Alcor, elle sert d'épreuve de vue depuis au moins le XIIIᵉ siècle."
-        }
-      },
-      "cap": "Les longitudes zodiacales des étoiles fixes sont des projections perpendiculaires sur l'écliptique. Une étoile « à 27° de la Vierge » peut se trouver à cinquante degrés de la constellation de la Vierge.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Et la précession efface les tables",
-      "p": [
-        "Les signes du zodiaque ne coïncident plus avec les constellations dont ils portent le nom : l'axe de la Terre décrit un cercle lent, et le décalage atteint aujourd'hui près d'un signe entier. Pour les étoiles fixes, la conséquence est directe. Leur longitude avance d'environ un degré tous les soixante-douze ans.",
-        "Autrement dit, aucune des positions données par Ptolémée, par le Picatrix ou par Agrippa n'est encore valable. Les praticiens modernes recalculent ; les textes anciens, lus au premier degré, désignent aujourd'hui d'autres points du ciel que ceux que leurs auteurs visaient. C'est un fait technique, et il vaut d'être connu avant d'ouvrir un de ces ouvrages."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/uma/doumu-asian-art-museum.jpg",
-      "page": "https://searchcollection.asianart.org/objects/2414/the-daoist-deity-doumu",
-      "wide": true,
-      "cap": "Doumu, la Mère du Boisseau, mère des sept étoiles du Chariot du Nord. Elle porte un troisième œil au front et dix-huit bras chargés d'attributs, armes sacrées et insignes. On l'invoquait pour la longévité et la prospérité. Porcelaine de Dehua, où se mêlent éléments bouddhiques et taoïstes.",
-      "credit": "Asian Art Museum of San Francisco, « The Daoist deity Doumu »"
-    },
-    {
-      "t": "text",
-      "h": "En Chine, la figure décide du sort",
-      "p": [
-        "La tradition chinoise ne fait pas de la Grande Ourse un détail marginal : le Beidou, le Boisseau du Nord, est au cœur du dispositif. Char où siègent les Juges de la noblesse, il tourne autour du pôle et règle l'ordre du monde. Le taoïsme lui a donné une déesse, Doumu, la Mère du Boisseau, qui gagne son importance à partir du XVᵉ siècle et entre alors dans le canon taoïste. On lui demande longévité et prospérité, c'est-à-dire ce que l'astrologie occidentale demande aux planètes.",
-        "Chaque étoile du Boisseau porte son rang et son office. Alkaïd est la septième, Yáoguāng, l'Éclat scintillant. Sous l'influence du taoïsme, le Japon l'a nommée Hagunsei et la Corée Mukokseong, l'étoile de la défaite militaire. La même étoile est donc funeste des deux côtés du continent, sans que les deux traditions se soient copiées."
-      ]
-    },
-    {
-      "t": "video",
-      "url": "https://www.youtube.com/watch?v=cEZVLelJ88s",
-      "page": "https://warburg.sas.ac.uk/news-events/whats/lectures-talks/stargates-magic-images-heka-monas-hieroglyphica",
-      "cap": "Charles Burnett, du Warburg Institute, sur la théorie et la pratique des talismans astrologiques. Pour comprendre ce que fabriquaient réellement les auteurs du Picatrix et d'Agrippa. Conférence en anglais.",
-      "credit": "The Warburg Institute, série de conférences « Stargates »"
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "deep",
-          "title": "Tetrabiblos, livre I, chapitre 9",
-          "src": "Ptolémée, via LacusCurtius, université de Chicago",
-          "note": "Le passage où les constellations reçoivent leur « nature » planétaire. La source de tout le reste. En anglais.",
-          "url": "http://penelope.uchicago.edu/Thayer/e/roman/texts/ptolemy/tetrabiblos/1b*.html"
-        },
-        {
-          "kind": "look",
-          "title": "La Grande Ourse d'al-Sufi, MS. Marsh 144",
-          "src": "Bodleian Library, Oxford",
-          "note": "La planche en très haute résolution, avec ses deux figures et la liste des étoiles en marge.",
-          "url": "https://commons.wikimedia.org/wiki/File:Al_Sufi_-_Book_of_Fixed_Stars_-_Ursa_Major_(The_Great_Bear)_-_Bodleian_Library_-_Marsh_144.jpg"
-        },
-        {
-          "kind": "read",
-          "title": "Un manuscrit d'astronomie arabe mis en ligne",
-          "src": "Blog des Bodleian Libraries",
-          "note": "L'autre copie d'al-Sufi d'Oxford, faite en 1170 pour le trésor de l'émir de Mossoul. En anglais.",
-          "url": "https://blogs.bodleian.ox.ac.uk/archivesandmanuscripts/2016/03/18/newly-digitized-arabic-astronomy-manuscript-now-online/"
-        },
-        {
-          "kind": "look",
-          "title": "Doumu, la Mère du Boisseau",
-          "src": "Asian Art Museum of San Francisco",
-          "note": "La notice du musée sur la déesse des sept étoiles et sur la porcelaine de Dehua. En anglais.",
-          "url": "https://searchcollection.asianart.org/objects/2414/the-daoist-deity-doumu"
-        },
-        {
-          "kind": "watch",
-          "title": "La théorie et la pratique des talismans",
-          "src": "Charles Burnett, Warburg Institute",
-          "note": "Une heure pour comprendre ce que les auteurs médiévaux pensaient faire en gravant un sigil. En anglais.",
-          "url": "https://www.youtube.com/watch?v=cEZVLelJ88s"
-        },
-        {
-          "kind": "read",
-          "title": "Les Sept Dieux des Étoiles, Beidou qixing",
-          "src": "British Museum",
-          "note": "La notice d'autorité du musée, avec les objets de la collection qui les représentent. En anglais.",
-          "url": "https://www.britishmuseum.org/collection/term/BIOG14000"
-        },
-        {
-          "kind": "read",
-          "title": "Picatrix",
-          "src": "Wikipédia en français",
-          "note": "Utile surtout pour ses références : l'édition critique de Pingree au Warburg et la traduction française parue chez Brepols en 2003.",
-          "url": "https://fr.wikipedia.org/wiki/Picatrix"
-        },
-        {
-          "kind": "read",
-          "title": "Les étoiles fixes béhéniennes",
-          "src": "Wikipédia en anglais",
-          "note": "La liste des quinze, avec longitudes, planètes, pierres et plantes associées. Le point de départ le plus clair, à recouper.",
-          "url": "https://en.wikipedia.org/wiki/Behenian_fixed_star"
-        },
-        {
-          "kind": "look",
-          "title": "Les sigils des quinze béhéniennes",
-          "src": "Wikimedia Commons",
-          "note": "Les quinze signes d'après l'édition d'Agrippa de 1531, dont Cauda Ursae. Redessins vectoriels.",
-          "url": "https://commons.wikimedia.org/wiki/Category:Behenian_fixed_star_symbols"
-        },
-        {
-          "kind": "read",
-          "title": "Le Livre illustré des étoiles fixes d'al-Sufi",
-          "src": "The Public Domain Review",
-          "note": "Une présentation soignée du manuscrit d'Ulugh Beg conservé à la Bibliothèque nationale de France. En anglais.",
-          "url": "https://publicdomainreview.org/collection/fixed-stars/"
-        },
-        {
-          "kind": "read",
-          "title": "Stargates, la magie des images",
-          "src": "The Warburg Institute",
-          "note": "La série de conférences dont est tirée la vidéo, avec les autres interventions sur les talismans astraux.",
-          "url": "https://warburg.sas.ac.uk/news-events/whats/lectures-talks/stargates-magic-images-heka-monas-hieroglyphica"
-        }
-      ]
+     "v": "1°",
+     "u": "par 72 ans",
+     "l": "Le glissement des étoiles fixes sur le zodiaque, dû à la précession. Les tables des auteurs anciens sont donc toutes décalées."
     }
-  ]
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Ptolémée, et la nature des étoiles",
+   "p": [
+    "Au IIᵉ siècle, dans le livre qui deviendra le manuel de référence de toute l'astrologie occidentale, Ptolémée procède à un inventaire méthodique. Il parcourt les constellations une à une et attribue à chacune la « nature » d'une ou deux planètes. Les étoiles brillantes de la Petite Ourse tiennent de Saturne et, plus faiblement, de Vénus. Celles de la Grande Ourse tiennent de Mars.",
+    "Le procédé mérite qu'on s'y arrête, car il fonde tout le reste. Ptolémée ne dit pas que ces étoiles agissent : il dit qu'elles ressemblent, qu'elles ont la même qualité. Les auteurs suivants transformeront ces analogies en influences, puis en prédictions. Un siècle après l'autre, une remarque de classement est devenue une doctrine."
+   ]
+  },
+  {
+   "t": "quote",
+   "p": "Les étoiles de la Grande Ourse sont de la nature de Mars.",
+   "who": "Ptolémée, Tetrabiblos, livre I, chapitre 9 — IIᵉ siècle"
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/uma/al_sufi_-_book_of_fixed_stars_-_ursa_maj.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Al_Sufi_-_Book_of_Fixed_Stars_-_Ursa_Major_(The_Great_Bear)_-_Bodleian_Library_-_Marsh_144.jpg",
+   "wide": true,
+   "cap": "La Grande Ourse dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. Chaque constellation y est dessinée deux fois : telle qu'on la voit dans le ciel, et telle qu'elle apparaît retournée sur un globe céleste. C'est par ce livre, puis par ses traductions latines, que les noms d'étoiles arabes et les tables de Ptolémée sont parvenus à l'astrologie européenne.",
+   "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+  },
+  {
+   "t": "text",
+   "h": "Les quinze étoiles béhéniennes",
+   "p": [
+    "Le mot vient de l'arabe bahman, la racine. Quinze étoiles seulement, tenues pour des sources d'influence particulièrement concentrées, dont chacune est associée à une planète, à une pierre et à une plante. La liste circule d'abord dans le monde arabe sous l'autorité fictive d'Hermès Trismégiste, puis passe en Europe. Agrippa la reprend en 1533 dans sa « Philosophie occulte », avec pour chaque étoile un signe à graver.",
+    "Alkaïd y figure sous le nom de Cauda Ursae, la Queue de l'Ourse, en huitième position. C'est la seule étoile de la Grande Ourse retenue dans la liste. Les six autres du Chariot n'ont jamais eu droit à un sigil."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/uma/agrippa_behenian_star_08_cauda_ursae.svg.webp",
+   "page": "https://commons.wikimedia.org/wiki/File:Agrippa_Behenian_star_08_Cauda_ursae.svg",
+   "lit": true,
+   "wide": true,
+   "cap": "Le signe de Cauda Ursae, huitième des quinze étoiles béhéniennes. Gravé sur un métal ou une pierre au moment où une planète passait à moins de six degrés de l'étoile, il devait en capter l'influence. Ce tracé est un redessin moderne d'après l'édition d'Agrippa de 1531.",
+   "credit": "D'après Heinrich Cornelius Agrippa, De occulta philosophia, livre II — redessin, Wikimedia Commons"
+  },
+  {
+   "t": "text",
+   "h": "L'étoile de la vengeance",
+   "p": [
+    "Le Ghāyat al-Ḥakīm, compilé en al-Andalus au Xᵉ siècle et connu en Europe sous son titre latin de Picatrix, est le manuel de magie astrale le plus complet qui nous soit parvenu. Traduit en castillan puis en latin à la cour d'Alphonse X de Castille, il a nourri Ficin, Pic de la Mirandole et Agrippa. Il contient des centaines de recettes de talismans planétaires et zodiacaux.",
+    "Il n'en contient qu'une seule pour une étoile fixe, et c'est celle-là : Benethnays, « près du pôle », l'étoile de la vengeance. Le rite s'adresse à qui veut détourner de lui un ennemi. Il faut se tourner vers la région du ciel où se trouve alors l'étoile, jeter une fumigation sur les charbons, et prononcer la prière prescrite. Que cette unique exception soit tombée sur la queue de la Grande Ourse, la seule des sept dont le nom arabe évoque un cortège funèbre, n'est probablement pas un hasard."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Comment une remarque de classement est devenue une doctrine",
+    "events": [
+     {
+      "y": 150,
+      "when": "IIᵉ siècle",
+      "label": "Ptolémée range les constellations par « nature »",
+      "note": "Tetrabiblos I, 9. La Grande Ourse est dite de nature martienne. Ptolémée écrit une analogie, pas une influence."
+     },
+     {
+      "y": 960,
+      "when": "964",
+      "label": "al-Sufi illustre les 48 constellations",
+      "note": "Le Livre des étoiles fixes double chaque figure, vue du ciel et vue du globe. Il transmet Ptolémée et les noms arabes."
+     },
+     {
+      "y": 964,
+      "when": "Xᵉ siècle",
+      "label": "Le Ghāyat al-Ḥakīm compile la magie astrale",
+      "note": "Attribué longtemps à al-Majriti, il est aujourd'hui rendu à Maslama b. Qāsim al-Qurṭubī. Il contient le talisman de Benethnays."
+     },
+     {
+      "y": 1256,
+      "when": "XIIIᵉ siècle",
+      "label": "Traduction latine à la cour d'Alphonse X",
+      "note": "Le texte devient le Picatrix et entre dans la bibliothèque des lettrés européens, où il restera trois siècles."
+     },
+     {
+      "y": 1533,
+      "label": "Agrippa publie les sigils des béhéniennes",
+      "note": "La Philosophie occulte fixe pour longtemps l'iconographie des quinze étoiles. L'inquisiteur de Cologne condamnera l'ouvrage."
+     },
+     {
+      "y": 1923,
+      "label": "Robson écrit le manuel moderne",
+      "note": "Son recueil sur les étoiles fixes, sans cesse réédité, est la source de la quasi-totalité de ce qu'on lit aujourd'hui sur le sujet."
+     }
+    ]
+   },
+   "cap": "Dix-huit siècles de recopiage, de traduction et de réinterprétation. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Le deuil, ou la victoire, selon l'auteur",
+   "p": [
+    "Ce que la tradition prête à Alkaïd est un bon exemple de la façon dont ce corpus fonctionne. Robson, en 1923, décrit la constellation entière comme donnant un naturel calme, prudent, méfiant, maître de lui et patient, capable d'endurer beaucoup, mais susceptible d'une colère et d'un esprit de revanche considérables une fois provoqué. Sur Alkaïd en particulier, il retient le sens du nom arabe et l'idée de pleureuses.",
+    "Reinhold Ebertin, au XXᵉ siècle, va plus loin et associe l'étoile aux catastrophes collectives, éboulements, effondrements, désastres qui coûtent des vies. D'autres auteurs lui prêtent au contraire réussite, pouvoir et victoire sur les ennemis, et lui attribuent la nature de Jupiter là où Ptolémée voyait Mars. Les contradictions ne sont pas des accidents à corriger : elles sont la matière même de cette littérature, où chaque auteur relit ses prédécesseurs et ajoute sa couche."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Pourquoi « 27° de la Vierge » ne veut pas dire « dans la Vierge »",
+    "targets": [
+     {
+      "star": "Régulus",
+      "from": "Phecda",
+      "label": "Régulus",
+      "sub": "Lion",
+      "note": "Une vraie constellation du zodiaque. Le Soleil y passe, il ne passe jamais chez l'Ourse."
+     },
+     {
+      "star": "Spica",
+      "from": "Alkaïd",
+      "label": "Spica",
+      "sub": "Vierge",
+      "note": "La longitude d'Alkaïd est donnée dans la Vierge, mais l'étoile est très loin d'ici, au nord. On projette sa position sur la route du Soleil."
+     }
+    ],
+    "notes": {
+     "Alkaïd": "La seule étoile de la figure retenue parmi les quinze béhéniennes.",
+     "Dubhé": "Le nom vient de l'arabe al-dubb, l'ours.",
+     "Mizar": "Accompagnée d'Alcor, elle sert d'épreuve de vue depuis au moins le XIIIᵉ siècle."
+    }
+   },
+   "cap": "Les longitudes zodiacales des étoiles fixes sont des projections perpendiculaires sur l'écliptique. Une étoile « à 27° de la Vierge » peut se trouver à cinquante degrés de la constellation de la Vierge.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Et la précession efface les tables",
+   "p": [
+    "Les signes du zodiaque ne coïncident plus avec les constellations dont ils portent le nom : l'axe de la Terre décrit un cercle lent, et le décalage atteint aujourd'hui près d'un signe entier. Pour les étoiles fixes, la conséquence est directe. Leur longitude avance d'environ un degré tous les soixante-douze ans.",
+    "Autrement dit, aucune des positions données par Ptolémée, par le Picatrix ou par Agrippa n'est encore valable. Les praticiens modernes recalculent ; les textes anciens, lus au premier degré, désignent aujourd'hui d'autres points du ciel que ceux que leurs auteurs visaient. C'est un fait technique, et il vaut d'être connu avant d'ouvrir un de ces ouvrages."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/uma/telechargement.png",
+   "page": "https://searchcollection.asianart.org/objects/2414/the-daoist-deity-doumu",
+   "wide": true,
+   "cap": "Doumu, la Mère du Boisseau, mère des sept étoiles du Chariot du Nord. Elle porte un troisième œil au front et dix-huit bras chargés d'attributs, armes sacrées et insignes. On l'invoquait pour la longévité et la prospérité. Porcelaine de Dehua, où se mêlent éléments bouddhiques et taoïstes.",
+   "credit": "Asian Art Museum of San Francisco, « The Daoist deity Doumu »"
+  },
+  {
+   "t": "text",
+   "h": "En Chine, la figure décide du sort",
+   "p": [
+    "La tradition chinoise ne fait pas de la Grande Ourse un détail marginal : le Beidou, le Boisseau du Nord, est au cœur du dispositif. Char où siègent les Juges de la noblesse, il tourne autour du pôle et règle l'ordre du monde. Le taoïsme lui a donné une déesse, Doumu, la Mère du Boisseau, qui gagne son importance à partir du XVᵉ siècle et entre alors dans le canon taoïste. On lui demande longévité et prospérité, c'est-à-dire ce que l'astrologie occidentale demande aux planètes.",
+    "Chaque étoile du Boisseau porte son rang et son office. Alkaïd est la septième, Yáoguāng, l'Éclat scintillant. Sous l'influence du taoïsme, le Japon l'a nommée Hagunsei et la Corée Mukokseong, l'étoile de la défaite militaire. La même étoile est donc funeste des deux côtés du continent, sans que les deux traditions se soient copiées."
+   ]
+  },
+  {
+   "t": "video",
+   "url": "https://www.youtube.com/watch?v=cEZVLelJ88s",
+   "page": "https://warburg.sas.ac.uk/news-events/whats/lectures-talks/stargates-magic-images-heka-monas-hieroglyphica",
+   "cap": "Charles Burnett, du Warburg Institute, sur la théorie et la pratique des talismans astrologiques. Pour comprendre ce que fabriquaient réellement les auteurs du Picatrix et d'Agrippa. Conférence en anglais.",
+   "credit": "The Warburg Institute, série de conférences « Stargates »"
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "deep",
+     "title": "Tetrabiblos, livre I, chapitre 9",
+     "src": "Ptolémée, via LacusCurtius, université de Chicago",
+     "note": "Le passage où les constellations reçoivent leur « nature » planétaire. La source de tout le reste. En anglais.",
+     "url": "http://penelope.uchicago.edu/Thayer/e/roman/texts/ptolemy/tetrabiblos/1b*.html"
+    },
+    {
+     "kind": "look",
+     "title": "La Grande Ourse d'al-Sufi, MS. Marsh 144",
+     "src": "Bodleian Library, Oxford",
+     "note": "La planche en très haute résolution, avec ses deux figures et la liste des étoiles en marge.",
+     "url": "https://commons.wikimedia.org/wiki/File:Al_Sufi_-_Book_of_Fixed_Stars_-_Ursa_Major_(The_Great_Bear)_-_Bodleian_Library_-_Marsh_144.jpg"
+    },
+    {
+     "kind": "read",
+     "title": "Un manuscrit d'astronomie arabe mis en ligne",
+     "src": "Blog des Bodleian Libraries",
+     "note": "L'autre copie d'al-Sufi d'Oxford, faite en 1170 pour le trésor de l'émir de Mossoul. En anglais.",
+     "url": "https://blogs.bodleian.ox.ac.uk/archivesandmanuscripts/2016/03/18/newly-digitized-arabic-astronomy-manuscript-now-online/"
+    },
+    {
+     "kind": "look",
+     "title": "Doumu, la Mère du Boisseau",
+     "src": "Asian Art Museum of San Francisco",
+     "note": "La notice du musée sur la déesse des sept étoiles et sur la porcelaine de Dehua. En anglais.",
+     "url": "https://searchcollection.asianart.org/objects/2414/the-daoist-deity-doumu"
+    },
+    {
+     "kind": "watch",
+     "title": "La théorie et la pratique des talismans",
+     "src": "Charles Burnett, Warburg Institute",
+     "note": "Une heure pour comprendre ce que les auteurs médiévaux pensaient faire en gravant un sigil. En anglais.",
+     "url": "https://www.youtube.com/watch?v=cEZVLelJ88s"
+    },
+    {
+     "kind": "read",
+     "title": "Les Sept Dieux des Étoiles, Beidou qixing",
+     "src": "British Museum",
+     "note": "La notice d'autorité du musée, avec les objets de la collection qui les représentent. En anglais.",
+     "url": "https://www.britishmuseum.org/collection/term/BIOG14000"
+    },
+    {
+     "kind": "read",
+     "title": "Picatrix",
+     "src": "Wikipédia en français",
+     "note": "Utile surtout pour ses références : l'édition critique de Pingree au Warburg et la traduction française parue chez Brepols en 2003.",
+     "url": "https://fr.wikipedia.org/wiki/Picatrix"
+    },
+    {
+     "kind": "read",
+     "title": "Les étoiles fixes béhéniennes",
+     "src": "Wikipédia en anglais",
+     "note": "La liste des quinze, avec longitudes, planètes, pierres et plantes associées. Le point de départ le plus clair, à recouper.",
+     "url": "https://en.wikipedia.org/wiki/Behenian_fixed_star"
+    },
+    {
+     "kind": "look",
+     "title": "Les sigils des quinze béhéniennes",
+     "src": "Wikimedia Commons",
+     "note": "Les quinze signes d'après l'édition d'Agrippa de 1531, dont Cauda Ursae. Redessins vectoriels.",
+     "url": "https://commons.wikimedia.org/wiki/Category:Behenian_fixed_star_symbols"
+    },
+    {
+     "kind": "read",
+     "title": "Le Livre illustré des étoiles fixes d'al-Sufi",
+     "src": "The Public Domain Review",
+     "note": "Une présentation soignée du manuscrit d'Ulugh Beg conservé à la Bibliothèque nationale de France. En anglais.",
+     "url": "https://publicdomainreview.org/collection/fixed-stars/"
+    },
+    {
+     "kind": "read",
+     "title": "Stargates, la magie des images",
+     "src": "The Warburg Institute",
+     "note": "La série de conférences dont est tirée la vidéo, avec les autres interventions sur les talismans astraux.",
+     "url": "https://warburg.sas.ac.uk/news-events/whats/lectures-talks/stargates-magic-images-heka-monas-hieroglyphica"
+    }
+   ]
+  }
+ ]
 }
