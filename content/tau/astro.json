@@ -1,84 +1,248 @@
 {
- "constellation": "tau",
- "tab": "astro",
- "blocks": [
-  {
-   "t": "warn",
-   "h": "Ce que vaut cet onglet",
-   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
-  },
-  {
-   "t": "lead",
-   "p": "Aucune autre constellation ne porte deux des quinze étoiles behéniennes. Le Taureau a Aldébaran et les Pléiades — et Aldébaran est de surcroît l'une des quatre étoiles royales de Perse. C'est, dans ce corpus, la figure la plus chargée du ciel."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "tau",
+  "tab": "astro",
+  "blocks": [
     {
-     "v": "2",
-     "u": "behéniennes",
-     "l": "Aldébaran et Alcyone, la principale des Pléiades. Le Taureau est le seul à en compter deux."
+      "t": "warn",
+      "h": "Ce que contient cet onglet",
+      "p": "L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères, la santé ou les événements. Ce qui suit documente une tradition, ses textes et son histoire, comme on documenterait la médecine des humeurs ou l'alchimie. Rien ici ne vaut prédiction, diagnostic ni conseil, et cet onglet ne se lit pas sur le même plan que l'onglet Science."
     },
     {
-     "v": "4",
-     "u": "royales",
-     "l": "Aldébaran, Régulus, Antarès et Fomalhaut : les quatre étoiles qui gardaient, dit-on, les quartiers du ciel perse."
+      "t": "lead",
+      "p": "Le Taureau est le signe où la tradition savante a le plus à dire, parce que deux des quinze étoiles fixes retenues par la magie médiévale s'y trouvent : les Pléiades et Aldébaran. Aucun autre signe n'en abrite deux. C'est aussi le signe qui porte la plus belle imposture de l'histoire de l'astrologie, une doctrine qu'on présente comme perse et vieille de cinq mille ans, et qui a en réalité été inventée à Paris à la fin du XVIIIᵉ siècle."
     },
     {
-     "v": "≈ 28",
-     "u": "degrés",
-     "l": "Décalage entre le signe du Taureau et la constellation du même nom, accumulé par la précession."
+      "t": "stats",
+      "v": [
+        {
+          "v": "3°",
+          "u": "Taureau",
+          "l": "Le degré d'exaltation de la Lune dans la tradition. Ptolémée le justifie par le fait que la Lune, sortant de sa conjonction avec le Soleil, commence à y croître en lumière."
+        },
+        {
+          "v": "2",
+          "u": "béhéniennes",
+          "l": "Les Pléiades et Aldébaran figurent parmi les quinze étoiles fixes retenues par la magie astrale médiévale. Aucun autre signe n'en compte deux."
+        },
+        {
+          "v": "10°",
+          "u": "Gémeaux",
+          "l": "La longitude tropicale attribuée à Aldébaran. L'œil du taureau est donc compté dans le signe suivant : c'est une projection, pas une position."
+        },
+        {
+          "v": "le cou",
+          "l": "La partie du corps que le Taureau gouverne dans la mélothésie. On évitait de saigner la gorge quand la Lune occupait ce signe."
+        },
+        {
+          "v": "XVIIIᵉ",
+          "u": "siècle",
+          "l": "L'époque où sont inventées les « quatre étoiles royales de Perse ». La légende est enseignée encore aujourd'hui comme une tradition millénaire."
+        }
+      ]
+    },
+    {
+      "t": "text",
+      "h": "La Lune exaltée, et le raisonnement de Ptolémée",
+      "p": [
+        "La tradition attribue au Taureau la domination de Vénus, l'exaltation de la Lune, l'exil de Mars, et le classe parmi les signes fixes de l'élément terre. Ce qui rend Ptolémée précieux, une fois de plus, c'est qu'il argumente au lieu de décréter. Sa justification de l'exaltation lunaire est une petite mécanique : la Lune, dit-il, sort de sa conjonction avec le Soleil, laquelle se produit dans le signe d'exaltation solaire, c'est-à-dire le Bélier. Elle montre alors sa première phase et commence à croître en lumière. Or le premier signe de son trigone est le Taureau. C'est donc là qu'on place son exaltation, et dans le signe opposé, le Scorpion, sa dépression.",
+        "Le procédé mérite d'être vu pour ce qu'il est. Il n'y a aucune observation là-dedans, aucune mesure, aucun cas testé. Il y a une analogie physique — la lumière qui croît — transposée en géométrie zodiacale, puis symétrisée. Le système est cohérent, élégant même, et entièrement autoréférentiel. C'est la marque de fabrique du Tetrabiblos, et c'est ce qui lui a donné son autorité pendant quinze siècles : il ressemblait à de la physique."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/tau/zodiaque-dendera-louvre.jpg",
+      "page": "https://collections.louvre.fr/en/ark:/53355/cl010028871",
+      "wide": true,
+      "cap": "Le zodiaque de Dendérah, bloc de grès de deux mètres cinquante de côté, sculpté vers 50 avant notre ère au plafond d'une chapelle d'Osiris sur le toit du temple d'Hathor. Les douze signes s'enroulent en spirale à partir du Cancer, et le Taureau y porte l'iconographie gréco-romaine. Autour d'eux, trente-six génies figurent les décans, qui sont eux proprement égyptiens.",
+      "credit": "Musée du Louvre, département des Antiquités égyptiennes (D 38)"
+    },
+    {
+      "t": "text",
+      "h": "L'affaire de Dendérah",
+      "p": [
+        "Ce plafond a déclenché l'une des plus violentes querelles savantes du début du XIXᵉ siècle, et le Taureau y a joué son rôle. Découvert le 24 janvier 1799 par les savants de l'expédition d'Égypte, extrait à la scie en 1821 par Jean-Baptiste Lelorrain, acheté par Louis XVIII en 1822, il est devenu une pièce à conviction. La question était sa date. Joseph Fourier proposait 2500 avant notre ère, d'autres le Nouvel Empire, et ces datations hautes faisaient de l'astronomie égyptienne un savoir antérieur à la chronologie biblique. L'enjeu n'était donc pas mince.",
+        "Champollion a tranché, avec l'aide d'astronomes comme Jean-Baptiste Biot, en déchiffrant sur le temple des noms d'empereurs romains : le relief est gréco-romain. L'Institut français d'archéologie orientale le date aujourd'hui d'environ 50 avant notre ère, à partir de la disposition des astres. Ce que le document montre, du coup, est autre chose et plus intéressant : un zodiaque d'origine babylonienne, habillé à la grecque, encadré des trente-six décans de la tradition égyptienne, sur le toit d'un temple égyptien à l'époque des Ptolémées. L'astrologie est un objet de transmission, pas de révélation, et ce plafond en est la preuve gravée."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Comment le Taureau est devenu un signe",
+        "events": [
+          {
+            "y": -2300,
+            "when": "vers 2300 av. J.-C.",
+            "label": "Les Pléiades ouvrent l'année babylonienne",
+            "note": "L'amas marque l'équinoxe de printemps. Aldébaran est alors désignée comme l'étoile principale des étoiles."
+          },
+          {
+            "y": -1200,
+            "when": "époque védique",
+            "label": "Krittika ouvre la liste des nakshatras",
+            "note": "La liste indienne des vingt-sept demeures lunaires commence par les Pléiades, probablement parce qu'elles marquaient alors l'équinoxe de printemps."
+          },
+          {
+            "y": -50,
+            "when": "vers 50 av. J.-C.",
+            "label": "Le zodiaque de Dendérah est sculpté",
+            "note": "Un zodiaque babylonien en habits grecs, entouré des décans égyptiens, sur le toit d'un temple d'Hathor. Un document entièrement hybride."
+          },
+          {
+            "y": 150,
+            "when": "IIᵉ siècle",
+            "label": "Ptolémée fixe les dignités",
+            "note": "Vénus en domicile, la Lune en exaltation, Mars en exil. La justification de l'exaltation lunaire tient au comportement de la lumière, pas à une observation."
+          },
+          {
+            "y": 1533,
+            "label": "Agrippa publie les sigils des béhéniennes",
+            "note": "Les Pléiades et Aldébaran y sont deuxième et troisième de la liste des quinze étoiles jugées utiles à la magie astrale."
+          },
+          {
+            "y": 1798,
+            "when": "fin du XVIIIᵉ siècle",
+            "label": "Bailly invente les étoiles royales de Perse",
+            "note": "Dupuis les baptise. Arago, Flammarion puis Allen recopient sans vérifier, et l'astrologie contemporaine l'enseigne toujours."
+          }
+        ]
+      },
+      "cap": "Une figure babylonienne, des dignités grecques, des décans égyptiens, des sigils de la Renaissance et une légende du siècle des Lumières. Survolez les étapes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Deux béhéniennes dans le même signe",
+      "p": [
+        "La liste des quinze étoiles béhéniennes, celles que la magie astrale médiévale tenait pour des sources d'influence concentrées, est courte et jalousement fixée. Or deux d'entre elles se trouvent ici : les Pléiades en deuxième position, Aldébaran en troisième. Aucun autre signe n'en abrite autant. Chacune reçoit sa planète, sa pierre, sa plante et son signe à graver, publiés par Agrippa en 1533 dans sa Philosophie occulte.",
+        "Sur Aldébaran, la tradition est stable et se recopie depuis Ptolémée. L'étoile est placée dans l'œil gauche du taureau, on lui attribue la nature de Mars, et on lui prête fermeté, courage, intégrité, puissance. Notez au passage la bizarrerie de comptabilité, la même que pour Alkaïd dans la Grande Ourse : la longitude tropicale d'Aldébaran la situe vers dix degrés des Gémeaux. L'étoile la plus brillante du Taureau est donc rangée, en astrologie, dans le signe suivant. Ce n'est pas une erreur, c'est le fonctionnement normal du système : on projette perpendiculairement la position de l'étoile sur l'écliptique, et l'écart de latitude disparaît."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/tau/sigil-behenien-pleiades.png",
+      "page": "https://commons.wikimedia.org/wiki/Category:Behenian_fixed_star_symbols",
+      "lit": true,
+      "wide": true,
+      "cap": "Le signe des Pléiades, deuxième des quinze étoiles béhéniennes. Gravé sur un métal ou une pierre au moment où une planète passait à moins de six degrés de l'astre, il devait en capter l'influence. Ce tracé est un redessin moderne d'après l'édition d'Agrippa de 1531.",
+      "credit": "D'après Heinrich Cornelius Agrippa, De occulta philosophia, livre II — redessin, Wikimedia Commons"
+    },
+    {
+      "t": "text",
+      "h": "Le Taureau gouverne le cou",
+      "p": [
+        "Dans la mélothésie, cette doctrine qui distribue les parties du corps entre les signes, le Bélier prend la tête et le Taureau prend le cou, la gorge, la nuque. La série descend ainsi jusqu'aux pieds pour les Poissons. Ce n'était pas une figure de style : la règle centrale de la médecine astrologique interdisait d'intervenir sur une partie du corps quand la Lune se trouvait dans le signe correspondant. On ne saignait donc pas la gorge, on ne touchait pas au goitre, quand la Lune était au Taureau.",
+        "Les almanachs et les livres d'heures portaient la figure de l'homme zodiacal pour que chacun puisse vérifier le calendrier avant de se confier à un barbier-chirurgien. Cette pratique a duré cinq siècles en Europe et concernait tout le monde, pas seulement les érudits. C'est de loin l'effet le plus concret et le plus vérifiable qu'ait eu l'astrologie sur la vie des gens, et il n'a rien à voir avec les horoscopes."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/tau/homme-astrologique-wellcome.jpg",
+      "page": "https://commons.wikimedia.org/wiki/Category:Homo_signorum",
+      "wide": true,
+      "cap": "Un homme astrologique du XVIᵉ siècle. Les douze signes sont posés sur les parties du corps qu'ils gouvernent, ou reliés à elles. Cherchez le taureau : il est au niveau de la gorge, juste sous le bélier.",
+      "credit": "Wellcome Collection, via Wikimedia Commons"
+    },
+    {
+      "t": "text",
+      "h": "Krittika et Rohini",
+      "p": [
+        "L'astrologie indienne découpe l'écliptique autrement, en vingt-sept demeures lunaires, les nakshatras, et deux d'entre elles occupent notre Taureau. La troisième est Krittika, qui est l'amas des Pléiades : sa divinité est Agni, le dieu du feu, ses symboles sont une lame et une flamme, et sa puissance est celle de brûler. Les Krittika sont par ailleurs les nourrices de Kārttikeya, né des étincelles du troisième œil de Shiva. Détail remarquable : dans les Védas, la liste des nakshatras commençait par Krittika, très probablement parce que les Pléiades marquaient alors l'équinoxe de printemps. Les compilations plus récentes l'ont fait débuter ailleurs.",
+        "La quatrième est Rohini, « la rouge », qui est Aldébaran et les Hyades. Sa divinité est Brahmā, son maître est Chandra, le dieu lunaire, et Rohini est dans le mythe l'épouse préférée de Chandra. Voilà une convergence qui vaut d'être notée sans qu'on en tire de conclusion hâtive : deux traditions indépendantes, la grecque et l'indienne, attachent la Lune à cette portion du ciel de manière privilégiée, l'une par une exaltation, l'autre par un mariage."
+      ]
+    },
+    {
+      "t": "quote",
+      "p": "L'appellation « étoiles royales de Perse » a des bases bancales.",
+      "who": "Azur, astrologue, blog Ad astra"
+    },
+    {
+      "t": "warn",
+      "h": "Les quatre gardiennes du ciel n'ont jamais existé",
+      "p": "Aldébaran est presque toujours présentée comme l'une des quatre étoiles royales de Perse, gardienne de l'Est, avec Régulus, Antarès et Fomalhaut aux trois autres directions, le tout censé remonter à cinq mille ans. C'est faux, et l'histoire de cette fausseté est instructive. La légende a été forgée à la fin du XVIIIᵉ siècle par l'astronome Jean Sylvain Bailly, puis par Charles-François Dupuis à qui l'on doit l'expression « étoiles royales ». Elle a été reprise sans vérification par François Arago dans son Astronomie populaire en 1861, par Camille Flammarion dans son Histoire du ciel en 1872, puis par Richard Hinckley Allen dans Star Names en 1899, ouvrage qui reste aujourd'hui la source de la plupart des sites consacrés aux noms d'étoiles. De là, elle est passée dans l'astrologie contemporaine, où elle est enseignée par des auteurs sérieux. Un indice suffit à la faire douter : les sources ne s'accordent même pas sur qui garde quelle direction, ni sur quelle étoile va avec quelle saison. Des astrologues eux-mêmes l'ont constaté et le disent."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "read",
+          "title": "Étoile royale",
+          "src": "Wikipédia en français",
+          "note": "La démonstration complète de la fabrication de la légende, de Bailly et Dupuis jusqu'à Allen. La source du bloc de mise en garde.",
+          "url": "https://fr.wikipedia.org/wiki/%C3%89toile_royale"
+        },
+        {
+          "kind": "look",
+          "title": "Zodiaque de Dendérah",
+          "src": "Musée du Louvre",
+          "note": "La fiche du Louvre, avec l'histoire de son extraction et sa bibliographie savante.",
+          "url": "https://collections.louvre.fr/en/ark:/53355/cl010028871"
+        },
+        {
+          "kind": "deep",
+          "title": "La date de conception du zodiaque du temple d'Hathor à Dendera",
+          "src": "Éric Aubourg, Bulletin de l'IFAO, 1995",
+          "note": "L'article qui fixe la date à partir de la disposition des planètes. En français, technique et court.",
+          "url": "https://www.ifao.egnet.net/bifao/095/01/"
+        },
+        {
+          "kind": "read",
+          "title": "Le zodiaque de Dendéra, analyse en images",
+          "src": "Panorama de l'art",
+          "note": "Le relief détaillé signe par signe, avec les repères sur l'image. En français, très pédagogique.",
+          "url": "https://panoramadelart.com/analyse/zodiaque-de-dendera"
+        },
+        {
+          "kind": "look",
+          "title": "Les sigils des quinze béhéniennes",
+          "src": "Wikimedia Commons",
+          "note": "Les quinze signes d'après l'édition d'Agrippa de 1531, dont ceux des Pléiades et d'Aldébaran.",
+          "url": "https://commons.wikimedia.org/wiki/Category:Behenian_fixed_star_symbols"
+        },
+        {
+          "kind": "look",
+          "title": "Les hommes zodiacaux",
+          "src": "Wikimedia Commons",
+          "note": "Soixante-seize représentations d'homo signorum, dont beaucoup issues de la Wellcome Collection.",
+          "url": "https://commons.wikimedia.org/wiki/Category:Homo_signorum"
+        },
+        {
+          "kind": "read",
+          "title": "Krittika",
+          "src": "Wikipédia en anglais",
+          "note": "Les Pléiades comme troisième nakshatra, nourrices de Kārttikeya, et leur place initiale en tête de la liste védique.",
+          "url": "https://en.wikipedia.org/wiki/Krittika"
+        },
+        {
+          "kind": "read",
+          "title": "Rohini",
+          "src": "Wikipédia en anglais",
+          "note": "Aldébaran et les Hyades comme quatrième demeure lunaire, et Rohini comme épouse préférée du dieu lunaire.",
+          "url": "https://en.wikipedia.org/wiki/Rohini_(nakshatra)"
+        },
+        {
+          "kind": "read",
+          "title": "Liste des nakshatras",
+          "src": "Wikipédia en anglais",
+          "note": "Les vingt-sept demeures avec leurs étoiles, leurs maîtres et leurs divinités. Utile pour situer Krittika et Rohini dans l'ensemble.",
+          "url": "https://en.wikipedia.org/wiki/List_of_Nakshatras"
+        },
+        {
+          "kind": "read",
+          "title": "Ad astra, blog astrologique",
+          "src": "Azur, astrologue",
+          "note": "Un praticien qui enquête sur les étoiles royales et conclut que l'appellation ne tient pas. L’honnêteté vient parfois de l'intérieur.",
+          "url": "https://azurastrologue.fr/"
+        },
+        {
+          "kind": "read",
+          "title": "Mélothésie",
+          "src": "Les clés du Moyen-Orient",
+          "note": "La distribution complète des parties du corps entre les douze signes, et sa filiation néoplatonicienne. En français.",
+          "url": "https://www.lesclesdumoyenorient.com/Melothesie.html"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Aldébaran, l'œil du taureau",
-   "p": [
-    "La tradition lui attribue une nature martiale : honneurs militaires, courage, et la ruine qui les accompagne. Ptolémée déjà la classait parmi les étoiles de nature Mars, et Agrippa lui associe une pierre et un sceau pour la confection de talismans.",
-    "Sa position, presque exactement sur l'écliptique, explique une partie de son prestige : la Lune la masque régulièrement, et les planètes la croisent. Une étoile que le ciel désigne sans arrêt finit par attirer les commentaires."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Les Pléiades, la pluie et le deuil",
-   "p": [
-    "Dans la liste behénienne, l'entrée ne désigne pas une étoile isolée mais l'amas entier, parfois sous le nom d'Alcyone. La tradition l'associe à la pluie, aux voyages en mer et au chagrin — une lecture que le calendrier suffit à expliquer : le coucher héliaque de l'amas annonçait la saison des tempêtes et la fermeture de la navigation.",
-    "C'est l'un des rares cas où la signification astrologique se laisse retracer jusqu'à un fait observable. Le reste du corpus tient rarement une telle cohérence."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "deep",
-     "title": "The Fixed Stars and Constellations in Astrology",
-     "src": "Vivian E. Robson, 1923 — Internet Archive",
-     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
-     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
-    },
-    {
-     "kind": "read",
-     "title": "The 15 Behenian Stars",
-     "src": "Orphic Astrology",
-     "note": "Les correspondances détaillées, avec les sources anciennes citées. En anglais.",
-     "url": "https://orphicastrology.com/fixedstars/behenian"
-    },
-    {
-     "kind": "read",
-     "title": "The Behenian Fixed Stars",
-     "src": "AstroAk",
-     "note": "L'histoire de la liste et sa transmission par Agrippa en 1533. En anglais.",
-     "url": "https://www.astroak.com/en/blog/behenian-fixed-stars"
-    },
-    {
-     "kind": "read",
-     "title": "Behenian Fixed Stars",
-     "src": "Astro-Seek",
-     "note": "Les longitudes zodiacales actuelles des quinze étoiles, utiles pour situer le décalage. En anglais.",
-     "url": "https://horoscopes.astro-seek.com/behenian-fixed-stars-astrology"
-    }
-   ]
-  }
- ]
+  ]
 }
