@@ -1,70 +1,246 @@
 {
- "constellation": "gem",
- "tab": "astro",
- "blocks": [
-  {
-   "t": "warn",
-   "h": "Ce que vaut cet onglet",
-   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
-  },
-  {
-   "t": "lead",
-   "p": "Les Gémeaux ne portent aucune des quinze étoiles behéniennes. Leur place dans cet onglet vient uniquement de leur statut de signe du zodiaque — et l'essentiel de ce qu'il y a à en dire concerne l'écart entre ce signe et la constellation."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "gem",
+  "tab": "astro",
+  "blocks": [
     {
-     "v": "0",
-     "u": "behénienne",
-     "l": "Ni Castor ni Pollux ne figurent parmi les quinze étoiles majeures de la magie astrologique médiévale."
+      "t": "warn",
+      "h": "Ce que contient cet onglet",
+      "p": "L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères, la santé ou les événements. Ce qui suit documente une tradition, ses textes et son histoire, comme on documenterait la médecine des humeurs ou l'alchimie. Rien ici ne vaut prédiction, diagnostic ni conseil, et cet onglet ne se lit pas sur le même plan que l'onglet Science."
     },
     {
-     "v": "3e",
-     "u": "signe",
-     "l": "Position dans le zodiaque tropical, comptée depuis le point vernal."
+      "t": "lead",
+      "p": "Les Gémeaux sont le seul signe où l'édifice des dignités planétaires ne culmine nulle part : aucune des sept planètes traditionnelles ne s'y exalte, aucune n'y tombe. Un signe sans sommet ni fosse. En revanche, si vous voulez voir de vos yeux à quoi ressemblait le zodiaque au Moyen Âge, ce n'est pas dans un musée qu'il faut aller mais dans une cathédrale : Chartres en porte quatre, et Amiens un cinquième, taillés dans la pierre et sertis dans le verre."
     },
     {
-     "v": "≈ 28",
-     "u": "degrés",
-     "l": "Décalage accumulé entre le signe et la constellation de même nom."
+      "t": "stats",
+      "v": [
+        {
+          "v": "0",
+          "u": "exaltation",
+          "l": "Aucune des sept planètes traditionnelles ne s'exalte dans les Gémeaux, et aucune n'y a sa chute. Le signe n'a ni point haut ni point bas."
+        },
+        {
+          "v": "Mercure",
+          "l": "La planète maîtresse du signe. Le signe opposé, le Sagittaire, est le domicile de Jupiter, qui se trouve donc ici en exil."
+        },
+        {
+          "v": "4",
+          "u": "zodiaques",
+          "l": "Le nombre que porte la seule cathédrale de Chartres : deux dans la pierre des portails, un en vitrail, un sur le cadran de l'horloge astrolabe de 1407."
+        },
+        {
+          "v": "le 12",
+          "u": "du mois",
+          "l": "La date où tombaient les limites entre signes au XIIIᵉ siècle, avant la réforme grégorienne. Aujourd'hui c'est le 21."
+        },
+        {
+          "v": "2",
+          "u": "stations lunaires",
+          "l": "Le système arabe des vingt-huit manāzil al-qamar, entièrement distinct du zodiaque, en compte deux dans cette région du ciel."
+        }
+      ]
+    },
+    {
+      "t": "text",
+      "h": "Un signe sans sommet",
+      "p": [
+        "Le système des dignités planétaires attribue à chaque signe un maître, et souvent une planète qui s'y trouve exaltée, une autre en exil, une autre en chute. Les Gémeaux font exception. Mercure y a son domicile, Jupiter y est en exil puisque son domicile est le Sagittaire, en face. Et c'est tout : aucune des sept planètes de la tradition n'y a d'exaltation ni de chute. Le signe est plat, si l'on peut dire, alors que ses voisins immédiats sont l'un et l'autre des lieux d'exaltation, le Bélier pour le Soleil et le Taureau pour la Lune.",
+        "Curiosité supplémentaire, qui montre bien que ce système est un empilement et non une architecture : Ptolémée rejetait les décans, mais on connaît leurs maîtres par Teukros, auteur du Iᵉʳ siècle. Le premier décan des Gémeaux revient à Jupiter, le deuxième à Mars, le troisième au Soleil. Autrement dit, Jupiter, exilé dans ce signe, y gouverne malgré tout le premier tiers. Les astrologues eux-mêmes relèvent cette bizarrerie. Quant au portrait du natif, il est stable depuis un siècle : Gustave Lambert Brahy résume le signe en trois mots, distribution, compréhension, adaptation, et André Barbault en fait un signe cérébral, curieux, inconstant, dont l'élan mystique serait quasi nul du fait de Jupiter en exil."
+      ]
+    },
+    {
+      "t": "quote",
+      "p": "Le natif des Gémeaux joue sa vie ou vit son jeu.",
+      "who": "André Barbault, astrologue"
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/gem/zodiaque-chartres-vitrail.jpg",
+      "page": "https://pop.culture.gouv.fr/notice/palissy/IM28000515",
+      "wide": true,
+      "cap": "Le vitrail du Zodiaque et des Travaux des mois, à Chartres. Sept mètres quarante-sept de haut sur deux mètres sept, dans la lancette gauche de la baie 28, au sud du déambulatoire. Il a été exécuté entre 1217 et 1220, en même temps que la cathédrale reconstruite après l'incendie de 1194. La lancette de droite raconte la Vie de la Vierge : le zodiaque et l'Évangile partagent la même fenêtre.",
+      "credit": "Cathédrale Notre-Dame de Chartres, baie 28a — base Palissy, ministère de la Culture (IM28000515). © Inventaire général"
+    },
+    {
+      "t": "text",
+      "h": "Le zodiaque des cathédrales",
+      "p": [
+        "C'est le fait le plus frappant de cet onglet, et il n'est pas dans les livres d'astrologie. Au XIIᵉ et au XIIIᵉ siècle, les douze signes ont été sculptés et mis en verre sur les plus grands chantiers de la chrétienté, en pleine façade, à hauteur de regard. Chartres en porte quatre : sur les voussures internes du portail Royal roman, entre 1142 et 1150 ; sur les deux voussures les plus extérieures de la baie droite du portail Nord gothique, entre 1198 et 1217 ; dans le vitrail de la baie 28, entre 1217 et 1220 ; et enfin sur le cadran intérieur de l'horloge astrolabe, en 1407.",
+        "Le dispositif n'est jamais le zodiaque seul. Il est systématiquement apparié aux travaux des mois : à chaque signe correspond une occupation paysanne. À Amiens, sur le soubassement du portail Saint-Firmin, l'ensemble sculpté entre 1220 et 1230 se lit par paires superposées, le signe en haut, le travail en bas, dans des médaillons en quatre-feuilles. On l'appelle le calendrier picard. Ce que le zodiaque fait là n'est donc pas de l'astrologie prédictive : c'est un calendrier agraire, une façon de dire le temps qui passe et le travail des hommes. Pour les Gémeaux, mai-juin, le médaillon d'Amiens montre le renouveau de la végétation et quelqu'un qui prend le temps de se reposer à l'ombre du feuillage."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/gem/zodiaque-amiens-gemeaux.jpg",
+      "page": "https://fr.wikipedia.org/wiki/Zodiaque_de_la_cath%C3%A9drale_d'Amiens",
+      "wide": true,
+      "cap": "Le calendrier picard, sur le soubassement du portail Saint-Firmin de la cathédrale d'Amiens, entre 1220 et 1230. Douze médaillons en quatre-feuilles courent du Capricorne aux Gémeaux sur le soubassement droit, puis du Cancer au Sagittaire sur le gauche. En haut le signe, en bas le travail du mois correspondant. Les sculptures sont remarquablement conservées.",
+      "credit": "Cathédrale Notre-Dame d'Amiens, portail Saint-Firmin"
+    },
+    {
+      "t": "text",
+      "h": "L'iconographie n'est pas stable",
+      "p": [
+        "On aimerait croire que ces zodiaques de pierre reproduisent un système fixe. Ils ne le font pas, et la comparaison le montre en une phrase. À la cathédrale d'Amiens, le fauconnier, ce paysan qui enlève le chaperon de son oiseau et le nourrit, est associé au Taureau. Dans la rosace de Notre-Dame de Paris, le même fauconnier, dans le même vêtement de travail, est associé aux Gémeaux. À Chartres, le Scorpion est un lézard à six pattes et le Sagittaire un centaure qui a perdu son arc. D'un chantier à l'autre, l'appariement se déplace et les figures dérivent.",
+        "Il y a plus gênant encore pour qui voudrait lire ces images comme un almanach. Au XIIIᵉ siècle, le calendrier julien accusait une dizaine de jours de retard sur les saisons, retard qui gagnait un jour par siècle, et les limites entre signes tombaient donc vers le 12 du mois. La réforme grégorienne de 1582 a réaligné le calendrier civil, et les bornes se sont déplacées vers le 21, où elles se trouvent encore dans les rubriques d'horoscope. Les dates que vous connaissez ne sont donc pas celles que les sculpteurs de Chartres avaient en tête."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Le zodiaque dans la pierre et le verre",
+        "events": [
+          {
+            "y": 1145,
+            "when": "1142-1150",
+            "label": "Portail Royal de Chartres",
+            "note": "Le zodiaque roman occupe les deux voussures internes de la baie de gauche. Son iconographie diffère nettement de celle du portail gothique voisin."
+          },
+          {
+            "y": 1210,
+            "when": "1198-1217",
+            "label": "Portail Nord de Chartres",
+            "note": "Le zodiaque gothique tient les deux voussures les plus extérieures de la baie de droite, avec les travaux des mois et les activités de la vie active."
+          },
+          {
+            "y": 1218,
+            "when": "1217-1220",
+            "label": "Le vitrail de la baie 28",
+            "note": "Sept mètres quarante-sept sur deux mètres sept, dans la lancette gauche, au sud du déambulatoire. Contemporain de la reconstruction après l'incendie de 1194."
+          },
+          {
+            "y": 1225,
+            "when": "1220-1230",
+            "label": "Le calendrier picard d'Amiens",
+            "note": "Douze médaillons en quatre-feuilles sur le soubassement du portail Saint-Firmin. Le signe en haut, le travail du mois en bas."
+          },
+          {
+            "y": 1407,
+            "label": "L'horloge astrolabe de Chartres",
+            "note": "Un quatrième zodiaque dans la même cathédrale, cette fois sur le cadran intérieur d'une horloge astronomique."
+          },
+          {
+            "y": 1582,
+            "label": "La réforme grégorienne déplace les bornes",
+            "note": "En réalignant le calendrier civil sur les saisons, elle fait passer les limites entre signes du 12 au 21 du mois. Nos dates d'horoscope datent de là."
+          }
+        ]
+      },
+      "cap": "Quatre-cent-quarante ans de zodiaques français, tous appariés aux travaux des champs. Survolez les étapes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Les épaules, les bras, les poumons",
+      "p": [
+        "La mélothésie, cette doctrine qui distribue les parties du corps humain entre les signes, attribue aux Gémeaux les épaules, les bras et les poumons. La série descend du Bélier, qui prend la tête, jusqu'aux Poissons, qui prennent les pieds. Ce n'était pas décoratif : la règle centrale de la médecine astrologique médiévale interdisait d'intervenir sur une partie du corps quand la Lune occupait le signe correspondant. On ne saignait donc pas le bras quand la Lune était aux Gémeaux, ce qui, la saignée au bras étant l'acte médical le plus courant de tout le Moyen Âge, n'était pas une contrainte mineure.",
+        "Il faut mesurer la cohérence de l'ensemble. Le paysan qui passait devant le portail d'Amiens y voyait le calendrier de ses travaux ; le même système lui disait quel jour se faire saigner ; et le vitrail de Chartres plaçait ce calendrier dans la même fenêtre que la Vie de la Vierge. Astrologie, médecine, agriculture et liturgie tenaient dans un seul dispositif. C'est ce qui a disparu, bien plus que les croyances."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/gem/zodiaque-chartres-portail-royal.jpg",
+      "page": "https://pop.culture.gouv.fr/notice/palissy/IM28000099",
+      "wide": true,
+      "cap": "Le Portail Royal de Chartres, sculpté dans le calcaire de Berchères entre 1142 et 1150. La notice de la base Palissy énumère, parmi les sujets des voussures, « les douze mois, signe du zodiaque ». C'est le plus ancien des quatre zodiaques de la cathédrale, et le plus difficile à déchiffrer : son iconographie romane ne ressemble pas à celle du portail gothique élevé cinquante ans plus tard.",
+      "credit": "Portail Royal de la cathédrale de Chartres — base Palissy, ministère de la Culture (IM28000099). © Inventaire général"
+    },
+    {
+      "t": "text",
+      "h": "Un autre découpage du ciel",
+      "p": [
+        "Le zodiaque n'est pas le seul système astrologique à découper la route des astres, et cette région du ciel en abrite un second, tout aussi ancien. Les manāzil al-qamar, les vingt-huit stations lunaires arabes, suivent non pas le Soleil mais la Lune, à raison d'une station par nuit du mois lunaire. Deux d'entre elles se trouvent ici : la sixième, al-Hanᶜa, la marque au fer rouge faite sur le cou du chameau, formée du couple gamma et xi des Gémeaux ; et la septième, al-Ḏirāᶜ, la patte, formée de Castor et Pollux. Chaque station avait ses usages propres dans la magie astrale, indépendants de ceux du signe zodiacal correspondant.",
+        "Quant aux deux étoiles brillantes elles-mêmes, la tradition des étoiles fixes leur prête des natures opposées, comme le mythe : Castor tient de Mercure, Pollux de Mars, ce qui lui vaut d'ailleurs dans cette littérature une réputation nettement moins aimable. Ni l'une ni l'autre ne figure parmi les quinze étoiles béhéniennes, contrairement aux Pléiades et à Aldébaran du signe précédent."
+      ]
+    },
+    {
+      "t": "warn",
+      "h": "Les tableaux de dignités ne s'accordent pas entre eux",
+      "p": "L'absence d'exaltation dans les Gémeaux est un bon prétexte pour regarder de près l'édifice des dignités, car il est moins solide qu'il n'y paraît. Premier point : les grilles diffèrent d'un auteur à l'autre, et l'astrologie moderne a attribué aux planètes découvertes après Saturne des domiciles, des exaltations et des chutes qui n'ont évidemment aucune base traditionnelle, Uranus recevant par exemple une exaltation en Scorpion et une chute en Taureau. Deuxième point : l'astrologue Jacques Halbronn a proposé une reconstruction du dispositif originel dans laquelle Jupiter aurait eu son domicile dans les Gémeaux, soit exactement l'inverse de la doctrine reçue. Que la proposition soit juste ou non, elle indique à quel point l'édifice est reconstruit. Troisième point, et il vient de l'intérieur : les praticiens eux-mêmes constatent que l'astrologie contemporaine restreint de plus en plus l'influence de ces maîtrises au profit des aspects, et observent qu'une planète en exil ou en chute peut parfaitement bien se comporter si elle est bien aspectée. Autrement dit, la partie la plus ancienne et la plus codifiée de la technique est aussi celle que ses praticiens utilisent le moins."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "look",
+          "title": "Verrière figurée : Zodiaque et Travaux des mois, baie 28",
+          "src": "Base Palissy, ministère de la Culture",
+          "note": "La notice officielle du vitrail de Chartres, avec sa description panneau par panneau. En français.",
+          "url": "https://pop.culture.gouv.fr/notice/palissy/IM28000515"
+        },
+        {
+          "kind": "look",
+          "title": "Le Portail Royal de Chartres",
+          "src": "Base Palissy, ministère de la Culture",
+          "note": "La notice de l'ensemble des trois portails, avec l'inventaire des sujets sculptés sur les voussures.",
+          "url": "https://pop.culture.gouv.fr/notice/palissy/IM28000099"
+        },
+        {
+          "kind": "read",
+          "title": "Le zodiaque de la cathédrale d'Amiens",
+          "src": "Wikipédia en français",
+          "note": "Le calendrier picard médaillon par médaillon, avec le travail associé à chaque signe.",
+          "url": "https://fr.wikipedia.org/wiki/Zodiaque_de_la_cath%C3%A9drale_d'Amiens"
+        },
+        {
+          "kind": "read",
+          "title": "Le vitrail du zodiaque de Chartres",
+          "src": "Wikipédia en français",
+          "note": "Les quatre zodiaques de la cathédrale recensés, et l'explication du décalage du calendrier julien.",
+          "url": "https://fr.wikipedia.org/wiki/Vitrail_du_zodiaque_(Chartres)"
+        },
+        {
+          "kind": "deep",
+          "title": "Les Mois, le Zodiaque et le Temps de la cathédrale de Chartres",
+          "src": "Jean-Yves Cordier",
+          "note": "Un relevé photographique et descriptif d'une minutie rare, voussure par voussure, sculpture par sculpture. En français.",
+          "url": "https://www.lavieb-aile.com/article-le-vitrail-des-mois-et-du-zodiaque-de-la-cathedrale-de-chartres-122018183.html"
+        },
+        {
+          "kind": "deep",
+          "title": "Les travaux des Mois et le Zodiaque des médaillons d'Amiens",
+          "src": "Jean-Yves Cordier",
+          "note": "Le même travail sur Amiens, avec la comparaison entre Amiens, Paris et Chartres. C'est de là que vient l'exemple du fauconnier.",
+          "url": "https://www.lavieb-aile.com/article-les-travaux-des-mois-le-zodiaque-et-le-temps-des-medaillons-de-la-cathedrale-d-amiens-124111357.html"
+        },
+        {
+          "kind": "read",
+          "title": "Le Portail Nord",
+          "src": "Cathédrale de Chartres",
+          "note": "La présentation officielle du portail gothique, dont les voussures portent le zodiaque et les travaux des mois.",
+          "url": "https://www.cathedrale-chartres.org/cathedrale/monument/les-sculptures/le-portail-nord/"
+        },
+        {
+          "kind": "read",
+          "title": "Gémeaux (astrologie)",
+          "src": "Wikipédia en français",
+          "note": "Les décans selon Teukros, les trois mots de Brahy, et les renvois aux zodiaques de Chartres et d'Amiens.",
+          "url": "https://fr.wikipedia.org/wiki/G%C3%A9meaux_(astrologie)"
+        },
+        {
+          "kind": "read",
+          "title": "Dignités planétaires",
+          "src": "Wikipédia en français",
+          "note": "Le tableau des domiciles, exaltations et chutes, et la reconstruction proposée par Halbronn où Jupiter est en Gémeaux.",
+          "url": "https://fr.wikipedia.org/wiki/Dignit%C3%A9s_plan%C3%A9taires"
+        },
+        {
+          "kind": "read",
+          "title": "Les dignités des planètes en décans",
+          "src": "Azur, astrologue",
+          "note": "Un praticien qui relève les incohérences du système, dont Jupiter maître du premier décan d'un signe où il est en exil.",
+          "url": "https://azurastrologue.fr/2023/02/05/dignites-decans/"
+        },
+        {
+          "kind": "read",
+          "title": "Mélothésie",
+          "src": "Les clés du Moyen-Orient",
+          "note": "La distribution des parties du corps entre les douze signes, et sa filiation néoplatonicienne. En français.",
+          "url": "https://www.lesclesdumoyenorient.com/Melothesie.html"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Un onglet court, et c'est normal",
-   "p": [
-    "La tradition astrologique parle des Gémeaux comme signe, abondamment, et de leurs étoiles presque pas. Robson consacre à Castor et Pollux des notices brèves, sans les développements qu'il réserve à Algol ou à Antarès.",
-    "Nous préférons le dire que le combler. Un onglet mince est une information : il indique que le corpus historique, sur cette figure, n'a pas grand-chose de spécifique à offrir."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Ce que la dualité doit au ciel",
-   "p": [
-    "Le thème de la gémellité, du double et de l'ambivalence attaché à ce signe précède l'astrologie savante : il tient à la figure elle-même, deux étoiles brillantes et voisines d'éclat comparable.",
-    "C'est un mécanisme récurrent dans ce corpus, et instructif : l'aspect visuel d'une constellation détermine sa signification bien plus souvent que l'inverse. On lit dans le ciel ce qu'on y a mis."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "deep",
-     "title": "The Fixed Stars and Constellations in Astrology",
-     "src": "Vivian E. Robson, 1923 — Internet Archive",
-     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
-     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
-    },
-    {
-     "kind": "read",
-     "title": "Introduction aux étoiles fixes",
-     "src": "Constellations of Words",
-     "note": "Le cadre général de la tradition, et ses raisonnements parfois circulaires. En anglais.",
-     "url": "https://www.constellationsofwords.com/introduction-to-the-fixed-stars/"
-    }
-   ]
-  }
- ]
+  ]
 }
