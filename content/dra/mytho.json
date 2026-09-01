@@ -1,292 +1,292 @@
 {
-  "constellation": "dra",
-  "tab": "mytho",
-  "blocks": [
+ "constellation": "dra",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Aucune constellation n'est aussi mal attribuée que celle-ci. Les auteurs grecs proposent au moins quatre bêtes différentes pour le même serpent d'étoiles, et ils ne s'accordent ni sur ses parents, ni sur qui l'a placé au ciel. Le contraste avec le ciel bédouin est saisissant : là où les Grecs hésitent entre quatre dragons, les Arabes voient une scène précise et complète, cinq chamelles protégeant un chamelon de deux hyènes."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Aucune constellation n'est aussi mal attribuée que celle-ci. Les auteurs grecs proposent au moins quatre bêtes différentes pour le même serpent d'étoiles, et ils ne s'accordent ni sur ses parents, ni sur qui l'a placé au ciel. Le contraste avec le ciel bédouin est saisissant : là où les Grecs hésitent entre quatre dragons, les Arabes voient une scène précise et complète, cinq chamelles protégeant un chamelon de deux hyènes."
+     "v": "4",
+     "u": "dragons",
+     "l": "Au moins quatre bêtes se disputent la constellation dans les sources grecques : Ladon, le dragon de Thèbes, celui de la Toison d'or, et celui qui attaqua Athéna."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "4",
-          "u": "dragons",
-          "l": "Au moins quatre bêtes se disputent la constellation dans les sources grecques : Ladon, le dragon de Thèbes, celui de la Toison d'or, et celui qui attaqua Athéna."
-        },
-        {
-          "v": "5",
-          "u": "chamelles",
-          "l": "Le ciel bédouin voit ici cinq chamelles protégeant un chamelon de deux hyènes. Les Latins ont traduit littéralement : Quinque Dromedarii."
-        },
-        {
-          "v": "100",
-          "u": "têtes",
-          "l": "Le nombre que le Pseudo-Apollodore prête à Ladon, chacune parlant d'une voix différente. Sur le cratère du Getty, il n'en a que trois."
-        },
-        {
-          "v": "1 083",
-          "u": "deg²",
-          "l": "Huitième constellation par la taille, et pas une seule étoile de première grandeur sur toute sa longueur."
-        },
-        {
-          "v": "1795",
-          "l": "L'année où Lalande découpe le Quadrant mural au sud du Dragon. La constellation a été abolie, mais les Quadrantides de janvier portent encore son nom."
-        }
-      ]
+     "v": "5",
+     "u": "chamelles",
+     "l": "Le ciel bédouin voit ici cinq chamelles protégeant un chamelon de deux hyènes. Les Latins ont traduit littéralement : Quinque Dromedarii."
     },
     {
-      "t": "figure",
-      "src": "/skyculture/ekko/illustrations/dra.webp",
-      "lit": true,
-      "roll": true,
-      "wide": true,
-      "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Le corps s'enroule autour de la Petite Ourse et sépare les deux Ourses l'une de l'autre, exactement comme Aratos le décrivait au IIIᵉ siècle avant notre ère. La tête, en losange, est la seule partie facile à trouver.",
-      "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+     "v": "100",
+     "u": "têtes",
+     "l": "Le nombre que le Pseudo-Apollodore prête à Ladon, chacune parlant d'une voix différente. Sur le cratère du Getty, il n'en a que trois."
     },
     {
-      "t": "text",
-      "h": "Quatre dragons pour une constellation",
-      "p": [
-        "Les mythographes anciens n'ont pas tranché, et les listes modernes reprennent leurs hésitations sans les signaler. Le serpent du ciel serait Ladon, le dragon qui gardait les pommes d'or du jardin des Hespérides. Ou celui que Cadmos tua près de la source où il fonda Thèbes, et dont les dents semées firent lever une armée. Ou le dragon qui veillait sur la Toison d'or en Colchide. Ou encore celui qui attaqua Athéna pendant la guerre entre les Olympiens et les Titans, et qu'elle jeta au ciel.",
-        "Cette abondance n'est pas un accident. En grec, drákōn vient du verbe dérkomai, voir, percer du regard, et le mot désigne à la fois le très grand serpent et le gardien. Les dragons de cette mythologie sont presque toujours affectés par un dieu à la surveillance d'un trésor ou d'un lieu sacré, et ils ne dorment pas. Une constellation qui s'enroule autour du pôle, immobile et toujours visible, était donc un candidat évident pour n'importe lequel d'entre eux."
-      ]
+     "v": "1 083",
+     "u": "deg²",
+     "l": "Huitième constellation par la taille, et pas une seule étoile de première grandeur sur toute sa longueur."
     },
     {
-      "t": "figure",
-      "src": "/assets/img/constellations/dra/cratere-getty-ladon-heracles.jpg",
-      "page": "https://www.getty.edu/art/collection/objects/7598/attributed-to-kleophrades-painter-attic-red-figure-volute-krater-greek-attic-500-480-bc/",
-      "wide": true,
-      "cap": "Le vase raconte trois des travaux d'Héraclès. Sur le fragment qui nous intéresse, le héros tient sa massue de la main gauche et cueille les pommes d'or de la droite, tandis que Ladon, serpent à trois têtes, s'enroule autour du tronc pour défendre l'arbre. À l'extrême droite, Atlas porte le ciel. Cratère attique à figures rouges, entre 500 et 480 avant notre ère.",
-      "credit": "Attribué au peintre de Cléophradès — The J. Paul Getty Museum, Villa Collection, Malibu (77.AE.11), don de Gordon McLendon"
-    },
-    {
-      "t": "text",
-      "h": "La mort de Ladon, et la question de savoir qui l'a récompensé",
-      "p": [
-        "La version la plus racontée est celle du onzième travail. Les pommes d'or, cadeau de noces de Gaïa à Héra, poussaient dans un jardin gardé par les Hespérides et par Ladon, qui ne dormait jamais. Héraclès l'abat d'une flèche empoisonnée au fiel de l'Hydre de Lerne et emporte les fruits. Apollonios de Rhodes, au IIIᵉ siècle avant notre ère, offre le contrechamp le plus saisissant de toute la littérature grecque sur le sujet : les Argonautes passent par là le lendemain du combat, et trouvent le serpent mort au pied du pommier, seule la pointe de la queue remuant encore, le corps déjà pourrissant du poison.",
-        "Sur la suite, les sources divergent, et la nuance compte. Beaucoup de récits français racontent qu'Héra, pour honorer la fidélité du gardien, plaça sa dépouille parmi les étoiles. Mais Hygin, dans son Astronomie poétique, dit autre chose : c'est l'image du combat que Zeus place au ciel, ce qui n'est pas le même geste ni le même hommage. Quant à la parenté de Ladon, Hésiode en fait le dernier-né de Phorcys et de Céto, Hygin le fils de Typhon et d'Échidna, et d'autres encore le fils de Gaïa elle-même."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Ce que le serpent a été, selon les époques",
-        "events": [
-          {
-            "y": -700,
-            "when": "VIIIᵉ s. av. J.-C.",
-            "label": "Hésiode nomme le gardien des pommes",
-            "note": "La Théogonie en fait le dernier-né de Phorcys et de Céto, tapi aux limites obscures de la terre pour garder les pommes toutes d'or."
-          },
-          {
-            "y": -270,
-            "when": "IIIᵉ s. av. J.-C.",
-            "label": "Apollonios montre le cadavre",
-            "note": "Dans les Argonautiques, les Argonautes arrivent le lendemain du combat. Seule la pointe de la queue remue encore, et les mouches meurent dans les plaies."
-          },
-          {
-            "y": 150,
-            "when": "IIᵉ siècle",
-            "label": "Ptolémée l'inscrit parmi ses 48 figures",
-            "note": "Il place une étoile sur la mâchoire et une autre sur la langue de l'animal. Les noms de Grumium et d'Alrakis gardent la trace de cette anatomie."
-          },
-          {
-            "y": 900,
-            "when": "ciel bédouin",
-            "label": "Cinq chamelles, un chamelon, deux hyènes",
-            "note": "La tête du Dragon devient un enclos protecteur. Le chamelon est une étoile de sixième magnitude qui ne figure même pas dans le catalogue de Ptolémée."
-          },
-          {
-            "y": 1500,
-            "when": "Moyen Âge et Renaissance",
-            "label": "Le dragon devient le serpent de la Genèse",
-            "note": "Les noms latins se multiplient : Anguis, Coluber, Python, Serpens, et Custos Hesperidum, le gardien des Hespérides. La christianisation du ciel en fait le tentateur d'Ève."
-          },
-          {
-            "y": 1795,
-            "label": "Lalande découpe le Quadrant mural",
-            "note": "Une constellation nouvelle au sud du Dragon, abolie depuis. Les Quadrantides, essaim de météores de janvier, portent encore son nom."
-          }
-        ]
-      },
-      "cap": "Une même figure, six lectures qui ne se ressemblent pas. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Cinq chamelles et deux hyènes",
-      "p": [
-        "Ce que nous appelons la tête du Dragon est un losange formé de quatre étoiles : Rastaban, Eltanin, Grumium et Kuma. Les tribus arabes nomades y voyaient tout autre chose, et de façon beaucoup plus précise que les Grecs. Ces quatre étoiles sont al-ʿawāʾidh, les chamelles mères, disposées en cercle. Au centre du cercle, une étoile de sixième magnitude que Ptolémée n'avait même pas cataloguée : c'est al-rubaʿ, le chamelon, qu'elles protègent. Elle porte aujourd'hui le nom officiel d'Alruba.",
-        "Le tableau se complète. Une cinquième chamelle accourt pour rejoindre le cercle, c'est Alrakis, de al-rāqiṣ, celle qui trotte. Et ce dont elles protègent le petit rôde tout près : deux loups, ou deux hyènes selon les traductions, Athebyne et Aldhibah, dont les noms viennent de al-dhiʾbayn, les deux loups. Un couple d'étoiles plus faibles encore, oméga et 27 du Dragon, formait même les griffes du loup. Les Latins ont traduit le groupe par Quinque Dromedarii, les Cinq Chamelles. Là où le ciel grec place un monstre gardien d'un trésor, le ciel bédouin met en scène un troupeau qui défend un nouveau-né."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/dra/al-sufi-dragon-marsh144.jpg",
-      "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
-      "wide": true,
-      "cap": "Le Dragon dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. La figure suit fidèlement Ptolémée, avec le corps replié en méandres, alors que le texte arabe qui l'accompagne connaît parfaitement l'autre lecture, celle des chamelles. Les deux cieux cohabitent dans le même livre sans se contredire.",
-      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
-    },
-    {
-      "t": "text",
-      "h": "Ce que les noms d'étoiles ont retenu",
-      "p": [
-        "Les noms usuels du Dragon sont un petit musée des accidents de transmission. Eltanin, la plus brillante, vient de raʾs al-tinnīn, la tête du dragon. Rastaban, la deuxième, vient exactement de la même expression arabe, mais transcrite de travers par les copistes latins. Deux étoiles voisines portent donc le même nom d'origine, dont l'une est une faute. Thuban, l'alpha, vient du même mot tinnīn, ou de thuʿbān, le grand serpent.",
-        "Les autres viennent de l'anatomie ptoléméenne ou de la scène pastorale. Grumium est une corruption du latin grunnum, le museau, parce que Ptolémée y plaçait la mâchoire de l'animal. Alrakis, sur la langue selon le même Ptolémée, est en réalité la chamelle qui trotte. Et Edasich, l'iota du Dragon, apparaît sous la forme ed-dsich sur la carte de Bode, corruption de l'arabe al-dhīkh qui désigne une hyène mâle. Trois traditions incompatibles se sont sédimentées dans une même liste de noms, et personne ne l'a jamais nettoyée."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/dra/urania-mirror-dragon-1825.jpg",
-      "page": "https://www.loc.gov/pictures/item/2002695394/",
-      "wide": true,
-      "cap": "Le Dragon et la Petite Ourse sur la première planche du jeu « Urania's Mirror », Londres, 1825. C'est le meilleur document pour comprendre la géométrie : le corps du serpent s'insinue entre les deux Ourses et enveloppe la petite. Les trous percés dans le carton correspondent à l'éclat des étoiles.",
-      "credit": "Sidney Hall, eau-forte coloriée à la main, 1825 — Library of Congress, Prints & Photographs Division (LC-USZC4-10050)"
-    },
-    {
-      "t": "text",
-      "h": "Le dragon devenu serpent",
-      "p": [
-        "Les noms latins de la constellation s'empilent, et ils racontent une hésitation permanente : Anguis, Coluber, Python, Serpens, tous des mots pour serpent, et Custos Hesperidum, le gardien des Hespérides, qui est le seul à trancher pour une identification. Puis vient la christianisation du ciel, à partir du Moyen Âge, et le dragon change de fonction. Il n'est plus le gardien d'un trésor mais le serpent de la Genèse, celui qui a séduit Ève. La figure passe du côté du mal, ce qui n'était pas du tout son rôle dans la version grecque, où elle obéissait à une déesse.",
-        "Ailleurs, il reste un animal. La Perse l'appelait Azhdeha et en faisait un serpent mangeur d'hommes. Des documents babyloniens décrivent près de l'étoile polaire une figure enroulée que certains lisent comme un escargot, ce qui, pour une constellation en méandres, n'est pas absurde. Et la Chine ne voit ici ni serpent ni troupeau, mais un outil : Eltanin est la quatrième étoile de Tiānbàng, le Fléau céleste, un instrument agricole ou une pique, formé avec Rastaban, Kuma, Grumium et une étoile d'Hercule."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Le dragon et ceux qui l'entourent",
-        "targets": [
-          {
-            "star": "Vega",
-            "from": "Eltanin",
-            "label": "Véga",
-            "sub": "Lyre",
-            "note": "Le repère le plus commode. En été, la tête du Dragon se trouve à mi-chemin entre Véga et l'étoile polaire, haut dans le ciel."
-          },
-          {
-            "star": "Rasalgethi",
-            "from": "Eltanin",
-            "label": "Rasalgethi",
-            "sub": "Hercule",
-            "note": "Celui qui l'a tué, juste à côté. Sur les vieux atlas, Hercule a souvent le pied posé sur la tête du Dragon."
-          },
-          {
-            "star": "Polaris",
-            "from": "Thuban",
-            "label": "Polaris",
-            "sub": "Petite Ourse",
-            "note": "Celle que le corps du serpent enveloppe. Le Dragon sépare aussi les deux Ourses l'une de l'autre."
-          }
-        ],
-        "notes": {
-          "Eltanin": "« La tête du dragon », en arabe. Et l'étoile qui a démontré que la Terre se déplace.",
-          "Rastaban": "La même expression arabe qu'Eltanin, transcrite de travers par les copistes latins.",
-          "Thuban": "L'étoile polaire des bâtisseurs de pyramides."
-        }
-      },
-      "cap": "La position est parlante : le dragon enveloppe le pôle, et son meurtrier lui met le pied dessus.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Une constellation abolie, un essaim qui lui survit",
-      "p": [
-        "Il reste une curiosité de nomenclature, juste au sud des étoiles thêta et iota du Dragon. En 1795, Joseph Jérôme Lalande y installe une nouvelle constellation, le Quadrant mural, en hommage à l'instrument de mesure qui équipait les observatoires de son temps. L'Union astronomique internationale ne l'a pas retenue lors de la fixation des quatre-vingt-huit constellations modernes, et le Quadrant mural a disparu des cartes.",
-        "Mais il a laissé un nom. L'essaim de météores le plus actif du mois de janvier s'appelle les Quadrantides, parce que son radiant se trouvait dans cette constellation quand on l'a baptisé. Nous conservons donc dans le vocabulaire courant de l'astronomie le nom d'une figure du ciel qui n'existe plus, accroché à des étoiles filantes qui, elles, reviennent chaque année."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "Deux choses qu'on affirme un peu vite",
-      "p": "La première : présenter Ladon comme l'identification officielle du Dragon est une simplification moderne. Les sources antiques proposent au moins quatre bêtes, sans hiérarchie claire entre elles, et le mot grec drákōn désigne indifféremment le grand serpent et le gardien, ce qui rendait la constellation adaptable à n'importe quel récit de vigilance. La seconde concerne le catastérisme lui-même : on lit très souvent qu'Héra plaça la dépouille du dragon au ciel pour honorer sa fidélité. Hygin, dans son Astronomie poétique, écrit plutôt que c'est Zeus qui plaça au ciel l'image du combat, ce qui célèbre le vainqueur et non le vaincu. Les deux versions circulent, et les fiches qui n'en donnent qu'une devraient le dire."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "look",
-          "title": "Cratère attique à figures rouges du peintre de Cléophradès",
-          "src": "The J. Paul Getty Museum",
-          "note": "La fiche de l'objet où Ladon défend l'arbre pendant qu'Héraclès cueille les pommes. En anglais.",
-          "url": "https://www.getty.edu/art/collection/objects/7598/attributed-to-kleophrades-painter-attic-red-figure-volute-krater-greek-attic-500-480-bc/"
-        },
-        {
-          "kind": "deep",
-          "title": "Corpus Vasorum Antiquorum, fascicule 10",
-          "src": "Getty Publications, accès libre",
-          "note": "La notice savante du cratère, scène par scène et fragment par fragment. C'est de là que viennent les trois têtes de Ladon. En anglais.",
-          "url": "https://www.getty.edu/publications/cva10/catalogue/19/"
-        },
-        {
-          "kind": "look",
-          "title": "Le Dragon et la Petite Ourse, planche 1 d'« Urania's Mirror »",
-          "src": "Library of Congress",
-          "note": "La carte perforée de 1825 en haute résolution, sans restriction de publication connue aux États-Unis.",
-          "url": "https://www.loc.gov/pictures/item/2002695394/"
-        },
-        {
-          "kind": "look",
-          "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
-          "src": "Bodleian Library, Oxford",
-          "note": "Les cinquante-sept planches numérisées, dont celle du Dragon.",
-          "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
-        },
-        {
-          "kind": "read",
-          "title": "Star Tales : Draco",
-          "src": "Ian Ridpath",
-          "note": "La source la plus fiable sur les chamelles, le chamelon, les hyènes et le Quadrant mural de Lalande. En anglais.",
-          "url": "http://www.ianridpath.com/startales/draco.html"
-        },
-        {
-          "kind": "read",
-          "title": "Les Chamelles mères",
-          "src": "Wikipédia en anglais",
-          "note": "L'astérisme bédouin détaillé étoile par étoile, y compris les griffes du loup.",
-          "url": "https://en.wikipedia.org/wiki/Mother_Camels"
-        },
-        {
-          "kind": "read",
-          "title": "Le dragon des Hespérides",
-          "src": "Theoi Project",
-          "note": "Tous les passages antiques sur Ladon rassemblés et traduits, d'Hésiode à Hygin. En anglais.",
-          "url": "https://www.theoi.com/Ther/DrakonHesperios.html"
-        },
-        {
-          "kind": "read",
-          "title": "Dragons dans la mythologie grecque",
-          "src": "Wikipédia en français",
-          "note": "Pour comprendre ce que drákōn voulait dire, et pourquoi les gardiens de trésors sont tous des serpents.",
-          "url": "https://fr.wikipedia.org/wiki/Dragons_dans_la_mythologie_grecque"
-        },
-        {
-          "kind": "read",
-          "title": "Liste des noms d'étoiles du Dragon",
-          "src": "Wikipédia en anglais",
-          "note": "Les étymologies avec les translittérations arabes, et les renvois aux travaux de Kunitzsch.",
-          "url": "https://en.wikipedia.org/wiki/List_of_star_names_in_Draco"
-        },
-        {
-          "kind": "read",
-          "title": "Constellation du Dragon, mythes et histoire",
-          "src": "Deep Sky Corner",
-          "note": "Les noms latins, la lecture persane, la piste babylonienne et la gravure de Bayer de 1603. En anglais.",
-          "url": "https://www.deepskycorner.ch/con/draco.en.php"
-        },
-        {
-          "kind": "read",
-          "title": "Ladon",
-          "src": "Vikidia",
-          "note": "La version courte et claire du mythe, écrite pour les jeunes lecteurs. Utile pour une session en famille.",
-          "url": "https://fr.vikidia.org/wiki/Ladon"
-        }
-      ]
+     "v": "1795",
+     "l": "L'année où Lalande découpe le Quadrant mural au sud du Dragon. La constellation a été abolie, mais les Quadrantides de janvier portent encore son nom."
     }
-  ]
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/dra.webp",
+   "lit": true,
+   "roll": true,
+   "wide": true,
+   "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Le corps s'enroule autour de la Petite Ourse et sépare les deux Ourses l'une de l'autre, exactement comme Aratos le décrivait au IIIᵉ siècle avant notre ère. La tête, en losange, est la seule partie facile à trouver.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Quatre dragons pour une constellation",
+   "p": [
+    "Les mythographes anciens n'ont pas tranché, et les listes modernes reprennent leurs hésitations sans les signaler. Le serpent du ciel serait Ladon, le dragon qui gardait les pommes d'or du jardin des Hespérides. Ou celui que Cadmos tua près de la source où il fonda Thèbes, et dont les dents semées firent lever une armée. Ou le dragon qui veillait sur la Toison d'or en Colchide. Ou encore celui qui attaqua Athéna pendant la guerre entre les Olympiens et les Titans, et qu'elle jeta au ciel.",
+    "Cette abondance n'est pas un accident. En grec, drákōn vient du verbe dérkomai, voir, percer du regard, et le mot désigne à la fois le très grand serpent et le gardien. Les dragons de cette mythologie sont presque toujours affectés par un dieu à la surveillance d'un trésor ou d'un lieu sacré, et ils ne dorment pas. Une constellation qui s'enroule autour du pôle, immobile et toujours visible, était donc un candidat évident pour n'importe lequel d'entre eux."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/dra/telechargement.png",
+   "page": "https://www.getty.edu/art/collection/objects/7598/attributed-to-kleophrades-painter-attic-red-figure-volute-krater-greek-attic-500-480-bc/",
+   "wide": true,
+   "cap": "Le vase raconte trois des travaux d'Héraclès. Sur le fragment qui nous intéresse, le héros tient sa massue de la main gauche et cueille les pommes d'or de la droite, tandis que Ladon, serpent à trois têtes, s'enroule autour du tronc pour défendre l'arbre. À l'extrême droite, Atlas porte le ciel. Cratère attique à figures rouges, entre 500 et 480 avant notre ère.",
+   "credit": "Attribué au peintre de Cléophradès — The J. Paul Getty Museum, Villa Collection, Malibu (77.AE.11), don de Gordon McLendon"
+  },
+  {
+   "t": "text",
+   "h": "La mort de Ladon, et la question de savoir qui l'a récompensé",
+   "p": [
+    "La version la plus racontée est celle du onzième travail. Les pommes d'or, cadeau de noces de Gaïa à Héra, poussaient dans un jardin gardé par les Hespérides et par Ladon, qui ne dormait jamais. Héraclès l'abat d'une flèche empoisonnée au fiel de l'Hydre de Lerne et emporte les fruits. Apollonios de Rhodes, au IIIᵉ siècle avant notre ère, offre le contrechamp le plus saisissant de toute la littérature grecque sur le sujet : les Argonautes passent par là le lendemain du combat, et trouvent le serpent mort au pied du pommier, seule la pointe de la queue remuant encore, le corps déjà pourrissant du poison.",
+    "Sur la suite, les sources divergent, et la nuance compte. Beaucoup de récits français racontent qu'Héra, pour honorer la fidélité du gardien, plaça sa dépouille parmi les étoiles. Mais Hygin, dans son Astronomie poétique, dit autre chose : c'est l'image du combat que Zeus place au ciel, ce qui n'est pas le même geste ni le même hommage. Quant à la parenté de Ladon, Hésiode en fait le dernier-né de Phorcys et de Céto, Hygin le fils de Typhon et d'Échidna, et d'autres encore le fils de Gaïa elle-même."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Ce que le serpent a été, selon les époques",
+    "events": [
+     {
+      "y": -700,
+      "when": "VIIIᵉ s. av. J.-C.",
+      "label": "Hésiode nomme le gardien des pommes",
+      "note": "La Théogonie en fait le dernier-né de Phorcys et de Céto, tapi aux limites obscures de la terre pour garder les pommes toutes d'or."
+     },
+     {
+      "y": -270,
+      "when": "IIIᵉ s. av. J.-C.",
+      "label": "Apollonios montre le cadavre",
+      "note": "Dans les Argonautiques, les Argonautes arrivent le lendemain du combat. Seule la pointe de la queue remue encore, et les mouches meurent dans les plaies."
+     },
+     {
+      "y": 150,
+      "when": "IIᵉ siècle",
+      "label": "Ptolémée l'inscrit parmi ses 48 figures",
+      "note": "Il place une étoile sur la mâchoire et une autre sur la langue de l'animal. Les noms de Grumium et d'Alrakis gardent la trace de cette anatomie."
+     },
+     {
+      "y": 900,
+      "when": "ciel bédouin",
+      "label": "Cinq chamelles, un chamelon, deux hyènes",
+      "note": "La tête du Dragon devient un enclos protecteur. Le chamelon est une étoile de sixième magnitude qui ne figure même pas dans le catalogue de Ptolémée."
+     },
+     {
+      "y": 1500,
+      "when": "Moyen Âge et Renaissance",
+      "label": "Le dragon devient le serpent de la Genèse",
+      "note": "Les noms latins se multiplient : Anguis, Coluber, Python, Serpens, et Custos Hesperidum, le gardien des Hespérides. La christianisation du ciel en fait le tentateur d'Ève."
+     },
+     {
+      "y": 1795,
+      "label": "Lalande découpe le Quadrant mural",
+      "note": "Une constellation nouvelle au sud du Dragon, abolie depuis. Les Quadrantides, essaim de météores de janvier, portent encore son nom."
+     }
+    ]
+   },
+   "cap": "Une même figure, six lectures qui ne se ressemblent pas. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Cinq chamelles et deux hyènes",
+   "p": [
+    "Ce que nous appelons la tête du Dragon est un losange formé de quatre étoiles : Rastaban, Eltanin, Grumium et Kuma. Les tribus arabes nomades y voyaient tout autre chose, et de façon beaucoup plus précise que les Grecs. Ces quatre étoiles sont al-ʿawāʾidh, les chamelles mères, disposées en cercle. Au centre du cercle, une étoile de sixième magnitude que Ptolémée n'avait même pas cataloguée : c'est al-rubaʿ, le chamelon, qu'elles protègent. Elle porte aujourd'hui le nom officiel d'Alruba.",
+    "Le tableau se complète. Une cinquième chamelle accourt pour rejoindre le cercle, c'est Alrakis, de al-rāqiṣ, celle qui trotte. Et ce dont elles protègent le petit rôde tout près : deux loups, ou deux hyènes selon les traductions, Athebyne et Aldhibah, dont les noms viennent de al-dhiʾbayn, les deux loups. Un couple d'étoiles plus faibles encore, oméga et 27 du Dragon, formait même les griffes du loup. Les Latins ont traduit le groupe par Quinque Dromedarii, les Cinq Chamelles. Là où le ciel grec place un monstre gardien d'un trésor, le ciel bédouin met en scène un troupeau qui défend un nouveau-né."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/dra/book_of_the_fixed_stars_auv0062_draco.jpg",
+   "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
+   "wide": true,
+   "cap": "Le Dragon dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. La figure suit fidèlement Ptolémée, avec le corps replié en méandres, alors que le texte arabe qui l'accompagne connaît parfaitement l'autre lecture, celle des chamelles. Les deux cieux cohabitent dans le même livre sans se contredire.",
+   "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+  },
+  {
+   "t": "text",
+   "h": "Ce que les noms d'étoiles ont retenu",
+   "p": [
+    "Les noms usuels du Dragon sont un petit musée des accidents de transmission. Eltanin, la plus brillante, vient de raʾs al-tinnīn, la tête du dragon. Rastaban, la deuxième, vient exactement de la même expression arabe, mais transcrite de travers par les copistes latins. Deux étoiles voisines portent donc le même nom d'origine, dont l'une est une faute. Thuban, l'alpha, vient du même mot tinnīn, ou de thuʿbān, le grand serpent.",
+    "Les autres viennent de l'anatomie ptoléméenne ou de la scène pastorale. Grumium est une corruption du latin grunnum, le museau, parce que Ptolémée y plaçait la mâchoire de l'animal. Alrakis, sur la langue selon le même Ptolémée, est en réalité la chamelle qui trotte. Et Edasich, l'iota du Dragon, apparaît sous la forme ed-dsich sur la carte de Bode, corruption de l'arabe al-dhīkh qui désigne une hyène mâle. Trois traditions incompatibles se sont sédimentées dans une même liste de noms, et personne ne l'a jamais nettoyée."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/dra/service-pnp-cph-3g10000-3g10000-3g10000-.jpg",
+   "page": "https://www.loc.gov/pictures/item/2002695394/",
+   "wide": true,
+   "cap": "Le Dragon et la Petite Ourse sur la première planche du jeu « Urania's Mirror », Londres, 1825. C'est le meilleur document pour comprendre la géométrie : le corps du serpent s'insinue entre les deux Ourses et enveloppe la petite. Les trous percés dans le carton correspondent à l'éclat des étoiles.",
+   "credit": "Sidney Hall, eau-forte coloriée à la main, 1825 — Library of Congress, Prints & Photographs Division (LC-USZC4-10050)"
+  },
+  {
+   "t": "text",
+   "h": "Le dragon devenu serpent",
+   "p": [
+    "Les noms latins de la constellation s'empilent, et ils racontent une hésitation permanente : Anguis, Coluber, Python, Serpens, tous des mots pour serpent, et Custos Hesperidum, le gardien des Hespérides, qui est le seul à trancher pour une identification. Puis vient la christianisation du ciel, à partir du Moyen Âge, et le dragon change de fonction. Il n'est plus le gardien d'un trésor mais le serpent de la Genèse, celui qui a séduit Ève. La figure passe du côté du mal, ce qui n'était pas du tout son rôle dans la version grecque, où elle obéissait à une déesse.",
+    "Ailleurs, il reste un animal. La Perse l'appelait Azhdeha et en faisait un serpent mangeur d'hommes. Des documents babyloniens décrivent près de l'étoile polaire une figure enroulée que certains lisent comme un escargot, ce qui, pour une constellation en méandres, n'est pas absurde. Et la Chine ne voit ici ni serpent ni troupeau, mais un outil : Eltanin est la quatrième étoile de Tiānbàng, le Fléau céleste, un instrument agricole ou une pique, formé avec Rastaban, Kuma, Grumium et une étoile d'Hercule."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Le dragon et ceux qui l'entourent",
+    "targets": [
+     {
+      "star": "Vega",
+      "from": "Eltanin",
+      "label": "Véga",
+      "sub": "Lyre",
+      "note": "Le repère le plus commode. En été, la tête du Dragon se trouve à mi-chemin entre Véga et l'étoile polaire, haut dans le ciel."
+     },
+     {
+      "star": "Rasalgethi",
+      "from": "Eltanin",
+      "label": "Rasalgethi",
+      "sub": "Hercule",
+      "note": "Celui qui l'a tué, juste à côté. Sur les vieux atlas, Hercule a souvent le pied posé sur la tête du Dragon."
+     },
+     {
+      "star": "Polaris",
+      "from": "Thuban",
+      "label": "Polaris",
+      "sub": "Petite Ourse",
+      "note": "Celle que le corps du serpent enveloppe. Le Dragon sépare aussi les deux Ourses l'une de l'autre."
+     }
+    ],
+    "notes": {
+     "Eltanin": "« La tête du dragon », en arabe. Et l'étoile qui a démontré que la Terre se déplace.",
+     "Rastaban": "La même expression arabe qu'Eltanin, transcrite de travers par les copistes latins.",
+     "Thuban": "L'étoile polaire des bâtisseurs de pyramides."
+    }
+   },
+   "cap": "La position est parlante : le dragon enveloppe le pôle, et son meurtrier lui met le pied dessus.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Une constellation abolie, un essaim qui lui survit",
+   "p": [
+    "Il reste une curiosité de nomenclature, juste au sud des étoiles thêta et iota du Dragon. En 1795, Joseph Jérôme Lalande y installe une nouvelle constellation, le Quadrant mural, en hommage à l'instrument de mesure qui équipait les observatoires de son temps. L'Union astronomique internationale ne l'a pas retenue lors de la fixation des quatre-vingt-huit constellations modernes, et le Quadrant mural a disparu des cartes.",
+    "Mais il a laissé un nom. L'essaim de météores le plus actif du mois de janvier s'appelle les Quadrantides, parce que son radiant se trouvait dans cette constellation quand on l'a baptisé. Nous conservons donc dans le vocabulaire courant de l'astronomie le nom d'une figure du ciel qui n'existe plus, accroché à des étoiles filantes qui, elles, reviennent chaque année."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Deux choses qu'on affirme un peu vite",
+   "p": "La première : présenter Ladon comme l'identification officielle du Dragon est une simplification moderne. Les sources antiques proposent au moins quatre bêtes, sans hiérarchie claire entre elles, et le mot grec drákōn désigne indifféremment le grand serpent et le gardien, ce qui rendait la constellation adaptable à n'importe quel récit de vigilance. La seconde concerne le catastérisme lui-même : on lit très souvent qu'Héra plaça la dépouille du dragon au ciel pour honorer sa fidélité. Hygin, dans son Astronomie poétique, écrit plutôt que c'est Zeus qui plaça au ciel l'image du combat, ce qui célèbre le vainqueur et non le vaincu. Les deux versions circulent, et les fiches qui n'en donnent qu'une devraient le dire."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "look",
+     "title": "Cratère attique à figures rouges du peintre de Cléophradès",
+     "src": "The J. Paul Getty Museum",
+     "note": "La fiche de l'objet où Ladon défend l'arbre pendant qu'Héraclès cueille les pommes. En anglais.",
+     "url": "https://www.getty.edu/art/collection/objects/7598/attributed-to-kleophrades-painter-attic-red-figure-volute-krater-greek-attic-500-480-bc/"
+    },
+    {
+     "kind": "deep",
+     "title": "Corpus Vasorum Antiquorum, fascicule 10",
+     "src": "Getty Publications, accès libre",
+     "note": "La notice savante du cratère, scène par scène et fragment par fragment. C'est de là que viennent les trois têtes de Ladon. En anglais.",
+     "url": "https://www.getty.edu/publications/cva10/catalogue/19/"
+    },
+    {
+     "kind": "look",
+     "title": "Le Dragon et la Petite Ourse, planche 1 d'« Urania's Mirror »",
+     "src": "Library of Congress",
+     "note": "La carte perforée de 1825 en haute résolution, sans restriction de publication connue aux États-Unis.",
+     "url": "https://www.loc.gov/pictures/item/2002695394/"
+    },
+    {
+     "kind": "look",
+     "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
+     "src": "Bodleian Library, Oxford",
+     "note": "Les cinquante-sept planches numérisées, dont celle du Dragon.",
+     "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
+    },
+    {
+     "kind": "read",
+     "title": "Star Tales : Draco",
+     "src": "Ian Ridpath",
+     "note": "La source la plus fiable sur les chamelles, le chamelon, les hyènes et le Quadrant mural de Lalande. En anglais.",
+     "url": "http://www.ianridpath.com/startales/draco.html"
+    },
+    {
+     "kind": "read",
+     "title": "Les Chamelles mères",
+     "src": "Wikipédia en anglais",
+     "note": "L'astérisme bédouin détaillé étoile par étoile, y compris les griffes du loup.",
+     "url": "https://en.wikipedia.org/wiki/Mother_Camels"
+    },
+    {
+     "kind": "read",
+     "title": "Le dragon des Hespérides",
+     "src": "Theoi Project",
+     "note": "Tous les passages antiques sur Ladon rassemblés et traduits, d'Hésiode à Hygin. En anglais.",
+     "url": "https://www.theoi.com/Ther/DrakonHesperios.html"
+    },
+    {
+     "kind": "read",
+     "title": "Dragons dans la mythologie grecque",
+     "src": "Wikipédia en français",
+     "note": "Pour comprendre ce que drákōn voulait dire, et pourquoi les gardiens de trésors sont tous des serpents.",
+     "url": "https://fr.wikipedia.org/wiki/Dragons_dans_la_mythologie_grecque"
+    },
+    {
+     "kind": "read",
+     "title": "Liste des noms d'étoiles du Dragon",
+     "src": "Wikipédia en anglais",
+     "note": "Les étymologies avec les translittérations arabes, et les renvois aux travaux de Kunitzsch.",
+     "url": "https://en.wikipedia.org/wiki/List_of_star_names_in_Draco"
+    },
+    {
+     "kind": "read",
+     "title": "Constellation du Dragon, mythes et histoire",
+     "src": "Deep Sky Corner",
+     "note": "Les noms latins, la lecture persane, la piste babylonienne et la gravure de Bayer de 1603. En anglais.",
+     "url": "https://www.deepskycorner.ch/con/draco.en.php"
+    },
+    {
+     "kind": "read",
+     "title": "Ladon",
+     "src": "Vikidia",
+     "note": "La version courte et claire du mythe, écrite pour les jeunes lecteurs. Utile pour une session en famille.",
+     "url": "https://fr.vikidia.org/wiki/Ladon"
+    }
+   ]
+  }
+ ]
 }
