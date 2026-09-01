@@ -1,290 +1,290 @@
 {
-  "constellation": "tau",
-  "tab": "science",
-  "blocks": [
+ "constellation": "tau",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Taureau est la seule région du ciel où l'on peut regarder, la même nuit, une étoile en train de naître et le cadavre d'une étoile morte sous les yeux de témoins datés. Le nuage moléculaire du Taureau est la pouponnière stellaire la plus proche de nous, et la nébuleuse du Crabe est le débris d'une explosion que des astronomes chinois ont consignée en 1054. Naissance et mort, dans le même champ de jumelles."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Le Taureau est la seule région du ciel où l'on peut regarder, la même nuit, une étoile en train de naître et le cadavre d'une étoile morte sous les yeux de témoins datés. Le nuage moléculaire du Taureau est la pouponnière stellaire la plus proche de nous, et la nébuleuse du Crabe est le débris d'une explosion que des astronomes chinois ont consignée en 1054. Naissance et mort, dans le même champ de jumelles."
+     "v": "1054",
+     "l": "L'année de l'explosion, notée par les astronomes chinois et japonais. C'est la supernova historique dont la date est la mieux établie."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "1054",
-          "l": "L'année de l'explosion, notée par les astronomes chinois et japonais. C'est la supernova historique dont la date est la mieux établie."
-        },
-        {
-          "v": "444",
-          "u": "années-lumière",
-          "l": "La distance des Pléiades, mesurée par interférométrie radio en 2014. Le satellite Hipparcos en donnait 392, et personne n'a jamais expliqué pourquoi."
-        },
-        {
-          "v": "1",
-          "u": "million d'années",
-          "l": "L'âge du disque de HL Tauri, déjà creusé d'anneaux et de sillons. Bien plus vite que ce que prévoyaient les modèles."
-        },
-        {
-          "v": "8 à 10",
-          "u": "masses solaires",
-          "l": "L'estimation de la masse de l'étoile qui a explosé en 1054, tout juste au-dessus du seuil où une étoile finit en supernova."
-        },
-        {
-          "v": "5",
-          "u": "météores/heure",
-          "l": "Le débit modeste des Taurides. Mais leurs grains sont gros, et ils produisent des bolides qu'on surnomme les boules de feu d'Halloween."
-        },
-        {
-          "v": "3,3",
-          "u": "ans",
-          "l": "La période de la comète de Encke, deuxième comète périodique jamais identifiée, et source des Taurides."
-        }
-      ]
+     "v": "444",
+     "u": "années-lumière",
+     "l": "La distance des Pléiades, mesurée par interférométrie radio en 2014. Le satellite Hipparcos en donnait 392, et personne n'a jamais expliqué pourquoi."
     },
     {
-      "t": "text",
-      "h": "1054, la supernova la mieux datée",
-      "p": [
-        "Presque toutes les supernovae historiques posent un problème de datation. Celle-ci non. En 1054, les annales chinoises consignent l'apparition d'une étoile invitée dans cette région du ciel, et les sources japonaises confirment. Son éclat au maximum correspond à une magnitude absolue d'environ moins dix-huit, ce qui la place au-dessus des supernovae de type II ordinaires. Nous avons donc une date, une position, une courbe de lumière grossière, et à l'autre bout de la chaîne un objet visible ce soir dans un télescope d'amateur.",
-        "Le rapprochement entre les deux, pourtant, a mis neuf siècles à se faire. La nébuleuse a été repérée en 1731 par un médecin anglais, John Bevis, puis cataloguée par Charles Messier en 1758 comme premier objet de sa liste. Il faut attendre 1942 pour que deux publications indépendantes, celle de Duyvendak d'un côté, celle de Mayall et Oort de l'autre, relient la nébuleuse en expansion à l'étoile invitée des annales. Et 1968 pour qu'on trouve, en son centre, une étoile à neutrons qui tourne trente fois par seconde."
-      ]
+     "v": "1",
+     "u": "million d'années",
+     "l": "L'âge du disque de HL Tauri, déjà creusé d'anneaux et de sillons. Bien plus vite que ce que prévoyaient les modèles."
     },
     {
-      "t": "figure",
-      "src": "/assets/img/constellations/tau/crabe-webb.jpg",
-      "page": "https://esawebb.org/images/weic2326a/",
-      "wide": true,
-      "cap": "La nébuleuse du Crabe par Webb, caméra proche infrarouge et instrument moyen infrarouge combinés. La cage de filaments rouge orangé trace le soufre deux fois ionisé. À l'intérieur, les crêtes blanchâtres et vertes marquent la poussière, et la matière laiteuse translucide au centre est le rayonnement synchrotron du vent du pulsar. Cliquez pour agrandir.",
-      "credit": "NASA, ESA, CSA, STScI, Tea Temim (Princeton University)"
+     "v": "8 à 10",
+     "u": "masses solaires",
+     "l": "L'estimation de la masse de l'étoile qui a explosé en 1054, tout juste au-dessus du seuil où une étoile finit en supernova."
     },
     {
-      "t": "text",
-      "h": "Ce que Webb a mesuré, et ce qui manque encore",
-      "p": [
-        "Le Crabe est un objet inhabituel : sa composition est atypique et l'énergie de son explosion représente moins d'un dixième de celle d'une supernova normale. Cela avait conduit à l'expliquer par une supernova à capture d'électrons, un type rare produit par une étoile dont le cœur, moins évolué, est fait d'oxygène, de néon et de magnésium plutôt que de fer. En juin 2024, l'équipe de Tea Temim a utilisé la spectroscopie de Webb pour trancher : la théorie prévoit qu'une telle explosion laisse un rapport d'abondance nickel sur fer très supérieur à celui du Soleil. Les valeurs mesurées dans deux régions des filaments internes sont compatibles avec la capture d'électrons, mais elles n'excluent pas un effondrement de cœur de fer à partir d'une étoile de masse également faible.",
-        "Deux problèmes restent ouverts, et il faut les nommer. Le premier est le mouvement du pulsar : il file à environ cent soixante kilomètres par seconde, alors que les simulations de supernovae à capture d'électrons ne produisent des coups de pied que de quelques kilomètres par seconde. Le second est un problème de comptabilité. Le pulsar pèse moins de deux masses solaires, la nébuleuse au plus cinq : total sept, alors que l'étoile devait être plus massive pour exploser. Où est passé le reste ? On soupçonne de la matière cachée dans la nébuleuse, encore invisible à nos instruments. Le reste de supernova le plus étudié du ciel n'a pas fini de résister."
-      ]
+     "v": "5",
+     "u": "météores/heure",
+     "l": "Le débit modeste des Taurides. Mais leurs grains sont gros, et ils produisent des bolides qu'on surnomme les boules de feu d'Halloween."
     },
     {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Neuf siècles pour recoller les morceaux",
-        "events": [
-          {
-            "y": 1054,
-            "label": "Une étoile invitée dans le Taureau",
-            "note": "Les annales chinoises et japonaises consignent son apparition. Son éclat au maximum dépasse celui des supernovae de type II ordinaires."
-          },
-          {
-            "y": 1731,
-            "label": "John Bevis repère la nébuleuse",
-            "note": "Un médecin et astronome anglais découvre la tache floue, sans faire le moindre lien avec l'événement de 1054."
-          },
-          {
-            "y": 1758,
-            "label": "Messier en fait le numéro 1 de son catalogue",
-            "note": "Le chasseur de comètes la prend d'abord pour une comète. De cette confusion naît l'idée de lister les objets flous qui ne bougent pas."
-          },
-          {
-            "y": 1942,
-            "label": "Le Crabe est relié à la supernova de 1054",
-            "note": "Duyvendak d'un côté, Mayall et Oort de l'autre publient la même année le rapprochement entre l'étoile des annales et la nébuleuse en expansion."
-          },
-          {
-            "y": 1968,
-            "label": "Le pulsar est détecté",
-            "note": "Staelin et Reifenstein trouvent au cœur du Crabe une étoile à neutrons qui tourne trente fois par seconde. Le premier pulsar associé à un reste de supernova."
-          },
-          {
-            "y": 2024,
-            "label": "Webb dissèque les filaments",
-            "note": "L'équipe de Tea Temim mesure le rapport nickel sur fer dans deux régions internes, pour trancher sur le mécanisme de l'explosion. Le verdict reste partagé."
-          }
-        ]
-      },
-      "cap": "Une date connue au siècle près depuis mille ans, un objet observé depuis trois cents ans, et neuf siècles pour faire le lien. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Les Pléiades, ou la distance qui a failli casser la théorie",
-      "p": [
-        "L'amas le plus célèbre du ciel a provoqué l'une des disputes les plus embarrassantes de l'astrométrie moderne. Toutes les méthodes classiques plaçaient les Pléiades vers 133 parsecs. Puis Hipparcos, le satellite européen conçu précisément pour mesurer les distances stellaires avec une précision inégalée, a rendu 120 parsecs. Seize parsecs d'écart, avec des barres d'erreur inférieures à deux parsecs de part et d'autre. Les deux ne pouvaient pas avoir raison.",
-        "L'enjeu dépassait de loin un amas d'étoiles. Si les Pléiades étaient plus proches, leurs étoiles étaient intrinsèquement moins lumineuses que prévu, et c'est toute la théorie de la structure et de l'évolution stellaires qu'il fallait retoucher : les astronomes ont sérieusement envisagé que ces étoiles aient une composition anormale, un excès d'hélium par exemple. En 2014, l'équipe de Carl Melis a tranché avec une méthode entièrement indépendante, l'interférométrie radio à très longue base, en mesurant la parallaxe de plusieurs Pléiades émettrices d'ondes radio par rapport à un trou noir supermassif lointain. Résultat : 136,2 parsecs, à un pour cent près. Les modèles stellaires étaient sauvés. Mais la source de l'erreur d'Hipparcos, elle, n'a jamais été identifiée de façon convaincante, ce qui n'est pas rassurant pour un satellite dont le catalogue a servi de référence pendant vingt ans."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "bars",
-      "wide": true,
-      "data": {
-        "title": "Quatre mesures de la distance des Pléiades",
-        "unit": "parsecs",
-        "items": [
-          {
-            "n": "Hipparcos",
-            "v": 120.2,
-            "note": "La réduction révisée des données du satellite. Incompatible avec tout le reste, et l'origine de l'écart n'a jamais été établie."
-          },
-          {
-            "n": "Séquence principale",
-            "v": 133.5,
-            "note": "La valeur obtenue en comparant l'éclat apparent des étoiles à ce que prédisent les modèles d'évolution stellaire."
-          },
-          {
-            "n": "Hubble, 2005",
-            "v": 134.6,
-            "note": "Parallaxes relatives de trois Pléiades mesurées avec les capteurs de guidage fin du télescope spatial, puis converties en parallaxes absolues."
-          },
-          {
-            "n": "VLBI, 2014",
-            "v": 136.2,
-            "note": "Parallaxe trigonométrique absolue par interférométrie radio à très longue base. La valeur retenue aujourd'hui, à un pour cent près."
-          }
-        ]
-      },
-      "cap": "Trois méthodes indépendantes d'un côté, un satellite dédié de l'autre. C'est le satellite qui avait tort.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "quote",
-      "p": "La controverse s'évanouirait si l'équipe d'Hipparcos acceptait d'admettre que sa distance était fausse.",
-      "who": "Carl Melis, université de Californie à San Diego, 2014"
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/tau/pleiades-eso.jpg",
-      "page": "https://www.eso.org/public/images/b11/",
-      "wide": true,
-      "cap": "Les Pléiades. Le bleuté autour des étoiles les plus brillantes n'est pas produit par l'amas : c'est un nuage de gaz et de poussière que le groupe traverse en ce moment, et dont les grains diffusent le bleu mieux que les autres couleurs, exactement comme l'atmosphère terrestre. L'amas compte un millier d'étoiles confirmées, dont beaucoup de naines brunes.",
-      "credit": "ESO"
-    },
-    {
-      "t": "text",
-      "h": "L'œil du taureau est un trompe-l'œil",
-      "p": [
-        "À l'autre bout de la constellation, les Hyades dessinent le V de la tête du taureau, et Aldébaran en marque l'œil, d'un orange franc. La composition est si convaincante qu'on la croit naturelle. Elle ne l'est pas : Aldébaran n'appartient pas aux Hyades. C'est une géante orange située très en avant de l'amas, sur la même ligne de visée, et sans aucun lien physique avec lui. Le taureau a un œil emprunté.",
-        "L'ensemble reste la meilleure porte d'entrée du ciel d'hiver. Le V des Hyades et le petit chariot des Pléiades se trouvent tous deux à l'œil nu, et une paire de jumelles suffit pour que les Pléiades passent de six ou sept points à plusieurs dizaines. Le Crabe, lui, demande un instrument et un ciel noir : c'est une tache faible, sans structure visible, à côté de Zêta du Taureau. Ne vous attendez pas à l'image de Webb."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/tau/hl-tauri-alma.jpg",
-      "page": "https://www.eso.org/public/images/eso1436a/",
-      "wide": true,
-      "cap": "Le disque de HL Tauri, photographié par le réseau ALMA en 2014. C'était alors l'image la plus fine jamais obtenue par cet instrument, plus nette que ce que Hubble atteint couramment en lumière visible. Les anneaux brillants séparés par des sillons sombres sont probablement creusés par des planètes en formation.",
-      "credit": "ALMA (ESO/NAOJ/NRAO)"
-    },
-    {
-      "t": "text",
-      "h": "Un disque plus vieux que son étoile",
-      "p": [
-        "Le nuage moléculaire du Taureau est la région de formation d'étoiles la plus proche de nous, et cela en fait un laboratoire irremplaçable. C'est là qu'on a défini toute une classe d'objets, les étoiles de type T Tauri, du nom de la première d'entre elles : des astres très jeunes, encore en train de se contracter, entourés du disque de matière dont ils sont nés. Et c'est là, à quelque quatre cent cinquante années-lumière, que se trouve HL Tauri.",
-        "En novembre 2014, ALMA a pointé ses antennes sur ce disque pour son premier essai en configuration étendue. Le résultat a stupéfié tout le monde, y compris les auteurs : une série d'anneaux concentriques nets, séparés par des sillons vides. Or l'étoile n'a pas plus d'un million d'années, et jusque-là on tenait pour acquis que les disques restaient lisses à ce stade. L'explication la plus intuitive fait creuser les sillons par des planètes déjà formées, ce qui voudrait dire que la formation planétaire va bien plus vite qu'on ne le pensait. Mais d'autres mécanismes ont été proposés depuis, lignes de gel, instabilités, résonances, accumulations de poussière, et la question n'est pas tranchée. En 2024, ALMA a par ailleurs détecté dans ce même disque de la vapeur d'eau, l'équivalent de près de quatre océans terrestres."
-      ]
-    },
-    {
-      "t": "text",
-      "h": "Les boules de feu d'Halloween",
-      "p": [
-        "Chaque automne, la Terre traverse un courant de poussière associé à la comète 2P/Encke, découverte à Paris par Pierre Méchain en 1786 et nommée d'après l'astronome allemand qui en a déterminé la période, trois ans et quatre mois. Le radiant se situe dans le Taureau, d'où le nom de Taurides, et l'essaim se divise en deux branches, sud et nord, actives de la fin septembre à la fin novembre.",
-        "Le débit est faible, cinq météores par heure au maximum, mais l'essaim a une signature reconnaissable. Ses grains sont plus gros que la moyenne et entrent dans l'atmosphère lentement, autour de vingt-sept kilomètres par seconde, ce qui produit des bolides lents, colorés et spectaculaires, parfois surnommés les boules de feu d'Halloween. Certaines années sont nettement plus riches que d'autres : Jupiter, dont l'attraction déforme le courant, ramène périodiquement vers notre orbite des paquets plus denses. Le complexe des Taurides est par ailleurs le plus large courant de météoroïdes connu du système solaire."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "La comète géante, et ce qu'on lui fait dire",
-      "p": "Une hypothèse séduisante circule au sujet des Taurides : la comète de Encke et tout le courant seraient les débris d'une comète géante, quarante kilomètres de diamètre, qui se serait désintégrée il y a vingt à trente mille ans. Certains auteurs en tirent des conclusions spectaculaires, faisant de l'événement de la Toungouska en 1908 un fragment de ce courant, voire attribuant à ces débris des extinctions paléolithiques et un retour aux conditions glaciaires. Trois réserves. La fragmentation récente d'un corps aussi gros est statistiquement peu probable, les spécialistes le disent explicitement. Aucun lien spectroscopique n'a été confirmé entre 2P/Encke et les astéroïdes géocroiseurs qu'on associe au complexe, qui appartiennent d'ailleurs à des classes minéralogiques très diverses. Et l'attribution de la Toungouska aux Taurides reste une conjecture ancienne, jamais démontrée. Que le complexe des Taurides mérite d'être surveillé pour d'éventuels corps kilométriques est une chose ; en faire le moteur d'une histoire catastrophiste en est une autre."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "read",
-          "title": "Enquête sur les origines de la nébuleuse du Crabe avec Webb",
-          "src": "ESA/Webb, juin 2024",
-          "note": "Le communiqué qui expose la mesure du rapport nickel sur fer et ce qu'elle permet ou non de conclure. En anglais.",
-          "url": "https://esawebb.org/news/weic2417/"
-        },
-        {
-          "kind": "look",
-          "title": "La nébuleuse du Crabe par Webb",
-          "src": "ESA/Webb",
-          "note": "La page de l'image, avec les fichiers en pleine résolution et la comparaison avec la version Hubble de 2005.",
-          "url": "https://esawebb.org/images/weic2326a/"
-        },
-        {
-          "kind": "deep",
-          "title": "A VLBI Resolution of the Pleiades Distance Controversy",
-          "src": "Science, 2014",
-          "note": "L'article qui clôt la dispute, avec le tableau des mesures concurrentes. En anglais.",
-          "url": "https://arxiv.org/abs/1408.6544"
-        },
-        {
-          "kind": "read",
-          "title": "Controversy Erupts over Distance to Pleiades Star Cluster",
-          "src": "Scientific American",
-          "note": "Le récit de la dispute vue de l'intérieur, avec les déclarations des deux camps. En anglais.",
-          "url": "https://www.scientificamerican.com/article/controversy-erupts-over-distance-to-pleiades-star-cluster/"
-        },
-        {
-          "kind": "read",
-          "title": "Une image révolutionnaire d'ALMA révèle la genèse planétaire",
-          "src": "ESO, novembre 2014",
-          "note": "Le communiqué d'origine sur HL Tauri, avec les réactions des astronomes qui ont découvert l'image. En anglais.",
-          "url": "https://www.eso.org/public/news/eso1436/"
-        },
-        {
-          "kind": "look",
-          "title": "Le disque de HL Tauri",
-          "src": "ESO / ALMA",
-          "note": "La page de l'image, et sa version annotée qui repère les anneaux un par un.",
-          "url": "https://www.eso.org/public/images/eso1436a/"
-        },
-        {
-          "kind": "deep",
-          "title": "Protoplanetary disk rings and gaps across ages and luminosities",
-          "src": "arXiv, 2019",
-          "note": "L'inventaire des explications concurrentes pour les anneaux, des planètes aux lignes de gel. En anglais.",
-          "url": "https://arxiv.org/pdf/1901.03680"
-        },
-        {
-          "kind": "deep",
-          "title": "Asteroid-Meteoroid Complexes",
-          "src": "arXiv, 2020",
-          "note": "Le chapitre sur le complexe des Taurides, et les réserves des spécialistes sur l'hypothèse de la comète géante. En anglais.",
-          "url": "https://arxiv.org/pdf/2010.16079"
-        },
-        {
-          "kind": "deep",
-          "title": "Spectra and physical properties of Taurid meteoroids",
-          "src": "arXiv, 2017",
-          "note": "Ce que la composition des météores révèle de leur origine cométaire, et ce qu'elle ne prouve pas. En anglais.",
-          "url": "https://arxiv.org/pdf/1704.06482"
-        },
-        {
-          "kind": "look",
-          "title": "Les Pléiades",
-          "src": "ESO",
-          "note": "La page de l'image, avec la description de l'amas et de la nébulosité bleutée qu'il traverse.",
-          "url": "https://www.eso.org/public/images/b11/"
-        },
-        {
-          "kind": "read",
-          "title": "Taurides",
-          "src": "Wikipédia en français",
-          "note": "Les deux branches de l'essaim, leurs dates et le lien avec la comète de Encke.",
-          "url": "https://fr.wikipedia.org/wiki/Taurides"
-        },
-        {
-          "kind": "deep",
-          "title": "On the Progenitor of the Crab Pulsar",
-          "src": "arXiv, 2024",
-          "note": "L'état du débat sur la nature de l'explosion de 1054, capture d'électrons contre effondrement de cœur de fer. En anglais.",
-          "url": "https://arxiv.org/pdf/2408.07130"
-        }
-      ]
+     "v": "3,3",
+     "u": "ans",
+     "l": "La période de la comète de Encke, deuxième comète périodique jamais identifiée, et source des Taurides."
     }
-  ]
+   ]
+  },
+  {
+   "t": "text",
+   "h": "1054, la supernova la mieux datée",
+   "p": [
+    "Presque toutes les supernovae historiques posent un problème de datation. Celle-ci non. En 1054, les annales chinoises consignent l'apparition d'une étoile invitée dans cette région du ciel, et les sources japonaises confirment. Son éclat au maximum correspond à une magnitude absolue d'environ moins dix-huit, ce qui la place au-dessus des supernovae de type II ordinaires. Nous avons donc une date, une position, une courbe de lumière grossière, et à l'autre bout de la chaîne un objet visible ce soir dans un télescope d'amateur.",
+    "Le rapprochement entre les deux, pourtant, a mis neuf siècles à se faire. La nébuleuse a été repérée en 1731 par un médecin anglais, John Bevis, puis cataloguée par Charles Messier en 1758 comme premier objet de sa liste. Il faut attendre 1942 pour que deux publications indépendantes, celle de Duyvendak d'un côté, celle de Mayall et Oort de l'autre, relient la nébuleuse en expansion à l'étoile invitée des annales. Et 1968 pour qu'on trouve, en son centre, une étoile à neutrons qui tourne trente fois par seconde."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/tau/weic2326a.jpg",
+   "page": "https://esawebb.org/images/weic2326a/",
+   "wide": true,
+   "cap": "La nébuleuse du Crabe par Webb, caméra proche infrarouge et instrument moyen infrarouge combinés. La cage de filaments rouge orangé trace le soufre deux fois ionisé. À l'intérieur, les crêtes blanchâtres et vertes marquent la poussière, et la matière laiteuse translucide au centre est le rayonnement synchrotron du vent du pulsar. Cliquez pour agrandir.",
+   "credit": "NASA, ESA, CSA, STScI, Tea Temim (Princeton University)"
+  },
+  {
+   "t": "text",
+   "h": "Ce que Webb a mesuré, et ce qui manque encore",
+   "p": [
+    "Le Crabe est un objet inhabituel : sa composition est atypique et l'énergie de son explosion représente moins d'un dixième de celle d'une supernova normale. Cela avait conduit à l'expliquer par une supernova à capture d'électrons, un type rare produit par une étoile dont le cœur, moins évolué, est fait d'oxygène, de néon et de magnésium plutôt que de fer. En juin 2024, l'équipe de Tea Temim a utilisé la spectroscopie de Webb pour trancher : la théorie prévoit qu'une telle explosion laisse un rapport d'abondance nickel sur fer très supérieur à celui du Soleil. Les valeurs mesurées dans deux régions des filaments internes sont compatibles avec la capture d'électrons, mais elles n'excluent pas un effondrement de cœur de fer à partir d'une étoile de masse également faible.",
+    "Deux problèmes restent ouverts, et il faut les nommer. Le premier est le mouvement du pulsar : il file à environ cent soixante kilomètres par seconde, alors que les simulations de supernovae à capture d'électrons ne produisent des coups de pied que de quelques kilomètres par seconde. Le second est un problème de comptabilité. Le pulsar pèse moins de deux masses solaires, la nébuleuse au plus cinq : total sept, alors que l'étoile devait être plus massive pour exploser. Où est passé le reste ? On soupçonne de la matière cachée dans la nébuleuse, encore invisible à nos instruments. Le reste de supernova le plus étudié du ciel n'a pas fini de résister."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Neuf siècles pour recoller les morceaux",
+    "events": [
+     {
+      "y": 1054,
+      "label": "Une étoile invitée dans le Taureau",
+      "note": "Les annales chinoises et japonaises consignent son apparition. Son éclat au maximum dépasse celui des supernovae de type II ordinaires."
+     },
+     {
+      "y": 1731,
+      "label": "John Bevis repère la nébuleuse",
+      "note": "Un médecin et astronome anglais découvre la tache floue, sans faire le moindre lien avec l'événement de 1054."
+     },
+     {
+      "y": 1758,
+      "label": "Messier en fait le numéro 1 de son catalogue",
+      "note": "Le chasseur de comètes la prend d'abord pour une comète. De cette confusion naît l'idée de lister les objets flous qui ne bougent pas."
+     },
+     {
+      "y": 1942,
+      "label": "Le Crabe est relié à la supernova de 1054",
+      "note": "Duyvendak d'un côté, Mayall et Oort de l'autre publient la même année le rapprochement entre l'étoile des annales et la nébuleuse en expansion."
+     },
+     {
+      "y": 1968,
+      "label": "Le pulsar est détecté",
+      "note": "Staelin et Reifenstein trouvent au cœur du Crabe une étoile à neutrons qui tourne trente fois par seconde. Le premier pulsar associé à un reste de supernova."
+     },
+     {
+      "y": 2024,
+      "label": "Webb dissèque les filaments",
+      "note": "L'équipe de Tea Temim mesure le rapport nickel sur fer dans deux régions internes, pour trancher sur le mécanisme de l'explosion. Le verdict reste partagé."
+     }
+    ]
+   },
+   "cap": "Une date connue au siècle près depuis mille ans, un objet observé depuis trois cents ans, et neuf siècles pour faire le lien. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Les Pléiades, ou la distance qui a failli casser la théorie",
+   "p": [
+    "L'amas le plus célèbre du ciel a provoqué l'une des disputes les plus embarrassantes de l'astrométrie moderne. Toutes les méthodes classiques plaçaient les Pléiades vers 133 parsecs. Puis Hipparcos, le satellite européen conçu précisément pour mesurer les distances stellaires avec une précision inégalée, a rendu 120 parsecs. Seize parsecs d'écart, avec des barres d'erreur inférieures à deux parsecs de part et d'autre. Les deux ne pouvaient pas avoir raison.",
+    "L'enjeu dépassait de loin un amas d'étoiles. Si les Pléiades étaient plus proches, leurs étoiles étaient intrinsèquement moins lumineuses que prévu, et c'est toute la théorie de la structure et de l'évolution stellaires qu'il fallait retoucher : les astronomes ont sérieusement envisagé que ces étoiles aient une composition anormale, un excès d'hélium par exemple. En 2014, l'équipe de Carl Melis a tranché avec une méthode entièrement indépendante, l'interférométrie radio à très longue base, en mesurant la parallaxe de plusieurs Pléiades émettrices d'ondes radio par rapport à un trou noir supermassif lointain. Résultat : 136,2 parsecs, à un pour cent près. Les modèles stellaires étaient sauvés. Mais la source de l'erreur d'Hipparcos, elle, n'a jamais été identifiée de façon convaincante, ce qui n'est pas rassurant pour un satellite dont le catalogue a servi de référence pendant vingt ans."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "bars",
+   "wide": true,
+   "data": {
+    "title": "Quatre mesures de la distance des Pléiades",
+    "unit": "parsecs",
+    "items": [
+     {
+      "n": "Hipparcos",
+      "v": 120.2,
+      "note": "La réduction révisée des données du satellite. Incompatible avec tout le reste, et l'origine de l'écart n'a jamais été établie."
+     },
+     {
+      "n": "Séquence principale",
+      "v": 133.5,
+      "note": "La valeur obtenue en comparant l'éclat apparent des étoiles à ce que prédisent les modèles d'évolution stellaire."
+     },
+     {
+      "n": "Hubble, 2005",
+      "v": 134.6,
+      "note": "Parallaxes relatives de trois Pléiades mesurées avec les capteurs de guidage fin du télescope spatial, puis converties en parallaxes absolues."
+     },
+     {
+      "n": "VLBI, 2014",
+      "v": 136.2,
+      "note": "Parallaxe trigonométrique absolue par interférométrie radio à très longue base. La valeur retenue aujourd'hui, à un pour cent près."
+     }
+    ]
+   },
+   "cap": "Trois méthodes indépendantes d'un côté, un satellite dédié de l'autre. C'est le satellite qui avait tort.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "quote",
+   "p": "La controverse s'évanouirait si l'équipe d'Hipparcos acceptait d'admettre que sa distance était fausse.",
+   "who": "Carl Melis, université de Californie à San Diego, 2014"
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/tau/b11.jpg",
+   "page": "https://www.eso.org/public/images/b11/",
+   "wide": true,
+   "cap": "Les Pléiades. Le bleuté autour des étoiles les plus brillantes n'est pas produit par l'amas : c'est un nuage de gaz et de poussière que le groupe traverse en ce moment, et dont les grains diffusent le bleu mieux que les autres couleurs, exactement comme l'atmosphère terrestre. L'amas compte un millier d'étoiles confirmées, dont beaucoup de naines brunes.",
+   "credit": "ESO"
+  },
+  {
+   "t": "text",
+   "h": "L'œil du taureau est un trompe-l'œil",
+   "p": [
+    "À l'autre bout de la constellation, les Hyades dessinent le V de la tête du taureau, et Aldébaran en marque l'œil, d'un orange franc. La composition est si convaincante qu'on la croit naturelle. Elle ne l'est pas : Aldébaran n'appartient pas aux Hyades. C'est une géante orange située très en avant de l'amas, sur la même ligne de visée, et sans aucun lien physique avec lui. Le taureau a un œil emprunté.",
+    "L'ensemble reste la meilleure porte d'entrée du ciel d'hiver. Le V des Hyades et le petit chariot des Pléiades se trouvent tous deux à l'œil nu, et une paire de jumelles suffit pour que les Pléiades passent de six ou sept points à plusieurs dizaines. Le Crabe, lui, demande un instrument et un ciel noir : c'est une tache faible, sans structure visible, à côté de Zêta du Taureau. Ne vous attendez pas à l'image de Webb."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/tau/eso1436a.jpg",
+   "page": "https://www.eso.org/public/images/eso1436a/",
+   "wide": true,
+   "cap": "Le disque de HL Tauri, photographié par le réseau ALMA en 2014. C'était alors l'image la plus fine jamais obtenue par cet instrument, plus nette que ce que Hubble atteint couramment en lumière visible. Les anneaux brillants séparés par des sillons sombres sont probablement creusés par des planètes en formation.",
+   "credit": "ALMA (ESO/NAOJ/NRAO)"
+  },
+  {
+   "t": "text",
+   "h": "Un disque plus vieux que son étoile",
+   "p": [
+    "Le nuage moléculaire du Taureau est la région de formation d'étoiles la plus proche de nous, et cela en fait un laboratoire irremplaçable. C'est là qu'on a défini toute une classe d'objets, les étoiles de type T Tauri, du nom de la première d'entre elles : des astres très jeunes, encore en train de se contracter, entourés du disque de matière dont ils sont nés. Et c'est là, à quelque quatre cent cinquante années-lumière, que se trouve HL Tauri.",
+    "En novembre 2014, ALMA a pointé ses antennes sur ce disque pour son premier essai en configuration étendue. Le résultat a stupéfié tout le monde, y compris les auteurs : une série d'anneaux concentriques nets, séparés par des sillons vides. Or l'étoile n'a pas plus d'un million d'années, et jusque-là on tenait pour acquis que les disques restaient lisses à ce stade. L'explication la plus intuitive fait creuser les sillons par des planètes déjà formées, ce qui voudrait dire que la formation planétaire va bien plus vite qu'on ne le pensait. Mais d'autres mécanismes ont été proposés depuis, lignes de gel, instabilités, résonances, accumulations de poussière, et la question n'est pas tranchée. En 2024, ALMA a par ailleurs détecté dans ce même disque de la vapeur d'eau, l'équivalent de près de quatre océans terrestres."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Les boules de feu d'Halloween",
+   "p": [
+    "Chaque automne, la Terre traverse un courant de poussière associé à la comète 2P/Encke, découverte à Paris par Pierre Méchain en 1786 et nommée d'après l'astronome allemand qui en a déterminé la période, trois ans et quatre mois. Le radiant se situe dans le Taureau, d'où le nom de Taurides, et l'essaim se divise en deux branches, sud et nord, actives de la fin septembre à la fin novembre.",
+    "Le débit est faible, cinq météores par heure au maximum, mais l'essaim a une signature reconnaissable. Ses grains sont plus gros que la moyenne et entrent dans l'atmosphère lentement, autour de vingt-sept kilomètres par seconde, ce qui produit des bolides lents, colorés et spectaculaires, parfois surnommés les boules de feu d'Halloween. Certaines années sont nettement plus riches que d'autres : Jupiter, dont l'attraction déforme le courant, ramène périodiquement vers notre orbite des paquets plus denses. Le complexe des Taurides est par ailleurs le plus large courant de météoroïdes connu du système solaire."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "La comète géante, et ce qu'on lui fait dire",
+   "p": "Une hypothèse séduisante circule au sujet des Taurides : la comète de Encke et tout le courant seraient les débris d'une comète géante, quarante kilomètres de diamètre, qui se serait désintégrée il y a vingt à trente mille ans. Certains auteurs en tirent des conclusions spectaculaires, faisant de l'événement de la Toungouska en 1908 un fragment de ce courant, voire attribuant à ces débris des extinctions paléolithiques et un retour aux conditions glaciaires. Trois réserves. La fragmentation récente d'un corps aussi gros est statistiquement peu probable, les spécialistes le disent explicitement. Aucun lien spectroscopique n'a été confirmé entre 2P/Encke et les astéroïdes géocroiseurs qu'on associe au complexe, qui appartiennent d'ailleurs à des classes minéralogiques très diverses. Et l'attribution de la Toungouska aux Taurides reste une conjecture ancienne, jamais démontrée. Que le complexe des Taurides mérite d'être surveillé pour d'éventuels corps kilométriques est une chose ; en faire le moteur d'une histoire catastrophiste en est une autre."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Enquête sur les origines de la nébuleuse du Crabe avec Webb",
+     "src": "ESA/Webb, juin 2024",
+     "note": "Le communiqué qui expose la mesure du rapport nickel sur fer et ce qu'elle permet ou non de conclure. En anglais.",
+     "url": "https://esawebb.org/news/weic2417/"
+    },
+    {
+     "kind": "look",
+     "title": "La nébuleuse du Crabe par Webb",
+     "src": "ESA/Webb",
+     "note": "La page de l'image, avec les fichiers en pleine résolution et la comparaison avec la version Hubble de 2005.",
+     "url": "https://esawebb.org/images/weic2326a/"
+    },
+    {
+     "kind": "deep",
+     "title": "A VLBI Resolution of the Pleiades Distance Controversy",
+     "src": "Science, 2014",
+     "note": "L'article qui clôt la dispute, avec le tableau des mesures concurrentes. En anglais.",
+     "url": "https://arxiv.org/abs/1408.6544"
+    },
+    {
+     "kind": "read",
+     "title": "Controversy Erupts over Distance to Pleiades Star Cluster",
+     "src": "Scientific American",
+     "note": "Le récit de la dispute vue de l'intérieur, avec les déclarations des deux camps. En anglais.",
+     "url": "https://www.scientificamerican.com/article/controversy-erupts-over-distance-to-pleiades-star-cluster/"
+    },
+    {
+     "kind": "read",
+     "title": "Une image révolutionnaire d'ALMA révèle la genèse planétaire",
+     "src": "ESO, novembre 2014",
+     "note": "Le communiqué d'origine sur HL Tauri, avec les réactions des astronomes qui ont découvert l'image. En anglais.",
+     "url": "https://www.eso.org/public/news/eso1436/"
+    },
+    {
+     "kind": "look",
+     "title": "Le disque de HL Tauri",
+     "src": "ESO / ALMA",
+     "note": "La page de l'image, et sa version annotée qui repère les anneaux un par un.",
+     "url": "https://www.eso.org/public/images/eso1436a/"
+    },
+    {
+     "kind": "deep",
+     "title": "Protoplanetary disk rings and gaps across ages and luminosities",
+     "src": "arXiv, 2019",
+     "note": "L'inventaire des explications concurrentes pour les anneaux, des planètes aux lignes de gel. En anglais.",
+     "url": "https://arxiv.org/pdf/1901.03680"
+    },
+    {
+     "kind": "deep",
+     "title": "Asteroid-Meteoroid Complexes",
+     "src": "arXiv, 2020",
+     "note": "Le chapitre sur le complexe des Taurides, et les réserves des spécialistes sur l'hypothèse de la comète géante. En anglais.",
+     "url": "https://arxiv.org/pdf/2010.16079"
+    },
+    {
+     "kind": "deep",
+     "title": "Spectra and physical properties of Taurid meteoroids",
+     "src": "arXiv, 2017",
+     "note": "Ce que la composition des météores révèle de leur origine cométaire, et ce qu'elle ne prouve pas. En anglais.",
+     "url": "https://arxiv.org/pdf/1704.06482"
+    },
+    {
+     "kind": "look",
+     "title": "Les Pléiades",
+     "src": "ESO",
+     "note": "La page de l'image, avec la description de l'amas et de la nébulosité bleutée qu'il traverse.",
+     "url": "https://www.eso.org/public/images/b11/"
+    },
+    {
+     "kind": "read",
+     "title": "Taurides",
+     "src": "Wikipédia en français",
+     "note": "Les deux branches de l'essaim, leurs dates et le lien avec la comète de Encke.",
+     "url": "https://fr.wikipedia.org/wiki/Taurides"
+    },
+    {
+     "kind": "deep",
+     "title": "On the Progenitor of the Crab Pulsar",
+     "src": "arXiv, 2024",
+     "note": "L'état du débat sur la nature de l'explosion de 1054, capture d'électrons contre effondrement de cœur de fer. En anglais.",
+     "url": "https://arxiv.org/pdf/2408.07130"
+    }
+   ]
+  }
+ ]
 }
