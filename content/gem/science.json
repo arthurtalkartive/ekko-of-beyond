@@ -1,284 +1,284 @@
 {
-  "constellation": "gem",
-  "tab": "science",
-  "blocks": [
+ "constellation": "gem",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Deux mondes ont été découverts dans cette constellation, à cent quarante-neuf ans d'écart, et les deux fois par accident : Uranus en 1781, Pluton en 1930. Aucune autre région du ciel n'a livré autant. Et pendant qu'on y trouvait des planètes, les deux étoiles qui donnent son nom à la figure entretenaient un mensonge tranquille, puisqu'elles ne sont pas jumelles et ne sont même pas liées l'une à l'autre."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Deux mondes ont été découverts dans cette constellation, à cent quarante-neuf ans d'écart, et les deux fois par accident : Uranus en 1781, Pluton en 1930. Aucune autre région du ciel n'a livré autant. Et pendant qu'on y trouvait des planètes, les deux étoiles qui donnent son nom à la figure entretenaient un mensonge tranquille, puisqu'elles ne sont pas jumelles et ne sont même pas liées l'une à l'autre."
+     "v": "1781",
+     "u": "et 1930",
+     "l": "Les deux dates. Uranus par Herschel près d'Êta des Gémeaux, Pluton par Tombaugh sur des plaques centrées sur Wasat."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "1781",
-          "u": "et 1930",
-          "l": "Les deux dates. Uranus par Herschel près d'Êta des Gémeaux, Pluton par Tombaugh sur des plaques centrées sur Wasat."
-        },
-        {
-          "v": "51",
-          "u": "contre 34",
-          "l": "Les distances de Castor et Pollux en années-lumière. Les jumelles ne sont pas jumelles, et ne sont pas liées : c'est un simple alignement."
-        },
-        {
-          "v": "6",
-          "u": "étoiles",
-          "l": "Ce que cache Castor : trois couples serrés qui tournent autour d'un centre de masse commun."
-        },
-        {
-          "v": "120",
-          "u": "météores/heure",
-          "l": "Le débit des Géminides à leur maximum, le 14 décembre. C'est l'essaim le plus riche de l'année."
-        },
-        {
-          "v": "0,237",
-          "u": "seconde",
-          "l": "La période de rotation de Geminga, l'objet qui est resté inexplicable pendant vingt ans et dont le nom signifie « ça n'existe pas »."
-        },
-        {
-          "v": "514",
-          "u": "deg²",
-          "l": "La surface de la constellation, traversée par la Voie lactée. Le Soleil y passe de la fin juin à la fin juillet."
-        }
-      ]
+     "v": "51",
+     "u": "contre 34",
+     "l": "Les distances de Castor et Pollux en années-lumière. Les jumelles ne sont pas jumelles, et ne sont pas liées : c'est un simple alignement."
     },
     {
-      "t": "text",
-      "h": "Deux planètes, cent quarante-neuf ans d'écart",
-      "p": [
-        "Le 13 mars 1781, vers dix heures et demie du soir, William Herschel examine les petites étoiles autour d'Êta des Gémeaux depuis le jardin de sa maison de Bath. Il est musicien d'église, astronome amateur, et il n'a pas les moyens d'acheter un télescope : il a poli son miroir lui-même. Il est en train de cataloguer les étoiles par magnitude quand il remarque un objet qui n'a pas l'air ponctuel. Il change d'oculaire, augmente le grossissement, et l'objet grandit tandis que les étoiles autour restent des points. Il croit à une comète et le signale ; Hornsby à Oxford et Maskelyne à Greenwich confirment quelque chose, mais s'étonnent de ne trouver ni queue ni chevelure. Le calcul de l'orbite tranchera : c'est une planète, la première jamais découverte au télescope, et elle double d'un coup la taille connue du système solaire.",
-        "Cent quarante-neuf ans plus tard, le 18 février 1930, Clyde Tombaugh compare au comparateur à clignotement deux plaques photographiques centrées sur Wasat, delta des Gémeaux. Un point a bougé. C'est Pluton, déclassée en planète naine en 2006 mais découverte, elle aussi, dans les Gémeaux. Deux fois, la même petite région du ciel a agrandi le système solaire.",
-        "Il reste une trace de la première découverte, et elle est presque touchante. En 1789, l'astronome Maximilian Hell crée une constellation pour honorer Herschel : le Télescope de Herschel, installé tout près de l'endroit où Uranus a été repéré. Bode la reprend dans son atlas de 1801. Quand l'Union astronomique internationale a tracé les frontières définitives en 1930, elle l'a supprimée et redistribué ses étoiles entre le Cocher, le Lynx et les Gémeaux."
-      ]
+     "v": "6",
+     "u": "étoiles",
+     "l": "Ce que cache Castor : trois couples serrés qui tournent autour d'un centre de masse commun."
     },
     {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Ce qu'on a trouvé dans les Gémeaux",
-        "events": [
-          {
-            "y": 1781,
-            "label": "Herschel trouve Uranus",
-            "note": "Le 13 mars, depuis son jardin de Bath, en cataloguant les étoiles par magnitude. Il croit d'abord à une comète, mais l'objet n'a ni queue ni chevelure."
-          },
-          {
-            "y": 1787,
-            "label": "Herschel trouve aussi NGC 2392",
-            "note": "Six ans plus tard, la même constellation lui livre une nébuleuse planétaire, celle qu'on a longtemps appelée la nébuleuse de l'Esquimau."
-          },
-          {
-            "y": 1789,
-            "label": "Une constellation naît pour célébrer Uranus",
-            "note": "Maximilian Hell installe le Télescope de Herschel près du lieu de la découverte. Bode la reprend en 1801. L'UAI l'abolit en 1930."
-          },
-          {
-            "y": 1861,
-            "label": "Les Géminides sont vues pour la première fois",
-            "note": "Robert Philips Greg les observe à Manchester. C'est très tardif pour un essaim majeur : son activité était probablement en train d'augmenter."
-          },
-          {
-            "y": 1930,
-            "label": "Tombaugh trouve Pluton",
-            "note": "Le 18 février, en comparant au comparateur à clignotement deux plaques centrées sur Wasat. Un seul point avait bougé."
-          },
-          {
-            "y": 1992,
-            "label": "Geminga cesse d'être un mystère",
-            "note": "Le satellite ROSAT détecte des pulsations X de 0,237 seconde. Vingt ans après sa découverte, la source la plus énigmatique du ciel gamma devient une étoile à neutrons."
-          }
-        ]
-      },
-      "cap": "Deux planètes, une nébuleuse, un essaim, un pulsar et une constellation disparue. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
+     "v": "120",
+     "u": "météores/heure",
+     "l": "Le débit des Géminides à leur maximum, le 14 décembre. C'est l'essaim le plus riche de l'année."
     },
     {
-      "t": "text",
-      "h": "Les fausses jumelles",
-      "p": [
-        "Commençons par tordre le cou à l'idée que la constellation impose. Castor et Pollux ne sont pas jumelles, ne sont pas liées, et ne se ressemblent pas. Pollux se trouve à trente-quatre années-lumière, Castor à cinquante et une. Dix-sept années-lumière les séparent, ce qui interdit toute relation physique : nous les voyons côte à côte parce qu'elles se trouvent sur la même ligne de visée, et rien d'autre. Détail qui achève le tableau, Castor porte la lettre alpha alors qu'elle est moins brillante que Pollux, la bêta.",
-        "Chacune a pourtant sa singularité. Castor est un système de six étoiles, trois couples serrés en ronde autour d'un centre de masse commun. Il a fallu deux inventions pour le démêler : le télescope, qui a permis à James Pound de la voir double dès 1719, et le spectroscope, à partir de 1859, qui a révélé les composantes trop proches pour être séparées optiquement. Pollux, elle, est une géante orange, la plus proche de notre Soleil, et c'est de loin l'étoile la plus brillante dont on connaisse une planète confirmée : Pollux b, découverte en 2006, deux fois la masse de Jupiter, moins de six cents jours de révolution, et rebaptisée Thestias par l'Union astronomique internationale en 2015."
-      ]
+     "v": "0,237",
+     "u": "seconde",
+     "l": "La période de rotation de Geminga, l'objet qui est resté inexplicable pendant vingt ans et dont le nom signifie « ça n'existe pas »."
     },
     {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Pollux, sommet de l'Hexagone d'hiver",
-        "targets": [
-          {
-            "star": "Bételgeuse",
-            "from": "Pollux",
-            "label": "Bételgeuse",
-            "sub": "Orion",
-            "note": "Le repère central de tout le ciel d'hiver. C'est en partant d'Orion qu'on retrouve le plus facilement les Gémeaux."
-          },
-          {
-            "star": "Procyon",
-            "from": "Pollux",
-            "label": "Procyon",
-            "sub": "Petit Chien",
-            "note": "Le sommet voisin de l'Hexagone. Entre Procyon et Pollux, la Voie lactée traverse la constellation."
-          },
-          {
-            "star": "Capella",
-            "from": "Castor",
-            "label": "Capella",
-            "sub": "Cocher",
-            "note": "L'autre voisin de l'Hexagone. C'est dans cette direction que se trouvait le Télescope de Herschel, la constellation abolie en 1930."
-          }
-        ],
-        "notes": {
-          "Pollux": "Géante orange, la plus proche du Soleil, et l'étoile la plus brillante à posséder une planète confirmée.",
-          "Castor": "Six étoiles en une. Une petite lunette en sépare déjà deux.",
-          "Wasat": "Delta des Gémeaux. Les plaques sur lesquelles Pluton a été trouvée étaient centrées sur elle."
-        }
-      },
-      "cap": "Pollux est l'un des six sommets de l'Hexagone d'hiver, avec Bételgeuse, Procyon, Sirius, Rigel, Aldébaran et Capella.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Geminga, « ça n'existe pas »",
-      "p": [
-        "En 1975, le satellite SAS-2 dresse la première carte du ciel en rayons gamma de haute énergie et trouve, dans les Gémeaux, la deuxième source la plus brillante de tout le ciel. Le satellite européen COS-B la confirme. Et là, rien : aucune contrepartie visible, aucune source radio, presque rien en rayons X. Toute la puissance de l'objet part en rayons gamma, et il n'a pas d'adresse. Son découvreur, l'Italien Giovanni Bignami, lui donne un nom à double fond : Geminga, contraction de « Gemini gamma-ray source », et transcription de gh'è minga, qui signifie « ça n'existe pas » dans le dialecte milanais dont il est originaire.",
-        "L'énigme tient vingt ans. En 1992, le satellite ROSAT détecte enfin des pulsations en rayons X, période 0,237 seconde, et l'affaire est close : Geminga est une étoile à neutrons en rotation rapide, âgée d'environ trois cents mille ans, à quelque huit cents années-lumière, ce qui en fait l'un des pulsars les plus proches de nous. Ce fut longtemps le seul pulsar gamma silencieux en radio connu, et il annonçait toute une population de ces objets. Une note en marge mérite d'être rapportée : l'astrophysicienne Patrizia Caraveo a mené une bonne part de ce travail avec Bignami, et au moins un article de presse de l'époque, supposant qu'un tel résultat ne pouvait venir que d'un homme, l'a créditée sous le nom de « Patricio Caraveo »."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/gem/ngc2392-hubble.jpg",
-      "page": "https://www.nasa.gov/image-detail/eskimo-nebula",
-      "wide": true,
-      "cap": "NGC 2392, photographiée par Hubble en janvier 2000. Ce qui ressemble à une capuche fourrée est un disque de matière bordé d'objets en forme de comètes, dont les queues fuient l'étoile centrale. Le « visage » est une bulle soufflée par le vent stellaire. Deux lobes de gaz, chacun long d'une année-lumière, s'étendent au-dessus et au-dessous de l'astre mourant.",
-      "credit": "NASA, ESA et le Hubble Heritage Team (STScI/AURA)"
-    },
-    {
-      "t": "text",
-      "h": "La nébuleuse qui a changé de nom",
-      "p": [
-        "Herschel repère cet objet en 1787, six ans après Uranus et dans la même constellation. Vue depuis le sol, la nébuleuse ressemble à un visage entouré d'une capuche, d'où le surnom qu'elle a porté pendant deux siècles. Cette image de Hubble a une valeur particulière : c'est l'une des premières prises après la mission d'entretien de décembre 1999, autrement dit une image de reprise de service. Elle a révélé une mécanique précise. Un anneau de matière dense éjecté pendant la phase de géante rouge ceinture l'étoile à l'équateur et progresse à 115 000 kilomètres par heure ; il empêche le vent stellaire de s'échapper par là. Résultat, ce vent, qui file lui à un million et demi de kilomètres par heure, ne peut sortir que par les pôles, et gonfle deux bulles allongées. La nébuleuse a commencé à se former il y a environ dix mille ans.",
-        "Un mot sur le nom, parce qu'il dit quelque chose de la pratique scientifique. Depuis le 1ᵉʳ août 2020, la NASA ne désigne plus cet objet par son ancien surnom, jugé insensible et offensant envers les peuples arctiques, et emploie uniquement la référence de catalogue, NGC 2392. Les noms du ciel ne sont pas gravés dans la pierre : cette fiche en a déjà rencontré trois qui ont été abolis, une mouche, un quadrant mural et un télescope."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/gem/geminides-oae.jpg",
-      "page": "https://astro4edu.org/resources/media/FF67nf16P873/",
-      "wide": true,
-      "cap": "Un bolide des Géminides au-dessus de la vallée de la Lune bleue, au Yunnan, le 13 décembre 2022. Photographié au smartphone. Castor et Pollux sont masqués par les arbres à gauche ; les étoiles reflétées dans l'eau sont celles d'Orion.",
-      "credit": "Jianfeng Dai / UAI OAE — CC BY 4.0"
-    },
-    {
-      "t": "text",
-      "h": "Le seul essaim majeur qui ne vient pas d'une comète",
-      "p": [
-        "Les Géminides sont l'essaim le plus riche de l'année, cent vingt météores par heure autour du 14 décembre, et l'un des plus faciles à observer puisque le radiant, tout près de Castor, monte haut dans le ciel dès le début de la nuit. Elles ont aussi une signature reconnaissable : elles arrivent à trente-cinq kilomètres par seconde, soit la moitié de la vitesse des Perséides, ce qui leur donne une teinte jaunâtre et explique que seules quatre pour cent laissent une traînée persistante. Leurs grains sont plus denses que la poussière cométaire ordinaire, deux à trois grammes par centimètre cube contre 0,3.",
-        "Et c'est là que l'essaim devient intéressant, parce que son corps parent n'est pas une comète. C'est (3200) Phaéton, un astéroïde de six kilomètres découvert le 11 octobre 1983 dans les données du satellite infrarouge IRAS, le premier astéroïde jamais repéré par un engin spatial. Fred Whipple a fait le rapprochement presque aussitôt en comparant son orbite à celle de dix-neuf météores photographiés. Phaéton passe à moins de 0,14 unité astronomique du Soleil tous les 1,4 an, ce qui lui a valu son nom, celui du fils d'Hélios qui a perdu le contrôle du char solaire. Il a la forme d'une toupie, comme Bennu et Ryugu, sa rotation accélère de quatre millisecondes par an pour des raisons mal comprises, et la sonde japonaise DESTINY+ doit aller le survoler."
-      ]
-    },
-    {
-      "t": "text",
-      "h": "Ce qu'on peut y voir soi-même",
-      "p": [
-        "La constellation dessine un long rectangle avec Castor et Pollux à un angle, et elle se trouve sans peine en partant d'Orion. Castor est une cible parfaite pour un premier instrument : une petite lunette en sépare déjà deux composantes, et un peu plus d'ouverture en montre trois. NGC 2392 est accessible dès un petit télescope, à condition de ne pas espérer l'image de Hubble : ce sera une tache ronde et pâle.",
-        "Mais le rendez-vous à ne pas manquer reste celui du 14 décembre. Les Géminides ne demandent aucun matériel, elles culminent quand le ciel est encore commode, et leurs bolides lents et colorés sont ce que le ciel offre de mieux à quelqu'un qui regarde pour la première fois. Prévoyez de quoi avoir chaud."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "Le corps parent est identifié, l'origine de l'essaim ne l'est pas",
-      "p": "On lit partout, et c'est vrai, que les Géminides viennent de l'astéroïde Phaéton. Ce qu'on lit rarement, c'est que personne ne sait comment. La masse que Phaéton perd lors de ses passages près du Soleil est très largement insuffisante pour expliquer un essaim de cette taille : il faudrait que l'astéroïde ait été beaucoup plus actif dans un passé récent, ce qui a nourri l'hypothèse d'un noyau de comète morte ou dormante, ou d'un événement catastrophique il y a environ deux mille ans. La sonde Parker Solar Probe a bien photographié en 2018 une traînée de poussière longue de plus de vingt-deux millions de kilomètres le long de l'orbite, pour une masse totale d'un milliard de tonnes, mais cela reste inférieur à la masse estimée de l'essaim tout en dépassant ce que l'activité actuelle peut produire. Et l'observatoire solaire SOHO a compliqué encore les choses en montrant que la queue de Phaéton n'est pas faite de poussière mais de sodium qui s'évapore, ce qui remet en cause quatorze ans de raisonnement sur le mécanisme. La sonde DESTINY+ est envoyée précisément pour trancher."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "look",
-          "title": "NGC 2392 par Hubble",
-          "src": "NASA",
-          "note": "La page de l'image, avec la note éditoriale de 2020 expliquant l'abandon de l'ancien surnom. En anglais.",
-          "url": "https://www.nasa.gov/image-article/eskimo-nebula-2"
-        },
-        {
-          "kind": "look",
-          "title": "Un bolide des Géminides au Yunnan",
-          "src": "UAI OAE",
-          "note": "L'image en pleine résolution, avec sa légende détaillée. Prise au smartphone, ce qui vaut d'être signalé.",
-          "url": "https://astro4edu.org/resources/media/FF67nf16P873/"
-        },
-        {
-          "kind": "read",
-          "title": "Castor et Pollux, deux fausses jumelles",
-          "src": "Jean-Baptiste Feldmann, Futura",
-          "note": "La démonstration en français, avec les distances et les particularités des deux étoiles.",
-          "url": "https://blogs.futura-sciences.com/feldmann/2022/02/25/castor-et-pollux-deux-fausses-jumelles-dans-le-ciel-dhiver/"
-        },
-        {
-          "kind": "read",
-          "title": "Meet Castor, six stars in one",
-          "src": "Sky & Telescope",
-          "note": "Comment le télescope puis le spectroscope ont démêlé le système, étape par étape. En anglais.",
-          "url": "https://skyandtelescope.org/astronomy-news/meet-castor-six-stars-in-one/"
-        },
-        {
-          "kind": "read",
-          "title": "La rotation de Phaéton accélère de quatre millisecondes par an",
-          "src": "Université de Liège",
-          "note": "Le communiqué de l'équipe qui a mesuré ce changement, et la préparation de la mission DESTINY+. En français.",
-          "url": "https://www.trappist.uliege.be/cms/c_10128712/fr/la-rotation-de-l-asteroide-geocroiseur-phaethon-accelere-de-4-millisecondes-par-an"
-        },
-        {
-          "kind": "read",
-          "title": "La queue de Phaéton serait constituée de sodium",
-          "src": "Futura Sciences",
-          "note": "Le résultat de SOHO qui rouvre la question de l'origine des Géminides. En français.",
-          "url": "https://www.futura-sciences.com/sciences/actualites/astronomie-queue-asteroide-phaeton-serait-constituee-sodium-43443/"
-        },
-        {
-          "kind": "read",
-          "title": "Geminga, vingt ans de mystère résolus",
-          "src": "ROSAT Guest Observer Facility, NASA",
-          "note": "Le bulletin de mai 1992 annonçant l'identification, dans les mots de l'époque. En anglais.",
-          "url": "https://heasarc.gsfc.nasa.gov/docs/rosat/status/status25.html"
-        },
-        {
-          "kind": "read",
-          "title": "Geminga",
-          "src": "Wikipédia en anglais",
-          "note": "L'histoire complète de l'objet, l'origine du nom en dialecte milanais et son approbation par l'UAI en 2022.",
-          "url": "https://en.wikipedia.org/wiki/Geminga"
-        },
-        {
-          "kind": "read",
-          "title": "Géminides",
-          "src": "Wikipédia en français",
-          "note": "Les dates, la vitesse, la couleur, et le problème de masse posé par Phaéton.",
-          "url": "https://fr.wikipedia.org/wiki/G%C3%A9minides"
-        },
-        {
-          "kind": "read",
-          "title": "(3200) Phaéton",
-          "src": "Wikipédia en français",
-          "note": "La découverte par IRAS, le rapprochement de Whipple et la traînée photographiée par Parker Solar Probe.",
-          "url": "https://fr.wikipedia.org/wiki/(3200)_Pha%C3%A9ton"
-        },
-        {
-          "kind": "read",
-          "title": "Telescopium Herschelii",
-          "src": "Wikipédia en anglais",
-          "note": "La constellation créée en 1789 pour célébrer la découverte d'Uranus, et abolie en 1930.",
-          "url": "https://en.wikipedia.org/wiki/Telescopium_Herschelii"
-        },
-        {
-          "kind": "read",
-          "title": "Uranus",
-          "src": "Wikipédia en français",
-          "note": "Le récit détaillé de la nuit du 13 mars 1781, du jardin de Bath aux confirmations de Hornsby et Maskelyne.",
-          "url": "https://fr.wikipedia.org/wiki/Uranus_(plan%C3%A8te)"
-        }
-      ]
+     "v": "514",
+     "u": "deg²",
+     "l": "La surface de la constellation, traversée par la Voie lactée. Le Soleil y passe de la fin juin à la fin juillet."
     }
-  ]
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Deux planètes, cent quarante-neuf ans d'écart",
+   "p": [
+    "Le 13 mars 1781, vers dix heures et demie du soir, William Herschel examine les petites étoiles autour d'Êta des Gémeaux depuis le jardin de sa maison de Bath. Il est musicien d'église, astronome amateur, et il n'a pas les moyens d'acheter un télescope : il a poli son miroir lui-même. Il est en train de cataloguer les étoiles par magnitude quand il remarque un objet qui n'a pas l'air ponctuel. Il change d'oculaire, augmente le grossissement, et l'objet grandit tandis que les étoiles autour restent des points. Il croit à une comète et le signale ; Hornsby à Oxford et Maskelyne à Greenwich confirment quelque chose, mais s'étonnent de ne trouver ni queue ni chevelure. Le calcul de l'orbite tranchera : c'est une planète, la première jamais découverte au télescope, et elle double d'un coup la taille connue du système solaire.",
+    "Cent quarante-neuf ans plus tard, le 18 février 1930, Clyde Tombaugh compare au comparateur à clignotement deux plaques photographiques centrées sur Wasat, delta des Gémeaux. Un point a bougé. C'est Pluton, déclassée en planète naine en 2006 mais découverte, elle aussi, dans les Gémeaux. Deux fois, la même petite région du ciel a agrandi le système solaire.",
+    "Il reste une trace de la première découverte, et elle est presque touchante. En 1789, l'astronome Maximilian Hell crée une constellation pour honorer Herschel : le Télescope de Herschel, installé tout près de l'endroit où Uranus a été repéré. Bode la reprend dans son atlas de 1801. Quand l'Union astronomique internationale a tracé les frontières définitives en 1930, elle l'a supprimée et redistribué ses étoiles entre le Cocher, le Lynx et les Gémeaux."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Ce qu'on a trouvé dans les Gémeaux",
+    "events": [
+     {
+      "y": 1781,
+      "label": "Herschel trouve Uranus",
+      "note": "Le 13 mars, depuis son jardin de Bath, en cataloguant les étoiles par magnitude. Il croit d'abord à une comète, mais l'objet n'a ni queue ni chevelure."
+     },
+     {
+      "y": 1787,
+      "label": "Herschel trouve aussi NGC 2392",
+      "note": "Six ans plus tard, la même constellation lui livre une nébuleuse planétaire, celle qu'on a longtemps appelée la nébuleuse de l'Esquimau."
+     },
+     {
+      "y": 1789,
+      "label": "Une constellation naît pour célébrer Uranus",
+      "note": "Maximilian Hell installe le Télescope de Herschel près du lieu de la découverte. Bode la reprend en 1801. L'UAI l'abolit en 1930."
+     },
+     {
+      "y": 1861,
+      "label": "Les Géminides sont vues pour la première fois",
+      "note": "Robert Philips Greg les observe à Manchester. C'est très tardif pour un essaim majeur : son activité était probablement en train d'augmenter."
+     },
+     {
+      "y": 1930,
+      "label": "Tombaugh trouve Pluton",
+      "note": "Le 18 février, en comparant au comparateur à clignotement deux plaques centrées sur Wasat. Un seul point avait bougé."
+     },
+     {
+      "y": 1992,
+      "label": "Geminga cesse d'être un mystère",
+      "note": "Le satellite ROSAT détecte des pulsations X de 0,237 seconde. Vingt ans après sa découverte, la source la plus énigmatique du ciel gamma devient une étoile à neutrons."
+     }
+    ]
+   },
+   "cap": "Deux planètes, une nébuleuse, un essaim, un pulsar et une constellation disparue. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Les fausses jumelles",
+   "p": [
+    "Commençons par tordre le cou à l'idée que la constellation impose. Castor et Pollux ne sont pas jumelles, ne sont pas liées, et ne se ressemblent pas. Pollux se trouve à trente-quatre années-lumière, Castor à cinquante et une. Dix-sept années-lumière les séparent, ce qui interdit toute relation physique : nous les voyons côte à côte parce qu'elles se trouvent sur la même ligne de visée, et rien d'autre. Détail qui achève le tableau, Castor porte la lettre alpha alors qu'elle est moins brillante que Pollux, la bêta.",
+    "Chacune a pourtant sa singularité. Castor est un système de six étoiles, trois couples serrés en ronde autour d'un centre de masse commun. Il a fallu deux inventions pour le démêler : le télescope, qui a permis à James Pound de la voir double dès 1719, et le spectroscope, à partir de 1859, qui a révélé les composantes trop proches pour être séparées optiquement. Pollux, elle, est une géante orange, la plus proche de notre Soleil, et c'est de loin l'étoile la plus brillante dont on connaisse une planète confirmée : Pollux b, découverte en 2006, deux fois la masse de Jupiter, moins de six cents jours de révolution, et rebaptisée Thestias par l'Union astronomique internationale en 2015."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Pollux, sommet de l'Hexagone d'hiver",
+    "targets": [
+     {
+      "star": "Bételgeuse",
+      "from": "Pollux",
+      "label": "Bételgeuse",
+      "sub": "Orion",
+      "note": "Le repère central de tout le ciel d'hiver. C'est en partant d'Orion qu'on retrouve le plus facilement les Gémeaux."
+     },
+     {
+      "star": "Procyon",
+      "from": "Pollux",
+      "label": "Procyon",
+      "sub": "Petit Chien",
+      "note": "Le sommet voisin de l'Hexagone. Entre Procyon et Pollux, la Voie lactée traverse la constellation."
+     },
+     {
+      "star": "Capella",
+      "from": "Castor",
+      "label": "Capella",
+      "sub": "Cocher",
+      "note": "L'autre voisin de l'Hexagone. C'est dans cette direction que se trouvait le Télescope de Herschel, la constellation abolie en 1930."
+     }
+    ],
+    "notes": {
+     "Pollux": "Géante orange, la plus proche du Soleil, et l'étoile la plus brillante à posséder une planète confirmée.",
+     "Castor": "Six étoiles en une. Une petite lunette en sépare déjà deux.",
+     "Wasat": "Delta des Gémeaux. Les plaques sur lesquelles Pluton a été trouvée étaient centrées sur elle."
+    }
+   },
+   "cap": "Pollux est l'un des six sommets de l'Hexagone d'hiver, avec Bételgeuse, Procyon, Sirius, Rigel, Aldébaran et Capella.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Geminga, « ça n'existe pas »",
+   "p": [
+    "En 1975, le satellite SAS-2 dresse la première carte du ciel en rayons gamma de haute énergie et trouve, dans les Gémeaux, la deuxième source la plus brillante de tout le ciel. Le satellite européen COS-B la confirme. Et là, rien : aucune contrepartie visible, aucune source radio, presque rien en rayons X. Toute la puissance de l'objet part en rayons gamma, et il n'a pas d'adresse. Son découvreur, l'Italien Giovanni Bignami, lui donne un nom à double fond : Geminga, contraction de « Gemini gamma-ray source », et transcription de gh'è minga, qui signifie « ça n'existe pas » dans le dialecte milanais dont il est originaire.",
+    "L'énigme tient vingt ans. En 1992, le satellite ROSAT détecte enfin des pulsations en rayons X, période 0,237 seconde, et l'affaire est close : Geminga est une étoile à neutrons en rotation rapide, âgée d'environ trois cents mille ans, à quelque huit cents années-lumière, ce qui en fait l'un des pulsars les plus proches de nous. Ce fut longtemps le seul pulsar gamma silencieux en radio connu, et il annonçait toute une population de ces objets. Une note en marge mérite d'être rapportée : l'astrophysicienne Patrizia Caraveo a mené une bonne part de ce travail avec Bignami, et au moins un article de presse de l'époque, supposant qu'un tel résultat ne pouvait venir que d'un homme, l'a créditée sous le nom de « Patricio Caraveo »."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/gem/169665main_image_feature_762_ys_full.webp",
+   "page": "https://www.nasa.gov/image-detail/eskimo-nebula",
+   "wide": true,
+   "cap": "NGC 2392, photographiée par Hubble en janvier 2000. Ce qui ressemble à une capuche fourrée est un disque de matière bordé d'objets en forme de comètes, dont les queues fuient l'étoile centrale. Le « visage » est une bulle soufflée par le vent stellaire. Deux lobes de gaz, chacun long d'une année-lumière, s'étendent au-dessus et au-dessous de l'astre mourant.",
+   "credit": "NASA, ESA et le Hubble Heritage Team (STScI/AURA)"
+  },
+  {
+   "t": "text",
+   "h": "La nébuleuse qui a changé de nom",
+   "p": [
+    "Herschel repère cet objet en 1787, six ans après Uranus et dans la même constellation. Vue depuis le sol, la nébuleuse ressemble à un visage entouré d'une capuche, d'où le surnom qu'elle a porté pendant deux siècles. Cette image de Hubble a une valeur particulière : c'est l'une des premières prises après la mission d'entretien de décembre 1999, autrement dit une image de reprise de service. Elle a révélé une mécanique précise. Un anneau de matière dense éjecté pendant la phase de géante rouge ceinture l'étoile à l'équateur et progresse à 115 000 kilomètres par heure ; il empêche le vent stellaire de s'échapper par là. Résultat, ce vent, qui file lui à un million et demi de kilomètres par heure, ne peut sortir que par les pôles, et gonfle deux bulles allongées. La nébuleuse a commencé à se former il y a environ dix mille ans.",
+    "Un mot sur le nom, parce qu'il dit quelque chose de la pratique scientifique. Depuis le 1ᵉʳ août 2020, la NASA ne désigne plus cet objet par son ancien surnom, jugé insensible et offensant envers les peuples arctiques, et emploie uniquement la référence de catalogue, NGC 2392. Les noms du ciel ne sont pas gravés dans la pierre : cette fiche en a déjà rencontré trois qui ont été abolis, une mouche, un quadrant mural et un télescope."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/gem/the-geminid-fireball_thumbnail_large_ytp.jpg",
+   "page": "https://astro4edu.org/resources/media/FF67nf16P873/",
+   "wide": true,
+   "cap": "Un bolide des Géminides au-dessus de la vallée de la Lune bleue, au Yunnan, le 13 décembre 2022. Photographié au smartphone. Castor et Pollux sont masqués par les arbres à gauche ; les étoiles reflétées dans l'eau sont celles d'Orion.",
+   "credit": "Jianfeng Dai / UAI OAE — CC BY 4.0"
+  },
+  {
+   "t": "text",
+   "h": "Le seul essaim majeur qui ne vient pas d'une comète",
+   "p": [
+    "Les Géminides sont l'essaim le plus riche de l'année, cent vingt météores par heure autour du 14 décembre, et l'un des plus faciles à observer puisque le radiant, tout près de Castor, monte haut dans le ciel dès le début de la nuit. Elles ont aussi une signature reconnaissable : elles arrivent à trente-cinq kilomètres par seconde, soit la moitié de la vitesse des Perséides, ce qui leur donne une teinte jaunâtre et explique que seules quatre pour cent laissent une traînée persistante. Leurs grains sont plus denses que la poussière cométaire ordinaire, deux à trois grammes par centimètre cube contre 0,3.",
+    "Et c'est là que l'essaim devient intéressant, parce que son corps parent n'est pas une comète. C'est (3200) Phaéton, un astéroïde de six kilomètres découvert le 11 octobre 1983 dans les données du satellite infrarouge IRAS, le premier astéroïde jamais repéré par un engin spatial. Fred Whipple a fait le rapprochement presque aussitôt en comparant son orbite à celle de dix-neuf météores photographiés. Phaéton passe à moins de 0,14 unité astronomique du Soleil tous les 1,4 an, ce qui lui a valu son nom, celui du fils d'Hélios qui a perdu le contrôle du char solaire. Il a la forme d'une toupie, comme Bennu et Ryugu, sa rotation accélère de quatre millisecondes par an pour des raisons mal comprises, et la sonde japonaise DESTINY+ doit aller le survoler."
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Ce qu'on peut y voir soi-même",
+   "p": [
+    "La constellation dessine un long rectangle avec Castor et Pollux à un angle, et elle se trouve sans peine en partant d'Orion. Castor est une cible parfaite pour un premier instrument : une petite lunette en sépare déjà deux composantes, et un peu plus d'ouverture en montre trois. NGC 2392 est accessible dès un petit télescope, à condition de ne pas espérer l'image de Hubble : ce sera une tache ronde et pâle.",
+    "Mais le rendez-vous à ne pas manquer reste celui du 14 décembre. Les Géminides ne demandent aucun matériel, elles culminent quand le ciel est encore commode, et leurs bolides lents et colorés sont ce que le ciel offre de mieux à quelqu'un qui regarde pour la première fois. Prévoyez de quoi avoir chaud."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Le corps parent est identifié, l'origine de l'essaim ne l'est pas",
+   "p": "On lit partout, et c'est vrai, que les Géminides viennent de l'astéroïde Phaéton. Ce qu'on lit rarement, c'est que personne ne sait comment. La masse que Phaéton perd lors de ses passages près du Soleil est très largement insuffisante pour expliquer un essaim de cette taille : il faudrait que l'astéroïde ait été beaucoup plus actif dans un passé récent, ce qui a nourri l'hypothèse d'un noyau de comète morte ou dormante, ou d'un événement catastrophique il y a environ deux mille ans. La sonde Parker Solar Probe a bien photographié en 2018 une traînée de poussière longue de plus de vingt-deux millions de kilomètres le long de l'orbite, pour une masse totale d'un milliard de tonnes, mais cela reste inférieur à la masse estimée de l'essaim tout en dépassant ce que l'activité actuelle peut produire. Et l'observatoire solaire SOHO a compliqué encore les choses en montrant que la queue de Phaéton n'est pas faite de poussière mais de sodium qui s'évapore, ce qui remet en cause quatorze ans de raisonnement sur le mécanisme. La sonde DESTINY+ est envoyée précisément pour trancher."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "look",
+     "title": "NGC 2392 par Hubble",
+     "src": "NASA",
+     "note": "La page de l'image, avec la note éditoriale de 2020 expliquant l'abandon de l'ancien surnom. En anglais.",
+     "url": "https://www.nasa.gov/image-article/eskimo-nebula-2"
+    },
+    {
+     "kind": "look",
+     "title": "Un bolide des Géminides au Yunnan",
+     "src": "UAI OAE",
+     "note": "L'image en pleine résolution, avec sa légende détaillée. Prise au smartphone, ce qui vaut d'être signalé.",
+     "url": "https://astro4edu.org/resources/media/FF67nf16P873/"
+    },
+    {
+     "kind": "read",
+     "title": "Castor et Pollux, deux fausses jumelles",
+     "src": "Jean-Baptiste Feldmann, Futura",
+     "note": "La démonstration en français, avec les distances et les particularités des deux étoiles.",
+     "url": "https://blogs.futura-sciences.com/feldmann/2022/02/25/castor-et-pollux-deux-fausses-jumelles-dans-le-ciel-dhiver/"
+    },
+    {
+     "kind": "read",
+     "title": "Meet Castor, six stars in one",
+     "src": "Sky & Telescope",
+     "note": "Comment le télescope puis le spectroscope ont démêlé le système, étape par étape. En anglais.",
+     "url": "https://skyandtelescope.org/astronomy-news/meet-castor-six-stars-in-one/"
+    },
+    {
+     "kind": "read",
+     "title": "La rotation de Phaéton accélère de quatre millisecondes par an",
+     "src": "Université de Liège",
+     "note": "Le communiqué de l'équipe qui a mesuré ce changement, et la préparation de la mission DESTINY+. En français.",
+     "url": "https://www.trappist.uliege.be/cms/c_10128712/fr/la-rotation-de-l-asteroide-geocroiseur-phaethon-accelere-de-4-millisecondes-par-an"
+    },
+    {
+     "kind": "read",
+     "title": "La queue de Phaéton serait constituée de sodium",
+     "src": "Futura Sciences",
+     "note": "Le résultat de SOHO qui rouvre la question de l'origine des Géminides. En français.",
+     "url": "https://www.futura-sciences.com/sciences/actualites/astronomie-queue-asteroide-phaeton-serait-constituee-sodium-43443/"
+    },
+    {
+     "kind": "read",
+     "title": "Geminga, vingt ans de mystère résolus",
+     "src": "ROSAT Guest Observer Facility, NASA",
+     "note": "Le bulletin de mai 1992 annonçant l'identification, dans les mots de l'époque. En anglais.",
+     "url": "https://heasarc.gsfc.nasa.gov/docs/rosat/status/status25.html"
+    },
+    {
+     "kind": "read",
+     "title": "Geminga",
+     "src": "Wikipédia en anglais",
+     "note": "L'histoire complète de l'objet, l'origine du nom en dialecte milanais et son approbation par l'UAI en 2022.",
+     "url": "https://en.wikipedia.org/wiki/Geminga"
+    },
+    {
+     "kind": "read",
+     "title": "Géminides",
+     "src": "Wikipédia en français",
+     "note": "Les dates, la vitesse, la couleur, et le problème de masse posé par Phaéton.",
+     "url": "https://fr.wikipedia.org/wiki/G%C3%A9minides"
+    },
+    {
+     "kind": "read",
+     "title": "(3200) Phaéton",
+     "src": "Wikipédia en français",
+     "note": "La découverte par IRAS, le rapprochement de Whipple et la traînée photographiée par Parker Solar Probe.",
+     "url": "https://fr.wikipedia.org/wiki/(3200)_Pha%C3%A9ton"
+    },
+    {
+     "kind": "read",
+     "title": "Telescopium Herschelii",
+     "src": "Wikipédia en anglais",
+     "note": "La constellation créée en 1789 pour célébrer la découverte d'Uranus, et abolie en 1930.",
+     "url": "https://en.wikipedia.org/wiki/Telescopium_Herschelii"
+    },
+    {
+     "kind": "read",
+     "title": "Uranus",
+     "src": "Wikipédia en français",
+     "note": "Le récit détaillé de la nuit du 13 mars 1781, du jardin de Bath aux confirmations de Hornsby et Maskelyne.",
+     "url": "https://fr.wikipedia.org/wiki/Uranus_(plan%C3%A8te)"
+    }
+   ]
+  }
+ ]
 }
