@@ -1,292 +1,292 @@
 {
-  "constellation": "tau",
-  "tab": "mytho",
-  "blocks": [
+ "constellation": "tau",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "C'est probablement la plus ancienne constellation qu'on puisse encore reconnaître. Le taureau est là chez les Sumériens, il traverse Babylone, la Grèce, Rome et le monde arabe sans jamais changer d'animal, et il est toujours là ce soir. Quatre mille ans de continuité, et pourtant une bizarrerie que personne ne remarque : le ciel n'en montre que la moitié. Les Grecs avaient une explication, et elle est belle."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "C'est probablement la plus ancienne constellation qu'on puisse encore reconnaître. Le taureau est là chez les Sumériens, il traverse Babylone, la Grèce, Rome et le monde arabe sans jamais changer d'animal, et il est toujours là ce soir. Quatre mille ans de continuité, et pourtant une bizarrerie que personne ne remarque : le ciel n'en montre que la moitié. Les Grecs avaient une explication, et elle est belle."
+     "v": "GUD.AN.NA",
+     "l": "« Le Taureau céleste », en sumérien. C'est la bête que Gilgamesh et Enkidu abattent dans l'épopée, et l'une des plus anciennes figures identifiables du ciel."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "GUD.AN.NA",
-          "l": "« Le Taureau céleste », en sumérien. C'est la bête que Gilgamesh et Enkidu abattent dans l'épopée, et l'une des plus anciennes figures identifiables du ciel."
-        },
-        {
-          "v": "½",
-          "u": "taureau",
-          "l": "Le ciel n'en montre que l'avant-train. Les Grecs l'expliquent ainsi : l'animal nage, et le reste de son corps est sous l'eau."
-        },
-        {
-          "v": "7",
-          "u": "sœurs",
-          "l": "Les Pléiades, filles d'Atlas et de Pléioné. Mais on n'en voit que six à l'œil nu, et presque toutes les cultures du monde racontent la disparition de la septième."
-        },
-        {
-          "v": "al-Dabarān",
-          "l": "« Celle qui suit », en arabe. Aldébaran suit les Pléiades dans leur course à travers le ciel, et son nom ne dit rien d'autre que cela."
-        },
-        {
-          "v": "1953",
-          "l": "L'année où un constructeur automobile japonais prend le nom de Subaru, celui des Pléiades, pour célébrer la fusion de cinq entreprises. Son logo porte six étoiles."
-        },
-        {
-          "v": "2022",
-          "l": "L'année où la Nouvelle-Zélande fait de Matariki, le lever des Pléiades, un jour férié national."
-        }
-      ]
+     "v": "½",
+     "u": "taureau",
+     "l": "Le ciel n'en montre que l'avant-train. Les Grecs l'expliquent ainsi : l'animal nage, et le reste de son corps est sous l'eau."
     },
     {
-      "t": "figure",
-      "src": "/skyculture/ekko/illustrations/tau.webp",
-      "lit": true,
-      "roll": true,
-      "wide": true,
-      "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Le V des Hyades donne le mufle et les cornes, Aldébaran l'œil. Regardez ce qui manque : il n'y a pas d'arrière-train. Le taureau du ciel est un demi-taureau, et il l'a toujours été.",
-      "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+     "v": "7",
+     "u": "sœurs",
+     "l": "Les Pléiades, filles d'Atlas et de Pléioné. Mais on n'en voit que six à l'œil nu, et presque toutes les cultures du monde racontent la disparition de la septième."
     },
     {
-      "t": "text",
-      "h": "Le taureau coupé en deux",
-      "p": [
-        "Zeus s'éprend d'Europe, fille du roi de Phénicie, et se change en taureau blanc pour l'approcher sans l'effrayer. Un crocus dans la gueule, il se laisse caresser, puis s'agenouille. La jeune fille monte sur son dos. L'animal gagne le rivage, entre dans les vagues, s'éloigne, et ne s'arrête plus avant la Crète. Là, le dieu se révèle. De cette union naîtra Minos, futur roi de l'île, qui y introduira le culte du taureau. C'est cette version qu'Ératosthène retient dans ses Catastérismes, et Hygin l'attribue à Euripide.",
-        "Le détail qui compte est celui-ci : dans le ciel, l'animal nage. C'est l'explication traditionnelle de sa forme incomplète, l'arrière-train étant sous l'eau. Avienus, traduisant Aratos en latin, décrit une bête « abattue sur sa patte repliée, ses yeux menaçants braqués vers la Terre ». Et les anciens ne s'accordaient pas davantage sur l'identité de la bête : Ératosthène propose aussi le taureau blanc que Poséidon envoya à Minos, celui dont Pasiphaé s'éprit et qui engendra le Minotaure. D'autres y voient le Taureau d'airain, ou celui que Thésée tua à Marathon. Une même figure, quatre biographies."
-      ]
+     "v": "al-Dabarān",
+     "l": "« Celle qui suit », en arabe. Aldébaran suit les Pléiades dans leur course à travers le ciel, et son nom ne dit rien d'autre que cela."
     },
     {
-      "t": "figure",
-      "src": "/assets/img/constellations/tau/titien-europe-gardner.jpg",
-      "page": "https://www.gardnermuseum.org/experience/collection/10978",
-      "wide": true,
-      "cap": "Titien peint la scène vers 1560 pour Philippe II d'Espagne, dans une série de six tableaux mythologiques. Europe est renversée sur le dos de l'animal, un pied encore levé vers le rivage qui s'éloigne, et le taureau tourne vers nous un œil parfaitement calme. Rubens en fera une copie fidèle, aujourd'hui au Prado.",
-      "credit": "Titien, « L'Enlèvement d'Europe », vers 1560-1562 — Isabella Stewart Gardner Museum, Boston"
+     "v": "1953",
+     "l": "L'année où un constructeur automobile japonais prend le nom de Subaru, celui des Pléiades, pour célébrer la fusion de cinq entreprises. Son logo porte six étoiles."
     },
     {
-      "t": "quote",
-      "p": "Chaque centimètre de peinture, dans ce tableau, semble plein de joie.",
-      "who": "Isabella Stewart Gardner, lettre à Bernard Berenson, 1896"
-    },
-    {
-      "t": "text",
-      "h": "Sept sœurs, et une disparue",
-      "p": [
-        "Sur l'échine du taureau brillent les Pléiades, sept filles d'Atlas et de l'Océanide Pléioné, compagnes vierges d'Artémis. Le chasseur Orion les aperçoit, les poursuit cinq ans durant, et Zeus les change en colombes pour les sauver. Ce n'est qu'à leur mort qu'elles montent au ciel. Leurs demi-sœurs, les Hyades, forment le V de la tête et pleurent leur frère Hyas ; leur lever annonçait la saison des pluies, ce que leur nom grec dit littéralement.",
-        "Mais l'histoire vraiment intéressante est celle de la septième. Presque toutes les traditions comptent sept sœurs et n'en montrent que six, et presque toutes expliquent l'absence. En Grèce, c'est Mérope, qui a épousé un mortel et se cache de honte, ou Électre, qui s'est détournée après la chute de Troie. Des récits de même structure, une sœur morte, cachée, enlevée, se retrouvent en Afrique, en Asie, en Indonésie, en Amérique et en Australie. La coïncidence est troublante, et nous y reviendrons : elle a donné lieu à une hypothèse spectaculaire qui demande beaucoup de prudence."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Le chasseur et le cocher",
-        "targets": [
-          {
-            "star": "Bételgeuse",
-            "from": "Aldébaran",
-            "label": "Bételgeuse",
-            "sub": "Orion",
-            "note": "Le chasseur qui poursuivit les Pléiades pendant cinq ans. Il les suit encore dans le ciel, à jamais quelques heures derrière elles."
-          },
-          {
-            "star": "Capella",
-            "from": "Elnath",
-            "label": "Capella",
-            "sub": "Cocher",
-            "note": "Avienus place le poitrail du taureau « aux pieds du Cocher courbé ». Elnath, la corne nord, a longtemps été partagée entre les deux figures."
-          }
-        ],
-        "notes": {
-          "Aldébaran": "« Celle qui suit », parce qu'elle suit les Pléiades. L'œil du taureau, d'un orange franc.",
-          "Alcyone": "La plus brillante des Pléiades, du nom de l'aînée des sept sœurs.",
-          "Elnath": "La pointe de la corne nord, à la frontière du Cocher."
-        }
-      },
-      "cap": "La poursuite d'Orion n'est pas une image : les deux figures se lèvent et se couchent dans cet ordre, nuit après nuit.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Matariki, Subaru, la touffe de cheveux",
-      "p": [
-        "Aucun objet du ciel n'a autant de noms vivants que cet amas. En Aotearoa, les Māori appellent Matariki son lever avant l'aube, et ce lever ouvre l'année : souvenir des morts de l'année écoulée, gratitude pour la récolte, projets pour celle qui vient. La Nouvelle-Zélande en a fait un jour férié national en 2022, ce qui doit être la seule fête publique au monde calée sur un amas ouvert. Au Japon, le Kojiki du VIIIᵉ siècle l'appelle Mutsuraboshi, « six étoiles ». Son autre nom, Subaru, vient d'un verbe qui signifie rassembler, unir : c'est pour cela qu'un constructeur automobile l'a choisi en 1953 pour marquer la fusion de cinq entreprises, et que son logo porte six étoiles et non sept.",
-        "Le plus joli rapprochement est ailleurs. Les Babyloniens appelaient l'amas MUL.MUL, « les Étoiles », mais aussi Zappu, « la touffe de cheveux ». Or les Chinois, sans contact avec eux, l'appellent Mao, « la tête chevelue ». Deux civilisations séparées par un continent ont vu la même chose : une mèche. Chez les Touaregs, ce sont Cat iheḍ, les filles de la nuit ; chez d'autres Berbères, Tagemmunt, le groupe."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Quatre mille ans de taureau",
-        "events": [
-          {
-            "y": -2300,
-            "when": "vers 2300 av. J.-C.",
-            "label": "Les Pléiades marquent le point vernal",
-            "note": "Dans les premiers documents astronomiques babyloniens, l'amas indique l'équinoxe de printemps. Il ouvrira longtemps les calendriers sidéraux, en Mésopotamie, en Inde et en Arabie."
-          },
-          {
-            "y": -2000,
-            "when": "IIᵉ millénaire av. J.-C.",
-            "label": "Gilgamesh abat le Taureau céleste",
-            "note": "Le poème sumérien nous est parvenu par une vingtaine de fragments, de la troisième dynastie d'Ur à l'époque paléo-babylonienne. La scène est gravée sur les sceaux-cylindres akkadiens."
-          },
-          {
-            "y": -270,
-            "when": "IIIᵉ s. av. J.-C.",
-            "label": "Ératosthène lui donne Europe",
-            "note": "Le taureau est au ciel pour avoir porté la princesse de Phénicie jusqu'en Crète. Hygin attribue la version à Euripide."
-          },
-          {
-            "y": 200,
-            "when": "IIᵉ-IIIᵉ siècle",
-            "label": "Mithra l'égorge dans tous les sanctuaires",
-            "note": "La tauroctonie devient le mobilier standard de chaque mithraeum de l'Empire. À Sidon, elle est entourée des douze signes du zodiaque et des bustes des quatre Saisons."
-          },
-          {
-            "y": 1000,
-            "when": "vers l'an mil",
-            "label": "Les noms arabes passent en latin",
-            "note": "Par les traités de l'astrolabe et les catalogues arabes. C'est ainsi qu'alpha du Taureau devient Aldébaran, al-Dabarān, celle qui suit les Pléiades."
-          },
-          {
-            "y": 2022,
-            "label": "Matariki devient jour férié",
-            "note": "La Nouvelle-Zélande inscrit au calendrier national le lever héliaque des Pléiades, nouvel an maori. Le ciel du Taureau est toujours en usage."
-          }
-        ]
-      },
-      "cap": "La bête ne change pas d'espèce, seulement de propriétaire. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Le Taureau céleste et la cuisse jetée",
-      "p": [
-        "Chez les Sumériens, le taureau du ciel s'appelle GUD.AN.NA, et il a une histoire précise. La déesse Inanna, qu'Ishtar prolongera, fait des avances à Gilgamesh, roi d'Uruk. Il refuse. Humiliée, elle obtient de son père An le Taureau céleste pour se venger de la cité. La bête dévore les herbes et les palmiers, boit l'eau des canaux. Gilgamesh et son compagnon Enkidu l'abattent, offrent son cœur au dieu solaire Shamash, et Enkidu, pour railler la déesse, lui jette à la figure la cuisse droite de l'animal. Les dieux condamnent Enkidu à mort pour cet affront, et c'est ce deuil qui lancera Gilgamesh sur la quête de l'immortalité.",
-        "Deux remarques. La première est que la symbolique du Taureau céleste reste incertaine : l'historien Michael Rice a proposé d'y voir un séisme, les taureaux étant largement associés aux tremblements de terre dans les cultures anciennes. La seconde est que cette constellation avait une raison d'être importante en Mésopotamie : vers le début du IIᵉ millénaire, le passage du Soleil dans ces étoiles marquait l'équinoxe de printemps. Le taureau était le signe des beaux jours."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/tau/al-sufi-taureau-marsh144.jpg",
-      "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
-      "wide": true,
-      "cap": "Le Taureau dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. La figure suit Ptolémée, avec son avant-train seul et les Pléiades marquées sur l'échine. C'est par ce livre et par les traités de l'astrolabe que les noms arabes des étoiles sont passés dans l'astronomie latine, aux alentours de l'an mil.",
-      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
-    },
-    {
-      "t": "text",
-      "h": "Celle qui suit",
-      "p": [
-        "La chaîne de transmission des noms est ici particulièrement claire, et l'arabisant Roland Laffitte l'a retracée. Du Tauros grec on passe au Taurus latin, communiqué aux clercs médiévaux par Isidore de Séville puis Bède le Vénérable, aux VIᵉ et VIIIᵉ siècles. Mais les noms des étoiles, eux, ne viennent pas de là : c'est en suivant les traités de l'astrolabe et les catalogues arabes que, dès l'an mil, l'astronomie latine les a adoptés.",
-        "D'où Aldébaran, de l'arabe al-Dabarān, littéralement « celle qui suit ». Suivre qui ? al-Thurayyā, les Pléiades. Le nom de l'étoile la plus brillante du Taureau ne parle donc ni du taureau ni de son œil : il décrit une position relative dans une course. Et al-Thurayyā, pour les Bédouins, n'était pas un amas isolé mais la tête d'une figure géante dont la main teinte au henné se trouvait dans Cassiopée. Les frontières que nous connaissons ont découpé cette silhouette en morceaux."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/tau/mithra-tauroctonie-british-museum.jpg",
-      "page": "https://www.britishmuseum.org/collection/object/G_1825-0613-1",
-      "wide": true,
-      "cap": "Mithra égorgeant le taureau, statue de marbre du IIᵉ siècle rapportée de Rome à Londres en 1815. Le dieu porte le costume oriental, pantalon et bonnet phrygien. Regardez les figurants : un chien et un serpent lèchent le sang de la plaie, un scorpion attaque les parties génitales de l'animal. Chaque sanctuaire mithriaque de l'Empire possédait une scène de ce type.",
-      "credit": "Statue de Mithra tauroctone — The British Museum, Londres"
-    },
-    {
-      "t": "text",
-      "h": "Mithra, et la tentation de tout ramener au ciel",
-      "p": [
-        "Le culte de Mithra se répand dans l'Empire romain à partir du IIᵉ siècle, et il place cette scène au fond de chaque sanctuaire, dans une niche aménagée pour ressembler à une caverne. À Sidon, le relief est entouré des douze signes du zodiaque et des bustes des quatre Saisons, ce qui a évidemment nourri les lectures astronomiques : le taureau serait la constellation, le chien le Petit Chien, le serpent l'Hydre, le scorpion le Scorpion, et l'ensemble commémorerait le glissement du point vernal hors du Taureau sous l'effet de la précession.",
-        "Il faut être honnête sur l'état de la question. Le mythe que cette scène illustrait n'était révélé qu'aux initiés, et il est perdu : nous ne savons pas ce qu'elle raconte. Après plusieurs décennies de théories de plus en plus alambiquées, les spécialistes du mithraïsme se montrent aujourd'hui réticents à la spéculation. On notera aussi que malgré son nom moderne, la tauroctonie est une image symbolique, et qu'aucune preuve matérielle n'indique que les fidèles du culte romain aient jamais pratiqué un tel sacrifice."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "Les récits qui remontent un peu trop loin",
-      "p": "Trois affirmations spectaculaires circulent au sujet de ce coin du ciel, et toutes trois demandent des guillemets. La première est la plus séduisante : le mythe des sept sœurs dont une a disparu serait vieux de cent mille ans, antérieur aux migrations hors d'Afrique, ce qui en ferait la plus ancienne histoire de l'humanité. L'argument est réel — Pléioné et Atlas étaient alors assez écartées pour être vues séparément, et l'anthropologue Daisy Bates avait relevé le parallèle australien avant que l'astrophysicien Ray Norris n'en fasse une hypothèse. Mais c'est une hypothèse, un scepticisme subsiste, et il existe une explication beaucoup plus économique : sept était un nombre faste dans l'Antiquité classique, et un groupe d'étoiles serrées invite naturellement à en compter une de plus qu'on n'en voit. La deuxième affirmation veut que les peintures de Lascaux, vieilles de vingt mille ans, représentent les Pléiades au-dessus d'un aurochs. C'est une lecture proposée, pas un fait établi, et il n'existe pas de méthode pour la vérifier. La troisième est l'« ère du Taureau », qui expliquerait par la précession la place du taureau dans les religions du Proche-Orient. Elle a le même défaut que l'ère du Bélier : elle fonctionne trop bien, et elle est construite après coup."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "look",
-          "title": "L'Enlèvement d'Europe, de Titien",
-          "src": "Isabella Stewart Gardner Museum, Boston",
-          "note": "La notice du musée, avec l'histoire du tableau depuis la cour de Philippe II. En anglais.",
-          "url": "https://www.gardnermuseum.org/experience/collection/10978"
-        },
-        {
-          "kind": "look",
-          "title": "Mithra tauroctone",
-          "src": "The British Museum",
-          "note": "La fiche de la statue, avec la description du chien, du serpent et du scorpion. En anglais.",
-          "url": "https://www.britishmuseum.org/collection/object/G_1825-0613-1"
-        },
-        {
-          "kind": "deep",
-          "title": "La figure céleste du Taureau, de Babylone à aujourd'hui",
-          "src": "Roland Laffitte, SELEFA",
-          "note": "Le meilleur texte en français sur cette constellation : Gilgamesh, les noms babyloniens, la chaîne de transmission jusqu'à Aldébaran.",
-          "url": "https://www.selefa.asso.fr/wp-content/uploads/2024/03/AcLETTRE_05_D5_TAUREAU.pdf"
-        },
-        {
-          "kind": "look",
-          "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
-          "src": "Bodleian Library, Oxford",
-          "note": "Les cinquante-sept planches numérisées, dont celle du Taureau avec les Pléiades sur l'échine.",
-          "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
-        },
-        {
-          "kind": "read",
-          "title": "La plus vieille histoire du monde ?",
-          "src": "Ray Norris, The Conversation",
-          "note": "L'auteur de l'hypothèse des cent mille ans l'expose lui-même, avec les récits aborigènes qui la fondent. En anglais.",
-          "url": "https://theconversation.com/the-worlds-oldest-story-astronomers-say-global-myths-about-seven-sisters-stars-may-reach-back-100-000-years-151568"
-        },
-        {
-          "kind": "read",
-          "title": "Matariki",
-          "src": "World History Encyclopedia",
-          "note": "Le nouvel an maori, son calendrier et sa signification, en français.",
-          "url": "https://www.worldhistory.org/trans/fr/1-19856/matariki/"
-        },
-        {
-          "kind": "read",
-          "title": "Gilgamesh et le Taureau céleste",
-          "src": "Wikipédia en français",
-          "note": "Le poème sumérien, ses fragments, ses lieux de découverte et des extraits traduits.",
-          "url": "https://fr.wikipedia.org/wiki/Gilgamesh_et_le_Taureau_c%C3%A9leste"
-        },
-        {
-          "kind": "read",
-          "title": "Taureau céleste",
-          "src": "Wikipédia en français",
-          "note": "La bête elle-même, ses représentations sur les sceaux akkadiens et l'hypothèse du séisme.",
-          "url": "https://fr.wikipedia.org/wiki/Taureau_c%C3%A9leste"
-        },
-        {
-          "kind": "read",
-          "title": "Taureau : quand Zeus enlève Europe",
-          "src": "Repères Astro",
-          "note": "Les passages d'Ératosthène, d'Hygin, d'Avienus et de Germanicus rassemblés et traduits. En français.",
-          "url": "https://reperes-astro.fr/taureau-quand-zeus-enleve-europe/"
-        },
-        {
-          "kind": "read",
-          "title": "Tauroctony",
-          "src": "Wikipédia en anglais",
-          "note": "Ce que l'on sait et ce que l'on ne sait pas de la scène mithriaque, y compris le retrait des spécialistes devant les lectures astronomiques.",
-          "url": "https://en.wikipedia.org/wiki/Tauroctony"
-        },
-        {
-          "kind": "read",
-          "title": "Les Pléiades dans le folklore",
-          "src": "Wikipédia en anglais",
-          "note": "Le tour du monde des noms de l'amas, des Touaregs aux Berbères en passant par le Japon.",
-          "url": "https://en.wikipedia.org/wiki/Pleiades_in_folklore_and_literature"
-        }
-      ]
+     "v": "2022",
+     "l": "L'année où la Nouvelle-Zélande fait de Matariki, le lever des Pléiades, un jour férié national."
     }
-  ]
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/tau.webp",
+   "lit": true,
+   "roll": true,
+   "wide": true,
+   "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Le V des Hyades donne le mufle et les cornes, Aldébaran l'œil. Regardez ce qui manque : il n'y a pas d'arrière-train. Le taureau du ciel est un demi-taureau, et il l'a toujours été.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Le taureau coupé en deux",
+   "p": [
+    "Zeus s'éprend d'Europe, fille du roi de Phénicie, et se change en taureau blanc pour l'approcher sans l'effrayer. Un crocus dans la gueule, il se laisse caresser, puis s'agenouille. La jeune fille monte sur son dos. L'animal gagne le rivage, entre dans les vagues, s'éloigne, et ne s'arrête plus avant la Crète. Là, le dieu se révèle. De cette union naîtra Minos, futur roi de l'île, qui y introduira le culte du taureau. C'est cette version qu'Ératosthène retient dans ses Catastérismes, et Hygin l'attribue à Euripide.",
+    "Le détail qui compte est celui-ci : dans le ciel, l'animal nage. C'est l'explication traditionnelle de sa forme incomplète, l'arrière-train étant sous l'eau. Avienus, traduisant Aratos en latin, décrit une bête « abattue sur sa patte repliée, ses yeux menaçants braqués vers la Terre ». Et les anciens ne s'accordaient pas davantage sur l'identité de la bête : Ératosthène propose aussi le taureau blanc que Poséidon envoya à Minos, celui dont Pasiphaé s'éprit et qui engendra le Minotaure. D'autres y voient le Taureau d'airain, ou celui que Thésée tua à Marathon. Une même figure, quatre biographies."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/tau/113147.jpg",
+   "page": "https://www.gardnermuseum.org/experience/collection/10978",
+   "wide": true,
+   "cap": "Titien peint la scène vers 1560 pour Philippe II d'Espagne, dans une série de six tableaux mythologiques. Europe est renversée sur le dos de l'animal, un pied encore levé vers le rivage qui s'éloigne, et le taureau tourne vers nous un œil parfaitement calme. Rubens en fera une copie fidèle, aujourd'hui au Prado.",
+   "credit": "Titien, « L'Enlèvement d'Europe », vers 1560-1562 — Isabella Stewart Gardner Museum, Boston"
+  },
+  {
+   "t": "quote",
+   "p": "Chaque centimètre de peinture, dans ce tableau, semble plein de joie.",
+   "who": "Isabella Stewart Gardner, lettre à Bernard Berenson, 1896"
+  },
+  {
+   "t": "text",
+   "h": "Sept sœurs, et une disparue",
+   "p": [
+    "Sur l'échine du taureau brillent les Pléiades, sept filles d'Atlas et de l'Océanide Pléioné, compagnes vierges d'Artémis. Le chasseur Orion les aperçoit, les poursuit cinq ans durant, et Zeus les change en colombes pour les sauver. Ce n'est qu'à leur mort qu'elles montent au ciel. Leurs demi-sœurs, les Hyades, forment le V de la tête et pleurent leur frère Hyas ; leur lever annonçait la saison des pluies, ce que leur nom grec dit littéralement.",
+    "Mais l'histoire vraiment intéressante est celle de la septième. Presque toutes les traditions comptent sept sœurs et n'en montrent que six, et presque toutes expliquent l'absence. En Grèce, c'est Mérope, qui a épousé un mortel et se cache de honte, ou Électre, qui s'est détournée après la chute de Troie. Des récits de même structure, une sœur morte, cachée, enlevée, se retrouvent en Afrique, en Asie, en Indonésie, en Amérique et en Australie. La coïncidence est troublante, et nous y reviendrons : elle a donné lieu à une hypothèse spectaculaire qui demande beaucoup de prudence."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Le chasseur et le cocher",
+    "targets": [
+     {
+      "star": "Bételgeuse",
+      "from": "Aldébaran",
+      "label": "Bételgeuse",
+      "sub": "Orion",
+      "note": "Le chasseur qui poursuivit les Pléiades pendant cinq ans. Il les suit encore dans le ciel, à jamais quelques heures derrière elles."
+     },
+     {
+      "star": "Capella",
+      "from": "Elnath",
+      "label": "Capella",
+      "sub": "Cocher",
+      "note": "Avienus place le poitrail du taureau « aux pieds du Cocher courbé ». Elnath, la corne nord, a longtemps été partagée entre les deux figures."
+     }
+    ],
+    "notes": {
+     "Aldébaran": "« Celle qui suit », parce qu'elle suit les Pléiades. L'œil du taureau, d'un orange franc.",
+     "Alcyone": "La plus brillante des Pléiades, du nom de l'aînée des sept sœurs.",
+     "Elnath": "La pointe de la corne nord, à la frontière du Cocher."
+    }
+   },
+   "cap": "La poursuite d'Orion n'est pas une image : les deux figures se lèvent et se couchent dans cet ordre, nuit après nuit.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Matariki, Subaru, la touffe de cheveux",
+   "p": [
+    "Aucun objet du ciel n'a autant de noms vivants que cet amas. En Aotearoa, les Māori appellent Matariki son lever avant l'aube, et ce lever ouvre l'année : souvenir des morts de l'année écoulée, gratitude pour la récolte, projets pour celle qui vient. La Nouvelle-Zélande en a fait un jour férié national en 2022, ce qui doit être la seule fête publique au monde calée sur un amas ouvert. Au Japon, le Kojiki du VIIIᵉ siècle l'appelle Mutsuraboshi, « six étoiles ». Son autre nom, Subaru, vient d'un verbe qui signifie rassembler, unir : c'est pour cela qu'un constructeur automobile l'a choisi en 1953 pour marquer la fusion de cinq entreprises, et que son logo porte six étoiles et non sept.",
+    "Le plus joli rapprochement est ailleurs. Les Babyloniens appelaient l'amas MUL.MUL, « les Étoiles », mais aussi Zappu, « la touffe de cheveux ». Or les Chinois, sans contact avec eux, l'appellent Mao, « la tête chevelue ». Deux civilisations séparées par un continent ont vu la même chose : une mèche. Chez les Touaregs, ce sont Cat iheḍ, les filles de la nuit ; chez d'autres Berbères, Tagemmunt, le groupe."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Quatre mille ans de taureau",
+    "events": [
+     {
+      "y": -2300,
+      "when": "vers 2300 av. J.-C.",
+      "label": "Les Pléiades marquent le point vernal",
+      "note": "Dans les premiers documents astronomiques babyloniens, l'amas indique l'équinoxe de printemps. Il ouvrira longtemps les calendriers sidéraux, en Mésopotamie, en Inde et en Arabie."
+     },
+     {
+      "y": -2000,
+      "when": "IIᵉ millénaire av. J.-C.",
+      "label": "Gilgamesh abat le Taureau céleste",
+      "note": "Le poème sumérien nous est parvenu par une vingtaine de fragments, de la troisième dynastie d'Ur à l'époque paléo-babylonienne. La scène est gravée sur les sceaux-cylindres akkadiens."
+     },
+     {
+      "y": -270,
+      "when": "IIIᵉ s. av. J.-C.",
+      "label": "Ératosthène lui donne Europe",
+      "note": "Le taureau est au ciel pour avoir porté la princesse de Phénicie jusqu'en Crète. Hygin attribue la version à Euripide."
+     },
+     {
+      "y": 200,
+      "when": "IIᵉ-IIIᵉ siècle",
+      "label": "Mithra l'égorge dans tous les sanctuaires",
+      "note": "La tauroctonie devient le mobilier standard de chaque mithraeum de l'Empire. À Sidon, elle est entourée des douze signes du zodiaque et des bustes des quatre Saisons."
+     },
+     {
+      "y": 1000,
+      "when": "vers l'an mil",
+      "label": "Les noms arabes passent en latin",
+      "note": "Par les traités de l'astrolabe et les catalogues arabes. C'est ainsi qu'alpha du Taureau devient Aldébaran, al-Dabarān, celle qui suit les Pléiades."
+     },
+     {
+      "y": 2022,
+      "label": "Matariki devient jour férié",
+      "note": "La Nouvelle-Zélande inscrit au calendrier national le lever héliaque des Pléiades, nouvel an maori. Le ciel du Taureau est toujours en usage."
+     }
+    ]
+   },
+   "cap": "La bête ne change pas d'espèce, seulement de propriétaire. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Le Taureau céleste et la cuisse jetée",
+   "p": [
+    "Chez les Sumériens, le taureau du ciel s'appelle GUD.AN.NA, et il a une histoire précise. La déesse Inanna, qu'Ishtar prolongera, fait des avances à Gilgamesh, roi d'Uruk. Il refuse. Humiliée, elle obtient de son père An le Taureau céleste pour se venger de la cité. La bête dévore les herbes et les palmiers, boit l'eau des canaux. Gilgamesh et son compagnon Enkidu l'abattent, offrent son cœur au dieu solaire Shamash, et Enkidu, pour railler la déesse, lui jette à la figure la cuisse droite de l'animal. Les dieux condamnent Enkidu à mort pour cet affront, et c'est ce deuil qui lancera Gilgamesh sur la quête de l'immortalité.",
+    "Deux remarques. La première est que la symbolique du Taureau céleste reste incertaine : l'historien Michael Rice a proposé d'y voir un séisme, les taureaux étant largement associés aux tremblements de terre dans les cultures anciennes. La seconde est que cette constellation avait une raison d'être importante en Mésopotamie : vers le début du IIᵉ millénaire, le passage du Soleil dans ces étoiles marquait l'équinoxe de printemps. Le taureau était le signe des beaux jours."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/tau/book_of_the_fixed_stars_auv0204_taurus.jpg",
+   "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
+   "wide": true,
+   "cap": "Le Taureau dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. La figure suit Ptolémée, avec son avant-train seul et les Pléiades marquées sur l'échine. C'est par ce livre et par les traités de l'astrolabe que les noms arabes des étoiles sont passés dans l'astronomie latine, aux alentours de l'an mil.",
+   "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+  },
+  {
+   "t": "text",
+   "h": "Celle qui suit",
+   "p": [
+    "La chaîne de transmission des noms est ici particulièrement claire, et l'arabisant Roland Laffitte l'a retracée. Du Tauros grec on passe au Taurus latin, communiqué aux clercs médiévaux par Isidore de Séville puis Bède le Vénérable, aux VIᵉ et VIIIᵉ siècles. Mais les noms des étoiles, eux, ne viennent pas de là : c'est en suivant les traités de l'astrolabe et les catalogues arabes que, dès l'an mil, l'astronomie latine les a adoptés.",
+    "D'où Aldébaran, de l'arabe al-Dabarān, littéralement « celle qui suit ». Suivre qui ? al-Thurayyā, les Pléiades. Le nom de l'étoile la plus brillante du Taureau ne parle donc ni du taureau ni de son œil : il décrit une position relative dans une course. Et al-Thurayyā, pour les Bédouins, n'était pas un amas isolé mais la tête d'une figure géante dont la main teinte au henné se trouvait dans Cassiopée. Les frontières que nous connaissons ont découpé cette silhouette en morceaux."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/tau/1495441001.jpg",
+   "page": "https://www.britishmuseum.org/collection/object/G_1825-0613-1",
+   "wide": true,
+   "cap": "Mithra égorgeant le taureau, statue de marbre du IIᵉ siècle rapportée de Rome à Londres en 1815. Le dieu porte le costume oriental, pantalon et bonnet phrygien. Regardez les figurants : un chien et un serpent lèchent le sang de la plaie, un scorpion attaque les parties génitales de l'animal. Chaque sanctuaire mithriaque de l'Empire possédait une scène de ce type.",
+   "credit": "Statue de Mithra tauroctone — The British Museum, Londres"
+  },
+  {
+   "t": "text",
+   "h": "Mithra, et la tentation de tout ramener au ciel",
+   "p": [
+    "Le culte de Mithra se répand dans l'Empire romain à partir du IIᵉ siècle, et il place cette scène au fond de chaque sanctuaire, dans une niche aménagée pour ressembler à une caverne. À Sidon, le relief est entouré des douze signes du zodiaque et des bustes des quatre Saisons, ce qui a évidemment nourri les lectures astronomiques : le taureau serait la constellation, le chien le Petit Chien, le serpent l'Hydre, le scorpion le Scorpion, et l'ensemble commémorerait le glissement du point vernal hors du Taureau sous l'effet de la précession.",
+    "Il faut être honnête sur l'état de la question. Le mythe que cette scène illustrait n'était révélé qu'aux initiés, et il est perdu : nous ne savons pas ce qu'elle raconte. Après plusieurs décennies de théories de plus en plus alambiquées, les spécialistes du mithraïsme se montrent aujourd'hui réticents à la spéculation. On notera aussi que malgré son nom moderne, la tauroctonie est une image symbolique, et qu'aucune preuve matérielle n'indique que les fidèles du culte romain aient jamais pratiqué un tel sacrifice."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Les récits qui remontent un peu trop loin",
+   "p": "Trois affirmations spectaculaires circulent au sujet de ce coin du ciel, et toutes trois demandent des guillemets. La première est la plus séduisante : le mythe des sept sœurs dont une a disparu serait vieux de cent mille ans, antérieur aux migrations hors d'Afrique, ce qui en ferait la plus ancienne histoire de l'humanité. L'argument est réel — Pléioné et Atlas étaient alors assez écartées pour être vues séparément, et l'anthropologue Daisy Bates avait relevé le parallèle australien avant que l'astrophysicien Ray Norris n'en fasse une hypothèse. Mais c'est une hypothèse, un scepticisme subsiste, et il existe une explication beaucoup plus économique : sept était un nombre faste dans l'Antiquité classique, et un groupe d'étoiles serrées invite naturellement à en compter une de plus qu'on n'en voit. La deuxième affirmation veut que les peintures de Lascaux, vieilles de vingt mille ans, représentent les Pléiades au-dessus d'un aurochs. C'est une lecture proposée, pas un fait établi, et il n'existe pas de méthode pour la vérifier. La troisième est l'« ère du Taureau », qui expliquerait par la précession la place du taureau dans les religions du Proche-Orient. Elle a le même défaut que l'ère du Bélier : elle fonctionne trop bien, et elle est construite après coup."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "look",
+     "title": "L'Enlèvement d'Europe, de Titien",
+     "src": "Isabella Stewart Gardner Museum, Boston",
+     "note": "La notice du musée, avec l'histoire du tableau depuis la cour de Philippe II. En anglais.",
+     "url": "https://www.gardnermuseum.org/experience/collection/10978"
+    },
+    {
+     "kind": "look",
+     "title": "Mithra tauroctone",
+     "src": "The British Museum",
+     "note": "La fiche de la statue, avec la description du chien, du serpent et du scorpion. En anglais.",
+     "url": "https://www.britishmuseum.org/collection/object/G_1825-0613-1"
+    },
+    {
+     "kind": "deep",
+     "title": "La figure céleste du Taureau, de Babylone à aujourd'hui",
+     "src": "Roland Laffitte, SELEFA",
+     "note": "Le meilleur texte en français sur cette constellation : Gilgamesh, les noms babyloniens, la chaîne de transmission jusqu'à Aldébaran.",
+     "url": "https://www.selefa.asso.fr/wp-content/uploads/2024/03/AcLETTRE_05_D5_TAUREAU.pdf"
+    },
+    {
+     "kind": "look",
+     "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
+     "src": "Bodleian Library, Oxford",
+     "note": "Les cinquante-sept planches numérisées, dont celle du Taureau avec les Pléiades sur l'échine.",
+     "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
+    },
+    {
+     "kind": "read",
+     "title": "La plus vieille histoire du monde ?",
+     "src": "Ray Norris, The Conversation",
+     "note": "L'auteur de l'hypothèse des cent mille ans l'expose lui-même, avec les récits aborigènes qui la fondent. En anglais.",
+     "url": "https://theconversation.com/the-worlds-oldest-story-astronomers-say-global-myths-about-seven-sisters-stars-may-reach-back-100-000-years-151568"
+    },
+    {
+     "kind": "read",
+     "title": "Matariki",
+     "src": "World History Encyclopedia",
+     "note": "Le nouvel an maori, son calendrier et sa signification, en français.",
+     "url": "https://www.worldhistory.org/trans/fr/1-19856/matariki/"
+    },
+    {
+     "kind": "read",
+     "title": "Gilgamesh et le Taureau céleste",
+     "src": "Wikipédia en français",
+     "note": "Le poème sumérien, ses fragments, ses lieux de découverte et des extraits traduits.",
+     "url": "https://fr.wikipedia.org/wiki/Gilgamesh_et_le_Taureau_c%C3%A9leste"
+    },
+    {
+     "kind": "read",
+     "title": "Taureau céleste",
+     "src": "Wikipédia en français",
+     "note": "La bête elle-même, ses représentations sur les sceaux akkadiens et l'hypothèse du séisme.",
+     "url": "https://fr.wikipedia.org/wiki/Taureau_c%C3%A9leste"
+    },
+    {
+     "kind": "read",
+     "title": "Taureau : quand Zeus enlève Europe",
+     "src": "Repères Astro",
+     "note": "Les passages d'Ératosthène, d'Hygin, d'Avienus et de Germanicus rassemblés et traduits. En français.",
+     "url": "https://reperes-astro.fr/taureau-quand-zeus-enleve-europe/"
+    },
+    {
+     "kind": "read",
+     "title": "Tauroctony",
+     "src": "Wikipédia en anglais",
+     "note": "Ce que l'on sait et ce que l'on ne sait pas de la scène mithriaque, y compris le retrait des spécialistes devant les lectures astronomiques.",
+     "url": "https://en.wikipedia.org/wiki/Tauroctony"
+    },
+    {
+     "kind": "read",
+     "title": "Les Pléiades dans le folklore",
+     "src": "Wikipédia en anglais",
+     "note": "Le tour du monde des noms de l'amas, des Touaregs aux Berbères en passant par le Japon.",
+     "url": "https://en.wikipedia.org/wiki/Pleiades_in_folklore_and_literature"
+    }
+   ]
+  }
+ ]
 }
