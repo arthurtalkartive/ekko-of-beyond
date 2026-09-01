@@ -1,77 +1,269 @@
 {
- "constellation": "cnc",
- "tab": "astro",
- "blocks": [
-  {
-   "t": "warn",
-   "h": "Ce que vaut cet onglet",
-   "p": "Il documente une tradition culturelle, pas un savoir vérifié. L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères ou les événements. Ces textes valent comme patrimoine et comme histoire des idées — c'est à ce titre qu'ils figurent ici, à côté de l'onglet Science et non à sa place."
-  },
-  {
-   "t": "lead",
-   "p": "Le Cancer ne porte aucune étoile behénienne, mais il abrite l'un des rares objets non stellaires que la tradition ait retenu : la Crèche, Praesepe, traitée comme une entité à part entière dans les listes d'étoiles fixes."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "cnc",
+  "tab": "astro",
+  "blocks": [
     {
-     "v": "4e",
-     "u": "signe",
-     "l": "Position dans le zodiaque tropical, compté depuis le point vernal."
+      "t": "warn",
+      "h": "Ce que contient cet onglet",
+      "p": "L'astrologie n'a pas de fondement scientifique établi : aucune étude contrôlée n'a mis en évidence d'effet des positions célestes sur les caractères, la santé ou les événements. Ce qui suit documente une tradition, ses textes et son histoire, comme on documenterait la médecine des humeurs ou l'alchimie. Rien ici ne vaut prédiction, diagnostic ni conseil, et cet onglet ne se lit pas sur le même plan que l'onglet Science."
     },
     {
-     "v": "1",
-     "u": "amas",
-     "l": "Praesepe figure parmi les objets majeurs de la tradition, aux côtés des étoiles proprement dites."
+      "t": "lead",
+      "p": "Le Cancer est l'exact inverse des Gémeaux : là où le signe précédent ne porte aucune dignité planétaire, celui-ci les porte toutes les quatre à la fois. La Lune y est chez elle, Jupiter y est exalté, Saturne y est en exil, Mars y tombe. Et ce n'est pas le plus étonnant. Pendant plusieurs siècles, tout un courant de la pensée antique a fait de cette constellation pâle la porte par laquelle les âmes entrent dans les corps."
     },
     {
-     "v": "≈ 28",
-     "u": "degrés",
-     "l": "Décalage accumulé entre le signe et la constellation de même nom."
+      "t": "stats",
+      "v": [
+        {
+          "v": "4",
+          "u": "dignités",
+          "l": "La Lune chez elle, Jupiter exalté, Saturne en exil, Mars en chute. Le Cancer porte les quatre à la fois, ce que les Gémeaux ne font pour aucune."
+        },
+        {
+          "v": "15°",
+          "u": "Cancer",
+          "l": "Le degré d'exaltation de Jupiter dans la tradition. C'est la seule dignité de Jupiter en dehors de ses deux domiciles."
+        },
+        {
+          "v": "2",
+          "u": "portes",
+          "l": "Le Cancer et le Capricorne. Par l'une descendent les âmes qui vont s'incarner, par l'autre remontent celles qui rejoignent les dieux."
+        },
+        {
+          "v": "90°",
+          "l": "Le décalage entre les signes et les saisons dans la mosaïque de la synagogue de Beth Alpha, au VIᵉ siècle. Personne ne sait si c'est une maladresse ou un geste délibéré."
+        },
+        {
+          "v": "la poitrine",
+          "l": "Ce que le Cancer gouverne dans la mélothésie, avec l'estomac. Plusieurs auteurs y ajoutent une influence sur les poumons."
+        }
+      ]
+    },
+    {
+      "t": "text",
+      "h": "Un signe saturé de dignités",
+      "p": [
+        "Le contraste avec la fiche précédente est saisissant, et il vaut la peine d'être posé. Les Gémeaux n'abritaient ni exaltation ni chute : un signe sans relief. Le Cancer, lui, cumule les quatre positions du système. La Lune y a son domicile, ce qui est cohérent avec un signe d'eau, cardinal et nocturne. Jupiter y est exalté, traditionnellement au quinzième degré. Saturne y est en exil, puisque son domicile est le Capricorne, à l'opposé. Et Mars y est en chute, puisque son exaltation est ce même Capricorne. Toute la mécanique des symétries y donne son plein effet.",
+        "Les subdivisions suivent. Ptolémée rejetait les décans, mais Teukros, au Iᵉʳ siècle, nous en transmet les maîtres : Vénus pour le premier tiers du signe, Mercure pour le deuxième, la Lune pour le troisième. On note au passage une incohérence que les praticiens relèvent eux-mêmes : Jupiter, exalté dans ce signe, n'y gouverne aucun décan, alors que la Lune, déjà maîtresse du signe entier, en gouverne un de surcroît. Le système des termes, encore plus fin, découpe les trente degrés en cinq tranches inégales attribuées à Mars, Jupiter, Mercure, Vénus et Saturne. Chaque couche a été ajoutée par une génération différente, et aucune n'a effacé la précédente."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cnc/zodiaque-dendera-louvre.jpg",
+      "page": "https://collections.louvre.fr/en/ark:/53355/cl010028871",
+      "wide": true,
+      "cap": "Le zodiaque de Dendérah, sculpté vers 50 avant notre ère. Un détail concerne directement cette fiche : la spirale des douze signes ne commence pas au Bélier mais au Cancer, et remonte ensuite à contresens des périodes astrologiques. Sur ce plafond égyptien de facture gréco-romaine, le point de départ du zodiaque est le solstice d'été.",
+      "credit": "Musée du Louvre, département des Antiquités égyptiennes (D 38)"
+    },
+    {
+      "t": "text",
+      "h": "La porte des hommes",
+      "p": [
+        "Voici la doctrine la plus intéressante que l'astrologie ancienne ait attachée à un signe, et elle repose sur une géométrie. La Voie lactée traverse le ciel obliquement et coupe le zodiaque en deux points opposés. Ces deux points, dans la pensée antique, sont le Cancer et le Capricorne, qui donnent leur nom aux deux tropiques. Les physiciens, écrit Macrobe, les appellent les portes du Soleil, parce que c'est là que les points solsticiaux limitent la course de l'astre, qui revient sur ses pas sans jamais les dépasser.",
+        "Et par ces portes, dit la doctrine, passent les âmes. L'une s'appelle la porte des hommes, l'autre la porte des dieux. Par le Cancer sortent les âmes qui font route vers la terre pour s'incarner ; par le Capricorne remontent celles qui vont rejoindre le siège de leur propre immortalité. Cette construction n'est pas de Macrobe : il reproduit presque littéralement Porphyre, qui l'avait développée dans L'Antre des nymphes en commentant un passage obscur de l'Odyssée, où la grotte d'Ithaque a deux portes, l'une accessible aux hommes du côté de Borée, l'autre réservée aux dieux du côté du Sud. Numénius et Cronios avaient lu cette grotte comme une image du monde, bornée par les deux tropiques."
+      ]
+    },
+    {
+      "t": "quote",
+      "p": "C'est par le Cancer que sortent les âmes qui font route vers la terre.",
+      "who": "Macrobe, Commentaire du songe de Scipion, livre I, dans une traduction du XIXᵉ siècle"
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "La doctrine des deux portes, de relais en relais",
+        "events": [
+          {
+            "y": -700,
+            "when": "Homère",
+            "label": "La grotte aux deux portes",
+            "note": "Au chant XIII de l'Odyssée, la grotte d'Ithaque a deux entrées : l'une du côté de Borée, accessible aux hommes ; l'autre du Sud, que nul homme ne franchit."
+          },
+          {
+            "y": 275,
+            "when": "Porphyre, IIIᵉ siècle",
+            "label": "L'Antre des nymphes",
+            "note": "Porphyre explique les vers d'Homère par les tropiques, et développe le motif des âmes rassemblées dans la Voie lactée, qui s'y nourrissent de lait."
+          },
+          {
+            "y": 430,
+            "when": "Macrobe, Vᵉ siècle",
+            "label": "Le Commentaire du songe de Scipion",
+            "note": "Il reprend Porphyre presque mot pour mot au livre I, chapitre 12, et c'est par lui que la doctrine passera à tout le Moyen Âge latin."
+          },
+          {
+            "y": 550,
+            "when": "VIᵉ siècle",
+            "label": "Le zodiaque de Beth Alpha",
+            "note": "Une synagogue byzantine pose les douze signes autour d'Hélios sur son char. Le Cancer y est décalé de quatre-vingt-dix degrés par rapport aux saisons."
+          },
+          {
+            "y": 1290,
+            "when": "XIIIᵉ siècle",
+            "label": "Planude retraduit Macrobe en grec",
+            "note": "Le philologue byzantin retraduit vers le grec un commentaire latin d'un texte latin qui commentait des Grecs. La doctrine boucle sur elle-même."
+          },
+          {
+            "y": 1861,
+            "label": "Flaubert recopie, puis se trompe",
+            "note": "Il prend des notes sur Macrobe pour Salammbô. Dans le roman, il remplace le Cancer par le Bélier. Ses notes de lecture sont conservées à Rouen."
+          }
+        ]
+      },
+      "cap": "Deux mille cinq cents ans de recopiage, et une erreur finale. Survolez les étapes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Les âmes-abeilles, et le mot cardinal",
+      "p": [
+        "Le détail que Porphyre ajoute est celui qu'on n'oublie pas. Les âmes se rassemblent dans la Voie lactée, écrit-il d'après Pythagore, et celle-ci porte ce nom parce qu'elles s'y nourrissent de lait lorsqu'elles tombent dans la génération. Ceux qui veulent les évoquer leur offrent donc en libation un mélange de lait et de miel. Et dans le même traité, les âmes qui vont vers la génération sont appelées des abeilles. Le rapprochement avec le nom que porte l'amas au centre du Cancer, la Crèche, dont le mot grec signifie aussi bien mangeoire que ruche, est tentant. Je le signale comme un rapprochement, pas comme une filiation : les textes ne le font pas.",
+        "Un mot enfin sur le vocabulaire technique. Le Cancer est un signe cardinal, comme le Bélier, la Balance et le Capricorne, et ce n'est pas un hasard : les quatre signes cardinaux sont ceux qui commencent aux quatre points de bascule de l'année, les deux équinoxes et les deux solstices. Le mot vient du latin cardo, qui désigne le gond, le pivot. On lit parfois que cardo signifie « porte », ce qui ferait une jolie rime avec la porte des hommes. C'est faux : le gond n'est pas la porte, et la coïncidence est une illusion de vocabulaire."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cnc/zodiaque-beth-alpha.jpg",
+      "page": "https://fr.wikipedia.org/wiki/Synagogue_de_Beth_Alpha",
+      "wide": true,
+      "cap": "Le pavement de la synagogue de Beth Alpha, en Galilée, VIᵉ siècle. Au centre, Hélios sur son quadrige, entouré d'un croissant de lune et d'étoiles. Autour de lui, les douze signes du zodiaque, chacun accompagné de son nom en hébreu. Aux quatre angles, des figures féminines ailées pour les saisons. Et juste en dessous de la roue, le sacrifice d'Isaac.",
+      "credit": "Synagogue de Beth Alpha, parc national — Direction de la Nature et des Parcs d'Israël"
+    },
+    {
+      "t": "text",
+      "h": "Le zodiaque dans la synagogue, et le Cancer mal placé",
+      "p": [
+        "Sept sites de synagogues antiques d'Israël portent le même dispositif : les douze signes disposés en roue autour d'Hélios conduisant son char. Beth Alpha en est l'exemple le plus célèbre, sinon le plus soigné, et il pose une question théologique évidente. Comment une communauté juive du VIᵉ siècle, dans une tradition qui interdit la représentation des divinités étrangères, a-t-elle pu mettre un dieu solaire grec au centre du sol de sa synagogue ? L'historien E. R. Goodenough a proposé une réponse : ce personnage était pour eux le cocher divin du judaïsme hellénisé, autrement dit Dieu lui-même.",
+        "Ce qui nous intéresse ici est plus précis, et c'est le Cancer qui le révèle. Les quatre saisons occupent les angles du panneau, avec leurs noms en hébreu, et les signes sont décalés de quatre-vingt-dix degrés par rapport à elles. Le coin supérieur droit porte Tevet, mois d'hiver, le coin supérieur gauche Nissan, mois du printemps, et entre les deux figure le Cancer, qui est un signe de plein été. Il faudrait faire pivoter toute la roue d'un quart de tour pour que l'ensemble tombe juste. Deux explications s'affrontent : ou bien l'artiste était médiocre, ce que la comparaison avec les mosaïques de Sepphoris ou de Hammath rend plausible, ou bien le décalage est volontaire, une manière de désamorcer l'astrologie en faisant du zodiaque une simple image de la voûte céleste. La question n'est pas tranchée."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "compass",
+      "wide": true,
+      "data": {
+        "title": "L'autre porte, et où la Voie lactée passe vraiment",
+        "targets": [
+          {
+            "star": "Deneb Algedi",
+            "from": "Asellus Australis",
+            "label": "Deneb Algedi",
+            "sub": "Capricorne",
+            "note": "La porte des dieux, à l'exact opposé du zodiaque. Par elle remontent les âmes qui rejoignent leur immortalité, selon Macrobe."
+          },
+          {
+            "star": "Alhena",
+            "from": "Asellus Borealis",
+            "label": "Alhéna",
+            "sub": "Gémeaux",
+            "note": "C'est de ce côté, et non dans le Cancer, que la Voie lactée croise réellement le plan de l'écliptique. La doctrine confond deux géométries voisines."
+          }
+        ],
+        "notes": {
+          "Asellus Australis": "L'âne du Sud. La plus brillante après Al Tarf, et pourtant de magnitude 3,9.",
+          "Asellus Borealis": "L'âne du Nord, magnitude 4,7.",
+          "Acubens": "Alpha du Cancer, et l'une des plus faibles alphas du ciel."
+        }
+      },
+      "cap": "Les deux portes solsticiales sont diamétralement opposées sur l'écliptique. C'est la seule partie de la doctrine qui soit géométriquement exacte.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "La poitrine et l'estomac",
+      "p": [
+        "Dans la mélothésie, cette doctrine qui répartit les parties du corps entre les douze signes, le Cancer prend la poitrine et l'estomac. Plusieurs auteurs y ajoutent une influence sur les poumons et sur l'ensemble du thorax. La règle opératoire est toujours la même : on n'intervenait pas sur une partie du corps quand la Lune occupait le signe qui la gouverne. Et comme la Lune est ici chez elle, la coïncidence était jugée particulièrement forte.",
+        "Un détail vaut d'être rapporté, parce qu'il montre que cette tradition n'a pas toujours été aveugle à la vérification. Le traité de P.-V. Piobb, qui recense les termes et les faces du signe avec une précision d'horloger, note aussi que, contrairement à ce que l'influence lunaire ferait attendre, le Cancer ne semble pas favoriser la longévité d'après certains essais statistiques. Un astrologue du début du XXᵉ siècle rapportant un résultat statistique qui contredit sa propre doctrine : cela méritait d'être signalé."
+      ]
+    },
+    {
+      "t": "warn",
+      "h": "Trois séductions à écarter",
+      "p": "Cet onglet en contient trois, et il faut les nommer. La première est le rapprochement entre les âmes-abeilles de Porphyre et le nom de l'amas de la Crèche, appelé la Ruche en anglais. Le mot grec φάτνη autorise les deux sens, mangeoire et ruche, et Porphyre appelle bien les âmes des abeilles : la tentation est grande de relier les deux. Aucun texte antique ne le fait, et le nom de Ruche est une désignation moderne. C'est un rapprochement, non une filiation. La deuxième est l'étymologie de « cardinal », qu'on rattache volontiers à une porte pour faire écho à la porte des hommes ; cardo désigne le gond ou le pivot, pas la porte, et le jeu de mots ne tient pas. La troisième est plus technique et concerne le cœur de la doctrine : Macrobe affirme que la Voie lactée coupe le zodiaque au Cancer et au Capricorne, alors que les deux points où la bande galactique croise l'écliptique se situent du côté des Gémeaux et du Sagittaire, soit un signe à côté des tropiques antiques. La doctrine des deux portes superpose deux géométries voisines mais distinctes, les points solsticiaux d'une part, les croisements galactiques de l'autre. Cela n'enlève rien à sa beauté ni à son influence, qui furent immenses. Cela interdit seulement de la présenter comme une observation."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "deep",
+          "title": "Macrobe, Commentaire du songe de Scipion, livre I",
+          "src": "Remacle",
+          "note": "Le texte intégral en français, dont le chapitre 12 sur les deux portes et le chemin des âmes.",
+          "url": "https://remacle.org/bloodwolf/erudits/macrobe/scipion1.htm"
+        },
+        {
+          "kind": "deep",
+          "title": "Porphyre, L'Antre des nymphes",
+          "src": "Arbre d'or",
+          "note": "Le traité d'où vient toute la doctrine, avec les âmes qui se nourrissent de lait et les libations de lait et de miel. En français.",
+          "url": "https://www.arbredor.com/ebooks/AntreNymphes.pdf"
+        },
+        {
+          "kind": "read",
+          "title": "Notes de Flaubert sur le Songe de Scipion",
+          "src": "Centre Gustave Flaubert, université de Rouen",
+          "note": "Les notes de lecture prises vers 1860 pour Salammbô, avec le passage sur les deux portes recopié à la main, et la substitution du Bélier au Cancer dans le roman.",
+          "url": "https://flaubert.univ-rouen.fr/manuscrits/manuscrits-de-notes-documentaires/cic%C3%A9ron-le-songe-de-scipion/"
+        },
+        {
+          "kind": "look",
+          "title": "Le zodiaque de Dendérah",
+          "src": "Musée du Louvre",
+          "note": "La fiche du Louvre, avec la spirale des douze signes qui commence au Cancer.",
+          "url": "https://collections.louvre.fr/en/ark:/53355/cl010028871"
+        },
+        {
+          "kind": "read",
+          "title": "La synagogue de Beth Alpha",
+          "src": "InterBible",
+          "note": "La description détaillée de la mosaïque signe par signe, et l'analyse du décalage de quatre-vingt-dix degrés. En français.",
+          "url": "https://www.interbible.org/interBible/decouverte/archeologie/2018/archeologie_20181210.html"
+        },
+        {
+          "kind": "read",
+          "title": "Jewish Worship, Pagan Symbols",
+          "src": "Biblical Archaeology Society",
+          "note": "Le tour des sept synagogues à zodiaque, et la démonstration du décalage à partir du Cancer et de la Balance. En anglais.",
+          "url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-israel/jewish-worship-pagan-symbols/"
+        },
+        {
+          "kind": "read",
+          "title": "L'astrologie dans la synagogue antique",
+          "src": "My Jewish Learning",
+          "note": "La question théologique posée par la présence d'Hélios, et la réponse proposée par Goodenough. En anglais.",
+          "url": "https://www.myjewishlearning.com/article/astrology-in-the-ancient-synagogue/"
+        },
+        {
+          "kind": "read",
+          "title": "Cancer (astrologie)",
+          "src": "Wikipédia en français",
+          "note": "Les décans selon Teukros, l'exaltation de Jupiter et la logique symbolique du signe.",
+          "url": "https://fr.wikipedia.org/wiki/Cancer_(astrologie)"
+        },
+        {
+          "kind": "read",
+          "title": "Signes : Cancer",
+          "src": "Matemius, d'après le traité de P.-V. Piobb",
+          "note": "Le relevé complet des termes et des faces du signe, et la remarque sur la longévité qui contredit la doctrine. En français.",
+          "url": "https://matemius.fr/articles/astrologie/signes-cancer.html"
+        },
+        {
+          "kind": "read",
+          "title": "Les dignités des planètes en décans",
+          "src": "Azur, astrologue",
+          "note": "Un praticien qui relève que ni Jupiter ni Vénus ne gouvernent de décan dans leur signe d'exaltation.",
+          "url": "https://azurastrologue.fr/2023/02/05/dignites-decans/"
+        },
+        {
+          "kind": "read",
+          "title": "Le Songe de Scipion",
+          "src": "Wikipédia en français",
+          "note": "Le texte de Cicéron, sa postérité chez les auteurs chrétiens, et la retraduction en grec par Maxime Planude au XIIIᵉ siècle.",
+          "url": "https://fr.wikipedia.org/wiki/Songe_de_Scipion"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Un amas traité comme une étoile",
-   "p": [
-    "Les listes d'étoiles fixes recensent presque exclusivement des astres ponctuels. Praesepe fait exception : sa nature nébuleuse à l'œil nu lui a valu une entrée propre, avec sa nature planétaire et sa signification.",
-    "La tradition l'associe à l'obscurité, à la cécité, aux choses cachées — une lecture que sa seule apparence explique. Un objet flou, qui disparaît quand l'air s'épaissit, ne pouvait guère recevoir d'autre attribution. Là encore, le sens vient du regard, pas du ciel."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Le tropique et le solstice",
-   "p": [
-    "Le signe du Cancer commence conventionnellement au solstice d'été, comme le Bélier commence à l'équinoxe de printemps. C'est de là que le tropique du Cancer tire son nom.",
-    "Le Soleil du solstice a depuis quitté le Cancer pour le Taureau. Le signe, lui, reste arrimé au solstice : l'astrologie tropicale suit les saisons, pas les constellations. Le rappeler évite le reproche le plus courant qu'on lui adresse — mais souligne aussi que ses noms de figures ne renvoient plus à rien de visible."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "deep",
-     "title": "The Fixed Stars and Constellations in Astrology",
-     "src": "Vivian E. Robson, 1923 — Internet Archive",
-     "note": "L'ouvrage de référence, numérisé et librement consultable. En anglais.",
-     "url": "https://archive.org/details/in.ernet.dli.2015.128091"
-    },
-    {
-     "kind": "read",
-     "title": "The Fixed Stars in Longitude Order",
-     "src": "Astro-Seek",
-     "note": "La liste des étoiles fixes de la tradition, où Praesepe figure parmi les objets majeurs. En anglais.",
-     "url": "https://horoscopes.astro-seek.com/the-fixed-stars-in-longitude-order"
-    },
-    {
-     "kind": "read",
-     "title": "Introduction aux étoiles fixes",
-     "src": "Constellations of Words",
-     "note": "Le cadre général de la tradition. En anglais.",
-     "url": "https://www.constellationsofwords.com/introduction-to-the-fixed-stars/"
-    }
-   ]
-  }
- ]
+  ]
 }

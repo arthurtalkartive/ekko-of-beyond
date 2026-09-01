@@ -1,115 +1,292 @@
 {
- "constellation": "cnc",
- "tab": "science",
- "blocks": [
-  {
-   "t": "lead",
-   "p": "Le Cancer est la plus pâle des douze figures du zodiaque : pas une seule étoile de deuxième magnitude, un Y renversé qu'il faut deviner. Son intérêt est ailleurs — en son centre flotte l'un des amas les plus proches de nous, visible à l'œil nu depuis la préhistoire."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "cnc",
+  "tab": "science",
+  "blocks": [
     {
-     "v": "≈ 590",
-     "u": "a.l.",
-     "l": "Distance de l'amas de la Crèche. Les mesures d'Hipparcos et les diagrammes infrarouges convergent autour de 182 parsecs."
+      "t": "lead",
+      "p": "Le Cancer est la constellation la plus faible du zodiaque : aucune de ses étoiles n'atteint la magnitude 3,5, et beaucoup de gens ne l'ont jamais vue. Elle contient pourtant un des systèmes planétaires les mieux étudiés du ciel, le premier amas où l'on ait trouvé des exoplanètes, et une planète qui a changé quatre fois de nature en vingt ans : super-Terre, monde de lave, planète de diamant, puis caillou fondu doté d'une atmosphère."
     },
     {
-     "v": "≈ 730",
-     "u": "millions d'années",
-     "l": "Âge de l'amas — le même que celui des Hyades, dans le Taureau."
+      "t": "stats",
+      "v": [
+        {
+          "v": "3,5",
+          "u": "magnitude",
+          "l": "L'éclat de l'étoile la plus brillante du Cancer. C'est la constellation la plus discrète de tout le zodiaque."
+        },
+        {
+          "v": "41",
+          "u": "années-lumière",
+          "l": "La distance de 55 Cancri, une étoile semblable au Soleil entourée de cinq planètes connues, dont quatre géantes gazeuses."
+        },
+        {
+          "v": "18",
+          "u": "heures",
+          "l": "La durée de l'année sur 55 Cancri e. Elle tourne vingt-cinq fois plus près de son étoile que Mercure du Soleil."
+        },
+        {
+          "v": "1 000",
+          "u": "étoiles",
+          "l": "Le contenu de l'amas de la Crèche, à quelque six cents années-lumière. Il occupe trois fois le diamètre apparent de la pleine Lune."
+        },
+        {
+          "v": "2012",
+          "l": "L'année où l'on a trouvé dans cet amas les premières exoplanètes en orbite autour d'étoiles semblables au Soleil au sein d'un amas stellaire."
+        },
+        {
+          "v": "0,78",
+          "l": "Le rapport carbone sur oxygène de l'étoile 55 Cancri, corrigé en 2013. On le donnait supérieur à 1, et c'est de là qu'était née la « planète de diamant »."
+        }
+      ]
     },
     {
-     "v": "≈ 1 000",
-     "u": "étoiles",
-     "l": "Population de la Crèche. Une vingtaine se détachent aux jumelles."
+      "t": "text",
+      "h": "La constellation qu'on ne voit pas",
+      "p": [
+        "Il faut commencer par là, sans détour : le Cancer est décevant à l'œil nu. Ses étoiles dessinent un Y renversé assez large, mais aucune ne dépasse la magnitude 3,5, ce qui suffit à la rendre invisible depuis n'importe quelle ville. C'est la plus faible des douze constellations du zodiaque, et la seule que beaucoup d'observateurs n'ont jamais consciemment repérée. Elle se trouve entre les Gémeaux et le Lion, et c'est ainsi qu'on la cherche : à mi-chemin de Pollux et de Régulus.",
+        "Elle porte aussi un nom géographique dont personne n'interroge la pertinence. Le tropique du Cancer marque la latitude où le Soleil passe au zénith au solstice de juin, et il s'appelle ainsi parce que le Soleil se trouvait alors dans cette constellation. Ce n'est plus le cas depuis longtemps : la précession de l'axe terrestre a fait glisser le point du solstice d'été, qui se situe aujourd'hui du côté du Taureau et des Gémeaux. Comme pour le point vernal du Bélier, nous utilisons un nom de constellation pour désigner un point du ciel qu'elle a quitté depuis deux millénaires."
+      ]
     },
     {
-     "v": "1610",
-     "u": "",
-     "l": "Galilée résout l'amas en étoiles avec sa lunette grossissant trente-cinq fois."
+      "t": "figure",
+      "src": "/assets/img/constellations/cnc/m44-noirlab.jpg",
+      "page": "https://noirlab.edu/public/images/noao-m44/",
+      "wide": true,
+      "cap": "L'amas de la Crèche, image en couleurs quasi réelles composée de quinze poses prises en janvier 1997 au télescope de Schmidt Burrell, sur le Kitt Peak. L'amas contient environ un millier d'étoiles et couvre un degré et demi de ciel, soit trois pleines Lunes côte à côte. C'est un objet fait pour les jumelles plutôt que pour le télescope.",
+      "credit": "NOIRLab/NSF/AURA"
+    },
+    {
+      "t": "text",
+      "h": "La Crèche, la Ruche, et les deux ânes",
+      "p": [
+        "Le seul objet vraiment célèbre de la constellation porte trois noms, ce qui est un indice de son ancienneté. Praesepe, la Crèche, parce que les Grecs et les Romains y voyaient une mangeoire à laquelle se nourrissaient deux ânes, les étoiles voisines Asellus Borealis et Asellus Australis, montures de Dionysos et de Silène dans leur bataille contre les Titans. La Ruche, parce que cette tache floue évoque un essaim d'abeilles. Et M44, parce que Charles Messier a fait une exception pour elle. Il chassait les objets flous susceptibles d'être confondus avec des comètes, or celui-ci était connu depuis la préhistoire ; il l'a pourtant catalogué le 4 mars 1769, en même temps que la nébuleuse d'Orion et les Pléiades, portant sa liste à quarante-cinq entrées. Personne ne sait bien pourquoi.",
+        "Aratos, au IIIᵉ siècle avant notre ère, la mentionne comme une petite nuée. Galilée fut le premier à la résoudre, distinguant une quarantaine d'étoiles. Et les Anciens en avaient fait une station météo : Pline écrit que si la Crèche n'est pas visible dans un ciel clair, c'est le présage d'une tempête. La règle est moins absurde qu'elle n'en a l'air, puisqu'un voile d'humidité invisible autrement suffit à effacer un objet aussi diffus. Elle ne fonctionne évidemment plus, non pas parce que le ciel a changé, mais parce que nos lumières ont effacé la Crèche en permanence."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "depth",
+      "wide": true,
+      "data": {
+        "title": "Ce qui est proche, et ce qui se voit",
+        "origin": "Terre",
+        "stars": [
+          {
+            "n": "55 Cancri",
+            "d": 41,
+            "note": "Une naine jaune semblable au Soleil, avec cinq planètes connues dont quatre géantes gazeuses. Invisible à l'œil nu depuis une ville."
+          },
+          {
+            "n": "Asellus Australis",
+            "d": 155,
+            "note": "L'âne du Sud, delta du Cancer, géante orange de magnitude 3,9. C'est elle qui borde la Crèche."
+          },
+          {
+            "n": "M44",
+            "d": 577,
+            "note": "L'amas de la Crèche. Ce qu'on voit le mieux dans cette constellation est aussi ce qu'il y a de plus loin."
+          }
+        ]
+      },
+      "cap": "Le paradoxe du Cancer : l'objet le plus visible est le plus lointain, et l'étoile la plus intéressante est invisible.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Le jumeau perdu des Hyades",
+      "p": [
+        "L'amas de la Crèche a une particularité qui intéresse beaucoup les astronomes : il est le sosie d'un autre. Son âge, estimé entre six cents et sept cents millions d'années, est du même ordre que celui des Hyades, dans le Taureau. Et surtout, les deux amas se déplacent dans la même direction avec le même mouvement propre. La conclusion s'impose : ils sont nés du même grand nuage de gaz, il y a sept ou huit cents millions d'années, et ils dérivent depuis, aujourd'hui séparés par des centaines d'années-lumière. Deux amas visibles à l'œil nu, dans deux constellations différentes, sont frère et sœur.",
+        "L'autre fait d'armes de la Crèche est récent. En 2012, deux planètes géantes y ont été détectées, en orbite autour de deux étoiles de type solaire de l'amas. C'était la première fois qu'on trouvait des exoplanètes autour d'étoiles semblables au Soleil à l'intérieur d'un amas stellaire, ce qui répondait à une vraie question : les amas, environnements denses et agités, permettent-ils aux planètes de se former et de survivre ? La réponse est oui. En 2016, on a même découvert que l'une des deux étoiles en possédait deux."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cnc/55-cancri-e-webb.jpg",
+      "page": "https://esawebb.org/images/weic2412a",
+      "wide": true,
+      "cap": "Vue d'artiste de 55 Cancri e, aussi nommée Janssen. Il n'existe aucune image directe de cette planète : cette illustration s'appuie sur des observations spectroscopiques de Webb, de Hubble et de Spitzer. Le quart gauche, tourné vers l'étoile, est éclairé ; le reste est dans l'ombre. Sous la brume d'une atmosphère mince, on devine une surface rocheuse partiellement en fusion.",
+      "credit": "Illustration : NASA, ESA, CSA, Ralf Crawford (STScI)"
+    },
+    {
+      "t": "text",
+      "h": "Janssen, la planète qui a changé quatre fois de nature",
+      "p": [
+        "55 Cancri e, rebaptisée Janssen par vote public de l'Union astronomique internationale en 2015, est un objet extrême et une leçon de méthode. Elle fait deux fois le rayon de la Terre pour huit fois sa masse, et elle tourne à un quarantième d'unité astronomique de son étoile, vingt-cinq fois plus près que Mercure du Soleil. Une année y dure moins de dix-huit heures. Sa face jour, probablement tournée en permanence vers l'étoile, atteint quelque deux mille quatre cents degrés : la surface est un océan de magma. Il faut donc se méfier du mot « rocheuse », techniquement exact et pratiquement trompeur.",
+        "En mai 2024, une équipe menée par Renyu Hu, du Jet Propulsion Laboratory, a publié dans Nature le spectre d'émission thermique de la planète entre 4 et 12 micromètres, obtenu avec les instruments NIRCam et MIRI de Webb. Le résultat écarte l'hypothèse d'une simple vapeur de roche et indique une véritable atmosphère volatile, riche en monoxyde ou en dioxyde de carbone, probablement dégazée par le magma. C'est à ce jour la meilleure preuve d'une atmosphère autour d'une planète rocheuse hors du système solaire. Avec une réserve que les auteurs formulent eux-mêmes : les modèles restent largement dégénérés, et la composition exacte n'est pas contrainte."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Vingt ans d'identités successives",
+        "events": [
+          {
+            "y": 2004,
+            "label": "Découverte de 55 Cancri e",
+            "note": "Par la méthode des vitesses radiales. Une super-Terre, alors la plus proche de son étoile parmi celles connues."
+          },
+          {
+            "y": 2010,
+            "label": "L'étoile est mesurée très riche en carbone",
+            "note": "Delgado Mena et ses collègues trouvent un rapport carbone sur oxygène de 1,12, contre 0,50 pour le Soleil. Une seule raie d'oxygène est utilisée."
+          },
+          {
+            "y": 2011,
+            "label": "Le transit est observé depuis le sol",
+            "note": "C'est la première exoplanète dont on ait vu le transit depuis la Terre, et non depuis l'espace."
+          },
+          {
+            "y": 2012,
+            "label": "La planète de diamant",
+            "note": "L'équipe de Madhusudhan modélise un intérieur riche en carbone, où le graphite se change en diamant entre 10 et 1 000 gigapascals. La presse s'en emparera pour quinze ans."
+          },
+          {
+            "y": 2013,
+            "label": "Le rapport carbone-oxygène est corrigé",
+            "note": "Johanna Teske montre que l'unique raie d'oxygène utilisée en 2010 est peu fiable sur une étoile froide et riche en métaux. Le rapport tombe à 0,78."
+          },
+          {
+            "y": 2024,
+            "label": "Webb détecte une atmosphère",
+            "note": "NIRCam et MIRI écartent la vapeur de roche et indiquent du monoxyde ou du dioxyde de carbone. Première atmosphère détectée sur une planète rocheuse."
+          }
+        ]
+      },
+      "cap": "Chaque mesure a redéfini l'objet. Survolez les étapes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "quote",
+      "p": "L'étoile hôte n'a pas un rapport carbone-oxygène aussi élevé.",
+      "who": "Johanna Teske, université d'Arizona, 2013"
+    },
+    {
+      "t": "warn",
+      "h": "La planète de diamant n'a jamais existé, et on en parle encore",
+      "p": "Vous rencontrerez cette histoire partout, y compris dans des articles publiés cette année : 55 Cancri e serait faite pour un tiers de diamant pur. Voici la chaîne réelle. En 2010, une équipe mesure le rapport carbone sur oxygène de l'étoile à partir de deux raies de carbone et d'une unique raie interdite de l'oxygène, et trouve 1,12, soit une étoile très riche en carbone. En 2012, l'équipe de Nikku Madhusudhan s'appuie sur ce chiffre pour construire des modèles d'intérieur carboné où le carbone, aux pressions régnant dans la planète, prend la forme du diamant. En 2013, Johanna Teske reprend les données publiques, utilise plusieurs indicateurs d'abondance d'oxygène au lieu d'un seul, et montre que la raie unique employée trois ans plus tôt est peu fiable pour une étoile plus froide et plus métallique que le Soleil : le rapport tombe à 0,78, c'est-à-dire vingt-cinq pour cent plus d'oxygène que de carbone. Comme elle le résume, l'un des deux piliers du raisonnement de 2012 ne tient plus. Cela n'interdit pas absolument à la planète d'être carbonée, puisque la composition d'une planète ne recopie pas forcément celle de son étoile, mais cela retire la raison qu'on avait de le croire. Et les observations de Webb, en 2024, décrivent une atmosphère de carbone gazeux, ce qui n'est pas du tout la même chose qu'un manteau de diamant."
+    },
+    {
+      "t": "text",
+      "h": "Ce qu'on peut y voir soi-même",
+      "p": [
+        "Le Cancer est une constellation à jumelles, et c'est même le meilleur exemple que je connaisse d'un objet mieux servi par des jumelles que par un télescope. La Crèche couvre un degré et demi, soit plus que le champ de la plupart des oculaires : au télescope, vous verrez des étoiles, mais vous perdrez l'essaim. Aux jumelles, la tache floue se transforme en une nuée scintillante de plusieurs dizaines d'étoiles, dont certaines groupées en trios serrés. Il faut un ciel noir : depuis une ville, la Crèche a purement et simplement disparu.",
+        "Pour la trouver, oubliez le Cancer et servez-vous de ses voisins. Repérez Castor et Pollux d'un côté, Régulus de l'autre, et cherchez à mi-chemin. Un second amas, M67, se trouve plus au sud dans la même constellation : beaucoup plus lointain et beaucoup plus vieux, il compte parmi les amas ouverts les plus âgés que l'on connaisse, et demande un télescope. Quant à 55 Cancri, elle est théoriquement à la limite de l'œil nu sous un ciel excellent, mais vous ne verrez rien de ses cinq planètes."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "compass",
+      "wide": true,
+      "data": {
+        "title": "À mi-chemin de deux repères faciles",
+        "targets": [
+          {
+            "star": "Pollux",
+            "from": "Asellus Australis",
+            "label": "Pollux",
+            "sub": "Gémeaux",
+            "note": "Le premier repère. Avec Castor, c'est la paire la plus facile à identifier de tout ce quartier du ciel."
+          },
+          {
+            "star": "Regulus",
+            "from": "Acubens",
+            "label": "Régulus",
+            "sub": "Lion",
+            "note": "Le second. L'amas de la Crèche se trouve à peu près à mi-chemin entre Régulus et la paire Castor-Pollux."
+          }
+        ],
+        "notes": {
+          "Asellus Australis": "L'âne du Sud, la plus brillante du Cancer, et pourtant seulement de magnitude 3,9.",
+          "Asellus Borealis": "L'âne du Nord, magnitude 4,7. Les deux ânes bordent la mangeoire.",
+          "Acubens": "De l'arabe al-zubānā, « les pinces ». Alpha du Cancer, et à peine visible."
+        }
+      },
+      "cap": "Une constellation faible se cherche toujours entre deux constellations fortes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "read",
+          "title": "Webb suggère la présence d'une atmosphère autour d'une exoplanète rocheuse",
+          "src": "NASA, mai 2024",
+          "note": "Le communiqué de la découverte, avec les explications de Renyu Hu et la description du spectre obtenu. En anglais.",
+          "url": "https://science.nasa.gov/webb/news/nasas-webb-hints-at-possible-atmosphere-surrounding-rocky-exoplanet/"
+        },
+        {
+          "kind": "look",
+          "title": "55 Cancri e, vue d'artiste",
+          "src": "ESA/Webb",
+          "note": "La page de l'illustration, avec les paramètres de la planète et la mention explicite qu'il n'existe aucune image directe.",
+          "url": "https://esawebb.org/images/weic2412a"
+        },
+        {
+          "kind": "read",
+          "title": "Indices d'une possible atmosphère autour d'une exoplanète rocheuse",
+          "src": "Université de Berne, via myScience",
+          "note": "Le point de vue de l'équipe de CHEOPS, qui a préparé le terrain pour Webb. En français.",
+          "url": "https://www.myscience.ch/news/2024/indices_d_une_possible_atmosphere_autour_d_une_exoplanete_rocheuse-2024-unibe"
+        },
+        {
+          "kind": "deep",
+          "title": "Carbon and Oxygen Abundances in Cool Metal-rich Exoplanet Hosts : the C/O Ratio of 55 Cancri",
+          "src": "Johanna Teske et al., 2013",
+          "note": "L'article qui démonte la planète de diamant, avec l'historique complet du raisonnement de 2010 et de 2012. En anglais.",
+          "url": "https://arxiv.org/pdf/1309.6032"
+        },
+        {
+          "kind": "read",
+          "title": "La super-Terre de diamant est peut-être moins précieuse qu'on ne le croyait",
+          "src": "Astronomy.com",
+          "note": "Le communiqué de 2013, avec les explications de Teske sur la méthode. En anglais.",
+          "url": "https://www.astronomy.com/science/diamond-super-earth-may-not-be-quite-as-precious-as-once-thought/"
+        },
+        {
+          "kind": "look",
+          "title": "M44, NGC 2632",
+          "src": "NOIRLab",
+          "note": "La page de l'image en couleurs réelles prise au télescope de Schmidt Burrell, sur le Kitt Peak.",
+          "url": "https://noirlab.edu/public/images/noao-m44/"
+        },
+        {
+          "kind": "read",
+          "title": "Messier 44",
+          "src": "NASA / Hubble",
+          "note": "La fiche du catalogue Messier, avec les vues de Hubble sur les faubourgs de l'amas. En anglais.",
+          "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-44/"
+        },
+        {
+          "kind": "read",
+          "title": "M44, un amas bourdonnant d'étoiles",
+          "src": "Stelvision",
+          "note": "La fiche d'observation en français, avec les conseils pratiques et le repérage. Le meilleur point de départ pour aller voir.",
+          "url": "https://www.stelvision.com/astro/fiche-observation/m44-un-amas-bourdonnant-detoiles/"
+        },
+        {
+          "kind": "read",
+          "title": "Messier 44",
+          "src": "Observatoire de Paris",
+          "note": "La notice qui détaille la parenté avec les Hyades : même âge, même mouvement propre, origine commune.",
+          "url": "http://messier.obspm.fr/f/m044.html"
+        },
+        {
+          "kind": "deep",
+          "title": "A 5D view of the Alpha Per, Pleiades and Praesepe clusters",
+          "src": "arXiv, 2019",
+          "note": "L'état des mesures de distance, d'âge et de métallicité de la Crèche, avec l'historique des estimations. En anglais.",
+          "url": "https://arxiv.org/pdf/1906.03924"
+        },
+        {
+          "kind": "read",
+          "title": "55 Cancri e",
+          "src": "Wikipédia en français",
+          "note": "L'histoire complète de la planète, du transit de 2011 à la carte thermique de 2016 et à l'atmosphère de 2024.",
+          "url": "https://fr.wikipedia.org/wiki/55_Cancri_e"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Deux amas jumeaux séparés par le ciel",
-   "p": [
-    "L'amas de la Crèche a le même âge et le même mouvement dans la Galaxie que les Hyades, à l'autre bout du ciel d'hiver. La coïncidence est trop précise pour être fortuite : les deux amas se sont probablement formés du même nuage moléculaire avant de se séparer.",
-    "Deux fratries d'étoiles nées ensemble, aujourd'hui à quarante degrés l'une de l'autre. Comparer leurs populations est devenu un exercice classique pour tester les modèles d'évolution stellaire — mêmes conditions initiales, deux histoires."
-   ]
-  },
-  {
-   "t": "figure",
-   "src": "/skyculture/ekko/illustrations/cnc.webp",
-   "lit": true,
-   "roll": true,
-   "cap": "La figure du crabe plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
-   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
-  },
-  {
-   "t": "text",
-   "h": "Un laboratoire de naines blanches",
-   "p": [
-    "La Crèche contient plusieurs naines blanches, les cendres d'étoiles autrefois plus massives que le Soleil. Comme l'âge de l'amas est connu, on peut relier la masse actuelle de chaque naine à la masse de l'étoile dont elle provient.",
-    "C'est ce qu'on appelle la relation masse initiale — masse finale, et l'amas du Cancer est l'un des rares endroits où elle se mesure proprement. Une constellation sans éclat qui rend des services considérables."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Le tropique qui a déménagé",
-   "p": [
-    "Le tropique du Cancer porte ce nom parce que, il y a deux mille ans, le Soleil s'y trouvait au solstice d'été — le point le plus haut de sa course annuelle.",
-    "La précession l'a depuis déplacé : le Soleil du solstice de juin se tient aujourd'hui dans le Taureau. Le tropique, lui, garde son nom. Comme le point vernal dans le Bélier, c'est une toponymie céleste figée sur un état du ciel révolu."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Sur la route des planètes",
-   "p": [
-    "L'amas se trouve presque exactement sur l'écliptique, le chemin apparent du Soleil et des planètes. Conséquence agréable pour les observateurs : Vénus, Mars ou Jupiter viennent régulièrement s'y poser.",
-    "Le Cancer abrite aussi M67, l'un des amas ouverts les plus âgés connus — plusieurs milliards d'années, là où la plupart se dispersent en quelques centaines de millions. Un survivant."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "read",
-     "title": "M44 (amas ouvert)",
-     "src": "Wikipédia",
-     "note": "Distances mesurées, âge, population, et la parenté avec les Hyades.",
-     "url": "https://fr.wikipedia.org/wiki/M44_(amas_ouvert)"
-    },
-    {
-     "kind": "read",
-     "title": "Messier 44",
-     "src": "Observatoire de Paris — catalogue Messier",
-     "note": "La notice de référence : magnitudes et types spectraux des Ânes, et le récit d'Ératosthène.",
-     "url": "http://messier.obspm.fr/f/m044.html"
-    },
-    {
-     "kind": "read",
-     "title": "M44, un amas bourdonnant d'étoiles",
-     "src": "Stelvision",
-     "note": "Fiche d'observation, avec la méthode de repérage dans une constellation peu visible.",
-     "url": "https://www.stelvision.com/astro/fiche-observation/m44-un-amas-bourdonnant-detoiles/"
-    },
-    {
-     "kind": "read",
-     "title": "Amas de la Crèche (M44)",
-     "src": "Star Walk",
-     "note": "Un tour d'horizon en français, avec l'origine des noms Crèche, Praesepe et Ruche.",
-     "url": "https://starwalk.space/fr/news/m44-beehive-cluster"
-    },
-    {
-     "kind": "read",
-     "title": "M44 — amas de la Crèche",
-     "src": "Astroclub de la Girafe",
-     "note": "C'est ici qu'est exposée la parenté de mouvement entre la Crèche et les Hyades.",
-     "url": "https://www.astroclubdelagirafe.fr/2011/02/28/m44-amas-de-la-creche/"
-    }
-   ]
-  }
- ]
+  ]
 }
