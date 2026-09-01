@@ -1,324 +1,324 @@
 {
-  "constellation": "dra",
-  "tab": "science",
-  "blocks": [
+ "constellation": "dra",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le Dragon n'a aucune étoile brillante et s'étale mollement sur un huitième du ciel. Il contient pourtant deux choses considérables. D'abord le seul point vraiment immobile de la voûte : le pôle de l'écliptique, autour duquel le pôle céleste décrit son cercle de vingt-six mille ans. Toutes les étoiles polaires de l'histoire, passées et futures, tournent autour d'un point situé ici. Ensuite l'étoile qui a fourni la première preuve directe que la Terre se déplace."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Le Dragon n'a aucune étoile brillante et s'étale mollement sur un huitième du ciel. Il contient pourtant deux choses considérables. D'abord le seul point vraiment immobile de la voûte : le pôle de l'écliptique, autour duquel le pôle céleste décrit son cercle de vingt-six mille ans. Toutes les étoiles polaires de l'histoire, passées et futures, tournent autour d'un point situé ici. Ensuite l'étoile qui a fourni la première preuve directe que la Terre se déplace."
+     "v": "18h",
+     "u": "+66° 34′",
+     "l": "Les coordonnées du pôle nord de l'écliptique, dans le Dragon, à un souffle de la nébuleuse de l'Œil de Chat."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "18h",
-          "u": "+66° 34′",
-          "l": "Les coordonnées du pôle nord de l'écliptique, dans le Dragon, à un souffle de la nébuleuse de l'Œil de Chat."
-        },
-        {
-          "v": "20″",
-          "l": "L'écart annuel que Bradley a mesuré sur Gamma du Dragon en 1726. Bien trop grand pour une parallaxe, et dans le mauvais sens."
-        },
-        {
-          "v": "8ᵉ",
-          "u": "par l'éclat",
-          "l": "Le rang de Thuban dans sa propre constellation, alors qu'elle porte la lettre alpha. Bayer l'a nommée pour son passé, pas pour sa lumière."
-        },
-        {
-          "v": "6",
-          "u": "heures",
-          "l": "La durée des éclipses de Thuban, découvertes en 2020. Assez brèves pour avoir échappé à deux siècles d'observation depuis le sol."
-        },
-        {
-          "v": "1 500",
-          "u": "ans",
-          "l": "L'intervalle entre les bouffées de matière qui ont formé les coquilles de l'Œil de Chat, empilées comme les pelures d'un oignon."
-        },
-        {
-          "v": "280 000",
-          "u": "années-lumière",
-          "l": "La longueur de la queue de la galaxie du Têtard, arrachée par une collision il y a cent millions d'années."
-        }
-      ]
+     "v": "20″",
+     "l": "L'écart annuel que Bradley a mesuré sur Gamma du Dragon en 1726. Bien trop grand pour une parallaxe, et dans le mauvais sens."
     },
     {
-      "t": "text",
-      "h": "Le vrai pivot du ciel",
-      "p": [
-        "On apprend que le ciel tourne autour de l'étoile polaire. C'est vrai pour une nuit, et faux pour un millénaire. Le pôle céleste, direction de l'axe de rotation de la Terre, se déplace lui-même, et il décrit un grand cercle sur la voûte. Le centre de ce cercle, lui, ne bouge pas : c'est le pôle de l'écliptique, la perpendiculaire au plan de l'orbite terrestre. Il se trouve dans le Dragon, à dix-huit heures d'ascension droite et soixante-six degrés trente-quatre de déclinaison, tout près de la nébuleuse de l'Œil de Chat.",
-        "Le pôle céleste tourne autour de ce point à une distance angulaire de vingt-trois degrés vingt-sept, ce qui est exactement l'inclinaison de l'axe terrestre, et il met environ vingt-six mille ans à faire le tour. Conséquence : toutes les étoiles polaires que l'humanité a connues et connaîtra sont réparties le long d'un cercle centré sur le Dragon. Thuban hier, Polaris aujourd'hui, Erraï puis Deneb puis Véga demain. Le dragon ne garde pas seulement le pôle, il en est le compas."
-      ]
+     "v": "8ᵉ",
+     "u": "par l'éclat",
+     "l": "Le rang de Thuban dans sa propre constellation, alors qu'elle porte la lettre alpha. Bayer l'a nommée pour son passé, pas pour sa lumière."
     },
     {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "La ronde des étoiles polaires, vue d'ici",
-        "targets": [
-          {
-            "star": "Polaris",
-            "from": "Thuban",
-            "label": "Polaris",
-            "sub": "Petite Ourse",
-            "note": "L'étoile polaire actuelle, et la mieux placée de tout le cycle. Elle passera au plus près du pôle vers 2100."
-          },
-          {
-            "star": "Errai",
-            "from": "Thuban",
-            "label": "Errai",
-            "sub": "Céphée",
-            "note": "La prochaine, vers l'an 4000. Elle passera à quelques degrés du pôle seulement, bien moins commodément que Polaris."
-          },
-          {
-            "star": "Vega",
-            "from": "Thuban",
-            "label": "Véga",
-            "sub": "Lyre",
-            "note": "Dans une douzaine de milliers d'années. La plus brillante des étoiles polaires du cycle, mais à plusieurs degrés du pôle."
-          }
-        ],
-        "notes": {
-          "Thuban": "L'étoile polaire des bâtisseurs de pyramides, de 3942 à 1793 avant notre ère.",
-          "Eltanin": "L'œil du Dragon, et l'étoile qui a démontré que la Terre se déplace.",
-          "Edasich": "De l'arabe al-dhīkh, « l'hyène mâle ». Elle abrite une planète géante."
-        }
-      },
-      "cap": "Les trois cibles sont sur un même cercle, centré sur un point du Dragon. C'est le cercle de précession.",
-      "credit": "Schéma Ekko of Beyond."
+     "v": "6",
+     "u": "heures",
+     "l": "La durée des éclipses de Thuban, découvertes en 2020. Assez brèves pour avoir échappé à deux siècles d'observation depuis le sol."
     },
     {
-      "t": "text",
-      "h": "Thuban, et sa surprise de 2020",
-      "p": [
-        "Elle porte la lettre alpha et n'est que la huitième étoile de la constellation par l'éclat. Johann Bayer l'a désignée ainsi pour son histoire : de 3942 à 1793 avant notre ère, Thuban a été l'étoile la plus proche du pôle nord céleste. C'était l'étoile polaire des bâtisseurs de pyramides, et un conduit de la grande pyramide de Khéops est orienté dans sa direction. Le nom vient de l'arabe et signifie simplement le serpent, ou le dragon.",
-        "En janvier 2020, une équipe travaillant sur les données du satellite TESS a annoncé une découverte qui a surpris tout le monde, y compris elle-même. On savait depuis longtemps que Thuban est une étoile double, avec une période de cinquante et un jours. On ne savait pas que les deux composantes s'éclipsent mutuellement. La raison de cet oubli est instructive : les éclipses ne durent que six heures, ce qui les rend faciles à rater depuis le sol, et l'étoile est si brillante qu'elle aurait saturé les détecteurs de Kepler. Il fallait un satellite qui observe en continu et supporte les étoiles vives. La composante principale mesure 4,3 fois le Soleil et sa surface atteint 9 700 degrés, soit soixante-dix pour cent de plus que la nôtre."
-      ]
+     "v": "1 500",
+     "u": "ans",
+     "l": "L'intervalle entre les bouffées de matière qui ont formé les coquilles de l'Œil de Chat, empilées comme les pelures d'un oignon."
     },
     {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "L'étoile qui a prouvé que la Terre bouge",
-        "events": [
-          {
-            "y": 1670,
-            "when": "avant Bradley",
-            "label": "Hooke et Flamsteed s'y cassent les dents",
-            "note": "Tous deux avaient observé Gamma du Dragon et noté un déplacement apparent, sans parvenir à l'expliquer."
-          },
-          {
-            "y": 1725,
-            "label": "Bradley et Molyneux installent un secteur zénithal",
-            "note": "Ils choisissent cette étoile parce qu'elle passe exactement au zénith de Londres, ce qui annule presque les effets de la réfraction atmosphérique."
-          },
-          {
-            "y": 1726,
-            "label": "L'étoile dérive de vingt secondes d'arc",
-            "note": "En mars elle est vingt secondes plus au sud, en juin elle est revenue, en septembre elle est vingt secondes au nord. Un cycle de douze mois, et le mauvais sens pour une parallaxe."
-          },
-          {
-            "y": 1728,
-            "label": "Bradley comprend : c'est la vitesse de la lumière",
-            "note": "Molyneux meurt cette année-là. Bradley relie le déplacement à la vitesse finie de la lumière, que Rømer avait mesurée, combinée au mouvement orbital de la Terre."
-          },
-          {
-            "y": 1748,
-            "label": "Il découvre aussi la nutation",
-            "note": "Une petite oscillation de l'axe terrestre provoquée par la Lune, trouvée en prolongeant vingt ans les mêmes mesures."
-          },
-          {
-            "y": 1873,
-            "label": "Airy l'appelle l'étoile natale de l'astronomie moderne",
-            "note": "La formule est de George Airy, astronome royal. Elle dit bien ce qu'elle veut dire : c'est ici que la mesure a tranché une question de physique."
-          }
-        ]
-      },
-      "cap": "Une parallaxe manquée qui a donné mieux qu'une parallaxe. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "L'aberration, ou comment rater une mesure utilement",
-      "p": [
-        "James Bradley et Samuel Molyneux voulaient mesurer la parallaxe d'une étoile, c'est-à-dire le minuscule balancement annuel que le déplacement de la Terre devrait provoquer sur sa position apparente. Depuis Copernic, la question restait ouverte : personne n'avait jamais observé directement ce mouvement. Ils choisissent Gamma du Dragon, l'un des deux yeux de l'animal, parce qu'elle passe au zénith de Londres, position idéale pour éliminer la réfraction. Ils installent un instrument spécialisé et observent.",
-        "Ils trouvent bien un déplacement annuel, mais il ne colle pas. Trop grand, une vingtaine de secondes d'arc, et surtout décalé d'un quart de période par rapport à ce qu'une parallaxe produirait. En septembre 1728, Bradley comprend. Rømer avait montré un demi-siècle plus tôt que la lumière met du temps à voyager. Si la Terre se déplace pendant que la lumière descend dans le tube du télescope, il faut incliner légèrement l'instrument, exactement comme on incline un parapluie quand on court sous la pluie. Le déplacement observé ne mesure pas la distance de l'étoile, il mesure le rapport entre la vitesse de la Terre et celle de la lumière. C'est la première démonstration observationnelle que notre planète est en mouvement, et elle est tombée d'une expérience manquée."
-      ]
-    },
-    {
-      "t": "quote",
-      "p": "L'étoile natale de l'astronomie moderne.",
-      "who": "George Airy, astronome royal, à propos de Gamma du Dragon, 1873"
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/dra/oeil-de-chat-euclid-hubble.jpg",
-      "page": "https://esahubble.org/images/potm2602a/",
-      "wide": true,
-      "cap": "L'Œil de Chat par deux télescopes à la fois, image du mois publiée par l'ESA en mars 2026. Le champ large d'Euclid, en visible et proche infrarouge, montre le halo de fragments de gaz éjectés bien avant la nébuleuse centrale ; Hubble en donne le cœur, avec ses coquilles emboîtées, ses jets et ses nœuds de choc. Cliquez pour agrandir.",
-      "credit": "ESA/Webb, ESA/Hubble et NASA, ESA/Euclid, Euclid Consortium"
-    },
-    {
-      "t": "text",
-      "h": "Où l'on a compris ce qu'est une nébuleuse",
-      "p": [
-        "William Herschel repère l'objet en 1786. Mais la date qui compte est le 24 août 1864 : ce soir-là, dans son laboratoire privé, William Huggins braque un spectroscope à prisme sur cette nébuleuse. C'est la première fois qu'on fait ça sur une nébuleuse planétaire, et le résultat est décisif. Le spectre ne ressemble pas à celui d'une étoile ni à celui d'un amas : ce sont des raies d'émission isolées, la signature d'un gaz. Huggins vient de séparer, d'un seul geste, les nébuleuses gazeuses de ce que nous appelons aujourd'hui des galaxies. Une des grandes questions du XIXᵉ siècle est tranchée par un spectre.",
-        "Le nom de « nébuleuse planétaire » est d'ailleurs un contresens hérité des premières lunettes, qui montraient un petit disque rond. Il n'y a aucune planète là-dedans : c'est le gaz expulsé par une étoile comparable au Soleil en train de mourir. Les images de Hubble de 1995 ont révolutionné la compréhension de ces objets en montrant que cette rondeur apparente cachait une architecture d'une complexité inattendue. Dans le cas de l'Œil de Chat, l'étoile a expulsé sa matière par bouffées espacées d'environ mille cinq cents ans, ce qui a construit des coquilles concentriques. La distance, elle, a longtemps été donnée à trois mille années-lumière ; les mesures de Gaia la placent plutôt à quatre mille quatre cents."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/dra/tetard-arp188-hubble.jpg",
-      "page": "https://esahubble.org/images/heic0206a/",
-      "wide": true,
-      "cap": "La galaxie du Têtard, à quatre cent vingt millions d'années-lumière. Sa queue de deux cent quatre-vingt mille années-lumière a été arrachée par le passage d'une petite galaxie compacte et bleue, visible en haut à gauche, aujourd'hui à trois cent mille années-lumière derrière elle. Les points brillants dans la queue sont de jeunes amas d'étoiles nés du choc.",
-      "credit": "NASA, ESA et l'équipe scientifique ACS"
-    },
-    {
-      "t": "text",
-      "h": "Six mille galaxies dans un seul champ",
-      "p": [
-        "Cette image a une portée qui dépasse son sujet. Elle a été prise les 1ᵉʳ et 9 avril 2002, en huit heures de pose, avec la caméra ACS que les astronautes venaient d'installer sur Hubble. C'était une image de démonstration, destinée à montrer ce que l'instrument savait faire. Le résultat a dépassé les attentes : derrière le Têtard, on compte environ six mille galaxies d'arrière-plan, soit deux fois plus que dans le champ profond de Hubble de 1995, obtenu avec la caméra précédente.",
-        "Autrement dit, une image faite pour tester un appareil est devenue, par accident, l'un des relevés profonds les plus riches de son époque. Les galaxies qu'on y distingue couvrent près de treize milliards d'années d'histoire cosmique. Le Dragon n'y est pour rien, il se trouvait simplement là où l'on a pointé. Mais cela dit quelque chose de la densité réelle du ciel : n'importe quelle direction, observée assez longtemps, est saturée de galaxies."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "bars",
-      "wide": true,
-      "data": {
-        "title": "Les sursauts des Draconides",
-        "unit": "météores/heure",
-        "items": [
-          {
-            "n": "1933",
-            "v": 6000,
-            "note": "Le premier orage, totalement inattendu. Les observateurs de l'époque rapportent entre 2 400 et 5 400 par heure ; une réestimation de 1995 monte jusqu'à 10 000."
-          },
-          {
-            "n": "1946",
-            "v": 3000,
-            "note": "Le second orage. Certaines sources françaises citent 6 800 par heure, observés depuis la Tchécoslovaquie."
-          },
-          {
-            "n": "1998",
-            "v": 720,
-            "note": "Un sursaut net, et cette fois correctement prévu."
-          },
-          {
-            "n": "2011",
-            "v": 300,
-            "note": "Annoncé par plusieurs équipes, dont l'IMCCE en France, qui avait monté une campagne d'observation."
-          },
-          {
-            "n": "2012",
-            "v": 1000,
-            "note": "Détecté au radar, presque invisible à l'œil nu. Personne ne l'avait annoncé."
-          },
-          {
-            "n": "2018",
-            "v": 150,
-            "note": "Le dernier sursaut en date, produit par une traînée de poussière libérée en 1952."
-          }
-        ]
-      },
-      "cap": "Entre ces dates, l'essaim se contente de quelques météores par heure, quand il se manifeste.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "L'essaim qui n'obéit à personne",
-      "p": [
-        "Chaque année autour du 8 octobre, la Terre croise la traînée de la comète 21P/Giacobini-Zinner, découverte à l'Observatoire de Nice par Michel Giacobini le 20 décembre 1900 et retrouvée en 1913 par l'Allemand Ernst Zinner. La comète boucle son orbite en six ans et demi. Les météores semblent jaillir de la tête du Dragon, ils arrivent lentement pour des météores, vingt kilomètres par seconde, et la plupart des années il ne se passe rien du tout.",
-        "Sauf quand il se passe quelque chose. Les orages de 1933 et 1946 comptent parmi les plus spectaculaires de l'histoire moderne de l'astronomie. Et l'essaim a la réputation, méritée, de ne suivre aucune prévision : les annonces des années 1970 et 1980 sont restées sans suite, le sursaut de 2005 est arrivé sans avertissement, celui de 2012 non plus. La faute à l'orbite de la comète, remaniée par Jupiter et par des forces non gravitationnelles, ce qui prive les modélisateurs d'une éphéméride fiable avant les années 1970. Autre curiosité de cet essaim : la comète a été le premier objet de ce type visité par un engin spatial, la sonde International Cometary Explorer traversant sa queue de plasma le 11 septembre 1985."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "Méfiez-vous des chiffres des Draconides",
-      "p": "Les taux horaires que vous lirez pour 1933 et 1946 varient du simple au quadruple selon la source, et ce n'est pas de la négligence. Pour 1933, les observateurs européens et américains de l'époque ont rapporté entre 2 400 et 5 400 météores par heure, une réestimation publiée en 1995 propose 10 000 ± 2 000, et beaucoup de fiches donnent 6 000. Pour 1946, on trouve 3 000 dans certaines tables et 6 800 dans d'autres. Trois raisons à cela : le taux horaire zénithal est une grandeur reconstruite, pas une mesure directe ; les comptages visuels et radar divergent d'un facteur quatre à cinq parce que le radar détecte des grains plus petits ; et les conditions d'observation de 1933 et 1946 n'avaient rien de standardisé. Quand une fiche annonce un chiffre net sans dire d'où il vient, elle vous cache un désaccord réel."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "look",
-          "title": "L'Œil de Chat par Euclid et Hubble",
-          "src": "ESA/Hubble, image du mois de mars 2026",
-          "note": "Le communiqué qui accompagne l'image, avec la distance révisée par Gaia. En anglais.",
-          "url": "https://esahubble.org/images/potm2602a/"
-        },
-        {
-          "kind": "read",
-          "title": "Surprise : TESS montre que l'ancienne étoile polaire s'éclipse",
-          "src": "NASA, janvier 2020",
-          "note": "Le communiqué, avec l'explication de la raison pour laquelle personne ne l'avait vu avant. En anglais.",
-          "url": "https://www.nasa.gov/universe/surprise-tess-shows-ancient-north-star-undergoes-eclipses/"
-        },
-        {
-          "kind": "deep",
-          "title": "A Dance with Dragons : TESS reveals α Draconis is a detached eclipsing binary",
-          "src": "Research Notes of the AAS, 2019",
-          "note": "La note de découverte, deux pages, avec la courbe de lumière et la profondeur des éclipses. En anglais.",
-          "url": "https://arxiv.org/pdf/1910.12449"
-        },
-        {
-          "kind": "read",
-          "title": "James Bradley",
-          "src": "PG Astronomie",
-          "note": "Le récit détaillé de la découverte de l'aberration, y compris l'anecdote du bateau qui a mis Bradley sur la voie. En français.",
-          "url": "https://pg-astro.fr/grands-astronomes/le-grand-siecle/james-bradley.html"
-        },
-        {
-          "kind": "look",
-          "title": "La galaxie du Têtard vue par la caméra ACS",
-          "src": "ESA/Hubble",
-          "note": "La page de l'image de 2002, avec les fichiers en pleine résolution et le décompte des galaxies d'arrière-plan.",
-          "url": "https://esahubble.org/images/heic0206a/"
-        },
-        {
-          "kind": "read",
-          "title": "Pôle de l'écliptique",
-          "src": "Wikipédia en français",
-          "note": "Les coordonnées exactes du point immobile, et la géométrie du cercle de précession.",
-          "url": "https://fr.wikipedia.org/wiki/P%C3%B4le_de_l'%C3%A9cliptique"
-        },
-        {
-          "kind": "deep",
-          "title": "Radar Observations of the 2011 October Draconid Outburst",
-          "src": "Monthly Notices of the RAS",
-          "note": "Contient l'historique complet de l'essaim et la discussion des taux de 1933, sources à l'appui. En anglais.",
-          "url": "https://arxiv.org/pdf/1304.7841"
-        },
-        {
-          "kind": "deep",
-          "title": "The Unexpected 2012 Draconid Meteor Storm",
-          "src": "Monthly Notices of the RAS",
-          "note": "Pourquoi cet essaim échappe aux prévisions, et ce que le radar voit que l'œil ne voit pas. En anglais.",
-          "url": "https://arxiv.org/pdf/1311.1733"
-        },
-        {
-          "kind": "read",
-          "title": "Nébuleuse de l'Œil de Chat",
-          "src": "Wikipédia en français",
-          "note": "Pour l'observation de Huggins en 1864 et la place de cet objet dans l'histoire de la spectroscopie.",
-          "url": "https://fr.wikipedia.org/wiki/N%C3%A9buleuse_de_l'%C5%92il_de_Chat"
-        },
-        {
-          "kind": "read",
-          "title": "Draconides",
-          "src": "Wikipédia en français",
-          "note": "Le tableau des sursauts année par année, dont sont tirées les valeurs du schéma.",
-          "url": "https://fr.wikipedia.org/wiki/Draconides"
-        },
-        {
-          "kind": "read",
-          "title": "Galaxie naine du Dragon",
-          "src": "Wikipédia en français",
-          "note": "La satellite discrète de la Voie lactée, découverte en 1954, dominée par la matière noire. Un objet dont l'onglet n'a pas eu la place de parler.",
-          "url": "https://fr.wikipedia.org/wiki/Galaxie_naine_du_Dragon"
-        }
-      ]
+     "v": "280 000",
+     "u": "années-lumière",
+     "l": "La longueur de la queue de la galaxie du Têtard, arrachée par une collision il y a cent millions d'années."
     }
-  ]
+   ]
+  },
+  {
+   "t": "text",
+   "h": "Le vrai pivot du ciel",
+   "p": [
+    "On apprend que le ciel tourne autour de l'étoile polaire. C'est vrai pour une nuit, et faux pour un millénaire. Le pôle céleste, direction de l'axe de rotation de la Terre, se déplace lui-même, et il décrit un grand cercle sur la voûte. Le centre de ce cercle, lui, ne bouge pas : c'est le pôle de l'écliptique, la perpendiculaire au plan de l'orbite terrestre. Il se trouve dans le Dragon, à dix-huit heures d'ascension droite et soixante-six degrés trente-quatre de déclinaison, tout près de la nébuleuse de l'Œil de Chat.",
+    "Le pôle céleste tourne autour de ce point à une distance angulaire de vingt-trois degrés vingt-sept, ce qui est exactement l'inclinaison de l'axe terrestre, et il met environ vingt-six mille ans à faire le tour. Conséquence : toutes les étoiles polaires que l'humanité a connues et connaîtra sont réparties le long d'un cercle centré sur le Dragon. Thuban hier, Polaris aujourd'hui, Erraï puis Deneb puis Véga demain. Le dragon ne garde pas seulement le pôle, il en est le compas."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "La ronde des étoiles polaires, vue d'ici",
+    "targets": [
+     {
+      "star": "Polaris",
+      "from": "Thuban",
+      "label": "Polaris",
+      "sub": "Petite Ourse",
+      "note": "L'étoile polaire actuelle, et la mieux placée de tout le cycle. Elle passera au plus près du pôle vers 2100."
+     },
+     {
+      "star": "Errai",
+      "from": "Thuban",
+      "label": "Errai",
+      "sub": "Céphée",
+      "note": "La prochaine, vers l'an 4000. Elle passera à quelques degrés du pôle seulement, bien moins commodément que Polaris."
+     },
+     {
+      "star": "Vega",
+      "from": "Thuban",
+      "label": "Véga",
+      "sub": "Lyre",
+      "note": "Dans une douzaine de milliers d'années. La plus brillante des étoiles polaires du cycle, mais à plusieurs degrés du pôle."
+     }
+    ],
+    "notes": {
+     "Thuban": "L'étoile polaire des bâtisseurs de pyramides, de 3942 à 1793 avant notre ère.",
+     "Eltanin": "L'œil du Dragon, et l'étoile qui a démontré que la Terre se déplace.",
+     "Edasich": "De l'arabe al-dhīkh, « l'hyène mâle ». Elle abrite une planète géante."
+    }
+   },
+   "cap": "Les trois cibles sont sur un même cercle, centré sur un point du Dragon. C'est le cercle de précession.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Thuban, et sa surprise de 2020",
+   "p": [
+    "Elle porte la lettre alpha et n'est que la huitième étoile de la constellation par l'éclat. Johann Bayer l'a désignée ainsi pour son histoire : de 3942 à 1793 avant notre ère, Thuban a été l'étoile la plus proche du pôle nord céleste. C'était l'étoile polaire des bâtisseurs de pyramides, et un conduit de la grande pyramide de Khéops est orienté dans sa direction. Le nom vient de l'arabe et signifie simplement le serpent, ou le dragon.",
+    "En janvier 2020, une équipe travaillant sur les données du satellite TESS a annoncé une découverte qui a surpris tout le monde, y compris elle-même. On savait depuis longtemps que Thuban est une étoile double, avec une période de cinquante et un jours. On ne savait pas que les deux composantes s'éclipsent mutuellement. La raison de cet oubli est instructive : les éclipses ne durent que six heures, ce qui les rend faciles à rater depuis le sol, et l'étoile est si brillante qu'elle aurait saturé les détecteurs de Kepler. Il fallait un satellite qui observe en continu et supporte les étoiles vives. La composante principale mesure 4,3 fois le Soleil et sa surface atteint 9 700 degrés, soit soixante-dix pour cent de plus que la nôtre."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "L'étoile qui a prouvé que la Terre bouge",
+    "events": [
+     {
+      "y": 1670,
+      "when": "avant Bradley",
+      "label": "Hooke et Flamsteed s'y cassent les dents",
+      "note": "Tous deux avaient observé Gamma du Dragon et noté un déplacement apparent, sans parvenir à l'expliquer."
+     },
+     {
+      "y": 1725,
+      "label": "Bradley et Molyneux installent un secteur zénithal",
+      "note": "Ils choisissent cette étoile parce qu'elle passe exactement au zénith de Londres, ce qui annule presque les effets de la réfraction atmosphérique."
+     },
+     {
+      "y": 1726,
+      "label": "L'étoile dérive de vingt secondes d'arc",
+      "note": "En mars elle est vingt secondes plus au sud, en juin elle est revenue, en septembre elle est vingt secondes au nord. Un cycle de douze mois, et le mauvais sens pour une parallaxe."
+     },
+     {
+      "y": 1728,
+      "label": "Bradley comprend : c'est la vitesse de la lumière",
+      "note": "Molyneux meurt cette année-là. Bradley relie le déplacement à la vitesse finie de la lumière, que Rømer avait mesurée, combinée au mouvement orbital de la Terre."
+     },
+     {
+      "y": 1748,
+      "label": "Il découvre aussi la nutation",
+      "note": "Une petite oscillation de l'axe terrestre provoquée par la Lune, trouvée en prolongeant vingt ans les mêmes mesures."
+     },
+     {
+      "y": 1873,
+      "label": "Airy l'appelle l'étoile natale de l'astronomie moderne",
+      "note": "La formule est de George Airy, astronome royal. Elle dit bien ce qu'elle veut dire : c'est ici que la mesure a tranché une question de physique."
+     }
+    ]
+   },
+   "cap": "Une parallaxe manquée qui a donné mieux qu'une parallaxe. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "L'aberration, ou comment rater une mesure utilement",
+   "p": [
+    "James Bradley et Samuel Molyneux voulaient mesurer la parallaxe d'une étoile, c'est-à-dire le minuscule balancement annuel que le déplacement de la Terre devrait provoquer sur sa position apparente. Depuis Copernic, la question restait ouverte : personne n'avait jamais observé directement ce mouvement. Ils choisissent Gamma du Dragon, l'un des deux yeux de l'animal, parce qu'elle passe au zénith de Londres, position idéale pour éliminer la réfraction. Ils installent un instrument spécialisé et observent.",
+    "Ils trouvent bien un déplacement annuel, mais il ne colle pas. Trop grand, une vingtaine de secondes d'arc, et surtout décalé d'un quart de période par rapport à ce qu'une parallaxe produirait. En septembre 1728, Bradley comprend. Rømer avait montré un demi-siècle plus tôt que la lumière met du temps à voyager. Si la Terre se déplace pendant que la lumière descend dans le tube du télescope, il faut incliner légèrement l'instrument, exactement comme on incline un parapluie quand on court sous la pluie. Le déplacement observé ne mesure pas la distance de l'étoile, il mesure le rapport entre la vitesse de la Terre et celle de la lumière. C'est la première démonstration observationnelle que notre planète est en mouvement, et elle est tombée d'une expérience manquée."
+   ]
+  },
+  {
+   "t": "quote",
+   "p": "L'étoile natale de l'astronomie moderne.",
+   "who": "George Airy, astronome royal, à propos de Gamma du Dragon, 1873"
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/dra/potm2602a.jpg",
+   "page": "https://esahubble.org/images/potm2602a/",
+   "wide": true,
+   "cap": "L'Œil de Chat par deux télescopes à la fois, image du mois publiée par l'ESA en mars 2026. Le champ large d'Euclid, en visible et proche infrarouge, montre le halo de fragments de gaz éjectés bien avant la nébuleuse centrale ; Hubble en donne le cœur, avec ses coquilles emboîtées, ses jets et ses nœuds de choc. Cliquez pour agrandir.",
+   "credit": "ESA/Webb, ESA/Hubble et NASA, ESA/Euclid, Euclid Consortium"
+  },
+  {
+   "t": "text",
+   "h": "Où l'on a compris ce qu'est une nébuleuse",
+   "p": [
+    "William Herschel repère l'objet en 1786. Mais la date qui compte est le 24 août 1864 : ce soir-là, dans son laboratoire privé, William Huggins braque un spectroscope à prisme sur cette nébuleuse. C'est la première fois qu'on fait ça sur une nébuleuse planétaire, et le résultat est décisif. Le spectre ne ressemble pas à celui d'une étoile ni à celui d'un amas : ce sont des raies d'émission isolées, la signature d'un gaz. Huggins vient de séparer, d'un seul geste, les nébuleuses gazeuses de ce que nous appelons aujourd'hui des galaxies. Une des grandes questions du XIXᵉ siècle est tranchée par un spectre.",
+    "Le nom de « nébuleuse planétaire » est d'ailleurs un contresens hérité des premières lunettes, qui montraient un petit disque rond. Il n'y a aucune planète là-dedans : c'est le gaz expulsé par une étoile comparable au Soleil en train de mourir. Les images de Hubble de 1995 ont révolutionné la compréhension de ces objets en montrant que cette rondeur apparente cachait une architecture d'une complexité inattendue. Dans le cas de l'Œil de Chat, l'étoile a expulsé sa matière par bouffées espacées d'environ mille cinq cents ans, ce qui a construit des coquilles concentriques. La distance, elle, a longtemps été donnée à trois mille années-lumière ; les mesures de Gaia la placent plutôt à quatre mille quatre cents."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/dra/heic0206a.jpg",
+   "page": "https://esahubble.org/images/heic0206a/",
+   "wide": true,
+   "cap": "La galaxie du Têtard, à quatre cent vingt millions d'années-lumière. Sa queue de deux cent quatre-vingt mille années-lumière a été arrachée par le passage d'une petite galaxie compacte et bleue, visible en haut à gauche, aujourd'hui à trois cent mille années-lumière derrière elle. Les points brillants dans la queue sont de jeunes amas d'étoiles nés du choc.",
+   "credit": "NASA, ESA et l'équipe scientifique ACS"
+  },
+  {
+   "t": "text",
+   "h": "Six mille galaxies dans un seul champ",
+   "p": [
+    "Cette image a une portée qui dépasse son sujet. Elle a été prise les 1ᵉʳ et 9 avril 2002, en huit heures de pose, avec la caméra ACS que les astronautes venaient d'installer sur Hubble. C'était une image de démonstration, destinée à montrer ce que l'instrument savait faire. Le résultat a dépassé les attentes : derrière le Têtard, on compte environ six mille galaxies d'arrière-plan, soit deux fois plus que dans le champ profond de Hubble de 1995, obtenu avec la caméra précédente.",
+    "Autrement dit, une image faite pour tester un appareil est devenue, par accident, l'un des relevés profonds les plus riches de son époque. Les galaxies qu'on y distingue couvrent près de treize milliards d'années d'histoire cosmique. Le Dragon n'y est pour rien, il se trouvait simplement là où l'on a pointé. Mais cela dit quelque chose de la densité réelle du ciel : n'importe quelle direction, observée assez longtemps, est saturée de galaxies."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "bars",
+   "wide": true,
+   "data": {
+    "title": "Les sursauts des Draconides",
+    "unit": "météores/heure",
+    "items": [
+     {
+      "n": "1933",
+      "v": 6000,
+      "note": "Le premier orage, totalement inattendu. Les observateurs de l'époque rapportent entre 2 400 et 5 400 par heure ; une réestimation de 1995 monte jusqu'à 10 000."
+     },
+     {
+      "n": "1946",
+      "v": 3000,
+      "note": "Le second orage. Certaines sources françaises citent 6 800 par heure, observés depuis la Tchécoslovaquie."
+     },
+     {
+      "n": "1998",
+      "v": 720,
+      "note": "Un sursaut net, et cette fois correctement prévu."
+     },
+     {
+      "n": "2011",
+      "v": 300,
+      "note": "Annoncé par plusieurs équipes, dont l'IMCCE en France, qui avait monté une campagne d'observation."
+     },
+     {
+      "n": "2012",
+      "v": 1000,
+      "note": "Détecté au radar, presque invisible à l'œil nu. Personne ne l'avait annoncé."
+     },
+     {
+      "n": "2018",
+      "v": 150,
+      "note": "Le dernier sursaut en date, produit par une traînée de poussière libérée en 1952."
+     }
+    ]
+   },
+   "cap": "Entre ces dates, l'essaim se contente de quelques météores par heure, quand il se manifeste.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "L'essaim qui n'obéit à personne",
+   "p": [
+    "Chaque année autour du 8 octobre, la Terre croise la traînée de la comète 21P/Giacobini-Zinner, découverte à l'Observatoire de Nice par Michel Giacobini le 20 décembre 1900 et retrouvée en 1913 par l'Allemand Ernst Zinner. La comète boucle son orbite en six ans et demi. Les météores semblent jaillir de la tête du Dragon, ils arrivent lentement pour des météores, vingt kilomètres par seconde, et la plupart des années il ne se passe rien du tout.",
+    "Sauf quand il se passe quelque chose. Les orages de 1933 et 1946 comptent parmi les plus spectaculaires de l'histoire moderne de l'astronomie. Et l'essaim a la réputation, méritée, de ne suivre aucune prévision : les annonces des années 1970 et 1980 sont restées sans suite, le sursaut de 2005 est arrivé sans avertissement, celui de 2012 non plus. La faute à l'orbite de la comète, remaniée par Jupiter et par des forces non gravitationnelles, ce qui prive les modélisateurs d'une éphéméride fiable avant les années 1970. Autre curiosité de cet essaim : la comète a été le premier objet de ce type visité par un engin spatial, la sonde International Cometary Explorer traversant sa queue de plasma le 11 septembre 1985."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Méfiez-vous des chiffres des Draconides",
+   "p": "Les taux horaires que vous lirez pour 1933 et 1946 varient du simple au quadruple selon la source, et ce n'est pas de la négligence. Pour 1933, les observateurs européens et américains de l'époque ont rapporté entre 2 400 et 5 400 météores par heure, une réestimation publiée en 1995 propose 10 000 ± 2 000, et beaucoup de fiches donnent 6 000. Pour 1946, on trouve 3 000 dans certaines tables et 6 800 dans d'autres. Trois raisons à cela : le taux horaire zénithal est une grandeur reconstruite, pas une mesure directe ; les comptages visuels et radar divergent d'un facteur quatre à cinq parce que le radar détecte des grains plus petits ; et les conditions d'observation de 1933 et 1946 n'avaient rien de standardisé. Quand une fiche annonce un chiffre net sans dire d'où il vient, elle vous cache un désaccord réel."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "look",
+     "title": "L'Œil de Chat par Euclid et Hubble",
+     "src": "ESA/Hubble, image du mois de mars 2026",
+     "note": "Le communiqué qui accompagne l'image, avec la distance révisée par Gaia. En anglais.",
+     "url": "https://esahubble.org/images/potm2602a/"
+    },
+    {
+     "kind": "read",
+     "title": "Surprise : TESS montre que l'ancienne étoile polaire s'éclipse",
+     "src": "NASA, janvier 2020",
+     "note": "Le communiqué, avec l'explication de la raison pour laquelle personne ne l'avait vu avant. En anglais.",
+     "url": "https://www.nasa.gov/universe/surprise-tess-shows-ancient-north-star-undergoes-eclipses/"
+    },
+    {
+     "kind": "deep",
+     "title": "A Dance with Dragons : TESS reveals α Draconis is a detached eclipsing binary",
+     "src": "Research Notes of the AAS, 2019",
+     "note": "La note de découverte, deux pages, avec la courbe de lumière et la profondeur des éclipses. En anglais.",
+     "url": "https://arxiv.org/pdf/1910.12449"
+    },
+    {
+     "kind": "read",
+     "title": "James Bradley",
+     "src": "PG Astronomie",
+     "note": "Le récit détaillé de la découverte de l'aberration, y compris l'anecdote du bateau qui a mis Bradley sur la voie. En français.",
+     "url": "https://pg-astro.fr/grands-astronomes/le-grand-siecle/james-bradley.html"
+    },
+    {
+     "kind": "look",
+     "title": "La galaxie du Têtard vue par la caméra ACS",
+     "src": "ESA/Hubble",
+     "note": "La page de l'image de 2002, avec les fichiers en pleine résolution et le décompte des galaxies d'arrière-plan.",
+     "url": "https://esahubble.org/images/heic0206a/"
+    },
+    {
+     "kind": "read",
+     "title": "Pôle de l'écliptique",
+     "src": "Wikipédia en français",
+     "note": "Les coordonnées exactes du point immobile, et la géométrie du cercle de précession.",
+     "url": "https://fr.wikipedia.org/wiki/P%C3%B4le_de_l'%C3%A9cliptique"
+    },
+    {
+     "kind": "deep",
+     "title": "Radar Observations of the 2011 October Draconid Outburst",
+     "src": "Monthly Notices of the RAS",
+     "note": "Contient l'historique complet de l'essaim et la discussion des taux de 1933, sources à l'appui. En anglais.",
+     "url": "https://arxiv.org/pdf/1304.7841"
+    },
+    {
+     "kind": "deep",
+     "title": "The Unexpected 2012 Draconid Meteor Storm",
+     "src": "Monthly Notices of the RAS",
+     "note": "Pourquoi cet essaim échappe aux prévisions, et ce que le radar voit que l'œil ne voit pas. En anglais.",
+     "url": "https://arxiv.org/pdf/1311.1733"
+    },
+    {
+     "kind": "read",
+     "title": "Nébuleuse de l'Œil de Chat",
+     "src": "Wikipédia en français",
+     "note": "Pour l'observation de Huggins en 1864 et la place de cet objet dans l'histoire de la spectroscopie.",
+     "url": "https://fr.wikipedia.org/wiki/N%C3%A9buleuse_de_l'%C5%92il_de_Chat"
+    },
+    {
+     "kind": "read",
+     "title": "Draconides",
+     "src": "Wikipédia en français",
+     "note": "Le tableau des sursauts année par année, dont sont tirées les valeurs du schéma.",
+     "url": "https://fr.wikipedia.org/wiki/Draconides"
+    },
+    {
+     "kind": "read",
+     "title": "Galaxie naine du Dragon",
+     "src": "Wikipédia en français",
+     "note": "La satellite discrète de la Voie lactée, découverte en 1954, dominée par la matière noire. Un objet dont l'onglet n'a pas eu la place de parler.",
+     "url": "https://fr.wikipedia.org/wiki/Galaxie_naine_du_Dragon"
+    }
+   ]
+  }
+ ]
 }
