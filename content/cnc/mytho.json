@@ -1,279 +1,279 @@
 {
-  "constellation": "cnc",
-  "tab": "mytho",
-  "blocks": [
+ "constellation": "cnc",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Le héros de cette constellation est un crabe dont l'unique exploit fut de se faire écraser. Il pince le talon d'Héraclès pendant le combat contre l'Hydre, le demi-dieu l'écrase du pied, et Héra le met au ciel pour la peine : c'est le catastérisme le plus modeste de toute la voûte. Mais il y a autre chose, et de plus troublant. Quatre civilisations sans lien entre elles ont fait de ce coin de ciel presque vide le lieu de passage des âmes."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Le héros de cette constellation est un crabe dont l'unique exploit fut de se faire écraser. Il pince le talon d'Héraclès pendant le combat contre l'Hydre, le demi-dieu l'écrase du pied, et Héra le met au ciel pour la peine : c'est le catastérisme le plus modeste de toute la voûte. Mais il y a autre chose, et de plus troublant. Quatre civilisations sans lien entre elles ont fait de ce coin de ciel presque vide le lieu de passage des âmes."
+     "v": "Karkinos",
+     "l": "Le nom grec du crabe. Il pince le talon d'Héraclès, se fait écraser, et se retrouve au ciel pour ses efforts."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "Karkinos",
-          "l": "Le nom grec du crabe. Il pince le talon d'Héraclès, se fait écraser, et se retrouve au ciel pour ses efforts."
-        },
-        {
-          "v": "4",
-          "u": "cultures",
-          "l": "Babylone, l'Égypte, la Grèce et la Chine ont toutes associé cette région du ciel au passage des âmes ou à l'immortalité. La convergence intrigue."
-        },
-        {
-          "v": "2",
-          "u": "étoiles",
-          "l": "Le nombre d'étoiles du Cancer dépassant la quatrième magnitude. Depuis une ville, la constellation est purement et simplement invisible."
-        },
-        {
-          "v": "31ᵉ",
-          "u": "sur 88",
-          "l": "Sa place au classement par la taille, avec 506 degrés carrés. Elle est vaste et pratiquement vide."
-        },
-        {
-          "v": "MUL.AL.LUL",
-          "l": "Le nom babylonien, qui peut désigner aussi bien un crabe qu'une tortue serpentine. Sur les bornes gravées, c'est une tortue qui apparaît."
-        },
-        {
-          "v": "Al Tarf",
-          "l": "« La Fin », en arabe. L'étoile la plus brillante de la constellation, une géante orange très excentrée par rapport au reste de la figure."
-        }
-      ]
+     "v": "4",
+     "u": "cultures",
+     "l": "Babylone, l'Égypte, la Grèce et la Chine ont toutes associé cette région du ciel au passage des âmes ou à l'immortalité. La convergence intrigue."
     },
     {
-      "t": "figure",
-      "src": "/skyculture/ekko/illustrations/cnc.webp",
-      "lit": true,
-      "roll": true,
-      "wide": true,
-      "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Un Y renversé assez large, dont aucune étoile ne dépasse la magnitude 3,5. C'est la seule constellation du zodiaque dont on puisse dire qu'elle est, en pratique, invisible.",
-      "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+     "v": "2",
+     "u": "étoiles",
+     "l": "Le nombre d'étoiles du Cancer dépassant la quatrième magnitude. Depuis une ville, la constellation est purement et simplement invisible."
     },
     {
-      "t": "text",
-      "h": "Le catastérisme le plus modeste du ciel",
-      "p": [
-        "Deuxième travail d'Héraclès. Il affronte l'Hydre dans les marais de Lerne, une bête dont les têtes repoussent par deux chaque fois qu'il en écrase une. Héra, qui avait élevé le monstre et déteste le fils de Zeus, envoie un renfort : un crabe géant sorti de la mer voisine, Karkinos, qui pince fortement le héros au pied pour le faire tomber. Héraclès l'écrase du talon et poursuit le combat, qu'il finira par gagner avec l'aide de son neveu Iolaos et de quelques brandons enflammés. Pour récompenser le dévouement de l'animal, Héra le place parmi les étoiles.",
-        "Les sources sont nombreuses pour un épisode aussi mince : le Pseudo-Apollodore le raconte dans sa Bibliothèque, Hygin dans son Astronomie poétique, Ératosthène dans ses Catastérismes en citant l'Héracléide de Panyassis, et Platon lui-même y fait allusion dans l'Euthydème. Une variante mérite d'être signalée, parce qu'elle explique quelque chose : Héra aurait placé le crabe dans une région du ciel presque dépourvue d'étoiles brillantes, parce que malgré tout, il avait échoué. Le mythe rend compte de la faiblesse de la constellation, et c'est exactement ce que font les bons catastérismes."
-      ]
+     "v": "31ᵉ",
+     "u": "sur 88",
+     "l": "Sa place au classement par la taille, avec 506 degrés carrés. Elle est vaste et pratiquement vide."
     },
     {
-      "t": "figure",
-      "src": "/assets/img/constellations/cnc/amphore-louvre-heracles-hydre-crabe.jpg",
-      "page": "https://collections.louvre.fr/ark:/53355/cl010269800",
-      "wide": true,
-      "cap": "Cherchez le crabe. Sur cette amphore grecque à figures noires, Héraclès affronte l'Hydre de Lerne, barbu, vêtu de la peau de lion, une faucille à la main. Iolaos tire à l'arc, Athéna se tient près de lui, lance en main. Et l'inventaire du Louvre mentionne, au bas de la scène, un crabe. C'est notre constellation, peinte il y a deux mille six cents ans dans le seul rôle qu'elle ait jamais eu.",
-      "credit": "Amphore à figures noires — Musée du Louvre, département des Antiquités grecques, étrusques et romaines"
+     "v": "MUL.AL.LUL",
+     "l": "Le nom babylonien, qui peut désigner aussi bien un crabe qu'une tortue serpentine. Sur les bornes gravées, c'est une tortue qui apparaît."
     },
     {
-      "t": "text",
-      "h": "Le combat est toujours là",
-      "p": [
-        "Voici ce que la carte du ciel a de mieux à offrir sur ce sujet : les trois protagonistes sont voisins. Le Cancer touche l'Hydre, la plus longue constellation du ciel, celle que le crabe est venu défendre. Juste à côté se trouve le Lion, qui est le premier travail d'Héraclès, celui qui précède immédiatement l'Hydre. Et Hercule lui-même occupe une vaste région un peu plus loin. La deuxième tâche du héros est donc lisible en entier, avec ses figurants, dans un seul quartier du ciel de printemps.",
-        "Deux notes de prudence. La première concerne une version rationalisante, transmise depuis l'Antiquité : le roi de Lerne aurait fait appel à une armée de mercenaires cariens commandée par un homme nommé Crabe, et toute la légende ne serait qu'une bataille militaire embellie. C'est le genre de lecture évhémériste dont il faut se méfier, mais elle circule et vaut d'être connue. La seconde concerne Jorge Luis Borges, qui raconte dans son Livre des êtres imaginaires que Poséidon ranime le crabe écrasé et le transforme en monstre géant. C'est de la littérature du XXᵉ siècle, pas de la mythologie antique, et l'on trouve pourtant cette version présentée comme grecque un peu partout."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Les trois protagonistes, toujours en place",
-        "targets": [
-          {
-            "star": "Alphard",
-            "from": "Acubens",
-            "label": "Alphard",
-            "sub": "Hydre",
-            "note": "Le monstre que le crabe est venu défendre. C'est la plus longue constellation du ciel, et elle commence juste sous le Cancer."
-          },
-          {
-            "star": "Regulus",
-            "from": "Asellus Australis",
-            "label": "Régulus",
-            "sub": "Lion",
-            "note": "Le premier travail d'Héraclès, celui qui précède immédiatement l'Hydre. Deux travaux consécutifs, deux constellations voisines."
-          },
-          {
-            "star": "Rasalgethi",
-            "from": "Asellus Borealis",
-            "label": "Rasalgethi",
-            "sub": "Hercule",
-            "note": "Le héros en personne, un peu plus loin. Sur les vieux atlas, il a le pied posé sur la tête du Dragon."
-          }
-        ],
-        "notes": {
-          "Acubens": "De l'arabe pour « les pinces ». Alpha du Cancer, et à peine visible.",
-          "Asellus Australis": "L'âne du Sud, la plus brillante après Al Tarf, et pourtant de magnitude 3,9.",
-          "Al Tarf": "« La Fin ». Une géante orange soixante fois plus large que le Soleil, très à l'écart de la figure."
-        }
-      },
-      "cap": "Rarement une scène mythologique est aussi bien conservée dans la géographie du ciel.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "La porte des hommes",
-      "p": [
-        "Passons à ce qui est réellement intéressant. Il y a vingt siècles, le Soleil atteignait dans cette constellation sa déclinaison maximale, le solstice d'été. Le mot vient du latin sol stat, le Soleil s'arrête : à ce point extrême, il semble marquer une pause avant de reprendre une marche à reculons vers le sud. Certains auteurs ont suggéré que le nom même du crabe vient de là, par analogie avec la démarche latérale et rétrograde de l'animal. C'est une hypothèse, mais elle est jolie et elle a le mérite de relier le nom à une observation.",
-        "Or ce point du ciel n'était pas une simple borne de calendrier. Les Grecs appelaient le Cancer la Porte des hommes, parce que c'est par là, selon eux, que les âmes descendaient prendre possession des corps à la naissance. Le Capricorne, à l'opposé du zodiaque et au solstice d'hiver, était la porte de sortie. Cette doctrine des deux portes solsticiales, développée par les néoplatoniciens, fait du point le plus haut de la course solaire le lieu de l'incarnation. La constellation la plus pâle du zodiaque était donc, pour une partie du monde antique, la porte d'entrée de toute vie humaine."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/cnc/al-sufi-cancer-marsh144.jpg",
-      "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
-      "wide": true,
-      "cap": "Le Cancer dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. Sous le nom d'al-Saraṭān, la figure suit Ptolémée, avec les deux ânes et la mangeoire à leur place. Comme toutes les planches de l'ouvrage, elle est dessinée deux fois, vue du ciel et vue retournée sur un globe céleste.",
-      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
-    },
-    {
-      "t": "text",
-      "h": "Tortue, scarabée, refuge des âmes",
-      "p": [
-        "Le ciel babylonien nommait cette région MUL.AL.LUL, et le mot est ambigu : il peut désigner un crabe comme une tortue serpentine. L'archéologie tranche d'une manière inattendue. Sur les kudurru, ces bornes frontières gravées, l'image d'une tortue apparaît assez régulièrement, alors qu'aucun crabe n'a jamais été identifié sur aucun de ces monuments. Ce qui est devenu notre crabe était donc probablement une tortue. Et les spécialistes signalent un lien fort entre cette constellation babylonienne et les idées de mort et de passage aux Enfers, lien qui pourrait être à l'origine de l'association grecque ultérieure avec Héraclès et l'Hydre.",
-        "La suite est un enchaînement remarquable. Les Égyptiens, dit-on, y voyaient un scarabée, emblème sacré de l'immortalité. Les Grecs en font la Porte des hommes, par où entrent les âmes. Et les Chinois y placent le refuge des âmes, matérialisé précisément par l'amas de la Crèche, cette tache floue au milieu de la figure. Quatre traditions, un même thème : le passage entre les vivants et les morts. Il faut résister à la tentation d'en faire un archétype universel — nous verrons plus bas pourquoi — mais la coïncidence est assez frappante pour être posée sur la table."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Un animal qui n'a jamais tenu en place",
-        "events": [
-          {
-            "y": -1500,
-            "when": "Babylone",
-            "label": "MUL.AL.LUL, le crabe ou la tortue",
-            "note": "Le nom vaut pour les deux animaux. Sur les bornes kudurru, c'est une tortue qui apparaît ; aucun crabe n'y a jamais été trouvé."
-          },
-          {
-            "y": -430,
-            "when": "Euctémon, Vᵉ s. av. J.-C.",
-            "label": "Καρκίνος, plutôt l'écrevisse",
-            "note": "Les dictionnaires du grec rendent le mot par écrevisse plus volontiers que par crabe. La nuance survit dans les langues germaniques, où la constellation s'appelle Krebs."
-          },
-          {
-            "y": -270,
-            "when": "IIIᵉ s. av. J.-C.",
-            "label": "La Mangeoire et les Deux Ânes",
-            "note": "Le Pseudo-Théophraste puis Aratos attestent l'astérisme : l'amas est ἡ Φάτνη, la mangeoire, et les deux étoiles voisines οἱ Ὄνοι, les ânes."
-          },
-          {
-            "y": 150,
-            "when": "IIᵉ siècle",
-            "label": "Hygin raconte l'écrasement",
-            "note": "Dans l'Astronomie poétique : le crabe a mordu le pied d'Hercule depuis le marais, Hercule furieux l'a tué, et Junon l'a mis parmi les constellations."
-          },
-          {
-            "y": 1150,
-            "when": "XIIᵉ siècle",
-            "label": "Un coléoptère d'eau",
-            "note": "Un manuscrit astronomique illustré représente la figure comme un insecte aquatique. Une traduction latine de 1488 y verra une grande écrevisse."
-          },
-          {
-            "y": 1930,
-            "label": "Delporte trace les frontières",
-            "note": "Le Cancer reçoit 506 degrés carrés et devient officiellement la plus faible constellation du zodiaque, avec deux étoiles seulement au-dessus de la quatrième magnitude."
-          }
-        ]
-      },
-      "cap": "Crabe, écrevisse, tortue, scarabée, coléoptère d'eau : la figure a changé d'espèce à chaque relais. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Deux ânes, une mangeoire, et une figure balinaise",
-      "p": [
-        "L'astérisme central mérite qu'on y revienne, parce qu'il est plus ancien que le crabe dans les textes. Dès le IIIᵉ siècle avant notre ère, le Pseudo-Théophraste puis Aratos nomment l'amas ἡ Φάτνη, la Mangeoire, et les deux étoiles qui l'encadrent οἱ Ὄνοι, les Deux Ânes. Les Latins ont traduit sans se compliquer la vie : Praesepe et Aselli. Le mot grec avait plusieurs sens, lieu où l'on mange, mangeoire, crèche, ruche, ce qui explique la double postérité de l'objet, appelé la Crèche en français et la Ruche en anglais. Selon la version, les deux ânes se nourrissent tranquillement, ou bien ils sont les montures de Dionysos et de Silène dans la bataille contre les Titans, dont les braiements ont mis les géants en fuite.",
-        "Une dernière figure, et elle est contemporaine. L'Union astronomique internationale a donné à iota du Cancer le nom officiel de Yuyu, d'après une constellation balinaise qui occupe cette région du ciel. La liste des noms d'étoiles, longtemps composée de grec, de latin et d'arabe, s'ouvre depuis quelques années à d'autres traditions. Le crabe balinais est arrivé dans les catalogues internationaux vingt-cinq siècles après le crabe grec."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "La litanie des quatre cultures demande des sources",
-      "p": "Vous lirez partout la même phrase, souvent mot pour mot : « Cette constellation était appelée Tortue par les Babyloniens et Scarabée par les Égyptiens, quatre mille ans avant notre ère. » Trois problèmes. D'abord la date, qui est absurde : le zodiaque en tant que découpage de l'écliptique est une invention mésopotamienne du premier millénaire avant notre ère, et aucun système de signes n'existait au quatrième. Ensuite le scarabée égyptien, qui est répété sans référence de première main. Les zodiaques égyptiens qui nous sont parvenus, celui de Dendérah au premier chef, datent de l'époque gréco-romaine et empruntent leur découpage aux zodiaques babyloniens : ils ne témoignent pas d'une tradition égyptienne indépendante. Enfin la convergence sur le passage des âmes, qui est réelle mais inégalement établie : le lien babylonien avec les Enfers est une hypothèse de spécialistes, la Porte des hommes grecque est bien attestée chez les néoplatoniciens, et le « refuge des âmes » chinois est répété par des sources de vulgarisation sans que j'aie pu remonter à un texte. Ce qui est solide, en revanche, c'est le nom babylonien ambigu et l'absence de crabe sur les kudurru. Le reste mérite des guillemets."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "look",
-          "title": "Amphore : Héraclès et l'hydre de Lerne",
-          "src": "Musée du Louvre",
-          "note": "La notice du Louvre, dont l'inventaire du décor mentionne le crabe aux côtés d'Héraclès, d'Iolaos et d'Athéna.",
-          "url": "https://collections.louvre.fr/ark:/53355/cl010269800"
-        },
-        {
-          "kind": "look",
-          "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
-          "src": "Bodleian Library, Oxford",
-          "note": "Les cinquante-sept planches numérisées, dont celle du Cancer sous le nom d'al-Saraṭān.",
-          "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
-        },
-        {
-          "kind": "read",
-          "title": "Karkinos, le crabe géant",
-          "src": "Theoi Project",
-          "note": "Tous les passages antiques rassemblés et traduits, du Pseudo-Apollodore à Hygin, avec les références aux vases peints. En anglais.",
-          "url": "https://www.theoi.com/Ther/Karkinos.html"
-        },
-        {
-          "kind": "read",
-          "title": "Héraclès et l'hydre de Lerne",
-          "src": "Mythologica",
-          "note": "Le récit détaillé du deuxième travail, avec l'intervention du crabe et la version rationalisante des mercenaires cariens. En français.",
-          "url": "https://mythologica.fr/grec/heraclet02.htm"
-        },
-        {
-          "kind": "read",
-          "title": "Constellation du Cancer",
-          "src": "Ciel de nuit",
-          "note": "La source la mieux documentée en français sur MUL.AL.LUL, les tortues des kudurru et le lien babylonien avec les Enfers.",
-          "url": "https://www.ciel-de-nuit.com/constellation-du-cancer"
-        },
-        {
-          "kind": "read",
-          "title": "Cancer (constellation)",
-          "src": "Wikipédia en français",
-          "note": "La section sur le ciel grec et arabe : Καρκίνος chez Euctémon, la Mangeoire et les Deux Ânes chez Aratos, et les stations lunaires.",
-          "url": "https://fr.wikipedia.org/wiki/Cancer_(constellation)"
-        },
-        {
-          "kind": "read",
-          "title": "Cancer (mythology)",
-          "src": "Wikipédia en anglais",
-          "note": "L'article consacré au personnage de Karkinos, avec la liste des auteurs antiques qui le mentionnent.",
-          "url": "https://en.wikipedia.org/wiki/Cancer_(mythology)"
-        },
-        {
-          "kind": "read",
-          "title": "Catastérismes",
-          "src": "Wikipédia en français",
-          "note": "L'ouvrage du Pseudo-Ératosthène résumé constellation par constellation, avec la notice du Cancer et son nombre d'étoiles.",
-          "url": "https://fr.wikipedia.org/wiki/Catast%C3%A9rismes"
-        },
-        {
-          "kind": "read",
-          "title": "Constellation du Cancer",
-          "src": "Cosmodixi",
-          "note": "Pour l'explication du solstice, du sol stat et de la démarche à reculons du crabe. En français.",
-          "url": "https://www.cosmodixi.fr/ciel/cancer.php"
-        },
-        {
-          "kind": "read",
-          "title": "Cancer, définition",
-          "src": "Techno-Science",
-          "note": "La fiche qui rassemble Al Tarf, les deux ânes et la Porte des hommes. Utile, mais c'est aussi un bon exemple de la litanie sans sources dont parle la mise en garde.",
-          "url": "https://www.techno-science.net/glossaire-definition/Cancer-constellation.html"
-        },
-        {
-          "kind": "read",
-          "title": "Hydre de Lerne",
-          "src": "Encyclopédie académique",
-          "note": "Le récit du combat et la version militaire où le roi de Lerne engage un mercenaire carien nommé Crabe. En français.",
-          "url": "https://fr-academic.com/dic.nsf/frwiki/797212"
-        }
-      ]
+     "v": "Al Tarf",
+     "l": "« La Fin », en arabe. L'étoile la plus brillante de la constellation, une géante orange très excentrée par rapport au reste de la figure."
     }
-  ]
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/cnc.webp",
+   "lit": true,
+   "roll": true,
+   "wide": true,
+   "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Un Y renversé assez large, dont aucune étoile ne dépasse la magnitude 3,5. C'est la seule constellation du zodiaque dont on puisse dire qu'elle est, en pratique, invisible.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Le catastérisme le plus modeste du ciel",
+   "p": [
+    "Deuxième travail d'Héraclès. Il affronte l'Hydre dans les marais de Lerne, une bête dont les têtes repoussent par deux chaque fois qu'il en écrase une. Héra, qui avait élevé le monstre et déteste le fils de Zeus, envoie un renfort : un crabe géant sorti de la mer voisine, Karkinos, qui pince fortement le héros au pied pour le faire tomber. Héraclès l'écrase du talon et poursuit le combat, qu'il finira par gagner avec l'aide de son neveu Iolaos et de quelques brandons enflammés. Pour récompenser le dévouement de l'animal, Héra le place parmi les étoiles.",
+    "Les sources sont nombreuses pour un épisode aussi mince : le Pseudo-Apollodore le raconte dans sa Bibliothèque, Hygin dans son Astronomie poétique, Ératosthène dans ses Catastérismes en citant l'Héracléide de Panyassis, et Platon lui-même y fait allusion dans l'Euthydème. Une variante mérite d'être signalée, parce qu'elle explique quelque chose : Héra aurait placé le crabe dans une région du ciel presque dépourvue d'étoiles brillantes, parce que malgré tout, il avait échoué. Le mythe rend compte de la faiblesse de la constellation, et c'est exactement ce que font les bons catastérismes."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/cnc/imgi_58_0000826204_og.jpg",
+   "page": "https://collections.louvre.fr/ark:/53355/cl010269800",
+   "wide": true,
+   "cap": "Cherchez le crabe. Sur cette amphore grecque à figures noires, Héraclès affronte l'Hydre de Lerne, barbu, vêtu de la peau de lion, une faucille à la main. Iolaos tire à l'arc, Athéna se tient près de lui, lance en main. Et l'inventaire du Louvre mentionne, au bas de la scène, un crabe. C'est notre constellation, peinte il y a deux mille six cents ans dans le seul rôle qu'elle ait jamais eu.",
+   "credit": "Amphore à figures noires — Musée du Louvre, département des Antiquités grecques, étrusques et romaines"
+  },
+  {
+   "t": "text",
+   "h": "Le combat est toujours là",
+   "p": [
+    "Voici ce que la carte du ciel a de mieux à offrir sur ce sujet : les trois protagonistes sont voisins. Le Cancer touche l'Hydre, la plus longue constellation du ciel, celle que le crabe est venu défendre. Juste à côté se trouve le Lion, qui est le premier travail d'Héraclès, celui qui précède immédiatement l'Hydre. Et Hercule lui-même occupe une vaste région un peu plus loin. La deuxième tâche du héros est donc lisible en entier, avec ses figurants, dans un seul quartier du ciel de printemps.",
+    "Deux notes de prudence. La première concerne une version rationalisante, transmise depuis l'Antiquité : le roi de Lerne aurait fait appel à une armée de mercenaires cariens commandée par un homme nommé Crabe, et toute la légende ne serait qu'une bataille militaire embellie. C'est le genre de lecture évhémériste dont il faut se méfier, mais elle circule et vaut d'être connue. La seconde concerne Jorge Luis Borges, qui raconte dans son Livre des êtres imaginaires que Poséidon ranime le crabe écrasé et le transforme en monstre géant. C'est de la littérature du XXᵉ siècle, pas de la mythologie antique, et l'on trouve pourtant cette version présentée comme grecque un peu partout."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Les trois protagonistes, toujours en place",
+    "targets": [
+     {
+      "star": "Alphard",
+      "from": "Acubens",
+      "label": "Alphard",
+      "sub": "Hydre",
+      "note": "Le monstre que le crabe est venu défendre. C'est la plus longue constellation du ciel, et elle commence juste sous le Cancer."
+     },
+     {
+      "star": "Regulus",
+      "from": "Asellus Australis",
+      "label": "Régulus",
+      "sub": "Lion",
+      "note": "Le premier travail d'Héraclès, celui qui précède immédiatement l'Hydre. Deux travaux consécutifs, deux constellations voisines."
+     },
+     {
+      "star": "Rasalgethi",
+      "from": "Asellus Borealis",
+      "label": "Rasalgethi",
+      "sub": "Hercule",
+      "note": "Le héros en personne, un peu plus loin. Sur les vieux atlas, il a le pied posé sur la tête du Dragon."
+     }
+    ],
+    "notes": {
+     "Acubens": "De l'arabe pour « les pinces ». Alpha du Cancer, et à peine visible.",
+     "Asellus Australis": "L'âne du Sud, la plus brillante après Al Tarf, et pourtant de magnitude 3,9.",
+     "Al Tarf": "« La Fin ». Une géante orange soixante fois plus large que le Soleil, très à l'écart de la figure."
+    }
+   },
+   "cap": "Rarement une scène mythologique est aussi bien conservée dans la géographie du ciel.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "La porte des hommes",
+   "p": [
+    "Passons à ce qui est réellement intéressant. Il y a vingt siècles, le Soleil atteignait dans cette constellation sa déclinaison maximale, le solstice d'été. Le mot vient du latin sol stat, le Soleil s'arrête : à ce point extrême, il semble marquer une pause avant de reprendre une marche à reculons vers le sud. Certains auteurs ont suggéré que le nom même du crabe vient de là, par analogie avec la démarche latérale et rétrograde de l'animal. C'est une hypothèse, mais elle est jolie et elle a le mérite de relier le nom à une observation.",
+    "Or ce point du ciel n'était pas une simple borne de calendrier. Les Grecs appelaient le Cancer la Porte des hommes, parce que c'est par là, selon eux, que les âmes descendaient prendre possession des corps à la naissance. Le Capricorne, à l'opposé du zodiaque et au solstice d'hiver, était la porte de sortie. Cette doctrine des deux portes solsticiales, développée par les néoplatoniciens, fait du point le plus haut de la course solaire le lieu de l'incarnation. La constellation la plus pâle du zodiaque était donc, pour une partie du monde antique, la porte d'entrée de toute vie humaine."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/cnc/book_of_the_fixed_stars_auv0265_cancer.jpg",
+   "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
+   "wide": true,
+   "cap": "Le Cancer dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. Sous le nom d'al-Saraṭān, la figure suit Ptolémée, avec les deux ânes et la mangeoire à leur place. Comme toutes les planches de l'ouvrage, elle est dessinée deux fois, vue du ciel et vue retournée sur un globe céleste.",
+   "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+  },
+  {
+   "t": "text",
+   "h": "Tortue, scarabée, refuge des âmes",
+   "p": [
+    "Le ciel babylonien nommait cette région MUL.AL.LUL, et le mot est ambigu : il peut désigner un crabe comme une tortue serpentine. L'archéologie tranche d'une manière inattendue. Sur les kudurru, ces bornes frontières gravées, l'image d'une tortue apparaît assez régulièrement, alors qu'aucun crabe n'a jamais été identifié sur aucun de ces monuments. Ce qui est devenu notre crabe était donc probablement une tortue. Et les spécialistes signalent un lien fort entre cette constellation babylonienne et les idées de mort et de passage aux Enfers, lien qui pourrait être à l'origine de l'association grecque ultérieure avec Héraclès et l'Hydre.",
+    "La suite est un enchaînement remarquable. Les Égyptiens, dit-on, y voyaient un scarabée, emblème sacré de l'immortalité. Les Grecs en font la Porte des hommes, par où entrent les âmes. Et les Chinois y placent le refuge des âmes, matérialisé précisément par l'amas de la Crèche, cette tache floue au milieu de la figure. Quatre traditions, un même thème : le passage entre les vivants et les morts. Il faut résister à la tentation d'en faire un archétype universel — nous verrons plus bas pourquoi — mais la coïncidence est assez frappante pour être posée sur la table."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Un animal qui n'a jamais tenu en place",
+    "events": [
+     {
+      "y": -1500,
+      "when": "Babylone",
+      "label": "MUL.AL.LUL, le crabe ou la tortue",
+      "note": "Le nom vaut pour les deux animaux. Sur les bornes kudurru, c'est une tortue qui apparaît ; aucun crabe n'y a jamais été trouvé."
+     },
+     {
+      "y": -430,
+      "when": "Euctémon, Vᵉ s. av. J.-C.",
+      "label": "Καρκίνος, plutôt l'écrevisse",
+      "note": "Les dictionnaires du grec rendent le mot par écrevisse plus volontiers que par crabe. La nuance survit dans les langues germaniques, où la constellation s'appelle Krebs."
+     },
+     {
+      "y": -270,
+      "when": "IIIᵉ s. av. J.-C.",
+      "label": "La Mangeoire et les Deux Ânes",
+      "note": "Le Pseudo-Théophraste puis Aratos attestent l'astérisme : l'amas est ἡ Φάτνη, la mangeoire, et les deux étoiles voisines οἱ Ὄνοι, les ânes."
+     },
+     {
+      "y": 150,
+      "when": "IIᵉ siècle",
+      "label": "Hygin raconte l'écrasement",
+      "note": "Dans l'Astronomie poétique : le crabe a mordu le pied d'Hercule depuis le marais, Hercule furieux l'a tué, et Junon l'a mis parmi les constellations."
+     },
+     {
+      "y": 1150,
+      "when": "XIIᵉ siècle",
+      "label": "Un coléoptère d'eau",
+      "note": "Un manuscrit astronomique illustré représente la figure comme un insecte aquatique. Une traduction latine de 1488 y verra une grande écrevisse."
+     },
+     {
+      "y": 1930,
+      "label": "Delporte trace les frontières",
+      "note": "Le Cancer reçoit 506 degrés carrés et devient officiellement la plus faible constellation du zodiaque, avec deux étoiles seulement au-dessus de la quatrième magnitude."
+     }
+    ]
+   },
+   "cap": "Crabe, écrevisse, tortue, scarabée, coléoptère d'eau : la figure a changé d'espèce à chaque relais. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Deux ânes, une mangeoire, et une figure balinaise",
+   "p": [
+    "L'astérisme central mérite qu'on y revienne, parce qu'il est plus ancien que le crabe dans les textes. Dès le IIIᵉ siècle avant notre ère, le Pseudo-Théophraste puis Aratos nomment l'amas ἡ Φάτνη, la Mangeoire, et les deux étoiles qui l'encadrent οἱ Ὄνοι, les Deux Ânes. Les Latins ont traduit sans se compliquer la vie : Praesepe et Aselli. Le mot grec avait plusieurs sens, lieu où l'on mange, mangeoire, crèche, ruche, ce qui explique la double postérité de l'objet, appelé la Crèche en français et la Ruche en anglais. Selon la version, les deux ânes se nourrissent tranquillement, ou bien ils sont les montures de Dionysos et de Silène dans la bataille contre les Titans, dont les braiements ont mis les géants en fuite.",
+    "Une dernière figure, et elle est contemporaine. L'Union astronomique internationale a donné à iota du Cancer le nom officiel de Yuyu, d'après une constellation balinaise qui occupe cette région du ciel. La liste des noms d'étoiles, longtemps composée de grec, de latin et d'arabe, s'ouvre depuis quelques années à d'autres traditions. Le crabe balinais est arrivé dans les catalogues internationaux vingt-cinq siècles après le crabe grec."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "La litanie des quatre cultures demande des sources",
+   "p": "Vous lirez partout la même phrase, souvent mot pour mot : « Cette constellation était appelée Tortue par les Babyloniens et Scarabée par les Égyptiens, quatre mille ans avant notre ère. » Trois problèmes. D'abord la date, qui est absurde : le zodiaque en tant que découpage de l'écliptique est une invention mésopotamienne du premier millénaire avant notre ère, et aucun système de signes n'existait au quatrième. Ensuite le scarabée égyptien, qui est répété sans référence de première main. Les zodiaques égyptiens qui nous sont parvenus, celui de Dendérah au premier chef, datent de l'époque gréco-romaine et empruntent leur découpage aux zodiaques babyloniens : ils ne témoignent pas d'une tradition égyptienne indépendante. Enfin la convergence sur le passage des âmes, qui est réelle mais inégalement établie : le lien babylonien avec les Enfers est une hypothèse de spécialistes, la Porte des hommes grecque est bien attestée chez les néoplatoniciens, et le « refuge des âmes » chinois est répété par des sources de vulgarisation sans que j'aie pu remonter à un texte. Ce qui est solide, en revanche, c'est le nom babylonien ambigu et l'absence de crabe sur les kudurru. Le reste mérite des guillemets."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "look",
+     "title": "Amphore : Héraclès et l'hydre de Lerne",
+     "src": "Musée du Louvre",
+     "note": "La notice du Louvre, dont l'inventaire du décor mentionne le crabe aux côtés d'Héraclès, d'Iolaos et d'Athéna.",
+     "url": "https://collections.louvre.fr/ark:/53355/cl010269800"
+    },
+    {
+     "kind": "look",
+     "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
+     "src": "Bodleian Library, Oxford",
+     "note": "Les cinquante-sept planches numérisées, dont celle du Cancer sous le nom d'al-Saraṭān.",
+     "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
+    },
+    {
+     "kind": "read",
+     "title": "Karkinos, le crabe géant",
+     "src": "Theoi Project",
+     "note": "Tous les passages antiques rassemblés et traduits, du Pseudo-Apollodore à Hygin, avec les références aux vases peints. En anglais.",
+     "url": "https://www.theoi.com/Ther/Karkinos.html"
+    },
+    {
+     "kind": "read",
+     "title": "Héraclès et l'hydre de Lerne",
+     "src": "Mythologica",
+     "note": "Le récit détaillé du deuxième travail, avec l'intervention du crabe et la version rationalisante des mercenaires cariens. En français.",
+     "url": "https://mythologica.fr/grec/heraclet02.htm"
+    },
+    {
+     "kind": "read",
+     "title": "Constellation du Cancer",
+     "src": "Ciel de nuit",
+     "note": "La source la mieux documentée en français sur MUL.AL.LUL, les tortues des kudurru et le lien babylonien avec les Enfers.",
+     "url": "https://www.ciel-de-nuit.com/constellation-du-cancer"
+    },
+    {
+     "kind": "read",
+     "title": "Cancer (constellation)",
+     "src": "Wikipédia en français",
+     "note": "La section sur le ciel grec et arabe : Καρκίνος chez Euctémon, la Mangeoire et les Deux Ânes chez Aratos, et les stations lunaires.",
+     "url": "https://fr.wikipedia.org/wiki/Cancer_(constellation)"
+    },
+    {
+     "kind": "read",
+     "title": "Cancer (mythology)",
+     "src": "Wikipédia en anglais",
+     "note": "L'article consacré au personnage de Karkinos, avec la liste des auteurs antiques qui le mentionnent.",
+     "url": "https://en.wikipedia.org/wiki/Cancer_(mythology)"
+    },
+    {
+     "kind": "read",
+     "title": "Catastérismes",
+     "src": "Wikipédia en français",
+     "note": "L'ouvrage du Pseudo-Ératosthène résumé constellation par constellation, avec la notice du Cancer et son nombre d'étoiles.",
+     "url": "https://fr.wikipedia.org/wiki/Catast%C3%A9rismes"
+    },
+    {
+     "kind": "read",
+     "title": "Constellation du Cancer",
+     "src": "Cosmodixi",
+     "note": "Pour l'explication du solstice, du sol stat et de la démarche à reculons du crabe. En français.",
+     "url": "https://www.cosmodixi.fr/ciel/cancer.php"
+    },
+    {
+     "kind": "read",
+     "title": "Cancer, définition",
+     "src": "Techno-Science",
+     "note": "La fiche qui rassemble Al Tarf, les deux ânes et la Porte des hommes. Utile, mais c'est aussi un bon exemple de la litanie sans sources dont parle la mise en garde.",
+     "url": "https://www.techno-science.net/glossaire-definition/Cancer-constellation.html"
+    },
+    {
+     "kind": "read",
+     "title": "Hydre de Lerne",
+     "src": "Encyclopédie académique",
+     "note": "Le récit du combat et la version militaire où le roi de Lerne engage un mercenaire carien nommé Crabe. En français.",
+     "url": "https://fr-academic.com/dic.nsf/frwiki/797212"
+    }
+   ]
+  }
+ ]
 }
