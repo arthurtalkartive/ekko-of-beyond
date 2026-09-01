@@ -1,76 +1,288 @@
 {
- "constellation": "cep",
- "tab": "mytho",
- "blocks": [
-  {
-   "t": "lead",
-   "p": "Céphée est le père, l'époux, le roi — et la figure la plus effacée de sa propre histoire. Autour de lui, sa femme se vante, sa fille est enchaînée, un héros la sauve, un monstre est vaincu. Lui, il assiste."
-  },
-  {
-   "t": "stats",
-   "v": [
+  "constellation": "cep",
+  "tab": "mytho",
+  "blocks": [
     {
-     "v": "6",
-     "u": "figures",
-     "l": "Céphée fait partie du seul groupe de constellations voisines qui racontent une même histoire."
+      "t": "lead",
+      "p": "Sur les six constellations qui racontent l'histoire d'Andromède, cinq ont un rôle : la mère se vante, la fille est sacrifiée, le héros combat, le monstre attaque, le cheval porte. Céphée, le roi, ne fait rien. Il consulte l'oracle, obéit, regarde sa fille enchaînée sans bouger, plaide sa bonne foi quand la bagarre éclate, et sort de la salle. Sa constellation est à l'image du personnage : la plus terne de la famille, et celle que personne ne sait retrouver."
     },
     {
-     "v": "« le bras droit »",
-     "u": "",
-     "l": "Sens d'Alderamin, son étoile la plus brillante, d'après l'arabe al-dhirāʿ al-yamīn."
-    }
-   ]
-  },
-  {
-   "t": "figure",
-   "src": "/skyculture/ekko/illustrations/cep.webp",
-   "lit": true,
-   "roll": true,
-   "cap": "La figure du roi Céphée plaquée sur le ciel dans la carte interactive. Cliquez pour l'agrandir.",
-   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
-  },
-  {
-   "t": "text",
-   "h": "Un roi devant un oracle",
-   "p": [
-    "Céphée règne sur l'Éthiopie — au sens grec du terme, qui désignait vaguement les terres du sud. Quand le monstre envoyé par Poséidon ravage ses côtes, l'oracle d'Ammon lui donne le seul remède : livrer sa fille.",
-    "Il obéit. C'est ce qui rend le personnage intéressant, et dérangeant : un souverain qui sacrifie son enfant à la raison d'État. Persée arrive à temps, mais rien dans le mythe n'absout le père."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Une figure sans forme",
-   "p": [
-    "Céphée n'a pas de dessin reconnaissable. Cinq étoiles moyennes formant une sorte de maison d'enfant, coincée entre Cassiopée et le Dragon. Aucun astérisme mémorable, aucun surnom populaire.",
-    "C'est peut-être pour cela que la constellation est si peu racontée hors du cycle de Persée : on ne fabrique pas de légendes autour d'une figure qu'on ne sait pas montrer du doigt."
-   ]
-  },
-  {
-   "t": "text",
-   "h": "Le nord de demain",
-   "p": [
-    "Le temps rendra justice à Céphée. La précession de l'axe terrestre y conduit le pôle nord céleste : dans quelques millénaires, Gamma Cephei puis Alderamin serviront d'étoiles polaires.",
-    "Le roi discret deviendra donc, à son tour, la constellation autour de laquelle tout le ciel tourne."
-   ]
-  },
-  {
-   "t": "links",
-   "v": [
-    {
-     "kind": "read",
-     "title": "Polaris, l'étoile polaire",
-     "src": "Star Walk",
-     "note": "La succession des étoiles polaires, où figurent Gamma Cephei et Alderamin. En français.",
-     "url": "https://starwalk.space/fr/news/polaris-north-star"
+      "t": "stats",
+      "v": [
+        {
+          "v": "2",
+          "u": "Céphée",
+          "l": "Les sources antiques en connaissent deux : le roi d'Éthiopie, et un roi de Tégée en Arcadie qui fut Argonaute. Les récits populaires les confondent souvent."
+        },
+        {
+          "v": "2,5",
+          "u": "magnitude",
+          "l": "Alderamin, la plus brillante de la constellation, et l'une des plus discrètes de toute la famille du récit."
+        },
+        {
+          "v": "3",
+          "u": "figures chinoises",
+          "l": "Le Crochet céleste, le cocher de l'empereur Mu Wang et les sièges des cinq empereurs célestes se partagent les étoiles du roi grec."
+        },
+        {
+          "v": "IIᵉ",
+          "u": "siècle",
+          "l": "L'époque où Lucien de Samosate introduit la tête de Méduse pour pétrifier le monstre marin. Avant lui, Persée le tue à coups de pierre ou d'épée."
+        },
+        {
+          "v": "al-rāʿī",
+          "l": "« Le berger », en arabe. C'est de là que vient le nom d'Errai, et le ciel bédouin voyait ici une scène de pâturage, pas un roi."
+        }
+      ]
     },
     {
-     "kind": "read",
-     "title": "Céphée (constellation)",
-     "src": "Wikipédia",
-     "note": "Le mythe, l'étymologie des noms d'étoiles et les objets remarquables.",
-     "url": "https://fr.wikipedia.org/wiki/C%C3%A9ph%C3%A9e_(constellation)"
+      "t": "figure",
+      "src": "/skyculture/ekko/illustrations/cep.webp",
+      "lit": true,
+      "roll": true,
+      "wide": true,
+      "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. On la décrit souvent comme une maison d'enfant, avec un toit pointu. Le roi, lui, se laisse mal deviner : Ptolémée le voyait assis, les deux bras étendus, et c'est à peu près tout ce que la géométrie autorise.",
+      "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+    },
+    {
+      "t": "text",
+      "h": "Le roi qui obéit",
+      "p": [
+        "Céphée règne sur l'Éthiopie et il est fils de Bélos, ce qui le range dans une généalogie orientale peuplée de frères célèbres : Danaos, Égyptos, et Phinée. Sa femme se vante, Poséidon envoie le monstre, le royaume est ravagé. Céphée fait alors la seule chose qu'un roi antique sait faire dans ce cas : il consulte l'oracle d'Ammon. La réponse est brutale, le mal vient de la beauté d'Andromède, il faut la livrer. Il la livre.",
+        "Le détail qui achève le portrait se trouve chez les mythographes. Quand Persée arrive, Céphée et Cassiopée sont là, sur le rivage, à regarder leur fille attachée au rocher, et ils ne remuent pas le petit doigt. C'est le héros qui propose le marché : je tue le monstre, vous me donnez votre fille. Ils acceptent, à contrecœur selon plusieurs sources, et certaines versions les font même revenir sur leur parole une fois le danger passé. Le personnage n'a ni la faute de sa femme ni le courage de son gendre. Il a l'obéissance."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cep/urania-mirror-cephee-1825.jpg",
+      "page": "https://www.loc.gov/pictures/item/2002695397/",
+      "wide": true,
+      "cap": "Céphée sur la quatrième planche du jeu « Urania's Mirror », Londres, 1825. Le catalogue de la Library of Congress le décrit sobrement comme « un homme en position assise ». Les trous percés dans le carton correspondent à l'éclat des étoiles : tenue devant une lampe, la carte restitue la figure telle qu'on la voit dehors.",
+      "credit": "Sidney Hall, eau-forte coloriée à la main, 1825 — Library of Congress, Prints & Photographs Division (LC-USZC4-10053)"
+    },
+    {
+      "t": "text",
+      "h": "La scène où il parle enfin",
+      "p": [
+        "Il y a un moment, un seul, où Céphée prend la parole. C'est au cinquième livre des Métamorphoses d'Ovide, pendant le banquet de noces. Phinée fait irruption en armes : Andromède lui avait été promise, il vient la réclamer. Céphée tente de se justifier, il invoque la vaillance de Persée, les mérites du sauveur, et surtout le respect de l'accord conclu. Ses arguments ne portent pas. Phinée attaque, Persée réplique, la salle entière s'embrase.",
+        "Et Céphée quitte le palais, en attestant de sa bonne foi. Ovide lui donne son unique plaidoirie et le fait sortir aussitôt. La suite est célèbre : débordé par le nombre, Persée dévoile la tête de Méduse et pétrifie ses adversaires. Une variante mérite d'être signalée, parce qu'elle change le lien de parenté : chez Hygin, le prétendant malheureux n'est pas Phinée mais Agénor, et l'on ne sait pas trancher entre les deux traditions."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cep/giordano-persee-phinee-national-gallery.jpg",
+      "page": "https://www.nationalgallery.org.uk/paintings/luca-giordano-perseus-turning-phineus-and-his-followers-to-stone",
+      "wide": true,
+      "cap": "Le banquet qui tourne mal, peint par Luca Giordano vers 1660. Phinée est probablement l'homme au casque ouvragé, à l'extrême gauche : sa tête et son flanc gauche sont déjà de pierre, sa bouche figée dans un cri, mais son bras et sa jambe droits gardent la couleur de la chair. Le peintre s'amusait à une vieille querelle, celle de la supériorité de la peinture ou de la sculpture, et il a calqué la pose de Phinée sur le Gladiateur Borghèse.",
+      "credit": "Luca Giordano, « Persée pétrifiant Phinée et ses compagnons » — The National Gallery, Londres (NG6487)"
+    },
+    {
+      "t": "quote",
+      "p": "Céphée est placé derrière l'Ourse Cynosure, dans l'attitude d'un homme qui étend les deux mains.",
+      "who": "Aratos de Soles, Les Phénomènes, IIIᵉ siècle av. J.-C."
+    },
+    {
+      "t": "text",
+      "h": "Deux Céphée, et un royaume introuvable",
+      "p": [
+        "La confusion commence avec le nom. Il existe un second Céphée dans la mythologie grecque, sans aucun rapport avec le premier : fils d'Aléos, roi de Tégée en Arcadie, compagnon de Jason parmi les Argonautes, mort avec presque tous ses fils dans une expédition aux côtés d'Héraclès. Détail savoureux, Athéna lui avait confié un cheveu de la tête de Méduse pour rendre sa ville imprenable. Le même objet magique traverse donc les deux histoires, et les résumés en ligne les mélangent régulièrement. Certains dictionnaires ajoutent qu'il y aurait même eu deux rois d'Éthiopie du nom de Céphée, un grand-père et un petit-fils.",
+        "Quant au royaume, il ne tient pas en place. Plusieurs sources font de Céphée le roi de Joppé, l'actuelle Jaffa, et non d'un pays africain ; le monstre ravage alors la Philistie. Hérodote, de son côté, fait de Persée et d'Andromède les ancêtres des Perses par leur fils Persès. Le récit a manifestement circulé entre le Levant, l'Égypte et la Grèce en changeant de géographie à chaque étape, et prétendre le fixer sur une carte moderne est une illusion."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "timeline",
+      "wide": true,
+      "data": {
+        "title": "Ce qu'on a vu dans ces étoiles",
+        "events": [
+          {
+            "y": -270,
+            "when": "IIIᵉ s. av. J.-C.",
+            "label": "Aratos : un homme aux bras étendus",
+            "note": "Le poème des Phénomènes situe le roi derrière la Petite Ourse et ne lui accorde qu'une posture, sans récit."
+          },
+          {
+            "y": 150,
+            "when": "IIᵉ siècle",
+            "label": "Ptolémée l'inscrit parmi ses 48 figures",
+            "note": "L'Almageste décrit aussi deux étoiles « informes », de part et d'autre de la coiffe du roi. Ce sont celles que nous appelons Delta et Mu de Céphée."
+          },
+          {
+            "y": 700,
+            "when": "astronomie chinoise",
+            "label": "Le Crochet céleste et le cocher de l'empereur",
+            "note": "Tiangou, un groupe de neuf étoiles lié aux présages de tremblements de terre, et Zaofu, du nom du cocher légendaire de l'empereur Mu Wang."
+          },
+          {
+            "y": 964,
+            "label": "al-Sufi : un berger, son chien, son troupeau",
+            "note": "Le ciel bédouin ignore le roi et voit une scène de pâturage. al-Sufi ajoute au passage neuf étoiles de son cru sur la figure, qu'il dessine en noir."
+          },
+          {
+            "y": 1200,
+            "when": "Moyen Âge",
+            "label": "Alderamin, une erreur de copiste",
+            "note": "Selon le spécialiste Paul Kunitzsch, le nom vient d'un mot arabe désignant l'avant-bras, appliqué par erreur à cette étoile par les astronomes européens."
+          },
+          {
+            "y": 1825,
+            "label": "« Un homme en position assise »",
+            "note": "La description du catalogue de la Library of Congress pour la planche d'Urania's Mirror. Vingt-deux siècles après Aratos, on n'en dit toujours pas plus."
+          }
+        ]
+      },
+      "cap": "Aucune culture n'a beaucoup développé cette figure. Survolez les étapes.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "text",
+      "h": "Le berger, son chien et son troupeau",
+      "p": [
+        "La lecture la plus attachante de cette région du ciel n'est pas grecque. Les astronomes arabes y voyaient une scène de pâturage : un berger, son chien, et un petit troupeau de moutons. Trois noms d'étoiles en portent encore la trace. Errai, notre gamma de Céphée, vient de al-rāʿī, le berger. Alfirk, la bêta, vient de al-firqa, le troupeau. Et le chien, c'est rhô de Céphée, trop faible pour avoir gardé un nom d'usage.",
+        "Le quatrième nom raconte autre chose, une histoire de traduction ratée. Alderamin est censé venir de adh-dhirāʿ al-yamīn, le bras droit, et marque effectivement l'épaule droite du roi dans la description de Ptolémée. Mais le spécialiste des noms arabes Paul Kunitzsch estime que le mot d'origine désignait simplement un avant-bras et qu'il a été appliqué à cette étoile par erreur, au Moyen Âge, par des astronomes européens qui transcrivaient sans comprendre. La plus brillante étoile de la constellation porterait donc un nom attribué de travers, ce qui, pour ce roi-là, ne surprend pas."
+      ]
+    },
+    {
+      "t": "figure",
+      "src": "/assets/img/constellations/cep/al-sufi-cephee-marsh144.jpg",
+      "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
+      "wide": true,
+      "cap": "Céphée dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. Regardez les points noirs : ce sont des étoiles qu'al-Sufi a observées lui-même et ajoutées à la figure de Ptolémée, cinq autour de la jambe gauche et quatre près du coude droit. Il les dessine sans numéro, parce qu'elles n'appartiennent pas au catalogue de l'Almageste. C'est de l'observation qui corrige un texte vieux de huit siècles.",
+      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+    },
+    {
+      "t": "text",
+      "h": "Un crochet, un cocher, cinq trônes",
+      "p": [
+        "Le ciel chinois découpe cette région en trois ensembles qui n'ont rien à voir entre eux. Tiangou, le Crochet céleste, réunit neuf étoiles dont l'alpha, l'êta, le thêta, le xi, l'iota et l'omicron de Céphée ; ce groupe était associé aux présages de tremblements de terre. Juste au sud, delta, epsilon, zêta, mu et nu forment Zaofu, du nom du cocher légendaire de l'empereur Mu Wang. Et vers le nord, à la frontière de Cassiopée et de la Girafe, cinq étoiles forment Wudineizuo, les sièges des cinq empereurs célestes, souverains divinisés des cinq directions du ciel.",
+        "Le contraste avec la Grèce est net. Là où les Grecs voient un personnage unique qui subit une histoire, la Chine voit un instrument, un fonctionnaire et un mobilier de palais, chacun avec sa fonction administrative ou divinatoire. Le même triangle d'étoiles ternes sert donc à annoncer les séismes d'un côté du monde et à figurer un roi passif de l'autre."
+      ]
+    },
+    {
+      "t": "figure",
+      "svg": "compass",
+      "wide": true,
+      "data": {
+        "title": "La famille, vue depuis le roi",
+        "targets": [
+          {
+            "star": "Schedar",
+            "from": "Alderamin",
+            "label": "Schedar",
+            "sub": "Cassiopée",
+            "note": "Sa femme, et la responsable de toute l'affaire. Elle est bien plus facile à trouver que lui : c'est par elle qu'on le repère."
+          },
+          {
+            "star": "Alpheratz",
+            "from": "Alderamin",
+            "label": "Alpheratz",
+            "sub": "Andromède",
+            "note": "Sa fille, celle qu'il a livrée au monstre. Elle est plus bas dans le ciel, du côté de la mer."
+          },
+          {
+            "star": "Mirfak",
+            "from": "Alderamin",
+            "label": "Mirfak",
+            "sub": "Persée",
+            "note": "Son gendre malgré lui. C'est la plus brillante des six figures du récit, et de loin."
+          }
+        ],
+        "notes": {
+          "Alderamin": "L'épaule droite du roi selon Ptolémée, et un nom peut-être attribué par erreur.",
+          "Errai": "Le berger du ciel bédouin, au sommet du toit de la maison.",
+          "Alfirk": "Le troupeau, de l'arabe al-firqa."
+        }
+      },
+      "cap": "Céphée est encadré par sa femme et sa fille, et regarde son gendre depuis l'autre bout de la scène.",
+      "credit": "Schéma Ekko of Beyond."
+    },
+    {
+      "t": "warn",
+      "h": "Trois précisions qui se perdent souvent",
+      "p": "La première concerne l'identité : beaucoup de pages consacrées à la constellation mélangent le roi d'Éthiopie avec l'autre Céphée, roi de Tégée et Argonaute, qui n'a aucun rapport avec Andromède. Le fait qu'un cheveu de Méduse intervienne dans les deux histoires n'aide pas. La deuxième concerne le rival : chez Ovide, celui qui vient réclamer Andromède aux noces est Phinée, frère de Céphée, mais chez Hygin c'est Agénor, et les spécialistes ne tranchent pas. La troisième concerne l'arme : la tête de Méduse brandie contre le monstre marin, image devenue inséparable du mythe, est une addition tardive. Elle n'apparaît pas avant Lucien de Samosate, au IIᵉ siècle de notre ère. Sur les amphores corinthiennes du VIᵉ siècle avant notre ère, Persée repousse le monstre à coups de pierre, et chez Ovide il le tue à l'épée."
+    },
+    {
+      "t": "links",
+      "v": [
+        {
+          "kind": "look",
+          "title": "Céphée, planche 4 d'« Urania's Mirror »",
+          "src": "Library of Congress",
+          "note": "La carte perforée de 1825 en haute résolution, sans restriction de publication connue aux États-Unis.",
+          "url": "https://www.loc.gov/pictures/item/2002695397/"
+        },
+        {
+          "kind": "look",
+          "title": "Persée pétrifiant Phinée et ses compagnons",
+          "src": "The National Gallery, Londres",
+          "note": "La notice du musée détaille la querelle peinture contre sculpture et les statues antiques que Giordano recopie. En anglais.",
+          "url": "https://www.nationalgallery.org.uk/paintings/luca-giordano-perseus-turning-phineus-and-his-followers-to-stone"
+        },
+        {
+          "kind": "watch",
+          "title": "Dix minutes sur le tableau de Giordano",
+          "src": "The National Gallery, Londres",
+          "note": "Une conférencière du musée détaille le tableau détail par détail. En anglais.",
+          "url": "https://www.nationalgallery.org.uk/stories/10-minute-talks-luca-giordano-s-perseus-turning-phineas-and-his-followers-to-stone"
+        },
+        {
+          "kind": "look",
+          "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
+          "src": "Bodleian Library, Oxford",
+          "note": "Les cinquante-sept planches numérisées, dont celle de Céphée avec les étoiles ajoutées en noir.",
+          "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
+        },
+        {
+          "kind": "read",
+          "title": "Star Tales : Cepheus",
+          "src": "Ian Ridpath",
+          "note": "La source du berger, du chien et du troupeau, et des trois astérismes chinois. La meilleure synthèse disponible. En anglais.",
+          "url": "http://www.ianridpath.com/startales/cepheus.html"
+        },
+        {
+          "kind": "read",
+          "title": "Les constellations d'al-Sufi",
+          "src": "Ian Ridpath",
+          "note": "Explique précisément ce qu'al-Sufi a ajouté sur sa carte de Céphée, et pourquoi ces étoiles sont dessinées sans numéro. En anglais.",
+          "url": "http://www.ianridpath.com/startales/alsufi.html"
+        },
+        {
+          "kind": "deep",
+          "title": "Ovide, Métamorphoses, livre V, vers 1 à 249",
+          "src": "Bibliotheca Classica Selecta, université de Louvain",
+          "note": "Le banquet, le plaidoyer de Céphée et sa sortie, dans le texte, avec les notes savantes. En français.",
+          "url": "https://bcs.fltr.ucl.ac.be/METAM/Met05/Met-05-1-249.htm"
+        },
+        {
+          "kind": "read",
+          "title": "Andromède",
+          "src": "Larousse, encyclopédie de la mythologie",
+          "note": "La notice qui souligne que ni Céphée ni Cassiopée ne bougent pendant que leur fille attend le monstre.",
+          "url": "https://www.larousse.fr/encyclopedie/mythologie/Androm%C3%A8de/189428"
+        },
+        {
+          "kind": "read",
+          "title": "Céphée, dictionnaire de mythologie grecque",
+          "src": "Mythologica",
+          "note": "Les deux Céphée mis côte à côte, généalogies comprises. Utile pour ne pas les confondre. En français.",
+          "url": "https://dico.mythologica.fr/grec/Cep.htm"
+        },
+        {
+          "kind": "read",
+          "title": "Liste des noms d'étoiles arabes",
+          "src": "Wikipédia en anglais",
+          "note": "Pour vérifier les étymologies d'Alderamin, d'Alfirk et d'Errai, translittérations à l'appui.",
+          "url": "https://en.wikipedia.org/wiki/List_of_Arabic_star_names"
+        },
+        {
+          "kind": "read",
+          "title": "Céphée (Éthiopie)",
+          "src": "Wikipédia en français",
+          "note": "Le récit et la généalogie, avec les renvois aux auteurs antiques. Le point de départ le plus commode.",
+          "url": "https://fr.wikipedia.org/wiki/C%C3%A9ph%C3%A9e_(%C3%89thiopie)"
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }
