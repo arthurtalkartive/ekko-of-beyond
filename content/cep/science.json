@@ -1,302 +1,302 @@
 {
-  "constellation": "cep",
-  "tab": "science",
-  "blocks": [
+ "constellation": "cep",
+ "tab": "science",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Céphée ressemble à une maison dessinée par un enfant et ne contient aucune étoile très brillante. C'est pourtant elle qui a donné à l'astronomie son mètre-ruban. Une seule de ses étoiles, découverte variable en 1784 par un amateur de vingt ans, a fourni la méthode qui a permis de mesurer la distance des galaxies, puis de découvrir que l'univers est en expansion. Toute la cosmologie contemporaine tient encore, en partie, sur ce point du ciel."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Céphée ressemble à une maison dessinée par un enfant et ne contient aucune étoile très brillante. C'est pourtant elle qui a donné à l'astronomie son mètre-ruban. Une seule de ses étoiles, découverte variable en 1784 par un amateur de vingt ans, a fourni la méthode qui a permis de mesurer la distance des galaxies, puis de découvrir que l'univers est en expansion. Toute la cosmologie contemporaine tient encore, en partie, sur ce point du ciel."
+     "v": "5,37",
+     "u": "jours",
+     "l": "La période de pulsation de Delta de Céphée. Plus une céphéide pulse lentement, plus elle est réellement lumineuse : c'est toute l'astuce."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "5,37",
-          "u": "jours",
-          "l": "La période de pulsation de Delta de Céphée. Plus une céphéide pulse lentement, plus elle est réellement lumineuse : c'est toute l'astuce."
-        },
-        {
-          "v": "1784",
-          "l": "L'année où John Goodricke découvre que Delta de Céphée varie. Il avait vingt ans, il était sourd de naissance, et il est mort deux ans plus tard."
-        },
-        {
-          "v": "1 260",
-          "u": "fois le Soleil",
-          "l": "Le diamètre de Mu de Céphée, l'étoile Grenat. Placée au centre du système solaire, elle s'étendrait à mi-chemin des orbites de Jupiter et Saturne."
-        },
-        {
-          "v": "9,4",
-          "u": "masses de Jupiter",
-          "l": "La masse de Tadmor, la planète d'Errai. Annoncée en 1988, retirée en 1992, confirmée en 2002."
-        },
-        {
-          "v": "10",
-          "u": "supernovae",
-          "l": "Le compte de la galaxie NGC 6946 en un siècle. Aucune autre galaxie connue n'en a montré autant."
-        },
-        {
-          "v": "4000",
-          "l": "L'année vers laquelle Errai, au sommet du toit de la maison, prendra la place de Polaris comme étoile du pôle."
-        }
-      ]
+     "v": "1784",
+     "l": "L'année où John Goodricke découvre que Delta de Céphée varie. Il avait vingt ans, il était sourd de naissance, et il est mort deux ans plus tard."
     },
     {
-      "t": "text",
-      "h": "L'étoile qui respire",
-      "p": [
-        "Le 19 octobre 1784, John Goodricke note que Delta de Céphée n'a pas le même éclat que la veille. Il l'observe presque chaque nuit jusqu'à la fin décembre, reprend au printemps, et publie : l'étoile varie régulièrement, entre les magnitudes 3,5 et 4,3, sur un cycle de cinq jours et neuf heures. La montée est plus rapide que la descente. Goodricke a vingt ans, il est sourd depuis toujours, et il mourra deux ans plus tard. Toute une famille d'étoiles porte aujourd'hui le nom de celle-ci.",
-        "Une précision d'honnêteté : Delta de Céphée n'est pas la première céphéide découverte. Quelques semaines plus tôt, le 10 septembre 1784, l'amateur Edward Pigott avait repéré la variabilité d'Eta de l'Aigle. C'est pourtant la seconde qui a donné son nom à la classe, et l'usage ne changera pas. Il faudra attendre 1894 pour comprendre ce qui se passe : l'astronome russe Aristarkh Belopolsky montre que les raies du spectre se décalent en rythme avec la lumière. L'étoile ne s'éclipse pas derrière une compagne, comme Algol. Elle gonfle et se dégonfle, périodiquement, comme une poitrine."
-      ]
+     "v": "1 260",
+     "u": "fois le Soleil",
+     "l": "Le diamètre de Mu de Céphée, l'étoile Grenat. Placée au centre du système solaire, elle s'étendrait à mi-chemin des orbites de Jupiter et Saturne."
     },
     {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Comment une étoile est devenue un mètre-ruban",
-        "events": [
-          {
-            "y": 1784,
-            "label": "Deux amateurs découvrent les premières céphéides",
-            "note": "Edward Pigott repère Eta de l'Aigle en septembre, John Goodricke Delta de Céphée le 19 octobre. C'est la seconde qui donnera son nom à la classe."
-          },
-          {
-            "y": 1894,
-            "label": "Belopolsky comprend qu'elle pulse",
-            "note": "Le décalage des raies spectrales suit la période lumineuse. L'étoile change réellement de taille, elle n'est pas masquée par une autre."
-          },
-          {
-            "y": 1912,
-            "label": "Leavitt établit la relation période-luminosité",
-            "note": "En dépouillant des milliers de variables des Nuages de Magellan, Henrietta Swan Leavitt montre que la période donne la luminosité vraie."
-          },
-          {
-            "y": 1924,
-            "label": "Hubble mesure la distance d'Andromède",
-            "note": "Avec des céphéides repérées dans la nébuleuse, il démontre qu'elle est bien au-delà de la Voie lactée. L'univers passe d'une galaxie à des milliards."
-          },
-          {
-            "y": 2002,
-            "label": "La parallaxe de Delta de Céphée est mesurée",
-            "note": "272 parsecs, à quatre pour cent près, grâce au télescope spatial Hubble. C'est la céphéide la mieux mesurée de notre galaxie."
-          },
-          {
-            "y": 2015,
-            "label": "Delta de Céphée se révèle double",
-            "note": "Un compagnon caché, dix fois moins massif, détecté au spectrographe HERMES à La Palma. Sa présence doit être prise en compte dans la calibration."
-          }
-        ]
-      },
-      "cap": "Les étapes sont espacées régulièrement : c'est la séquence qui compte. Survolez-les.",
-      "credit": "Schéma Ekko of Beyond."
+     "v": "9,4",
+     "u": "masses de Jupiter",
+     "l": "La masse de Tadmor, la planète d'Errai. Annoncée en 1988, retirée en 1992, confirmée en 2002."
     },
     {
-      "t": "text",
-      "h": "De Leavitt à la taille de l'univers",
-      "p": [
-        "L'idée décisive n'est pas venue de Céphée mais des Nuages de Magellan. Au début du XXᵉ siècle, Henrietta Swan Leavitt dépouille au Harvard College Observatory des milliers de plaques photographiques et identifie des centaines de variables. En 1912, elle publie le résultat : dans ces nuages, plus une céphéide met de temps à pulser, plus elle est intrinsèquement lumineuse. La relation est simple, et elle est révolutionnaire. Il suffit désormais de chronométrer une céphéide pour connaître sa luminosité vraie, de la comparer à son éclat apparent, et on en déduit la distance. Un objet du ciel devient un instrument de mesure.",
-        "Douze ans plus tard, Edwin Hubble applique la méthode à des céphéides repérées dans la nébuleuse d'Andromède et montre qu'elle se trouve très au-delà de notre galaxie. L'univers cesse d'être la Voie lactée pour devenir un ensemble de galaxies. La suite est connue : les céphéides servent aujourd'hui de premier barreau à l'échelle qui mène jusqu'à la mesure du taux d'expansion de l'univers, et le désaccord persistant entre cette mesure et celle déduite du fond diffus cosmologique est l'un des problèmes ouverts les plus discutés de la cosmologie. Chaque échelon compte, ce qui explique pourquoi la découverte, en 2015, d'un compagnon caché autour du prototype même de la classe a fait du bruit : les binaires biaisent la calibration de la relation."
-      ]
+     "v": "10",
+     "u": "supernovae",
+     "l": "Le compte de la galaxie NGC 6946 en un siècle. Aucune autre galaxie connue n'en a montré autant."
     },
     {
-      "t": "quote",
-      "p": "Notre étude ne remet pas en question l'échelle des distances dans son ensemble.",
-      "who": "Richard Anderson, Université de Genève, mai 2015"
-    },
-    {
-      "t": "figure",
-      "svg": "scale",
-      "wide": true,
-      "data": {
-        "title": "Mu de Céphée et le Soleil",
-        "items": [
-          {
-            "n": "Mu Cephei",
-            "r": 1260,
-            "c": "#E08A6A",
-            "note": "Supergéante rouge, environ dix-neuf masses solaires, sortie de la séquence principale. Elle finira en supernova d'ici quelques centaines de milliers d'années."
-          },
-          {
-            "n": "Soleil",
-            "r": 1,
-            "note": "Pour l'échelle. À cette réduction, son disque n'occupe pratiquement rien."
-          }
-        ]
-      },
-      "cap": "L'une des plus grosses étoiles visibles à l'œil nu, et l'une des plus grosses de la Galaxie.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "L'étoile Grenat de Herschel",
-      "p": [
-        "En 1783, William Herschel signale dans Céphée une étoile d'une rougeur saisissante. Il l'appelle Garnet Star, l'étoile Grenat, et l'on raconte qu'il terminait volontiers ses séances d'observation par elle. C'est Mu de Céphée, aussi nommée Erakis, une supergéante rouge de type M2 dont le diamètre atteint environ mille deux cent soixante fois celui du Soleil. Elle varie de façon semi-régulière entre les magnitudes 3,2 et 5,4, ce qui la rend parfois facile et parfois presque invisible à l'œil nu, sans prévenir.",
-        "Sa distance, en revanche, est mal connue, et les fiches qui donnent un chiffre net trompent leur lecteur : les estimations publiées vont de deux mille quatre cents à plus de cinq mille années-lumière. Comme le diamètre et la luminosité se déduisent de la distance, tout le reste flotte avec elle. Elle se trouve au bord de IC 1396, une immense région d'hydrogène ionisé qui couvre quatre fois la surface apparente de la pleine Lune, ionisée par l'étoile massive HD 206267 en son centre. Un des nuages sombres de cette région, long d'une vingtaine d'années-lumière, est la nébuleuse de la Trompe de l'Éléphant, et l'on y forme des étoiles en ce moment même : deux astres de quelques millions d'années creusent une cavité au sommet de la trompe, et des protoétoiles se cachent dans les filaments."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/cep/iris-ngc7023-hubble.jpg",
-      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-4/",
-      "wide": true,
-      "cap": "La nébuleuse de l'Iris, NGC 7023, à mille trois cents années-lumière. Ce n'est pas du gaz qui brille par lui-même mais de la poussière qui renvoie la lumière de l'étoile enfouie au centre, d'où le bleu, exactement comme notre ciel de jour. Les filaments rougeâtres, eux, signalent que des grains transforment l'ultraviolet invisible en lumière rouge.",
-      "credit": "NASA et ESA"
-    },
-    {
-      "t": "text",
-      "h": "Le buffet des photographes",
-      "p": [
-        "Céphée est circumpolaire et traverse la Voie lactée : elle est disponible plus de la moitié de l'année et bourrée de nébuleuses. L'Iris, NGC 7023, est la plus élégante, six années-lumière de poussière bleue autour d'une étoile chaude, repérée par Herschel le 18 octobre 1794. La Trompe de l'Éléphant est la plus photographiée. S'y ajoutent la nébuleuse de la Caverne et celle du Sorcier, et il faut prévoir large : IC 1396 déborde du champ de la plupart des lunettes d'astrophotographie.",
-        "À l'œil nu et aux jumelles, en revanche, la constellation est ingrate. Aucune de ses étoiles ne dépasse la magnitude 2,5, la forme de maison est plus facile à décrire qu'à retrouver, et les nébuleuses demandent un capteur. C'est le paradoxe de cette région : elle a fourni l'outil qui a mesuré l'univers, et elle est presque invisible depuis un balcon de ville."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Situer la maison de Céphée",
-        "targets": [
-          {
-            "star": "Polaris",
-            "from": "Errai",
-            "label": "Polaris",
-            "sub": "Petite Ourse",
-            "note": "Errai marque le sommet du toit et pointe vers le pôle. Vers l'an 4000, c'est elle qui tiendra le rôle de Polaris."
-          },
-          {
-            "star": "Schedar",
-            "from": "Alderamin",
-            "label": "Schedar",
-            "sub": "Cassiopée",
-            "note": "La maison de Céphée est adossée au W de sa femme. Les deux figures se cherchent l'une l'autre dans le ciel comme dans le récit."
-          },
-          {
-            "star": "Deneb",
-            "from": "Alderamin",
-            "label": "Deneb",
-            "sub": "Cygne",
-            "note": "En été, Céphée suit le Cygne dans la Voie lactée. C'est le meilleur repère quand Cassiopée est encore basse."
-          }
-        ],
-        "notes": {
-          "Alderamin": "La plus brillante de la constellation, et une rotation si rapide qu'elle est nettement aplatie.",
-          "Errai": "Future étoile polaire, et hôte de la première exoplanète jamais soupçonnée.",
-          "Alfirk": "Prototype d'une classe de variables pulsantes, les étoiles de type Bêta Céphée."
-        }
-      },
-      "cap": "La constellation n'a pas d'étoile éclatante : on la trouve par ses voisines, pas par elle-même.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Errai, future polaire et première exoplanète",
-      "p": [
-        "Au sommet du toit de la maison brille Errai, à quarante-cinq années-lumière. Deux choses la rendent remarquable. La première est qu'elle sera notre étoile polaire : la précession de l'axe terrestre l'amènera près du pôle vers l'an 4000, et elle prendra la relève de Polaris, avec toutefois un écart au pôle bien moins confortable.",
-        "La seconde est une belle histoire de prudence scientifique. En juillet 1988, une équipe canadienne menée par Bruce Campbell, Gordon Walker et Stephenson Yang annonce, par la méthode des vitesses radiales, une planète géante autour d'Errai. Si elle avait tenu, c'était la première exoplanète de l'histoire, sept ans avant celle de 51 Pegasi. Mais l'étoile avait été mal classée, l'orbite de sa compagne binaire sous-estimée, et le calcul rendait l'orbite de la planète instable. Faute de données assez bonnes, les auteurs retirent eux-mêmes leur annonce en 1992. Dix ans plus tard, une fois la compagne mieux caractérisée, la planète est confirmée. Elle porte depuis 2015 le nom de Tadmor, proposé par l'Association syrienne d'astronomie : c'est le nom sémitique ancien et arabe moderne de Palmyre. Neuf masses de Jupiter, deux ans et demi de révolution, à peu près la distance qui sépare le Soleil de la ceinture d'astéroïdes."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/cep/ngc6946-hubble.jpg",
-      "page": "https://www.nasa.gov/image-detail/ngc-6946-the-fireworks-galaxy",
-      "wide": true,
-      "cap": "NGC 6946, dite la galaxie du Feu d'artifice, vue de face à vingt-cinq millions d'années-lumière. Le surnom lui vient de son taux de formation d'étoiles, dix fois celui de la Voie lactée, et du nombre de supernovae qu'on y a vues exploser.",
-      "credit": "ESA/Hubble et NASA, A. Leroy, K. S. Long"
-    },
-    {
-      "t": "text",
-      "h": "La galaxie aux dix supernovae",
-      "p": [
-        "NGC 6946 chevauche la frontière entre Céphée et le Cygne, et les catalogues la rangent tantôt d'un côté tantôt de l'autre. C'est une spirale vue de face, à vingt-cinq millions d'années-lumière, qui fabrique des étoiles dix fois plus vite que la Voie lactée alors qu'elle en contient deux fois moins. La conséquence est spectaculaire : dix supernovae y ont été observées en un siècle, de 1917 à 2017. Aucune autre galaxie connue n'approche ce compte.",
-        "C'est aussi là qu'a eu lieu l'événement le plus étrange du lot. En 2009, une supergéante rouge de vingt à vingt-cinq masses solaires s'illumine faiblement, puis s'éteint. Elle n'est jamais revenue. Pas de supernova, pas de rémanent lumineux, rien. L'objet a été baptisé N6946-BH1, et l'hypothèse qui a fait le tour du monde est celle d'une supernova ratée : une étoile assez massive pour s'effondrer directement en trou noir sans explosion visible. Si c'était démontré, cela résoudrait d'un coup l'absence de progéniteurs très massifs parmi les supernovae de type II et fournirait une voie naturelle pour former les trous noirs que détectent les détecteurs d'ondes gravitationnelles."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "L'étoile qui a disparu n'est pas une affaire classée",
-      "p": "On lit régulièrement que l'on a vu une étoile devenir un trou noir sous nos yeux. C'est aller trop vite. Des observations de Webb en 2023, publiées en 2024, ont montré que ce qu'on prenait pour un objet unique est en réalité un mélange d'au moins trois sources, et qu'il reste sur place une émission infrarouge valant entre treize et vingt-cinq pour cent de la luminosité de l'étoile disparue, avec une signature de poussière chauffée par de l'ultraviolet. Les auteurs sont explicites : les observations correspondent aussi bien à une fusion de deux étoiles, et l'ambiguïté théorique du scénario de supernova ratée empêche de l'écarter. Un travail paru en 2026 propose un critère de tri, car les restes de fusion sont dix à cent fois plus lumineux que leur progéniteur tandis que les restes de supernova ratée sont dix fois plus faibles. Deuxième précision, plus prosaïque : la frontière officielle de l'UAI place cet objet précis du côté du Cygne, même si la galaxie qui l'abrite est aussi catalogée dans Céphée."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "read",
-          "title": "Le compagnon caché de Delta Cephei",
-          "src": "Université de Genève",
-          "note": "Le communiqué de l'équipe qui a trouvé la compagne du prototype des céphéides, et ce que cela change pour Gaia. En français.",
-          "url": "https://www.unige.ch/sciences/astro/news/le-compagnon-cache-de-delta-cephei"
-        },
-        {
-          "kind": "deep",
-          "title": "JWST reveals a luminous infrared source at the position of the failed supernova candidate N6946-BH1",
-          "src": "The Astrophysical Journal, 2024",
-          "note": "L'article qui montre que la source est un mélange de trois objets et laisse l'interprétation ouverte. En anglais.",
-          "url": "https://arxiv.org/pdf/2309.16121"
-        },
-        {
-          "kind": "deep",
-          "title": "The neighboring stars of N6946-BH1 and the observational characteristics of failed supernovae",
-          "src": "arXiv, 2026",
-          "note": "Le critère qui permettrait de distinguer une fusion d'étoiles d'une supernova ratée. En anglais.",
-          "url": "https://arxiv.org/html/2604.05019v1"
-        },
-        {
-          "kind": "look",
-          "title": "Caldwell 4, la nébuleuse de l'Iris",
-          "src": "NASA / Hubble",
-          "note": "La fiche du catalogue Caldwell, avec l'image et les conseils d'observation. En anglais.",
-          "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-4/"
-        },
-        {
-          "kind": "look",
-          "title": "NGC 6946, la galaxie du Feu d'artifice",
-          "src": "NASA / ESA Hubble",
-          "note": "La page de l'image, avec le fichier en pleine résolution.",
-          "url": "https://www.nasa.gov/image-detail/ngc-6946-the-fireworks-galaxy"
-        },
-        {
-          "kind": "read",
-          "title": "Gamma Cephei, alias Errai, une future étoile polaire",
-          "src": "EarthSky",
-          "note": "L'histoire de la planète annoncée, retirée, puis confirmée, racontée simplement. En anglais.",
-          "url": "https://earthsky.org/brightest-stars/gamma-cephei-errai-future-north-star/"
-        },
-        {
-          "kind": "deep",
-          "title": "Multiplicity of Galactic Cepheids from long-baseline interferometry",
-          "src": "Monthly Notices of the RAS",
-          "note": "Pourquoi la compagne de Delta de Céphée est si difficile à voir, et ce que l'interférométrie permet d'exclure. En anglais.",
-          "url": "https://arxiv.org/pdf/1606.01108"
-        },
-        {
-          "kind": "read",
-          "title": "Mu Cephei",
-          "src": "Wikipédia en français",
-          "note": "Pour la fourchette des distances publiées et la variabilité semi-régulière de l'étoile Grenat.",
-          "url": "https://fr.wikipedia.org/wiki/Mu_Cephei"
-        },
-        {
-          "kind": "read",
-          "title": "IC 1396",
-          "src": "Wikipédia en français",
-          "note": "La grande région d'hydrogène ionisé, la Trompe de l'Éléphant et la soixantaine de naines brunes candidates repérées en 2024.",
-          "url": "https://fr.wikipedia.org/wiki/IC_1396"
-        },
-        {
-          "kind": "look",
-          "title": "Mu Cephei au bord d'IC 1396",
-          "src": "APOD, octobre 2023",
-          "note": "Pour se rendre compte de la couleur de l'étoile Grenat et de sa place au bord de la nébuleuse. Image d'amateur, non réutilisable.",
-          "url": "https://apod.nasa.gov/apod/ap231012.html"
-        },
-        {
-          "kind": "deep",
-          "title": "Cepheids at high angular resolution : circumstellar envelope and pulsation",
-          "src": "Thèse d'astronomie",
-          "note": "Le chapitre historique remet Pigott et Eta de l'Aigle à leur place devant Goodricke. En français.",
-          "url": "https://arxiv.org/pdf/1112.5658"
-        }
-      ]
+     "v": "4000",
+     "l": "L'année vers laquelle Errai, au sommet du toit de la maison, prendra la place de Polaris comme étoile du pôle."
     }
-  ]
+   ]
+  },
+  {
+   "t": "text",
+   "h": "L'étoile qui respire",
+   "p": [
+    "Le 19 octobre 1784, John Goodricke note que Delta de Céphée n'a pas le même éclat que la veille. Il l'observe presque chaque nuit jusqu'à la fin décembre, reprend au printemps, et publie : l'étoile varie régulièrement, entre les magnitudes 3,5 et 4,3, sur un cycle de cinq jours et neuf heures. La montée est plus rapide que la descente. Goodricke a vingt ans, il est sourd depuis toujours, et il mourra deux ans plus tard. Toute une famille d'étoiles porte aujourd'hui le nom de celle-ci.",
+    "Une précision d'honnêteté : Delta de Céphée n'est pas la première céphéide découverte. Quelques semaines plus tôt, le 10 septembre 1784, l'amateur Edward Pigott avait repéré la variabilité d'Eta de l'Aigle. C'est pourtant la seconde qui a donné son nom à la classe, et l'usage ne changera pas. Il faudra attendre 1894 pour comprendre ce qui se passe : l'astronome russe Aristarkh Belopolsky montre que les raies du spectre se décalent en rythme avec la lumière. L'étoile ne s'éclipse pas derrière une compagne, comme Algol. Elle gonfle et se dégonfle, périodiquement, comme une poitrine."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Comment une étoile est devenue un mètre-ruban",
+    "events": [
+     {
+      "y": 1784,
+      "label": "Deux amateurs découvrent les premières céphéides",
+      "note": "Edward Pigott repère Eta de l'Aigle en septembre, John Goodricke Delta de Céphée le 19 octobre. C'est la seconde qui donnera son nom à la classe."
+     },
+     {
+      "y": 1894,
+      "label": "Belopolsky comprend qu'elle pulse",
+      "note": "Le décalage des raies spectrales suit la période lumineuse. L'étoile change réellement de taille, elle n'est pas masquée par une autre."
+     },
+     {
+      "y": 1912,
+      "label": "Leavitt établit la relation période-luminosité",
+      "note": "En dépouillant des milliers de variables des Nuages de Magellan, Henrietta Swan Leavitt montre que la période donne la luminosité vraie."
+     },
+     {
+      "y": 1924,
+      "label": "Hubble mesure la distance d'Andromède",
+      "note": "Avec des céphéides repérées dans la nébuleuse, il démontre qu'elle est bien au-delà de la Voie lactée. L'univers passe d'une galaxie à des milliards."
+     },
+     {
+      "y": 2002,
+      "label": "La parallaxe de Delta de Céphée est mesurée",
+      "note": "272 parsecs, à quatre pour cent près, grâce au télescope spatial Hubble. C'est la céphéide la mieux mesurée de notre galaxie."
+     },
+     {
+      "y": 2015,
+      "label": "Delta de Céphée se révèle double",
+      "note": "Un compagnon caché, dix fois moins massif, détecté au spectrographe HERMES à La Palma. Sa présence doit être prise en compte dans la calibration."
+     }
+    ]
+   },
+   "cap": "Les étapes sont espacées régulièrement : c'est la séquence qui compte. Survolez-les.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "De Leavitt à la taille de l'univers",
+   "p": [
+    "L'idée décisive n'est pas venue de Céphée mais des Nuages de Magellan. Au début du XXᵉ siècle, Henrietta Swan Leavitt dépouille au Harvard College Observatory des milliers de plaques photographiques et identifie des centaines de variables. En 1912, elle publie le résultat : dans ces nuages, plus une céphéide met de temps à pulser, plus elle est intrinsèquement lumineuse. La relation est simple, et elle est révolutionnaire. Il suffit désormais de chronométrer une céphéide pour connaître sa luminosité vraie, de la comparer à son éclat apparent, et on en déduit la distance. Un objet du ciel devient un instrument de mesure.",
+    "Douze ans plus tard, Edwin Hubble applique la méthode à des céphéides repérées dans la nébuleuse d'Andromède et montre qu'elle se trouve très au-delà de notre galaxie. L'univers cesse d'être la Voie lactée pour devenir un ensemble de galaxies. La suite est connue : les céphéides servent aujourd'hui de premier barreau à l'échelle qui mène jusqu'à la mesure du taux d'expansion de l'univers, et le désaccord persistant entre cette mesure et celle déduite du fond diffus cosmologique est l'un des problèmes ouverts les plus discutés de la cosmologie. Chaque échelon compte, ce qui explique pourquoi la découverte, en 2015, d'un compagnon caché autour du prototype même de la classe a fait du bruit : les binaires biaisent la calibration de la relation."
+   ]
+  },
+  {
+   "t": "quote",
+   "p": "Notre étude ne remet pas en question l'échelle des distances dans son ensemble.",
+   "who": "Richard Anderson, Université de Genève, mai 2015"
+  },
+  {
+   "t": "figure",
+   "svg": "scale",
+   "wide": true,
+   "data": {
+    "title": "Mu de Céphée et le Soleil",
+    "items": [
+     {
+      "n": "Mu Cephei",
+      "r": 1260,
+      "c": "#E08A6A",
+      "note": "Supergéante rouge, environ dix-neuf masses solaires, sortie de la séquence principale. Elle finira en supernova d'ici quelques centaines de milliers d'années."
+     },
+     {
+      "n": "Soleil",
+      "r": 1,
+      "note": "Pour l'échelle. À cette réduction, son disque n'occupe pratiquement rien."
+     }
+    ]
+   },
+   "cap": "L'une des plus grosses étoiles visibles à l'œil nu, et l'une des plus grosses de la Galaxie.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "L'étoile Grenat de Herschel",
+   "p": [
+    "En 1783, William Herschel signale dans Céphée une étoile d'une rougeur saisissante. Il l'appelle Garnet Star, l'étoile Grenat, et l'on raconte qu'il terminait volontiers ses séances d'observation par elle. C'est Mu de Céphée, aussi nommée Erakis, une supergéante rouge de type M2 dont le diamètre atteint environ mille deux cent soixante fois celui du Soleil. Elle varie de façon semi-régulière entre les magnitudes 3,2 et 5,4, ce qui la rend parfois facile et parfois presque invisible à l'œil nu, sans prévenir.",
+    "Sa distance, en revanche, est mal connue, et les fiches qui donnent un chiffre net trompent leur lecteur : les estimations publiées vont de deux mille quatre cents à plus de cinq mille années-lumière. Comme le diamètre et la luminosité se déduisent de la distance, tout le reste flotte avec elle. Elle se trouve au bord de IC 1396, une immense région d'hydrogène ionisé qui couvre quatre fois la surface apparente de la pleine Lune, ionisée par l'étoile massive HD 206267 en son centre. Un des nuages sombres de cette région, long d'une vingtaine d'années-lumière, est la nébuleuse de la Trompe de l'Éléphant, et l'on y forme des étoiles en ce moment même : deux astres de quelques millions d'années creusent une cavité au sommet de la trompe, et des protoétoiles se cachent dans les filaments."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/cep/c4-jpg.webp",
+   "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-4/",
+   "wide": true,
+   "cap": "La nébuleuse de l'Iris, NGC 7023, à mille trois cents années-lumière. Ce n'est pas du gaz qui brille par lui-même mais de la poussière qui renvoie la lumière de l'étoile enfouie au centre, d'où le bleu, exactement comme notre ciel de jour. Les filaments rougeâtres, eux, signalent que des grains transforment l'ultraviolet invisible en lumière rouge.",
+   "credit": "NASA et ESA"
+  },
+  {
+   "t": "text",
+   "h": "Le buffet des photographes",
+   "p": [
+    "Céphée est circumpolaire et traverse la Voie lactée : elle est disponible plus de la moitié de l'année et bourrée de nébuleuses. L'Iris, NGC 7023, est la plus élégante, six années-lumière de poussière bleue autour d'une étoile chaude, repérée par Herschel le 18 octobre 1794. La Trompe de l'Éléphant est la plus photographiée. S'y ajoutent la nébuleuse de la Caverne et celle du Sorcier, et il faut prévoir large : IC 1396 déborde du champ de la plupart des lunettes d'astrophotographie.",
+    "À l'œil nu et aux jumelles, en revanche, la constellation est ingrate. Aucune de ses étoiles ne dépasse la magnitude 2,5, la forme de maison est plus facile à décrire qu'à retrouver, et les nébuleuses demandent un capteur. C'est le paradoxe de cette région : elle a fourni l'outil qui a mesuré l'univers, et elle est presque invisible depuis un balcon de ville."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Situer la maison de Céphée",
+    "targets": [
+     {
+      "star": "Polaris",
+      "from": "Errai",
+      "label": "Polaris",
+      "sub": "Petite Ourse",
+      "note": "Errai marque le sommet du toit et pointe vers le pôle. Vers l'an 4000, c'est elle qui tiendra le rôle de Polaris."
+     },
+     {
+      "star": "Schedar",
+      "from": "Alderamin",
+      "label": "Schedar",
+      "sub": "Cassiopée",
+      "note": "La maison de Céphée est adossée au W de sa femme. Les deux figures se cherchent l'une l'autre dans le ciel comme dans le récit."
+     },
+     {
+      "star": "Deneb",
+      "from": "Alderamin",
+      "label": "Deneb",
+      "sub": "Cygne",
+      "note": "En été, Céphée suit le Cygne dans la Voie lactée. C'est le meilleur repère quand Cassiopée est encore basse."
+     }
+    ],
+    "notes": {
+     "Alderamin": "La plus brillante de la constellation, et une rotation si rapide qu'elle est nettement aplatie.",
+     "Errai": "Future étoile polaire, et hôte de la première exoplanète jamais soupçonnée.",
+     "Alfirk": "Prototype d'une classe de variables pulsantes, les étoiles de type Bêta Céphée."
+    }
+   },
+   "cap": "La constellation n'a pas d'étoile éclatante : on la trouve par ses voisines, pas par elle-même.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Errai, future polaire et première exoplanète",
+   "p": [
+    "Au sommet du toit de la maison brille Errai, à quarante-cinq années-lumière. Deux choses la rendent remarquable. La première est qu'elle sera notre étoile polaire : la précession de l'axe terrestre l'amènera près du pôle vers l'an 4000, et elle prendra la relève de Polaris, avec toutefois un écart au pôle bien moins confortable.",
+    "La seconde est une belle histoire de prudence scientifique. En juillet 1988, une équipe canadienne menée par Bruce Campbell, Gordon Walker et Stephenson Yang annonce, par la méthode des vitesses radiales, une planète géante autour d'Errai. Si elle avait tenu, c'était la première exoplanète de l'histoire, sept ans avant celle de 51 Pegasi. Mais l'étoile avait été mal classée, l'orbite de sa compagne binaire sous-estimée, et le calcul rendait l'orbite de la planète instable. Faute de données assez bonnes, les auteurs retirent eux-mêmes leur annonce en 1992. Dix ans plus tard, une fois la compagne mieux caractérisée, la planète est confirmée. Elle porte depuis 2015 le nom de Tadmor, proposé par l'Association syrienne d'astronomie : c'est le nom sémitique ancien et arabe moderne de Palmyre. Neuf masses de Jupiter, deux ans et demi de révolution, à peu près la distance qui sépare le Soleil de la ceinture d'astéroïdes."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/cep/potw2101a-scaled-1.webp",
+   "page": "https://www.nasa.gov/image-detail/ngc-6946-the-fireworks-galaxy",
+   "wide": true,
+   "cap": "NGC 6946, dite la galaxie du Feu d'artifice, vue de face à vingt-cinq millions d'années-lumière. Le surnom lui vient de son taux de formation d'étoiles, dix fois celui de la Voie lactée, et du nombre de supernovae qu'on y a vues exploser.",
+   "credit": "ESA/Hubble et NASA, A. Leroy, K. S. Long"
+  },
+  {
+   "t": "text",
+   "h": "La galaxie aux dix supernovae",
+   "p": [
+    "NGC 6946 chevauche la frontière entre Céphée et le Cygne, et les catalogues la rangent tantôt d'un côté tantôt de l'autre. C'est une spirale vue de face, à vingt-cinq millions d'années-lumière, qui fabrique des étoiles dix fois plus vite que la Voie lactée alors qu'elle en contient deux fois moins. La conséquence est spectaculaire : dix supernovae y ont été observées en un siècle, de 1917 à 2017. Aucune autre galaxie connue n'approche ce compte.",
+    "C'est aussi là qu'a eu lieu l'événement le plus étrange du lot. En 2009, une supergéante rouge de vingt à vingt-cinq masses solaires s'illumine faiblement, puis s'éteint. Elle n'est jamais revenue. Pas de supernova, pas de rémanent lumineux, rien. L'objet a été baptisé N6946-BH1, et l'hypothèse qui a fait le tour du monde est celle d'une supernova ratée : une étoile assez massive pour s'effondrer directement en trou noir sans explosion visible. Si c'était démontré, cela résoudrait d'un coup l'absence de progéniteurs très massifs parmi les supernovae de type II et fournirait une voie naturelle pour former les trous noirs que détectent les détecteurs d'ondes gravitationnelles."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "L'étoile qui a disparu n'est pas une affaire classée",
+   "p": "On lit régulièrement que l'on a vu une étoile devenir un trou noir sous nos yeux. C'est aller trop vite. Des observations de Webb en 2023, publiées en 2024, ont montré que ce qu'on prenait pour un objet unique est en réalité un mélange d'au moins trois sources, et qu'il reste sur place une émission infrarouge valant entre treize et vingt-cinq pour cent de la luminosité de l'étoile disparue, avec une signature de poussière chauffée par de l'ultraviolet. Les auteurs sont explicites : les observations correspondent aussi bien à une fusion de deux étoiles, et l'ambiguïté théorique du scénario de supernova ratée empêche de l'écarter. Un travail paru en 2026 propose un critère de tri, car les restes de fusion sont dix à cent fois plus lumineux que leur progéniteur tandis que les restes de supernova ratée sont dix fois plus faibles. Deuxième précision, plus prosaïque : la frontière officielle de l'UAI place cet objet précis du côté du Cygne, même si la galaxie qui l'abrite est aussi catalogée dans Céphée."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "read",
+     "title": "Le compagnon caché de Delta Cephei",
+     "src": "Université de Genève",
+     "note": "Le communiqué de l'équipe qui a trouvé la compagne du prototype des céphéides, et ce que cela change pour Gaia. En français.",
+     "url": "https://www.unige.ch/sciences/astro/news/le-compagnon-cache-de-delta-cephei"
+    },
+    {
+     "kind": "deep",
+     "title": "JWST reveals a luminous infrared source at the position of the failed supernova candidate N6946-BH1",
+     "src": "The Astrophysical Journal, 2024",
+     "note": "L'article qui montre que la source est un mélange de trois objets et laisse l'interprétation ouverte. En anglais.",
+     "url": "https://arxiv.org/pdf/2309.16121"
+    },
+    {
+     "kind": "deep",
+     "title": "The neighboring stars of N6946-BH1 and the observational characteristics of failed supernovae",
+     "src": "arXiv, 2026",
+     "note": "Le critère qui permettrait de distinguer une fusion d'étoiles d'une supernova ratée. En anglais.",
+     "url": "https://arxiv.org/html/2604.05019v1"
+    },
+    {
+     "kind": "look",
+     "title": "Caldwell 4, la nébuleuse de l'Iris",
+     "src": "NASA / Hubble",
+     "note": "La fiche du catalogue Caldwell, avec l'image et les conseils d'observation. En anglais.",
+     "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-4/"
+    },
+    {
+     "kind": "look",
+     "title": "NGC 6946, la galaxie du Feu d'artifice",
+     "src": "NASA / ESA Hubble",
+     "note": "La page de l'image, avec le fichier en pleine résolution.",
+     "url": "https://www.nasa.gov/image-detail/ngc-6946-the-fireworks-galaxy"
+    },
+    {
+     "kind": "read",
+     "title": "Gamma Cephei, alias Errai, une future étoile polaire",
+     "src": "EarthSky",
+     "note": "L'histoire de la planète annoncée, retirée, puis confirmée, racontée simplement. En anglais.",
+     "url": "https://earthsky.org/brightest-stars/gamma-cephei-errai-future-north-star/"
+    },
+    {
+     "kind": "deep",
+     "title": "Multiplicity of Galactic Cepheids from long-baseline interferometry",
+     "src": "Monthly Notices of the RAS",
+     "note": "Pourquoi la compagne de Delta de Céphée est si difficile à voir, et ce que l'interférométrie permet d'exclure. En anglais.",
+     "url": "https://arxiv.org/pdf/1606.01108"
+    },
+    {
+     "kind": "read",
+     "title": "Mu Cephei",
+     "src": "Wikipédia en français",
+     "note": "Pour la fourchette des distances publiées et la variabilité semi-régulière de l'étoile Grenat.",
+     "url": "https://fr.wikipedia.org/wiki/Mu_Cephei"
+    },
+    {
+     "kind": "read",
+     "title": "IC 1396",
+     "src": "Wikipédia en français",
+     "note": "La grande région d'hydrogène ionisé, la Trompe de l'Éléphant et la soixantaine de naines brunes candidates repérées en 2024.",
+     "url": "https://fr.wikipedia.org/wiki/IC_1396"
+    },
+    {
+     "kind": "look",
+     "title": "Mu Cephei au bord d'IC 1396",
+     "src": "APOD, octobre 2023",
+     "note": "Pour se rendre compte de la couleur de l'étoile Grenat et de sa place au bord de la nébuleuse. Image d'amateur, non réutilisable.",
+     "url": "https://apod.nasa.gov/apod/ap231012.html"
+    },
+    {
+     "kind": "deep",
+     "title": "Cepheids at high angular resolution : circumstellar envelope and pulsation",
+     "src": "Thèse d'astronomie",
+     "note": "Le chapitre historique remet Pigott et Eta de l'Aigle à leur place devant Goodricke. En français.",
+     "url": "https://arxiv.org/pdf/1112.5658"
+    }
+   ]
+  }
+ ]
 }
