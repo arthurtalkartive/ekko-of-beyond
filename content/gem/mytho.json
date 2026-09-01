@@ -1,276 +1,276 @@
 {
-  "constellation": "gem",
-  "tab": "mytho",
-  "blocks": [
+ "constellation": "gem",
+ "tab": "mytho",
+ "blocks": [
+  {
+   "t": "lead",
+   "p": "Voici le seul mythe du ciel qui repose entièrement sur une asymétrie. Deux frères nés la même nuit, dont l'un est immortel et l'autre pas. Tout le récit tient à cet écart : la mort de Castor, le refus de Pollux, et l'arrangement bancal qui les fait alterner entre l'Olympe et les Enfers. Les Grecs eux-mêmes ne s'accordaient ni sur le nombre d'œufs, ni sur les pères, ni sur qui était immortel."
+  },
+  {
+   "t": "stats",
+   "v": [
     {
-      "t": "lead",
-      "p": "Voici le seul mythe du ciel qui repose entièrement sur une asymétrie. Deux frères nés la même nuit, dont l'un est immortel et l'autre pas. Tout le récit tient à cet écart : la mort de Castor, le refus de Pollux, et l'arrangement bancal qui les fait alterner entre l'Olympe et les Enfers. Les Grecs eux-mêmes ne s'accordaient ni sur le nombre d'œufs, ni sur les pères, ni sur qui était immortel."
+     "v": "2",
+     "u": "œufs",
+     "l": "Ou trois, selon Ausone. Léda pond après avoir connu la même nuit Zeus changé en cygne et son mari Tyndare. De là Castor, Pollux, Hélène et Clytemnestre."
     },
     {
-      "t": "stats",
-      "v": [
-        {
-          "v": "2",
-          "u": "œufs",
-          "l": "Ou trois, selon Ausone. Léda pond après avoir connu la même nuit Zeus changé en cygne et son mari Tyndare. De là Castor, Pollux, Hélène et Clytemnestre."
-        },
-        {
-          "v": "1",
-          "u": "jour sur deux",
-          "l": "Le partage obtenu par Pollux. Plutôt que de rester immortel seul, il alterne avec son frère entre l'Olympe et les Enfers. Six mois chacun selon d'autres sources."
-        },
-        {
-          "v": "3",
-          "u": "identifications",
-          "l": "Castor et Pollux, Orestès et Pylade, les Decii : le groupe sculpté de San Ildefonso a changé de nom plusieurs fois en quatre siècles."
-        },
-        {
-          "v": "−499",
-          "l": "La bataille du lac Régille, où deux cavaliers annoncent la victoire à Rome puis disparaissent. Un temple leur sera voué sur le Forum."
-        },
-        {
-          "v": "2",
-          "u": "stations lunaires",
-          "l": "Le ciel arabe compte ici deux manāzil al-qamar : la marque au fer rouge sur le cou du chameau, et la patte d'un lion immense."
-        },
-        {
-          "v": "1814",
-          "l": "L'année où Giuseppe Piazzi attribue à ces étoiles des noms arabes tirés d'une transcription de 1665. C'est ainsi que naissent la plupart des noms dits traditionnels."
-        }
-      ]
+     "v": "1",
+     "u": "jour sur deux",
+     "l": "Le partage obtenu par Pollux. Plutôt que de rester immortel seul, il alterne avec son frère entre l'Olympe et les Enfers. Six mois chacun selon d'autres sources."
     },
     {
-      "t": "figure",
-      "src": "/skyculture/ekko/illustrations/gem.webp",
-      "lit": true,
-      "roll": true,
-      "wide": true,
-      "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Deux silhouettes côte à côte, chacune couronnée par son étoile brillante. Castor et Pollux ne sont pourtant séparées que par notre point de vue : dix-sept années-lumière les éloignent l'une de l'autre.",
-      "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+     "v": "3",
+     "u": "identifications",
+     "l": "Castor et Pollux, Orestès et Pylade, les Decii : le groupe sculpté de San Ildefonso a changé de nom plusieurs fois en quatre siècles."
     },
     {
-      "t": "text",
-      "h": "Deux œufs, et aucun accord",
-      "p": [
-        "Léda, épouse du roi de Sparte Tyndare, est approchée par Zeus métamorphosé en cygne. La même nuit, elle rejoint son mari. Elle pond ensuite deux œufs : de celui fécondé par Tyndare naissent Castor et Clytemnestre, mortels ; de celui fécondé par Zeus, Pollux et Hélène, divins. C'est la version la plus répandue, et il faut savoir qu'elle n'est qu'une version parmi d'autres.",
-        "Le désaccord des sources est ici particulièrement net. Chez Homère, les deux frères sont simplement les fils de Tyndare, d'où leur autre nom de Tyndarides, et aucun n'est immortel. Chez Horace, tous les trois, Castor, Pollux et Hélène, sont enfants de Léda et de Zeus. Chez Pindare, seuls Pollux et Hélène le sont, ce qui donne la version asymétrique dont tout le mythe découle. Et Ausone, au IVᵉ siècle, parle de trois œufs et complique encore la parenté. Ce que toutes les versions retiennent, en revanche, c'est le contraste des caractères : Castor est dompteur de chevaux, Pollux est pugiliste."
-      ]
+     "v": "−499",
+     "l": "La bataille du lac Régille, où deux cavaliers annoncent la victoire à Rome puis disparaissent. Un temple leur sera voué sur le Forum."
     },
     {
-      "t": "quote",
-      "p": "Ils sont nés de pères doubles et de doubles mères.",
-      "who": "Ausone, IVᵉ siècle, dans une traduction moderne"
+     "v": "2",
+     "u": "stations lunaires",
+     "l": "Le ciel arabe compte ici deux manāzil al-qamar : la marque au fer rouge sur le cou du chameau, et la patte d'un lion immense."
     },
     {
-      "t": "figure",
-      "src": "/assets/img/constellations/gem/groupe-san-ildefonso-prado.jpg",
-      "page": "https://www.museodelprado.es/coleccion/obra-de-arte/orestes-y-pilades-o-grupo-de-san-ildefonso/a3dbf0c5-cf98-46c7-a02b-f82db6dcab62",
-      "wide": true,
-      "cap": "Deux jeunes hommes couronnés de laurier font un sacrifice devant un autel : l'un allume le feu avec une torche, l'autre tient la patère. Une petite figure féminine de style archaïsant se tient à côté d'eux. Marbre blanc du Iᵉʳ siècle, un mètre soixante-et-un de haut. C'est l'œuvre la plus connue de toute la galerie de sculptures du Prado, et personne ne sait avec certitude qui elle représente.",
-      "credit": "Anonyme, « Orestès et Pylade ou groupe de San Ildefonso », Iᵉʳ siècle — Museo Nacional del Prado, Madrid (E 28)"
-    },
-    {
-      "t": "text",
-      "h": "Le sacrifice avant la séparation",
-      "p": [
-        "La mort de Castor vient d'une histoire de rapt. Les deux frères enlèvent les filles du roi Leucippe, Phoebé et Hilaera, promises à leurs propres cousins Idas et Lyncée. Le combat qui s'ensuit est raconté de trois ou quatre façons différentes, mais l'issue est la même : Castor est tué par Idas, Zeus foudroie Idas, et Pollux, à qui son père offre l'immortalité, refuse de la garder si son frère doit rester aux Enfers. Zeus accorde alors l'arrangement qui fait tout le mythe : ils alterneront, un jour sur deux, entre l'Olympe et le royaume des morts.",
-        "C'est ici que la sculpture du Prado devient passionnante, et pas seulement belle. Les descriptions les plus anciennes y voyaient Castor et Pollux offrant un sacrifice à Perséphone juste avant leur séparation, ce qui collerait parfaitement au mythe. Winckelmann a proposé Orestès et Pylade sacrifiant à Artémis, tout en appelant l'ensemble « le groupe de Castor et Pollux » dans une lettre de 1761. D'autres ont vu les Decii, ces Romains célèbres pour leur sacrifice à la patrie. L'inventaire royal de 1857 le décrivait encore comme « un groupe de marbre de Carrare représentant Castor et Pollux ». Le Prado l'intitule aujourd'hui « Orestès et Pylade ou groupe de San Ildefonso ». Ce qui a séduit les Européens depuis le XVIIᵉ siècle, au point qu'on en a mis des copies dans les palais et les jardins de tout le continent, c'est l'étreinte des deux jeunes hommes, chose rare dans la sculpture antique, lue comme un signe d'amitié et d'amour fraternel."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "timeline",
-      "wide": true,
-      "data": {
-        "title": "Les jumeaux, d'une culture à l'autre",
-        "events": [
-          {
-            "y": -2000,
-            "when": "Mésopotamie",
-            "label": "MAŠ.MAŠ, les Jumeaux",
-            "note": "Identifiés à Lugal-irra et Meslamta-ea, deux divinités infernales jumelles, peut-être à l'origine les gardiens des portes des Enfers."
-          },
-          {
-            "y": -700,
-            "when": "Homère",
-            "label": "Simplement les fils de Tyndare",
-            "note": "Chez Homère, les deux frères sont mortels tous les deux. La double paternité et l'immortalité de Pollux viennent plus tard, chez Pindare."
-          },
-          {
-            "y": -499,
-            "label": "Le lac Régille et le temple du Forum",
-            "note": "Deux cavaliers font boire leurs chevaux à la fontaine de Juturne et annoncent la victoire à Rome. Le dictateur Postumius voue un temple sur place."
-          },
-          {
-            "y": -211,
-            "when": "après 211 av. J.-C.",
-            "label": "Les Dioscures sur le denier romain",
-            "note": "Deux cavaliers cuirassés au bonnet conique surmonté d'une étoile, lance à la main : c'est le revers fondateur de la monnaie romaine, et il tiendra plus d'un siècle."
-          },
-          {
-            "y": 964,
-            "label": "al-Sufi et les deux stations lunaires",
-            "note": "Le ciel arabe superpose aux jumeaux grecs la marque au fer du chameau et la patte d'un lion immense qui enjambe plusieurs constellations."
-          },
-          {
-            "y": 1814,
-            "label": "Piazzi distribue les noms d'étoiles",
-            "note": "À partir d'une transcription anglaise de 1665 des tables d'Ulugh Beg de 1437. Alhéna, Mebsuta et Mekbuda naissent de cette chaîne de trois relais."
-          }
-        ]
-      },
-      "cap": "Des portiers des Enfers à un catalogue italien du XIXᵉ siècle. Survolez les étapes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Deux flammes sur les mâts",
-      "p": [
-        "Les Dioscures ont eu, de tous les personnages du ciel, l'une des vies religieuses les plus concrètes, et cela tient à un phénomène électrique. Pendant l'expédition des Argonautes, une tempête assaille le navire ; Orphée implore les divinités de Samothrace, et deux flammes apparaissent, se posant sur la tête des deux frères. Depuis, les marins antiques ont vu dans les lueurs qui couronnent les mâts par temps d'orage la présence protectrice des jumeaux. Le feu de Saint-Elme à deux pointes s'appelait « les Dioscures », et il annonçait la fin du grain. Ils étaient dieux de la navigation, de l'hospitalité et de la longévité.",
-        "Rome en a fait davantage encore. En 499 avant notre ère, au soir de la bataille du lac Régille contre les Latins et Tarquin le Superbe, deux cavaliers font boire leurs chevaux à la fontaine de Juturne, sur le Forum, annoncent la victoire, puis disparaissent. Le dictateur Aulus Postumius Albinus voue un temple à l'emplacement de la source, et les colonnes en sont encore debout. Juturne, la nymphe de la fontaine, passait pour leur sœur. Le plus parlant reste la monnaie : dès les premiers deniers anonymes frappés après 211 avant notre ère, le revers montre deux cavaliers cuirassés coiffés du bonnet conique surmonté d'une étoile. C'est l'image fondatrice du denier romain, et elle tiendra plus d'un siècle."
-      ]
-    },
-    {
-      "t": "figure",
-      "svg": "compass",
-      "wide": true,
-      "data": {
-        "title": "Les trouver, et voir plus grand",
-        "targets": [
-          {
-            "star": "Bételgeuse",
-            "from": "Alhena",
-            "label": "Bételgeuse",
-            "sub": "Orion",
-            "note": "La méthode la plus sûre : l'alignement Rigel — Bételgeuse prolongé passe par Alhéna, le pied du jumeau, et pointe sur Pollux."
-          },
-          {
-            "star": "Regulus",
-            "from": "Pollux",
-            "label": "Régulus",
-            "sub": "Lion",
-            "note": "Le Lion des Grecs. Mais le Superlion arabe était bien plus vaste : une de ses pattes se trouvait ici même, et les crins de sa queue dans la Vierge."
-          }
-        ],
-        "notes": {
-          "Castor": "Le mortel, dompteur de chevaux. Six étoiles en réalité, et à cinquante et une années-lumière.",
-          "Pollux": "L'immortel, pugiliste. Géante orange, à trente-quatre années-lumière seulement.",
-          "Alhena": "De al-Hanᶜa, « la marque au fer rouge faite sur le cou du chameau ». Sixième station lunaire arabe."
-        }
-      },
-      "cap": "Une constellation se cherche toujours à partir d'une plus facile, et Orion est la plus facile de toutes.",
-      "credit": "Schéma Ekko of Beyond."
-    },
-    {
-      "t": "text",
-      "h": "Le Superlion et la marque du chameau",
-      "p": [
-        "Le ciel arabe traditionnel ne connaissait pas de jumeaux ici, et ce qu'il y voyait est autrement surprenant. Cette région abrite deux stations lunaires, deux des vingt-huit manāzil al-qamar qui découpaient le trajet de la Lune. La sixième est al-Hanᶜa, la marque faite au fer rouge sur le cou du chameau, formée du couple gamma et xi des Gémeaux : c'est de là que vient le nom d'Alhéna. La septième est al-Ḏirāᶜ, la patte, formée de Castor et Pollux.",
-        "Et cette patte appartient à quelque chose de considérable. À partir des noms d'étoiles du calendrier des stations lunaires, on peut extrapoler la figure d'un Lion immense, que les spécialistes appellent le Superlion, qui enjambe plusieurs de nos constellations actuelles : sa patte déployée, al-mabsūṭa, a donné Mebsuta, sa patte repliée, al-maqbūḍa, a donné Mekbuda, et les crins de sa queue se trouvent dans la Vierge. C'est exactement le même procédé que pour Thurayyā, la géante dont la main teinte au henné est dans Cassiopée et la tête dans le Taureau. Le ciel bédouin était peuplé de figures gigantesques que les frontières modernes ont hachées en morceaux, et dont il ne nous reste que des noms d'étoiles isolés."
-      ]
-    },
-    {
-      "t": "figure",
-      "src": "/assets/img/constellations/gem/al-sufi-gemeaux-marsh144.jpg",
-      "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
-      "wide": true,
-      "cap": "Les Gémeaux dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. La figure suit Ptolémée, deux jeunes hommes côte à côte, alors que le texte arabe connaît parfaitement l'autre lecture, celle des stations lunaires et de la patte du lion. Comme toujours dans cet ouvrage, les deux cieux cohabitent sans se contredire.",
-      "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
-    },
-    {
-      "t": "text",
-      "h": "Portiers des Enfers, puits céleste, jumeaux héros",
-      "p": [
-        "La Mésopotamie a nommé ces étoiles MAŠ.MAŠ, les Jumeaux, et les a identifiées à Lugal-irra et Meslamta-ea, deux divinités jumelles du monde souterrain, peut-être à l'origine les gardiens des portes des Enfers. Le rapprochement est troublant si l'on se souvient que le mythe grec fait précisément voyager les Dioscures entre les vivants et les morts, un jour sur deux. On se gardera pourtant d'en conclure à une filiation : c'est une convergence, pas une preuve.",
-        "Ailleurs, la lecture change du tout au tout. La Chine ne voit pas de jumeaux mais un puits, Jǐng, formé de huit étoiles de la constellation, dans le palais de l'Oiseau rouge du Sud. Les Navajos y voient leurs Jumeaux Héros. Les bergers catalans, plus prosaïquement, un père et son fils, Pare i Fill. Et les comparatistes rattachent les Dioscures à la figure indo-européenne des jumeaux divins, dont les Aśvin védiques, cavaliers célestes, seraient les cousins. Cette dernière piste est une hypothèse de linguistes, séduisante et discutée, pas un fait établi."
-      ]
-    },
-    {
-      "t": "warn",
-      "h": "Les noms « traditionnels » ne le sont pas toujours",
-      "p": "Les noms d'étoiles de cette constellation offrent le meilleur exemple d'une illusion très répandue. Alhéna, Mebsuta et Mekbuda sont présentés comme des noms arabes traditionnels, et ils viennent en effet de mots arabes. Mais la chaîne réelle compte trois relais. Les mots figurent dans les tables sultaniennes d'Ulugh Beg, à Samarcande, en 1437. L'orientaliste anglais Thomas Hyde les transcrit en 1665 dans sa traduction latine de ces tables. Et c'est l'astronome italien Giuseppe Piazzi qui, en 1814, les affecte à telle ou telle étoile, de façon largement arbitraire selon les spécialistes des noms d'étoiles. Autrement dit, ce que nous appelons le nom traditionnel arabe d'une étoile est souvent l'attribution d'un savant européen du XIXᵉ siècle, à partir d'une transcription du XVIIᵉ, d'un texte du XVᵉ. La localisation même des pattes du Superlion est disputée : certains les placent du côté de Procyon, d'autres sur la tête des Gémeaux. Ce n'est pas une raison de mépriser ces noms, qui sont beaux et qui portent une vraie tradition. C'est une raison de ne pas les présenter comme immémoriaux."
-    },
-    {
-      "t": "links",
-      "v": [
-        {
-          "kind": "look",
-          "title": "Orestès et Pylade, ou groupe de San Ildefonso",
-          "src": "Museo Nacional del Prado",
-          "note": "La fiche du musée, avec l'histoire complète des identifications successives et la provenance de l'œuvre. En espagnol.",
-          "url": "https://www.museodelprado.es/coleccion/obra-de-arte/orestes-y-pilades-o-grupo-de-san-ildefonso/a3dbf0c5-cf98-46c7-a02b-f82db6dcab62"
-        },
-        {
-          "kind": "read",
-          "title": "Le groupe de San Ildefonso",
-          "src": "Encyclopédie du Prado",
-          "note": "La notice longue : Winckelmann, Perrier, les Decii, et le débat sur le sens du geste. En espagnol.",
-          "url": "https://www.museodelprado.es/aprende/enciclopedia/voz/grupo-de-san-ildefonso-anonimo-clasico/8a8536b1-e342-447f-a758-15b73058adf3"
-        },
-        {
-          "kind": "look",
-          "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
-          "src": "Bodleian Library, Oxford",
-          "note": "Les cinquante-sept planches numérisées, dont celle des Gémeaux.",
-          "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
-        },
-        {
-          "kind": "read",
-          "title": "Dioscures",
-          "src": "Larousse, encyclopédie de la mythologie",
-          "note": "La notice qui met les versions côte à côte, d'Homère à Ausone, et cite les passages antiques. En français.",
-          "url": "https://www.larousse.fr/encyclopedie/mythologie/Dioscures/189522"
-        },
-        {
-          "kind": "read",
-          "title": "Les Dioscures, dictionnaire de mythologie grecque",
-          "src": "Mythologica",
-          "note": "Les quatre variantes du combat contre Idas et Lyncée, numérotées et sourcées. Pour voir à quel point les récits divergent.",
-          "url": "https://mythologica.fr/grec/dioscures.htm"
-        },
-        {
-          "kind": "read",
-          "title": "Gémeaux",
-          "src": "Wikipédia en français",
-          "note": "La section sur les deux stations lunaires arabes et l'intégration de la patte dans la figure du Superlion. Précise et sourcée.",
-          "url": "https://fr.wikipedia.org/wiki/G%C3%A9meaux"
-        },
-        {
-          "kind": "read",
-          "title": "Epsilon Geminorum",
-          "src": "Wikipédia en français",
-          "note": "La chaîne Ulugh Beg, Thomas Hyde, Piazzi expliquée en détail pour Mebsuta. La source du bloc de mise en garde.",
-          "url": "https://fr.wikipedia.org/wiki/Epsilon_Geminorum"
-        },
-        {
-          "kind": "read",
-          "title": "Castor et Pollux",
-          "src": "World History Encyclopedia",
-          "note": "Le récit complet et les épisodes secondaires, du sanglier de Calydon à la fondation de Dioscurias. En français.",
-          "url": "https://www.worldhistory.org/trans/fr/1-12348/castor-et-pollux/"
-        },
-        {
-          "kind": "read",
-          "title": "Les Dioscures dans la numismatique romaine",
-          "src": "LesDioscures.com",
-          "note": "L'iconographie du revers du denier, bonnet conique et étoile, avec les émissions datées. En français.",
-          "url": "https://lesdioscures.com/castor-et-pollux-les-dioscures/"
-        },
-        {
-          "kind": "read",
-          "title": "Les noms d'étoiles des Gémeaux",
-          "src": "Société d'astronomie de Sautron",
-          "note": "Un relevé étoile par étoile des noms arabes, chinois, mésopotamiens et navajos. En français, et généreux en détails.",
-          "url": "https://sautronastronomie.fr/index.php/component/phocadownload/file/30-gemeaux?tmpl=component"
-        },
-        {
-          "kind": "read",
-          "title": "Le temple de Castor et Pollux",
-          "src": "Lieux sacrés",
-          "note": "L'origine du temple du Forum, la bataille du lac Régille et la filiation indo-européenne des jumeaux divins. En français.",
-          "url": "https://lieuxsacres.canalblog.com/archives/2008/10/30/11171509.html"
-        }
-      ]
+     "v": "1814",
+     "l": "L'année où Giuseppe Piazzi attribue à ces étoiles des noms arabes tirés d'une transcription de 1665. C'est ainsi que naissent la plupart des noms dits traditionnels."
     }
-  ]
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/skyculture/ekko/illustrations/gem.webp",
+   "lit": true,
+   "roll": true,
+   "wide": true,
+   "cap": "La figure telle qu'elle est tracée dans le ciel d'Ekko. Deux silhouettes côte à côte, chacune couronnée par son étoile brillante. Castor et Pollux ne sont pourtant séparées que par notre point de vue : dix-sept années-lumière les éloignent l'une de l'autre.",
+   "credit": "Illustration du skyculture, d'après Johan Meuris — Licence Art Libre."
+  },
+  {
+   "t": "text",
+   "h": "Deux œufs, et aucun accord",
+   "p": [
+    "Léda, épouse du roi de Sparte Tyndare, est approchée par Zeus métamorphosé en cygne. La même nuit, elle rejoint son mari. Elle pond ensuite deux œufs : de celui fécondé par Tyndare naissent Castor et Clytemnestre, mortels ; de celui fécondé par Zeus, Pollux et Hélène, divins. C'est la version la plus répandue, et il faut savoir qu'elle n'est qu'une version parmi d'autres.",
+    "Le désaccord des sources est ici particulièrement net. Chez Homère, les deux frères sont simplement les fils de Tyndare, d'où leur autre nom de Tyndarides, et aucun n'est immortel. Chez Horace, tous les trois, Castor, Pollux et Hélène, sont enfants de Léda et de Zeus. Chez Pindare, seuls Pollux et Hélène le sont, ce qui donne la version asymétrique dont tout le mythe découle. Et Ausone, au IVᵉ siècle, parle de trois œufs et complique encore la parenté. Ce que toutes les versions retiennent, en revanche, c'est le contraste des caractères : Castor est dompteur de chevaux, Pollux est pugiliste."
+   ]
+  },
+  {
+   "t": "quote",
+   "p": "Ils sont nés de pères doubles et de doubles mères.",
+   "who": "Ausone, IVᵉ siècle, dans une traduction moderne"
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/gem/orestes-y-pilades-o-grupo-de-san-ildefon.jpg",
+   "page": "https://www.museodelprado.es/coleccion/obra-de-arte/orestes-y-pilades-o-grupo-de-san-ildefonso/a3dbf0c5-cf98-46c7-a02b-f82db6dcab62",
+   "wide": true,
+   "cap": "Deux jeunes hommes couronnés de laurier font un sacrifice devant un autel : l'un allume le feu avec une torche, l'autre tient la patère. Une petite figure féminine de style archaïsant se tient à côté d'eux. Marbre blanc du Iᵉʳ siècle, un mètre soixante-et-un de haut. C'est l'œuvre la plus connue de toute la galerie de sculptures du Prado, et personne ne sait avec certitude qui elle représente.",
+   "credit": "Anonyme, « Orestès et Pylade ou groupe de San Ildefonso », Iᵉʳ siècle — Museo Nacional del Prado, Madrid (E 28)"
+  },
+  {
+   "t": "text",
+   "h": "Le sacrifice avant la séparation",
+   "p": [
+    "La mort de Castor vient d'une histoire de rapt. Les deux frères enlèvent les filles du roi Leucippe, Phoebé et Hilaera, promises à leurs propres cousins Idas et Lyncée. Le combat qui s'ensuit est raconté de trois ou quatre façons différentes, mais l'issue est la même : Castor est tué par Idas, Zeus foudroie Idas, et Pollux, à qui son père offre l'immortalité, refuse de la garder si son frère doit rester aux Enfers. Zeus accorde alors l'arrangement qui fait tout le mythe : ils alterneront, un jour sur deux, entre l'Olympe et le royaume des morts.",
+    "C'est ici que la sculpture du Prado devient passionnante, et pas seulement belle. Les descriptions les plus anciennes y voyaient Castor et Pollux offrant un sacrifice à Perséphone juste avant leur séparation, ce qui collerait parfaitement au mythe. Winckelmann a proposé Orestès et Pylade sacrifiant à Artémis, tout en appelant l'ensemble « le groupe de Castor et Pollux » dans une lettre de 1761. D'autres ont vu les Decii, ces Romains célèbres pour leur sacrifice à la patrie. L'inventaire royal de 1857 le décrivait encore comme « un groupe de marbre de Carrare représentant Castor et Pollux ». Le Prado l'intitule aujourd'hui « Orestès et Pylade ou groupe de San Ildefonso ». Ce qui a séduit les Européens depuis le XVIIᵉ siècle, au point qu'on en a mis des copies dans les palais et les jardins de tout le continent, c'est l'étreinte des deux jeunes hommes, chose rare dans la sculpture antique, lue comme un signe d'amitié et d'amour fraternel."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "timeline",
+   "wide": true,
+   "data": {
+    "title": "Les jumeaux, d'une culture à l'autre",
+    "events": [
+     {
+      "y": -2000,
+      "when": "Mésopotamie",
+      "label": "MAŠ.MAŠ, les Jumeaux",
+      "note": "Identifiés à Lugal-irra et Meslamta-ea, deux divinités infernales jumelles, peut-être à l'origine les gardiens des portes des Enfers."
+     },
+     {
+      "y": -700,
+      "when": "Homère",
+      "label": "Simplement les fils de Tyndare",
+      "note": "Chez Homère, les deux frères sont mortels tous les deux. La double paternité et l'immortalité de Pollux viennent plus tard, chez Pindare."
+     },
+     {
+      "y": -499,
+      "label": "Le lac Régille et le temple du Forum",
+      "note": "Deux cavaliers font boire leurs chevaux à la fontaine de Juturne et annoncent la victoire à Rome. Le dictateur Postumius voue un temple sur place."
+     },
+     {
+      "y": -211,
+      "when": "après 211 av. J.-C.",
+      "label": "Les Dioscures sur le denier romain",
+      "note": "Deux cavaliers cuirassés au bonnet conique surmonté d'une étoile, lance à la main : c'est le revers fondateur de la monnaie romaine, et il tiendra plus d'un siècle."
+     },
+     {
+      "y": 964,
+      "label": "al-Sufi et les deux stations lunaires",
+      "note": "Le ciel arabe superpose aux jumeaux grecs la marque au fer du chameau et la patte d'un lion immense qui enjambe plusieurs constellations."
+     },
+     {
+      "y": 1814,
+      "label": "Piazzi distribue les noms d'étoiles",
+      "note": "À partir d'une transcription anglaise de 1665 des tables d'Ulugh Beg de 1437. Alhéna, Mebsuta et Mekbuda naissent de cette chaîne de trois relais."
+     }
+    ]
+   },
+   "cap": "Des portiers des Enfers à un catalogue italien du XIXᵉ siècle. Survolez les étapes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Deux flammes sur les mâts",
+   "p": [
+    "Les Dioscures ont eu, de tous les personnages du ciel, l'une des vies religieuses les plus concrètes, et cela tient à un phénomène électrique. Pendant l'expédition des Argonautes, une tempête assaille le navire ; Orphée implore les divinités de Samothrace, et deux flammes apparaissent, se posant sur la tête des deux frères. Depuis, les marins antiques ont vu dans les lueurs qui couronnent les mâts par temps d'orage la présence protectrice des jumeaux. Le feu de Saint-Elme à deux pointes s'appelait « les Dioscures », et il annonçait la fin du grain. Ils étaient dieux de la navigation, de l'hospitalité et de la longévité.",
+    "Rome en a fait davantage encore. En 499 avant notre ère, au soir de la bataille du lac Régille contre les Latins et Tarquin le Superbe, deux cavaliers font boire leurs chevaux à la fontaine de Juturne, sur le Forum, annoncent la victoire, puis disparaissent. Le dictateur Aulus Postumius Albinus voue un temple à l'emplacement de la source, et les colonnes en sont encore debout. Juturne, la nymphe de la fontaine, passait pour leur sœur. Le plus parlant reste la monnaie : dès les premiers deniers anonymes frappés après 211 avant notre ère, le revers montre deux cavaliers cuirassés coiffés du bonnet conique surmonté d'une étoile. C'est l'image fondatrice du denier romain, et elle tiendra plus d'un siècle."
+   ]
+  },
+  {
+   "t": "figure",
+   "svg": "compass",
+   "wide": true,
+   "data": {
+    "title": "Les trouver, et voir plus grand",
+    "targets": [
+     {
+      "star": "Bételgeuse",
+      "from": "Alhena",
+      "label": "Bételgeuse",
+      "sub": "Orion",
+      "note": "La méthode la plus sûre : l'alignement Rigel — Bételgeuse prolongé passe par Alhéna, le pied du jumeau, et pointe sur Pollux."
+     },
+     {
+      "star": "Regulus",
+      "from": "Pollux",
+      "label": "Régulus",
+      "sub": "Lion",
+      "note": "Le Lion des Grecs. Mais le Superlion arabe était bien plus vaste : une de ses pattes se trouvait ici même, et les crins de sa queue dans la Vierge."
+     }
+    ],
+    "notes": {
+     "Castor": "Le mortel, dompteur de chevaux. Six étoiles en réalité, et à cinquante et une années-lumière.",
+     "Pollux": "L'immortel, pugiliste. Géante orange, à trente-quatre années-lumière seulement.",
+     "Alhena": "De al-Hanᶜa, « la marque au fer rouge faite sur le cou du chameau ». Sixième station lunaire arabe."
+    }
+   },
+   "cap": "Une constellation se cherche toujours à partir d'une plus facile, et Orion est la plus facile de toutes.",
+   "credit": "Schéma Ekko of Beyond."
+  },
+  {
+   "t": "text",
+   "h": "Le Superlion et la marque du chameau",
+   "p": [
+    "Le ciel arabe traditionnel ne connaissait pas de jumeaux ici, et ce qu'il y voyait est autrement surprenant. Cette région abrite deux stations lunaires, deux des vingt-huit manāzil al-qamar qui découpaient le trajet de la Lune. La sixième est al-Hanᶜa, la marque faite au fer rouge sur le cou du chameau, formée du couple gamma et xi des Gémeaux : c'est de là que vient le nom d'Alhéna. La septième est al-Ḏirāᶜ, la patte, formée de Castor et Pollux.",
+    "Et cette patte appartient à quelque chose de considérable. À partir des noms d'étoiles du calendrier des stations lunaires, on peut extrapoler la figure d'un Lion immense, que les spécialistes appellent le Superlion, qui enjambe plusieurs de nos constellations actuelles : sa patte déployée, al-mabsūṭa, a donné Mebsuta, sa patte repliée, al-maqbūḍa, a donné Mekbuda, et les crins de sa queue se trouvent dans la Vierge. C'est exactement le même procédé que pour Thurayyā, la géante dont la main teinte au henné est dans Cassiopée et la tête dans le Taureau. Le ciel bédouin était peuplé de figures gigantesques que les frontières modernes ont hachées en morceaux, et dont il ne nous reste que des noms d'étoiles isolés."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "/assets/img/constellations/gem/book_of_the_fixed_stars_auv0218_gemini.jpg",
+   "page": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)",
+   "wide": true,
+   "cap": "Les Gémeaux dans le « Livre des étoiles fixes » d'al-Sufi, achevé en 964. La figure suit Ptolémée, deux jeunes hommes côte à côte, alors que le texte arabe connaît parfaitement l'autre lecture, celle des stations lunaires et de la patte du lion. Comme toujours dans cet ouvrage, les deux cieux cohabitent sans se contredire.",
+   "credit": "ʿAbd al-Raḥmān al-Sufi, Kitāb ṣuwar al-kawākib — Bodleian Library, Oxford, MS. Marsh 144. Domaine public"
+  },
+  {
+   "t": "text",
+   "h": "Portiers des Enfers, puits céleste, jumeaux héros",
+   "p": [
+    "La Mésopotamie a nommé ces étoiles MAŠ.MAŠ, les Jumeaux, et les a identifiées à Lugal-irra et Meslamta-ea, deux divinités jumelles du monde souterrain, peut-être à l'origine les gardiens des portes des Enfers. Le rapprochement est troublant si l'on se souvient que le mythe grec fait précisément voyager les Dioscures entre les vivants et les morts, un jour sur deux. On se gardera pourtant d'en conclure à une filiation : c'est une convergence, pas une preuve.",
+    "Ailleurs, la lecture change du tout au tout. La Chine ne voit pas de jumeaux mais un puits, Jǐng, formé de huit étoiles de la constellation, dans le palais de l'Oiseau rouge du Sud. Les Navajos y voient leurs Jumeaux Héros. Les bergers catalans, plus prosaïquement, un père et son fils, Pare i Fill. Et les comparatistes rattachent les Dioscures à la figure indo-européenne des jumeaux divins, dont les Aśvin védiques, cavaliers célestes, seraient les cousins. Cette dernière piste est une hypothèse de linguistes, séduisante et discutée, pas un fait établi."
+   ]
+  },
+  {
+   "t": "warn",
+   "h": "Les noms « traditionnels » ne le sont pas toujours",
+   "p": "Les noms d'étoiles de cette constellation offrent le meilleur exemple d'une illusion très répandue. Alhéna, Mebsuta et Mekbuda sont présentés comme des noms arabes traditionnels, et ils viennent en effet de mots arabes. Mais la chaîne réelle compte trois relais. Les mots figurent dans les tables sultaniennes d'Ulugh Beg, à Samarcande, en 1437. L'orientaliste anglais Thomas Hyde les transcrit en 1665 dans sa traduction latine de ces tables. Et c'est l'astronome italien Giuseppe Piazzi qui, en 1814, les affecte à telle ou telle étoile, de façon largement arbitraire selon les spécialistes des noms d'étoiles. Autrement dit, ce que nous appelons le nom traditionnel arabe d'une étoile est souvent l'attribution d'un savant européen du XIXᵉ siècle, à partir d'une transcription du XVIIᵉ, d'un texte du XVᵉ. La localisation même des pattes du Superlion est disputée : certains les placent du côté de Procyon, d'autres sur la tête des Gémeaux. Ce n'est pas une raison de mépriser ces noms, qui sont beaux et qui portent une vraie tradition. C'est une raison de ne pas les présenter comme immémoriaux."
+  },
+  {
+   "t": "links",
+   "v": [
+    {
+     "kind": "look",
+     "title": "Orestès et Pylade, ou groupe de San Ildefonso",
+     "src": "Museo Nacional del Prado",
+     "note": "La fiche du musée, avec l'histoire complète des identifications successives et la provenance de l'œuvre. En espagnol.",
+     "url": "https://www.museodelprado.es/coleccion/obra-de-arte/orestes-y-pilades-o-grupo-de-san-ildefonso/a3dbf0c5-cf98-46c7-a02b-f82db6dcab62"
+    },
+    {
+     "kind": "read",
+     "title": "Le groupe de San Ildefonso",
+     "src": "Encyclopédie du Prado",
+     "note": "La notice longue : Winckelmann, Perrier, les Decii, et le débat sur le sens du geste. En espagnol.",
+     "url": "https://www.museodelprado.es/aprende/enciclopedia/voz/grupo-de-san-ildefonso-anonimo-clasico/8a8536b1-e342-447f-a758-15b73058adf3"
+    },
+    {
+     "kind": "look",
+     "title": "Le manuscrit d'al-Sufi, MS. Marsh 144",
+     "src": "Bodleian Library, Oxford",
+     "note": "Les cinquante-sept planches numérisées, dont celle des Gémeaux.",
+     "url": "https://commons.wikimedia.org/wiki/Category:Kit%C4%81b_%E1%B9%A2uwar_al-kaw%C4%81kib_(al-th%C4%81bitah)_(Bodleian_Library_MS._Marsh_144)"
+    },
+    {
+     "kind": "read",
+     "title": "Dioscures",
+     "src": "Larousse, encyclopédie de la mythologie",
+     "note": "La notice qui met les versions côte à côte, d'Homère à Ausone, et cite les passages antiques. En français.",
+     "url": "https://www.larousse.fr/encyclopedie/mythologie/Dioscures/189522"
+    },
+    {
+     "kind": "read",
+     "title": "Les Dioscures, dictionnaire de mythologie grecque",
+     "src": "Mythologica",
+     "note": "Les quatre variantes du combat contre Idas et Lyncée, numérotées et sourcées. Pour voir à quel point les récits divergent.",
+     "url": "https://mythologica.fr/grec/dioscures.htm"
+    },
+    {
+     "kind": "read",
+     "title": "Gémeaux",
+     "src": "Wikipédia en français",
+     "note": "La section sur les deux stations lunaires arabes et l'intégration de la patte dans la figure du Superlion. Précise et sourcée.",
+     "url": "https://fr.wikipedia.org/wiki/G%C3%A9meaux"
+    },
+    {
+     "kind": "read",
+     "title": "Epsilon Geminorum",
+     "src": "Wikipédia en français",
+     "note": "La chaîne Ulugh Beg, Thomas Hyde, Piazzi expliquée en détail pour Mebsuta. La source du bloc de mise en garde.",
+     "url": "https://fr.wikipedia.org/wiki/Epsilon_Geminorum"
+    },
+    {
+     "kind": "read",
+     "title": "Castor et Pollux",
+     "src": "World History Encyclopedia",
+     "note": "Le récit complet et les épisodes secondaires, du sanglier de Calydon à la fondation de Dioscurias. En français.",
+     "url": "https://www.worldhistory.org/trans/fr/1-12348/castor-et-pollux/"
+    },
+    {
+     "kind": "read",
+     "title": "Les Dioscures dans la numismatique romaine",
+     "src": "LesDioscures.com",
+     "note": "L'iconographie du revers du denier, bonnet conique et étoile, avec les émissions datées. En français.",
+     "url": "https://lesdioscures.com/castor-et-pollux-les-dioscures/"
+    },
+    {
+     "kind": "read",
+     "title": "Les noms d'étoiles des Gémeaux",
+     "src": "Société d'astronomie de Sautron",
+     "note": "Un relevé étoile par étoile des noms arabes, chinois, mésopotamiens et navajos. En français, et généreux en détails.",
+     "url": "https://sautronastronomie.fr/index.php/component/phocadownload/file/30-gemeaux?tmpl=component"
+    },
+    {
+     "kind": "read",
+     "title": "Le temple de Castor et Pollux",
+     "src": "Lieux sacrés",
+     "note": "L'origine du temple du Forum, la bataille du lac Régille et la filiation indo-européenne des jumeaux divins. En français.",
+     "url": "https://lieuxsacres.canalblog.com/archives/2008/10/30/11171509.html"
+    }
+   ]
+  }
+ ]
 }
