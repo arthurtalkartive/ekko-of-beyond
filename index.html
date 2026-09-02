@@ -281,6 +281,9 @@ button.account{cursor:pointer}
   color:var(--cream);opacity:.85;transition:background .18s,opacity .18s}
 .mi:hover{background:rgba(227,227,196,.1);opacity:1}
 .mi.off{opacity:.3;pointer-events:none}
+.mi-lbl{padding:5px 13px 7px;font-size:10px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--cream);opacity:.38}
+.mi-sep{height:1px;margin:7px 13px;background:var(--c20)}
 @media (max-width:820px){ #menu{right:12px;left:12px;min-width:0} }
 
 /* ================= ACTIONS AU SURVOL =================
@@ -584,8 +587,13 @@ body.collection #reticle{opacity:0;pointer-events:none}
 <!-- sous-menu du compte : provisoire, en attendant l'espace membre -->
 <div id="menu-veil"></div>
 <nav id="menu" aria-label="Mon compte">
+  <span class="mi-lbl">Outils</span>
   <a class="mi" href="/verification">Vérification des figures</a>
+  <a class="mi" href="/constellation-lab">Banc d'essai constellation</a>
+  <a class="mi" href="/calibration">Calibration audio</a>
   <a class="mi" href="/studio">Studio des contenus</a>
+  <a class="mi" href="/tools">Tous les outils</a>
+  <span class="mi-sep"></span>
   <span class="mi off" title="Disponible avec les comptes">Ma progression</span>
   <span class="mi off" title="Disponible avec les comptes">Déconnexion</span>
 </nav>

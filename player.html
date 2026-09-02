@@ -304,7 +304,7 @@
       <span id="status" data-header-status></span>
     </div>
 
-    <a id="account" href="tools.html"></a>
+    <a id="account" href="/tools"></a>
   </header>
 
   <div id="middle">
@@ -557,7 +557,7 @@ function wire() {
   $('stop').addEventListener('click', () => $('confirm').setAttribute('data-open', ''));
   $('confirmNo').addEventListener('click', () => $('confirm').removeAttribute('data-open'));
   $('confirmYes').addEventListener('click', collect);
-  $('back').addEventListener('click', () => leave('index.html'));
+  $('back').addEventListener('click', () => leave('/'));
 
   clock.addEventListener('ended', () => { paintPlaying(false); header.setStatus('terminé'); });
 
@@ -628,7 +628,7 @@ function collect() {
   view.clearFocus();
   hideCard();
   // TODO brancher ici la validation de collecte côté profil.
-  leave('index.html?collected=' + IAU.toLowerCase());
+  leave('/?collected=' + IAU.toLowerCase());
 }
 
 /** Fondu sortant symétrique de l'entrée. */
