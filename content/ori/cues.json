@@ -2,10 +2,10 @@
  "$schema": "ekko-cues/1",
  "constellation": "ori",
  "iau": "Ori",
- "updatedAt": "1970-01-01T00:00:00.000Z",
- "_demo": "Jeu de démonstration. Écrase-le au premier enregistrement depuis /calibration. L'audio attendu est content/ori/audio.mp3.",
+ "updatedAt": "2026-09-02T15:34:19.944Z",
  "audioSrc": "content/ori/audio.mp3",
  "duration": 243,
+ "group": "",
  "chime": {
   "enabled": true,
   "offset": 0.25,
@@ -15,8 +15,8 @@
  "cues": [
   {
    "id": "betelgeuse",
-   "start": 22.0,
-   "end": 40.0,
+   "start": 22,
+   "end": 40,
    "hips": [
     27989
    ],
@@ -29,7 +29,7 @@
   {
    "id": "rigel",
    "start": 56.5,
-   "end": 74.0,
+   "end": 74,
    "hips": [
     24436
    ],
@@ -41,8 +41,8 @@
   },
   {
    "id": "baudrier",
-   "start": 96.0,
-   "end": 118.0,
+   "start": 96,
+   "end": 118,
    "hips": [
     26727,
     26311,
@@ -56,8 +56,8 @@
   },
   {
    "id": "bellatrix",
-   "start": 142.0,
-   "end": 158.0,
+   "start": 142,
+   "end": 158,
    "hips": [
     25336
    ],
@@ -69,8 +69,8 @@
   },
   {
    "id": "saiph",
-   "start": 186.0,
-   "end": 204.0,
+   "start": 186,
+   "end": 204,
    "hips": [
     27366
    ],
