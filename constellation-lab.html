@@ -158,6 +158,8 @@
   }
   .btn.ghost:hover:not(:disabled) { color: var(--ink); border-color: var(--ink-soft); }
   .btnrow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .btnrow3 { display: grid; grid-template-columns: 40px 1fr 40px; gap: 8px; margin-top: 2px; }
+  .btnrow3 .btn { padding: 6px 0; }
 
   .status { margin: 8px 0 0; font-size: 12.5px; line-height: 1.5; min-height: 1.4em; color: var(--ink-soft); }
   .status[data-tone=ok] { color: var(--ok); }
@@ -217,6 +219,11 @@
   <div class="block">
     <h2>Constellation</h2>
     <label class="row"><select id="figure"></select></label>
+    <div class="btnrow3">
+      <button class="btn ghost" id="prevFig" title="Constellation précédente">‹</button>
+      <button class="btn ghost" id="nextUnset">Prochaine à régler</button>
+      <button class="btn ghost" id="nextFig" title="Constellation suivante">›</button>
+    </div>
     <p id="readout"></p>
   </div>
 
@@ -302,6 +309,7 @@ async function start(data) {
 
   settings = await loadSettings();
   buildParams();
+  hydrate();
   restoreKey();
   buildFigureSelect();
 
@@ -459,6 +467,18 @@ function buildRow(scope, key) {
   return row;
 }
 
+/**
+ * Écrit dans les curseurs communs ce que contient le dépôt.
+ *
+ * Sans cette étape un `input[type=range]` sans valeur se place au milieu de sa
+ * plage : au rechargement on affichait des milieux de course au lieu des
+ * réglages enregistrés. Les réglages propres à une figure passent, eux, par
+ * `selectFigure`.
+ */
+function hydrate() {
+  writeScope('common', { ...defaultsFor('common'), ...(settings.common ?? {}) });
+}
+
 function readScope(scope) {
   const keys = scope === 'common' ? COMMON_KEYS : FIGURE_KEYS;
   return Object.fromEntries(keys.map((k) => [k, controls.get(k).get()]));
@@ -477,7 +497,10 @@ function wire() {
     ctl.onChange(() => { applyToView(); refreshDirty(); });
   }
 
-  $('figure').addEventListener('change', (e) => selectFigure(e.target.value));
+  $('figure').addEventListener('change', (e) => requestFigure(e.target.value));
+  $('prevFig').addEventListener('click', () => step(-1));
+  $('nextFig').addEventListener('click', () => step(1));
+  $('nextUnset').addEventListener('click', nextUnset);
 
   $('resetFigure').addEventListener('click', () => {
     writeScope('figure', defaultsFor('figure'));
@@ -515,6 +538,45 @@ function buildFigureSelect() {
     sel.append(new Option(`${fig.name} · ${iau}${done ? ' •' : ''}`, iau));
   }
   sel.value = currentIau ?? (sky.figures.Ori ? 'Ori' : entries[0][0]);
+}
+
+/**
+ * Point d'entrée unique pour changer de constellation. Il refuse de quitter une
+ * figure dont les réglages ne sont pas enregistrés : sur une session de 52
+ * figures d'affilée, perdre silencieusement un cadrage est le seul accident
+ * vraiment coûteux.
+ */
+function requestFigure(iau) {
+  if (!iau || iau === currentIau) return;
+  if (dirtyKeys('figure').length) {
+    const name = sky.figures[currentIau]?.name ?? currentIau;
+    if (!window.confirm(`${name} a des réglages non enregistrés. Les abandonner ?`)) {
+      $('figure').value = currentIau;
+      return;
+    }
+  }
+  $('figure').value = iau;
+  selectFigure(iau);
+}
+
+function step(delta) {
+  const sel = $('figure');
+  const n = sel.options.length;
+  requestFigure(sel.options[(sel.selectedIndex + delta + n) % n].value);
+}
+
+/** Saute à la prochaine figure jamais enregistrée, en repartant de la courante. */
+function nextUnset() {
+  const sel = $('figure');
+  const n = sel.options.length;
+  for (let k = 1; k <= n; k += 1) {
+    const iau = sel.options[(sel.selectedIndex + k) % n].value;
+    if (!settings.figures?.[iau]) return requestFigure(iau);
+  }
+  const out = $('figureStatus');
+  out.dataset.tone = 'ok';
+  out.textContent = 'Les 52 figures sont réglées.';
+  return undefined;
 }
 
 function selectFigure(iau) {
@@ -602,6 +664,7 @@ async function save(scope) {
 
   buildFigureSelect();
   refreshDirty();
+  updateReadout();
 
   const link = data.commitUrl
     ? ` <a href="${data.commitUrl}" target="_blank" rel="noopener">voir le commit</a>`
