@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "cyg",
+ "iau": "Cyg",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/cyg/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/cyg/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    102098
+   ],
+   "card": {
+    "title": "Deneb",
+    "subtitle": "Alpha Cyg",
+    "body": "Magnitude apparente 1,25. Désignation Alpha Cyg. Teinte blanc-bleu (indice B-V 0,09). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    100453
+   ],
+   "card": {
+    "title": "Sadr",
+    "subtitle": "Gamma Cyg",
+    "body": "Magnitude apparente 2,23. Désignation Gamma Cyg. Teinte jaune (indice B-V 0,67). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    102488
+   ],
+   "card": {
+    "title": "Aljanah",
+    "subtitle": "Epsilon Cyg",
+    "body": "Magnitude apparente 2,48. Désignation Epsilon Cyg. Teinte orangée (indice B-V 1,02). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    97165
+   ],
+   "card": {
+    "title": "Fawaris",
+    "subtitle": "Delta Cyg",
+    "body": "Magnitude apparente 2,86. Désignation Delta Cyg. Teinte bleutée (indice B-V -0,00). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    95947
+   ],
+   "card": {
+    "title": "Albiréo",
+    "subtitle": "Bet-1 Cyg",
+    "body": "Magnitude apparente 3,05. Désignation Bet-1 Cyg. Teinte orangée (indice B-V 1,09). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

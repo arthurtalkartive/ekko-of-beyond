@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "sgr",
+ "iau": "Sgr",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/sgr/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/sgr/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    90185
+   ],
+   "card": {
+    "title": "Kaus Australis",
+    "subtitle": "Epsilon Sgr",
+    "body": "Magnitude apparente 1,79. Désignation Epsilon Sgr. Teinte bleutée (indice B-V -0,03). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    92855
+   ],
+   "card": {
+    "title": "Nunki",
+    "subtitle": "Sigma Sgr",
+    "body": "Magnitude apparente 2,05. Désignation Sigma Sgr. Teinte bleutée (indice B-V -0,13). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    93506
+   ],
+   "card": {
+    "title": "Ascella",
+    "subtitle": "Zêta Sgr",
+    "body": "Magnitude apparente 2,60. Désignation Zêta Sgr. Teinte blanc-bleu (indice B-V 0,06). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    89931
+   ],
+   "card": {
+    "title": "Kaus Media",
+    "subtitle": "Delta Sgr",
+    "body": "Magnitude apparente 2,72. Désignation Delta Sgr. Teinte rouge orangé (indice B-V 1,38). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    90496
+   ],
+   "card": {
+    "title": "Kaus Borealis",
+    "subtitle": "Lambda Sgr",
+    "body": "Magnitude apparente 2,82. Désignation Lambda Sgr. Teinte orangée (indice B-V 1,02). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

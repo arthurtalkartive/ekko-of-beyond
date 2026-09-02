@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "hya",
+ "iau": "Hya",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/hya/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/hya/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    46390
+   ],
+   "card": {
+    "title": "Alphard",
+    "subtitle": "Alpha Hya",
+    "body": "Magnitude apparente 1,99. Désignation Alpha Hya. Teinte rouge orangé (indice B-V 1,44). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    43109
+   ],
+   "card": {
+    "title": "Ashlesha",
+    "subtitle": "Epsilon Hya",
+    "body": "Magnitude apparente 3,38. Désignation Epsilon Hya. Teinte jaune (indice B-V 0,69). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    48356
+   ],
+   "card": {
+    "title": "Zhang",
+    "subtitle": "Ups-1 Hya",
+    "body": "Magnitude apparente 4,11. Désignation Ups-1 Hya. Teinte orangée (indice B-V 0,92). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    42402
+   ],
+   "card": {
+    "title": "Minchir",
+    "subtitle": "Sigma Hya",
+    "body": "Magnitude apparente 4,45. Désignation Sigma Hya. Teinte orangée (indice B-V 1,22). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    64962
+   ],
+   "card": {
+    "title": "HIP 64962",
+    "subtitle": "Gamma Hya",
+    "body": "Magnitude apparente 2,99. Désignation Gamma Hya. Teinte orangée (indice B-V 0,92). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

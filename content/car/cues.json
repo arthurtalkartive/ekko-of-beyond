@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "car",
+ "iau": "Car",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/car/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/car/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    30438
+   ],
+   "card": {
+    "title": "Canopus",
+    "subtitle": "Alpha Car",
+    "body": "Magnitude apparente -0,62. Désignation Alpha Car. Teinte blanc-bleu (indice B-V 0,16). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    45238
+   ],
+   "card": {
+    "title": "Miaplacidus",
+    "subtitle": "Bêta Car",
+    "body": "Magnitude apparente 1,67. Désignation Bêta Car. Teinte blanc-bleu (indice B-V 0,07). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    41037
+   ],
+   "card": {
+    "title": "Avior",
+    "subtitle": "Epsilon Car",
+    "body": "Magnitude apparente 1,86. Désignation Epsilon Car. Teinte orangée (indice B-V 1,20). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    45556
+   ],
+   "card": {
+    "title": "Aspidiske",
+    "subtitle": "Iota Car",
+    "body": "Magnitude apparente 2,21. Désignation Iota Car. Teinte blanc-bleu (indice B-V 0,19). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    39429
+   ],
+   "card": {
+    "title": "Naos",
+    "subtitle": "Zêta Pup",
+    "body": "Magnitude apparente 2,21. Désignation Zêta Pup. Teinte bleutée (indice B-V -0,27). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

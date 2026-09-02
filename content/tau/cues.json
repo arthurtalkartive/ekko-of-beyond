@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "tau",
+ "iau": "Tau",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/tau/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/tau/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    21421
+   ],
+   "card": {
+    "title": "Aldébaran",
+    "subtitle": "Alpha Tau",
+    "body": "Magnitude apparente 0,87. Désignation Alpha Tau. Teinte rouge orangé (indice B-V 1,54). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    25428
+   ],
+   "card": {
+    "title": "Elnath",
+    "subtitle": "Bêta Tau",
+    "body": "Magnitude apparente 1,65. Désignation Bêta Tau. Teinte bleutée (indice B-V -0,13). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    26451
+   ],
+   "card": {
+    "title": "Tianguan",
+    "subtitle": "Zêta Tau",
+    "body": "Magnitude apparente 2,97. Désignation Zêta Tau. Teinte bleutée (indice B-V -0,15). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    20894
+   ],
+   "card": {
+    "title": "Chamukuy",
+    "subtitle": "The-2 Tau",
+    "body": "Magnitude apparente 3,40. Désignation The-2 Tau. Teinte blanc-bleu (indice B-V 0,18). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    20889
+   ],
+   "card": {
+    "title": "Ain",
+    "subtitle": "Epsilon Tau",
+    "body": "Magnitude apparente 3,53. Désignation Epsilon Tau. Teinte orangée (indice B-V 1,01). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

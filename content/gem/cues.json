@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "gem",
+ "iau": "Gem",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/gem/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/gem/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    37826
+   ],
+   "card": {
+    "title": "Pollux",
+    "subtitle": "Bêta Gem",
+    "body": "Magnitude apparente 1,16. Désignation Bêta Gem. Teinte orangée (indice B-V 0,99). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    36850
+   ],
+   "card": {
+    "title": "Castor",
+    "subtitle": "Alpha Gem",
+    "body": "Magnitude apparente 1,58. Désignation Alpha Gem. Teinte blanc-bleu (indice B-V 0,03). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    31681
+   ],
+   "card": {
+    "title": "Alhéna",
+    "subtitle": "Gamma Gem",
+    "body": "Magnitude apparente 1,93. Désignation Gamma Gem. Teinte blanc-bleu (indice B-V 0,00). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    30343
+   ],
+   "card": {
+    "title": "Tejat",
+    "subtitle": "Mu Gem",
+    "body": "Magnitude apparente 2,87. Désignation Mu Gem. Teinte rouge orangé (indice B-V 1,62). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    32246
+   ],
+   "card": {
+    "title": "Mebsuta",
+    "subtitle": "Epsilon Gem",
+    "body": "Magnitude apparente 3,06. Désignation Epsilon Gem. Teinte rouge orangé (indice B-V 1,38). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

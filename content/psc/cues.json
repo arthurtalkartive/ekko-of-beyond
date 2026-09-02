@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "psc",
+ "iau": "Psc",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/psc/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/psc/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    7097
+   ],
+   "card": {
+    "title": "Alpherg",
+    "subtitle": "Êta Psc",
+    "body": "Magnitude apparente 3,62. Désignation Êta Psc. Teinte orangée (indice B-V 0,97). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    9487
+   ],
+   "card": {
+    "title": "Alrescha",
+    "subtitle": "Alpha Psc",
+    "body": "Magnitude apparente 3,82. Désignation Alpha Psc. Teinte blanc-bleu (indice B-V 0,02). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    8198
+   ],
+   "card": {
+    "title": "Torcular",
+    "subtitle": "Omicron Psc",
+    "body": "Magnitude apparente 4,26. Désignation Omicron Psc. Teinte orangée (indice B-V 0,94). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    114971
+   ],
+   "card": {
+    "title": "HIP 114971",
+    "subtitle": "Gamma Psc",
+    "body": "Magnitude apparente 3,70. Désignation Gamma Psc. Teinte orangée (indice B-V 0,92). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    118268
+   ],
+   "card": {
+    "title": "HIP 118268",
+    "subtitle": "Oméga Psc",
+    "body": "Magnitude apparente 4,03. Désignation Oméga Psc. Teinte blanche (indice B-V 0,42). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "psa",
+ "iau": "PsA",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/psa/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/psa/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    113368
+   ],
+   "card": {
+    "title": "Fomalhaut",
+    "subtitle": "Alpha PsA",
+    "body": "Magnitude apparente 1,17. Désignation Alpha PsA. Teinte blanc-bleu (indice B-V 0,14). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    111954
+   ],
+   "card": {
+    "title": "HIP 111954",
+    "subtitle": "Epsilon PsA",
+    "body": "Magnitude apparente 4,18. Désignation Epsilon PsA. Teinte bleutée (indice B-V -0,10). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    113246
+   ],
+   "card": {
+    "title": "HIP 113246",
+    "subtitle": "Delta PsA",
+    "body": "Magnitude apparente 4,20. Désignation Delta PsA. Teinte orangée (indice B-V 0,95). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    111188
+   ],
+   "card": {
+    "title": "HIP 111188",
+    "subtitle": "Bêta PsA",
+    "body": "Magnitude apparente 4,29. Désignation Bêta PsA. Teinte blanc-bleu (indice B-V 0,01). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    109422
+   ],
+   "card": {
+    "title": "HIP 109422",
+    "subtitle": "Tau PsA",
+    "body": "Magnitude apparente 4,94. Désignation Tau PsA. Teinte blanche (indice B-V 0,49). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

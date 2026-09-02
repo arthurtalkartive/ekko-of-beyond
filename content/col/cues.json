@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "col",
+ "iau": "Col",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/col/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/col/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    26634
+   ],
+   "card": {
+    "title": "Phact",
+    "subtitle": "Alpha Col",
+    "body": "Magnitude apparente 2,65. Désignation Alpha Col. Teinte bleutée (indice B-V -0,12). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    27628
+   ],
+   "card": {
+    "title": "Wazn",
+    "subtitle": "Bêta Col",
+    "body": "Magnitude apparente 3,12. Désignation Bêta Col. Teinte orangée (indice B-V 1,15). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    30277
+   ],
+   "card": {
+    "title": "HIP 30277",
+    "subtitle": "Delta Col",
+    "body": "Magnitude apparente 3,85. Désignation Delta Col. Teinte jaune (indice B-V 0,86). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    25859
+   ],
+   "card": {
+    "title": "HIP 25859",
+    "subtitle": "Epsilon Col",
+    "body": "Magnitude apparente 3,86. Désignation Epsilon Col. Teinte orangée (indice B-V 1,13). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    28328
+   ],
+   "card": {
+    "title": "HIP 28328",
+    "subtitle": "Êta Col",
+    "body": "Magnitude apparente 3,96. Désignation Êta Col. Teinte orangée (indice B-V 1,15). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

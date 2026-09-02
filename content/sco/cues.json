@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "sco",
+ "iau": "Sco",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/sco/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/sco/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    80763
+   ],
+   "card": {
+    "title": "Antarès",
+    "subtitle": "Alpha Sco",
+    "body": "Magnitude apparente 1,06. Désignation Alpha Sco. Teinte rouge orangé (indice B-V 1,86). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    85927
+   ],
+   "card": {
+    "title": "Shaula",
+    "subtitle": "Lambda Sco",
+    "body": "Magnitude apparente 1,62. Désignation Lambda Sco. Teinte bleutée (indice B-V -0,23). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    86228
+   ],
+   "card": {
+    "title": "Sargas",
+    "subtitle": "Thêta Sco",
+    "body": "Magnitude apparente 1,86. Désignation Thêta Sco. Teinte blanche (indice B-V 0,41). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    82396
+   ],
+   "card": {
+    "title": "Larawag",
+    "subtitle": "Epsilon Sco",
+    "body": "Magnitude apparente 2,29. Désignation Epsilon Sco. Teinte orangée (indice B-V 1,14). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    78401
+   ],
+   "card": {
+    "title": "Dschubba",
+    "subtitle": "Delta Sco",
+    "body": "Magnitude apparente 2,29. Désignation Delta Sco. Teinte bleutée (indice B-V -0,12). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

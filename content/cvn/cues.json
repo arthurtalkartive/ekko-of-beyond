@@ -1,0 +1,44 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "cvn",
+ "iau": "CVn",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/cvn/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/cvn/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    63125
+   ],
+   "card": {
+    "title": "Cor Caroli",
+    "subtitle": "Alp-2 CVn",
+    "body": "Magnitude apparente 2,89. Désignation Alp-2 CVn. Teinte bleutée (indice B-V -0,12). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 120,
+   "end": 136,
+   "hips": [
+    61317
+   ],
+   "card": {
+    "title": "Chara",
+    "subtitle": "Bêta CVn",
+    "body": "Magnitude apparente 4,24. Désignation Bêta CVn. Teinte blanche (indice B-V 0,59). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "del",
+ "iau": "Del",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/del/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/del/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    101769
+   ],
+   "card": {
+    "title": "Rotanev",
+    "subtitle": "Bêta Del",
+    "body": "Magnitude apparente 3,64. Désignation Bêta Del. Teinte blanche (indice B-V 0,42). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    101958
+   ],
+   "card": {
+    "title": "Sualocin",
+    "subtitle": "Alpha Del",
+    "body": "Magnitude apparente 3,77. Désignation Alpha Del. Teinte bleutée (indice B-V -0,06). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    101421
+   ],
+   "card": {
+    "title": "Aldulfin",
+    "subtitle": "Epsilon Del",
+    "body": "Magnitude apparente 4,03. Désignation Epsilon Del. Teinte bleutée (indice B-V -0,12). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    102532
+   ],
+   "card": {
+    "title": "HIP 102532",
+    "subtitle": "Gam-2 Del",
+    "body": "Magnitude apparente 4,27. Désignation Gam-2 Del. Teinte orangée (indice B-V 1,04). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    102281
+   ],
+   "card": {
+    "title": "HIP 102281",
+    "subtitle": "Delta Del",
+    "body": "Magnitude apparente 4,43. Désignation Delta Del. Teinte blanche (indice B-V 0,30). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

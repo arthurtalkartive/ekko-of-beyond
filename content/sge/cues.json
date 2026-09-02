@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "sge",
+ "iau": "Sge",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/sge/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/sge/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    96757
+   ],
+   "card": {
+    "title": "Sham",
+    "subtitle": "Alpha Sge",
+    "body": "Magnitude apparente 4,39. Désignation Alpha Sge. Teinte jaune (indice B-V 0,78). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    98337
+   ],
+   "card": {
+    "title": "HIP 98337",
+    "subtitle": "Gamma Sge",
+    "body": "Magnitude apparente 3,51. Désignation Gamma Sge. Teinte rouge orangé (indice B-V 1,57). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    97365
+   ],
+   "card": {
+    "title": "HIP 97365",
+    "subtitle": "Delta Sge",
+    "body": "Magnitude apparente 3,68. Désignation Delta Sge. Teinte rouge orangé (indice B-V 1,31). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    96837
+   ],
+   "card": {
+    "title": "HIP 96837",
+    "subtitle": "Bêta Sge",
+    "body": "Magnitude apparente 4,39. Désignation Bêta Sge. Teinte orangée (indice B-V 1,04). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    98920
+   ],
+   "card": {
+    "title": "HIP 98920",
+    "subtitle": "Êta Sge",
+    "body": "Magnitude apparente 5,09. Désignation Êta Sge. Teinte orangée (indice B-V 1,06). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

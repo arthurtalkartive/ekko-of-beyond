@@ -2,21 +2,22 @@
  "$schema": "ekko-cues/1",
  "constellation": "ori",
  "iau": "Ori",
- "updatedAt": "2026-09-02T15:35:13.646Z",
+ "_demo": true,
+ "_note": "Démonstration écrite à la main. Dépose la piste dans content/ori/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
  "audioSrc": "content/ori/audio.mp3",
  "duration": 243,
- "group": "",
  "chime": {
   "enabled": true,
   "offset": 0.25,
   "gain": 0.45,
-  "url": "assets/audio/chimes/universfield-soft-notification-146623.mp3"
+  "url": null
  },
  "cues": [
   {
    "id": "betelgeuse",
-   "start": 22,
-   "end": 40,
+   "start": 22.0,
+   "end": 40.0,
    "hips": [
     27989
    ],
@@ -29,7 +30,7 @@
   {
    "id": "rigel",
    "start": 56.5,
-   "end": 74,
+   "end": 74.0,
    "hips": [
     24436
    ],
@@ -41,8 +42,8 @@
   },
   {
    "id": "baudrier",
-   "start": 96,
-   "end": 118,
+   "start": 96.0,
+   "end": 118.0,
    "hips": [
     26727,
     26311,
@@ -56,8 +57,8 @@
   },
   {
    "id": "bellatrix",
-   "start": 142,
-   "end": 158,
+   "start": 142.0,
+   "end": 158.0,
    "hips": [
     25336
    ],
@@ -69,8 +70,8 @@
   },
   {
    "id": "saiph",
-   "start": 186,
-   "end": 204,
+   "start": 186.0,
+   "end": 204.0,
    "hips": [
     27366
    ],

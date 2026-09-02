@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "cap",
+ "iau": "Cap",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/cap/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/cap/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    107556
+   ],
+   "card": {
+    "title": "Deneb Algedi",
+    "subtitle": "Delta Cap",
+    "body": "Magnitude apparente 2,85. Désignation Delta Cap. Teinte blanc-bleu (indice B-V 0,18). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    100345
+   ],
+   "card": {
+    "title": "Dabih",
+    "subtitle": "Bêta Cap",
+    "body": "Magnitude apparente 3,05. Désignation Bêta Cap. Teinte jaune (indice B-V 0,79). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    100064
+   ],
+   "card": {
+    "title": "Algedi",
+    "subtitle": "Alp-2 Cap",
+    "body": "Magnitude apparente 3,58. Désignation Alp-2 Cap. Teinte jaune (indice B-V 0,88). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    106985
+   ],
+   "card": {
+    "title": "Nashira",
+    "subtitle": "Gamma Cap",
+    "body": "Magnitude apparente 3,69. Désignation Gamma Cap. Teinte blanche (indice B-V 0,32). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    105881
+   ],
+   "card": {
+    "title": "HIP 105881",
+    "subtitle": "Zêta Cap",
+    "body": "Magnitude apparente 3,77. Désignation Zêta Cap. Teinte orangée (indice B-V 1,00). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

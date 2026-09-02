@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "cen",
+ "iau": "Cen",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/cen/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/cen/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    71683
+   ],
+   "card": {
+    "title": "Rigil Kentaurus",
+    "subtitle": "Alp-1 Cen",
+    "body": "Magnitude apparente -0,01. Désignation Alp-1 Cen. Teinte jaune (indice B-V 0,71). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    68702
+   ],
+   "card": {
+    "title": "Hadar",
+    "subtitle": "Bêta Cen",
+    "body": "Magnitude apparente 0,61. Désignation Bêta Cen. Teinte bleutée (indice B-V -0,23). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    68933
+   ],
+   "card": {
+    "title": "Menkent",
+    "subtitle": "Thêta Cen",
+    "body": "Magnitude apparente 2,06. Désignation Thêta Cen. Teinte orangée (indice B-V 1,01). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    61932
+   ],
+   "card": {
+    "title": "HIP 61932",
+    "subtitle": "Gamma Cen",
+    "body": "Magnitude apparente 2,20. Désignation Gamma Cen. Teinte bleutée (indice B-V -0,02). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    66657
+   ],
+   "card": {
+    "title": "HIP 66657",
+    "subtitle": "Epsilon Cen",
+    "body": "Magnitude apparente 2,29. Désignation Epsilon Cen. Teinte bleutée (indice B-V -0,17). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

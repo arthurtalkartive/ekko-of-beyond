@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "per",
+ "iau": "Per",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/per/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/per/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    15863
+   ],
+   "card": {
+    "title": "Mirfak",
+    "subtitle": "Alpha Per",
+    "body": "Magnitude apparente 1,79. Désignation Alpha Per. Teinte blanche (indice B-V 0,48). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    14576
+   ],
+   "card": {
+    "title": "Algol",
+    "subtitle": "Bêta Per",
+    "body": "Magnitude apparente 2,09. Désignation Bêta Per. Teinte bleutée (indice B-V -0,00). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    13268
+   ],
+   "card": {
+    "title": "Miram",
+    "subtitle": "Êta Per",
+    "body": "Magnitude apparente 3,77. Désignation Êta Per. Teinte rouge orangé (indice B-V 1,69). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    17448
+   ],
+   "card": {
+    "title": "Atik",
+    "subtitle": "Omicron Per",
+    "body": "Magnitude apparente 3,84. Désignation Omicron Per. Teinte blanc-bleu (indice B-V 0,02). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    18614
+   ],
+   "card": {
+    "title": "Menkib",
+    "subtitle": "Xi Per",
+    "body": "Magnitude apparente 3,98. Désignation Xi Per. Teinte blanc-bleu (indice B-V 0,02). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

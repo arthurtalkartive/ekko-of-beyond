@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "cma",
+ "iau": "CMa",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/cma/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/cma/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    32349
+   ],
+   "card": {
+    "title": "Sirius",
+    "subtitle": "Alpha CMa",
+    "body": "Magnitude apparente -1,44. Désignation Alpha CMa. Teinte blanc-bleu (indice B-V 0,01). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    33579
+   ],
+   "card": {
+    "title": "Adhara",
+    "subtitle": "Epsilon CMa",
+    "body": "Magnitude apparente 1,50. Désignation Epsilon CMa. Teinte bleutée (indice B-V -0,21). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    34444
+   ],
+   "card": {
+    "title": "Wezen",
+    "subtitle": "Delta CMa",
+    "body": "Magnitude apparente 1,83. Désignation Delta CMa. Teinte jaune (indice B-V 0,67). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    30324
+   ],
+   "card": {
+    "title": "Mirzam",
+    "subtitle": "Bêta CMa",
+    "body": "Magnitude apparente 1,98. Désignation Bêta CMa. Teinte bleutée (indice B-V -0,24). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    35904
+   ],
+   "card": {
+    "title": "Aludra",
+    "subtitle": "Êta CMa",
+    "body": "Magnitude apparente 2,45. Désignation Êta CMa. Teinte bleutée (indice B-V -0,08). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

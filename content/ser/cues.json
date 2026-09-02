@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "ser",
+ "iau": "Ser",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/ser/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/ser/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    77070
+   ],
+   "card": {
+    "title": "Unukalhaï",
+    "subtitle": "Alpha Ser",
+    "body": "Magnitude apparente 2,63. Désignation Alpha Ser. Teinte orangée (indice B-V 1,17). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    77450
+   ],
+   "card": {
+    "title": "Gudja",
+    "subtitle": "Kappa Ser",
+    "body": "Magnitude apparente 4,09. Désignation Kappa Ser. Teinte rouge orangé (indice B-V 1,62). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    92946
+   ],
+   "card": {
+    "title": "Alya",
+    "subtitle": "The-1 Ser",
+    "body": "Magnitude apparente 4,62. Désignation The-1 Ser. Teinte blanc-bleu (indice B-V 0,16). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    89962
+   ],
+   "card": {
+    "title": "HIP 89962",
+    "subtitle": "Êta Ser",
+    "body": "Magnitude apparente 3,23. Désignation Êta Ser. Teinte orangée (indice B-V 0,94). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    77516
+   ],
+   "card": {
+    "title": "HIP 77516",
+    "subtitle": "Mu Ser",
+    "body": "Magnitude apparente 3,54. Désignation Mu Ser. Teinte bleutée (indice B-V -0,04). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

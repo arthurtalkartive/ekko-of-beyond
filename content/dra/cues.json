@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "dra",
+ "iau": "Dra",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/dra/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/dra/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    87833
+   ],
+   "card": {
+    "title": "Eltanin",
+    "subtitle": "Gamma Dra",
+    "body": "Magnitude apparente 2,24. Désignation Gamma Dra. Teinte rouge orangé (indice B-V 1,52). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    80331
+   ],
+   "card": {
+    "title": "Athebyne",
+    "subtitle": "Êta Dra",
+    "body": "Magnitude apparente 2,73. Désignation Êta Dra. Teinte orangée (indice B-V 0,91). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    85670
+   ],
+   "card": {
+    "title": "Rastaban",
+    "subtitle": "Bêta Dra",
+    "body": "Magnitude apparente 2,79. Désignation Bêta Dra. Teinte orangée (indice B-V 0,95). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    94376
+   ],
+   "card": {
+    "title": "Altais",
+    "subtitle": "Delta Dra",
+    "body": "Magnitude apparente 3,07. Désignation Delta Dra. Teinte orangée (indice B-V 0,99). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    83895
+   ],
+   "card": {
+    "title": "Aldhibah",
+    "subtitle": "Zêta Dra",
+    "body": "Magnitude apparente 3,17. Désignation Zêta Dra. Teinte bleutée (indice B-V -0,12). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

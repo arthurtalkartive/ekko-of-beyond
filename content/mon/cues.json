@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "mon",
+ "iau": "Mon",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/mon/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/mon/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    30867
+   ],
+   "card": {
+    "title": "HIP 30867",
+    "subtitle": "Bêta Mon",
+    "body": "Magnitude apparente 3,76. Désignation Bêta Mon. Teinte bleutée (indice B-V -0,11). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    37447
+   ],
+   "card": {
+    "title": "HIP 37447",
+    "subtitle": "Alpha Mon",
+    "body": "Magnitude apparente 3,94. Désignation Alpha Mon. Teinte orangée (indice B-V 1,02). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    29651
+   ],
+   "card": {
+    "title": "HIP 29651",
+    "subtitle": "Gamma Mon",
+    "body": "Magnitude apparente 3,99. Désignation Gamma Mon. Teinte rouge orangé (indice B-V 1,32). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    34769
+   ],
+   "card": {
+    "title": "HIP 34769",
+    "subtitle": "Delta Mon",
+    "body": "Magnitude apparente 4,15. Désignation Delta Mon. Teinte bleutée (indice B-V -0,01). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    39863
+   ],
+   "card": {
+    "title": "HIP 39863",
+    "subtitle": "Zêta Mon",
+    "body": "Magnitude apparente 4,36. Désignation Zêta Mon. Teinte orangée (indice B-V 0,97). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

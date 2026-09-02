@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "lep",
+ "iau": "Lep",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/lep/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/lep/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    25985
+   ],
+   "card": {
+    "title": "Arneb",
+    "subtitle": "Alpha Lep",
+    "body": "Magnitude apparente 2,58. Désignation Alpha Lep. Teinte blanc-bleu (indice B-V 0,21). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    25606
+   ],
+   "card": {
+    "title": "Nihal",
+    "subtitle": "Bêta Lep",
+    "body": "Magnitude apparente 2,81. Désignation Bêta Lep. Teinte jaune (indice B-V 0,81). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    23685
+   ],
+   "card": {
+    "title": "HIP 23685",
+    "subtitle": "Epsilon Lep",
+    "body": "Magnitude apparente 3,19. Désignation Epsilon Lep. Teinte rouge orangé (indice B-V 1,46). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    24305
+   ],
+   "card": {
+    "title": "HIP 24305",
+    "subtitle": "Mu Lep",
+    "body": "Magnitude apparente 3,29. Désignation Mu Lep. Teinte bleutée (indice B-V -0,11). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    27288
+   ],
+   "card": {
+    "title": "HIP 27288",
+    "subtitle": "Zêta Lep",
+    "body": "Magnitude apparente 3,55. Désignation Zêta Lep. Teinte blanc-bleu (indice B-V 0,10). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

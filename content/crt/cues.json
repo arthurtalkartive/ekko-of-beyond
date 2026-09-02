@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "crt",
+ "iau": "Crt",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/crt/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/crt/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    53740
+   ],
+   "card": {
+    "title": "Alkès",
+    "subtitle": "Alpha Crt",
+    "body": "Magnitude apparente 4,08. Désignation Alpha Crt. Teinte orangée (indice B-V 1,08). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    55282
+   ],
+   "card": {
+    "title": "HIP 55282",
+    "subtitle": "Delta Crt",
+    "body": "Magnitude apparente 3,56. Désignation Delta Crt. Teinte orangée (indice B-V 1,11). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    55705
+   ],
+   "card": {
+    "title": "HIP 55705",
+    "subtitle": "Gamma Crt",
+    "body": "Magnitude apparente 4,06. Désignation Gamma Crt. Teinte blanc-bleu (indice B-V 0,22). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    54682
+   ],
+   "card": {
+    "title": "HIP 54682",
+    "subtitle": "Bêta Crt",
+    "body": "Magnitude apparente 4,46. Désignation Bêta Crt. Teinte blanc-bleu (indice B-V 0,03). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    56633
+   ],
+   "card": {
+    "title": "HIP 56633",
+    "subtitle": "Thêta Crt",
+    "body": "Magnitude apparente 4,70. Désignation Thêta Crt. Teinte bleutée (indice B-V -0,07). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

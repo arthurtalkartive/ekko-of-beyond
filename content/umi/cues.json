@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "umi",
+ "iau": "UMi",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/umi/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/umi/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    11767
+   ],
+   "card": {
+    "title": "Polaris",
+    "subtitle": "Alpha UMi",
+    "body": "Magnitude apparente 1,97. Désignation Alpha UMi. Teinte jaune (indice B-V 0,64). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    72607
+   ],
+   "card": {
+    "title": "Kochab",
+    "subtitle": "Bêta UMi",
+    "body": "Magnitude apparente 2,07. Désignation Bêta UMi. Teinte rouge orangé (indice B-V 1,47). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    75097
+   ],
+   "card": {
+    "title": "Pherkad",
+    "subtitle": "Gamma UMi",
+    "body": "Magnitude apparente 3,00. Désignation Gamma UMi. Teinte blanc-bleu (indice B-V 0,06). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    85822
+   ],
+   "card": {
+    "title": "Yildun",
+    "subtitle": "Delta UMi",
+    "body": "Magnitude apparente 4,35. Désignation Delta UMi. Teinte blanc-bleu (indice B-V 0,02). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    82080
+   ],
+   "card": {
+    "title": "HIP 82080",
+    "subtitle": "Epsilon UMi",
+    "body": "Magnitude apparente 4,21. Désignation Epsilon UMi. Teinte jaune (indice B-V 0,90). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

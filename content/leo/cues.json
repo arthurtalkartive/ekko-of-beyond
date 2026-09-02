@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "leo",
+ "iau": "Leo",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/leo/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/leo/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    49669
+   ],
+   "card": {
+    "title": "Régulus",
+    "subtitle": "Alpha Leo",
+    "body": "Magnitude apparente 1,36. Désignation Alpha Leo. Teinte bleutée (indice B-V -0,09). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    50583
+   ],
+   "card": {
+    "title": "Algieba",
+    "subtitle": "Gam-1 Leo",
+    "body": "Magnitude apparente 2,01. Désignation Gam-1 Leo. Teinte orangée (indice B-V 1,13). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    57632
+   ],
+   "card": {
+    "title": "Dénébola",
+    "subtitle": "Bêta Leo",
+    "body": "Magnitude apparente 2,14. Désignation Bêta Leo. Teinte blanc-bleu (indice B-V 0,09). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    54872
+   ],
+   "card": {
+    "title": "Zosma",
+    "subtitle": "Delta Leo",
+    "body": "Magnitude apparente 2,56. Désignation Delta Leo. Teinte blanc-bleu (indice B-V 0,13). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    47908
+   ],
+   "card": {
+    "title": "Ras Elased Australis",
+    "subtitle": "Epsilon Leo",
+    "body": "Magnitude apparente 2,97. Désignation Epsilon Leo. Teinte jaune (indice B-V 0,81). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

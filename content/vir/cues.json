@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "vir",
+ "iau": "Vir",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/vir/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/vir/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    65474
+   ],
+   "card": {
+    "title": "Spica",
+    "subtitle": "Alpha Vir",
+    "body": "Magnitude apparente 0,98. Désignation Alpha Vir. Teinte bleutée (indice B-V -0,23). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    61941
+   ],
+   "card": {
+    "title": "Porrima",
+    "subtitle": "Gamma Vir",
+    "body": "Magnitude apparente 2,74. Désignation Gamma Vir. Teinte blanche (indice B-V 0,37). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    63608
+   ],
+   "card": {
+    "title": "Vindémiatrix",
+    "subtitle": "Epsilon Vir",
+    "body": "Magnitude apparente 2,85. Désignation Epsilon Vir. Teinte orangée (indice B-V 0,93). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    66249
+   ],
+   "card": {
+    "title": "Heze",
+    "subtitle": "Zêta Vir",
+    "body": "Magnitude apparente 3,38. Désignation Zêta Vir. Teinte blanc-bleu (indice B-V 0,11). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    63090
+   ],
+   "card": {
+    "title": "Minelauva",
+    "subtitle": "Delta Vir",
+    "body": "Magnitude apparente 3,39. Désignation Delta Vir. Teinte rouge orangé (indice B-V 1,57). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

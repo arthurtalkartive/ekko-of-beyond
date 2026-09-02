@@ -1,0 +1,57 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "com",
+ "iau": "Com",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/com/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/com/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    64241
+   ],
+   "card": {
+    "title": "Diadem",
+    "subtitle": "Alpha Com",
+    "body": "Magnitude apparente 4,32. Désignation Alpha Com. Teinte blanche (indice B-V 0,46). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 86.67,
+   "end": 102.67,
+   "hips": [
+    64394
+   ],
+   "card": {
+    "title": "HIP 64394",
+    "subtitle": "Bêta Com",
+    "body": "Magnitude apparente 4,23. Désignation Bêta Com. Teinte blanche (indice B-V 0,57). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 153.33,
+   "end": 169.33,
+   "hips": [
+    60742
+   ],
+   "card": {
+    "title": "HIP 60742",
+    "subtitle": "Gamma Com",
+    "body": "Magnitude apparente 4,35. Désignation Gamma Com. Teinte orangée (indice B-V 1,13). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

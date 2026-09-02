@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "cas",
+ "iau": "Cas",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/cas/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/cas/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    4427
+   ],
+   "card": {
+    "title": "Cih",
+    "subtitle": "Gamma Cas",
+    "body": "Magnitude apparente 2,15. Désignation Gamma Cas. Teinte bleutée (indice B-V -0,05). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    3179
+   ],
+   "card": {
+    "title": "Schédar",
+    "subtitle": "Alpha Cas",
+    "body": "Magnitude apparente 2,24. Désignation Alpha Cas. Teinte orangée (indice B-V 1,17). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    746
+   ],
+   "card": {
+    "title": "Caph",
+    "subtitle": "Bêta Cas",
+    "body": "Magnitude apparente 2,28. Désignation Bêta Cas. Teinte blanche (indice B-V 0,38). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    6686
+   ],
+   "card": {
+    "title": "Ruchbah",
+    "subtitle": "Delta Cas",
+    "body": "Magnitude apparente 2,66. Désignation Delta Cas. Teinte blanc-bleu (indice B-V 0,16). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    8886
+   ],
+   "card": {
+    "title": "Segin",
+    "subtitle": "Epsilon Cas",
+    "body": "Magnitude apparente 3,35. Désignation Epsilon Cas. Teinte bleutée (indice B-V -0,15). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

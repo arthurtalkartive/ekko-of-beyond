@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "and",
+ "iau": "And",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/and/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/and/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    677
+   ],
+   "card": {
+    "title": "Alphératz",
+    "subtitle": "Alpha And",
+    "body": "Magnitude apparente 2,07. Désignation Alpha And. Teinte bleutée (indice B-V -0,04). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    5447
+   ],
+   "card": {
+    "title": "Mirach",
+    "subtitle": "Bêta And",
+    "body": "Magnitude apparente 2,07. Désignation Bêta And. Teinte rouge orangé (indice B-V 1,58). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    9640
+   ],
+   "card": {
+    "title": "Almach",
+    "subtitle": "Gam-1 And",
+    "body": "Magnitude apparente 2,10. Désignation Gam-1 And. Teinte rouge orangé (indice B-V 1,37). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    3092
+   ],
+   "card": {
+    "title": "HIP 3092",
+    "subtitle": "Delta And",
+    "body": "Magnitude apparente 3,27. Désignation Delta And. Teinte orangée (indice B-V 1,27). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    4436
+   ],
+   "card": {
+    "title": "HIP 4436",
+    "subtitle": "Mu And",
+    "body": "Magnitude apparente 3,86. Désignation Mu And. Teinte blanc-bleu (indice B-V 0,13). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

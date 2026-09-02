@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "aqr",
+ "iau": "Aqr",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/aqr/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/aqr/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    106278
+   ],
+   "card": {
+    "title": "Sadalsuud",
+    "subtitle": "Bêta Aqr",
+    "body": "Magnitude apparente 2,90. Désignation Bêta Aqr. Teinte jaune (indice B-V 0,83). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    109074
+   ],
+   "card": {
+    "title": "Sadalmélik",
+    "subtitle": "Alpha Aqr",
+    "body": "Magnitude apparente 2,95. Désignation Alpha Aqr. Teinte orangée (indice B-V 0,97). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    113136
+   ],
+   "card": {
+    "title": "Skat",
+    "subtitle": "Delta Aqr",
+    "body": "Magnitude apparente 3,27. Désignation Delta Aqr. Teinte blanc-bleu (indice B-V 0,07). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    102618
+   ],
+   "card": {
+    "title": "Albali",
+    "subtitle": "Epsilon Aqr",
+    "body": "Magnitude apparente 3,78. Désignation Epsilon Aqr. Teinte blanc-bleu (indice B-V 0,00). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    110395
+   ],
+   "card": {
+    "title": "Sadachbia",
+    "subtitle": "Gamma Aqr",
+    "body": "Magnitude apparente 3,86. Désignation Gamma Aqr. Teinte bleutée (indice B-V -0,06). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}

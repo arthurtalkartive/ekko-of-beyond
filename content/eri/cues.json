@@ -1,0 +1,83 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "eri",
+ "iau": "Eri",
+ "_demo": true,
+ "_note": "Généré par tools/build-demo-cues.mjs. Dépose la piste dans content/eri/audio.mp3 puis recale les repères dans /calibration.",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "audioSrc": "content/eri/audio.mp3",
+ "duration": 240,
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "demo-1",
+   "start": 20,
+   "end": 36,
+   "hips": [
+    7588
+   ],
+   "card": {
+    "title": "Achernar",
+    "subtitle": "Alpha Eri",
+    "body": "Magnitude apparente 0,45. Désignation Alpha Eri. Teinte bleutée (indice B-V -0,16). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-2",
+   "start": 60,
+   "end": 76,
+   "hips": [
+    23875
+   ],
+   "card": {
+    "title": "Cursa",
+    "subtitle": "Bêta Eri",
+    "body": "Magnitude apparente 2,78. Désignation Bêta Eri. Teinte blanc-bleu (indice B-V 0,16). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-3",
+   "start": 100,
+   "end": 116,
+   "hips": [
+    13847
+   ],
+   "card": {
+    "title": "Acamar",
+    "subtitle": "The-1 Eri",
+    "body": "Magnitude apparente 2,88. Désignation The-1 Eri. Teinte blanc-bleu (indice B-V 0,13). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-4",
+   "start": 140,
+   "end": 156,
+   "hips": [
+    17378
+   ],
+   "card": {
+    "title": "Rana",
+    "subtitle": "Delta Eri",
+    "body": "Magnitude apparente 3,52. Désignation Delta Eri. Teinte orangée (indice B-V 0,92). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  },
+  {
+   "id": "demo-5",
+   "start": 180,
+   "end": 196,
+   "hips": [
+    16537
+   ],
+   "card": {
+    "title": "Ran",
+    "subtitle": "Epsilon Eri",
+    "body": "Magnitude apparente 3,72. Désignation Epsilon Eri. Teinte jaune (indice B-V 0,88). Contenu de démonstration, à réécrire dans l'outil de calibration."
+   }
+  }
+ ]
+}
