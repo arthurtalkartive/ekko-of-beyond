@@ -30,39 +30,28 @@
   }
 
   button { font-family: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  /* Sans ça, `#account` étant une balise <a>, le navigateur lui applique ses
+     couleurs de lien et de lien visité — d'où le violet après une visite. */
+  a, a:visited, a:hover, a:active { color: inherit; text-decoration: none; }
   :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
   /* ============================================================== décor */
 
-  /* Fond du cadre Figma 215:1438 : un dégradé, puis le visuel du splashscreen
-     à 50 %, puis la lueur d'horizon en color-dodge. `isolation` confine le
-     mode de fusion à cette couche pour qu'il ne dévore pas l'interface. */
+  /* Le fond, c'est l'image du splashscreen et rien d'autre.
+     Le dégradé en dessous ne sert que de couleur d'attente pendant le
+     chargement et de repli si l'image manque : dès qu'elle est peinte en
+     `cover`, elle le recouvre entièrement.
+
+     Il n'y a volontairement AUCUNE couche par-dessus. J'avais reproduit
+     l'ellipse d'horizon de la maquette en `mix-blend-mode: color-dodge`,
+     sans voir que splash-background.webp contient déjà sa propre lueur : le
+     color-dodge saturait l'image vers le vert et dessinait en plus le bord
+     arrondi de l'ellipse en travers de l'écran. */
   #sky {
     position: fixed; inset: 0;
-    background: linear-gradient(180deg, #000 0%, #0A1931 100%);
-    isolation: isolate;
-  }
-  #sky .stars {
-    position: absolute; inset: 0;
-    background: url('assets/img/splash-background.webp') center / cover no-repeat;
-    opacity: .5;
-  }
-  /* Ellipse 297 : 2178 × 943 posée à y = 403 sur un cadre de 1440 × 1024,
-     retournée verticalement. Son dégradé va de 28 % d'alpha en haut à 100 %
-     vers le bas, ce qui produit sous color-dodge le halo bas de la maquette. */
-  #sky .glow {
-    position: absolute;
-    left: 50%; top: 39.4%;
-    width: 151.25%; height: 92.1%;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: linear-gradient(180deg,
-      rgba(227, 227, 196, .28) 0%,
-      rgba(227, 227, 196, .62) 38%,
-      rgba(227, 227, 196, 1) 62.3%,
-      rgba(227, 227, 196, 1) 100%);
-    mix-blend-mode: color-dodge;
-    pointer-events: none;
+    background:
+      url('assets/img/splash-background.webp') center / cover no-repeat,
+      linear-gradient(180deg, #000 0%, #0A1931 100%);
   }
 
   #shell {
@@ -104,8 +93,9 @@
 
   #account {
     display: flex; align-items: center; gap: 15px;
+    color: var(--gold);
     font-size: 18px; font-weight: 700; text-transform: uppercase;
-    text-decoration: none; white-space: nowrap;
+    white-space: nowrap;
     transition: opacity .2s;
   }
   #account:hover { opacity: .72; }
@@ -294,10 +284,7 @@
 </head>
 <body>
 
-<div id="sky">
-  <div class="stars"></div>
-  <div class="glow"></div>
-</div>
+<div id="sky"></div>
 
 <div id="shell">
   <header id="header">
