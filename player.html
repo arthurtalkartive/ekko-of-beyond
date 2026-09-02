@@ -356,8 +356,9 @@ import { PlayerHeader } from './js/player-header.js';
 
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
-const IAU = params.get('c') || 'Ori';
+const ASKED = params.get('c') || 'Ori';
 const AUTOPLAY = params.get('autoplay') === '1';
+let IAU = ASKED;
 
 /** Durée de la piste fictive quand aucun audio n'est disponible. */
 const DEMO_DURATION = 243;
@@ -386,8 +387,12 @@ async function boot() {
   ]);
   sky = skyData;
 
+  // Le paramètre est accepté sans égard à la casse : la carte passe des
+  // identifiants en minuscules (ori, uma) alors que les clés du skyculture
+  // sont en casse IAU (Ori, UMa).
+  IAU = Object.keys(sky.figures).find((k) => k.toLowerCase() === ASKED.toLowerCase()) ?? ASKED;
   const figure = sky.figures[IAU];
-  if (!figure) return fail(`Constellation inconnue : ${IAU}`);
+  if (!figure) return fail(`Constellation inconnue : ${ASKED}`);
 
   const id = IAU.toLowerCase();
   track = await getJson(`content/${id}/cues.json`).catch(() => emptyTrack(IAU, id));
@@ -640,7 +645,10 @@ function leave(href) {
 function buildGlyphs() {
   const rail = $('rail');
   rail.querySelectorAll('.glyph').forEach((n) => n.remove());
-  const d = track.duration || engine.duration || DEMO_DURATION;
+  // La durée réelle de l'audio l'emporte sur celle du fichier de repères :
+  // sur une piste de démonstration elles diffèrent, et les losanges doivent
+  // suivre la piste jouée, pas la valeur écrite.
+  const d = engine.duration || track.duration || DEMO_DURATION;
   if (!d) return;
 
   for (const cue of engine.cues) {

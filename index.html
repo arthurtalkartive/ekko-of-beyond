@@ -262,6 +262,16 @@ a.account{text-decoration:none}
   font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--cream-50);pointer-events:none;white-space:nowrap}
 
+/* ================= FONDU VERS LE PLAYER =================
+   Moitié sortante de la transition : la carte s'efface, le player s'ouvre
+   sur son propre fondu entrant. Seule l'opacité est animée, donc tout se
+   joue sur le compositeur. */
+#curtain{position:fixed;inset:0;z-index:200;background:#000;
+  opacity:0;pointer-events:none;will-change:opacity;
+  transition:opacity .32s cubic-bezier(.4,0,1,1)}
+#curtain.on{opacity:1;pointer-events:auto}
+@media (prefers-reduced-motion:reduce){ #curtain{transition-duration:1ms} }
+
 /* ================= SOUS-MENU DU COMPTE ================= */
 button.account{cursor:pointer}
 #menu-veil{position:fixed;inset:0;z-index:18;background:rgba(4,7,13,.4);
@@ -585,6 +595,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
 </header>
 
 <!-- sous-menu du compte : provisoire, en attendant l'espace membre -->
+<div id="curtain" aria-hidden="true"></div>
 <div id="menu-veil"></div>
 <nav id="menu" aria-label="Mon compte">
   <span class="mi-lbl">Outils</span>
@@ -2065,9 +2076,9 @@ $('#tg-coll').onclick = function(){ showCollection(true); };
 /* ============================================================
    ACTIONS D'UNE CARTE
 
-   « Collecter l'ekko » menera au player audio ; le bouton est en place
-   mais volontairement inerte pour l'instant. « En savoir plus » ouvre la
-   fiche detaillee — seules les figures dont la fiche est ecrite sont
+   « Collecter l'ekko » ouvre le player audio de la figure, via un fondu
+   au noir que le player prolonge a l'ouverture. « En savoir plus » ouvre
+   la fiche detaillee — seules les figures dont la fiche est ecrite sont
    cliquables.
    ============================================================ */
 /* Figures dont la fiche est redigee. La liste faisait foi a la main quand
@@ -2089,9 +2100,10 @@ fetch('/content/index.json', { cache: 'no-store' })
 
 function actionsHTML(c){
   const ready = FICHES.indexOf(c.id) >= 0;
+  const done = COLLECTED.has(c.id);
   return '<button class="act collect" type="button" data-act="collect" data-id="' + c.id + '"'
-      + ' title="Bientot : l\'ecoute de l\'ekko">'
-      + '<span>Collecter l\'ekko</span>'
+      + ' title="' + (done ? 'Ekko deja recupere — reecouter' : 'Ecouter l\'ekko') + '">'
+      + '<span>' + (done ? 'Reecouter l\'ekko' : 'Collecter l\'ekko') + '</span>'
       + '<span class="orn"><span class="ln"></span><span class="r7"></span><span class="d5"></span></span>'
       + '</button>'
     + (ready
@@ -2100,11 +2112,28 @@ function actionsHTML(c){
 }
 
 /* Un clic sur « Collecter » ne doit pas se propager : dans le ciel il
-   declencherait un deplacement de camera. */
+   declencherait un deplacement de camera. Il mene au player de la figure.
+   Un seul ecouteur delegue sur le document suffit pour la vue du ciel comme
+   pour la collection, puisque les deux emettent le meme balisage. */
 document.addEventListener('click', function(e){
-  if(!e.target.closest('[data-act="collect"]')) return;
+  const btn = e.target.closest('[data-act="collect"]');
+  if(!btn) return;
   e.preventDefault(); e.stopPropagation();
+  const id = btn.getAttribute('data-id');
+  if(id) openPlayer(id);
 });
+
+/* Fondu au noir puis navigation. La duree correspond a celle du rideau,
+   avec une marge : si la transition est coupee (prefers-reduced-motion),
+   le rideau n'anime pas mais le delai reste borne. */
+function openPlayer(id){
+  const curtain = document.getElementById('curtain');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const go = function(){ location.href = '/player?c=' + encodeURIComponent(id); };
+  if(!curtain || reduced) return go();
+  curtain.classList.add('on');
+  setTimeout(go, 340);
+}
 
 /* ============================================================
    PROGRESSION
@@ -2117,6 +2146,16 @@ window.ekkoCollect = function(id){
   renderCard();
   return true;
 };
+/* Le player revient sur « / ?collected=<id> » quand l'ecoute est validee.
+   On enregistre la progression et on nettoie l'URL, pour qu'un rechargement
+   ou un partage de lien ne revalide pas la collecte. */
+(function(){
+  const id = new URLSearchParams(location.search).get('collected');
+  if(!id) return;
+  try{ window.ekkoCollect(id); }catch(e){}
+  history.replaceState(null, '', location.pathname);
+})();
+
 window.ekkoUncollect = function(id){
   if(!COLLECTED.delete(id)) return false;
   saveProgress();
