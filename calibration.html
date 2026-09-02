@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ekko — calibration audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E3E3C4;
+    --soft: rgba(227, 227, 196, .55);
+    --faint: rgba(227, 227, 196, .18);
+    --bg: #070c13;
+    --bg2: #0b1420;
+    --ok: #9AD5A8;
+    --warn: #E8C27A;
+    --bad: #E39A8C;
+    --font: 'Afacad', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: grid; grid-template-rows: auto 1fr;
+    background: var(--bg); color: var(--gold);
+    font-family: var(--font); font-size: 14.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* ------------------------------------------------------------- top bar */
+
+  #top {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--faint);
+    background: var(--bg2);
+  }
+  #top h1 { margin: 0 8px 0 0; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+  #top .grow { flex: 1; }
+  .field { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--soft); }
+  .field > input, .field > select { color: var(--gold); }
+
+  input[type=text], input[type=password], input[type=number], select, textarea {
+    padding: 6px 9px;
+    background: rgba(255,255,255,.05); border: 1px solid var(--faint); border-radius: 2px;
+  }
+  input[type=number] { text-align: right; font-variant-numeric: tabular-nums; }
+  textarea { width: 100%; resize: vertical; line-height: 1.5; }
+  select option { background: var(--bg2); }
+
+  .btn {
+    padding: 7px 13px;
+    background: rgba(227,227,196,.09); border: 1px solid var(--soft); border-radius: 2px;
+    font-weight: 500; cursor: pointer;
+    transition: background .18s, opacity .18s, border-color .18s;
+  }
+  .btn:hover:not(:disabled) { background: rgba(227,227,196,.17); }
+  .btn:disabled { opacity: .35; cursor: not-allowed; }
+  .btn.ghost { background: none; border-color: var(--faint); color: var(--soft); font-weight: 400; }
+  .btn.ghost:hover:not(:disabled) { color: var(--gold); border-color: var(--soft); }
+  .btn.danger:hover:not(:disabled) { border-color: var(--bad); color: var(--bad); }
+  .btn.primary { border-color: var(--gold); background: rgba(227,227,196,.18); font-weight: 600; }
+
+  kbd {
+    padding: 1px 5px; border: 1px solid var(--faint); border-radius: 2px;
+    font-family: inherit; font-size: 11px; color: var(--soft);
+  }
+
+  /* --------------------------------------------------------------- corps */
+
+  #body { display: grid; grid-template-columns: 1fr 392px; min-height: 0; }
+  #main { display: grid; grid-template-rows: auto auto 1fr; min-height: 0; padding: 16px 18px; gap: 14px; }
+  #side {
+    display: flex; flex-direction: column; gap: 14px;
+    padding: 16px 18px; overflow-y: auto;
+    border-left: 1px solid var(--faint); background: rgba(255,255,255,.014);
+  }
+
+  .panel { border: 1px solid var(--faint); border-radius: 3px; padding: 13px 14px; }
+  .panel > h2 {
+    margin: 0 0 10px; font-size: 12px; font-weight: 600;
+    letter-spacing: .05em; text-transform: uppercase; color: var(--soft);
+  }
+
+  /* ------------------------------------------------------------ waveform */
+
+  #waveWrap {
+    position: relative; height: 176px;
+    border: 1px solid var(--faint); border-radius: 3px;
+    background: rgba(255,255,255,.02);
+    cursor: crosshair; touch-action: none; overflow: hidden;
+  }
+  #wave { display: block; width: 100%; height: 100%; }
+  #playhead {
+    position: absolute; top: 0; bottom: 0; width: 1px;
+    background: #fff; box-shadow: 0 0 8px rgba(255,255,255,.7);
+    pointer-events: none;
+  }
+  #hover {
+    position: absolute; top: 0; bottom: 0; width: 1px;
+    background: var(--faint); pointer-events: none; opacity: 0;
+  }
+  #waveWrap:hover #hover { opacity: 1; }
+  #hoverTime {
+    position: absolute; top: 4px; padding: 1px 5px; transform: translateX(-50%);
+    background: rgba(0,0,0,.7); border-radius: 2px;
+    font-size: 11px; font-variant-numeric: tabular-nums; color: var(--soft);
+    pointer-events: none; opacity: 0; white-space: nowrap;
+  }
+  #waveWrap:hover #hoverTime { opacity: 1; }
+  #waveEmpty {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    padding: 24px; text-align: center; color: var(--soft); font-size: 13.5px; line-height: 1.6;
+  }
+
+  .mk {
+    position: absolute; top: 0; bottom: 0; width: 15px; margin-left: -7.5px;
+    cursor: ew-resize; touch-action: none;
+  }
+  .mk::before {
+    content: ''; position: absolute; left: 7px; top: 16px; bottom: 0; width: 1px;
+    background: var(--gold); opacity: .5;
+  }
+  .mk .dia {
+    position: absolute; left: 1px; top: 4px;
+    width: 13px; height: 13px;
+    border: 1px solid var(--gold); background: var(--bg);
+    transform: rotate(45deg);
+  }
+  .mk[data-sel] .dia { background: var(--gold); }
+  .mk[data-sel]::before { opacity: 1; width: 2px; left: 6.5px; }
+  .mk .span {
+    position: absolute; top: 0; bottom: 0; left: 7px;
+    background: rgba(227,227,196,.07); border-right: 1px dashed var(--faint);
+    pointer-events: none;
+  }
+
+  /* ----------------------------------------------------------- transport */
+
+  #transport { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  #clock { font-variant-numeric: tabular-nums; font-size: 15px; font-weight: 600; }
+  #clock small { color: var(--soft); font-weight: 400; }
+
+  /* --------------------------------------------------------------- liste */
+
+  #listWrap { min-height: 0; overflow-y: auto; border: 1px solid var(--faint); border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 7px 10px; text-align: left; font-size: 13px; }
+  th {
+    position: sticky; top: 0; z-index: 1;
+    background: var(--bg2); border-bottom: 1px solid var(--faint);
+    font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--soft);
+  }
+  tbody tr { border-bottom: 1px solid rgba(227,227,196,.07); cursor: pointer; }
+  tbody tr:hover { background: rgba(227,227,196,.05); }
+  tbody tr[data-sel] { background: rgba(227,227,196,.11); }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.act { text-align: right; }
+  td.act button { padding: 2px 7px; font-size: 11.5px; }
+  #listEmpty { padding: 26px; text-align: center; color: var(--soft); line-height: 1.6; }
+
+  /* ------------------------------------------------------------- éditeur */
+
+  .row { display: grid; gap: 4px; margin-bottom: 11px; }
+  .row > label { font-size: 12px; color: var(--soft); }
+  .row.two { grid-template-columns: 1fr 1fr; gap: 4px 10px; }
+  .row.two > label:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+  .nudge { display: grid; grid-template-columns: 26px 1fr 26px; gap: 4px; }
+  .nudge button { padding: 0; border: 1px solid var(--faint); border-radius: 2px; background: none; cursor: pointer; }
+  .nudge button:hover { border-color: var(--soft); }
+
+  #stars { display: flex; flex-wrap: wrap; gap: 5px; max-height: 132px; overflow-y: auto; }
+  #stars button {
+    padding: 4px 8px; background: none;
+    border: 1px solid var(--faint); border-radius: 2px;
+    font-size: 12px; color: var(--soft); cursor: pointer;
+  }
+  #stars button:hover { color: var(--gold); border-color: var(--soft); }
+  #stars button[aria-pressed=true] { background: var(--gold); border-color: var(--gold); color: #0b1420; }
+
+  /* ------------------------------------------------------------- aperçu */
+
+  #preview {
+    position: relative; height: 250px;
+    border: 1px solid var(--faint); border-radius: 3px;
+    background: linear-gradient(180deg, #000 0%, #0A1931 100%);
+    overflow: hidden;
+  }
+  #previewSky { position: absolute; inset: 0; }
+  #previewCard {
+    position: absolute; width: 178px; padding: 10px 11px;
+    border: 1px solid var(--faint); border-radius: 2px;
+    background: rgba(4,10,18,.9);
+    opacity: 0; transition: opacity .3s; pointer-events: none;
+  }
+  #previewCard[data-visible] { opacity: 1; }
+  #previewCard h3 { margin: 0; font-size: 14px; font-weight: 700; text-transform: uppercase; }
+  #previewCard p { margin: 4px 0 0; font-size: 11.5px; line-height: 1.45; color: rgba(227,227,196,.75); }
+
+  .status { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--soft); min-height: 1.4em; }
+  .status[data-tone=ok] { color: var(--ok); }
+  .status[data-tone=warn] { color: var(--warn); }
+  .status[data-tone=bad] { color: var(--bad); }
+  .status a { color: inherit; }
+  ul.issues { margin: 6px 0 0; padding-left: 18px; font-size: 12.5px; line-height: 1.55; color: var(--warn); }
+
+  @media (max-width: 1180px) {
+    #body { grid-template-columns: 1fr; }
+    #side { border-left: 0; border-top: 1px solid var(--faint); }
+  }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <h1>Calibration audio</h1>
+
+  <label class="field">Constellation <select id="figure"></select></label>
+  <label class="field">Chemin audio <input type="text" id="audioSrc" size="22" placeholder="audio/ori.mp3"></label>
+  <label class="field">Fichier local <input type="file" id="file" accept="audio/*"></label>
+
+  <span class="grow"></span>
+
+  <label class="field">Clé <input type="password" id="admKey" size="12" autocomplete="off"></label>
+  <button class="btn primary" id="save" disabled>Enregistrer les repères</button>
+</header>
+
+<div id="body">
+  <div id="main">
+    <div id="waveWrap">
+      <canvas id="wave"></canvas>
+      <div id="hover"></div>
+      <div id="hoverTime"></div>
+      <div id="playhead"></div>
+      <div id="waveEmpty">
+        Choisis un fichier audio local pour afficher la forme d'onde.<br>
+        Il ne sera pas envoyé : il sert uniquement à caler les repères.
+      </div>
+    </div>
+
+    <div id="transport">
+      <button class="btn" id="play">Lecture</button>
+      <button class="btn ghost" id="b5">−5 s</button>
+      <button class="btn ghost" id="f5">+5 s</button>
+      <span id="clock">00:00.00 <small>/ 00:00</small></span>
+      <label class="field">Vitesse <select id="rate">
+        <option value="0.5">0,5×</option><option value="0.75">0,75×</option>
+        <option value="1" selected>1×</option><option value="1.5">1,5×</option>
+      </select></label>
+      <span class="grow"></span>
+      <label class="field"><input type="checkbox" id="chimeOn" checked> Carillon</label>
+      <button class="btn ghost" id="chimeTest">Écouter</button>
+      <button class="btn" id="mark">Poser un repère <kbd>M</kbd></button>
+    </div>
+
+    <div id="listWrap">
+      <table>
+        <thead><tr>
+          <th style="width:88px">Début</th><th style="width:74px">Durée</th>
+          <th>Titre</th><th style="width:130px">Étoiles</th><th style="width:64px"></th>
+        </tr></thead>
+        <tbody id="list"></tbody>
+      </table>
+      <p id="listEmpty">Aucun repère. Lance la lecture et appuie sur <kbd>M</kbd> au moment voulu.</p>
+    </div>
+  </div>
+
+  <aside id="side">
+    <div class="panel">
+      <h2>Aperçu en direct</h2>
+      <div id="preview">
+        <div id="previewSky"></div>
+        <div id="previewCard"></div>
+      </div>
+      <p class="status" id="previewNote" style="margin-top:9px">
+        Ce que verra l'utilisateur, piloté par le même moteur que le player.
+      </p>
+    </div>
+
+    <div class="panel" id="editor" hidden>
+      <h2>Repère sélectionné</h2>
+
+      <div class="row">
+        <label for="mStart">Début — moment du carillon</label>
+        <div class="nudge">
+          <button type="button" id="mStartDown" title="−10 ms">−</button>
+          <input type="number" id="mStart" step="0.01" min="0">
+          <button type="button" id="mStartUp" title="+10 ms">+</button>
+        </div>
+      </div>
+
+      <div class="row two">
+        <label for="mEnd">Fin</label>
+        <label for="mOffset">Retard d'affichage</label>
+        <input type="number" id="mEnd" step="0.01" min="0">
+        <input type="number" id="mOffset" step="0.05" min="0" max="5" placeholder="0.25">
+      </div>
+
+      <div class="row">
+        <label>Étoiles mises en avant</label>
+        <div id="stars"></div>
+      </div>
+
+      <div class="row"><label for="mTitle">Titre</label><input type="text" id="mTitle"></div>
+      <div class="row"><label for="mSubtitle">Sous-titre</label><input type="text" id="mSubtitle"></div>
+      <div class="row"><label for="mBody">Texte</label><textarea id="mBody" rows="4"></textarea></div>
+      <div class="row"><label for="mImage">Image (URL ou chemin)</label><input type="text" id="mImage"></div>
+      <div class="row"><label><input type="checkbox" id="mChime" checked> Carillon sur ce repère</label></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button class="btn ghost" id="mGoto">Écouter ici</button>
+        <button class="btn ghost danger" id="mDelete">Supprimer</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Contrôle et écriture</h2>
+      <p class="status" id="apiStatus"></p>
+      <ul class="issues" id="issues" hidden></ul>
+      <p class="status" id="saveStatus"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Raccourcis</h2>
+      <p class="status" style="line-height:1.9">
+        <kbd>Espace</kbd> lecture / pause · <kbd>M</kbd> poser un repère<br>
+        <kbd>←</kbd> <kbd>→</kbd> 1 s · <kbd>Maj</kbd> + flèches 0,1 s<br>
+        <kbd>[</kbd> <kbd>]</kbd> décaler le repère de 10 ms<br>
+        <kbd>Suppr</kbd> supprimer le repère sélectionné
+      </p>
+    </div>
+  </aside>
+</div>
+
+<script type="module">
+import { ConstellationView } from './js/constellation-view.js';
+import { toViewOptions, emptySettings } from './js/view-settings.js';
+import { CueEngine, Chime, emptyTrack, validateTrack } from './js/cue-engine.js';
+
+const $ = (id) => document.getElementById(id);
+const KEY_STORE = 'ekko-admin-key';
+
+let sky = null;
+let settings = null;
+let view = null;
+let engine = null;
+let chime = null;
+let audio = new Audio();
+let buffer = null;        // AudioBuffer du fichier local, pour la forme d'onde
+let peaks = null;
+let track = null;
+let iau = 'Ori';
+let selected = null;      // id du repère sélectionné
+let apiReady = false;
+let dragging = null;
+
+boot();
+
+/* ================================================================ amorçage */
+
+async function boot() {
+  [sky, settings] = await Promise.all([
+    fetch('data/ekko-sky.json').then((r) => r.json()),
+    fetch('data/player-view.json', { cache: 'no-store' }).then((r) => r.json()).catch(() => emptySettings()),
+  ]);
+
+  const sel = $('figure');
+  for (const [key, fig] of Object.entries(sky.figures).sort((a, b) => a[1].name.localeCompare(b[1].name, 'fr'))) {
+    sel.append(new Option(`${fig.name} · ${key}`, key));
+  }
+  sel.value = sky.figures.Ori ? 'Ori' : sel.options[0].value;
+  iau = sel.value;
+
+  view = new ConstellationView($('previewSky'), { data: sky, ...toViewOptions(settings, iau) });
+  await view.ready;
+
+  chime = new Chime({ gain: 0.45 });
+
+  try { $('admKey').value = sessionStorage.getItem(KEY_STORE) ?? ''; } catch { /* ignore */ }
+
+  await loadTrack(iau);
+  wire();
+  probeApi();
+  tickLoop();
+}
+
+async function loadTrack(key) {
+  iau = key;
+  const id = key.toLowerCase();
+  try {
+    const r = await fetch(`content/${id}/cues.json`, { cache: 'no-store' });
+    track = r.ok ? await r.json() : emptyTrack(key, id);
+  } catch { track = emptyTrack(key, id); }
+
+  track.constellation = id;
+  track.iau = key;
+  track.cues ??= [];
+  track.chime ??= { enabled: true, offset: 0.25, gain: 0.45, url: null };
+
+  $('audioSrc').value = track.audioSrc ?? '';
+  $('chimeOn').checked = track.chime.enabled !== false;
+
+  view.setFigure(key);
+  view.setOptions(toViewOptions(settings, key));
+
+  selected = null;
+  bindEngine();
+  buildStars();
+  renderAll();
+}
+
+function bindEngine() {
+  engine?.stop();
+  engine = new CueEngine({
+    audio,
+    track,
+    chime: $('chimeOn').checked ? chime : null,
+    onCue: showCue,
+  });
+  engine.start();
+}
+
+/* =================================================================== audio */
+
+async function loadFile(file) {
+  audio.pause();
+  audio.src = URL.createObjectURL(file);
+  await new Promise((res) => audio.addEventListener('loadedmetadata', res, { once: true }));
+
+  const AC = window.AudioContext ?? window.webkitAudioContext;
+  const ctx = new AC();
+  buffer = await ctx.decodeAudioData(await file.arrayBuffer());
+  ctx.close();
+
+  track.duration = Number(buffer.duration.toFixed(3));
+  peaks = null;
+  $('waveEmpty').hidden = true;
+  drawWave();
+  renderAll();
+
+  // Un nom de fichier qui ne colle pas au chemin déclaré est la source d'erreur
+  // la plus probable : on le signale tout de suite.
+  const declared = $('audioSrc').value.trim();
+  if (declared && !declared.endsWith(file.name)) {
+    say('saveStatus', 'warn', `Le fichier « ${file.name} » ne correspond pas au chemin déclaré « ${declared} ». Vérifie avant d'enregistrer.`);
+  }
+}
+
+/* ================================================================ waveform */
+
+/** Enveloppe min/max par colonne de pixel, calculée une fois par largeur. */
+function computePeaks(width) {
+  const ch = buffer.getChannelData(0);
+  const per = ch.length / width;
+  const out = new Float32Array(width * 2);
+  for (let x = 0; x < width; x += 1) {
+    const from = Math.floor(x * per);
+    const to = Math.min(ch.length, Math.floor((x + 1) * per));
+    let lo = 1; let hi = -1;
+    for (let i = from; i < to; i += 1) {
+      const v = ch[i];
+      if (v < lo) lo = v;
+      if (v > hi) hi = v;
+    }
+    out[x * 2] = lo === 1 ? 0 : lo;
+    out[x * 2 + 1] = hi === -1 ? 0 : hi;
+  }
+  return out;
+}
+
+function drawWave() {
+  const canvas = $('wave');
+  const wrap = $('waveWrap');
+  const dpr = window.devicePixelRatio || 1;
+  const w = Math.max(1, Math.floor(wrap.clientWidth));
+  const h = Math.max(1, Math.floor(wrap.clientHeight));
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+
+  const g = canvas.getContext('2d');
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  g.clearRect(0, 0, w, h);
+
+  if (!buffer) return;
+  if (!peaks || peaks.length !== w * 2) peaks = computePeaks(w);
+
+  const mid = h / 2;
+  g.fillStyle = 'rgba(227,227,196,.42)';
+  for (let x = 0; x < w; x += 1) {
+    const lo = peaks[x * 2];
+    const hi = peaks[x * 2 + 1];
+    const y1 = mid - hi * (mid - 10);
+    const y2 = mid - lo * (mid - 10);
+    g.fillRect(x, y1, 1, Math.max(1, y2 - y1));
+  }
+  g.strokeStyle = 'rgba(227,227,196,.18)';
+  g.beginPath();
+  g.moveTo(0, mid);
+  g.lineTo(w, mid);
+  g.stroke();
+}
+
+const duration = () => track.duration || audio.duration || 0;
+const xToTime = (clientX) => {
+  const r = $('waveWrap').getBoundingClientRect();
+  return Math.max(0, Math.min(duration(), ((clientX - r.left) / r.width) * duration()));
+};
+const timeToPct = (t) => (duration() ? (t / duration()) * 100 : 0);
+
+/* ================================================================= rendu */
+
+function renderAll() {
+  renderMarkers();
+  renderList();
+  renderEditor();
+  runChecks();
+  refreshSave();
+}
+
+function renderMarkers() {
+  const wrap = $('waveWrap');
+  wrap.querySelectorAll('.mk').forEach((n) => n.remove());
+
+  for (const cue of track.cues) {
+    const mk = document.createElement('div');
+    mk.className = 'mk';
+    mk.dataset.id = cue.id;
+    mk.style.left = `${timeToPct(cue.start)}%`;
+    if (cue.id === selected) mk.setAttribute('data-sel', '');
+    mk.title = `${fmt(cue.start)} — ${cue.card?.title || 'sans titre'}`;
+
+    const span = document.createElement('div');
+    span.className = 'span';
+    const w = timeToPct((cue.end ?? cue.start + 8) - cue.start);
+    span.style.width = `calc(${w}% * ${wrap.clientWidth} / ${wrap.clientWidth})`;
+    span.style.width = `${(w / 100) * wrap.clientWidth}px`;
+
+    const dia = document.createElement('div');
+    dia.className = 'dia';
+
+    mk.append(span, dia);
+    mk.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
+      select(cue.id);
+      dragging = cue.id;
+      mk.setPointerCapture(e.pointerId);
+    });
+    mk.addEventListener('pointermove', (e) => {
+      if (dragging !== cue.id) return;
+      const dt = xToTime(e.clientX) - cue.start;
+      cue.start = round3(Math.max(0, xToTime(e.clientX)));
+      cue.end = round3(Math.max(cue.start + 0.5, (cue.end ?? cue.start + 8) + dt));
+      renderAll();
+    });
+    mk.addEventListener('pointerup', () => { dragging = null; engine.setTrack(track); });
+    wrap.append(mk);
+  }
+  engine.setTrack(track);
+}
+
+function renderList() {
+  const tb = $('list');
+  tb.replaceChildren();
+  $('listEmpty').hidden = track.cues.length > 0;
+
+  for (const cue of [...track.cues].sort((a, b) => a.start - b.start)) {
+    const tr = document.createElement('tr');
+    if (cue.id === selected) tr.setAttribute('data-sel', '');
+    tr.addEventListener('click', () => select(cue.id));
+
+    const names = (cue.hips ?? [])
+      .map((h) => sky.stars[h]?.name ?? `HIP ${h}`)
+      .join(', ');
+
+    tr.innerHTML = `<td class="num">${fmt(cue.start)}</td>`
+      + `<td class="num">${((cue.end ?? cue.start) - cue.start).toFixed(1)} s</td>`
+      + `<td>${escapeHtml(cue.card?.title || '—')}</td>`
+      + `<td style="color:var(--soft)">${escapeHtml(names || '—')}</td>`;
+
+    const act = document.createElement('td');
+    act.className = 'act';
+    const del = document.createElement('button');
+    del.className = 'btn ghost danger';
+    del.type = 'button';
+    del.textContent = 'Suppr.';
+    del.addEventListener('click', (e) => { e.stopPropagation(); remove(cue.id); });
+    act.append(del);
+    tr.append(act);
+    tb.append(tr);
+  }
+}
+
+function renderEditor() {
+  const cue = current();
+  $('editor').hidden = !cue;
+  if (!cue) return;
+
+  $('mStart').value = cue.start.toFixed(2);
+  $('mEnd').value = (cue.end ?? cue.start + 8).toFixed(2);
+  $('mOffset').value = cue.offset ?? '';
+  $('mTitle').value = cue.card?.title ?? '';
+  $('mSubtitle').value = cue.card?.subtitle ?? '';
+  $('mBody').value = cue.card?.body ?? '';
+  $('mImage').value = cue.card?.image ?? '';
+  $('mChime').checked = cue.chime !== false;
+
+  for (const b of $('stars').children) {
+    b.setAttribute('aria-pressed', String((cue.hips ?? []).includes(Number(b.dataset.hip))));
+  }
+}
+
+function buildStars() {
+  const host = $('stars');
+  host.replaceChildren();
+  for (const s of view.listStars()) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.hip = s.hip;
+    b.textContent = s.name ?? `HIP ${s.hip}`;
+    b.title = `HIP ${s.hip} · mag ${s.mag.toFixed(2)}`;
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => toggleStar(s.hip, s.name));
+    host.append(b);
+  }
+}
+
+function runChecks() {
+  const issues = validateTrack({ ...track, audioSrc: $('audioSrc').value.trim() });
+  const ul = $('issues');
+  ul.replaceChildren();
+  ul.hidden = issues.length === 0;
+  for (const i of issues.slice(0, 10)) {
+    const li = document.createElement('li');
+    li.textContent = i;
+    ul.append(li);
+  }
+  if (issues.length > 10) {
+    const li = document.createElement('li');
+    li.textContent = `… et ${issues.length - 10} autres.`;
+    ul.append(li);
+  }
+}
+
+/* ============================================================== aperçu */
+
+function showCue(cue) {
+  const card = $('previewCard');
+  if (!cue) { view.clearFocus(); card.removeAttribute('data-visible'); return; }
+
+  view.focus(cue.hips ?? []);
+  card.replaceChildren();
+  const h = document.createElement('h3');
+  h.textContent = cue.card?.title || 'Sans titre';
+  card.append(h);
+  if (cue.card?.body) {
+    const p = document.createElement('p');
+    p.textContent = cue.card.body.slice(0, 150);
+    card.append(p);
+  }
+  card.setAttribute('data-visible', '');
+
+  const p = cue.hips?.[0] ? view.getStarPoint(cue.hips[0]) : null;
+  const box = $('preview').getBoundingClientRect();
+  if (p) {
+    const flipX = p.x + 16 + 178 > box.width - 8;
+    const flipY = p.y + 16 + card.offsetHeight > box.height - 8;
+    card.style.left = `${Math.max(8, Math.min(box.width - 186, flipX ? p.x - 16 - 178 : p.x + 16))}px`;
+    card.style.top = `${Math.max(8, flipY ? p.y - 16 - card.offsetHeight : p.y + 16)}px`;
+  } else {
+    card.style.left = '8px';
+    card.style.top = '8px';
+  }
+}
+
+/* ============================================================== édition */
+
+const round3 = (n) => Number(Number(n).toFixed(3));
+const current = () => track.cues.find((c) => c.id === selected) ?? null;
+
+function select(id) {
+  selected = id;
+  renderAll();
+}
+
+function addMarker() {
+  const t = round3(audio.currentTime || 0);
+  const cue = {
+    id: `c${Date.now().toString(36)}`,
+    start: t,
+    end: round3(t + 8),
+    hips: [],
+    card: { title: '' },
+  };
+  track.cues.push(cue);
+  track.cues.sort((a, b) => a.start - b.start);
+  select(cue.id);
+  $('mTitle').focus();
+}
+
+function remove(id) {
+  track.cues = track.cues.filter((c) => c.id !== id);
+  if (selected === id) selected = null;
+  renderAll();
+}
+
+function toggleStar(hip, name) {
+  const cue = current();
+  if (!cue) return;
+  cue.hips ??= [];
+  const i = cue.hips.indexOf(hip);
+  if (i >= 0) cue.hips.splice(i, 1);
+  else cue.hips.push(hip);
+
+  // Une seule étoile et pas encore de titre : on propose son nom.
+  if (cue.hips.length === 1 && !cue.card?.title && name) {
+    cue.card ??= {};
+    cue.card.title = name;
+  }
+  renderAll();
+  engine.sync();
+}
+
+function nudge(seconds) {
+  const cue = current();
+  if (!cue) return;
+  const d = cue.end - cue.start;
+  cue.start = round3(Math.max(0, cue.start + seconds));
+  cue.end = round3(cue.start + d);
+  renderAll();
+  engine.sync();
+}
+
+/* ============================================================== câblage */
+
+function wire() {
+  $('figure').addEventListener('change', (e) => loadTrack(e.target.value));
+  $('file').addEventListener('change', (e) => { if (e.target.files?.[0]) loadFile(e.target.files[0]); });
+  $('audioSrc').addEventListener('input', () => { track.audioSrc = $('audioSrc').value.trim(); runChecks(); refreshSave(); });
+
+  $('admKey').addEventListener('input', (e) => {
+    try { sessionStorage.setItem(KEY_STORE, e.target.value); } catch { /* ignore */ }
+    refreshSave();
+  });
+
+  $('play').addEventListener('click', togglePlay);
+  $('b5').addEventListener('click', () => seekBy(-5));
+  $('f5').addEventListener('click', () => seekBy(5));
+  $('rate').addEventListener('change', (e) => { audio.playbackRate = Number(e.target.value); });
+  $('mark').addEventListener('click', addMarker);
+
+  $('chimeOn').addEventListener('change', (e) => {
+    track.chime.enabled = e.target.checked;
+    bindEngine();
+  });
+  $('chimeTest').addEventListener('click', async () => { await chime.unlock(); chime.play(); });
+
+  $('waveWrap').addEventListener('pointerdown', (e) => { if (!dragging) seekTo(xToTime(e.clientX)); });
+  $('waveWrap').addEventListener('pointermove', (e) => {
+    const r = $('waveWrap').getBoundingClientRect();
+    $('hover').style.left = `${e.clientX - r.left}px`;
+    $('hoverTime').style.left = `${e.clientX - r.left}px`;
+    $('hoverTime').textContent = fmt(xToTime(e.clientX));
+  });
+
+  // Éditeur : chaque champ écrit directement dans le repère.
+  const bind = (id, apply) => $(id).addEventListener('input', () => {
+    const cue = current();
+    if (!cue) return;
+    apply(cue, $(id));
+    renderMarkers();
+    renderList();
+    runChecks();
+    refreshSave();
+    engine.sync();
+  });
+
+  bind('mStart', (c, i) => { const d = c.end - c.start; c.start = round3(Math.max(0, Number(i.value) || 0)); c.end = round3(c.start + d); });
+  bind('mEnd', (c, i) => { c.end = round3(Math.max(c.start + 0.2, Number(i.value) || 0)); });
+  bind('mOffset', (c, i) => { if (i.value === '') delete c.offset; else c.offset = round3(Number(i.value)); });
+  bind('mTitle', (c, i) => { c.card ??= {}; c.card.title = i.value; });
+  bind('mSubtitle', (c, i) => { c.card ??= {}; c.card.subtitle = i.value; });
+  bind('mBody', (c, i) => { c.card ??= {}; c.card.body = i.value; });
+  bind('mImage', (c, i) => { c.card ??= {}; c.card.image = i.value; });
+  $('mChime').addEventListener('change', () => {
+    const c = current();
+    if (!c) return;
+    if ($('mChime').checked) delete c.chime; else c.chime = false;
+    bindEngine();
+  });
+
+  $('mStartDown').addEventListener('click', () => nudge(-0.01));
+  $('mStartUp').addEventListener('click', () => nudge(0.01));
+  $('mGoto').addEventListener('click', () => {
+    const c = current();
+    if (c) seekTo(Math.max(0, c.start - 1.5));
+  });
+  $('mDelete').addEventListener('click', () => { if (selected) remove(selected); });
+
+  $('save').addEventListener('click', save);
+
+  window.addEventListener('keydown', onKey);
+  window.addEventListener('resize', () => { peaks = null; drawWave(); renderMarkers(); });
+}
+
+function onKey(e) {
+  if (e.target.closest('input, textarea, select')) return;
+  const shift = e.shiftKey;
+  switch (e.key) {
+    case ' ': e.preventDefault(); togglePlay(); break;
+    case 'm': case 'M': e.preventDefault(); addMarker(); break;
+    case 'ArrowLeft': e.preventDefault(); seekBy(shift ? -0.1 : -1); break;
+    case 'ArrowRight': e.preventDefault(); seekBy(shift ? 0.1 : 1); break;
+    case '[': e.preventDefault(); nudge(-0.01); break;
+    case ']': e.preventDefault(); nudge(0.01); break;
+    case 'Delete': case 'Backspace': if (selected) { e.preventDefault(); remove(selected); } break;
+    default: break;
+  }
+}
+
+async function togglePlay() {
+  if (audio.paused) {
+    await chime.unlock();
+    try { await audio.play(); } catch { return; }
+    $('play').textContent = 'Pause';
+  } else {
+    audio.pause();
+    $('play').textContent = 'Lecture';
+  }
+}
+
+const seekBy = (d) => seekTo(audio.currentTime + d);
+function seekTo(t) {
+  audio.currentTime = Math.max(0, Math.min(duration(), t));
+  engine.sync();
+}
+
+/** Playhead et horloge : hors du moteur, c'est de l'affichage pur. */
+function tickLoop() {
+  const t = audio.currentTime || 0;
+  $('playhead').style.left = `${timeToPct(t)}%`;
+  $('clock').innerHTML = `${fmt(t)} <small>/ ${fmt(duration(), false)}</small>`;
+  if (audio.paused && $('play').textContent === 'Pause') $('play').textContent = 'Lecture';
+  requestAnimationFrame(tickLoop);
+}
+
+/* ============================================================== écriture */
+
+async function probeApi() {
+  try {
+    const d = await fetch('/api/save-cues', { cache: 'no-store' }).then((r) => r.json());
+    apiReady = Boolean(d.configured);
+    say('apiStatus', apiReady ? 'ok' : 'warn', apiReady
+      // escapeHtml sur le motif de chemin : `say` écrit en innerHTML, et
+      // « content/<id>/cues.json » verrait son `<id>` avalé comme une balise.
+      ? `Écriture active sur ${escapeHtml(d.repo)} (${escapeHtml(d.branch)}), vers ${escapeHtml(d.pathPattern)}.`
+      : `Écriture non configurée. Variables manquantes : ${d.missing.join(', ')}.`);
+  } catch {
+    say('apiStatus', 'warn', 'Fonction /api/save-cues injoignable. En local, seule la calibration fonctionne.');
+  }
+  refreshSave();
+}
+
+function refreshSave() {
+  $('save').disabled = !apiReady || !$('admKey').value.trim() || track.cues.length === 0;
+}
+
+async function save() {
+  track.audioSrc = $('audioSrc').value.trim();
+  $('save').disabled = true;
+  say('saveStatus', '', 'Commit en cours…');
+
+  let res; let data;
+  try {
+    res = await fetch('/api/save-cues', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-ekko-key': $('admKey').value.trim() },
+      body: JSON.stringify({ id: iau.toLowerCase(), track }),
+    });
+    data = await res.json().catch(() => ({}));
+  } catch (e) {
+    say('saveStatus', 'bad', `Fonction injoignable : ${e.message}`);
+    refreshSave();
+    return;
+  }
+
+  if (!res.ok) {
+    say('saveStatus', 'bad', [data.error, data.detail].filter(Boolean).join(' — ') || `Erreur ${res.status}`);
+    refreshSave();
+    return;
+  }
+
+  // Le serveur renvoie la piste telle qu'il l'a écrite : on s'aligne dessus.
+  track = data.track;
+  bindEngine();
+  selected = null;
+  renderAll();
+
+  const link = data.commitUrl ? ` <a href="${data.commitUrl}" target="_blank" rel="noopener">voir le commit</a>` : '';
+  say('saveStatus', 'warn', `${data.message}${link} Redéploiement en cours…`);
+  awaitDeploy(data.path, data.updatedAt, link);
+}
+
+async function awaitDeploy(path, expected, link) {
+  const t0 = Date.now();
+  while (Date.now() - t0 < 180000) {
+    await new Promise((r) => setTimeout(r, 4000));
+    try {
+      const served = await fetch(`${path}?t=${Date.now()}`, { cache: 'no-store' }).then((r) => r.json());
+      if (served.updatedAt === expected) {
+        say('saveStatus', 'ok', `En ligne (${Math.round((Date.now() - t0) / 1000)} s).${link}`);
+        return;
+      }
+    } catch { /* redéploiement en cours */ }
+    say('saveStatus', 'warn', `Commit fait.${link} Redéploiement… ${Math.round((Date.now() - t0) / 1000)} s`);
+  }
+  say('saveStatus', 'warn', `Commit fait${link}, mise en ligne non confirmée après 3 minutes.`);
+}
+
+/* ================================================================ divers */
+
+function fmt(s, centi = true) {
+  const v = Math.max(0, s || 0);
+  const m = Math.floor(v / 60);
+  const sec = Math.floor(v % 60);
+  const base = `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  return centi ? `${base}.${String(Math.floor((v % 1) * 100)).padStart(2, '0')}` : base;
+}
+
+function say(id, tone, html) {
+  const n = $(id);
+  n.dataset.tone = tone ?? '';
+  n.innerHTML = html;
+}
+
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+</script>
+</body>
+</html>

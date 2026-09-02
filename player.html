@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ekko of Beyond — écoute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E3E3C4;
+    --gold-50: rgba(227, 227, 196, .5);
+    --gold-42: rgba(227, 227, 196, .42);
+    --gold-20: rgba(227, 227, 196, .2);
+    --font: 'Afacad', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --pad-x: clamp(20px, 5.5vw, 80px);
+    --ctl: 1;                       /* échelle du cluster de contrôles */
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%; margin: 0; overflow: hidden;
+    background: #000;
+    color: var(--gold);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button { font-family: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* ============================================================== décor */
+
+  #sky {
+    position: fixed; inset: 0;
+    background: linear-gradient(180deg, #000 0%, #0A1931 100%);
+  }
+  /* Champ d'étoiles provisoire. À remplacer par l'asset du splashscreen. */
+  #sky::before {
+    content: ''; position: absolute; inset: -10%; opacity: .5;
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 22%, #fff, transparent),
+      radial-gradient(1px 1px at 68% 14%, rgba(255,255,255,.8), transparent),
+      radial-gradient(1.6px 1.6px at 84% 61%, rgba(255,255,255,.9), transparent),
+      radial-gradient(1px 1px at 34% 74%, rgba(255,255,255,.7), transparent),
+      radial-gradient(1.2px 1.2px at 52% 41%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1px 1px at 22% 57%, rgba(255,255,255,.65), transparent),
+      radial-gradient(1.3px 1.3px at 76% 33%, rgba(255,255,255,.55), transparent),
+      radial-gradient(1px 1px at 44% 88%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1px 1px at 8% 46%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1.1px 1.1px at 92% 18%, rgba(255,255,255,.6), transparent);
+    background-size: 340px 300px;
+  }
+  /* Lueur d'horizon : ellipse en color-dodge, comme dans la maquette. */
+  #sky::after {
+    content: ''; position: absolute;
+    left: 50%; bottom: -34%; width: 151vw; height: 92vh;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(38, 104, 148, .78), rgba(20, 56, 88, .2) 62%, transparent 100%);
+    mix-blend-mode: color-dodge;
+    pointer-events: none;
+  }
+
+  #shell {
+    position: fixed; inset: 0;
+    opacity: 0;
+    transition: opacity .48s cubic-bezier(0, 0, .2, 1);
+  }
+  #shell[data-in] { opacity: 1; }
+
+  /* Rideau de fondu. Rien d'autre que l'opacité n'est animé. */
+  #curtain {
+    position: fixed; inset: 0; z-index: 90;
+    background: #000;
+    opacity: 1; pointer-events: none;
+    will-change: opacity;
+    transition: opacity .48s cubic-bezier(0, 0, .2, 1);
+  }
+  #curtain[data-open] { opacity: 0; }
+  #curtain[data-closing] { opacity: 1; transition-duration: .32s; transition-timing-function: cubic-bezier(.4, 0, 1, 1); }
+
+  /* ============================================================= header */
+
+  #header {
+    position: absolute; left: 0; right: 0; top: 0; height: 89px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 var(--pad-x);
+    z-index: 20;
+  }
+
+  .pill {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 32px;
+    border: 1px solid var(--gold); border-radius: 999px;
+    font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .01em;
+    white-space: nowrap;
+    transition: background .2s;
+  }
+  .pill:hover { background: rgba(227, 227, 196, .1); }
+
+  #account {
+    display: flex; align-items: center; gap: 15px;
+    font-size: 18px; font-weight: 700; text-transform: uppercase;
+    text-decoration: none; white-space: nowrap;
+    transition: opacity .2s;
+  }
+  #account:hover { opacity: .72; }
+  #account svg { flex: none; }
+
+  /* Panneau de la défonce. Sa largeur est pilotée par PlayerHeader. */
+  #panel {
+    position: absolute; left: 50%; top: -1px;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px;
+    text-align: center;
+    pointer-events: none;
+  }
+  #badge {
+    padding: 2px 10px;
+    background: rgba(255, 255, 255, .3); border-radius: 999px;
+    color: #fff; font-size: 10px; font-weight: 700; line-height: 1.5;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  #title {
+    font-size: 38px; font-weight: 700; line-height: 1.02;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  #status {
+    opacity: .5;
+    font-size: 16px; font-weight: 700; text-transform: uppercase; white-space: nowrap;
+  }
+
+  /* ============================================================= centre */
+
+  #middle { position: absolute; left: 0; right: 0; top: 186px; bottom: 190px; }
+  #viewport { position: absolute; inset: 0; }
+
+  #card {
+    position: absolute; z-index: 30;
+    width: 300px; max-width: calc(100vw - 40px);
+    padding: 18px 20px 20px;
+    border: 1px solid var(--gold-20); border-radius: 3px;
+    background: rgba(4, 10, 18, .84);
+    backdrop-filter: blur(16px);
+    opacity: 0; transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity .42s cubic-bezier(.4, 0, .2, 1), transform .42s cubic-bezier(.4, 0, .2, 1);
+  }
+  #card[data-visible] { opacity: 1; transform: translateY(0); }
+  #card h2 {
+    margin: 0; font-size: 24px; font-weight: 700; line-height: 1.1; text-transform: uppercase;
+  }
+  #card .sub { margin: 4px 0 0; font-size: 13px; font-weight: 500; opacity: .55; text-transform: uppercase; }
+  #card .rule { height: 1px; margin: 13px 0; background: var(--gold-20); }
+  #card p.body { margin: 0; font-size: 14.5px; line-height: 1.55; color: rgba(227, 227, 196, .8); }
+  #card img {
+    display: block; width: 100%; margin: 0 0 13px;
+    border-radius: 2px; aspect-ratio: 16 / 10; object-fit: cover;
+  }
+
+  /* ================================================== bas de l'écran */
+
+  #bottom {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 0 var(--pad-x) 26px;
+    z-index: 20;
+  }
+
+  #bar { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+
+  #track {
+    position: relative; height: 22px;
+    display: flex; align-items: center; gap: 5px;
+    cursor: pointer; touch-action: none;
+  }
+  .cap { flex: none; display: flex; align-items: center; gap: 5px; }
+  .cap i { display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .cap b { display: block; width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--gold); }
+
+  #rail { position: relative; flex: 1; height: 22px; }
+  #rail::before {
+    content: ''; position: absolute; left: 0; right: 0; top: 50%;
+    height: 1px; margin-top: -.5px; background: var(--gold-42);
+  }
+  #elapsed {
+    position: absolute; left: 0; top: 50%; height: 4px; margin-top: -2px;
+    border-radius: 2px; background: var(--gold);
+    width: 0;
+  }
+  #head {
+    position: absolute; top: 50%; width: 2px; height: 14px; margin: -7px 0 0 -1px;
+    background: var(--gold); border-radius: 1px;
+    opacity: 0; transition: opacity .2s;
+  }
+  #track:hover #head, #track[data-scrub] #head { opacity: 1; }
+
+  .glyph {
+    position: absolute; top: 50%;
+    width: 17px; height: 17px; margin: -8.5px 0 0 -8.5px;
+    padding: 0; line-height: 0;
+    opacity: .85;
+    transition: opacity .2s, transform .2s;
+  }
+  .glyph:hover { opacity: 1; transform: scale(1.18); }
+  .glyph[data-active] { opacity: 1; transform: scale(1.24); }
+
+  #times {
+    display: flex; justify-content: space-between;
+    font-size: 14px; font-weight: 700; text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ------------------------------------------------------- contrôles */
+
+  #controls {
+    display: flex; align-items: center; margin-top: 18px;
+    zoom: var(--ctl);
+  }
+  .rule40 { flex: none; width: 40px; height: 1px; background: var(--gold-42); }
+  .side { flex: none; display: flex; align-items: center; gap: 5px; }
+
+  .circle {
+    flex: none; display: grid; place-items: center;
+    border: 1px solid var(--gold); border-radius: 50%;
+    transition: background .2s, opacity .2s;
+  }
+  .circle:hover:not(:disabled) { background: rgba(227, 227, 196, .1); }
+  .circle:disabled { opacity: .3; cursor: not-allowed; }
+  .c50 { width: 50px; height: 50px; }
+  .c80 { width: 80px; height: 80px; border-width: 1.6px; }
+  #play svg { margin-left: 3px; }        /* recentrage optique du triangle */
+  #stopSquare { width: 24px; height: 24px; background: var(--gold); }
+
+  /* ---------------------------------------------------------- dialogue */
+
+  #confirm {
+    position: fixed; inset: 0; z-index: 80;
+    display: grid; place-items: center;
+    padding: 24px;
+    background: rgba(2, 6, 12, .72);
+    backdrop-filter: blur(10px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .28s;
+  }
+  #confirm[data-open] { opacity: 1; pointer-events: auto; }
+  #confirm .box {
+    width: 100%; max-width: 420px; padding: 28px;
+    border: 1px solid var(--gold-20); border-radius: 3px;
+    background: rgba(6, 12, 20, .96);
+    text-align: center;
+  }
+  #confirm h2 { margin: 0 0 10px; font-size: 22px; font-weight: 700; text-transform: uppercase; }
+  #confirm p { margin: 0 0 22px; font-size: 15px; line-height: 1.55; color: rgba(227, 227, 196, .75); }
+  #confirm .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  #confirm button {
+    padding: 12px; border: 1px solid var(--gold-50); border-radius: 2px;
+    font-size: 14px; font-weight: 700; text-transform: uppercase;
+    transition: background .2s, border-color .2s;
+  }
+  #confirm button:hover { background: rgba(227, 227, 196, .1); border-color: var(--gold); }
+  #confirm button[data-primary] { background: rgba(227, 227, 196, .16); border-color: var(--gold); }
+
+  /* ------------------------------------------------------------- notes */
+
+  #notice {
+    position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%);
+    margin-bottom: 14px; padding: 7px 14px;
+    border: 1px solid var(--gold-20); border-radius: 999px;
+    background: rgba(4, 10, 18, .8);
+    font-size: 12.5px; color: var(--gold-50); white-space: nowrap;
+    opacity: 0; transition: opacity .3s; pointer-events: none;
+  }
+  #notice[data-show] { opacity: 1; }
+
+  @media (max-width: 900px) {
+    :root { --ctl: .82; }
+    #middle { top: 176px; bottom: 176px; }
+    #card { width: 268px; }
+    #account span { display: none; }
+    .pill { padding: 10px 20px; font-size: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #shell, #curtain, #card { transition-duration: 1ms; }
+  }
+</style>
+</head>
+<body>
+
+<div id="sky"></div>
+
+<div id="shell">
+  <header id="header">
+    <button class="pill" id="back" type="button"></button>
+
+    <div id="panel" data-header-panel>
+      <span id="badge" data-header-badge></span>
+      <span id="title" data-header-title></span>
+      <span id="status" data-header-status></span>
+    </div>
+
+    <a id="account" href="tools.html"></a>
+  </header>
+
+  <div id="middle">
+    <div id="viewport"></div>
+    <aside id="card" role="note"></aside>
+  </div>
+
+  <div id="bottom">
+    <div id="notice"></div>
+    <div id="bar">
+      <div id="track" role="slider" tabindex="0" aria-label="Progression de l'écoute"
+           aria-valuemin="0" aria-valuenow="0">
+        <span class="cap"><i></i><b></b></span>
+        <div id="rail">
+          <div id="elapsed"></div>
+          <div id="head"></div>
+        </div>
+        <span class="cap"><b></b><i></i></span>
+      </div>
+      <div id="times"><span id="tNow">00:00</span><span id="tEnd">00:00</span></div>
+    </div>
+
+    <div id="controls">
+      <span class="side"><i class="dot"></i></span>
+      <button class="circle c50" id="back10" type="button" aria-label="Reculer de 10 secondes"></button>
+      <span class="rule40"></span>
+      <button class="circle c80" id="play" type="button" aria-label="Lecture"></button>
+      <span class="rule40"></span>
+      <button class="circle c80" id="stop" type="button" aria-label="Terminer l'écoute">
+        <span id="stopSquare"></span>
+      </button>
+      <span class="rule40"></span>
+      <button class="circle c50" id="fwd10" type="button" aria-label="Avancer de 10 secondes"></button>
+    </div>
+  </div>
+</div>
+
+<div id="confirm" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+  <div class="box">
+    <h2 id="confirmTitle">Terminer l'écoute</h2>
+    <p>L'Ekko sera ajouté à ta collection comme si tu avais tout écouté.</p>
+    <div class="actions">
+      <button type="button" id="confirmNo">Continuer l'écoute</button>
+      <button type="button" id="confirmYes" data-primary>Terminer</button>
+    </div>
+  </div>
+</div>
+
+<div id="curtain"></div>
+
+<script type="module">
+import { ConstellationView } from './js/constellation-view.js';
+import { toViewOptions, emptySettings } from './js/view-settings.js';
+import { CueEngine, Chime, emptyTrack } from './js/cue-engine.js';
+import { ICONS, CUE_GLYPH } from './js/ekko-icons.js';
+import { PlayerHeader } from './js/player-header.js';
+
+const $ = (id) => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+const IAU = params.get('c') || 'Ori';
+const AUTOPLAY = params.get('autoplay') === '1';
+
+/** Durée de la piste fictive quand aucun audio n'est disponible. */
+const DEMO_DURATION = 243;
+
+let sky = null;
+let track = null;
+let view = null;
+let header = null;
+let engine = null;
+let clock = null;          // élément <audio> ou horloge virtuelle
+let chime = null;
+let virtual = false;
+let scrubbing = false;
+let finished = false;
+
+boot();
+
+/* ================================================================ amorçage */
+
+async function boot() {
+  paintStatics();
+
+  const [skyData, settings] = await Promise.all([
+    getJson('data/ekko-sky.json'),
+    getJson('data/player-view.json').catch(() => emptySettings()),
+  ]);
+  sky = skyData;
+
+  const figure = sky.figures[IAU];
+  if (!figure) return fail(`Constellation inconnue : ${IAU}`);
+
+  const id = IAU.toLowerCase();
+  track = await getJson(`content/${id}/cues.json`).catch(() => emptyTrack(IAU, id));
+
+  header = new PlayerHeader($('header'));
+  header.setConstellation({
+    name: figure.name,
+    group: track.group ?? '',
+    status: 'en pause',
+  });
+
+  view = new ConstellationView($('viewport'), {
+    data: sky,
+    ...toViewOptions(settings, IAU),
+  });
+  await view.ready;
+  view.setFigure(IAU);
+
+  await setupAudio();
+
+  chime = new Chime({
+    url: track.chime?.url ?? null,
+    gain: track.chime?.enabled === false ? 0 : (track.chime?.gain ?? 0.45),
+  });
+
+  engine = new CueEngine({
+    audio: clock,
+    track,
+    chime,
+    onCue: renderCue,
+    onTime: renderTime,
+  });
+
+  buildGlyphs();
+  wire();
+  engine.sync();
+
+  // Le rideau ne s'ouvre qu'une fois tout monté et peint : c'est ce qui rend
+  // le fondu régulier. Ouvrir avant, c'est animer pendant un layout.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    $('curtain').setAttribute('data-open', '');
+    $('shell').setAttribute('data-in', '');
+    if (AUTOPLAY) setTimeout(tryAutoplay, 420);
+  }));
+}
+
+async function getJson(url) {
+  const r = await fetch(url, { cache: 'no-store' });
+  if (!r.ok) throw new Error(`${url} : HTTP ${r.status}`);
+  return r.json();
+}
+
+function fail(message) {
+  $('curtain').setAttribute('data-open', '');
+  $('shell').setAttribute('data-in', '');
+  header?.setConstellation({ name: 'Erreur', group: '', status: message });
+}
+
+function paintStatics() {
+  $('back').innerHTML = `${ICONS.chevronLeft}<span>Retour à la carte</span>`;
+  $('account').innerHTML = `${ICONS.account}<span>Mon compte</span>`;
+  $('back10').innerHTML = ICONS.rewind10;
+  $('fwd10').innerHTML = ICONS.forward10;
+  $('play').innerHTML = ICONS.play;
+}
+
+/* =================================================================== audio */
+
+async function setupAudio() {
+  const src = track.audioSrc;
+  if (src) {
+    const audio = new Audio();
+    audio.preload = 'auto';
+    audio.src = src;
+    const ok = await new Promise((resolve) => {
+      const done = (v) => { clearTimeout(timer); resolve(v); };
+      const timer = setTimeout(() => done(false), 6000);
+      audio.addEventListener('loadedmetadata', () => done(true), { once: true });
+      audio.addEventListener('error', () => done(false), { once: true });
+    });
+    if (ok) { clock = audio; return; }
+  }
+
+  // Sans audio joignable, on tourne sur une horloge virtuelle. Toute la
+  // mécanique — cues, carillon, barre, seek — reste testable, ce qui permet de
+  // caler l'écran avant que les pistes existent.
+  virtual = true;
+  clock = virtualClock(track.duration || DEMO_DURATION);
+  notice(src ? 'Audio introuvable — horloge de test' : 'Aucun audio — horloge de test');
+}
+
+/** Minimum d'API commun avec HTMLAudioElement, pour que CueEngine ne voie rien. */
+function virtualClock(duration) {
+  let t = 0;
+  let playing = false;
+  let last = 0;
+
+  const advance = () => {
+    if (!playing) return;
+    const now = performance.now();
+    t = Math.min(duration, t + (now - last) / 1000);
+    last = now;
+    if (t >= duration) { playing = false; api.dispatchEnded(); }
+  };
+
+  const listeners = new Set();
+  const api = {
+    duration,
+    volume: 1,
+    get currentTime() { advance(); return t; },
+    set currentTime(v) { advance(); t = Math.max(0, Math.min(duration, v)); last = performance.now(); },
+    get paused() { advance(); return !playing; },
+    play() { advance(); playing = true; last = performance.now(); return Promise.resolve(); },
+    pause() { advance(); playing = false; },
+    addEventListener(type, fn) { if (type === 'ended') listeners.add(fn); },
+    dispatchEnded() { listeners.forEach((fn) => fn()); },
+  };
+  return api;
+}
+
+async function tryAutoplay() {
+  try {
+    await startPlayback();
+  } catch {
+    notice('Appuie sur lecture pour démarrer');
+  }
+}
+
+/**
+ * Le `play()` doit partir dans la chaîne du geste utilisateur, sinon le
+ * navigateur refuse. On monte ensuite le volume en rampe pour que l'entrée
+ * ne soit pas abrupte.
+ */
+async function startPlayback() {
+  await chime.unlock();
+  if (!virtual) clock.volume = 0;
+  await clock.play();
+  if (!virtual) rampVolume(0, 1, 800);
+  engine.start();
+  paintPlaying(true);
+}
+
+function rampVolume(from, to, ms) {
+  const t0 = performance.now();
+  const step = () => {
+    const k = Math.min(1, (performance.now() - t0) / ms);
+    clock.volume = from + (to - from) * k;
+    if (k < 1) requestAnimationFrame(step);
+  };
+  step();
+}
+
+/* ================================================================ contrôles */
+
+function wire() {
+  $('play').addEventListener('click', togglePlay);
+  $('back10').addEventListener('click', () => seekBy(-10));
+  $('fwd10').addEventListener('click', () => seekBy(10));
+  $('stop').addEventListener('click', () => $('confirm').setAttribute('data-open', ''));
+  $('confirmNo').addEventListener('click', () => $('confirm').removeAttribute('data-open'));
+  $('confirmYes').addEventListener('click', collect);
+  $('back').addEventListener('click', () => leave('index.html'));
+
+  clock.addEventListener('ended', () => { paintPlaying(false); header.setStatus('terminé'); });
+
+  const rail = $('rail');
+  const at = (e) => {
+    const r = rail.getBoundingClientRect();
+    return Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * (engine.duration || 1);
+  };
+  $('track').addEventListener('pointerdown', (e) => {
+    scrubbing = true;
+    $('track').setAttribute('data-scrub', '');
+    $('track').setPointerCapture(e.pointerId);
+    seekTo(at(e));
+  });
+  $('track').addEventListener('pointermove', (e) => { if (scrubbing) seekTo(at(e)); });
+  $('track').addEventListener('pointerup', () => {
+    scrubbing = false;
+    $('track').removeAttribute('data-scrub');
+  });
+
+  $('track').addEventListener('keydown', (e) => {
+    const d = { ArrowLeft: -5, ArrowRight: 5, ArrowDown: -30, ArrowUp: 30 }[e.key];
+    if (d === undefined) return;
+    e.preventDefault();
+    seekBy(d);
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea')) return;
+    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+    if (e.key === 'Escape') $('confirm').removeAttribute('data-open');
+  });
+
+  window.addEventListener('resize', () => requestAnimationFrame(placeCard));
+}
+
+async function togglePlay() {
+  if (finished) return;
+  if (clock.paused) {
+    try { await startPlayback(); } catch { notice('Lecture refusée par le navigateur'); }
+  } else {
+    clock.pause();
+    engine.stop();
+    engine.sync();
+    paintPlaying(false);
+  }
+}
+
+function paintPlaying(playing) {
+  $('play').innerHTML = playing ? ICONS.pause : ICONS.play;
+  $('play').setAttribute('aria-label', playing ? 'Pause' : 'Lecture');
+  header.setStatus(playing ? 'en lecture' : 'en pause');
+}
+
+function seekBy(delta) { seekTo(clock.currentTime + delta); }
+
+function seekTo(t) {
+  clock.currentTime = Math.max(0, Math.min(engine.duration || 0, t));
+  engine.sync();          // réconciliation immédiate, même à l'arrêt
+}
+
+function collect() {
+  finished = true;
+  clock.pause();
+  engine.stop();
+  $('confirm').removeAttribute('data-open');
+  header.setStatus('ekko récupéré');
+  view.clearFocus();
+  hideCard();
+  // TODO brancher ici la validation de collecte côté profil.
+  leave('index.html?collected=' + IAU.toLowerCase());
+}
+
+/** Fondu sortant symétrique de l'entrée. */
+function leave(href) {
+  $('curtain').removeAttribute('data-open');
+  $('curtain').setAttribute('data-closing', '');
+  $('shell').removeAttribute('data-in');
+  setTimeout(() => { location.href = href; }, 330);
+}
+
+/* ============================================================ barre + cues */
+
+function buildGlyphs() {
+  const rail = $('rail');
+  rail.querySelectorAll('.glyph').forEach((n) => n.remove());
+  const d = track.duration || engine.duration || DEMO_DURATION;
+  if (!d) return;
+
+  for (const cue of engine.cues) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'glyph';
+    b.dataset.cue = cue.id;
+    b.style.left = `${(cue.start / d) * 100}%`;
+    b.innerHTML = CUE_GLYPH;
+    b.title = cue.card?.title ?? 'Moment interactif';
+    b.setAttribute('aria-label', `Aller à ${cue.card?.title ?? 'ce moment'}`);
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // On recule un peu pour que le carillon soit entendu avant la carte.
+      seekTo(Math.max(0, cue.start - 1.5));
+    });
+    rail.append(b);
+  }
+}
+
+const mmss = (s) => {
+  const v = Math.max(0, Math.floor(s || 0));
+  return `${String(Math.floor(v / 60)).padStart(2, '0')}:${String(v % 60).padStart(2, '0')}`;
+};
+
+function renderTime(t, d) {
+  const k = d ? Math.max(0, Math.min(1, t / d)) : 0;
+  $('elapsed').style.width = `${k * 100}%`;
+  $('head').style.left = `${k * 100}%`;
+  $('tNow').textContent = mmss(t);
+  $('tEnd').textContent = mmss(d);
+  $('track').setAttribute('aria-valuemax', Math.floor(d || 0));
+  $('track').setAttribute('aria-valuenow', Math.floor(t));
+  $('track').setAttribute('aria-valuetext', `${mmss(t)} sur ${mmss(d)}`);
+  if (cardCue) placeCard();
+}
+
+let cardCue = null;
+
+function renderCue(cue) {
+  for (const g of $('rail').querySelectorAll('.glyph')) {
+    g.toggleAttribute('data-active', Boolean(cue) && g.dataset.cue === cue.id);
+  }
+
+  if (!cue) { cardCue = null; view.clearFocus(); hideCard(); return; }
+
+  cardCue = cue;
+  view.focus(cue.hips ?? []);
+  paintCard(cue);
+}
+
+function paintCard(cue) {
+  const card = $('card');
+  const c = cue.card ?? {};
+  card.replaceChildren();
+
+  if (c.image) {
+    const img = document.createElement('img');
+    img.src = c.image;
+    img.alt = '';
+    card.append(img);
+  }
+  const h = document.createElement('h2');
+  h.textContent = c.title ?? '';
+  card.append(h);
+  if (c.subtitle) {
+    const s = document.createElement('p');
+    s.className = 'sub';
+    s.textContent = c.subtitle;
+    card.append(s);
+  }
+  if (c.body) {
+    const r = document.createElement('div');
+    r.className = 'rule';
+    const p = document.createElement('p');
+    p.className = 'body';
+    p.textContent = c.body;
+    card.append(r, p);
+  }
+
+  card.setAttribute('data-visible', '');
+  placeCard();
+}
+
+function hideCard() { $('card').removeAttribute('data-visible'); }
+
+/**
+ * Ancre la carte sur la première étoile mise en avant, avec bascule quand on
+ * approche d'un bord. Les coordonnées viennent de getStarPoint, dont le repère
+ * est déjà celui du conteneur en pixels CSS.
+ */
+function placeCard() {
+  const card = $('card');
+  if (!cardCue) return;
+  const hip = cardCue.hips?.[0];
+  const p = hip ? view.getStarPoint(hip) : null;
+  const middle = $('middle');
+
+  if (!p) {
+    card.style.left = '50%';
+    card.style.top = '';
+    card.style.bottom = '24px';
+    card.style.transform = 'translateX(-50%)';
+    return;
+  }
+
+  const w = card.offsetWidth;
+  const h = card.offsetHeight;
+  const box = middle.getBoundingClientRect();
+  const gap = 22 + p.r;
+
+  const flipX = p.x + gap + w > box.width - 16;
+  const flipY = p.y + gap + h > box.height - 16;
+
+  card.style.bottom = '';
+  card.style.transform = '';
+  card.style.left = `${Math.max(16, Math.min(box.width - w - 16, flipX ? p.x - gap - w : p.x + gap))}px`;
+  card.style.top = `${Math.max(16, Math.min(box.height - h - 16, flipY ? p.y - gap - h : p.y + gap))}px`;
+}
+
+/* ==================================================================== note */
+
+let noticeTimer = null;
+function notice(text) {
+  const n = $('notice');
+  n.textContent = text;
+  n.setAttribute('data-show', '');
+  clearTimeout(noticeTimer);
+  noticeTimer = setTimeout(() => n.removeAttribute('data-show'), 4200);
+}
+</script>
+</body>
+</html>

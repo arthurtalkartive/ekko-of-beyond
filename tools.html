@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ekko of Beyond — outils</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E3E3C4;
+    --soft: rgba(227, 227, 196, .55);
+    --faint: rgba(227, 227, 196, .18);
+    --font: 'Afacad', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { min-height: 100%; margin: 0; }
+  body {
+    background: linear-gradient(180deg, #000 0%, #0A1931 100%) fixed;
+    color: var(--gold);
+    font-family: var(--font);
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  main { max-width: 940px; margin: 0 auto; padding: 56px 24px 96px; }
+
+  .back {
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-bottom: 44px; padding: 10px 24px;
+    border: 1px solid var(--gold); border-radius: 999px;
+    font-size: 15px; font-weight: 700; text-transform: uppercase; text-decoration: none;
+    transition: background .2s;
+  }
+  .back:hover { background: rgba(227, 227, 196, .1); }
+
+  h1 { margin: 0 0 6px; font-size: 40px; font-weight: 700; line-height: 1.05; text-transform: uppercase; }
+  .intro { margin: 0 0 42px; max-width: 62ch; font-size: 16px; line-height: 1.6; color: var(--soft); }
+
+  h2 {
+    margin: 40px 0 16px; padding-bottom: 9px;
+    border-bottom: 1px solid var(--faint);
+    font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--soft);
+  }
+  h2:first-of-type { margin-top: 0; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 14px; }
+
+  .tool {
+    display: flex; flex-direction: column; gap: 7px;
+    padding: 20px 21px 21px;
+    border: 1px solid var(--faint); border-radius: 3px;
+    background: rgba(255, 255, 255, .022);
+    text-decoration: none;
+    transition: border-color .2s, background .2s, transform .2s;
+  }
+  .tool:hover { border-color: var(--soft); background: rgba(255, 255, 255, .05); transform: translateY(-2px); }
+  .tool h3 { margin: 0; font-size: 20px; font-weight: 700; line-height: 1.15; text-transform: uppercase; }
+  .tool p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--soft); }
+  .tool .tag {
+    align-self: flex-start; margin-top: 3px; padding: 2px 8px;
+    border: 1px solid var(--faint); border-radius: 999px;
+    font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--soft);
+  }
+  .tool[data-writes] .tag { border-color: rgba(232, 194, 122, .5); color: #E8C27A; }
+
+  .note {
+    margin-top: 44px; padding: 18px 20px;
+    border: 1px solid var(--faint); border-left-width: 2px; border-radius: 3px;
+    font-size: 14px; line-height: 1.6; color: var(--soft);
+  }
+  .note strong { color: var(--gold); font-weight: 600; }
+  code {
+    padding: 1px 5px; border-radius: 2px;
+    background: rgba(227, 227, 196, .1);
+    font-family: ui-monospace, SFMono-Regular, monospace; font-size: .88em;
+  }
+
+  @media (max-width: 620px) {
+    main { padding: 32px 18px 64px; }
+    h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="index.html">
+    <svg viewBox="0 0 9 13" width="9" height="13" fill="none" aria-hidden="true">
+      <path d="M7.7 1.2 2.1 6.4l5.6 5.2" stroke="#E3E3C4" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Retour à la carte
+  </a>
+
+  <h1>Outils</h1>
+  <p class="intro">
+    Les bancs de réglage et de production d'Ekko of Beyond. Ceux marqués « écrit dans
+    le dépôt » commitent directement sur GitHub et déclenchent un redéploiement : ils
+    demandent la clé d'administration.
+  </p>
+
+  <h2>Réglage visuel</h2>
+  <div class="grid">
+    <a class="tool" href="verification.html" data-writes>
+      <h3>Vérification des figures</h3>
+      <p>Cale l'angle d'une illustration sur le ciel et valide les tracés, figure par figure.</p>
+      <span class="tag">écrit dans le dépôt</span>
+    </a>
+    <a class="tool" href="constellation-lab.html" data-writes>
+      <h3>Banc d'essai constellation</h3>
+      <p>Réglages communs aux 52 figures et cadrage propre à chacune, tels qu'ils seront
+         utilisés par le player.</p>
+      <span class="tag">écrit dans le dépôt</span>
+    </a>
+  </div>
+
+  <h2>Audio et interactions</h2>
+  <div class="grid">
+    <a class="tool" href="calibration.html" data-writes>
+      <h3>Calibration audio</h3>
+      <p>Pose les moments interactifs sur la forme d'onde, associe l'étoile et rédige
+         l'info-bulle, avec aperçu en direct.</p>
+      <span class="tag">écrit dans le dépôt</span>
+    </a>
+    <a class="tool" href="player.html?c=Ori">
+      <h3>Player</h3>
+      <p>L'écran d'écoute. Sans audio, il tourne sur une horloge de test pour que tout
+         reste manipulable.</p>
+      <span class="tag">lecture seule</span>
+    </a>
+  </div>
+
+  <h2>Contenu</h2>
+  <div class="grid">
+    <a class="tool" href="studio.html">
+      <h3>Studio</h3>
+      <p>Fiches « En savoir plus » : import et relecture des onglets Science, Mythologie
+         et Astrologie.</p>
+      <span class="tag">back-office</span>
+    </a>
+  </div>
+
+  <p class="note">
+    <strong>Aucun de ces outils n'est destiné au public.</strong> Ils ne sont pas listés
+    ailleurs et ne sont protégés que par la clé d'administration côté serveur, jamais
+    côté navigateur. La clé se saisit une fois par session et reste partagée entre les
+    outils. Si tu veux verrouiller l'accès aux pages elles-mêmes, la protection par mot
+    de passe de Vercel sur un chemin dédié est le moyen le plus simple — dis-le-moi et je
+    regroupe les outils sous <code>/tools/</code>.
+  </p>
+</main>
+</body>
+</html>
