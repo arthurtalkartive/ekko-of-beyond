@@ -68,6 +68,19 @@
     padding: 1px 5px; border: 1px solid var(--faint); border-radius: 2px;
     font-family: inherit; font-size: 11px; color: var(--soft);
   }
+  code {
+    padding: 2px 6px; border-radius: 2px;
+    background: rgba(227,227,196,.08);
+    font-family: ui-monospace, SFMono-Regular, monospace; font-size: 12px;
+  }
+  .badge {
+    padding: 2px 8px; border: 1px solid var(--faint); border-radius: 999px;
+    font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--soft);
+    white-space: nowrap;
+  }
+  .badge[data-state=ok] { border-color: rgba(154,213,168,.55); color: var(--ok); }
+  .badge[data-state=missing] { border-color: rgba(232,194,122,.55); color: var(--warn); }
+  .badge[data-state=local] { border-color: rgba(227,227,196,.5); color: var(--gold); }
 
   /* --------------------------------------------------------------- corps */
 
@@ -84,6 +97,7 @@
     margin: 0 0 10px; font-size: 12px; font-weight: 600;
     letter-spacing: .05em; text-transform: uppercase; color: var(--soft);
   }
+  .panel > .hint { margin: -4px 0 13px; font-size: 12.5px; line-height: 1.45; color: var(--soft); }
 
   /* ------------------------------------------------------------ waveform */
 
@@ -219,8 +233,9 @@
   <h1>Calibration audio</h1>
 
   <label class="field">Constellation <select id="figure"></select></label>
-  <label class="field">Chemin audio <input type="text" id="audioSrc" size="22" placeholder="audio/ori.mp3"></label>
-  <label class="field">Fichier local <input type="file" id="file" accept="audio/*"></label>
+  <span class="field">Audio <code id="audioPath">—</code> <span class="badge" id="audioBadge">…</span></span>
+  <button class="btn ghost" id="loadRepo" disabled>Charger depuis le dépôt</button>
+  <label class="field">ou fichier local <input type="file" id="file" accept="audio/*"></label>
 
   <span class="grow"></span>
 
@@ -252,7 +267,6 @@
       </select></label>
       <span class="grow"></span>
       <label class="field"><input type="checkbox" id="chimeOn" checked> Carillon</label>
-      <button class="btn ghost" id="chimeTest">Écouter</button>
       <button class="btn" id="mark">Poser un repère <kbd>M</kbd></button>
     </div>
 
@@ -317,6 +331,37 @@
     </div>
 
     <div class="panel">
+      <h2>Carillon</h2>
+      <p class="hint">Le carillon n'est pas mixé dans la piste : il est joué par
+         le code au timecode du repère. Essaie-en autant que tu veux en local,
+         ne téléverse que celui que tu gardes.</p>
+
+      <div class="row">
+        <label for="chimeSel">Son utilisé</label>
+        <select id="chimeSel"></select>
+      </div>
+
+      <div class="row two">
+        <label for="chimeGain">Volume</label>
+        <label for="chimeOffset">Retard d'affichage par défaut</label>
+        <input type="number" id="chimeGain" step="0.05" min="0" max="1">
+        <input type="number" id="chimeOffset" step="0.05" min="0" max="5">
+      </div>
+
+      <div class="row">
+        <label for="chimeFile">Essayer un fichier local</label>
+        <input type="file" id="chimeFile" accept="audio/*">
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <button class="btn ghost" id="chimeTest">Écouter</button>
+        <button class="btn ghost" id="chimeUpload" disabled>Téléverser</button>
+        <button class="btn ghost danger" id="chimeDelete" disabled>Supprimer</button>
+      </div>
+      <p class="status" id="chimeStatus"></p>
+    </div>
+
+    <div class="panel">
       <h2>Contrôle et écriture</h2>
       <p class="status" id="apiStatus"></p>
       <ul class="issues" id="issues" hidden></ul>
@@ -338,7 +383,7 @@
 <script type="module">
 import { ConstellationView } from './js/constellation-view.js';
 import { toViewOptions, emptySettings } from './js/view-settings.js';
-import { CueEngine, Chime, emptyTrack, validateTrack } from './js/cue-engine.js';
+import { CueEngine, Chime, emptyTrack, validateTrack, audioPathFor } from './js/cue-engine.js';
 
 const $ = (id) => document.getElementById(id);
 const KEY_STORE = 'ekko-admin-key';
@@ -355,6 +400,9 @@ let track = null;
 let iau = 'Ori';
 let selected = null;      // id du repère sélectionné
 let apiReady = false;
+let chimeApi = { configured: false, chimes: [] };
+let localChime = null;      // { name, bytes, base64 } en attente de téléversement
+let audioState = 'unknown'; // unknown | ok | missing | local
 let dragging = null;
 
 boot();
@@ -384,6 +432,7 @@ async function boot() {
   await loadTrack(iau);
   wire();
   probeApi();
+  probeChimeApi();
   tickLoop();
 }
 
@@ -400,15 +449,81 @@ async function loadTrack(key) {
   track.cues ??= [];
   track.chime ??= { enabled: true, offset: 0.25, gain: 0.45, url: null };
 
-  $('audioSrc').value = track.audioSrc ?? '';
+  track.audioSrc = track.audioSrc || audioPathFor(key);
+  $('audioPath').textContent = track.audioSrc;
   $('chimeOn').checked = track.chime.enabled !== false;
+  $('chimeGain').value = track.chime.gain ?? 0.45;
+  $('chimeOffset').value = track.chime.offset ?? 0.25;
 
   view.setFigure(key);
   view.setOptions(toViewOptions(settings, key));
 
   selected = null;
+  buffer = null;
+  peaks = null;
+  audio.pause();
+  audio.removeAttribute('src');
+  audio.load();          // remet réellement l'élément à zéro
+  $('waveEmpty').hidden = false;
+  drawWave();
+
   bindEngine();
   buildStars();
+  renderAll();
+  probeAudio();
+  applyChimeChoice();
+}
+
+/* ============================================================ audio du dépôt */
+
+/**
+ * Un fichier audio par constellation, à un emplacement conventionnel :
+ * `content/<id>/audio.mp3`, à côté des fiches. On sonde sa présence et on le
+ * dit franchement — c'est ce que tu m'as demandé de rendre visible.
+ */
+async function probeAudio() {
+  const path = track.audioSrc;
+  setAudioBadge('…', '');
+  $('loadRepo').disabled = true;
+
+  try {
+    const r = await fetch(`${path}?t=${Date.now()}`, { method: 'HEAD', cache: 'no-store' });
+    if (r.ok) {
+      const size = Number(r.headers.get('content-length') || 0);
+      audioState = 'ok';
+      setAudioBadge(size ? `présent · ${(size / 1048576).toFixed(1)} Mo` : 'présent', 'ok');
+      $('loadRepo').disabled = false;
+      return;
+    }
+  } catch { /* réseau indisponible, ou HEAD refusé */ }
+
+  audioState = 'missing';
+  setAudioBadge('absent du dépôt', 'missing');
+  runChecks();
+}
+
+function setAudioBadge(text, state) {
+  const b = $('audioBadge');
+  b.textContent = text;
+  if (state) b.dataset.state = state; else b.removeAttribute('data-state');
+}
+
+async function loadFromRepo() {
+  $('loadRepo').disabled = true;
+  say('saveStatus', '', 'Téléchargement de la piste…');
+  try {
+    const r = await fetch(`${track.audioSrc}?t=${Date.now()}`, { cache: 'no-store' });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const ab = await r.arrayBuffer();
+    await decodeInto(ab);
+    audio.pause();
+    audio.src = URL.createObjectURL(new Blob([ab]));
+    await new Promise((res) => audio.addEventListener('loadedmetadata', res, { once: true }));
+    say('saveStatus', 'ok', `Piste chargée depuis ${track.audioSrc}.`);
+  } catch (e) {
+    say('saveStatus', 'bad', `Chargement impossible : ${e.message}`);
+  }
+  $('loadRepo').disabled = audioState !== 'ok';
   renderAll();
 }
 
@@ -425,28 +540,31 @@ function bindEngine() {
 
 /* =================================================================== audio */
 
-async function loadFile(file) {
-  audio.pause();
-  audio.src = URL.createObjectURL(file);
-  await new Promise((res) => audio.addEventListener('loadedmetadata', res, { once: true }));
-
+async function decodeInto(arrayBuffer) {
   const AC = window.AudioContext ?? window.webkitAudioContext;
   const ctx = new AC();
-  buffer = await ctx.decodeAudioData(await file.arrayBuffer());
+  buffer = await ctx.decodeAudioData(arrayBuffer.slice(0));
   ctx.close();
 
   track.duration = Number(buffer.duration.toFixed(3));
   peaks = null;
   $('waveEmpty').hidden = true;
   drawWave();
-  renderAll();
+}
 
-  // Un nom de fichier qui ne colle pas au chemin déclaré est la source d'erreur
-  // la plus probable : on le signale tout de suite.
-  const declared = $('audioSrc').value.trim();
-  if (declared && !declared.endsWith(file.name)) {
-    say('saveStatus', 'warn', `Le fichier « ${file.name} » ne correspond pas au chemin déclaré « ${declared} ». Vérifie avant d'enregistrer.`);
+async function loadFile(file) {
+  audio.pause();
+  audio.src = URL.createObjectURL(file);
+  await new Promise((res) => audio.addEventListener('loadedmetadata', res, { once: true }));
+  await decodeInto(await file.arrayBuffer());
+
+  if (audioState !== 'ok') {
+    audioState = 'local';
+    setAudioBadge('fichier local', 'local');
+    say('saveStatus', 'warn', `Piste locale « ${file.name} » : les repères peuvent être calés, `
+      + `mais le player restera muet tant que ${track.audioSrc} n'est pas dans le dépôt.`);
   }
+  renderAll();
 }
 
 /* ================================================================ waveform */
@@ -628,7 +746,10 @@ function buildStars() {
 }
 
 function runChecks() {
-  const issues = validateTrack({ ...track, audioSrc: $('audioSrc').value.trim() });
+  const issues = validateTrack(track);
+  if (audioState === 'missing') {
+    issues.unshift(`${track.audioSrc} est absent du dépôt : le player n'aura pas de son.`);
+  }
   const ul = $('issues');
   ul.replaceChildren();
   ul.hidden = issues.length === 0;
@@ -738,7 +859,20 @@ function nudge(seconds) {
 function wire() {
   $('figure').addEventListener('change', (e) => loadTrack(e.target.value));
   $('file').addEventListener('change', (e) => { if (e.target.files?.[0]) loadFile(e.target.files[0]); });
-  $('audioSrc').addEventListener('input', () => { track.audioSrc = $('audioSrc').value.trim(); runChecks(); refreshSave(); });
+  $('loadRepo').addEventListener('click', loadFromRepo);
+
+  $('chimeSel').addEventListener('change', applyChimeChoice);
+  $('chimeFile').addEventListener('change', (e) => { if (e.target.files?.[0]) pickLocalChime(e.target.files[0]); });
+  $('chimeUpload').addEventListener('click', uploadChime);
+  $('chimeDelete').addEventListener('click', deleteChime);
+  $('chimeGain').addEventListener('input', () => {
+    track.chime.gain = Math.max(0, Math.min(1, Number($('chimeGain').value) || 0));
+    chime.gain = track.chime.gain;
+  });
+  $('chimeOffset').addEventListener('input', () => {
+    track.chime.offset = Math.max(0, Math.min(5, Number($('chimeOffset').value) || 0));
+    bindEngine();
+  });
 
   $('admKey').addEventListener('input', (e) => {
     try { sessionStorage.setItem(KEY_STORE, e.target.value); } catch { /* ignore */ }
@@ -756,6 +890,7 @@ function wire() {
     bindEngine();
   });
   $('chimeTest').addEventListener('click', async () => { await chime.unlock(); chime.play(); });
+
 
   $('waveWrap').addEventListener('pointerdown', (e) => { if (!dragging) seekTo(xToTime(e.clientX)); });
   $('waveWrap').addEventListener('pointermove', (e) => {
@@ -848,6 +983,126 @@ function tickLoop() {
 
 /* ============================================================== écriture */
 
+/* ================================================================ carillon */
+
+async function probeChimeApi() {
+  try {
+    chimeApi = await fetch('/api/save-chime', { cache: 'no-store' }).then((r) => r.json());
+  } catch {
+    chimeApi = { configured: false, chimes: [], missing: ['fonction injoignable'] };
+  }
+  buildChimeSelect();
+}
+
+function buildChimeSelect() {
+  const sel = $('chimeSel');
+  const wanted = track.chime?.url ?? '';
+  sel.replaceChildren();
+  sel.append(new Option('Cloche de synthèse (aucun fichier)', ''));
+  for (const c of chimeApi.chimes ?? []) sel.append(new Option(c.name, c.path));
+  if (localChime) sel.append(new Option(`${localChime.name} (local, non téléversé)`, '@local'));
+
+  sel.value = localChime ? '@local' : ([...sel.options].some((o) => o.value === wanted) ? wanted : '');
+  $('chimeDelete').disabled = !chimeApi.configured || !sel.value || sel.value === '@local';
+  $('chimeUpload').disabled = !chimeApi.configured || !localChime;
+}
+
+/** Applique le choix courant au moteur, sans rien écrire dans le dépôt. */
+async function applyChimeChoice() {
+  const value = $('chimeSel').value;
+  chime.gain = Number($('chimeGain').value) || 0;
+
+  if (value === '@local' && localChime) {
+    const ok = await chime.loadArrayBuffer(localChime.bytes.slice(0));
+    say('chimeStatus', ok ? 'ok' : 'bad',
+      ok ? `« ${localChime.name} » chargé en local. À téléverser pour le garder.`
+         : 'Fichier illisible : format audio non décodable.');
+    track.chime.url = null;
+  } else if (value) {
+    const ok = await chime.loadUrl(value);
+    say('chimeStatus', ok ? 'ok' : 'warn',
+      ok ? `${value} en place.` : `${value} illisible — retour à la cloche de synthèse.`);
+    track.chime.url = ok ? value : null;
+  } else {
+    chime.useSynth();
+    say('chimeStatus', '', 'Cloche de synthèse.');
+    track.chime.url = null;
+  }
+
+  $('chimeDelete').disabled = !chimeApi.configured || !value || value === '@local';
+  bindEngine();
+}
+
+async function pickLocalChime(file) {
+  const bytes = await file.arrayBuffer();
+  if (bytes.byteLength > 512 * 1024) {
+    say('chimeStatus', 'bad', `${Math.round(bytes.byteLength / 1024)} Ko : trop lourd pour un carillon (512 Ko maximum).`);
+    return;
+  }
+  localChime = { name: file.name, bytes };
+  buildChimeSelect();
+  $('chimeSel').value = '@local';
+  await applyChimeChoice();
+  chime.play();
+}
+
+async function uploadChime() {
+  if (!localChime) return;
+  $('chimeUpload').disabled = true;
+  say('chimeStatus', '', 'Téléversement…');
+
+  const b64 = btoa(String.fromCharCode(...new Uint8Array(localChime.bytes)));
+  let data;
+  try {
+    const r = await fetch('/api/save-chime', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-ekko-key': $('admKey').value.trim() },
+      body: JSON.stringify({ name: localChime.name, base64: b64 }),
+    });
+    data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error([data.error, data.detail].filter(Boolean).join(' — '));
+  } catch (e) {
+    say('chimeStatus', 'bad', e.message);
+    $('chimeUpload').disabled = false;
+    return;
+  }
+
+  chimeApi.chimes = data.chimes ?? chimeApi.chimes;
+  localChime = null;
+  track.chime.url = data.path;
+  buildChimeSelect();
+  $('chimeSel').value = data.path;
+  await applyChimeChoice();
+
+  const link = data.commitUrl ? ` <a href="${data.commitUrl}" target="_blank" rel="noopener">commit</a>` : '';
+  say('chimeStatus', 'ok', `${data.message}${link} Pense à enregistrer les repères pour l'associer à cette piste.`);
+}
+
+async function deleteChime() {
+  const path = $('chimeSel').value;
+  if (!path || path === '@local') return;
+  const name = path.split('/').pop();
+  if (!window.confirm(`Supprimer ${name} du dépôt ?`)) return;
+
+  say('chimeStatus', '', 'Suppression…');
+  try {
+    const r = await fetch('/api/save-chime', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-ekko-key': $('admKey').value.trim() },
+      body: JSON.stringify({ name, delete: true }),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error([data.error, data.detail].filter(Boolean).join(' — '));
+    chimeApi.chimes = data.chimes ?? [];
+    track.chime.url = null;
+    buildChimeSelect();
+    await applyChimeChoice();
+    say('chimeStatus', 'ok', data.message);
+  } catch (e) {
+    say('chimeStatus', 'bad', e.message);
+  }
+}
+
 async function probeApi() {
   try {
     const d = await fetch('/api/save-cues', { cache: 'no-store' }).then((r) => r.json());
@@ -868,7 +1123,6 @@ function refreshSave() {
 }
 
 async function save() {
-  track.audioSrc = $('audioSrc').value.trim();
   $('save').disabled = true;
   say('saveStatus', '', 'Commit en cours…');
 

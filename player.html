@@ -34,33 +34,33 @@
 
   /* ============================================================== décor */
 
+  /* Fond du cadre Figma 215:1438 : un dégradé, puis le visuel du splashscreen
+     à 50 %, puis la lueur d'horizon en color-dodge. `isolation` confine le
+     mode de fusion à cette couche pour qu'il ne dévore pas l'interface. */
   #sky {
     position: fixed; inset: 0;
     background: linear-gradient(180deg, #000 0%, #0A1931 100%);
+    isolation: isolate;
   }
-  /* Champ d'étoiles provisoire. À remplacer par l'asset du splashscreen. */
-  #sky::before {
-    content: ''; position: absolute; inset: -10%; opacity: .5;
-    background-image:
-      radial-gradient(1.4px 1.4px at 12% 22%, #fff, transparent),
-      radial-gradient(1px 1px at 68% 14%, rgba(255,255,255,.8), transparent),
-      radial-gradient(1.6px 1.6px at 84% 61%, rgba(255,255,255,.9), transparent),
-      radial-gradient(1px 1px at 34% 74%, rgba(255,255,255,.7), transparent),
-      radial-gradient(1.2px 1.2px at 52% 41%, rgba(255,255,255,.6), transparent),
-      radial-gradient(1px 1px at 22% 57%, rgba(255,255,255,.65), transparent),
-      radial-gradient(1.3px 1.3px at 76% 33%, rgba(255,255,255,.55), transparent),
-      radial-gradient(1px 1px at 44% 88%, rgba(255,255,255,.6), transparent),
-      radial-gradient(1px 1px at 8% 46%, rgba(255,255,255,.5), transparent),
-      radial-gradient(1.1px 1.1px at 92% 18%, rgba(255,255,255,.6), transparent);
-    background-size: 340px 300px;
+  #sky .stars {
+    position: absolute; inset: 0;
+    background: url('assets/img/splash-background.webp') center / cover no-repeat;
+    opacity: .5;
   }
-  /* Lueur d'horizon : ellipse en color-dodge, comme dans la maquette. */
-  #sky::after {
-    content: ''; position: absolute;
-    left: 50%; bottom: -34%; width: 151vw; height: 92vh;
+  /* Ellipse 297 : 2178 × 943 posée à y = 403 sur un cadre de 1440 × 1024,
+     retournée verticalement. Son dégradé va de 28 % d'alpha en haut à 100 %
+     vers le bas, ce qui produit sous color-dodge le halo bas de la maquette. */
+  #sky .glow {
+    position: absolute;
+    left: 50%; top: 39.4%;
+    width: 151.25%; height: 92.1%;
     transform: translateX(-50%);
     border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(38, 104, 148, .78), rgba(20, 56, 88, .2) 62%, transparent 100%);
+    background: linear-gradient(180deg,
+      rgba(227, 227, 196, .28) 0%,
+      rgba(227, 227, 196, .62) 38%,
+      rgba(227, 227, 196, 1) 62.3%,
+      rgba(227, 227, 196, 1) 100%);
     mix-blend-mode: color-dodge;
     pointer-events: none;
   }
@@ -137,7 +137,7 @@
 
   /* ============================================================= centre */
 
-  #middle { position: absolute; left: 0; right: 0; top: 186px; bottom: 190px; }
+  #middle { position: absolute; left: 0; right: 0; top: 186px; bottom: 138px; }
   #viewport { position: absolute; inset: 0; }
 
   #card {
@@ -168,47 +168,50 @@
   #bottom {
     position: absolute; left: 0; right: 0; bottom: 0;
     display: flex; flex-direction: column; align-items: center;
-    padding: 0 var(--pad-x) 26px;
+    padding: 0 var(--pad-x) 20px;
     z-index: 20;
   }
 
   #bar { width: 100%; display: flex; flex-direction: column; gap: 12px; }
 
+  /* Cotes du nœud Figma 215:2870 : extrémités de 36 px, barre de 8 px
+     d'épaisseur, crème plein pour la partie écoutée et crème à 20 % pour le
+     reste. C'est ce trait de 8 px que j'avais rendu en 1 px. */
   #track {
     position: relative; height: 22px;
-    display: flex; align-items: center; gap: 5px;
+    display: flex; align-items: center;
     cursor: pointer; touch-action: none;
   }
-  .cap { flex: none; display: flex; align-items: center; gap: 5px; }
-  .cap i { display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
-  .cap b { display: block; width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--gold); }
+  .cap { flex: none; display: block; width: 36px; height: 8px; line-height: 0; }
 
   #rail { position: relative; flex: 1; height: 22px; }
-  #rail::before {
-    content: ''; position: absolute; left: 0; right: 0; top: 50%;
-    height: 1px; margin-top: -.5px; background: var(--gold-42);
+  #trackline {
+    position: absolute; left: 0; right: 0; top: 50%;
+    height: 8px; margin-top: -4px;
+    background: var(--gold); opacity: .2;
   }
   #elapsed {
-    position: absolute; left: 0; top: 50%; height: 4px; margin-top: -2px;
-    border-radius: 2px; background: var(--gold);
-    width: 0;
+    position: absolute; left: 0; top: 50%; width: 0;
+    height: 8px; margin-top: -4px;
+    background: var(--gold);
   }
   #head {
-    position: absolute; top: 50%; width: 2px; height: 14px; margin: -7px 0 0 -1px;
-    background: var(--gold); border-radius: 1px;
-    opacity: 0; transition: opacity .2s;
+    position: absolute; top: 50%; width: 2px; height: 18px; margin: -9px 0 0 -1px;
+    background: #fff; opacity: 0; transition: opacity .2s;
   }
-  #track:hover #head, #track[data-scrub] #head { opacity: 1; }
+  #track:hover #head, #track[data-scrub] #head { opacity: .85; }
 
   .glyph {
     position: absolute; top: 50%;
-    width: 17px; height: 17px; margin: -8.5px 0 0 -8.5px;
+    width: 16.884px; height: 16.884px; margin: -8.442px 0 0 -8.442px;
     padding: 0; line-height: 0;
-    opacity: .85;
-    transition: opacity .2s, transform .2s;
+    transition: transform .2s, filter .2s;
   }
-  .glyph:hover { opacity: 1; transform: scale(1.18); }
-  .glyph[data-active] { opacity: 1; transform: scale(1.24); }
+  .glyph:hover { transform: scale(1.16); }
+  .glyph[data-active] {
+    transform: scale(1.22);
+    filter: drop-shadow(0 0 6px rgba(227, 227, 196, .8));
+  }
 
   #times {
     display: flex; justify-content: space-between;
@@ -219,11 +222,10 @@
   /* ------------------------------------------------------- contrôles */
 
   #controls {
-    display: flex; align-items: center; margin-top: 18px;
+    display: flex; align-items: center; margin-top: 2px;
     zoom: var(--ctl);
   }
   .rule40 { flex: none; width: 40px; height: 1px; background: var(--gold-42); }
-  .side { flex: none; display: flex; align-items: center; gap: 5px; }
 
   .circle {
     flex: none; display: grid; place-items: center;
@@ -292,7 +294,10 @@
 </head>
 <body>
 
-<div id="sky"></div>
+<div id="sky">
+  <div class="stars"></div>
+  <div class="glow"></div>
+</div>
 
 <div id="shell">
   <header id="header">
@@ -317,18 +322,18 @@
     <div id="bar">
       <div id="track" role="slider" tabindex="0" aria-label="Progression de l'écoute"
            aria-valuemin="0" aria-valuenow="0">
-        <span class="cap"><i></i><b></b></span>
+        <span class="cap" id="capStart"></span>
         <div id="rail">
+          <div id="trackline"></div>
           <div id="elapsed"></div>
           <div id="head"></div>
         </div>
-        <span class="cap"><b></b><i></i></span>
+        <span class="cap" id="capEnd"></span>
       </div>
       <div id="times"><span id="tNow">00:00</span><span id="tEnd">00:00</span></div>
     </div>
 
     <div id="controls">
-      <span class="side"><i class="dot"></i></span>
       <button class="circle c50" id="back10" type="button" aria-label="Reculer de 10 secondes"></button>
       <span class="rule40"></span>
       <button class="circle c80" id="play" type="button" aria-label="Lecture"></button>
@@ -359,7 +364,7 @@
 import { ConstellationView } from './js/constellation-view.js';
 import { toViewOptions, emptySettings } from './js/view-settings.js';
 import { CueEngine, Chime, emptyTrack } from './js/cue-engine.js';
-import { ICONS, CUE_GLYPH } from './js/ekko-icons.js';
+import { ICONS, CUE_GLYPH, LINE_START, LINE_END } from './js/ekko-icons.js';
 import { PlayerHeader } from './js/player-header.js';
 
 const $ = (id) => document.getElementById(id);
@@ -401,9 +406,11 @@ async function boot() {
   track = await getJson(`content/${id}/cues.json`).catch(() => emptyTrack(IAU, id));
 
   header = new PlayerHeader($('header'));
+  // La catégorie vient de ekko-sky.json, généré depuis la table CATS de
+  // index.html : Orion est en « Hiver », pas en « Équatoriales ».
   header.setConstellation({
     name: figure.name,
-    group: track.group ?? '',
+    group: figure.category ?? '',
     status: 'en pause',
   });
 
@@ -460,12 +467,14 @@ function paintStatics() {
   $('back10').innerHTML = ICONS.rewind10;
   $('fwd10').innerHTML = ICONS.forward10;
   $('play').innerHTML = ICONS.play;
+  $('capStart').innerHTML = LINE_START;
+  $('capEnd').innerHTML = LINE_END;
 }
 
 /* =================================================================== audio */
 
 async function setupAudio() {
-  const src = track.audioSrc;
+  const src = track.audioSrc || `content/${IAU.toLowerCase()}/audio.mp3`;
   if (src) {
     const audio = new Audio();
     audio.preload = 'auto';
