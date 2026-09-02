@@ -13,7 +13,10 @@ seule.
 | `data/ekko-sky.json` | **Déjà généré.** 52 figures, 507 étoiles. 93 Ko brut, 20 Ko gzip. |
 | `js/sky-projection.js` | Projection, magnitudes, couleurs. Aucun DOM. C'est ce module qui partira tel quel vers React Native. |
 | `js/constellation-view.js` | Rendu SVG, focus, info-bulle. La seule couche à réécrire pour Expo. |
-| `constellation-lab.html` | Banc d'essai. Sert à figer les réglages avant de câbler le player. |
+| `constellation-lab.html` | Banc d'essai. Règle, valide et écrit dans le dépôt. |
+| `js/view-settings.js` | Schéma des réglages. Source unique pour l'interface, la validation serveur et le player. |
+| `data/player-view.json` | Les réglages validés. Écrit par l'interface, lu par le player. |
+| `api/save-view.js` | Fonction serverless qui commite les réglages sur GitHub. |
 
 ## Démarrer
 
@@ -66,31 +69,110 @@ HTML par-dessus, sans conversion de repère.
 Le composant se redimensionne seul (`ResizeObserver`) et ne reçoit aucun
 événement pointeur : la vue est figée par construction.
 
-## Réglages
+## Les réglages et leur écriture
 
-Les opacités, durées et grossissements passent par variables CSS et ne
-déclenchent aucun recalcul de géométrie. Les valeurs par défaut sont un point de
-départ, pas une proposition finale — le banc d'essai est là pour les arrêter.
+Deux niveaux, volontairement séparés.
 
-| Option | Défaut | Effet |
+**Communs aux 52 figures** — apparence des étoiles, des tracés et de la mise en
+avant. Un seul jeu de valeurs pour tout le player : les modifier change
+l'apparence de toutes les constellations d'un coup.
+
+**Propres à une constellation** — `rotation` et `padding` seulement. Le cadrage
+d'Orion n'a rien à voir avec celui de la Croix du Sud.
+
+Les deux s'enregistrent séparément dans `data/player-view.json`, via deux
+boutons distincts et deux commits distincts. La fonction serveur fait une
+lecture-fusion-écriture : enregistrer une figure ne peut pas écraser les
+communs, ni l'inverse.
+
+Une figure jamais réglée retombe sur les valeurs communes puis sur les défauts
+du schéma. Rien n'est jamais vide, et rien n'oblige à passer sur les 52 figures
+avant de pouvoir tester.
+
+### Ajouter un réglage
+
+Uniquement dans `js/view-settings.js`, dans l'objet `PARAMS`. L'interface
+construit ses curseurs à partir de là, la fonction serveur y prend ses bornes de
+validation, et le player y lit la traduction vers les options du composant.
+Aucun autre fichier à toucher.
+
+### Configuration
+
+Aucune. La fonction réutilise les quatre variables d'environnement de
+`api/save.js` — `GITHUB_TOKEN`, `GITHUB_REPO`, `GITHUB_BRANCH`,
+`EKKO_ADMIN_KEY` — et le même en-tête `x-ekko-key`. La clé saisie dans le banc
+d'essai est celle de `/verification`, partagée via le même `sessionStorage`.
+
+À ajouter dans `vercel.json`, en tête du tableau `headers`, à côté de la règle
+qui existe déjà pour `roll-adjust.json` :
+
+```json
+{
+  "source": "/data/player-view.json",
+  "headers": [{ "key": "Cache-Control", "value": "no-store, must-revalidate" }]
+}
+```
+
+Sans ça, l'interface continue de lire l'ancienne version après le
+redéploiement, et la confirmation de mise en ligne ne tombe jamais.
+
+## Réglages disponibles
+
+Les valeurs par défaut sont un point de départ, pas une proposition finale — le
+banc d'essai est là pour les arrêter. Les opacités, durées et grossissements
+passent par variables CSS et ne déclenchent aucun recalcul de géométrie.
+
+### Propres à une constellation
+
+| Réglage | Défaut | Effet |
 |---|---|---|
+| `rotation` | `0°` | Orientation de la figure. Curseur + saisie exacte au clavier. |
+| `padding` | `64 px` | Marge intérieure. Le cadrage tient compte du rayon des disques, rien n'est jamais rogné. |
+
+### Communs aux 52 figures
+
+| Réglage | Défaut | Effet |
+|---|---|---|
+| `projection` | `stereographic` | `gnomonic` disponible, mais elle explose au-delà de ~60° de rayon (Hydre, Éridan) |
+| `starRadiusMin` / `Max` | `1.1` / `6` | Bornes du rayon des étoiles, en px |
+| `starGamma` | `2.2` | Contraste de la courbe magnitude → rayon. C'est ce qui fait ressortir Rigel et Bételgeuse plutôt que d'écraser tout le monde. |
+| `colorSaturation` | `0.35` | Mélange entre teinte parchemin uniforme (0) et vraie palette stellaire B-V (1) |
+| `glowScale` | `4.2×` | Rayon du halo, en multiples du rayon de l'étoile |
+| `lineOpacity` | `0.42` | Opacité des tracés au repos |
+| `lineWidth` | `1` | Épaisseur des tracés |
 | `dim` | `0.2` | Opacité des étoiles éteintes pendant un focus |
 | `dimLines` | `0.45` | Opacité des tracés éteints. Se **multiplie** à `lineOpacity`, d'où un palier distinct : sans lui la figure disparaît complètement. |
-| `focusScale` | `1.35` | Grossissement de l'étoile visée |
-| `glowScale` | `4.2` | Rayon du halo, en multiples du rayon de l'étoile |
-| `transitionMs` | `480` | Durée des transitions |
-| `star.rMin/rMax/gamma` | `1.1 / 6 / 2.2` | Courbe magnitude → rayon. Le gamma est ce qui fait ressortir Rigel et Bételgeuse plutôt que d'écraser tout le monde. |
-| `color.saturation` | `0.35` | Mélange entre teinte parchemin uniforme (0) et vraie palette stellaire B-V (1) |
-| `projection` | `stereographic` | `gnomonic` disponible, mais elle explose au-delà de ~60° de rayon (Hydre, Éridan) |
-| `mirror` | `true` | Vue depuis l'intérieur de la sphère céleste. À `false` Orion apparaît inversée. |
+| `focusScale` | `1.35×` | Grossissement de l'étoile visée |
+| `transitionMs` | `480 ms` | Durée des transitions |
+
+## Un point de vigilance : deux sources d'angle
+
+`skyculture/ekko/roll-adjust.json` contient déjà un angle par figure, validé
+dans `/verification` par inversion d'homographie des ancres. Il sert à orienter
+la vue de la carte pour que l'illustration tombe droite.
+
+`data/player-view.json` en contient un second, la `rotation` du player. Ce n'est
+pas une duplication accidentelle : le player n'affiche aucune illustration et
+n'a donc pas la même contrainte de cadrage. Mais partir de l'angle de la carte
+est presque toujours le bon point de départ, ne serait-ce que pour la continuité
+du fondu.
+
+D'où le bouton **Angle de la carte** dans le banc d'essai : il lit
+`roll-adjust.json`, reporte l'angle dans le curseur, et laisse la main pour
+l'ajuster avant d'enregistrer. Son lecteur tolère plusieurs formes de fichier
+(`{ "ori": -17.5 }`, `{ "ori": { "angle": -17.5 } }`, sous-clé `angles`) parce
+que je n'ai pas le fichier sous les yeux. S'il ne trouve rien, il le dit
+clairement plutôt que d'écrire zéro.
 
 ## Deux points en attente
 
-**Le roulis.** `setFigure(iau, { roll })` attend l'orientation en degrés. C'est
-l'entrée qui doit recevoir le roulis déjà calculé sur la carte (inversion
-d'homographie des ancres). Tant que ce câblage n'est pas fait, la figure est
-affichée à l'endroit canonique, ce qui est correct mais casse la continuité
-visuelle du fondu.
+**L'import croisé.** `api/save-view.js` importe `../js/view-settings.js` pour ne
+pas dupliquer le schéma de validation. Vercel trace normalement cet import lors
+du bundling de la fonction, mais c'est la seule chose à vérifier au premier
+déploiement : ouvre `/api/save-view` dans le navigateur, tu dois obtenir un
+objet JSON avec `configured` et la liste des clés. Une 500 signifierait que
+l'import n'a pas été résolu, et je basculerais alors le schéma dans un fichier
+`api/_view-schema.js`.
 
 **La licence du catalogue.** J'ai utilisé la base HYG v4.1, qui est en
 **CC BY-SA 4.0**. Le partage à l'identique est contaminant : `ekko-sky.json` en
