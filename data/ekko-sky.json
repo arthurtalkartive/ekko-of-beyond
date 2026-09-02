@@ -3,7 +3,8 @@
  "generatedAt": "2026-09-01",
  "sources": {
   "skyculture": "ekko",
-  "catalogue": "HYG Database v4.1 (astronexus), positions J2000"
+  "catalogue": "HYG Database v4.1 (astronexus), positions J2000",
+  "categories": "table CATS de index.html"
  },
  "counts": {
   "figures": 52,
@@ -13,6 +14,7 @@
   "UMa": {
    "id": "CON ekko UMa",
    "name": "Grande Ourse",
+   "category": "Circumpolaires",
    "lines": [
     [
      67301,
@@ -81,6 +83,7 @@
   "UMi": {
    "id": "CON ekko UMi",
    "name": "Petite Ourse",
+   "category": "Circumpolaires",
    "lines": [
     [
      11767,
@@ -111,6 +114,7 @@
   "Cas": {
    "id": "CON ekko Cas",
    "name": "Cassiopée",
+   "category": "Circumpolaires",
    "lines": [
     [
      8886,
@@ -136,6 +140,7 @@
   "Cep": {
    "id": "CON ekko Cep",
    "name": "Céphée",
+   "category": "Circumpolaires",
    "lines": [
     [
      109492,
@@ -166,6 +171,7 @@
   "Dra": {
    "id": "CON ekko Dra",
    "name": "Dragon",
+   "category": "Circumpolaires",
    "lines": [
     [
      87585,
@@ -212,6 +218,7 @@
   "Ari": {
    "id": "CON ekko Ari",
    "name": "Bélier",
+   "category": "Zodiaque",
    "lines": [
     [
      13209,
@@ -235,6 +242,7 @@
   "Tau": {
    "id": "CON ekko Tau",
    "name": "Taureau",
+   "category": "Zodiaque",
    "lines": [
     [
      25428,
@@ -293,6 +301,7 @@
   "Gem": {
    "id": "CON ekko Gem",
    "name": "Gémeaux",
+   "category": "Zodiaque",
    "lines": [
     [
      31681,
@@ -360,6 +369,7 @@
   "Cnc": {
    "id": "CON ekko Cnc",
    "name": "Cancer",
+   "category": "Zodiaque",
    "lines": [
     [
      43103,
@@ -393,6 +403,7 @@
   "Leo": {
    "id": "CON ekko Leo",
    "name": "Lion",
+   "category": "Zodiaque",
    "lines": [
     [
      57632,
@@ -434,6 +445,7 @@
   "Vir": {
    "id": "CON ekko Vir",
    "name": "Vierge",
+   "category": "Zodiaque",
    "lines": [
     [
      57380,
@@ -483,6 +495,7 @@
   "Lib": {
    "id": "CON ekko Lib",
    "name": "Balance",
+   "category": "Zodiaque",
    "lines": [
     [
      77853,
@@ -509,6 +522,7 @@
   "Sco": {
    "id": "CON ekko Sco",
    "name": "Scorpion",
+   "category": "Zodiaque",
    "lines": [
     [
      85927,
@@ -556,6 +570,7 @@
   "Sgr": {
    "id": "CON ekko Sgr",
    "name": "Sagittaire",
+   "category": "Zodiaque",
    "lines": [
     [
      89931,
@@ -638,6 +653,7 @@
   "Cap": {
    "id": "CON ekko Cap",
    "name": "Capricorne",
+   "category": "Zodiaque",
    "lines": [
     [
      100064,
@@ -681,6 +697,7 @@
   "Aqr": {
    "id": "CON ekko Aqr",
    "name": "Verseau",
+   "category": "Zodiaque",
    "lines": [
     [
      106278,
@@ -735,6 +752,7 @@
   "Psc": {
    "id": "CON ekko Psc",
    "name": "Poissons",
+   "category": "Zodiaque",
    "lines": [
     [
      4889,
@@ -791,6 +809,7 @@
   "Ori": {
    "id": "CON ekko Ori",
    "name": "Orion",
+   "category": "Hiver",
    "lines": [
     [
      26727,
@@ -862,6 +881,7 @@
   "CMa": {
    "id": "CON ekko CMa",
    "name": "Grand Chien",
+   "category": "Hiver",
    "lines": [
     [
      33160,
@@ -932,6 +952,7 @@
   "CMi": {
    "id": "CON ekko CMi",
    "name": "Petit Chien",
+   "category": "Hiver",
    "lines": [
     [
      37279,
@@ -951,6 +972,7 @@
   "Aur": {
    "id": "CON ekko Aur",
    "name": "Cocher",
+   "category": "Hiver",
    "lines": [
     [
      28380,
@@ -985,6 +1007,7 @@
   "Eri": {
    "id": "CON ekko Eri",
    "name": "Éridan",
+   "category": "Hiver",
    "lines": [
     [
      7588,
@@ -1056,6 +1079,7 @@
   "Lep": {
    "id": "CON ekko Lep",
    "name": "Lièvre",
+   "category": "Hiver",
    "lines": [
     [
      28910,
@@ -1120,6 +1144,7 @@
   "Mon": {
    "id": "CON ekko Mon",
    "name": "Licorne",
+   "category": "Hiver",
    "lines": [
     [
      29651,
@@ -1152,6 +1177,7 @@
   "Col": {
    "id": "CON ekko Col",
    "name": "Colombe",
+   "category": "Hiver",
    "lines": [
     [
      30277,
@@ -1184,6 +1210,7 @@
   "Boo": {
    "id": "CON ekko Boo",
    "name": "Bouvier",
+   "category": "Printemps",
    "lines": [
     [
      71795,
@@ -1218,6 +1245,7 @@
   "Hya": {
    "id": "CON ekko Hya",
    "name": "Hydre",
+   "category": "Printemps",
    "lines": [
     [
      42799,
@@ -1273,6 +1301,7 @@
   "Crv": {
    "id": "CON ekko Crv",
    "name": "Corbeau",
+   "category": "Printemps",
    "lines": [
     [
      61174,
@@ -1304,6 +1333,7 @@
   "Crt": {
    "id": "CON ekko Crt",
    "name": "Coupe",
+   "category": "Printemps",
    "lines": [
     [
      53740,
@@ -1340,6 +1370,7 @@
   "Com": {
    "id": "CON ekko Com",
    "name": "Chevelure de Bérénice",
+   "category": "Printemps",
    "lines": [
     [
      64241,
@@ -1361,6 +1392,7 @@
   "CVn": {
    "id": "CON ekko CVn",
    "name": "Chiens de chasse",
+   "category": "Printemps",
    "lines": [
     [
      61317,
@@ -1380,6 +1412,7 @@
   "Her": {
    "id": "CON ekko Her",
    "name": "Hercule",
+   "category": "Été",
    "lines": [
     [
      86414,
@@ -1447,6 +1480,7 @@
   "CrB": {
    "id": "CON ekko CrB",
    "name": "Couronne boréale",
+   "category": "Été",
    "lines": [
     [
      76127,
@@ -1476,6 +1510,7 @@
   "Cyg": {
    "id": "CON ekko Cyg",
    "name": "Cygne",
+   "category": "Été",
    "lines": [
     [
      94779,
@@ -1517,6 +1552,7 @@
   "Lyr": {
    "id": "CON ekko Lyr",
    "name": "Lyre",
+   "category": "Été",
    "lines": [
     [
      91262,
@@ -1543,6 +1579,7 @@
   "Aql": {
    "id": "CON ekko Aql",
    "name": "Aigle",
+   "category": "Été",
    "lines": [
     [
      98036,
@@ -1588,6 +1625,7 @@
   "Oph": {
    "id": "CON ekko Oph",
    "name": "Serpentaire",
+   "category": "Été",
    "lines": [
     [
      86032,
@@ -1624,6 +1662,7 @@
   "Ser": {
    "id": "CON ekko Ser",
    "name": "Serpent",
+   "category": "Été",
    "lines": [
     [
      77516,
@@ -1666,6 +1705,7 @@
   "Del": {
    "id": "CON ekko Del",
    "name": "Dauphin",
+   "category": "Été",
    "lines": [
     [
      101421,
@@ -1692,6 +1732,7 @@
   "Sge": {
    "id": "CON ekko Sge",
    "name": "Flèche",
+   "category": "Été",
    "lines": [
     [
      96837,
@@ -1720,6 +1761,7 @@
   "And": {
    "id": "CON ekko And",
    "name": "Andromède",
+   "category": "Automne",
    "lines": [
     [
      677,
@@ -1750,6 +1792,7 @@
   "Per": {
    "id": "CON ekko Per",
    "name": "Persée",
+   "category": "Automne",
    "lines": [
     [
      17448,
@@ -1790,6 +1833,7 @@
   "Peg": {
    "id": "CON ekko Peg",
    "name": "Pégase",
+   "category": "Automne",
    "lines": [
     [
      1067,
@@ -1852,6 +1896,7 @@
   "Cet": {
    "id": "CON ekko Cet",
    "name": "Baleine",
+   "category": "Automne",
    "lines": [
     [
      10324,
@@ -1919,6 +1964,7 @@
   "Tri": {
    "id": "CON ekko Tri",
    "name": "Triangle",
+   "category": "Automne",
    "lines": [
     [
      10670,
@@ -1941,6 +1987,7 @@
   "PsA": {
    "id": "CON ekko PsA",
    "name": "Poisson austral",
+   "category": "Automne",
    "lines": [
     [
      113368,
@@ -1970,6 +2017,7 @@
   "Cru": {
    "id": "CON ekko Cru",
    "name": "Croix du Sud",
+   "category": "Ciel austral",
    "lines": [
     [
      61084,
@@ -1995,6 +2043,7 @@
   "Cen": {
    "id": "CON ekko Cen",
    "name": "Centaure",
+   "category": "Ciel austral",
    "lines": [
     [
      71683,
@@ -2053,6 +2102,7 @@
   "Car": {
    "id": "CON ekko Car",
    "name": "Carène",
+   "category": "Ciel austral",
    "lines": [
     [
      45238,
@@ -2113,6 +2163,7 @@
   "TDE": {
    "id": "CON ekko TDE",
    "name": "Triangle d’été",
+   "category": "Astérisme",
    "lines": [
     [
      91262,
@@ -2135,6 +2186,7 @@
   "TDH": {
    "id": "CON ekko TDH",
    "name": "Triangle d’hiver",
+   "category": "Astérisme",
    "lines": [
     [
      27989,
@@ -2157,6 +2209,7 @@
   "HDH": {
    "id": "CON ekko HDH",
    "name": "Hexagone d’hiver",
+   "category": "Astérisme",
    "lines": [
     [
      24608,
