@@ -1,0 +1,19 @@
+{
+ "$schema": "ekko-player-view/1",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "common": {
+  "projection": "stereographic",
+  "starRadiusMin": 1.1,
+  "starRadiusMax": 6,
+  "starGamma": 2.2,
+  "colorSaturation": 0.35,
+  "glowScale": 4.2,
+  "lineOpacity": 0.42,
+  "lineWidth": 1,
+  "dim": 0.2,
+  "dimLines": 0.45,
+  "focusScale": 1.35,
+  "transitionMs": 480
+ },
+ "figures": {}
+}
