@@ -1,79 +1,116 @@
 /**
  * ekko-icons.js — Ekko of Beyond
  * ------------------------------------------------------------------
- * ATTENTION — ces tracés sont des RECONSTRUCTIONS d'après la maquette, pas
- * les exports Figma. Mon environnement n'a pas accès à figma.com, je n'ai
- * donc pas pu récupérer les SVG d'origine.
+ * Assets UI du player, réunis en un seul endroit.
  *
- * Tout est réuni ici exprès : remplacer une icône par ton vrai export est une
- * seule édition dans ce fichier, sans toucher au player ni à l'outil de
- * calibration. Garde les `viewBox` telles quelles, les dimensions viennent de
- * Figma et le reste du code s'appuie dessus.
- *
- *   chevronLeft  8.97 × 12.817   « Retour à la carte »
- *   account      29.333 × 30     « Mon compte »
- *   rewind10     24 × 24         recul de 10 s
- *   forward10    24 × 24         avance de 10 s
- *   play         24 × 28         lecture
- *   pause        24 × 26         pause
+ * Provenance de chaque tracé :
+ *   rewind10, forward10   exports Figma fournis (-10.svg, _10.svg)
+ *   glyphBelowTitle       export Figma fourni (Glyph_below_title.svg)
+ *   lineStart, lineEnd    exports Figma fournis (Start_of_line.svg, End_of_line.svg)
+ *   account               repris tel quel de index.html
+ *   play, pause           redessinés aux cotes relevées dans Figma
+ *                         (le triangle mesure 21,333 × 24 dans un bouton de 80)
+ *   chevronLeft           reconstruction — pas d'export disponible
+ *   cueGlyph              aux cotes Figma : carré de 11,939 tourné à 45°,
+ *                         cœur plein de 5, encombrement 16,884
  */
 
 const GOLD = '#E3E3C4';
 
+/* ------------------------------------------------------- transport ±10 s */
+
 export const ICONS = {
-  chevronLeft: `<svg viewBox="0 0 9 13" width="9" height="13" fill="none" aria-hidden="true">
-    <path d="M7.7 1.2 2.1 6.4l5.6 5.2" stroke="${GOLD}" stroke-width="1.6"
-          stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`,
-
-  account: `<svg viewBox="0 0 30 30" width="29.333" height="30" fill="none" aria-hidden="true">
-    <path d="M15 1.6 27.2 6.1v9.2c0 5.9-4.7 11.2-12.2 13.9C7.5 26.5 2.8 21.2 2.8 15.3V6.1L15 1.6Z"
-          stroke="${GOLD}" stroke-width="1.3" stroke-linejoin="round"/>
-    <path d="M15 8.8 20.6 12.9 18.5 19.6h-7L9.4 12.9 15 8.8Z"
-          stroke="${GOLD}" stroke-width="1.1" stroke-linejoin="round"/>
-    <path d="M15 8.8v10.8M9.4 12.9h11.2" stroke="${GOLD}" stroke-width="1.1"/>
-  </svg>`,
-
   rewind10: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
-    <path d="M12 5.4V2L7.2 5.4 12 8.8V5.4a7.2 7.2 0 1 1-7.1 8.4"
-          stroke="${GOLD}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="12.4" y="16.6" font-family="Afacad, system-ui, sans-serif" font-size="8.2"
-          font-weight="700" fill="${GOLD}" text-anchor="middle">10</text>
-  </svg>`,
+<path d="M3.88219 13.9151C4.21391 13.9151 4.48031 14.1845 4.50682 14.5151C4.60891 15.7886 5.03468 17.0185 5.74811 18.0862C6.57308 19.3209 7.74564 20.2832 9.11751 20.8514C10.4894 21.4197 11.999 21.5684 13.4553 21.2787C14.9117 20.989 16.2495 20.2739 17.2994 19.224C18.3494 18.174 19.0645 16.8362 19.3542 15.3798C19.6439 13.9235 19.4952 12.4139 18.9269 11.042C18.3587 9.67014 17.3964 8.49758 16.1617 7.67261C14.9271 6.84765 13.4755 6.40732 11.9906 6.40732H9.58813C9.25641 6.40732 8.9875 6.67623 8.9875 7.00795V8.71119C8.9875 9.24629 8.34054 9.51427 7.96217 9.13589L4.90752 6.08125C4.67296 5.84669 4.67296 5.46639 4.90752 5.23183L7.96217 2.17718C8.34054 1.79881 8.9875 2.06679 8.9875 2.60189V4.30513C8.9875 4.63685 9.25641 4.90576 9.58813 4.90576H11.9906C13.7725 4.90576 15.5144 5.43415 16.996 6.42411C18.4775 7.41407 19.6323 8.82115 20.3142 10.4674C20.9961 12.1136 21.1745 13.9251 20.8269 15.6728C20.4793 17.4204 19.6212 19.0257 18.3612 20.2857C17.1012 21.5457 15.4959 22.4038 13.7483 22.7514C12.0006 23.099 10.1891 22.9206 8.54289 22.2387C6.89664 21.5568 5.48957 20.4021 4.49961 18.9205C3.62114 17.6057 3.10612 16.0861 3.00126 14.5153C2.97917 14.1844 3.25016 13.9151 3.58188 13.9151H3.88219Z" fill="${GOLD}"/>
+<path d="M14.7348 17.016C14.403 17.0241 14.074 16.9547 13.7738 16.8133C13.5072 16.678 13.2778 16.4795 13.1056 16.2352C12.9168 15.9501 12.7843 15.6316 12.7152 15.2967C12.6265 14.8822 12.5837 14.4592 12.5875 14.0354C12.5845 13.6116 12.6273 13.1887 12.7152 12.7741C12.7856 12.4396 12.9181 12.1213 13.1056 11.8356C13.2778 11.5913 13.5072 11.3928 13.7738 11.2575C14.074 11.1161 14.403 11.0466 14.7348 11.0548C15.0467 11.031 15.3595 11.0876 15.6434 11.219C15.9272 11.3504 16.1727 11.5524 16.3565 11.8056C16.7436 12.4714 16.9264 13.2364 16.882 14.0053C16.9264 14.7743 16.7436 15.5393 16.3565 16.2051C16.1797 16.4694 15.9373 16.6831 15.653 16.8253C15.3686 16.9674 15.0522 17.0331 14.7348 17.016V17.016ZM14.7348 16.1C14.8861 16.1091 15.037 16.0751 15.1698 16.002C15.3027 15.9289 15.4121 15.8198 15.4856 15.6871C15.665 15.3359 15.7601 14.9478 15.7633 14.5534V13.5173C15.7796 13.1301 15.705 12.7444 15.5456 12.3912C15.4617 12.2626 15.347 12.157 15.212 12.0839C15.077 12.0108 14.9259 11.9725 14.7723 11.9725C14.6188 11.9725 14.4676 12.0108 14.3326 12.0839C14.1976 12.157 14.0829 12.2626 13.999 12.3912C13.8396 12.7444 13.765 13.1301 13.7813 13.5173V14.5534C13.7658 14.943 13.8403 15.331 13.999 15.6871C14.0706 15.818 14.1776 15.9261 14.3077 15.9991C14.4378 16.0721 14.5858 16.1071 14.7348 16.1V16.1ZM7.97774 16.9184V16.0325H9.4793V12.1359L8.08285 12.8867L7.66992 12.0909L9.41173 11.1148H10.5079V15.9949H11.8443V16.9184H7.97774Z" fill="${GOLD}"/>
+</svg>`,
 
   forward10: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
-    <path d="M12 5.4V2l4.8 3.4L12 8.8V5.4a7.2 7.2 0 1 0 7.1 8.4"
-          stroke="${GOLD}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="11.6" y="16.6" font-family="Afacad, system-ui, sans-serif" font-size="8.2"
-          font-weight="700" fill="${GOLD}" text-anchor="middle">10</text>
-  </svg>`,
+<path d="M20.1178 13.9151C19.7861 13.9151 19.5197 14.1845 19.4932 14.5151C19.3911 15.7886 18.9653 17.0185 18.2519 18.0862C17.4269 19.3209 16.2544 20.2832 14.8825 20.8514C13.5106 21.4197 12.001 21.5684 10.5447 21.2787C9.0883 20.989 7.75054 20.2739 6.70055 19.224C5.65056 18.174 4.93551 16.8362 4.64582 15.3798C4.35613 13.9235 4.50481 12.4139 5.07306 11.042C5.64131 9.67014 6.6036 8.49758 7.83826 7.67261C9.07291 6.84765 10.5245 6.40732 12.0094 6.40732H14.4119C14.7436 6.40732 15.0125 6.67623 15.0125 7.00795V8.71119C15.0125 9.24629 15.6595 9.51427 16.0378 9.13589L19.0925 6.08125C19.327 5.84669 19.327 5.46639 19.0925 5.23183L16.0378 2.17718C15.6595 1.79881 15.0125 2.06679 15.0125 2.60189V4.30513C15.0125 4.63685 14.7436 4.90576 14.4119 4.90576H12.0094C10.2275 4.90576 8.48562 5.43415 7.00404 6.42411C5.52245 7.41407 4.3677 8.82115 3.6858 10.4674C3.0039 12.1136 2.82548 13.9251 3.17311 15.6728C3.52074 17.4204 4.3788 19.0257 5.63879 20.2857C6.89877 21.5457 8.50409 22.4038 10.2517 22.7514C11.9994 23.099 13.8109 22.9206 15.4571 22.2387C17.1034 21.5568 18.5104 20.4021 19.5004 18.9205C20.3789 17.6057 20.8939 16.0861 20.9987 14.5153C21.0208 14.1844 20.7498 13.9151 20.4181 13.9151H20.1178Z" fill="${GOLD}"/>
+<path d="M14.1762 17.016C13.8444 17.0241 13.5154 16.9547 13.2152 16.8133C12.9486 16.678 12.7192 16.4795 12.547 16.2352C12.3582 15.9501 12.2257 15.6316 12.1566 15.2967C12.0679 14.8822 12.0251 14.4592 12.0289 14.0354C12.0259 13.6116 12.0687 13.1887 12.1566 12.7741C12.227 12.4396 12.3595 12.1213 12.547 11.8356C12.7192 11.5913 12.9486 11.3928 13.2152 11.2575C13.5154 11.1161 13.8444 11.0466 14.1762 11.0548C14.4881 11.031 14.8009 11.0876 15.0848 11.219C15.3687 11.3504 15.6141 11.5524 15.7979 11.8056C16.185 12.4714 16.3678 13.2364 16.3234 14.0053C16.3678 14.7743 16.185 15.5393 15.7979 16.2051C15.6211 16.4694 15.3787 16.6831 15.0944 16.8253C14.81 16.9674 14.4936 17.0331 14.1762 17.016V17.016ZM14.1762 16.1C14.3275 16.1091 14.4784 16.0751 14.6112 16.002C14.7441 15.9289 14.8535 15.8198 14.927 15.6871C15.1064 15.3359 15.2015 14.9478 15.2047 14.5534V13.5173C15.221 13.1301 15.1464 12.7444 14.987 12.3912C14.9031 12.2626 14.7884 12.157 14.6534 12.0839C14.5184 12.0108 14.3673 11.9725 14.2137 11.9725C14.0602 11.9725 13.909 12.0108 13.774 12.0839C13.639 12.157 13.5243 12.2626 13.4404 12.3912C13.281 12.7444 13.2064 13.1301 13.2227 13.5173V14.5534C13.2072 14.943 13.2817 15.331 13.4404 15.6871C13.512 15.818 13.619 15.9261 13.7491 15.9991C13.8792 16.0721 14.0272 16.1071 14.1762 16.1V16.1ZM7.41915 16.9184V16.0325H8.92071V12.1359L7.52426 12.8867L7.11133 12.0909L8.85314 11.1148H9.94928V15.9949H11.2857V16.9184H7.41915Z" fill="${GOLD}"/>
+</svg>`,
 
-  play: `<svg viewBox="0 0 24 28" width="24" height="28" aria-hidden="true">
-    <path d="M1.4 1.6a1 1 0 0 1 1.5-.9l19 12.4a1 1 0 0 1 0 1.7l-19 12.4a1 1 0 0 1-1.5-.9V1.6Z"
+  /* ------------------------------------------------------ lecture / pause */
+
+  // 21,333 × 24 : les cotes du triangle relevées dans le bouton de 80 px.
+  play: `<svg viewBox="0 0 21.333 24" width="21.333" height="24" aria-hidden="true">
+    <path d="M1.2 1.35a1 1 0 0 1 1.53-.85l17.4 10.65a1 1 0 0 1 0 1.7L2.73 23.5a1 1 0 0 1-1.53-.85V1.35Z"
           fill="${GOLD}"/>
   </svg>`,
 
-  pause: `<svg viewBox="0 0 24 26" width="24" height="26" aria-hidden="true">
-    <rect x="1.5" y="0" width="7.5" height="26" rx="1" fill="${GOLD}"/>
-    <rect x="15" y="0" width="7.5" height="26" rx="1" fill="${GOLD}"/>
+  pause: `<svg viewBox="0 0 21.333 24" width="21.333" height="24" aria-hidden="true">
+    <rect x="0" y="0" width="7" height="24" rx="1" fill="${GOLD}"/>
+    <rect x="14.333" y="0" width="7" height="24" rx="1" fill="${GOLD}"/>
+  </svg>`,
+
+  /* --------------------------------------------------------- header */
+
+  // Repris de index.html, pour que les deux écrans partagent le même glyphe.
+  account: `<svg viewBox="0 0 31 31" width="30" height="30" fill="none" aria-hidden="true">
+<path d="M15.662 22.1333L8.19531 10.6666H22.5953L15.662 22.1333Z" stroke="${GOLD}" stroke-width="0.8"/>
+<path d="M15.6618 30L0.728516 6.53333H30.0618L15.6618 30Z" stroke="${GOLD}" stroke-width="0.8"/>
+<path d="M15.6621 0V26.9333" stroke="${GOLD}" stroke-width="0.8"/>
+<circle cx="15.3949" cy="13.6" r="13.2" stroke="${GOLD}" stroke-width="0.8"/>
+</svg>`,
+
+  chevronLeft: `<svg viewBox="0 0 9 13" width="9" height="12.817" fill="none" aria-hidden="true">
+    <path d="M7.7 1.2 2.1 6.4l5.6 5.2" stroke="${GOLD}" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`,
 };
 
 /**
- * Losange des moments interactifs : carré de 11.939 px tourné à 45° (encombrement
- * 16.884 px), avec un cœur plein de 5 px lui aussi tourné. Chiffres relevés dans
- * Figma, contrairement aux icônes ci-dessus.
+ * Glyphe suspendu sous le titre : arc large, point plein à son sommet bas,
+ * puis un trait effilé. Cadre de 68 × 53 placé à y = 133, centré.
+ * L'arc appartient à un cercle de rayon 31,875 dont le centre est au-dessus
+ * du cadre, d'où cette forme de dôme très ouvert.
  */
-export const CUE_GLYPH = `<svg viewBox="0 0 17 17" width="17" height="17" aria-hidden="true">
-  <g transform="rotate(45 8.5 8.5)">
-    <rect x="2.53" y="2.53" width="11.939" height="11.939" fill="none"
+export const GLYPH_BELOW_TITLE = `<svg viewBox="0 0 68 53" width="68" height="53" fill="none" aria-hidden="true">
+<g clip-path="url(#ekko-glyph-clip)">
+<circle cx="4.25" cy="4.25" r="4.25" transform="matrix(1 0 0 -1 29.75 29.75)" fill="${GOLD}"/>
+<circle cx="34" cy="-6.375" r="31.875" stroke="${GOLD}" stroke-width="2.125"/>
+<path opacity="0.5" d="M36.125 -1.0625C34.7083 -1.0625 33.2917 -1.0625 31.875 -1.0625C31.9104 -0.163541 31.9458 0.735416 31.9813 1.63438C32.6187 17.8156 33.2563 33.9969 33.8937 50.1781C33.9292 51.0771 33.9646 51.976 34 52.875C34.0354 51.976 34.0708 51.0771 34.1063 50.1781C34.7437 33.9969 35.3813 17.8156 36.0187 1.63438C36.0542 0.735416 36.0896 -0.163541 36.125 -1.0625Z" fill="${GOLD}"/>
+</g>
+<defs><clipPath id="ekko-glyph-clip"><rect width="68" height="53" fill="white"/></clipPath></defs>
+</svg>`;
+
+/* ------------------------------------------------------------- timeline */
+
+/**
+ * Extrémités de la ligne de temps. 36 × 8 chacune : point plein de 5,
+ * anneau de 7, puis un filet de 1 px sur 20 qui rejoint la barre de 8 px.
+ * La barre elle-même commence donc à 36 px du bord et finit 36 px avant.
+ */
+export const LINE_START = `<svg viewBox="0 0 36 8" width="36" height="8" fill="none" aria-hidden="true">
+<circle cx="2.5" cy="2.5" r="2.5" transform="matrix(1 0 0 -1 0 6.5)" fill="${GOLD}"/>
+<circle cx="3.5" cy="3.5" r="3.5" transform="matrix(1 0 0 -1 9 7.5)" stroke="${GOLD}" stroke-linecap="round"/>
+<path d="M16 4H36" stroke="${GOLD}"/>
+</svg>`;
+
+export const LINE_END = `<svg viewBox="0 0 36 8" width="36" height="8" fill="none" aria-hidden="true">
+<path d="M20 4H-3.27826e-07" stroke="${GOLD}"/>
+<circle cx="33.5" cy="4" r="2.5" transform="rotate(-180 33.5 4)" fill="${GOLD}"/>
+<circle cx="23.5" cy="4" r="3.5" transform="rotate(-180 23.5 4)" stroke="${GOLD}" stroke-linecap="round"/>
+</svg>`;
+
+/** Losange des moments interactifs. Cotes Figma, encombrement 16,884. */
+export const CUE_GLYPH = `<svg viewBox="0 0 16.884 16.884" width="16.884" height="16.884" aria-hidden="true">
+  <g transform="rotate(45 8.442 8.442)">
+    <rect x="2.4725" y="2.4725" width="11.939" height="11.939" fill="none"
           stroke="${GOLD}" stroke-width="1"/>
-    <rect x="6" y="6" width="5" height="5" fill="${GOLD}"/>
+    <rect x="5.942" y="5.942" width="5" height="5" fill="${GOLD}"/>
   </g>
 </svg>`;
 
-export function icon(name) {
-  const svg = ICONS[name];
-  if (!svg) throw new Error(`Icône inconnue : ${name}`);
-  return svg;
-}
+/**
+ * Cotes de la ligne de temps, relevées dans Figma (nœud 215:2870).
+ * La barre de progression est un trait de 8 px : crème plein pour la partie
+ * écoutée, crème à 20 % pour le reste.
+ */
+export const TIMELINE = {
+  rowHeight: 7,
+  capWidth: 36,
+  barStroke: 8,
+  trackOpacity: 0.2,
+  glyphSize: 16.884,
+};

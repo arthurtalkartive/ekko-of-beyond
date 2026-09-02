@@ -42,16 +42,55 @@ export class Chime {
   async unlock() {
     if (!this.ctx) {
       const AC = window.AudioContext ?? window.webkitAudioContext;
-      if (!AC) return;
+      if (!AC) return false;
       this.ctx = new AC();
     }
     if (this.ctx.state === 'suspended') await this.ctx.resume();
-    if (this.url && !this.buffer) {
-      try {
-        const r = await fetch(this.url);
-        this.buffer = await this.ctx.decodeAudioData(await r.arrayBuffer());
-      } catch { this.buffer = null; }
+    if (this.url && !this.buffer) await this.loadUrl(this.url);
+    return true;
+  }
+
+  /**
+   * Charge un fichier depuis une URL. Renvoie false si le décodage échoue,
+   * auquel cas on retombe sur la cloche de synthèse plutôt que de rester muet.
+   */
+  async loadUrl(url) {
+    this.url = url;
+    this.buffer = null;
+    if (!url) return false;
+    if (!this.ctx) { await this.unlock(); if (!this.ctx) return false; }
+    try {
+      const r = await fetch(url, { cache: 'no-store' });
+      if (!r.ok) throw new Error(String(r.status));
+      this.buffer = await this.ctx.decodeAudioData(await r.arrayBuffer());
+      return true;
+    } catch {
+      this.buffer = null;
+      return false;
     }
+  }
+
+  /**
+   * Charge un fichier local, sans passer par le réseau ni par le dépôt.
+   * C'est ce qui permet d'essayer plusieurs carillons avant d'en garder un.
+   */
+  async loadArrayBuffer(arrayBuffer) {
+    if (!this.ctx) { await this.unlock(); if (!this.ctx) return false; }
+    try {
+      this.buffer = await this.ctx.decodeAudioData(arrayBuffer);
+      this.url = null;
+      return true;
+    } catch {
+      this.buffer = null;
+      return false;
+    }
+  }
+
+  /** Revient à la cloche de synthèse. */
+  useSynth() {
+    this.url = null;
+    this.buffer = null;
+    return this;
   }
 
   play() {
@@ -197,12 +236,15 @@ export class CueEngine {
 
 export const CUE_SCHEMA = 'ekko-cues/1';
 
+/** Chemin de l'audio d'une constellation, par convention. */
+export const audioPathFor = (id) => `content/${String(id).toLowerCase()}/audio.mp3`;
+
 export function emptyTrack(iau, id) {
   return {
     $schema: CUE_SCHEMA,
     constellation: id,
     iau,
-    audioSrc: '',
+    audioSrc: audioPathFor(id),
     duration: 0,
     chime: { enabled: true, offset: 0.25, gain: 0.45, url: null },
     cues: [],

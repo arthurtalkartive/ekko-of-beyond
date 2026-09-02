@@ -16,6 +16,8 @@
  * panneau de référence 141 px de large, header 89 px de haut.
  */
 
+import { GLYPH_BELOW_TITLE } from './ekko-icons.js';
+
 const NS = 'http://www.w3.org/2000/svg';
 
 const GEO = {
@@ -32,9 +34,11 @@ const GEO = {
   narrowAt: 720,
   minTitle: 13,     // plancher absolu de la taille du titre
   edge: 8,          // marge conservée entre la fin du chanfrein et le bord
-  pendantR: 13,     // rayon du cercle suspendu au fond de la défonce
-  pendantGap: 4,    // vide entre le cercle et le trait vertical
-  pendantLen: 20,   // longueur du trait vertical
+  stroke: 2,        // épaisseur du filet (nœud Figma 215:1441)
+  overhang: 8,      // le filet dépasse de 8 px de chaque côté du cadre
+  glyphW: 68,       // cadre du glyphe suspendu (nœud 215:1442)
+  glyphH: 53,
+  glyphY: 133,
 };
 
 /** Paliers de taille du titre. On descend d'un cran plutôt que d'élargir sans fin. */
@@ -70,26 +74,40 @@ export class PlayerHeader {
     this.svg.style.cssText = 'position:absolute;left:0;top:0;width:100%;'
       + 'height:190px;pointer-events:none;overflow:visible';
 
+    /* Remplissage : dégradé crème relevé sur le nœud Figma 215:1439.
+       Deux arrêts, #E3E3C4 à 20 % puis à 50 % d'alpha, le tout sur un calque
+       à 30 % d'opacité — d'où les 6 % et 15 % effectifs. La matrice de dégradé
+       place t=0 à 12,1 % de la hauteur et t=1 à 75,8 %. C'est ce voile chaud
+       qui manquait : je l'avais rendu en noir. */
     const defs = el('defs');
     const grad = el('linearGradient', { id: 'ph-fill', x1: '0', y1: '0', x2: '0', y2: '1' });
     grad.append(
-      el('stop', { offset: '0%', 'stop-color': '#000000', 'stop-opacity': '.62' }),
-      el('stop', { offset: '100%', 'stop-color': '#0A1931', 'stop-opacity': '0' }),
+      el('stop', { offset: '0%', 'stop-color': '#E3E3C4', 'stop-opacity': '.06' }),
+      el('stop', { offset: '12.1%', 'stop-color': '#E3E3C4', 'stop-opacity': '.06' }),
+      el('stop', { offset: '75.8%', 'stop-color': '#E3E3C4', 'stop-opacity': '.15' }),
+      el('stop', { offset: '100%', 'stop-color': '#E3E3C4', 'stop-opacity': '.15' }),
     );
     defs.append(grad);
 
     this.fill = el('path', { fill: 'url(#ph-fill)', stroke: 'none' });
     this.line = el('path', {
-      fill: 'none', stroke: '#E3E3C4', 'stroke-width': '1',
+      fill: 'none', stroke: '#E3E3C4', 'stroke-width': String(GEO.stroke),
       'stroke-linejoin': 'round', 'vector-effect': 'non-scaling-stroke',
     });
-    this.pendantRing = el('circle', {
-      fill: 'none', stroke: '#E3E3C4', 'stroke-width': '1', r: GEO.pendantR,
-    });
-    this.pendantStem = el('line', { stroke: '#E3E3C4', 'stroke-width': '1' });
 
-    this.svg.append(defs, this.fill, this.line, this.pendantRing, this.pendantStem);
+    this.svg.append(defs, this.fill, this.line);
     this.root.prepend(this.svg);
+
+    /* Le glyphe suspendu est un asset de taille fixe : rien à générer, et le
+       garder en HTML évite de le déformer avec le viewBox du filet. */
+    this.glyph = document.createElement('div');
+    this.glyph.className = 'ph-glyph';
+    this.glyph.setAttribute('aria-hidden', 'true');
+    this.glyph.style.cssText = `position:absolute;left:50%;top:${GEO.glyphY}px;`
+      + `width:${GEO.glyphW}px;height:${GEO.glyphH}px;`
+      + 'margin-left:' + (-GEO.glyphW / 2) + 'px;pointer-events:none';
+    this.glyph.innerHTML = GLYPH_BELOW_TITLE;
+    this.root.prepend(this.glyph);
   }
 
   /** @param {{ name:string, group:string, status:string }} info */
@@ -158,25 +176,23 @@ export class PlayerHeader {
       Math.max(Math.min(GEO.minHalf, maxHalf), textWidth / 2 + GEO.padX),
     );
     const cx = width / 2;
-    const { ruleY, dipY, chamfer, pendantR, pendantGap, pendantLen } = GEO;
+    const { ruleY, dipY, chamfer } = GEO;
 
     const l1 = cx - half - chamfer;
     const l2 = cx - half;
     const r2 = cx + half;
     const r1 = cx + half + chamfer;
 
-    const outline = `M0 ${ruleY} H${l1.toFixed(2)} L${l2.toFixed(2)} ${dipY} `
-      + `H${r2.toFixed(2)} L${r1.toFixed(2)} ${ruleY} H${width}`;
+    // Le filet part de -8 et va jusqu'à width + 8 : dans Figma le vecteur
+    // mesure 1448,5 pour un cadre de 1440, il mord donc les deux bords.
+    const x0 = -GEO.overhang;
+    const x1 = width + GEO.overhang;
+
+    const outline = `M${x0} ${ruleY} H${l1.toFixed(2)} L${l2.toFixed(2)} ${dipY} `
+      + `H${r2.toFixed(2)} L${r1.toFixed(2)} ${ruleY} H${x1}`;
 
     this.line.setAttribute('d', outline);
-    this.fill.setAttribute('d', `${outline} V0 H0 Z`);
-
-    this.pendantRing.setAttribute('cx', cx);
-    this.pendantRing.setAttribute('cy', dipY);
-    this.pendantStem.setAttribute('x1', cx);
-    this.pendantStem.setAttribute('x2', cx);
-    this.pendantStem.setAttribute('y1', dipY + pendantR + pendantGap);
-    this.pendantStem.setAttribute('y2', dipY + pendantR + pendantGap + pendantLen);
+    this.fill.setAttribute('d', `${outline} V0 H${x0} Z`);
 
     // Le panneau de texte suit la découpe : il ne peut pas déborder.
     this.panel.style.width = `${half * 2}px`;
@@ -200,6 +216,7 @@ export class PlayerHeader {
   destroy() {
     this._ro?.disconnect();
     this.svg?.remove();
+    this.glyph?.remove();
   }
 }
 
