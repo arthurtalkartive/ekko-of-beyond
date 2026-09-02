@@ -181,6 +181,64 @@ Hipparcos brut de l'ESA (VizieR I/239), utilisable avec simple attribution.
 Le script prend déjà le CSV en argument, il n'y a que le mappage de colonnes à
 adapter (`ra` en heures, `dec` en degrés, `mag`, `ci`). Dis-moi si je le bascule.
 
+## Architecture des fichiers audio
+
+Un dossier par constellation, à côté des fiches, avec un nom de fichier fixe :
+
+```
+content/
+├── ori/
+│   ├── science.json
+│   ├── mytho.json
+│   ├── astro.json
+│   ├── audio.mp3          ← la piste, déposée à la main
+│   └── cues.json          ← les repères, écrits par /calibration
+├── uma/
+│   ├── audio.mp3
+│   └── cues.json
+└── …
+assets/
+└── audio/
+    └── chimes/            ← les carillons, téléversés depuis /calibration
+        ├── ting-cristal.mp3
+        └── bell-douce.wav
+```
+
+Le chemin `content/<id>/audio.mp3` est une **convention, pas un réglage** :
+`cues.json` le porte dans `audioSrc`, mais il est pré-rempli et tu n'as
+normalement rien à saisir. Dépose le fichier, commite, et l'outil le trouve.
+
+`<id>` est le code IAU en minuscules, le même que pour les fiches : `ori`,
+`uma`, `tau`. Format MP3, c'est le seul lu partout sans transcodage.
+
+### Quand la piste n'est pas là
+
+L'outil de calibration sonde `content/<id>/audio.mp3` à chaque changement de
+constellation et l'affiche franchement : **présent · 3,5 Mo** ou **absent du
+dépôt**. Si elle est absente, l'anomalie remonte aussi dans le contrôle de
+cohérence, et le bouton « Charger depuis le dépôt » reste éteint.
+
+Tu peux quand même caler les repères avec un fichier local : la pastille passe
+à **fichier local** et un avertissement rappelle que le player restera muet
+jusqu'au commit de la piste. Le player, lui, bascule sur son horloge de test.
+
+### Les carillons
+
+Le carillon n'est jamais mixé dans la piste, il est joué par le code au timecode
+du repère. Dans `/calibration` :
+
+1. **Essayer** — choisis un fichier local, il est décodé et joué aussitôt.
+   Enchaîne autant d'essais que tu veux, rien ne part dans le dépôt.
+2. **Garder** — « Téléverser » commite le fichier dans
+   `assets/audio/chimes/` et l'ajoute au menu. Le nom est assaini
+   (accents retirés, espaces en tirets, minuscules).
+3. **Associer** — le carillon choisi est enregistré dans
+   `cues.json` sous `chime.url`, avec le volume et le retard d'affichage.
+
+Limite de 512 Ko et extensions `mp3`, `wav`, `ogg`, `m4a`, `aac`. Sans fichier
+choisi, le player utilise sa cloche de synthèse — trois partiels en Web Audio,
+rien à héberger.
+
 ## Suite
 
 1. Moteur de cues (état dérivé de `currentTime`, résistant au seek) + chime programmatique
