@@ -32,6 +32,43 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 
+/* ------------------------------------------------------------ catégories */
+
+/**
+ * Type affiché dans la puce du player et dans la collection.
+ *
+ * Cette table est la copie de `CATS` dans index.html. Elle vit ici pour que
+ * la catégorie parte dans `ekko-sky.json` et devienne lisible par le player
+ * et par les outils, au lieu d'être dupliquée dans chaque écran.
+ * Si tu la modifies, modifie les deux — ou mieux, fais lire ekko-sky.json à
+ * index.html et supprime sa copie.
+ */
+const CATEGORIES = {
+  uma: 'Circumpolaires', umi: 'Circumpolaires', cas: 'Circumpolaires',
+  cep: 'Circumpolaires', dra: 'Circumpolaires',
+
+  ari: 'Zodiaque', tau: 'Zodiaque', gem: 'Zodiaque', cnc: 'Zodiaque',
+  leo: 'Zodiaque', vir: 'Zodiaque', lib: 'Zodiaque', sco: 'Zodiaque',
+  sgr: 'Zodiaque', cap: 'Zodiaque', aqr: 'Zodiaque', psc: 'Zodiaque',
+
+  ori: 'Hiver', cma: 'Hiver', cmi: 'Hiver', aur: 'Hiver', eri: 'Hiver',
+  lep: 'Hiver', mon: 'Hiver', col: 'Hiver',
+
+  boo: 'Printemps', hya: 'Printemps', crv: 'Printemps', crt: 'Printemps',
+  com: 'Printemps', cvn: 'Printemps',
+
+  her: 'Été', crb: 'Été', cyg: 'Été', lyr: 'Été', aql: 'Été', oph: 'Été',
+  ser: 'Été', del: 'Été', sge: 'Été',
+
+  and: 'Automne', per: 'Automne', peg: 'Automne', cet: 'Automne',
+  tri: 'Automne', psa: 'Automne',
+
+  cru: 'Ciel austral', cen: 'Ciel austral', car: 'Ciel austral',
+  lmc: 'Ciel austral',
+
+  tde: 'Astérisme', tdh: 'Astérisme', hdh: 'Astérisme',
+};
+
 /* ---------------------------------------------------------------- args */
 
 function parseArgs(argv) {
@@ -96,6 +133,7 @@ for (const [key, entries] of Object.entries(sky.common_names ?? {})) {
 const neededHips = new Set();
 const figures = {};
 const skippedFigures = [];
+const missingCategories = [];
 
 for (const con of sky.constellations ?? []) {
   const iau = con.iau ?? con.id;
@@ -110,9 +148,13 @@ for (const con of sky.constellations ?? []) {
   const hips = [...new Set(lines.flat())];
   hips.forEach((h) => neededHips.add(h));
 
+  const category = CATEGORIES[String(iau).toLowerCase()];
+  if (!category) missingCategories.push(iau);
+
   figures[iau] = {
     id: con.id,
     name: con.common_name?.english ?? iau,
+    category: category ?? null,
     lines,
     hips,
     // center / radius calculés plus bas, une fois les positions connues
@@ -236,6 +278,7 @@ const payload = {
   sources: {
     skyculture: sky.id ?? 'ekko',
     catalogue: 'HYG Database v4.1 (astronexus), positions J2000',
+    categories: 'table CATS de index.html',
   },
   counts: {
     figures: Object.keys(figures).length,
@@ -252,4 +295,8 @@ console.log(`✓ ${OUT}`);
 console.log(`  ${payload.counts.figures} figures, ${payload.counts.stars} étoiles`);
 if (skippedFigures.length) {
   console.log(`  ignorées (sans tracé) : ${skippedFigures.join(', ')}`);
+}
+if (missingCategories.length) {
+  console.error(`✗ figures sans catégorie : ${missingCategories.join(', ')}`);
+  process.exitCode = 1;
 }
