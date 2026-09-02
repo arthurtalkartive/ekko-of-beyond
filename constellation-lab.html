@@ -11,18 +11,21 @@
   :root {
     --ink: #E3E3C4;
     --ink-soft: rgba(227, 227, 196, .55);
-    --ink-faint: rgba(227, 227, 196, .22);
+    --ink-faint: rgba(227, 227, 196, .2);
     --sky-top: #080d14;
     --sky-bottom: #123049;
-    --panel: rgba(8, 14, 22, .72);
+    --panel: rgba(8, 14, 22, .74);
+    --ok: #9AD5A8;
+    --warn: #E8C27A;
+    --bad: #E39A8C;
+    --panel-w: 372px;
     --font: 'Afacad', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   }
 
   * { box-sizing: border-box; }
 
   html, body {
-    height: 100%;
-    margin: 0;
+    height: 100%; margin: 0;
     background: var(--sky-top);
     color: var(--ink);
     font-family: var(--font);
@@ -32,19 +35,13 @@
 
   /* Fond provisoire. En production ce sera l'asset du splashscreen. */
   #stage {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0; overflow: hidden;
     background:
       radial-gradient(120% 80% at 50% 108%, rgba(32, 92, 132, .55) 0%, transparent 62%),
       linear-gradient(178deg, var(--sky-top) 0%, #0b1723 46%, var(--sky-bottom) 100%);
-    overflow: hidden;
   }
-
   #stage::after {
-    /* Champ d'étoiles de substitution, purement décoratif. */
-    content: '';
-    position: absolute;
-    inset: -10%;
+    content: ''; position: absolute; inset: -10%; pointer-events: none; opacity: .7;
     background-image:
       radial-gradient(1.4px 1.4px at 12% 22%, rgba(255,255,255,.55), transparent),
       radial-gradient(1px 1px at 68% 14%, rgba(255,255,255,.4), transparent),
@@ -55,33 +52,21 @@
       radial-gradient(1.3px 1.3px at 76% 33%, rgba(255,255,255,.28), transparent),
       radial-gradient(1px 1px at 44% 88%, rgba(255,255,255,.3), transparent);
     background-size: 340px 300px;
-    background-repeat: repeat;
-    opacity: .7;
-    pointer-events: none;
   }
 
-  #viewport {
-    position: absolute;
-    inset: 88px 380px 132px 40px;
-  }
+  #viewport { position: absolute; inset: 88px calc(var(--panel-w) + 40px) 132px 40px; }
 
   /* -------------------------------------------------------------- tooltip */
 
   #tooltip {
-    position: absolute;
-    width: 268px;
-    padding: 16px 18px 18px;
-    border: 1px solid var(--ink-faint);
-    border-radius: 3px;
-    background: rgba(6, 12, 20, .82);
-    backdrop-filter: blur(14px);
-    opacity: 0;
-    transform: translateY(6px);
+    position: absolute; width: 268px; padding: 16px 18px 18px;
+    border: 1px solid var(--ink-faint); border-radius: 3px;
+    background: rgba(6, 12, 20, .82); backdrop-filter: blur(14px);
+    opacity: 0; transform: translateY(6px); pointer-events: none;
     transition: opacity .38s cubic-bezier(.4,0,.2,1), transform .38s cubic-bezier(.4,0,.2,1);
-    pointer-events: none;
   }
   #tooltip[data-visible] { opacity: 1; transform: translateY(0); }
-  #tooltip h3 { margin: 0; font-size: 21px; font-weight: 500; letter-spacing: .01em; }
+  #tooltip h3 { margin: 0; font-size: 21px; font-weight: 500; }
   #tooltip .meta { margin: 3px 0 10px; font-size: 13px; color: var(--ink-soft); }
   #tooltip p { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(227,227,196,.78); }
   #tooltip .rule { height: 1px; margin: 12px 0; background: var(--ink-faint); }
@@ -89,130 +74,120 @@
   /* ---------------------------------------------------------------- panel */
 
   #panel {
-    position: fixed;
-    top: 0; right: 0; bottom: 0;
-    width: 340px;
-    padding: 24px 24px 40px;
-    overflow-y: auto;
-    background: var(--panel);
-    backdrop-filter: blur(18px);
+    position: fixed; top: 0; right: 0; bottom: 0; width: var(--panel-w);
+    padding: 22px 22px 48px; overflow-y: auto;
+    background: var(--panel); backdrop-filter: blur(18px);
     border-left: 1px solid var(--ink-faint);
   }
+  #panel h1 { margin: 0 0 2px; font-size: 19px; font-weight: 600; letter-spacing: .02em; }
+  #panel .sub { margin: 0 0 18px; font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
 
-  #panel h1 {
-    margin: 0 0 2px;
-    font-size: 19px;
-    font-weight: 600;
-    letter-spacing: .02em;
+  .block {
+    margin-bottom: 18px; padding: 15px 16px 16px;
+    border: 1px solid var(--ink-faint); border-radius: 3px;
+    background: rgba(255,255,255,.022);
   }
-  #panel .sub { margin: 0 0 22px; font-size: 13px; color: var(--ink-soft); }
+  .block > h2 {
+    display: flex; align-items: baseline; gap: 8px;
+    margin: 0 0 3px; font-size: 15px; font-weight: 600;
+  }
+  .block > .hint { margin: 0 0 14px; font-size: 12.5px; line-height: 1.45; color: var(--ink-soft); }
+  .block[data-dirty] { border-color: var(--warn); }
 
-  fieldset {
-    margin: 0 0 20px;
-    padding: 0;
-    border: 0;
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--warn); opacity: 0;
+    transition: opacity .2s;
+  }
+  .block[data-dirty] .dot { opacity: 1; }
+
+  .sect {
+    margin: 0 0 4px; padding-top: 10px;
     border-top: 1px solid var(--ink-faint);
-    padding-top: 14px;
+    font-size: 11.5px; letter-spacing: .04em; color: var(--ink-soft);
   }
-  legend { padding: 0 8px 0 0; font-size: 12px; color: var(--ink-soft); }
+  .sect:first-of-type { padding-top: 2px; border-top: 0; }
 
-  label.row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: baseline;
-    gap: 4px 10px;
-    margin-bottom: 11px;
-    font-size: 13.5px;
+  .row {
+    display: grid; grid-template-columns: 1fr auto; align-items: baseline;
+    gap: 3px 10px; margin-bottom: 10px; font-size: 13.5px;
   }
-  label.row .val { font-variant-numeric: tabular-nums; color: var(--ink-soft); font-size: 12.5px; }
-  label.row input, label.row select { grid-column: 1 / -1; }
+  .row > .val {
+    font-variant-numeric: tabular-nums; font-size: 12.5px; color: var(--ink-soft);
+  }
+  .row > input[type=range], .row > select { grid-column: 1 / -1; }
+  .row > .pair { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 68px; gap: 8px; align-items: center; }
 
   input[type=range] {
-    width: 100%;
-    height: 18px;
-    margin: 2px 0 0;
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
+    width: 100%; height: 18px; margin: 2px 0 0;
+    appearance: none; background: transparent; cursor: pointer;
   }
-  input[type=range]::-webkit-slider-runnable-track {
-    height: 1px; background: var(--ink-faint);
-  }
+  input[type=range]::-webkit-slider-runnable-track { height: 1px; background: var(--ink-faint); }
   input[type=range]::-webkit-slider-thumb {
-    appearance: none;
-    width: 11px; height: 11px;
-    margin-top: -5px;
-    border-radius: 50%;
-    background: var(--ink);
+    appearance: none; width: 11px; height: 11px; margin-top: -5px;
+    border-radius: 50%; background: var(--ink);
   }
   input[type=range]::-moz-range-track { height: 1px; background: var(--ink-faint); }
   input[type=range]::-moz-range-thumb {
     width: 11px; height: 11px; border: 0; border-radius: 50%; background: var(--ink);
   }
 
-  select {
-    width: 100%;
-    padding: 7px 9px;
-    color: var(--ink);
-    background: rgba(255,255,255,.05);
-    border: 1px solid var(--ink-faint);
-    border-radius: 2px;
-    font-family: inherit;
-    font-size: 14px;
+  select, input[type=number], input[type=password] {
+    width: 100%; padding: 6px 8px;
+    color: var(--ink); background: rgba(255,255,255,.05);
+    border: 1px solid var(--ink-faint); border-radius: 2px;
+    font-family: inherit; font-size: 13.5px;
   }
+  input[type=number] { text-align: right; font-variant-numeric: tabular-nums; }
   select option { background: #0b1420; }
 
-  #starlist {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    max-height: 210px;
-    overflow-y: auto;
+  button {
+    font-family: inherit; cursor: pointer;
+    border-radius: 2px; transition: color .18s, border-color .18s, background .18s, opacity .18s;
   }
+  .btn {
+    width: 100%; padding: 9px 12px; margin-top: 4px;
+    color: var(--ink); background: rgba(227,227,196,.09);
+    border: 1px solid var(--ink-soft); font-size: 13.5px; font-weight: 500;
+  }
+  .btn:hover:not(:disabled) { background: rgba(227,227,196,.16); }
+  .btn:disabled { opacity: .35; cursor: not-allowed; }
+  .btn.ghost {
+    background: transparent; border-color: var(--ink-faint);
+    color: var(--ink-soft); font-weight: 400; font-size: 12.5px; padding: 6px 10px;
+  }
+  .btn.ghost:hover:not(:disabled) { color: var(--ink); border-color: var(--ink-soft); }
+  .btnrow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .status { margin: 8px 0 0; font-size: 12.5px; line-height: 1.5; min-height: 1.4em; color: var(--ink-soft); }
+  .status[data-tone=ok] { color: var(--ok); }
+  .status[data-tone=warn] { color: var(--warn); }
+  .status[data-tone=bad] { color: var(--bad); }
+  .status a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+  #starlist { display: flex; flex-wrap: wrap; gap: 6px; max-height: 190px; overflow-y: auto; }
   #starlist button {
-    padding: 5px 9px;
-    color: var(--ink-soft);
-    background: transparent;
-    border: 1px solid var(--ink-faint);
-    border-radius: 2px;
-    font-family: inherit;
-    font-size: 12.5px;
-    cursor: pointer;
-    transition: color .18s, border-color .18s, background .18s;
+    padding: 5px 9px; color: var(--ink-soft); background: transparent;
+    border: 1px solid var(--ink-faint); font-size: 12.5px;
   }
   #starlist button:hover { color: var(--ink); border-color: var(--ink-soft); }
-  #starlist button[aria-pressed=true] {
-    color: #0b1420;
-    background: var(--ink);
-    border-color: var(--ink);
-  }
-  #starlist button:focus-visible,
-  select:focus-visible,
-  input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  #starlist button[aria-pressed=true] { color: #0b1420; background: var(--ink); border-color: var(--ink); }
 
   #readout {
-    margin-top: 6px;
-    font-size: 12.5px;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    font-variant-numeric: tabular-nums;
+    margin-top: 8px; font-size: 12.5px; line-height: 1.55;
+    color: var(--ink-soft); font-variant-numeric: tabular-nums;
   }
+
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
   /* -------------------------------------------------------------- loader */
 
   #loader {
-    position: fixed;
-    inset: 0;
-    display: grid;
-    place-content: center;
-    gap: 14px;
-    justify-items: center;
-    padding: 40px;
-    text-align: center;
-    background: var(--sky-top);
-    z-index: 10;
+    position: fixed; inset: 0; z-index: 10;
+    display: grid; place-content: center; justify-items: center; gap: 14px;
+    padding: 40px; text-align: center; background: var(--sky-top);
   }
-  #loader p { max-width: 34ch; margin: 0; line-height: 1.55; color: var(--ink-soft); }
+  #loader p { max-width: 36ch; margin: 0; line-height: 1.55; color: var(--ink-soft); }
   #loader code { color: var(--ink); }
   #loader input[type=file] { color: var(--ink-soft); font-family: inherit; font-size: 13px; }
   #loader[hidden] { display: none; }
@@ -227,77 +202,82 @@
 
 <aside id="panel">
   <h1>Banc d'essai constellation</h1>
-  <p class="sub">Réglage du rendu SVG avant intégration dans le player.</p>
+  <p class="sub">Les réglages validés ici sont écrits dans <code>data/player-view.json</code>
+     et deviennent ceux du player.</p>
 
-  <fieldset>
-    <legend>Figure</legend>
-    <label class="row"><span>Constellation</span><select id="figure"></select></label>
-    <label class="row"><span>Roulis</span><span class="val" id="rollVal">0°</span>
-      <input id="roll" type="range" min="-180" max="180" step="1" value="0"></label>
-    <label class="row"><span>Projection</span><select id="projection">
-      <option value="stereographic">Stéréographique</option>
-      <option value="gnomonic">Gnomonique</option>
-    </select></label>
-    <label class="row"><span>Marge</span><span class="val" id="padVal">64 px</span>
-      <input id="padding" type="range" min="0" max="200" step="4" value="64"></label>
-    <div id="readout"></div>
-  </fieldset>
+  <!-- ------------------------------------------------------------- accès -->
+  <div class="block">
+    <h2>Accès</h2>
+    <label class="row"><span>Clé d'administration</span>
+      <input id="admKey" type="password" autocomplete="off" placeholder="EKKO_ADMIN_KEY"></label>
+    <p class="status" id="apiStatus"></p>
+  </div>
 
-  <fieldset>
-    <legend>Étoiles</legend>
-    <label class="row"><span>Rayon min</span><span class="val" id="rMinVal">1.1</span>
-      <input id="rMin" type="range" min="0.4" max="4" step="0.1" value="1.1"></label>
-    <label class="row"><span>Rayon max</span><span class="val" id="rMaxVal">6.0</span>
-      <input id="rMax" type="range" min="2" max="16" step="0.2" value="6"></label>
-    <label class="row"><span>Contraste (gamma)</span><span class="val" id="gammaVal">2.2</span>
-      <input id="gamma" type="range" min="1" max="4" step="0.1" value="2.2"></label>
-    <label class="row"><span>Saturation B-V</span><span class="val" id="satVal">0.35</span>
-      <input id="sat" type="range" min="0" max="1" step="0.05" value="0.35"></label>
-    <label class="row"><span>Halo</span><span class="val" id="glowVal">4.2×</span>
-      <input id="glow" type="range" min="1.5" max="10" step="0.2" value="4.2"></label>
-  </fieldset>
+  <!-- ------------------------------------------------------- constellation -->
+  <div class="block">
+    <h2>Constellation</h2>
+    <label class="row"><select id="figure"></select></label>
+    <p id="readout"></p>
+  </div>
 
-  <fieldset>
-    <legend>Tracés</legend>
-    <label class="row"><span>Opacité</span><span class="val" id="lineOpVal">0.42</span>
-      <input id="lineOp" type="range" min="0" max="1" step="0.02" value="0.42"></label>
-    <label class="row"><span>Épaisseur</span><span class="val" id="lineWVal">1.0</span>
-      <input id="lineW" type="range" min="0.5" max="3" step="0.1" value="1"></label>
-  </fieldset>
+  <!-- ------------------------------------------------- réglages spécifiques -->
+  <div class="block" id="blockFigure">
+    <h2>Propre à cette constellation <span class="dot"></span></h2>
+    <p class="hint">Ces deux valeurs sont enregistrées figure par figure : le cadrage
+       d'Orion n'a rien à voir avec celui de la Croix du Sud.</p>
+    <div id="figureParams"></div>
+    <div class="btnrow">
+      <button class="btn ghost" id="fromMap">Angle de la carte</button>
+      <button class="btn ghost" id="resetFigure">Défaut</button>
+    </div>
+    <button class="btn" id="saveFigure" disabled>Enregistrer cette constellation</button>
+    <p class="status" id="figureStatus"></p>
+  </div>
 
-  <fieldset>
-    <legend>Mise en avant</legend>
-    <label class="row"><span>Étoiles éteintes</span><span class="val" id="dimVal">0.20</span>
-      <input id="dim" type="range" min="0" max="1" step="0.02" value="0.2"></label>
-    <label class="row"><span>Tracés éteints</span><span class="val" id="dimLVal">0.45</span>
-      <input id="dimL" type="range" min="0" max="1" step="0.02" value="0.45"></label>
-    <label class="row"><span>Grossissement</span><span class="val" id="popVal">1.35</span>
-      <input id="pop" type="range" min="1" max="2.5" step="0.05" value="1.35"></label>
-    <label class="row"><span>Durée de transition</span><span class="val" id="durVal">480 ms</span>
-      <input id="dur" type="range" min="80" max="1200" step="20" value="480"></label>
+  <!-- ---------------------------------------------------- réglages communs -->
+  <div class="block" id="blockCommon">
+    <h2>Communs aux 52 figures <span class="dot"></span></h2>
+    <p class="hint">Un seul jeu de valeurs pour tout le player. Les modifier change
+       l'apparence de toutes les constellations d'un coup.</p>
+    <div id="commonParams"></div>
+    <button class="btn ghost" id="resetCommon">Revenir aux valeurs par défaut</button>
+    <button class="btn" id="saveCommon" disabled>Enregistrer les réglages communs</button>
+    <p class="status" id="commonStatus"></p>
+  </div>
+
+  <!-- --------------------------------------------------------------- test -->
+  <div class="block">
+    <h2>Essai de mise en avant</h2>
+    <p class="hint">Sert uniquement à vérifier le rendu. Rien n'est enregistré ici.</p>
     <div id="starlist"></div>
-  </fieldset>
+  </div>
 </aside>
 
 <div id="loader">
   <p>Le banc d'essai charge <code>data/ekko-sky.json</code>. En <code>file://</code> le
      navigateur bloque la requête — choisis le fichier à la main, ou sers le dossier
-     avec <code>npx serve</code>.</p>
+     avec <code>npx serve</code>. L'écriture dans le dépôt n'est possible qu'en servi.</p>
   <input id="filePick" type="file" accept="application/json,.json">
 </div>
 
 <script type="module">
 import { ConstellationView } from './js/constellation-view.js';
+import {
+  PARAMS, SECTIONS, COMMON_KEYS, FIGURE_KEYS,
+  SETTINGS_PATH, defaultsFor, emptySettings, resolve, toViewOptions,
+} from './js/view-settings.js';
 
 const $ = (id) => document.getElementById(id);
-const viewport = $('viewport');
-const tooltip = $('tooltip');
-const loader = $('loader');
 
 let view = null;
-let current = null;   // hip mis en avant
+let sky = null;          // ekko-sky.json
+let settings = null;     // player-view.json, tel qu'il est dans le dépôt
+let apiReady = false;    // /api/save-view configurée ?
+let currentIau = null;
+let litStar = null;
+const controls = new Map();   // key → { get(), set(v), out }
 
-/* --------------------------------------------------------------- amorçage */
+/* ================================================================ amorçage */
 
 boot();
 
@@ -306,87 +286,409 @@ async function boot() {
   try {
     const r = await fetch('data/ekko-sky.json');
     if (r.ok) data = await r.json();
-  } catch { /* file:// — on bascule sur le sélecteur */ }
+  } catch { /* file:// */ }
 
   if (data) return start(data);
 
   $('filePick').addEventListener('change', async (e) => {
     const file = e.target.files?.[0];
-    if (!file) return;
-    start(JSON.parse(await file.text()));
+    if (file) start(JSON.parse(await file.text()));
   });
 }
 
-function start(data) {
-  loader.hidden = true;
-  view = new ConstellationView(viewport, { data, ...readOptions() });
+async function start(data) {
+  sky = data;
+  $('loader').hidden = true;
 
-  const select = $('figure');
-  const entries = Object.entries(data.figures)
-    .sort((a, b) => a[1].name.localeCompare(b[1].name, 'fr'));
-  for (const [iau, fig] of entries) {
-    select.append(new Option(`${fig.name} · ${iau}`, iau));
-  }
-  select.value = data.figures.Ori ? 'Ori' : entries[0][0];
+  settings = await loadSettings();
+  buildParams();
+  restoreKey();
+  buildFigureSelect();
+
+  view = new ConstellationView($('viewport'), { data: sky });
+  await view.ready;
 
   wire();
-  showFigure(select.value);
+  selectFigure($('figure').value);
+  probeApi();
 }
 
-/* ----------------------------------------------------------------- options */
-
-function readOptions() {
-  return {
-    padding: +$('padding').value,
-    roll: +$('roll').value,
-    projection: $('projection').value,
-    dim: +$('dim').value,
-    dimLines: +$('dimL').value,
-    focusScale: +$('pop').value,
-    glowScale: +$('glow').value,
-    lineOpacity: +$('lineOp').value,
-    lineWidth: +$('lineW').value,
-    transitionMs: +$('dur').value,
-    star: { rMin: +$('rMin').value, rMax: +$('rMax').value, gamma: +$('gamma').value },
-    color: { saturation: +$('sat').value },
-  };
+async function loadSettings() {
+  try {
+    const r = await fetch(`${SETTINGS_PATH}?t=${Date.now()}`, { cache: 'no-store' });
+    if (r.ok) {
+      const s = await r.json();
+      s.common ??= {};
+      s.figures ??= {};
+      return s;
+    }
+  } catch { /* absent ou file:// */ }
+  return emptySettings();
 }
 
-const LABELS = {
-  roll: (v) => `${v}°`, padding: (v) => `${v} px`, dur: (v) => `${v} ms`,
-  glow: (v) => `${(+v).toFixed(1)}×`,
-};
+/** Sonde la fonction serveur : c'est elle qui sait si elle est configurée. */
+async function probeApi() {
+  const out = $('apiStatus');
+  try {
+    const r = await fetch('/api/save-view', { cache: 'no-store' });
+    const d = await r.json();
+    if (d.configured) {
+      apiReady = true;
+      out.dataset.tone = 'ok';
+      out.textContent = `Écriture active sur ${d.repo} (${d.branch}).`;
+    } else {
+      out.dataset.tone = 'warn';
+      out.textContent = `Écriture non configurée. Variables manquantes : ${d.missing.join(', ')}.`;
+    }
+  } catch {
+    out.dataset.tone = 'warn';
+    out.textContent = 'Fonction /api/save-view injoignable. En local, seule la '
+      + 'prévisualisation fonctionne — les réglages ne peuvent pas être enregistrés.';
+  }
+  refreshDirty();
+}
 
-function wire() {
-  const ids = ['padding', 'roll', 'projection', 'dim', 'dimL', 'pop', 'glow',
-    'lineOp', 'lineW', 'dur', 'rMin', 'rMax', 'gamma', 'sat'];
+/* ------------------------------------------------------------------- clé */
 
-  for (const id of ids) {
-    const input = $(id);
-    input.addEventListener('input', () => {
-      const out = $(`${id}Val`);
-      if (out) out.textContent = (LABELS[id] ?? ((v) => (+v).toFixed(2)))(input.value);
-      view.setOptions(readOptions());
-      // La transition CSS est régénérée à chaque repeint : on réapplique le focus.
-      if (current !== null) view.focus(current);
-      placeTooltip();
-      updateReadout();
+const KEY_STORE = 'ekko-admin-key';   // partagé avec verification.html
+
+function restoreKey() {
+  try {
+    const k = sessionStorage.getItem(KEY_STORE);
+    if (k) $('admKey').value = k;
+  } catch { /* stockage indisponible */ }
+
+  $('admKey').addEventListener('input', (e) => {
+    try { sessionStorage.setItem(KEY_STORE, e.target.value); } catch { /* ignore */ }
+    refreshDirty();
+  });
+}
+
+/* ============================================================== contrôles */
+
+function fmt(key, v) {
+  const p = PARAMS[key];
+  if (p.type === 'enum') return p.labels?.[v] ?? v;
+  return `${Number(v).toFixed(p.decimals ?? 2)}${p.unit ?? ''}`;
+}
+
+function buildParams() {
+  buildScope('figure', $('figureParams'));
+  buildScope('common', $('commonParams'));
+}
+
+function buildScope(scope, host) {
+  const keys = scope === 'common' ? COMMON_KEYS : FIGURE_KEYS;
+
+  for (const section of SECTIONS[scope]) {
+    const inSection = keys.filter((k) => PARAMS[k].section === section);
+    if (!inSection.length) continue;
+
+    // Un seul groupe par scope : l'étiquette de section devient du bruit.
+    if (SECTIONS[scope].length > 1) {
+      const h = document.createElement('p');
+      h.className = 'sect';
+      h.textContent = section;
+      host.append(h);
+    }
+
+    for (const key of inSection) host.append(buildRow(scope, key));
+  }
+}
+
+function buildRow(scope, key) {
+  const p = PARAMS[key];
+  const row = document.createElement('label');
+  row.className = 'row';
+
+  const name = document.createElement('span');
+  name.textContent = p.label;
+  const out = document.createElement('span');
+  out.className = 'val';
+  row.append(name, out);
+
+  if (p.type === 'enum') {
+    const sel = document.createElement('select');
+    for (const v of p.values) sel.append(new Option(p.labels?.[v] ?? v, v));
+    row.append(sel);
+    controls.set(key, {
+      scope,
+      get: () => sel.value,
+      set: (v) => { sel.value = v; out.textContent = ''; },
+      onChange: (fn) => sel.addEventListener('change', fn),
     });
+    return row;
   }
 
-  $('figure').addEventListener('change', (e) => showFigure(e.target.value));
+  const range = document.createElement('input');
+  Object.assign(range, { type: 'range', min: p.min, max: p.max, step: p.step });
+
+  // Les réglages propres à une figure méritent une saisie exacte : c'est là
+  // qu'on veut poser 137 et pas « quelque part vers 140 ».
+  if (scope === 'figure') {
+    const num = document.createElement('input');
+    Object.assign(num, { type: 'number', min: p.min, max: p.max, step: p.step });
+    const pair = document.createElement('div');
+    pair.className = 'pair';
+    pair.append(range, num);
+    row.append(pair);
+
+    const sync = (src, dst) => { dst.value = src.value; out.textContent = ''; };
+    controls.set(key, {
+      scope,
+      get: () => Number(range.value),
+      set: (v) => { range.value = v; num.value = v; out.textContent = ''; },
+      onChange: (fn) => {
+        range.addEventListener('input', () => { sync(range, num); fn(); });
+        num.addEventListener('input', () => { sync(num, range); fn(); });
+        // Le champ accepte n'importe quel nombre ; on le recale sur la valeur
+        // effectivement retenue quand il perd le focus.
+        num.addEventListener('change', () => { num.value = range.value; fn(); });
+      },
+    });
+    return row;
+  }
+
+  row.append(range);
+  controls.set(key, {
+    scope,
+    get: () => Number(range.value),
+    set: (v) => { range.value = v; out.textContent = fmt(key, v); },
+    onChange: (fn) => range.addEventListener('input', () => { out.textContent = fmt(key, range.value); fn(); }),
+  });
+  return row;
+}
+
+function readScope(scope) {
+  const keys = scope === 'common' ? COMMON_KEYS : FIGURE_KEYS;
+  return Object.fromEntries(keys.map((k) => [k, controls.get(k).get()]));
+}
+
+function writeScope(scope, values) {
+  for (const [k, v] of Object.entries(values)) {
+    if (controls.get(k)?.scope === scope) controls.get(k).set(v);
+  }
+}
+
+/* ================================================================ câblage */
+
+function wire() {
+  for (const [, ctl] of controls) {
+    ctl.onChange(() => { applyToView(); refreshDirty(); });
+  }
+
+  $('figure').addEventListener('change', (e) => selectFigure(e.target.value));
+
+  $('resetFigure').addEventListener('click', () => {
+    writeScope('figure', defaultsFor('figure'));
+    applyToView(); refreshDirty();
+  });
+  $('resetCommon').addEventListener('click', () => {
+    writeScope('common', defaultsFor('common'));
+    applyToView(); refreshDirty();
+  });
+
+  $('fromMap').addEventListener('click', pullRollFromMap);
+  $('saveFigure').addEventListener('click', () => save('figure'));
+  $('saveCommon').addEventListener('click', () => save('common'));
+
   window.addEventListener('resize', () => requestAnimationFrame(placeTooltip));
 }
 
-/* ------------------------------------------------------------------ figure */
-
-function showFigure(iau) {
-  view.setFigure(iau);
-  current = null;
-  hideTooltip();
-  buildStarList();
+function applyToView() {
+  const draft = { ...readScope('common'), ...readScope('figure') };
+  view.setOptions(toViewOptions({ common: draft, figures: {} }, currentIau));
+  placeTooltip();
   updateReadout();
 }
+
+/* ------------------------------------------------------------- sélection */
+
+function buildFigureSelect() {
+  const sel = $('figure');
+  sel.replaceChildren();
+  const entries = Object.entries(sky.figures)
+    .sort((a, b) => a[1].name.localeCompare(b[1].name, 'fr'));
+
+  for (const [iau, fig] of entries) {
+    const done = Boolean(settings.figures?.[iau]);
+    sel.append(new Option(`${fig.name} · ${iau}${done ? ' •' : ''}`, iau));
+  }
+  sel.value = currentIau ?? (sky.figures.Ori ? 'Ori' : entries[0][0]);
+}
+
+function selectFigure(iau) {
+  currentIau = iau;
+  writeScope('figure', resolve(settings, iau));
+  // Options d'abord, figure ensuite : sinon on peint une fois avec l'ancien
+  // cadrage avant de repeindre avec le bon.
+  const draft = { ...readScope('common'), ...readScope('figure') };
+  view.setOptions(toViewOptions({ common: draft, figures: {} }, iau));
+  view.setFigure(iau);
+  updateReadout();
+  litStar = null;
+  hideTooltip();
+  buildStarList();
+  refreshDirty();
+  $('figureStatus').textContent = '';
+  $('figureStatus').removeAttribute('data-tone');
+}
+
+/* --------------------------------------------------------------- dirty */
+
+function dirtyKeys(scope) {
+  const stored = scope === 'common'
+    ? { ...defaultsFor('common'), ...(settings.common ?? {}) }
+    : { ...defaultsFor('figure'), ...(settings.figures?.[currentIau] ?? {}) };
+  const draft = readScope(scope);
+  return Object.keys(draft).filter((k) => String(draft[k]) !== String(stored[k]));
+}
+
+function refreshDirty() {
+  const hasKey = Boolean($('admKey').value.trim());
+
+  for (const [scope, block, button] of [
+    ['figure', $('blockFigure'), $('saveFigure')],
+    ['common', $('blockCommon'), $('saveCommon')],
+  ]) {
+    const dirty = dirtyKeys(scope).length > 0;
+    block.toggleAttribute('data-dirty', dirty);
+    button.disabled = !dirty || !apiReady || !hasKey;
+  }
+}
+
+/* ============================================================= sauvegarde */
+
+async function save(scope) {
+  const button = scope === 'common' ? $('saveCommon') : $('saveFigure');
+  const out = scope === 'common' ? $('commonStatus') : $('figureStatus');
+  const values = readScope(scope);
+
+  button.disabled = true;
+  out.dataset.tone = '';
+  out.textContent = 'Commit en cours…';
+
+  const body = scope === 'common'
+    ? { scope, values }
+    : { scope, id: currentIau, values };
+
+  let res; let data;
+  try {
+    res = await fetch('/api/save-view', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-ekko-key': $('admKey').value.trim() },
+      body: JSON.stringify(body),
+    });
+    data = await res.json().catch(() => ({}));
+  } catch (e) {
+    out.dataset.tone = 'bad';
+    out.textContent = `Fonction injoignable : ${e.message}`;
+    refreshDirty();
+    return;
+  }
+
+  if (!res.ok) {
+    out.dataset.tone = 'bad';
+    out.textContent = [data.error, data.detail].filter(Boolean).join(' — ')
+      || `Erreur ${res.status}`;
+    refreshDirty();
+    return;
+  }
+
+  // Le dépôt fait foi : on aligne l'état local sur ce qui vient d'être écrit.
+  if (scope === 'common') Object.assign(settings.common, values);
+  else settings.figures[currentIau] = { ...(settings.figures[currentIau] ?? {}), ...values };
+  settings.updatedAt = data.updatedAt;
+
+  buildFigureSelect();
+  refreshDirty();
+
+  const link = data.commitUrl
+    ? ` <a href="${data.commitUrl}" target="_blank" rel="noopener">voir le commit</a>`
+    : '';
+  out.dataset.tone = 'warn';
+  out.innerHTML = `Commit fait.${link} Redéploiement Vercel en cours…`;
+
+  awaitDeploy(data.updatedAt, out, link);
+}
+
+/**
+ * Confirmation réelle de mise en ligne : on interroge le fichier servi jusqu'à
+ * ce qu'il porte l'horodatage qu'on vient d'écrire. Tant qu'il porte l'ancien,
+ * le CDN sert encore le déploiement précédent.
+ */
+async function awaitDeploy(expected, out, link) {
+  const started = Date.now();
+  const LIMIT = 180000;
+
+  while (Date.now() - started < LIMIT) {
+    await new Promise((r) => setTimeout(r, 4000));
+    try {
+      const r = await fetch(`${SETTINGS_PATH}?t=${Date.now()}`, { cache: 'no-store' });
+      if (r.ok) {
+        const served = await r.json();
+        if (served.updatedAt === expected) {
+          const s = Math.round((Date.now() - started) / 1000);
+          out.dataset.tone = 'ok';
+          out.innerHTML = `En ligne (${s} s).${link}`;
+          return;
+        }
+      }
+    } catch { /* redéploiement en cours, la requête peut échouer */ }
+
+    const s = Math.round((Date.now() - started) / 1000);
+    out.innerHTML = `Commit fait.${link} Redéploiement Vercel… ${s} s`;
+  }
+
+  out.dataset.tone = 'warn';
+  out.innerHTML = `Commit fait${link}, mais la mise en ligne n'est pas confirmée après `
+    + `3 minutes. Vérifie l'onglet Deployments de Vercel.`;
+}
+
+/* --------------------------------------------------- angle depuis la carte */
+
+/**
+ * Reprend l'angle déjà validé dans /verification, qui vit dans
+ * skyculture/ekko/roll-adjust.json. Le format y étant historique, on tolère
+ * plusieurs formes plutôt que d'échouer sur une clé inattendue.
+ */
+async function pullRollFromMap() {
+  const out = $('figureStatus');
+  out.dataset.tone = '';
+  out.textContent = 'Lecture de roll-adjust.json…';
+
+  let table = null;
+  try {
+    const r = await fetch(`skyculture/ekko/roll-adjust.json?t=${Date.now()}`, { cache: 'no-store' });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    table = await r.json();
+  } catch (e) {
+    out.dataset.tone = 'bad';
+    out.textContent = `roll-adjust.json illisible : ${e.message}`;
+    return;
+  }
+
+  const bag = table.angles ?? table.rolls ?? table;
+  const id = currentIau.toLowerCase();
+  const hit = bag[id] ?? bag[currentIau];
+  const angle = typeof hit === 'number' ? hit
+    : typeof hit?.angle === 'number' ? hit.angle
+      : typeof hit?.roll === 'number' ? hit.roll : null;
+
+  if (angle === null) {
+    out.dataset.tone = 'warn';
+    out.textContent = `Aucun angle validé pour ${currentIau} dans roll-adjust.json.`;
+    return;
+  }
+
+  controls.get('rotation').set(Math.round(angle));
+  applyToView();
+  refreshDirty();
+  out.dataset.tone = 'ok';
+  out.textContent = `Angle de la carte reporté : ${Math.round(angle)}°. Reste à enregistrer.`;
+}
+
+/* ================================================================== essai */
 
 function buildStarList() {
   const list = $('starlist');
@@ -396,32 +698,28 @@ function buildStarList() {
     b.type = 'button';
     b.textContent = s.name ?? `HIP ${s.hip}`;
     b.title = `HIP ${s.hip} · mag ${s.mag.toFixed(2)}`;
+    b.dataset.hip = s.hip;
     b.setAttribute('aria-pressed', 'false');
     b.addEventListener('click', () => toggleStar(s.hip));
-    b.dataset.hip = s.hip;
     list.append(b);
   }
 }
 
 function toggleStar(hip) {
-  const next = current === hip ? null : hip;
-  current = next;
-
+  litStar = litStar === hip ? null : hip;
   for (const b of $('starlist').children) {
-    b.setAttribute('aria-pressed', String(+b.dataset.hip === next));
+    b.setAttribute('aria-pressed', String(Number(b.dataset.hip) === litStar));
   }
-
-  if (next === null) { view.clearFocus(); hideTooltip(); return; }
-  view.focus(next);
-  showTooltip(next);
+  if (litStar === null) { view.clearFocus(); hideTooltip(); return; }
+  view.focus(litStar);
+  showTooltip(litStar);
 }
-
-/* ----------------------------------------------------------------- tooltip */
 
 function showTooltip(hip) {
   const s = view.listStars().find((p) => p.hip === hip);
-  const raw = view.data.stars[hip];
-  tooltip.innerHTML = '';
+  const raw = sky.stars[hip];
+  const tooltip = $('tooltip');
+  tooltip.replaceChildren();
 
   const h = document.createElement('h3');
   h.textContent = s.name ?? `HIP ${s.hip}`;
@@ -434,51 +732,47 @@ function showTooltip(hip) {
   const rule = document.createElement('div');
   rule.className = 'rule';
   const body = document.createElement('p');
-  body.textContent = 'Emplacement du contenu rédigé dans le Studio : texte, image, '
-    + 'chiffre clé. Ce bloc n\'est là que pour valider l\'ancrage et le placement.';
+  body.textContent = 'Emplacement du contenu rédigé dans le Studio. Ce bloc ne sert '
+    + "qu'à valider l'ancrage et la bascule aux bords.";
 
   tooltip.append(h, meta, rule, body);
   tooltip.setAttribute('data-visible', '');
   placeTooltip();
 }
 
-function hideTooltip() { tooltip.removeAttribute('data-visible'); }
+function hideTooltip() { $('tooltip').removeAttribute('data-visible'); }
 
-/**
- * Ancrage de l'info-bulle sur l'étoile, avec bascule automatique quand on
- * approche d'un bord. C'est cette logique qui sera reprise dans le player.
- */
 function placeTooltip() {
-  if (current === null || !tooltip.hasAttribute('data-visible')) return;
-  const p = view.getStarPoint(current);
+  const tooltip = $('tooltip');
+  if (litStar === null || !tooltip.hasAttribute('data-visible')) return;
+  const p = view.getStarPoint(litStar);
   if (!p) return;
 
-  const vp = viewport.getBoundingClientRect();
-  const stage = document.getElementById('stage').getBoundingClientRect();
-  const w = tooltip.offsetWidth;
-  const h = tooltip.offsetHeight;
+  const vp = $('viewport').getBoundingClientRect();
+  const stage = $('stage').getBoundingClientRect();
+  const panelW = $('panel').offsetWidth;
   const gap = 18 + p.r;
 
-  // Origine de l'étoile, dans le repère du stage.
   const sx = vp.left - stage.left + p.x;
   const sy = vp.top - stage.top + p.y;
 
-  const flipX = sx + gap + w > stage.width - 380 - 16;
-  const flipY = sy + gap + h > stage.height - 16;
+  const flipX = sx + gap + tooltip.offsetWidth > stage.width - panelW - 16;
+  const flipY = sy + gap + tooltip.offsetHeight > stage.height - 16;
 
-  tooltip.style.left = `${Math.max(16, flipX ? sx - gap - w : sx + gap)}px`;
-  tooltip.style.top = `${Math.max(16, flipY ? sy - gap - h : sy + gap)}px`;
+  tooltip.style.left = `${Math.max(16, flipX ? sx - gap - tooltip.offsetWidth : sx + gap)}px`;
+  tooltip.style.top = `${Math.max(16, flipY ? sy - gap - tooltip.offsetHeight : sy + gap)}px`;
 }
 
-/* ----------------------------------------------------------------- lecture */
+/* ---------------------------------------------------------------- lecture */
 
 function updateReadout() {
   const fig = view.figure;
   const l = view.layout;
+  const done = Object.keys(settings.figures ?? {}).length;
   $('readout').textContent =
-    `${fig.name} — ${l.stars.length} étoiles, ${l.segments.length} segments · `
-    + `rayon ${fig.radius.toFixed(1)}° · centre ${fig.center.ra.toFixed(1)}° / `
-    + `${fig.center.dec >= 0 ? '+' : ''}${fig.center.dec.toFixed(1)}°`;
+    `${l.stars.length} étoiles, ${l.segments.length} segments · rayon ${fig.radius.toFixed(1)}° · `
+    + `centre ${fig.center.ra.toFixed(1)}° / ${fig.center.dec >= 0 ? '+' : ''}${fig.center.dec.toFixed(1)}° `
+    + `— ${done} figure${done > 1 ? 's' : ''} sur 52 réglée${done > 1 ? 's' : ''}`;
 }
 </script>
 </body>
