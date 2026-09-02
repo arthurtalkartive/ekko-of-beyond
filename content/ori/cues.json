@@ -3,10 +3,9 @@
  "constellation": "ori",
  "iau": "Ori",
  "updatedAt": "1970-01-01T00:00:00.000Z",
- "_demo": "Jeu de démonstration. À écraser dès le premier enregistrement depuis /calibration.",
- "audioSrc": "",
+ "_demo": "Jeu de démonstration. Écrase-le au premier enregistrement depuis /calibration. L'audio attendu est content/ori/audio.mp3.",
+ "audioSrc": "content/ori/audio.mp3",
  "duration": 243,
- "group": "Équatoriales",
  "chime": {
   "enabled": true,
   "offset": 0.25,
