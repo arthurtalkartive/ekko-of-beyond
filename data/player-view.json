@@ -1,6 +1,6 @@
 {
  "$schema": "ekko-player-view/1",
- "updatedAt": "2026-09-02T13:58:09.652Z",
+ "updatedAt": "2026-09-02T14:04:21.541Z",
  "common": {
   "projection": "stereographic",
   "starRadiusMin": 3.6,
@@ -12,7 +12,7 @@
   "lineWidth": 0.8,
   "dim": 0.28,
   "dimLines": 0.28,
-  "focusScale": 1.8,
+  "focusScale": 1.85,
   "transitionMs": 800
  },
  "figures": {}
