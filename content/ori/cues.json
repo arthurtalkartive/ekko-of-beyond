@@ -2,7 +2,7 @@
  "$schema": "ekko-cues/1",
  "constellation": "ori",
  "iau": "Ori",
- "updatedAt": "2026-09-02T15:34:19.944Z",
+ "updatedAt": "2026-09-02T15:35:13.646Z",
  "audioSrc": "content/ori/audio.mp3",
  "duration": 243,
  "group": "",
@@ -10,7 +10,7 @@
   "enabled": true,
   "offset": 0.25,
   "gain": 0.45,
-  "url": null
+  "url": "assets/audio/chimes/universfield-soft-notification-146623.mp3"
  },
  "cues": [
   {
