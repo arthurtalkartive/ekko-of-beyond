@@ -22,6 +22,15 @@
       ]
     },
     {
+      "source": "/content/(.*)/cues.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/api/(.*)",
       "headers": [
         {
@@ -41,6 +50,15 @@
     },
     {
       "source": "/data/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/content/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
