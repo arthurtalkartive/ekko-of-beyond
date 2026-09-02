@@ -1,0 +1,85 @@
+{
+ "$schema": "ekko-cues/1",
+ "constellation": "ori",
+ "iau": "Ori",
+ "updatedAt": "1970-01-01T00:00:00.000Z",
+ "_demo": "Jeu de démonstration. À écraser dès le premier enregistrement depuis /calibration.",
+ "audioSrc": "",
+ "duration": 243,
+ "group": "Équatoriales",
+ "chime": {
+  "enabled": true,
+  "offset": 0.25,
+  "gain": 0.45,
+  "url": null
+ },
+ "cues": [
+  {
+   "id": "betelgeuse",
+   "start": 22.0,
+   "end": 40.0,
+   "hips": [
+    27989
+   ],
+   "card": {
+    "title": "Bételgeuse",
+    "subtitle": "Supergéante rouge",
+    "body": "Son diamètre dépasse l'orbite de Mars. Sa couleur orangée se voit à l'œil nu, sans instrument."
+   }
+  },
+  {
+   "id": "rigel",
+   "start": 56.5,
+   "end": 74.0,
+   "hips": [
+    24436
+   ],
+   "card": {
+    "title": "Rigel",
+    "subtitle": "Supergéante bleue",
+    "body": "La plus brillante de la figure. Bien plus chaude que Bételgeuse, d'où sa teinte bleutée."
+   }
+  },
+  {
+   "id": "baudrier",
+   "start": 96.0,
+   "end": 118.0,
+   "hips": [
+    26727,
+    26311,
+    25930
+   ],
+   "card": {
+    "title": "Le Baudrier",
+    "subtitle": "Alnitak, Alnilam, Mintaka",
+    "body": "Trois étoiles presque alignées et presque équidistantes. C'est le repère le plus sûr du ciel d'hiver."
+   }
+  },
+  {
+   "id": "bellatrix",
+   "start": 142.0,
+   "end": 158.0,
+   "hips": [
+    25336
+   ],
+   "card": {
+    "title": "Bellatrix",
+    "subtitle": "L'épaule ouest",
+    "body": "Son nom latin signifie « la guerrière ». Elle marque l'épaule opposée à Bételgeuse."
+   }
+  },
+  {
+   "id": "saiph",
+   "start": 186.0,
+   "end": 204.0,
+   "hips": [
+    27366
+   ],
+   "card": {
+    "title": "Saïph",
+    "subtitle": "Le genou du chasseur",
+    "body": "Aussi chaude que Rigel mais bien plus lointaine, elle nous paraît nettement plus faible."
+   }
+  }
+ ]
+}
