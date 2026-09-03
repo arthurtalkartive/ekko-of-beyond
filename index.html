@@ -284,6 +284,11 @@ button.account{cursor:pointer}
   display:flex;flex-direction:column;
   opacity:0;transform:translateY(-8px);pointer-events:none;
   transition:opacity .22s,transform .22s;
+  /* Sur un ecran bas (telephone en paysage), la liste peut depasser le bas
+     du viewport — rien ne la contraignait, elle debordait alors sans
+     recours au defilement. */
+  max-height:calc(100vh - var(--hd-h) - var(--safe-t) - 20px);
+  overflow-y:auto;
 }
 #menu.on{opacity:1;transform:translateY(0);pointer-events:auto}
 .mi{display:block;padding:11px 13px;border-radius:9px;text-decoration:none;
@@ -454,7 +459,13 @@ body.collection #reticle{opacity:0;pointer-events:none}
   header{justify-content:center;position:fixed}
   .account{position:fixed;right:32px;top:calc(27px + var(--safe-t));z-index:12}
 }
-@media (max-width:820px){
+/* Cette regle etait indexee uniquement sur la largeur. Un telephone en
+   paysage (souvent 800 a 930px de large) ne la declenchait donc jamais et
+   gardait la mise en page "large" — carte flottante, boutons de zoom et
+   toggle a taille et decalages penses pour un ecran haut — alors que la
+   hauteur reelle n'y suffit pas : carte, zoom et toggle se retrouvaient
+   superposes. Le second terme couvre ce cas sans dupliquer les regles. */
+@media (max-width:820px), (max-height:500px){
   .c-pos{bottom:calc(118px + var(--safe-b));font-size:10px}
   :root{--hd-h:72px;--notch-w:210px;--notch-d:7px}
   header{padding:calc(18px + var(--safe-t)) 18px 18px}

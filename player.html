@@ -276,7 +276,35 @@
     #card { width: 268px; }
     #account span { display: none; }
     .pill { padding: 10px 20px; font-size: 14px; }
+    /* La géométrie de PlayerHeader (js/player-header.js) suppose déjà, à
+       partir de 720px, que les deux boutons qui encadrent le titre sont
+       réduits à leur icône — c'est ce qui lui permet d'élargir la
+       découpe centrale sans se soucier de leur largeur réelle. #account
+       tenait cette promesse, #back non : son libellé texte restait
+       affiché et se faisait recouvrir par le titre sur les écrans
+       étroits. Les deux doivent se replier au même palier. */
+    #back span { display: none; }
+    .pill { gap: 0; }
   }
+
+  /* En paysage sur téléphone, la hauteur disponible s'effondre : les
+     décalages fixes de #middle (pensés pour un écran haut) ne laissaient
+     presque plus rien à la vue de constellation — parfois moins de 40px
+     de hauteur utile. On raisonne ici sur la hauteur, indépendamment de
+     la largeur, pour lui rendre de la place. */
+  @media (max-height: 520px) {
+    :root { --ctl: .68; }
+    #header { height: 60px; }
+    #badge { display: none; }
+    #status { font-size: 11px; }
+    /* 104px = la découpe compacte de PlayerHeader (js/player-header.js,
+       SVG_TOTAL_H_COMPACT), plus une petite marge sous le glyphe suspendu.
+       Les deux valeurs doivent avancer ensemble. */
+    #middle { top: 108px; bottom: 92px; }
+    #bottom { padding-bottom: 8px; }
+    #bar { gap: 6px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #shell, #curtain, #card { transition-duration: 1ms; }
   }
