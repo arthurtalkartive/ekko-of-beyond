@@ -47,7 +47,7 @@ img{max-width:100%;display:block}
   padding:calc(56px + var(--st)) 26px calc(56px + var(--sb));
   display:flex;flex-direction:column;align-items:center;min-height:100vh;justify-content:center;
 }
-.auth-logo{width:min(230px,58vw);flex:none;margin-bottom:40px}
+.auth-logo{width:min(170px,42vw);flex:none;margin-bottom:36px}
 .auth-logo svg{width:100%;display:block}
 
 .auth-head{width:100%;display:flex;flex-direction:column;align-items:center}

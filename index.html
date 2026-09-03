@@ -1759,6 +1759,7 @@ function startBadge(container, onDone, onStart){
     if(done) return;
     done = true;
     splash.classList.add('out');
+    if(window.ekkoFadeOutBgm) window.ekkoFadeOutBgm();
     setTimeout(function(){ splash.classList.add('gone'); }, 950);
   };
 
@@ -3090,6 +3091,23 @@ if(navigator.geolocation){
     { enableHighAccuracy:false, timeout:6000 }
   );
 }else boot(GEO.lat, GEO.lon);
+</script>
+
+<script type="module">
+  /* Musique du splash : demarre en fondu d'entree, s'eteint en fondu au
+     moment ou l'ecran bascule vers la carte du ciel (voir finish() dans
+     le bloc SPLASHSCREEN plus haut, qui appelle window.ekkoFadeOutBgm).
+     Ecarte du script classique parce que les modules sont le seul moyen
+     d'importer js/bgm.js — le pont entre les deux se fait par cette
+     fonction posee sur window. Ne joue pas si le splash est deja passe
+     cette session (rien a faire fondre) : voir la classe html.no-splash. */
+  if(!document.documentElement.classList.contains('no-splash')){
+    import('/js/bgm.js').then(({ startBgm, mountMuteButton, fadeOutAndPause }) => {
+      const bgmAudio = startBgm({ fadeIn: true });
+      mountMuteButton(bgmAudio);
+      window.ekkoFadeOutBgm = function(){ fadeOutAndPause(bgmAudio, 1400); };
+    });
+  }
 </script>
 </body>
 </html>
