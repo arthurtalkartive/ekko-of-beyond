@@ -37,6 +37,20 @@
     }
   }catch(e){}
 })();
+
+/* File d'attente pour la musique de fond : window.ekkoStartBgm et
+   window.ekkoFadeOutBgm doivent exister DES LE DEBUT, avant meme que le
+   module qui charge js/bgm.js ait eu la moindre chance de s'executer
+   (les modules sont toujours differes, un script classique peut tres
+   bien les devancer — c'etait exactement le bug remonte : la musique
+   ne se relancait pas a la deuxieme visite parce que ce script-ci
+   tournait plus vite une fois le cache chaud, et appelait une fonction
+   qui n'existait pas encore). Chaque appel est mis en file ici, puis
+   rejoue dans l'ordre des qu'un vrai gestionnaire est branche — voir le
+   script "musique" en bas de page. */
+window.__ekkoBgmQueue = [];
+window.ekkoStartBgm = function(){ window.__ekkoBgmQueue.push('start'); };
+window.ekkoFadeOutBgm = function(){ window.__ekkoBgmQueue.push('fadeout'); };
 </script>
 <link rel="preload" as="image" href="/assets/img/splash-background.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,8 +107,11 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 #splash.out{opacity:0;pointer-events:none}
 #splash.gone{display:none}
-/* session déjà entamée : le splash n'est même pas affiché */
-html.no-splash #splash{display:none}
+/* Rien de plus a faire ici pour "no-splash" : le JS (voir le bloc
+   SPLASHSCREEN) decide seul, une fois la session connue, s'il faut
+   reveler la carte (classes out/gone, comme l'animation normale) ou le
+   portail (#splash-gate.on) — une regle CSS qui masquerait #splash
+   d'office masquerait le portail avec, puisqu'il vit a l'interieur. */
 /* Fond etoile fourni : il porte deja le degrade et la lueur turquoise du
    bas. On n'ajoute donc pas l'ellipse en color-dodge par-dessus, elle
    surexposerait la partie basse. Le degrade sous l'image sert de fond
@@ -117,7 +134,9 @@ html.no-splash #splash{display:none}
 #splash-badge{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:min(250px,46vw);aspect-ratio:281 / 271;pointer-events:none;
+  opacity:1;transition:opacity .4s ease;
 }
+#splash-badge.hide{opacity:0}
 /* Le badge en video. Son fond noir n'est pas une couche alpha : il n'y a
    rien a retirer. On le neutralise par fusion « screen », ou le noir
    n'ajoute rien et seuls les pixels clairs apparaissent — exactement le
@@ -126,6 +145,153 @@ html.no-splash #splash{display:none}
    couche alpha (WebM VP9 en yuva420p), remplacez screen par normal. */
 #splash-badge video{
   width:100%;height:100%;object-fit:contain;display:block;
+}
+
+/* ================= PORTAIL + AUTHENTIFICATION =================
+   Portail, inscription, connexion, mot de passe oublie et sa
+   reinitialisation : cinq etats d'un seul et meme bloc, pas cinq pages.
+   Necessaire pour que la musique ne soit jamais coupee par un
+   rechargement, et pour permettre un vrai fondu entre ecrans (demande
+   explicite) plutot qu'un blanc de navigation. Le routage (quel etat
+   correspond a quelle URL) est gere en JS, voir le bloc ECRANS
+   D'AUTHENTIFICATION. */
+#splash-gate{
+  position:absolute;inset:0;z-index:1;
+  display:flex;align-items:center;justify-content:center;overflow-y:auto;
+  padding:40px 20px;box-sizing:border-box;
+  opacity:0;pointer-events:none;transition:opacity .6s ease;
+}
+#splash-gate.on{opacity:1;pointer-events:auto}
+#splash-gate.no-anim{transition:none}
+.sg-inner{width:min(400px,100%);display:flex;flex-direction:column;align-items:center;margin:auto 0}
+.sg-logo{width:min(160px,52vw);margin-bottom:40px;flex:none;transition:margin .4s ease}
+.sg-logo svg,.sg-logo img{width:100%;display:block}
+/* Le contenu sous le logo change d'un etat a l'autre : lui seul se
+   fond, le logo reste un point fixe pendant toute la traversee. */
+#sg-content{width:100%;transition:opacity .32s ease;opacity:1}
+#sg-content.fading{opacity:0}
+.sg-acts{display:flex;flex-direction:column;gap:14px;width:100%}
+.sg-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:15px 30px;border-radius:20000px;box-sizing:border-box;
+  text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.02em;
+  text-transform:uppercase;color:#E3E3C4;
+  border:1px solid rgba(227,227,196,.5);
+  transition:background .2s,border-color .2s;
+}
+.sg-btn:hover{background:rgba(227,227,196,.1);border-color:#E3E3C4}
+.sg-btn.primary{
+  border-color:#E3E3C4;
+  background:linear-gradient(180deg,rgba(227,227,196,.04) 0%,rgba(227,227,196,.2) 100%);
+}
+.sg-btn.primary:hover{background:linear-gradient(180deg,rgba(227,227,196,.08) 0%,rgba(227,227,196,.28) 100%)}
+.sg-btn .ln{flex:1 1 auto;height:1px;background:rgba(227,227,196,.5);min-width:8px}
+.sg-btn .r7{width:7px;height:7px;border-radius:50%;border:1px solid #E3E3C4;flex:none}
+.sg-btn .d5{width:5px;height:5px;border-radius:50%;background:#E3E3C4;flex:none}
+.sg-btn .txt{white-space:nowrap}
+@media (max-width:420px){
+  .sg-btn{font-size:13.5px;padding:13px 20px}
+  .sg-logo{margin-bottom:32px}
+}
+
+/* ---------- ecrans d'authentification (titre, formulaire, champs) ----------
+   Portes directement depuis l'ancienne feuille partagee assets/css/auth.css
+   (les 4 pages autonomes qu'elles remplacent) : memes classes, pour que le
+   JS qui construit chaque ecran n'ait rien de nouveau a apprendre. */
+.auth-head{width:100%;display:flex;flex-direction:column;align-items:center}
+.auth-title{
+  font-size:clamp(24px,7vw,36px);font-weight:700;text-transform:uppercase;
+  color:var(--cream);text-align:center;width:100%;line-height:1.1;
+}
+.auth-rule{display:flex;align-items:center;gap:5px;width:100%;margin-top:14px}
+.auth-rule .ln{flex:1 1 auto;height:1px;background:var(--cream-50)}
+.auth-rule .r7{width:7px;height:7px;border-radius:50%;border:1px solid var(--cream);flex:none}
+.auth-rule .d5{width:5px;height:5px;border-radius:50%;background:var(--cream);flex:none}
+.auth-drop{width:34px;height:22px;margin:-1px auto 0;flex:none;overflow:visible}
+.auth-drop svg{width:100%;height:100%;overflow:visible}
+
+.auth-note{
+  margin-top:22px;font-size:14.5px;line-height:1.5;text-align:center;
+  color:var(--cream-50);max-width:38ch;
+}
+
+.auth-form{width:100%;display:flex;flex-direction:column;gap:22px;margin-top:36px}
+
+.g-btn{
+  width:100%;background:#fff;border-radius:20000px;padding:15px 30px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:background .2s;border:none;cursor:pointer;
+}
+.g-btn:hover{background:#EFEFEF}
+.g-btn svg{width:24px;height:24px;flex:none;display:block}
+.g-btn span{font-weight:700;font-size:16px;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+
+.auth-or{display:flex;align-items:center;gap:14px;width:100%}
+.auth-or .ln-wrap{flex:1 1 0;display:flex;align-items:center;gap:5px;height:7px}
+.auth-or .ln{flex:1 1 auto;height:1px;background:var(--cream-50)}
+.auth-or .r7{width:7px;height:7px;border-radius:50%;border:1px solid var(--cream);flex:none}
+.auth-or .d5{width:5px;height:5px;border-radius:50%;background:var(--cream);flex:none}
+.auth-or span{font-size:15px;font-weight:700;text-transform:uppercase;color:var(--cream);flex:none}
+
+.auth-fields{display:flex;flex-direction:column;gap:10px;width:100%}
+.auth-row{display:flex;gap:5px;width:100%}
+.auth-field{
+  flex:1 1 0;min-width:0;
+  border:1px solid var(--cream);border-radius:20000px;
+  background:linear-gradient(180deg,rgba(227,227,196,.02) 0%,rgba(227,227,196,.1) 100%);
+  padding:2px 26px;transition:border-color .2s;
+}
+.auth-field:focus-within{border-color:#fff}
+.auth-field input{
+  width:100%;background:none;border:none;outline:none;padding:14px 0;
+  font-family:inherit;font-weight:700;font-size:16px;text-transform:uppercase;color:var(--cream);
+}
+.auth-field input::placeholder{color:var(--cream);opacity:.5}
+.auth-field input:-webkit-autofill{
+  -webkit-text-fill-color:var(--cream);
+  transition:background-color 9999s ease-in-out 0s;
+}
+
+.auth-inline-link{
+  align-self:flex-end;font-size:12px;font-weight:700;letter-spacing:.02em;
+  text-transform:uppercase;color:var(--cream-50);text-decoration:underline;
+  margin-top:-2px;cursor:pointer;background:none;border:none;
+}
+.auth-inline-link:hover{color:var(--cream)}
+
+.auth-actions{display:flex;flex-direction:column;gap:18px;align-items:center;width:100%}
+.auth-submit{
+  position:relative;width:100%;border:1px solid var(--cream);border-radius:20000px;
+  background:linear-gradient(180deg,rgba(227,227,196,.04) 0%,rgba(227,227,196,.2) 100%);
+  padding:15px 30px;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;cursor:pointer;
+}
+.auth-submit:hover{background:linear-gradient(180deg,rgba(227,227,196,.08) 0%,rgba(227,227,196,.28) 100%)}
+.auth-submit:disabled{opacity:.55;pointer-events:none}
+.auth-submit .txt{font-weight:700;font-size:16px;text-transform:uppercase;color:var(--cream);white-space:nowrap}
+.auth-submit .spin{
+  width:16px;height:16px;border-radius:50%;border:2px solid var(--c20);border-top-color:var(--cream);
+  animation:auth-spin .7s linear infinite;display:none;
+}
+.auth-submit.loading .txt{opacity:.5}
+.auth-submit.loading .spin{display:block;margin-left:10px}
+@keyframes auth-spin{to{transform:rotate(360deg)}}
+
+.auth-switch{font-size:13px;font-weight:700;text-transform:uppercase;color:#fff;text-decoration:underline;
+  cursor:pointer;background:none;border:none;font-family:inherit}
+.auth-switch:hover{opacity:.8}
+
+.auth-msg{
+  width:100%;padding:12px 18px;border-radius:14px;font-size:13.5px;line-height:1.4;
+  text-align:center;display:none;box-sizing:border-box;
+}
+.auth-msg.on{display:block}
+.auth-msg.err{background:rgba(200,70,70,.14);border:1px solid rgba(200,70,70,.4);color:#F0B8B8}
+.auth-msg.ok{background:rgba(227,227,196,.08);border:1px solid var(--c20);color:var(--cream)}
+
+@media (max-width:480px){
+  .auth-row{flex-direction:column}
+  .auth-form{margin-top:28px;gap:18px}
 }
 
 /* ================= CIEL ================= */
@@ -698,6 +864,15 @@ body.collection #reticle{opacity:0;pointer-events:none}
   <img id="splash-bg" src="/assets/img/splash-background.webp" alt="" decoding="async">
   <div id="splash-fond"></div>
   <div id="splash-badge"></div>
+  <!-- Portail : personne n'est connecte a la fin du splash. Remplace le
+       badge anime par le logo statique et les deux entrees — le meme
+       fond etoile et les memes cercles restent en place derriere. -->
+  <div id="splash-gate">
+    <div class="sg-inner">
+      <div class="sg-logo" id="sg-logo"><img src="/assets/img/logo-beyond.svg" alt="Ekko of Beyond" width="307" height="200"></div>
+      <div id="sg-content"></div>
+    </div>
+  </div>
 </div>
 
 <canvas id="fallback-stars"></canvas>
@@ -1730,7 +1905,17 @@ function startBadge(container, onDone, onStart){
    exactement 3 s. On attend son evenement « complete » plutot que de
    coder la duree en dur, pour que le remplacement du fichier Lottie
    ajuste automatiquement la duree du splash.
+
+   Ce que montre le splash a la fin depend desormais de la session :
+   connecte -> la carte du ciel comme avant ; personne -> le portail
+   (logo + les deux boutons), sur le meme fond. EKKO_SESSION est lancee
+   tout de suite, en parallele de l'animation, pour que la reponse soit
+   deja prete quand l'animation se termine — et reutilisee plus bas
+   dans ce fichier pour ne pas charger le moteur Stellarium en pure
+   perte si personne n'est connecte.
    ============================================================ */
+const EKKO_SESSION = import('/js/supa.js').then(function(m){ return m.getSession(); }).catch(function(){ return null; });
+
 (function(){
   const splash = document.getElementById('splash');
   if(!splash) return;
@@ -1748,9 +1933,48 @@ function startBadge(container, onDone, onStart){
     }
   })();
 
-  /* rien à jouer si le splash a déjà été vu dans cette session */
+  /* Bascule visuelle vers la carte : reutilisee a l'arrivee normale
+     (session deja active au chargement) ET juste apres une connexion ou
+     une inscription reussie dans le portail — il ne doit jamais y avoir
+     de rechargement complet a cet instant, seulement ce fondu, sans quoi
+     la musique serait coupee net plutot que fondue. */
+  window.ekkoRevealSky = function(instant){
+    if(instant){
+      splash.classList.add('out', 'gone');
+    }else{
+      splash.classList.add('out');
+      setTimeout(function(){ splash.classList.add('gone'); }, 950);
+    }
+    window.ekkoFadeOutBgm();
+    if(window.ekkoEnterSky) window.ekkoEnterSky();
+  };
+
+  function revealFor(session, instant){
+    if(session){
+      window.ekkoRevealSky(instant);
+    }else{
+      const badge = document.getElementById('splash-badge');
+      const gate = document.getElementById('splash-gate');
+      if(badge) badge.classList.add('hide');
+      if(gate){ gate.classList.add('on'); if(instant) gate.classList.add('no-anim'); }
+      /* Demarree ici, sans condition sur no-splash : une revisite dans
+         la meme session (splash deja vu) atterrit tout aussi bien sur
+         le portail ou un ecran d'authentification, et merite la meme
+         musique. C'etait le bug remonte : elle ne se relancait pas
+         toute seule a partir de la deuxieme visite. */
+      window.ekkoStartBgm();
+      if(window.ekkoShowAuthScreenFromPath) window.ekkoShowAuthScreenFromPath(true);
+    }
+  }
+
+  /* Splash deja vu cette session : on va directement au bon endroit
+     sans rejouer l'animation, mais seulement une fois la session
+     connue — sinon un membre deconnecte verrait la carte clignoter une
+     fraction de seconde avant d'etre renvoye vers le portail. */
   if(document.documentElement.classList.contains('no-splash')){
-    splash.classList.add('out', 'gone');
+    const badge0 = document.getElementById('splash-badge');
+    if(badge0) badge0.classList.add('hide');
+    EKKO_SESSION.then(function(session){ revealFor(session, true); });
     return;
   }
 
@@ -1758,9 +1982,7 @@ function startBadge(container, onDone, onStart){
   const finish = function(){
     if(done) return;
     done = true;
-    splash.classList.add('out');
-    if(window.ekkoFadeOutBgm) window.ekkoFadeOutBgm();
-    setTimeout(function(){ splash.classList.add('gone'); }, 950);
+    EKKO_SESSION.then(revealFor);
   };
 
   /* Filet de securite : si le lecteur ou un fichier manque, on ne bloque
@@ -3082,32 +3304,339 @@ function zoomBy(f){
 $('#z-in').onclick  = () => zoomBy(0.72);
 $('#z-out').onclick = () => zoomBy(1/0.72);
 
-renderCard();
-renderLevel();
-if(navigator.geolocation){
-  navigator.geolocation.getCurrentPosition(
-    p => boot(p.coords.latitude, p.coords.longitude),
-    () => boot(GEO.lat, GEO.lon),
-    { enableHighAccuracy:false, timeout:6000 }
-  );
-}else boot(GEO.lat, GEO.lon);
+/* Rien de tout ça ne sert a quelqu'un qui va atterrir sur le portail :
+   pas la peine de demander la position ni de charger le moteur
+   Stellarium (le plus lourd du site) en pure perte. Fonction exposee et
+   protegee contre les doubles appels : le chargement initial (session
+   deja active) et une connexion/inscription reussie en cours de visite
+   passent tous les deux par ici. */
+let __ekkoSkyEntered = false;
+window.ekkoEnterSky = function(){
+  if(__ekkoSkyEntered) return;
+  __ekkoSkyEntered = true;
+  renderCard();
+  renderLevel();
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+      p => boot(p.coords.latitude, p.coords.longitude),
+      () => boot(GEO.lat, GEO.lon),
+      { enableHighAccuracy:false, timeout:6000 }
+    );
+  }else boot(GEO.lat, GEO.lon);
+};
+EKKO_SESSION.then(function(session){
+  if(session) window.ekkoEnterSky();
+});
 </script>
 
 <script type="module">
-  /* Musique du splash : demarre en fondu d'entree, s'eteint en fondu au
-     moment ou l'ecran bascule vers la carte du ciel (voir finish() dans
-     le bloc SPLASHSCREEN plus haut, qui appelle window.ekkoFadeOutBgm).
-     Ecarte du script classique parce que les modules sont le seul moyen
-     d'importer js/bgm.js — le pont entre les deux se fait par cette
-     fonction posee sur window. Ne joue pas si le splash est deja passe
-     cette session (rien a faire fondre) : voir la classe html.no-splash. */
-  if(!document.documentElement.classList.contains('no-splash')){
-    import('/js/bgm.js').then(({ startBgm, mountMuteButton, fadeOutAndPause }) => {
-      const bgmAudio = startBgm({ fadeIn: true });
-      mountMuteButton(bgmAudio);
-      window.ekkoFadeOutBgm = function(){ fadeOutAndPause(bgmAudio, 1400); };
+  /* Musique : demarree explicitement par revealFor() (voir le bloc
+     SPLASHSCREEN) des qu'on sait qu'on reste dans la zone "pas encore
+     connecte" (portail ou l'un des ecrans d'authentification) — jamais
+     de maniere inconditionnelle ici, pour ne pas la lancer en pure perte
+     quand une session existe deja et que la carte va s'afficher tout de
+     suite. window.ekkoStartBgm est idempotente : un second appel ne
+     relance rien.
+
+     Ce module remplace les deux fonctions-file d'attente posees tout en
+     haut du document (le tout premier bloc de script) par les vraies
+     implementations, puis rejoue immediatement tout ce qui s'etait
+     accumule en attendant — sans ce rattrapage, un appel arrive avant
+     que ce module soit pret restait sans effet (c'etait le bug de la
+     musique qui ne repartait pas a partir de la deuxieme visite). */
+  import('/js/bgm.js').then(function(m){
+    let bgmAudio = null;
+    let muteBtn = null;
+
+    window.ekkoStartBgm = function(){
+      if(bgmAudio) return;
+      bgmAudio = m.startBgm({ fadeIn: true });
+      muteBtn = m.mountMuteButton(bgmAudio);
+    };
+    window.ekkoFadeOutBgm = function(){
+      if(!bgmAudio) return;
+      m.fadeOutAndPause(bgmAudio, 1400);
+      /* Le bouton mute n'a plus rien a faire une fois sur la carte : il
+         n'y a plus de musique a couper ou remettre a cet endroit. */
+      if(muteBtn){
+        const b = muteBtn; muteBtn = null;
+        b.style.transition = 'opacity .5s ease';
+        b.style.opacity = '0';
+        setTimeout(function(){ b.remove(); }, 550);
+      }
+    };
+
+    const queue = window.__ekkoBgmQueue || [];
+    window.__ekkoBgmQueue = [];
+    queue.forEach(function(action){
+      if(action === 'start') window.ekkoStartBgm();
+      else if(action === 'fadeout') window.ekkoFadeOutBgm();
     });
+  });
+</script>
+
+<script type="module">
+/* ============================================================
+   ECRANS D'AUTHENTIFICATION
+   Portail, inscription, connexion, mot de passe oublie et sa
+   reinitialisation : cinq etats d'un seul bloc (#splash-gate > #sg-content),
+   pas quatre pages separees. Deux raisons a ca, toutes deux explicites :
+   la musique ne doit jamais etre coupee par une navigation, et le
+   passage de l'un a l'autre doit pouvoir se fondre plutot que de
+   recharger. Le routage (quelle URL correspond a quel etat) passe par
+   l'historique (pushState), pas par de vrais rechargements — sauf a
+   l'arrivee initiale, ou l'URL est lue une seule fois.
+   ============================================================ */
+import { supabase, getSession, friendlyAuthError } from '/js/supa.js';
+import { GLYPH_BELOW_TITLE } from '/js/ekko-icons.js';
+
+const GOOGLE_SVG = '<svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.52 12.27c0-.82-.07-1.42-.22-2.05H12v3.9h6.62c-.13 1.1-.86 2.76-2.47 3.87l-.02.15 3.59 2.78.25.02c2.28-2.1 3.55-5.2 3.55-8.67"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.07 7.94-2.9l-3.79-2.94c-1.01.7-2.37 1.2-4.15 1.2-3.17 0-5.86-2.1-6.82-5.02l-.14.01-3.72 2.88-.05.14C3.25 21.3 7.28 24 12 24"/><path fill="#FBBC05" d="M5.18 14.34a7.4 7.4 0 0 1-.4-2.34c0-.82.15-1.6.39-2.34l-.01-.16-3.77-2.94-.12.06A11.93 11.93 0 0 0 0 12c0 1.93.47 3.76 1.27 5.38z"/><path fill="#EA4335" d="M12 4.75c2.26 0 3.78.97 4.65 1.79l3.39-3.31C17.94 1.19 15.24 0 12 0 7.28 0 3.25 2.7 1.27 6.62l3.9 3.04c.97-2.92 3.66-4.91 6.83-4.91"/></svg>';
+const RULE = '<div class="auth-rule"><span class="d5"></span><span class="r7"></span><span class="ln"></span><span class="ln"></span><span class="r7"></span><span class="d5"></span></div>'
+  + '<div class="auth-drop">' + GLYPH_BELOW_TITLE + '</div>';
+const OR = '<div class="auth-or"><span class="ln-wrap"><span class="d5"></span><span class="r7"></span><span class="ln"></span></span><span>ou</span><span class="ln-wrap"><span class="ln"></span><span class="r7"></span><span class="d5"></span></span></div>';
+
+const PATH_TO_SCREEN = {
+  '/inscription': 'inscription',
+  '/connexion': 'connexion',
+  '/mot-de-passe-oublie': 'mdp-oublie',
+  '/reinitialiser-mot-de-passe': 'reinit',
+};
+const SCREEN_TO_PATH = {
+  gate: '/', inscription: '/inscription', connexion: '/connexion',
+  'mdp-oublie': '/mot-de-passe-oublie', reinit: '/reinitialiser-mot-de-passe',
+};
+
+const SCREENS = {
+  gate: function(){
+    return '<div class="sg-acts">'
+      + '<a class="sg-btn primary" href="/inscription" data-nav="inscription">'
+        + '<span class="d5"></span><span class="r7"></span><span class="ln"></span>'
+        + '<span class="txt">Démarrer l\u2019aventure</span>'
+        + '<span class="ln"></span><span class="r7"></span><span class="d5"></span>'
+      + '</a>'
+      + '<a class="sg-btn" href="/connexion" data-nav="connexion"><span class="txt">Connexion</span></a>'
+      + '</div>';
+  },
+
+  inscription: function(){
+    return '<div class="auth-head"><h1 class="auth-title">Démarrer l\u2019aventure</h1>' + RULE + '</div>'
+      + '<form class="auth-form" data-screen="inscription" novalidate>'
+      + '<button type="button" class="g-btn" data-google>' + GOOGLE_SVG + '<span>Connexion avec Google</span></button>'
+      + OR
+      + '<div class="auth-fields">'
+        + '<div class="auth-row">'
+          + '<div class="auth-field"><input type="text" name="first_name" placeholder="Nom" autocomplete="family-name" required></div>'
+          + '<div class="auth-field"><input type="text" name="last_name" placeholder="Prénom" autocomplete="given-name" required></div>'
+        + '</div>'
+        + '<div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div>'
+        + '<div class="auth-field"><input type="password" name="password" placeholder="Mot de passe" autocomplete="new-password" minlength="6" required></div>'
+      + '</div>'
+      + '<div class="auth-msg"></div>'
+      + '<div class="auth-actions">'
+        + '<button type="submit" class="auth-submit"><span class="txt">Démarrer l\u2019aventure</span><span class="spin"></span></button>'
+        + '<button type="button" class="auth-switch" data-nav="connexion">J\u2019ai déjà un compte</button>'
+      + '</div></form>';
+  },
+
+  connexion: function(){
+    return '<div class="auth-head"><h1 class="auth-title">Reprendre l\u2019aventure</h1>' + RULE + '</div>'
+      + '<form class="auth-form" data-screen="connexion" novalidate>'
+      + '<button type="button" class="g-btn" data-google>' + GOOGLE_SVG + '<span>Connexion avec Google</span></button>'
+      + OR
+      + '<div class="auth-fields">'
+        + '<div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div>'
+        + '<div class="auth-field"><input type="password" name="password" placeholder="Mot de passe" autocomplete="current-password" required></div>'
+      + '</div>'
+      + '<button type="button" class="auth-inline-link" data-nav="mdp-oublie">Mot de passe oublié ?</button>'
+      + '<div class="auth-msg"></div>'
+      + '<div class="auth-actions">'
+        + '<button type="submit" class="auth-submit"><span class="txt">Reprendre l\u2019aventure</span><span class="spin"></span></button>'
+        + '<button type="button" class="auth-switch" data-nav="inscription">Je n\u2019ai pas encore de compte</button>'
+      + '</div></form>';
+  },
+
+  'mdp-oublie': function(){
+    return '<div class="auth-head"><h1 class="auth-title">Mot de passe oublié</h1>' + RULE + '</div>'
+      + '<p class="auth-note">Indique l\u2019adresse avec laquelle tu t\u2019es inscrit : on t\u2019envoie un lien pour choisir un nouveau mot de passe.</p>'
+      + '<form class="auth-form" data-screen="mdp-oublie" novalidate>'
+      + '<div class="auth-fields"><div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div></div>'
+      + '<div class="auth-msg"></div>'
+      + '<div class="auth-actions">'
+        + '<button type="submit" class="auth-submit"><span class="txt">Envoyer le lien</span><span class="spin"></span></button>'
+        + '<button type="button" class="auth-switch" data-nav="connexion">Retour à la connexion</button>'
+      + '</div></form>';
+  },
+
+  reinit: function(){
+    return '<div class="auth-head"><h1 class="auth-title">Nouveau mot de passe</h1>' + RULE + '</div>'
+      + '<p class="auth-note" data-reinit-note>Choisis le mot de passe qui remplacera l\u2019ancien.</p>'
+      + '<form class="auth-form" data-screen="reinit" novalidate>'
+      + '<div class="auth-fields">'
+        + '<div class="auth-field"><input type="password" name="password" placeholder="Nouveau mot de passe" autocomplete="new-password" minlength="6" required></div>'
+        + '<div class="auth-field"><input type="password" name="confirm" placeholder="Confirme le mot de passe" autocomplete="new-password" minlength="6" required></div>'
+      + '</div>'
+      + '<div class="auth-msg"></div>'
+      + '<div class="auth-actions">'
+        + '<button type="submit" class="auth-submit"><span class="txt">Enregistrer</span><span class="spin"></span></button>'
+        + '<button type="button" class="auth-switch" data-nav="connexion">Retour à la connexion</button>'
+      + '</div></form>';
+  },
+};
+
+const sgContent = document.getElementById('sg-content');
+let currentScreen = null;
+let recoveryReady = false; // valide seulement sur l'ecran reinit, voir plus bas
+
+function renderScreen(name){
+  currentScreen = name;
+  sgContent.innerHTML = SCREENS[name]();
+  if(name === 'reinit') checkRecoverySession();
+}
+
+/** Fondu : efface le contenu actuel, bascule, refait apparaitre. Le logo
+    au-dessus ne bouge jamais — seule cette zone se fond. */
+function goToScreen(name, opts){
+  opts = opts || {};
+  if(name === currentScreen && !opts.force){ return; }
+  const instant = !!opts.instant;
+  if(instant){
+    renderScreen(name);
+  }else{
+    sgContent.classList.add('fading');
+    setTimeout(function(){
+      renderScreen(name);
+      requestAnimationFrame(function(){ sgContent.classList.remove('fading'); });
+    }, 260);
   }
+  if(opts.push) history.pushState(null, '', SCREEN_TO_PATH[name]);
+}
+
+/** Appelee par revealFor() (bloc SPLASHSCREEN) une fois etabli que
+    personne n'est connecte : affiche l'ecran qui correspond a l'URL
+    d'arrivee (le portail par defaut). */
+window.ekkoShowAuthScreenFromPath = function(instant){
+  const name = PATH_TO_SCREEN[location.pathname] || 'gate';
+  goToScreen(name, { instant: instant });
+};
+
+addEventListener('popstate', function(){
+  const name = PATH_TO_SCREEN[location.pathname] || 'gate';
+  goToScreen(name, { instant: false });
+});
+
+/* ---------- navigation interne (delegation, le contenu est refait a chaque ecran) ---------- */
+document.getElementById('splash-gate').addEventListener('click', function(e){
+  const nav = e.target.closest('[data-nav]');
+  if(nav){
+    e.preventDefault();
+    goToScreen(nav.getAttribute('data-nav'), { push: true });
+    return;
+  }
+  if(e.target.closest('[data-google]')){
+    supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + '/' } })
+      .then(function(r){ if(r.error) showMsg(friendlyAuthError(r.error), 'err'); });
+  }
+});
+
+function showMsg(text, kind){
+  const msg = sgContent.querySelector('.auth-msg');
+  if(!msg) return;
+  msg.textContent = text;
+  msg.className = 'auth-msg on ' + kind;
+}
+function setLoading(on){
+  const btn = sgContent.querySelector('.auth-submit');
+  if(!btn) return;
+  btn.disabled = on;
+  btn.classList.toggle('loading', on);
+}
+
+document.addEventListener('submit', async function(e){
+  const form = e.target.closest('form[data-screen]');
+  if(!form) return;
+  e.preventDefault();
+  const screen = form.dataset.screen;
+  const fd = new FormData(form);
+
+  /* Arrivee reussie (inscription, connexion, ou mot de passe reinitialise) :
+     jamais de rechargement — juste le meme fondu que si la session avait
+     deja ete active au chargement, pour que la musique s'eteigne en
+     douceur plutot que d'etre coupee net par une navigation. */
+  function toSky(){
+    history.pushState(null, '', '/');
+    window.ekkoRevealSky(false);
+  }
+
+  if(screen === 'inscription'){
+    const first_name = (fd.get('first_name') || '').trim();
+    const last_name = (fd.get('last_name') || '').trim();
+    const email = (fd.get('email') || '').trim();
+    const password = fd.get('password');
+    if(!first_name || !last_name || !email || !password){ showMsg('Merci de remplir tous les champs.', 'err'); return; }
+    setLoading(true);
+    const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { first_name, last_name } } });
+    setLoading(false);
+    if(error){ showMsg(friendlyAuthError(error), 'err'); return; }
+    if(data.session){ toSky(); return; }
+    showMsg('Compte créé — vérifie ta boîte mail pour confirmer ton adresse.', 'ok');
+
+  }else if(screen === 'connexion'){
+    const email = (fd.get('email') || '').trim();
+    const password = fd.get('password');
+    if(!email || !password){ showMsg('Merci de remplir tous les champs.', 'err'); return; }
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    setLoading(false);
+    if(error){ showMsg(friendlyAuthError(error), 'err'); return; }
+    toSky();
+
+  }else if(screen === 'mdp-oublie'){
+    const email = (fd.get('email') || '').trim();
+    if(!email){ showMsg('Indique ton adresse email.', 'err'); return; }
+    setLoading(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: location.origin + '/reinitialiser-mot-de-passe' });
+    setLoading(false);
+    if(error){ showMsg(friendlyAuthError(error), 'err'); return; }
+    showMsg('Si un compte existe avec cette adresse, un lien de réinitialisation vient d\u2019être envoyé.', 'ok');
+    form.reset();
+
+  }else if(screen === 'reinit'){
+    if(!recoveryReady){ showMsg('Ce lien n\u2019est plus valide.', 'err'); return; }
+    const password = fd.get('password');
+    const confirm = fd.get('confirm');
+    if(!password || password.length < 6){ showMsg('6 caractères minimum.', 'err'); return; }
+    if(password !== confirm){ showMsg('Les deux mots de passe ne correspondent pas.', 'err'); return; }
+    setLoading(true);
+    const { error } = await supabase.auth.updateUser({ password });
+    setLoading(false);
+    if(error){ showMsg(friendlyAuthError(error), 'err'); return; }
+    toSky();
+  }
+});
+
+/* L'ecran reinit n'a de sens qu'ouvert depuis le lien recu par email :
+   Supabase etablit alors une session de recuperation toute seule en
+   lisant l'URL. Sans elle, le formulaire reste desactive. */
+function checkRecoverySession(){
+  recoveryReady = false;
+  const note = sgContent.querySelector('[data-reinit-note]');
+  const form = sgContent.querySelector('form[data-screen="reinit"]');
+  supabase.auth.onAuthStateChange(function(event){
+    if(event === 'PASSWORD_RECOVERY') recoveryReady = true;
+  });
+  setTimeout(async function(){
+    if(recoveryReady) return;
+    const session = await getSession();
+    if(session){ recoveryReady = true; return; }
+    if(note) note.textContent = 'Ce lien n\u2019est plus valide — demande un nouveau lien de réinitialisation.';
+    if(form){
+      const submitBtn = form.querySelector('.auth-submit');
+      if(submitBtn) submitBtn.disabled = true;
+      form.querySelectorAll('input').forEach(function(i){ i.disabled = true; });
+    }
+  }, 1200);
+}
 </script>
 </body>
+
 </html>
