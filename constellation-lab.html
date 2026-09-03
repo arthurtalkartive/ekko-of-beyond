@@ -281,6 +281,11 @@ import {
   PARAMS, SECTIONS, COMMON_KEYS, FIGURE_KEYS,
   SETTINGS_PATH, defaultsFor, emptySettings, resolve, toViewOptions,
 } from './js/view-settings.js';
+import { requireAdmin } from '/js/supa.js';
+
+/* Reserve aux admins : voir calibration.html pour la meme protection. */
+const __admin = await requireAdmin();
+if(!__admin) throw new Error('acces refuse — redirection en cours');
 
 const $ = (id) => document.getElementById(id);
 

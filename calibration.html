@@ -392,6 +392,13 @@
 import { ConstellationView } from './js/constellation-view.js';
 import { toViewOptions, emptySettings } from './js/view-settings.js';
 import { CueEngine, Chime, emptyTrack, validateTrack, audioPathFor } from './js/cue-engine.js';
+import { requireAdmin } from '/js/supa.js';
+
+/* Reserve aux admins : la cle d'administration plus bas reste necessaire
+   pour ecrire dans le depot (protection serveur), mais la page elle-meme
+   ne se charge plus du tout sans compte admin (protection client). */
+const __admin = await requireAdmin();
+if(!__admin) throw new Error('acces refuse — redirection en cours');
 
 const $ = (id) => document.getElementById(id);
 const KEY_STORE = 'ekko-admin-key';

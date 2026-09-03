@@ -146,13 +146,17 @@
   </div>
 
   <p class="note">
-    <strong>Aucun de ces outils n'est destiné au public.</strong> Ils ne sont pas listés
-    ailleurs et ne sont protégés que par la clé d'administration côté serveur, jamais
-    côté navigateur. La clé se saisit une fois par session et reste partagée entre les
-    outils. Si tu veux verrouiller l'accès aux pages elles-mêmes, la protection par mot
-    de passe de Vercel sur un chemin dédié est le moyen le plus simple — dis-le-moi et je
-    regroupe les outils sous <code>/tools/</code>.
+    <strong>Réservé aux admins.</strong> L'accès à cette page et à chacun des
+    outils ci-dessous vérifie maintenant le compte connecté, pas seulement la
+    clé d'administration. Celle-ci reste la protection du serveur pour les
+    outils qui écrivent dans le dépôt : deux niveaux distincts, l'un ne
+    remplace pas l'autre.
   </p>
 </main>
+<script type="module">
+  import { requireAdmin } from '/js/supa.js';
+  const admin = await requireAdmin();
+  if(!admin) throw new Error('acces refuse — redirection en cours');
+</script>
 </body>
 </html>

@@ -175,6 +175,9 @@ code.snip{display:block;white-space:pre-wrap;word-break:break-all;font-family:ui
   </div>
 </aside>
 <script>
+/* Reserve aux admins : voir studio.html pour la meme protection en detail. */
+let __ekkoAdminOk = import('/js/supa.js').then(function(m){ return m.requireAdmin(); }).then(function(a){ return !!a; }).catch(function(){ return false; });
+
 /* ============================================================
    EKKO — Vérification des illustrations de constellations
 
@@ -677,8 +680,12 @@ $('#b-png').onclick = () => {
   a.click();
 };
 
-describe(); draw();
-(function(){ const t = rotLoad(); rotSet(t[CONS[cur].id] !== undefined ? t[CONS[cur].id] : 0); rotRender(); })();
+__ekkoAdminOk.then(function(ok){
+  if(!ok) return;
+  describe();
+  draw();
+  (function(){ const t = rotLoad(); rotSet(t[CONS[cur].id] !== undefined ? t[CONS[cur].id] : 0); rotRender(); })();
+});
 </script>
 </body>
 </html>
