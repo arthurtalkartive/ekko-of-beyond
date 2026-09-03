@@ -44,6 +44,36 @@ const GEO = {
 /** Paliers de taille du titre. On descend d'un cran plutôt que d'élargir sans fin. */
 const TITLE_STEPS = [38, 34, 30, 26, 22];
 
+/**
+ * Variante « paysage téléphone ». La découpe (rendue en SVG) a une
+ * géométrie verticale fixe — pensée pour un header d'environ 190px de
+ * haut. Sur un écran bas (une centaine de pixels de moins de haut,
+ * parfois moitié moins), la garder telle quelle mangeait la quasi-
+ * totalité de la hauteur disponible et ne laissait presque rien à la vue
+ * de constellation, l'élément vraiment central du player.
+ *
+ * Le seuil doit rester synchronisé avec la media query
+ * `@media (max-height: 520px)` du CSS du player : c'est elle qui réduit
+ * `#header`, ce qui déclenche le ResizeObserver posé sur `root` et donc
+ * un nouveau `layout()`.
+ */
+const COMPACT_HEIGHT = 520;
+const GEO_COMPACT = {
+  ...GEO,
+  ruleY: 46,
+  dipY: 66,
+  chamfer: 18,
+  glyphY: 68,
+  glyphH: 28,
+  glyphW: 36,
+};
+const TITLE_STEPS_COMPACT = [22, 20, 18, 16, 14];
+const SVG_TOTAL_H = 190;
+// Garder ce total en phase avec `#middle{top:…}` dans la media query
+// `(max-height: 520px)` du CSS du player : c'est cette valeur qui lui dit
+// où finit la découpe et où la vue de constellation peut commencer.
+const SVG_TOTAL_H_COMPACT = GEO_COMPACT.glyphY + GEO_COMPACT.glyphH + 8; // = 104
+
 const el = (tag, attrs = {}) => {
   const n = document.createElementNS(NS, tag);
   for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
@@ -72,7 +102,7 @@ export class PlayerHeader {
 
     this.svg = el('svg', { class: 'ph-svg', 'aria-hidden': 'true', preserveAspectRatio: 'none' });
     this.svg.style.cssText = 'position:absolute;left:0;top:0;width:100%;'
-      + 'height:190px;pointer-events:none;overflow:visible';
+      + 'pointer-events:none;overflow:visible';
 
     /* Remplissage : dégradé crème relevé sur le nœud Figma 215:1439.
        Deux arrêts, #E3E3C4 à 20 % puis à 50 % d'alpha, le tout sur un calque
@@ -103,9 +133,7 @@ export class PlayerHeader {
     this.glyph = document.createElement('div');
     this.glyph.className = 'ph-glyph';
     this.glyph.setAttribute('aria-hidden', 'true');
-    this.glyph.style.cssText = `position:absolute;left:50%;top:${GEO.glyphY}px;`
-      + `width:${GEO.glyphW}px;height:${GEO.glyphH}px;`
-      + 'margin-left:' + (-GEO.glyphW / 2) + 'px;pointer-events:none';
+    this.glyph.style.cssText = 'position:absolute;left:50%;pointer-events:none';
     this.glyph.innerHTML = GLYPH_BELOW_TITLE;
     this.root.prepend(this.glyph);
   }
@@ -134,23 +162,35 @@ export class PlayerHeader {
     const width = this.root.clientWidth;
     if (!width) return this;
     this.width = width;
-    this.svg.setAttribute('viewBox', `0 0 ${width} 190`);
 
-    const ratio = width < GEO.narrowAt ? GEO.maxRatioNarrow : GEO.maxRatio;
+    // En paysage téléphone, la hauteur disponible ne laisse presque rien à
+    // la vue de constellation si la découpe garde sa géométrie pensée pour
+    // un header haut. `compact` bascule sur une variante réduite — même
+    // dessin, à échelle verticale ~0,55. Le seuil est celui de la media
+    // query CSS `@media (max-height: 520px)` du player.
+    const compact = window.innerHeight <= COMPACT_HEIGHT;
+    const G = compact ? GEO_COMPACT : GEO;
+    const steps = compact ? TITLE_STEPS_COMPACT : TITLE_STEPS;
+    const svgH = compact ? SVG_TOTAL_H_COMPACT : SVG_TOTAL_H;
+
+    this.svg.style.height = `${svgH}px`;
+    this.svg.setAttribute('viewBox', `0 0 ${width} ${svgH}`);
+
+    const ratio = width < G.narrowAt ? G.maxRatioNarrow : G.maxRatio;
 
     // Contrainte dure : les diagonales doivent tenir dans l'écran. La défonce
     // occupe `half`, plus un chanfrein de chaque côté, plus une marge de bord.
     // Sans cette borne, une figure au nom long fait sortir le tracé du cadre
     // sur téléphone.
-    const hardHalf = Math.max(24, width / 2 - GEO.chamfer - GEO.edge);
-    const maxHalf = Math.min(hardHalf, Math.max(GEO.minHalf, width * ratio));
-    const maxText = Math.max(40, (maxHalf - GEO.padX) * 2);
+    const hardHalf = Math.max(24, width / 2 - G.chamfer - G.edge);
+    const maxHalf = Math.min(hardHalf, Math.max(G.minHalf, width * ratio));
+    const maxText = Math.max(40, (maxHalf - G.padX) * 2);
 
     // Le titre descend d'un palier tant qu'il ne tient pas dans la largeur
     // maximale autorisée. Élargir indéfiniment mangerait le reste du header.
-    let size = TITLE_STEPS[0];
+    let size = steps[0];
     let measured = 0;
-    for (const candidate of TITLE_STEPS) {
+    for (const candidate of steps) {
       size = candidate;
       this.title.style.fontSize = `${size}px`;
       measured = this._measure(this.title);
@@ -161,7 +201,7 @@ export class PlayerHeader {
     // plancher. Sans ce rattrapage, « Chevelure de Bérénice » dépasse de la
     // découpe sur un écran de 360 px — c'est précisément ce qu'on ne veut pas.
     if (measured > maxText && measured > 0) {
-      size = Math.max(GEO.minTitle, Math.floor((size * maxText) / measured * 10) / 10);
+      size = Math.max(G.minTitle, Math.floor((size * maxText) / measured * 10) / 10);
       this.title.style.fontSize = `${size}px`;
     }
 
@@ -173,10 +213,10 @@ export class PlayerHeader {
 
     const half = Math.min(
       maxHalf,
-      Math.max(Math.min(GEO.minHalf, maxHalf), textWidth / 2 + GEO.padX),
+      Math.max(Math.min(G.minHalf, maxHalf), textWidth / 2 + G.padX),
     );
     const cx = width / 2;
-    const { ruleY, dipY, chamfer } = GEO;
+    const { ruleY, dipY, chamfer } = G;
 
     const l1 = cx - half - chamfer;
     const l2 = cx - half;
@@ -185,8 +225,8 @@ export class PlayerHeader {
 
     // Le filet part de -8 et va jusqu'à width + 8 : dans Figma le vecteur
     // mesure 1448,5 pour un cadre de 1440, il mord donc les deux bords.
-    const x0 = -GEO.overhang;
-    const x1 = width + GEO.overhang;
+    const x0 = -G.overhang;
+    const x1 = width + G.overhang;
 
     const outline = `M${x0} ${ruleY} H${l1.toFixed(2)} L${l2.toFixed(2)} ${dipY} `
       + `H${r2.toFixed(2)} L${r1.toFixed(2)} ${ruleY} H${x1}`;
@@ -197,6 +237,12 @@ export class PlayerHeader {
     // Le panneau de texte suit la découpe : il ne peut pas déborder.
     this.panel.style.width = `${half * 2}px`;
     this.panel.style.height = `${dipY}px`;
+
+    // Le glyphe suspendu suit la même échelle que la découpe.
+    this.glyph.style.top = `${G.glyphY}px`;
+    this.glyph.style.width = `${G.glyphW}px`;
+    this.glyph.style.height = `${G.glyphH}px`;
+    this.glyph.style.marginLeft = `${-G.glyphW / 2}px`;
 
     return this;
   }
