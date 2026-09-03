@@ -151,6 +151,12 @@ img{max-width:100%;display:block}
 <script>
 const $ = (id) => document.getElementById(id);
 
+/* Il faut un compte pour voir sa progression : redirige vers le portail
+   avant tout le reste si personne n'est connecte. */
+import('/js/supa.js').then(function(m){ return m.requireAuth(); }).then(function(s){
+  if(!s) throw new Error('non connecte — redirection en cours');
+});
+
 /* Fond pret des que decode() resout — evite le flash blanc au chargement. */
 (function(){
   const img = document.querySelector('#pagebg img');

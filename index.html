@@ -507,6 +507,10 @@ button.account{cursor:pointer}
   color:var(--cream);opacity:.85;transition:background .18s,opacity .18s}
 .mi:hover{background:rgba(227,227,196,.1);opacity:1}
 .mi.off{opacity:.3;pointer-events:none}
+/* #mi-logout est un <button>, pas un <a> : memes reglages, sans les
+   valeurs par defaut du navigateur pour les boutons. */
+button.mi{width:100%;text-align:left;border:none;background:none;
+  font-family:inherit;cursor:pointer}
 .mi-lbl{padding:5px 13px 7px;font-size:10px;font-weight:700;letter-spacing:.12em;
   text-transform:uppercase;color:var(--cream);opacity:.38}
 .mi-sep{height:1px;margin:7px 13px;background:var(--c20)}
@@ -969,19 +973,23 @@ body.collection #reticle{opacity:0;pointer-events:none}
   </button>
 </header>
 
-<!-- sous-menu du compte : provisoire, en attendant l'espace membre -->
+<!-- sous-menu du compte : le bloc Outils ne s'affiche que pour un admin,
+     voir setupRoleMenu() plus bas -->
 <div id="curtain" aria-hidden="true"></div>
 <div id="menu-veil"></div>
 <nav id="menu" aria-label="Mon compte">
-  <span class="mi-lbl">Outils</span>
-  <a class="mi" href="/verification">Vérification des figures</a>
-  <a class="mi" href="/constellation-lab">Banc d'essai constellation</a>
-  <a class="mi" href="/calibration">Calibration audio</a>
-  <a class="mi" href="/studio">Studio des contenus</a>
-  <a class="mi" href="/tools">Tous les outils</a>
-  <span class="mi-sep"></span>
+  <div id="mi-tools-section">
+    <span class="mi-lbl">Outils</span>
+    <a class="mi" href="/verification">Vérification des figures</a>
+    <a class="mi" href="/constellation-lab">Banc d'essai constellation</a>
+    <a class="mi" href="/calibration">Calibration audio</a>
+    <a class="mi" href="/studio">Studio des contenus</a>
+    <a class="mi" href="/tools">Tous les outils</a>
+    <span class="mi-sep"></span>
+  </div>
   <a class="mi-progress" id="mi-progress" href="/progression"></a>
-  <span class="mi off" title="Disponible avec les comptes">Déconnexion</span>
+  <a class="mi" href="/parametres">Paramètres</a>
+  <button type="button" class="mi" id="mi-logout">Déconnexion</button>
 </nav>
 
 <!-- choix du calendrier pour programmer un rappel de visibilite -->
@@ -3346,6 +3354,35 @@ window.ekkoEnterSky = function(){
 EKKO_SESSION.then(function(session){
   if(session) window.ekkoEnterSky();
 });
+
+/* ---------- menu selon le role ----------
+   Le bloc Outils ne concerne que les admins ; un membre ne voit que sa
+   progression, ses parametres et la deconnexion. Recupere le profil une
+   seule fois la session confirmee — il n'existe pas de notion de role
+   pour quelqu'un qui n'est pas connecte, la question ne se pose donc
+   pas dans ce cas. */
+EKKO_SESSION.then(function(session){
+  if(!session) return;
+  import('/js/supa.js').then(function(m){ return m.getProfile(session.user.id); })
+    .then(function(profile){
+      const isAdmin = !!(profile && profile.role === 'admin');
+      const tools = document.getElementById('mi-tools-section');
+      if(tools) tools.style.display = isAdmin ? '' : 'none';
+    })
+    .catch(function(){
+      const tools = document.getElementById('mi-tools-section');
+      if(tools) tools.style.display = 'none';
+    });
+});
+
+const logoutBtn = document.getElementById('mi-logout');
+if(logoutBtn){
+  logoutBtn.addEventListener('click', function(){
+    logoutBtn.disabled = true;
+    logoutBtn.textContent = 'Déconnexion…';
+    import('/js/supa.js').then(function(m){ m.signOut(); });
+  });
+}
 </script>
 
 <script type="module">

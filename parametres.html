@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="128x128" href="/favicon-128x128.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#060A10">
+<title>Ekko of Beyond · Paramètres</title>
+<link rel="preload" as="image" href="/assets/img/splash-background.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#E3E3C4; --c50:rgba(227,227,196,.5); --c20:rgba(227,227,196,.2);
+  --ink:#060A10;
+  --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Afacad',system-ui,sans-serif;color:var(--cream);background:#04070B;min-height:100vh}
+button{font-family:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+#pagebg{position:fixed;inset:0;z-index:0;pointer-events:none}
+#pagebg img{width:100%;height:100%;object-fit:cover;object-position:center bottom;
+  opacity:0;transition:opacity .6s ease}
+#pagebg img.ready{opacity:1}
+#pagebg .ov{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;
+  padding:calc(14px + var(--st)) 26px 14px;
+  background:linear-gradient(180deg,rgba(3,6,10,.96),rgba(3,6,10,.62));
+  border-bottom:1px solid var(--c20);backdrop-filter:blur(12px)}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  border:1px solid var(--c50);border-radius:999px;padding:9px 16px;font-size:11.5px;
+  font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.8;
+  transition:opacity .2s,background .2s;white-space:nowrap}
+.back:hover{opacity:1;background:rgba(227,227,196,.08)}
+.top .sp{flex:1}
+.top .where{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.45;white-space:nowrap}
+
+.wrap{position:relative;z-index:1;max-width:440px;margin:0 auto;padding:48px 26px calc(80px + var(--sb))}
+h1{font-size:clamp(26px,6vw,34px);font-weight:700;text-transform:uppercase;color:var(--cream)}
+.role-pill{
+  display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:3px 12px;
+  border:1px solid var(--c50);border-radius:999px;font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--c50);
+}
+
+section{margin-top:40px}
+h2{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c50);margin-bottom:16px}
+
+.field-row{display:flex;gap:8px}
+.field{
+  flex:1 1 0;min-width:0;margin-bottom:10px;
+  border:1px solid var(--cream);border-radius:20000px;
+  background:linear-gradient(180deg,rgba(227,227,196,.02) 0%,rgba(227,227,196,.1) 100%);
+  padding:2px 22px;transition:border-color .2s;
+}
+.field:focus-within{border-color:#fff}
+.field.disabled{opacity:.5;border-color:var(--c50)}
+.field input{
+  width:100%;background:none;border:none;outline:none;padding:13px 0;
+  font-family:inherit;font-weight:700;font-size:15px;color:var(--cream);
+}
+.field input::placeholder{color:var(--cream);opacity:.5}
+.field input:disabled{color:var(--c50)}
+
+.save-btn{
+  width:100%;margin-top:6px;border:1px solid var(--cream);border-radius:20000px;
+  background:linear-gradient(180deg,rgba(227,227,196,.04) 0%,rgba(227,227,196,.2) 100%);
+  padding:13px 22px;font-weight:700;font-size:14px;text-transform:uppercase;color:var(--cream);
+  transition:background .2s;
+}
+.save-btn:hover{background:linear-gradient(180deg,rgba(227,227,196,.08) 0%,rgba(227,227,196,.28) 100%)}
+.save-btn:disabled{opacity:.5;pointer-events:none}
+
+.msg{
+  margin-top:12px;padding:10px 16px;border-radius:12px;font-size:13px;line-height:1.4;
+  text-align:center;display:none;
+}
+.msg.on{display:block}
+.msg.err{background:rgba(200,70,70,.14);border:1px solid rgba(200,70,70,.4);color:#F0B8B8}
+.msg.ok{background:rgba(227,227,196,.08);border:1px solid var(--c20);color:var(--cream)}
+
+.danger-link{
+  display:block;margin-top:56px;text-align:center;font-size:12.5px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--c50);text-decoration:underline;
+  background:none;border:none;width:100%;
+}
+.danger-link:hover{color:var(--cream)}
+
+@media (max-width:420px){
+  .field-row{flex-direction:column;gap:0}
+}
+</style>
+</head>
+<body>
+
+<div id="pagebg"><img src="/assets/img/splash-background.webp" alt="" decoding="async"><div class="ov"></div></div>
+
+<div class="top">
+  <a class="back" href="/">&larr;&nbsp; Vue du ciel</a>
+  <span class="sp"></span>
+  <span class="where">Paramètres</span>
+</div>
+
+<main class="wrap">
+  <h1>Paramètres</h1>
+  <span class="role-pill" id="role-pill"></span>
+
+  <section>
+    <h2>Informations du compte</h2>
+    <form id="info-form">
+      <div class="field-row">
+        <div class="field"><input type="text" name="first_name" placeholder="Prénom" autocomplete="given-name"></div>
+        <div class="field"><input type="text" name="last_name" placeholder="Nom" autocomplete="family-name"></div>
+      </div>
+      <div class="field disabled"><input type="email" name="email" disabled></div>
+      <button type="submit" class="save-btn">Enregistrer</button>
+      <div class="msg" id="info-msg"></div>
+    </form>
+  </section>
+
+  <section>
+    <h2>Mot de passe</h2>
+    <form id="pwd-form">
+      <div class="field"><input type="password" name="password" placeholder="Nouveau mot de passe" autocomplete="new-password" minlength="6"></div>
+      <div class="field"><input type="password" name="confirm" placeholder="Confirme le mot de passe" autocomplete="new-password" minlength="6"></div>
+      <button type="submit" class="save-btn">Changer le mot de passe</button>
+      <div class="msg" id="pwd-msg"></div>
+    </form>
+  </section>
+
+  <button type="button" class="danger-link" id="logout-link">Déconnexion</button>
+</main>
+
+<script type="module">
+import { supabase, getSession, getProfile, requireAuth, signOut, friendlyAuthError } from '/js/supa.js';
+
+(function(){
+  const img = document.querySelector('#pagebg img');
+  const show = () => img.classList.add('ready');
+  if(img.complete) show(); else { img.addEventListener('load', show); img.decode?.().then(show).catch(()=>{}); }
+})();
+
+const session = await requireAuth();
+if(!session) throw new Error('non connecte — redirection en cours');
+
+const profile = await getProfile(session.user.id);
+const infoForm = document.getElementById('info-form');
+infoForm.first_name.value = profile?.first_name || '';
+infoForm.last_name.value = profile?.last_name || '';
+infoForm.email.value = session.user.email || '';
+document.getElementById('role-pill').textContent = profile?.role === 'admin' ? 'Admin' : 'Membre';
+
+function showMsg(id, text, kind){
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = 'msg on ' + kind;
+}
+
+infoForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const first_name = infoForm.first_name.value.trim();
+  const last_name = infoForm.last_name.value.trim();
+  const btn = infoForm.querySelector('.save-btn');
+  btn.disabled = true;
+  const { error } = await supabase.from('profiles').update({ first_name, last_name }).eq('id', session.user.id);
+  btn.disabled = false;
+  if(error){ showMsg('info-msg', friendlyAuthError(error), 'err'); return; }
+  showMsg('info-msg', 'Informations enregistrées.', 'ok');
+});
+
+const pwdForm = document.getElementById('pwd-form');
+pwdForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const password = pwdForm.password.value;
+  const confirm = pwdForm.confirm.value;
+  if(!password || password.length < 6){ showMsg('pwd-msg', '6 caractères minimum.', 'err'); return; }
+  if(password !== confirm){ showMsg('pwd-msg', 'Les deux mots de passe ne correspondent pas.', 'err'); return; }
+  const btn = pwdForm.querySelector('.save-btn');
+  btn.disabled = true;
+  const { error } = await supabase.auth.updateUser({ password });
+  btn.disabled = false;
+  if(error){ showMsg('pwd-msg', friendlyAuthError(error), 'err'); return; }
+  showMsg('pwd-msg', 'Mot de passe mis à jour.', 'ok');
+  pwdForm.reset();
+});
+
+document.getElementById('logout-link').addEventListener('click', () => signOut());
+</script>
+</body>
+</html>
