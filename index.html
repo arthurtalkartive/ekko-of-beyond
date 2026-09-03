@@ -429,7 +429,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
    mobile) : elle grandit vers le haut depuis le meme point bas fixe et
    peut passer sous les boutons de zoom, poses aux memes coordonnees.
    Le zoom s'efface le temps que la carte est ouverte, comme en collection. */
-body.card-open .zoom{opacity:0;pointer-events:none}
+body.card-open .zoom,body.card-open .nav-side{opacity:0;pointer-events:none}
 
 @media (max-width:900px){
   .coll-grid{grid-template-columns:1fr}
@@ -493,13 +493,28 @@ body.card-open .zoom{opacity:0;pointer-events:none}
   .zbtn{width:44px;height:44px}
   .zbtn svg{width:20px;height:20px}
   .card-row{width:100%;padding:0 12px;bottom:calc(16px + var(--safe-b))}
-  /* Les fleches flottaient par-dessus la carte (position absolue, pour
-     ne pas lui prendre de largeur) et son propre contenu — pastille «
-     non collectee », bouton « en savoir plus » — passait dessous sur
-     un ecran etroit. Retirees au profit du glisse tactile (voir plus
-     bas dans le fichier) ; le compteur au-dessus de la carte joue le
-     role d'indice de navigation. */
-  .nav-side{display:none}
+  /* Les fleches flottaient par-dessus le contenu de la carte (position
+     absolue, pour ne pas lui prendre de largeur) et son propre contenu —
+     pastille « non collectee », bouton « en savoir plus » — passait
+     dessous sur un ecran etroit. Le glisse tactile (voir plus bas dans le
+     fichier) reste le moyen principal de naviguer, mais sans aucun repere
+     visuel le swipe n'est pas evident a decouvrir : les fleches reviennent
+     donc, a la meme taille que les boutons de zoom, du cote oppose et
+     cote a cote plutot que l'une sur l'autre — hors du champ de la carte. */
+  .nav-side{
+    position:fixed;bottom:calc(196px + var(--safe-b));z-index:11;
+    height:auto;gap:0;
+  }
+  .nav-side .ln,.nav-side .d5,.nav-side .r7{display:none}
+  .nav-side.prev{left:14px}
+  .nav-side.next{left:calc(14px + 44px + 8px)}
+  .nav-btn{
+    width:44px;height:44px;border-radius:50%;
+    border:1.064px solid var(--cream);background:
+      linear-gradient(180deg,rgba(227,227,196,.04) 0%,rgba(227,227,196,.2) 100%);
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  .nav-btn svg{width:18px;height:18px}
   .card{width:100%;padding:16px 14px;gap:14px}
   .medallion{width:66px;height:66px}
   .c-title{font-size:18px}
@@ -510,10 +525,47 @@ body.card-open .zoom{opacity:0;pointer-events:none}
   .medallion{width:56px;height:56px}
   .chips{flex-wrap:wrap;gap:6px}
 }
+
+/* ================= BLOCAGE PAYSAGE MOBILE =================
+   Le mode paysage sur telephone n'offre pas une experience satisfaisante
+   (compas, carte flottante, statut : trop d'elements pour trop peu de
+   hauteur). Plutot que de multiplier les compromis, l'ecran est bloque
+   le temps que l'appareil repasse en portrait. `max-height` en paysage
+   correspond a la largeur reelle de l'appareil : les telephones ne
+   depassent quasiment jamais 560px sur leur petit cote, les tablettes si
+   — c'est ce qui distingue les deux ici, sans jamais bloquer une tablette. */
+#landscape-lock{
+  position:fixed;inset:0;z-index:9999;
+  display:none;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#000 0%,#0A1931 100%);
+  padding:40px;text-align:center;
+}
+.ll-box{max-width:360px}
+.ll-icon{width:60px;height:60px;color:var(--cream);margin:0 auto 22px;display:block;
+  animation:ll-rotate 2.6s ease-in-out infinite}
+@keyframes ll-rotate{0%,15%{transform:rotate(0deg)}50%,65%{transform:rotate(-90deg)}100%{transform:rotate(-90deg)}}
+.ll-title{font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.05em;color:var(--cream)}
+.ll-sub{margin-top:10px;font-size:14.5px;line-height:1.55;color:var(--cream);opacity:.6}
+@media (orientation:landscape) and (max-height:560px){
+  #landscape-lock{display:flex}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+
+<div id="landscape-lock" aria-hidden="true">
+  <div class="ll-box">
+    <svg class="ll-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="7" width="24" height="42" rx="4" stroke="currentColor" stroke-width="2"/>
+      <line x1="28" y1="43" x2="36" y2="43" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M49 24a17 17 0 1 0 -5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M44 30l5 6 6-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="ll-title">Tournez votre téléphone</div>
+    <p class="ll-sub">L'expérience Ekko of Beyond est pensée pour le mode portrait sur mobile. Repassez en portrait pour continuer.</p>
+  </div>
+</div>
 
 <div id="splash">
   <img id="splash-bg" src="/assets/img/splash-background.webp" alt="" decoding="async">
@@ -2001,20 +2053,38 @@ addEventListener('keydown', e => {
     // a la carte principale, la liste Collection ne se feuillette pas.
     if(moved && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_MIN && card.closest('.card-row')){
       goToCard(dx < 0 ? 1 : -1);
+    }
+    // L'ouverture/fermeture des actions au tap est geree par le clic
+    // ci-dessous, pas ici : la separer du suivi de glissement evite qu'un
+    // tap qui vient d'ouvrir la carte ne la referme aussitot au clic
+    // synthetique qui suit le pointerup.
+  });
+
+  function setCardOpen(card, open){
+    card.classList.toggle('open', open);
+    if(card.closest('.card-row')) document.body.classList.toggle('card-open', open);
+  }
+
+  /* Un tap ouvre ou referme les actions d'une carte :
+     - sur une carte fermee, hors bouton -> ouverture ;
+     - un second tap sur cette meme carte, hors bouton -> fermeture ;
+     - un tap ailleurs pendant qu'une carte est ouverte — la vue du ciel,
+       une autre carte, l'en-tete — la referme aussi. */
+  document.addEventListener('click', function(e){
+    if(interactiveTarget(e.target)) return;
+    const openCard = document.querySelector('.card.open');
+    const tappedCard = e.target.closest('.card');
+
+    if(!tappedCard){
+      if(openCard) setCardOpen(openCard, false);
       return;
     }
-
-    // Sinon, un vrai tap (peu de mouvement) hors zone interactive
-    // bascule les actions de cette carte.
-    if(!moved && !interactiveTarget(e.target)){
-      const isSkyCard = !!card.closest('.card-row');
-      card.classList.toggle('open');
-      /* Deployee, la carte du ciel grandit vers le haut et peut passer
-         sous les boutons de zoom (memes coordonnees fixes que quand elle
-         etait repliee). Le meme traitement que le mode Collection : on
-         les efface le temps que la carte est ouverte. */
-      if(isSkyCard) document.body.classList.toggle('card-open', card.classList.contains('open'));
+    if(tappedCard === openCard){
+      setCardOpen(tappedCard, false);
+      return;
     }
+    if(openCard) setCardOpen(openCard, false);
+    setCardOpen(tappedCard, true);
   });
 })();
 

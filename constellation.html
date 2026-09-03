@@ -234,9 +234,45 @@ figcaption .credit{display:block;margin-top:4px;font-size:11.5px;opacity:.6}
   .tabs{padding-top:16px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ================= BLOCAGE PAYSAGE MOBILE =================
+   Meme logique que sur les autres pages publiques : le paysage sur
+   telephone ne laisse pas assez de hauteur pour lire confortablement une
+   fiche, malgre le hero deja reduit ci-dessus. `max-height` en paysage
+   correspond a la largeur reelle de l'appareil, ce qui distingue un
+   telephone (quasiment jamais plus de 560px sur le petit cote) d'une
+   tablette, jamais bloquee ici. */
+#landscape-lock{
+  position:fixed;inset:0;z-index:9999;
+  display:none;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#000 0%,#0A1931 100%);
+  padding:40px;text-align:center;
+}
+.ll-box{max-width:360px}
+.ll-icon{width:60px;height:60px;color:var(--cream);margin:0 auto 22px;display:block;
+  animation:ll-rotate 2.6s ease-in-out infinite}
+@keyframes ll-rotate{0%,15%{transform:rotate(0deg)}50%,65%{transform:rotate(-90deg)}100%{transform:rotate(-90deg)}}
+.ll-title{font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.05em;color:var(--cream)}
+.ll-sub{margin-top:10px;font-size:14.5px;line-height:1.55;color:var(--cream);opacity:.6}
+@media (orientation:landscape) and (max-height:560px){
+  #landscape-lock{display:flex}
+}
 </style>
 </head>
 <body>
+
+<div id="landscape-lock" aria-hidden="true">
+  <div class="ll-box">
+    <svg class="ll-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="7" width="24" height="42" rx="4" stroke="currentColor" stroke-width="2"/>
+      <line x1="28" y1="43" x2="36" y2="43" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M49 24a17 17 0 1 0 -5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M44 30l5 6 6-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="ll-title">Tournez votre téléphone</div>
+    <p class="ll-sub">Cette fiche est pensée pour le mode portrait sur mobile. Repassez en portrait pour continuer.</p>
+  </div>
+</div>
 
 <div id="tip" role="tooltip"></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Image en plein écran">
