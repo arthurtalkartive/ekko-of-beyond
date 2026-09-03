@@ -178,6 +178,7 @@ header{
 .account{display:flex;align-items:center;gap:15px;flex:none}
 .account .ico{width:29.33px;height:30px;flex:none;display:block}
 .account .ico svg{width:100%;height:100%;display:block;overflow:visible}
+.account .ico img{width:100%;height:100%;display:block;object-fit:contain}
 a.account{text-decoration:none}
 .account .lbl{font-weight:700;font-size:18px;line-height:normal;text-transform:uppercase;color:var(--cream);white-space:nowrap}
 .logo{width:324.7px;height:45px;flex:none;display:block}
@@ -342,6 +343,21 @@ button.account{cursor:pointer}
 .mi-lbl{padding:5px 13px 7px;font-size:10px;font-weight:700;letter-spacing:.12em;
   text-transform:uppercase;color:var(--cream);opacity:.38}
 .mi-sep{height:1px;margin:7px 13px;background:var(--c20)}
+/* Bloc de progression dans le menu : icone du niveau, compte, barre vers
+   le suivant. Remplace l'ancien placeholder "Ma progression" desactive —
+   plus besoin d'attendre les comptes pour la voir, elle est juste
+   partagee par tout le monde en attendant. */
+.mi-progress{padding:9px 13px 4px}
+.mp-head{display:flex;align-items:center;gap:10px}
+.mp-ico{width:30px;height:30px;flex:none;display:block;opacity:.9}
+.mp-ico img{width:100%;height:100%;display:block;object-fit:contain}
+.mp-txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+.mp-level{font-size:12.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp-count{font-size:10.5px;color:var(--cream-50)}
+.mp-bar{margin-top:9px;height:3px;border-radius:2px;background:var(--c20);overflow:hidden}
+.mp-bar span{display:block;height:100%;background:var(--cream);border-radius:2px;transition:width .3s ease}
+.mp-next{margin-top:7px;font-size:10.5px;line-height:1.4;color:var(--cream-50)}
+
 @media (max-width:820px){ #menu{right:12px;left:12px;min-width:0} }
 
 /* ================= RAPPEL DE VISIBILITÉ =================
@@ -787,7 +803,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
   <a class="mi" href="/studio">Studio des contenus</a>
   <a class="mi" href="/tools">Tous les outils</a>
   <span class="mi-sep"></span>
-  <span class="mi off" title="Disponible avec les comptes">Ma progression</span>
+  <div class="mi-progress" id="mi-progress"></div>
   <span class="mi off" title="Disponible avec les comptes">Déconnexion</span>
 </nav>
 
@@ -1949,6 +1965,89 @@ function saveProgress(){
 }
 let COLLECTED = loadProgress();
 
+/* ============================================================
+   NIVEAUX DE PROGRESSION
+   Bases sur une fraction de la collection totale (CONSTELLATIONS.length),
+   pas un nombre fixe d'Ekko : le jour ou le catalogue grossit, les
+   memes paliers se recalculent tout seuls, sans rien retoucher ici.
+
+   Un niveau atteint ne redescend jamais, meme si le total grossit ensuite
+   (voir currentLevelIndex) — sinon quelqu'un a 90% pourrait se retrouver
+   a 60% simplement parce que le catalogue s'est agrandi.
+
+   Le pictogramme de chaque niveau est une image externe avec repli : tant
+   qu'Arthur n'a pas depose le SVG dedie (voir assets/img/levels/README.md),
+   le losange generique du header s'affiche a la place — rien ne casse
+   entre-temps, et le vrai pictogramme prend le relais des qu'il existe. */
+const LEVELS = [
+  { slug:'level-0', name:'Œil Nu',                   min:0,    tagline:"Le ciel n'a encore rien murmuré." },
+  { slug:'level-1', name:'Éveillé aux Étoiles',       min:0.01, tagline:'Les premiers échos se font entendre.' },
+  { slug:'level-2', name:"Chercheur d'Échos",         min:0.10, tagline:'Chaque constellation devient une piste à suivre.' },
+  { slug:'level-3', name:'Cartographe du Ciel',       min:0.25, tagline:'Le ciel commence à prendre forme.' },
+  { slug:'level-4', name:'Gardien des Constellations',min:0.45, tagline:'Une bonne moitié du ciel nocturne vous appartient.' },
+  { slug:'level-5', name:'Oracle Céleste',            min:0.68, tagline:'Peu de figures célestes vous échappent encore.' },
+  { slug:'level-6', name:'Souverain des Astres',      min:0.87, tagline:'Le ciel vous appartient presque tout entier.' },
+  { slug:'level-7', name:"Écho de l'Au-delà",         min:1.00, tagline:'Chaque Ekko a résonné. Le ciel entier vous répond.' },
+];
+const LEVEL_ICON_FALLBACK = '/assets/img/levels/_fallback.svg';
+const LEVEL_KEY = 'ekko-level-best';
+
+function levelIndexForRatio(ratio){
+  let idx = 0;
+  for(let i = 0; i < LEVELS.length; i++){ if(ratio >= LEVELS[i].min) idx = i; }
+  return idx;
+}
+/* Le niveau ne redescend jamais : on compare a la meilleure valeur deja
+   enregistree et on garde la plus haute des deux. */
+function currentLevelIndex(){
+  const total = CONSTELLATIONS.length || 1;
+  const computed = levelIndexForRatio(COLLECTED.size / total);
+  let best = 0;
+  try{ best = parseInt(localStorage.getItem(LEVEL_KEY), 10) || 0; }catch(e){}
+  const idx = Math.max(best, computed, 0);
+  try{ localStorage.setItem(LEVEL_KEY, String(idx)); }catch(e){}
+  return idx;
+}
+function levelIconImg(level, cls){
+  return '<img class="' + cls + '" src="/assets/img/levels/' + level.slug + '.svg" alt=""'
+    + ' onerror="this.onerror=null;this.src=\'' + LEVEL_ICON_FALLBACK + '\'">';
+}
+/* Met a jour le bouton du header (vrai + miroir invisible, qui doit
+   rester identique en largeur pour que le logo reste centre — voir
+   .hd-mirror) et le bloc « Ma progression » du menu. Appele au chargement
+   et a chaque collecte, puisqu'un Ekko de plus peut faire changer de
+   palier. */
+function renderLevel(){
+  const idx = currentLevelIndex();
+  const level = LEVELS[idx];
+  const next = LEVELS[idx + 1] || null;
+  const total = CONSTELLATIONS.length;
+  const n = COLLECTED.size;
+
+  document.querySelectorAll('.account .ico').forEach(function(el){
+    el.innerHTML = levelIconImg(level, 'lvl-ico');
+  });
+  document.querySelectorAll('.account .lbl').forEach(function(el){
+    el.textContent = level.name;
+  });
+
+  const mi = $('#mi-progress');
+  if(!mi) return;
+  const pct = next ? Math.min(100, Math.round(((n/total) - level.min) / (next.min - level.min) * 100)) : 100;
+  mi.innerHTML =
+    '<div class="mp-head">' +
+      '<span class="mp-ico">' + levelIconImg(level, 'lvl-ico') + '</span>' +
+      '<div class="mp-txt">' +
+        '<span class="mp-level">' + level.name + '</span>' +
+        '<span class="mp-count">' + n + ' / ' + total + ' Ekko</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="mp-bar"><span style="width:' + pct + '%"></span></div>' +
+    '<div class="mp-next">' + (next
+      ? 'Encore ' + Math.max(1, Math.ceil(next.min * total) - n) + ' Ekko avant ' + next.name
+      : 'Niveau maximum atteint — ' + level.tagline) + '</div>';
+}
+
 /* ---------- rappels programmes ----------
    Un id -> horodatage ISO de la prochaine visibilite au moment ou le
    rappel a ete pose. Perime des que cet instant est passe : on considere
@@ -2674,6 +2773,7 @@ window.ekkoCollect = function(id){
   COLLECTED.add(id);
   saveProgress();
   renderCard();
+  renderLevel();
   return true;
 };
 /* Le player revient sur « / ?collected=<id> » quand l'ecoute est validee.
@@ -2976,6 +3076,7 @@ $('#z-in').onclick  = () => zoomBy(0.72);
 $('#z-out').onclick = () => zoomBy(1/0.72);
 
 renderCard();
+renderLevel();
 if(navigator.geolocation){
   navigator.geolocation.getCurrentPosition(
     p => boot(p.coords.latitude, p.coords.longitude),
