@@ -646,7 +646,11 @@ function wire() {
   $('confirmYes').addEventListener('click', collect);
   $('back').addEventListener('click', () => leave('/'));
 
-  clock.addEventListener('ended', () => { paintPlaying(false); header.setStatus('terminé'); });
+  /* La collecte n'a lieu qu'a l'ecoute complete : atteindre la fin
+     naturellement doit donc valider la collecte exactement comme le
+     raccourci « Terminer » du dialogue d'arret (collect() est le seul
+     point qui ecrit la progression, les deux chemins y menent). */
+  clock.addEventListener('ended', () => { paintPlaying(false); collect(); });
 
   const rail = $('rail');
   const at = (e) => {

@@ -49,6 +49,10 @@
   --cream-25:rgba(227,227,196,.25);
   --ink:#060A10;
   --card:#08141D;
+  /* Fond "collectee" : meme profondeur que --card, teinte chaude (olive
+     sombre) plutot que bleu nuit, pour que l'oeil distingue une carte
+     deja recuperee sans avoir a lire la pastille. */
+  --card-got:#171307;
   --w-50:rgba(255,255,255,.5);
   --w-30:rgba(255,255,255,.3);
   --safe-t:env(safe-area-inset-top,0px);
@@ -256,6 +260,16 @@ a.account{text-decoration:none}
     radial-gradient(118% 150% at 88% -28%,rgba(46,82,104,.55) 0%,rgba(20,42,58,.18) 46%,transparent 72%),
     var(--card);
   box-shadow:0 20px 54px rgba(0,0,0,.5);
+  transition:background .3s ease,border-color .3s ease;
+}
+/* Ekko deja collecte : bascule sur une teinte chaude plutot que le bleu
+   nuit habituel — le but explicite est de distinguer une carte deja
+   recuperee au premier coup d'oeil, pas seulement via la pastille. */
+.card.got{
+  border-color:rgba(227,227,196,.35);
+  background:
+    radial-gradient(118% 150% at 88% -28%,rgba(108,96,58,.4) 0%,rgba(58,50,28,.16) 46%,transparent 72%),
+    var(--card-got);
 }
 .medallion{width:100px;height:100px;flex:none;opacity:.75;position:relative}
 .medallion svg{width:100%;height:100%;display:block}
@@ -276,9 +290,14 @@ a.account{text-decoration:none}
 .c-state .r7{width:7px;height:7px;border-radius:50%;border:1px solid #fff;flex:none}
 .c-state .d5{width:5px;height:5px;border-radius:50%;background:#fff;flex:none}
 .c-state .pill{
+  display:inline-flex;align-items:center;gap:4px;
   border:1px solid var(--w-30);border-radius:2000px;padding:2px 10px;flex:none;
   font-weight:700;font-size:10px;line-height:1.5;text-transform:uppercase;color:#fff;white-space:nowrap}
-.c-state .pill.got{border-color:var(--cream-50);color:var(--cream)}
+.c-state .pill svg{width:9px;height:9px;display:block;flex:none}
+/* Collectee : pastille pleine, comme le bouton principal — le meme signal
+   « c'est acquis » que « Collecter l'ekko » utilisait pour attirer l'oeil. */
+.c-state .pill.got{border-color:var(--cream);background:var(--cream);color:var(--ink)}
+.c-state .pill.reminder{border-color:var(--cream-50);color:var(--cream)}
 
 .c-pos{
   position:fixed;left:50%;transform:translateX(-50%);
@@ -325,6 +344,51 @@ button.account{cursor:pointer}
 .mi-sep{height:1px;margin:7px 13px;background:var(--c20)}
 @media (max-width:820px){ #menu{right:12px;left:12px;min-width:0} }
 
+/* ================= RAPPEL DE VISIBILITÉ =================
+   Choix du calendrier, en dialogue centré plutôt qu'en menu déroulant
+   (comme #menu) : c'est une décision ponctuelle, pas une navigation. */
+#remind-veil{position:fixed;inset:0;z-index:28;background:rgba(4,7,13,.6);
+  opacity:0;pointer-events:none;transition:opacity .22s}
+#remind-veil.on{opacity:1;pointer-events:auto}
+#remind-modal{
+  position:fixed;left:50%;top:50%;z-index:29;width:min(400px,calc(100vw - 32px));
+  transform:translate(-50%,-46%);opacity:0;pointer-events:none;
+  transition:opacity .22s,transform .22s;
+}
+#remind-modal.on{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
+#remind-modal .box{
+  position:relative;padding:26px 24px 22px;border-radius:16px;
+  border:1px solid var(--c20);background:rgba(8,15,22,.98);backdrop-filter:blur(16px);
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
+}
+#remind-close{
+  position:absolute;right:14px;top:14px;width:28px;height:28px;border-radius:50%;
+  border:none;background:transparent;color:var(--cream-50);font-size:20px;line-height:1;
+  cursor:pointer;transition:color .18s,background .18s;
+}
+#remind-close:hover{color:var(--cream);background:rgba(227,227,196,.1)}
+#remind-modal h2{
+  font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--cream);padding-right:24px;
+}
+#remind-modal #remind-sub{
+  margin-top:6px;font-size:13px;line-height:1.4;color:var(--cream-50);
+}
+#remind-opts{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+#remind-opts button{
+  display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;
+  border-radius:10px;border:1px solid var(--c20);background:rgba(227,227,196,.03);
+  color:var(--cream);font-family:inherit;font-size:13.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.03em;text-align:left;cursor:pointer;
+  transition:background .18s,border-color .18s;
+}
+#remind-opts button:hover{background:rgba(227,227,196,.1);border-color:var(--cream-50)}
+#remind-opts button svg{width:18px;height:18px;flex:none;display:block}
+#remind-opts .ro-note{
+  display:block;margin-top:2px;font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;
+  color:var(--cream-50);
+}
+
 /* ================= ACTIONS AU SURVOL / AU TOUCHER =================
    Deux boutons révélés au survol de la carte, dans la vue du ciel comme
    dans la liste. La rangée est présente mais repliée : on anime sa
@@ -363,6 +427,30 @@ button.account{cursor:pointer}
 .act.more{flex:none;padding:8px 32px;border-color:rgba(255,255,255,.5);color:#fff}
 .act.more:hover{background:rgba(255,255,255,.1);border-color:#fff}
 .act.more.off{opacity:.3;pointer-events:none}
+/* Programmer un rappel / Rappel programmé : même gabarit que Collecter
+   (largeur flexible + ornement en filet), mais en contour clair — comme
+   « En savoir plus » — puisque ni l'un ni l'autre n'est l'action pleine
+   du moment (on ne peut pas encore écouter). */
+.act.remind,.act.reminder-done{flex:1 1 0;min-width:0;border-color:rgba(255,255,255,.5);color:#fff}
+.act.remind:hover{background:rgba(255,255,255,.1);border-color:#fff}
+.act.remind .ico,.act.reminder-done .ico{display:flex;flex:none;width:12px;height:12px}
+.act.remind .ico svg,.act.reminder-done .ico svg{width:100%;height:100%;display:block}
+.act.remind .orn,.act.reminder-done .orn{display:flex;flex:1 1 auto;min-width:14px;align-items:center;gap:3px}
+.act.remind .orn .ln,.act.reminder-done .orn .ln{flex:1 1 auto;height:1px;background:rgba(255,255,255,.35)}
+.act.remind .orn .r7,.act.reminder-done .orn .r7{width:7px;height:7px;border-radius:50%;border:1px solid #fff;flex:none}
+.act.remind .orn .d5,.act.reminder-done .orn .d5{width:5px;height:5px;border-radius:50%;background:#fff;flex:none}
+/* Rappel deja pose : meme habillage, juste plus sourd — l'action est faite */
+.act.reminder-done{opacity:.6}
+.act.reminder-done:hover{background:transparent;border-color:rgba(255,255,255,.5)}
+/* "Programmer un rappel"/"Rappel programmé" sont nettement plus longs que
+   "Collecter l'ekko" : partager la largeur avec "En savoir plus" comme au
+   cote a cote habituel les faisait deborder (texte plus large que son
+   propre bouton). On les empile plutot, chacun sur toute la largeur —
+   la meme reponse que le mode mobile applique deja a toutes les paires,
+   juste pas reservee a lui ici. */
+.c-acts.stack{flex-direction:column;gap:8px}
+.c-acts.stack .act{width:100%}
+.card:hover .c-acts.stack,.card:focus-within .c-acts.stack,.card.open .c-acts.stack{max-height:92px}
 
 @media (max-width:560px){
   .c-acts{gap:8px}
@@ -370,7 +458,7 @@ button.account{cursor:pointer}
   .c-acts{flex-direction:column}
   .act{padding:9px 18px;font-size:13px}
   .act.more{padding:9px 18px}
-  .act.collect .orn{display:none}
+  .act.collect .orn,.act.remind .orn,.act.reminder-done .orn{display:none}
 }
 
 /* ================= COLLECTION =================
@@ -703,6 +791,17 @@ body.collection #reticle{opacity:0;pointer-events:none}
   <span class="mi off" title="Disponible avec les comptes">Déconnexion</span>
 </nav>
 
+<!-- choix du calendrier pour programmer un rappel de visibilite -->
+<div id="remind-veil"></div>
+<div id="remind-modal" role="dialog" aria-modal="true" aria-labelledby="remind-title">
+  <div class="box">
+    <button type="button" id="remind-close" aria-label="Fermer">&times;</button>
+    <h2 id="remind-title">Programmer un rappel</h2>
+    <p id="remind-sub">On te prévient dès que la figure redevient visible.</p>
+    <div id="remind-opts"></div>
+  </div>
+</div>
+
 
 <!-- défonce : hairline plein écran + tab chanfreiné centré sous le logo -->
 <div class="hd-edge">
@@ -771,7 +870,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
         <span class="chip cat" id="c-cat">Circumpolaires</span>
         <span class="chip vis" id="c-vis">
           <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M1.2 6.6 6.9 1.2l2 2.3-5.7 5.3z"/><path d="M3.2 8.8 1.6 10M7 1.4l.9 1"/></svg>
-          <span id="c-vis-txt">Visible maintenant</span>
+          <span>Visible maintenant</span>
         </span>
       </div>
       <div class="card-txt">
@@ -1741,23 +1840,76 @@ function centroidRaDec(c){
   return { ra, dec: dec/c.stars.length };
 }
 const VIS_ALT = 12*Math.PI/180;
+/* Position du Soleil (formule solaire basse precision, ~0.01° — largement
+   suffisant pour decider s'il fait nuit). Reutilise altOf() telle quelle :
+   le Soleil n'est jamais qu'un objet de plus a ra/dec donnes. */
+function sunRaDec(date){
+  const jd = date.getTime()/86400000 + 2440587.5, n = jd - 2451545.0;
+  const L = ((280.460 + 0.9856474*n) % 360 + 360) % 360;
+  const g = (((357.528 + 0.9856003*n) % 360 + 360) % 360) * Math.PI/180;
+  const lambda = (L + 1.915*Math.sin(g) + 0.020*Math.sin(2*g)) * Math.PI/180;
+  const eps = (23.439 - 0.0000004*n) * Math.PI/180;
+  let ra = Math.atan2(Math.cos(eps)*Math.sin(lambda), Math.cos(lambda)) * 12/Math.PI;
+  if(ra < 0) ra += 24;
+  const dec = Math.asin(Math.sin(eps)*Math.sin(lambda)) * 180/Math.PI;
+  return { ra, dec };
+}
+function isDark(date){
+  const { ra, dec } = sunRaDec(date);
+  /* Sous l'horizon, sans marge de crepuscule : "pas en plein jour" plutot
+     qu'une vraie nuit noire astronomique. */
+  return altOf(ra, dec, date) <= 0;
+}
+function endOfLocalDay(d){
+  const e = new Date(d); e.setHours(23,59,59,999); return e;
+}
 function visibility(c){
   const { ra, dec } = centroidRaDec(c);
   if(90 - Math.abs(GEO.lat - dec) < 12) return { code:'never' };
   const now = new Date();
-  if(altOf(ra, dec, now) > VIS_ALT) return { code:'now' };
-  for(let m=10; m<=300; m+=10){
-    const t = new Date(now.getTime() + m*60000);
-    if(altOf(ra, dec, t) > VIS_ALT) return { code:'soon', at:t };
+  const okAt = (t) => altOf(ra, dec, t) > VIS_ALT && isDark(t);
+
+  if(okAt(now)) return { code:'now' };
+
+  /* Reste de la journee locale, par pas de 10 min : au-dela, on montre une
+     heure ("visible a HH:MM"), pas une date — tant que ca reste aujourd'hui. */
+  const todayEnd = endOfLocalDay(now);
+  for(let t = new Date(now.getTime() + 5*60000); t <= todayEnd; t = new Date(t.getTime() + 10*60000)){
+    if(okAt(t)) return { code:'soon', at:t };
   }
-  for(let d=1; d<=370; d+=3){
+  /* Au-dela d'aujourd'hui : jour par jour, a 22h heure locale (nuit dans
+     l'immense majorite des cas) — precision suffisante pour n'afficher
+     qu'une date. */
+  for(let d=1; d<=370; d++){
     const t = new Date(now); t.setDate(t.getDate()+d); t.setHours(22,0,0,0);
-    if(altOf(ra, dec, t) > VIS_ALT) return { code:'later', at:t };
+    if(okAt(t)) return { code:'later', at:t };
   }
   return { code:'later', at:null };
 }
-const fmtTime = d => d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+const fmtTime = d => d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' }).replace(':','h');
 const fmtDate = d => d.toLocaleDateString('fr-FR', { day:'numeric', month:'long' });
+
+/* ---------- badge de visibilité : icône + libellé par statut ----------
+   Un seul point de verite pour les deux endroits qui l'affichent (la
+   carte du ciel et celles de la Collection), texte et icone ensemble
+   plutot que le texte seul comme avant — l'icone changeait jamais. */
+const VIS_ICONS = {
+  now:   '<path d="M1.2 6.6 6.9 1.2l2 2.3-5.7 5.3z"/><path d="M3.2 8.8 1.6 10M7 1.4l.9 1"/>',
+  soon:  '<circle cx="5" cy="5.4" r="3.6"/><path d="M5 3.2v2.4l1.7 1.1"/>',
+  later: '<rect x="1" y="1.8" width="8" height="7.2" rx="1"/><path d="M3 1v1.6M7 1v1.6M1.3 4.4h7.4"/><circle cx="5" cy="6.9" r=".6" fill="currentColor" stroke="none"/>',
+  never: '<path d="M1.2 6.6 6.9 1.2l2 2.3-5.7 5.3z"/><path d="M3.2 8.8 1.6 10M7 1.4l.9 1"/><path d="M0.6 0.6 9.4 9.4"/>',
+};
+function visText(vis){
+  if(vis.code === 'now')   return 'Visible maintenant';
+  if(vis.code === 'soon')  return 'Visible à ' + fmtTime(vis.at);
+  if(vis.code === 'never') return 'Non visible';
+  return vis.at ? ('Visible le ' + fmtDate(vis.at)) : 'Visible plus tard';
+}
+function visChipInnerHTML(vis){
+  return '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1">'
+    + (VIS_ICONS[vis.code] || VIS_ICONS.now) + '</svg>'
+    + '<span>' + visText(vis) + '</span>';
+}
 
 /* ---------- médaillon ---------- */
 function medallionSVG(c){
@@ -1797,26 +1949,167 @@ function saveProgress(){
 }
 let COLLECTED = loadProgress();
 
+/* ---------- rappels programmes ----------
+   Un id -> horodatage ISO de la prochaine visibilite au moment ou le
+   rappel a ete pose. Perime des que cet instant est passe : on considere
+   alors que l'utilisateur a laisse filer l'occasion, et le bouton doit
+   redevenir "Programmer un rappel" (ou "Collecter", si entre-temps la
+   figure est devenue visible) plutot que de rester coince. */
+const REMINDER_KEY = 'ekko-reminders';
+function loadReminders(){
+  try{ const raw = localStorage.getItem(REMINDER_KEY); return raw ? JSON.parse(raw) : {}; }
+  catch(e){ return {}; }
+}
+function saveReminders(){
+  try{ localStorage.setItem(REMINDER_KEY, JSON.stringify(REMINDERS)); }catch(e){}
+}
+let REMINDERS = loadReminders();
+function reminderFor(id){
+  const iso = REMINDERS[id];
+  if(!iso) return null;
+  const at = new Date(iso);
+  if(isNaN(at.getTime()) || at.getTime() <= Date.now()){
+    delete REMINDERS[id]; saveReminders();
+    return null;
+  }
+  return at;
+}
+function setReminder(id, at){ REMINDERS[id] = at.toISOString(); saveReminders(); }
+function clearReminder(id){ if(REMINDERS[id]){ delete REMINDERS[id]; saveReminders(); } }
+const fmtPillDate = d => d.toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric' });
+const ICON_CHECK = '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.5 5.3l2.3 2.3L8.6 2.7"/></svg>';
+const ICON_CLOCK = '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><circle cx="5" cy="5.4" r="3.6"/><path d="M5 3.2v2.4l1.7 1.1"/></svg>';
+const ICON_CAL   = '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1.8" width="8" height="7.2" rx="1"/><path d="M3 1v1.6M7 1v1.6M1.3 4.4h7.4"/></svg>';
+
+/* ---------- rappel : construction ICS / lien Google Calendar ----------
+   Aucun backend : un fichier .ics genere cote client (Apple, Outlook,
+   « autre ») ou un lien de pre-remplissage (Google, qui n'a pas besoin de
+   fichier). L'utilisateur choisit son calendrier, l'evenement arrive deja
+   rempli — il ne reste qu'a le confirmer. */
+const APP_ORIGIN = 'https://ekko-of-beyond.vercel.app';
+function pad2(n){ return String(n).padStart(2,'0'); }
+function icsDate(d){
+  return d.getUTCFullYear() + pad2(d.getUTCMonth()+1) + pad2(d.getUTCDate())
+    + 'T' + pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + pad2(d.getUTCSeconds()) + 'Z';
+}
+function icsEscape(s){
+  return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');
+}
+/* Titre parlant : on nomme la figure et l'action attendue, pas juste
+   « rappel Ekko » — pour qu'on sache de quoi il s'agit sans rouvrir l'app. */
+function reminderCopy(c, vis){
+  const title = '🔭 ' + c.name + ' ' + (vis.code === 'soon' ? 'visible ce soir' : 'redevient visible')
+    + ' — va collecter ton Ekko';
+  const description = 'Ta constellation ' + c.name + ' sera visible depuis ta position : '
+    + "c'est le moment de recuperer son Ekko sur Ekko of Beyond, avant qu'elle ne redisparaisse.\n\n"
+    + APP_ORIGIN + '/constellation?id=' + c.id;
+  return { title, description };
+}
+function icsFor(c, vis){
+  const start = vis.at, end = new Date(start.getTime() + 45*60000);
+  const { title, description } = reminderCopy(c, vis);
+  const uid = 'ekko-' + c.id + '-' + start.getTime() + '@ekko-of-beyond.vercel.app';
+  return [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ekko of Beyond//Rappel//FR',
+    'CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
+    'UID:' + uid,
+    'DTSTAMP:' + icsDate(new Date()),
+    'DTSTART:' + icsDate(start),
+    'DTEND:' + icsDate(end),
+    'SUMMARY:' + icsEscape(title),
+    'DESCRIPTION:' + icsEscape(description),
+    /* rappel 10 min avant, demande explicitement */
+    'BEGIN:VALARM','TRIGGER:-PT10M','ACTION:DISPLAY','DESCRIPTION:Rappel','END:VALARM',
+    'END:VEVENT','END:VCALENDAR',
+  ].join('\r\n');
+}
+function downloadIcs(c, vis){
+  const blob = new Blob([icsFor(c, vis)], { type:'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'ekko-' + c.id + '.ics';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+}
+function googleCalendarUrl(c, vis){
+  const start = vis.at, end = new Date(start.getTime() + 45*60000);
+  const { title, description } = reminderCopy(c, vis);
+  const p = new URLSearchParams({
+    action: 'TEMPLATE', text: title,
+    dates: icsDate(start) + '/' + icsDate(end),
+    details: description,
+  });
+  return 'https://calendar.google.com/calendar/render?' + p.toString();
+}
+
+const ICON_CAL_LG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">'
+  + '<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>';
+const ICON_DL_LG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">'
+  + '<path d="M12 4v11M7.5 11 12 15.5 16.5 11"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>';
+
+let remindTarget = null; // { id, c, vis }
+function openReminderModal(id){
+  const c = CONSTELLATIONS.find(function(x){ return x.id === id; });
+  if(!c) return;
+  const vis = visibility(c);
+  if((vis.code !== 'soon' && vis.code !== 'later') || !vis.at) return;
+  remindTarget = { id: id, c: c, vis: vis };
+  $('#remind-sub').textContent = c.name + ' — ' + visText(vis).toLowerCase() + '. Choisis ton calendrier :';
+  $('#remind-opts').innerHTML =
+    '<button type="button" data-cal="google">' + ICON_CAL_LG + '<span>Google Calendar</span></button>'
+    + '<button type="button" data-cal="apple">' + ICON_CAL_LG + '<span>Apple Calendar</span></button>'
+    + '<button type="button" data-cal="outlook">' + ICON_CAL_LG + '<span>Outlook</span></button>'
+    + '<button type="button" data-cal="ics">' + ICON_DL_LG
+      + '<span>Autre<span class="ro-note">Fichier .ics, pour tout autre calendrier</span></span></button>';
+  $('#remind-veil').classList.add('on');
+  $('#remind-modal').classList.add('on');
+}
+function closeReminderModal(){
+  $('#remind-veil').classList.remove('on');
+  $('#remind-modal').classList.remove('on');
+  remindTarget = null;
+}
+$('#remind-veil').addEventListener('click', closeReminderModal);
+$('#remind-close').addEventListener('click', closeReminderModal);
+addEventListener('keydown', function(e){ if(e.key === 'Escape') closeReminderModal(); });
+$('#remind-opts').addEventListener('click', function(e){
+  const btn = e.target.closest('button[data-cal]');
+  if(!btn || !remindTarget) return;
+  const id = remindTarget.id, c = remindTarget.c, vis = remindTarget.vis;
+  if(btn.getAttribute('data-cal') === 'google') window.open(googleCalendarUrl(c, vis), '_blank', 'noopener');
+  else downloadIcs(c, vis);
+  setReminder(id, vis.at);
+  closeReminderModal();
+  renderCard();
+  if(collBuilt) buildCollection();
+});
+
 function renderCard(){
   const c = CONSTELLATIONS[cardIdx];
   const vis = visibility(c);
   $('#medallion').innerHTML = medallionSVG(c);
+
   $('#c-cat').textContent = c.cat;
   $('#c-title').textContent = c.name;
   $('#c-desc').textContent = c.desc;
-
-  const t = $('#c-vis-txt');
-  if(vis.code === 'now')       t.textContent = 'Visible maintenant';
-  else if(vis.code === 'soon') t.textContent = 'Vers ' + fmtTime(vis.at);
-  else if(vis.code === 'never')t.textContent = 'Autre hémisphère';
-  else                         t.textContent = vis.at ? ('Vers le ' + fmtDate(vis.at)) : 'Plus tard';
+  $('#c-vis').innerHTML = visChipInnerHTML(vis);
 
   const got = COLLECTED.has(c.id);
+  const rem = got ? null : reminderFor(c.id);
   const pill = $('#c-pill');
-  pill.textContent = got ? 'collectée' : 'non collectée';
-  pill.classList.toggle('got', got);
+  pill.className = 'pill' + (got ? ' got' : rem ? ' reminder' : '');
+  pill.innerHTML = got ? (ICON_CHECK + '<span>collectée</span>')
+    : rem ? (ICON_CLOCK + '<span>rappel programmé le ' + fmtPillDate(rem) + '</span>')
+    : 'non collectée';
 
-  $('#c-acts').innerHTML = actionsHTML(c);
+  const cardEl2 = document.querySelector('.card-row .card');
+  if(cardEl2) cardEl2.classList.toggle('got', got);
+
+  $('#c-acts').innerHTML = actionsHTML(c, vis);
+  /* "Programmer un rappel"/"Rappel programmé" ont besoin de toute la
+     largeur (voir .c-acts.stack plus haut dans le CSS) : seuls ces deux
+     etats l'activent, collecter/reecouter restent cote a cote comme avant. */
+  $('#c-acts').classList.toggle('stack', !got && vis.code !== 'now' && vis.code !== 'never');
   /* Un swipe vers une autre figure referme les actions eventuellement
      ouvertes sur la precedente : rien ne justifie qu'elles restent
      deployees pour une figure qu'on n'a pas touchee. La description est
@@ -2157,20 +2450,14 @@ const FILTERS = [
 let collFilter = '*';
 let collBuilt = false;
 
-function visChipText(vis){
-  if(vis.code === 'now')   return 'Visible maintenant';
-  if(vis.code === 'soon')  return 'Vers ' + fmtTime(vis.at);
-  if(vis.code === 'never') return 'Autre hémisphère';
-  return vis.at ? ('Vers le ' + fmtDate(vis.at)) : 'Plus tard';
-}
-
 /* Une carte de la liste. Meme structure que celle du bas, pour qu'un seul
    jeu de styles serve aux deux. */
 function collCard(c){
   const vis = visibility(c);
   const got = COLLECTED.has(c.id);
+  const rem = got ? null : reminderFor(c.id);
   const el = document.createElement('article');
-  el.className = 'card';
+  el.className = 'card' + (got ? ' got' : '');
   el.dataset.cat = c.cat;
   el.dataset.id = c.id;
   el.innerHTML =
@@ -2178,11 +2465,7 @@ function collCard(c){
     '<div class="card-body">' +
       '<div class="chips">' +
         '<span class="chip cat">' + c.cat + '</span>' +
-        '<span class="chip vis">' +
-          '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1">' +
-          '<path d="M1.2 6.6 6.9 1.2l2 2.3-5.7 5.3z"/><path d="M3.2 8.8 1.6 10M7 1.4l.9 1"/></svg>' +
-          '<span>' + visChipText(vis) + '</span>' +
-        '</span>' +
+        '<span class="chip vis">' + visChipInnerHTML(vis) + '</span>' +
       '</div>' +
       '<div class="card-txt">' +
         '<div class="c-title">' + c.name + '</div>' +
@@ -2190,10 +2473,13 @@ function collCard(c){
       '</div>' +
       '<div class="c-state">' +
         '<span class="ln"></span><span class="r7"></span><span class="d5"></span>' +
-        '<span class="pill' + (got ? ' got' : '') + '">'
-          + (got ? 'collectée' : 'non collectée') + '</span>' +
+        '<span class="pill' + (got ? ' got' : rem ? ' reminder' : '') + '">'
+          + (got ? (ICON_CHECK + '<span>collectée</span>')
+             : rem ? (ICON_CLOCK + '<span>rappel programmé le ' + fmtPillDate(rem) + '</span>')
+             : 'non collectée') + '</span>' +
       '</div>' +
-      '<div class="c-acts">' + actionsHTML(c) + '</div>' +
+      '<div class="c-acts' + (!got && vis.code !== 'now' && vis.code !== 'never' ? ' stack' : '') + '">'
+        + actionsHTML(c, vis) + '</div>' +
     '</div>';
   return el;
 }
@@ -2304,29 +2590,67 @@ fetch('/content/index.json', { cache: 'no-store' })
   })
   .catch(function(){});
 
-function actionsHTML(c){
+function actionsHTML(c, vis){
   const ready = FICHES.indexOf(c.id) >= 0;
   const done = COLLECTED.has(c.id);
-  return '<button class="act collect" type="button" data-act="collect" data-id="' + c.id + '"'
-      + ' title="' + (done ? 'Ekko deja recupere — reecouter' : 'Ecouter l\'ekko') + '">'
-      + '<span>' + (done ? 'Reecouter l\'ekko' : 'Collecter l\'ekko') + '</span>'
+  const more = ready
+    ? '<a class="act more" href="/constellation?id=' + c.id + '">En savoir plus</a>'
+    : '<span class="act more off" title="Fiche a venir">En savoir plus</span>';
+
+  if(done){
+    return '<button class="act collect" type="button" data-act="collect" data-id="' + c.id + '"'
+        + ' title="Ekko deja recupere — reecouter">'
+        + '<span>Reecouter l\'ekko</span>'
+        + '<span class="orn"><span class="ln"></span><span class="r7"></span><span class="d5"></span></span>'
+        + '</button>' + more;
+  }
+
+  /* Debloque : soit vraiment visible maintenant, soit une figure qui ne se
+     leve jamais depuis cette position — auquel cas attendre n'aurait
+     jamais de sens, elle est collectable a toute heure. */
+  const unlocked = (vis || visibility(c)).code === 'now' || (vis || visibility(c)).code === 'never';
+  if(unlocked){
+    return '<button class="act collect" type="button" data-act="collect" data-id="' + c.id + '"'
+        + ' title="Ecouter l\'ekko">'
+        + '<span>Collecter l\'ekko</span>'
+        + '<span class="orn"><span class="ln"></span><span class="r7"></span><span class="d5"></span></span>'
+        + '</button>' + more;
+  }
+
+  const rem = reminderFor(c.id);
+  if(rem){
+    return '<button class="act reminder-done" type="button" data-act="remind" data-id="' + c.id + '"'
+        + ' title="Rappel deja programme — revoir">'
+        + '<span class="ico">' + ICON_CHECK + '</span><span>Rappel programmé</span>'
+        + '<span class="orn"><span class="ln"></span><span class="r7"></span><span class="d5"></span></span>'
+        + '</button>' + more;
+  }
+  return '<button class="act remind" type="button" data-act="remind" data-id="' + c.id + '"'
+      + ' title="Programmer un rappel">'
+      + '<span class="ico">' + ICON_CAL + '</span><span>Programmer un rappel</span>'
       + '<span class="orn"><span class="ln"></span><span class="r7"></span><span class="d5"></span></span>'
-      + '</button>'
-    + (ready
-        ? '<a class="act more" href="/constellation?id=' + c.id + '">En savoir plus</a>'
-        : '<span class="act more off" title="Fiche a venir">En savoir plus</span>');
+      + '</button>' + more;
 }
 
 /* Un clic sur « Collecter » ne doit pas se propager : dans le ciel il
    declencherait un deplacement de camera. Il mene au player de la figure.
-   Un seul ecouteur delegue sur le document suffit pour la vue du ciel comme
+   Un clic sur « Programmer un rappel » ouvre le choix de calendrier. Un
+   seul ecouteur delegue sur le document suffit pour la vue du ciel comme
    pour la collection, puisque les deux emettent le meme balisage. */
 document.addEventListener('click', function(e){
-  const btn = e.target.closest('[data-act="collect"]');
-  if(!btn) return;
-  e.preventDefault(); e.stopPropagation();
-  const id = btn.getAttribute('data-id');
-  if(id) openPlayer(id);
+  const collectBtn = e.target.closest('[data-act="collect"]');
+  if(collectBtn){
+    e.preventDefault(); e.stopPropagation();
+    const id = collectBtn.getAttribute('data-id');
+    if(id) openPlayer(id);
+    return;
+  }
+  const remindBtn = e.target.closest('[data-act="remind"]');
+  if(remindBtn){
+    e.preventDefault(); e.stopPropagation();
+    const id = remindBtn.getAttribute('data-id');
+    if(id) openReminderModal(id);
+  }
 });
 
 /* Fondu au noir puis navigation. La duree correspond a celle du rideau,
