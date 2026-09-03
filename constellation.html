@@ -338,17 +338,46 @@ function hot(cx, cy, r, title, body, note){
 }
 
 const SV_CREAM = 'rgba(227,227,196,';
+
+/* ================================================================
+   SCHÉMAS INTERACTIFS — RESPONSIVE
+
+   Ces schémas sont des SVG entièrement générés (voir les fonctions
+   svScale/svDepth/svCompass/svTimeline/svBars ci-dessous), affichés en
+   `width:100%` : le viewBox les redimensionne déjà à la largeur de
+   l'écran. Le problème n'est pas là — il est que jusqu'ici, le texte
+   partageait le même facteur d'échelle que le reste du dessin. Un titre
+   à 13 unités sur un canevas de 1000 de large, affiché dans les ~356px
+   utiles d'un téléphone, rendait à peine 5px de haut : illisible, quel
+   que soit le soin apporté au dessin.
+
+   COMPACT bascule chaque fonction sur des constantes pensées pour cette
+   largeur-là plutôt que sur une réduction proportionnelle du dessin
+   grand écran : texte agrandi, espacements et hauteurs de ligne redonnés
+   en conséquence pour que rien ne se chevauche. Le tracé (traits,
+   cercles, positions) garde les mêmes proportions ; seul ce qui doit
+   rester lisible à taille humaine change vraiment.
+
+   Évalué une fois au chargement — cohérent avec le reste de la page, qui
+   ne réagit déjà pas au changement d'orientation en direct — et
+   recalculé si la largeur franchit le seuil (rotation, fenêtre
+   redimensionnée), via reflowSchemas() plus bas. */
+let COMPACT = matchMedia('(max-width: 760px)').matches;
+/** Choisit la valeur adaptée au mode courant. V(large, compact). */
+function V(a, b){ return COMPACT ? b : a; }
+
 function svTitle(t){
-  return '<text x="44" y="46" font-family="Afacad,sans-serif" font-size="13"'
-    + ' letter-spacing="2.6" fill="' + SV_CREAM + '.45)">' + esc(String(t || '').toUpperCase())
+  return '<text x="' + V(44, 18) + '" y="' + V(46, 27) + '" font-family="Afacad,sans-serif"'
+    + ' font-size="' + V(13, 31) + '" letter-spacing="' + V(2.6, 1.3) + '"'
+    + ' fill="' + SV_CREAM + '.45)">' + esc(String(t || '').toUpperCase())
     + '</text>';
 }
 function svLabel(x, y, main, sub, anchor){
   let o = '<text x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="' + (anchor || 'middle')
-    + '" font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
-    + ' fill="' + SV_CREAM + '.9)" letter-spacing="1.4">' + esc(main) + '</text>';
-  if(sub) o += '<text x="' + x.toFixed(1) + '" y="' + (y + 19).toFixed(1) + '" text-anchor="'
-    + (anchor || 'middle') + '" font-family="Afacad,sans-serif" font-size="13"'
+    + '" font-family="Afacad,sans-serif" font-size="' + V(16, 40) + '" font-weight="700"'
+    + ' fill="' + SV_CREAM + '.9)" letter-spacing="' + V(1.4, 0.4) + '">' + esc(main) + '</text>';
+  if(sub) o += '<text x="' + x.toFixed(1) + '" y="' + (y + V(19, 46)).toFixed(1) + '" text-anchor="'
+    + (anchor || 'middle') + '" font-family="Afacad,sans-serif" font-size="' + V(13, 31) + '"'
     + ' fill="' + SV_CREAM + '.5)">' + esc(sub) + '</text>';
   return o;
 }
@@ -365,27 +394,35 @@ function nfr(x){
 function svScale(d){
   const items = (d.items || []).slice().sort(function(a, b){ return b.r - a.r; });
   if(!items.length) return '';
-  const W = 1000, H = 480, gap = 34;
+  const W = 1000, H = V(480, 620), gap = V(34, 56);
   const rmax = items[0].r;
   const sum = items.reduce(function(a, x){ return a + x.r; }, 0);
-  /* 96 px reserves en haut pour le titre et l'etiquette du plus gros disque,
-     56 en bas : sans cela l'etiquette se posait sur le cercle. */
-  const k = Math.min((H - 96 - 56) / (2 * rmax),
-                     (W - 120 - gap * (items.length - 1)) / (2 * sum));
+  /* Marges reservees en haut/bas pour le titre et l'etiquette du plus
+     gros disque : sans elles l'etiquette se pose sur le cercle. Plus
+     genereuses en compact, ou le texte est nettement plus grand. */
+  const topM = V(96, 160), botM = V(56, 195), sideM = V(120, 90);
+  const k = Math.min((H - topM - botM) / (2 * rmax),
+                     (W - sideM - gap * (items.length - 1)) / (2 * sum));
   /* le groupe est centre horizontalement, il ne colle plus a gauche */
   const total = 2 * sum * k + gap * (items.length - 1);
   let o = svOpen(W, H) + svTitle(d.title || 'Rayons comparés, à la même échelle');
   let x = Math.max(40, (W - total) / 2), hots = '';
+  let belowToggle = false;
   items.forEach(function(it){
     const rr = Math.max(2, it.r * k);
-    const cx = x + rr, cy = 96 + rmax * k;
+    const cx = x + rr, cy = topM + rmax * k;
     const col = it.c || '#E3E3C4';
     o += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy + '" r="' + rr.toFixed(1)
        + '" fill="' + col + '" fill-opacity="' + (rr > 12 ? '.16' : '1')
        + '" stroke="' + col + '" stroke-width="1.5"/>';
-    /* l'etiquette va au-dessus du disque, ou en dessous s'il est minuscule */
-    const above = rr > 26;
-    o += svLabel(cx, above ? cy - rr - 32 : cy + rr + 34,
+    /* l'etiquette va au-dessus du disque, ou en dessous s'il est minuscule.
+       Des petits disques rapproches (ex. deux planetes cote a cote) ont des
+       centres trop proches pour deux etiquettes en dessous, une fois le
+       texte agrandi en compact : elles alternent alors un cran plus bas. */
+    const above = rr > V(26, 46);
+    let belowExtra = 0;
+    if(!above){ belowExtra = belowToggle ? V(0, 92) : 0; belowToggle = !belowToggle; }
+    o += svLabel(cx, above ? cy - rr - V(32, 72) : cy + rr + V(34, 90) + belowExtra,
                  it.n, it.sub || (nfr(it.r) + ' R\u2609'));
     hots += hot(cx, cy, Math.max(16, rr), it.n, it.note || '',
                 nfr(it.r) + ' rayon' + (it.r > 1 ? 's' : '') + ' solaire' + (it.r > 1 ? 's' : ''));
@@ -399,37 +436,54 @@ function svDepth(d){
   const st = (d.stars || []).slice().sort(function(a, b){ return a.d - b.d; });
   if(!st.length) return '';
   const W = 1000, rows = st.length;
-  const H = 150 + rows * 74;
+  const rowH = V(74, 128);
+  const H = V(150, 210) + rows * rowH;
   const maxD = d.max || (Math.ceil(Math.max.apply(null, st.map(function(s){ return s.d; })) * 1.12 / 100) * 100);
-  const x0 = 140, x1 = 880;
+  const x0 = V(140, 120), x1 = V(880, 860);
   let o = svOpen(W, H) + svTitle(d.title || 'Distance depuis la Terre');
   const step = maxD <= 60 ? 10 : maxD <= 300 ? 50 : maxD <= 1200 ? 200 : 500;
+  const axisFont = V(13, 27), axisBottom = V(28, 46), axisTop = V(66, 84);
   for(let v = 0; v <= maxD; v += step){
     const x = x0 + (v / maxD) * (x1 - x0);
-    o += '<line x1="' + x.toFixed(1) + '" y1="66" x2="' + x.toFixed(1) + '" y2="' + (H - 54)
+    o += '<line x1="' + x.toFixed(1) + '" y1="' + axisTop + '" x2="' + x.toFixed(1) + '" y2="' + (H - V(54, 92))
        + '" stroke="' + SV_CREAM + '.09)"/>';
-    o += '<text x="' + x.toFixed(1) + '" y="' + (H - 28) + '" text-anchor="middle"'
-       + ' font-family="Afacad,sans-serif" font-size="13" fill="' + SV_CREAM + '.4)">'
+    o += '<text x="' + x.toFixed(1) + '" y="' + (H - axisBottom) + '" text-anchor="middle"'
+       + ' font-family="Afacad,sans-serif" font-size="' + axisFont + '" fill="' + SV_CREAM + '.4)">'
        + (v ? nfr(v) + ' a.l.' : (d.origin || 'Terre')) + '</text>';
   }
   const oy = H / 2;
-  o += '<circle cx="' + x0 + '" cy="' + oy + '" r="6" fill="#8FD0C9"/>';
-  let hots = hot(x0, oy, 6, d.origin || 'La Terre',
+  const originR = V(6, 11);
+  o += '<circle cx="' + x0 + '" cy="' + oy + '" r="' + originR + '" fill="#8FD0C9"/>';
+  let hots = hot(x0, oy, originR, d.origin || 'La Terre',
     d.originNote || "Le point de vue. C'est lui qui fait apparaitre les etoiles alignees.",
     'Origine du schéma');
+  const dotR = V(8, 13), nameFont = V(16, 30), distFont = V(13.5, 24), labelGap = V(16, 22);
   st.forEach(function(s, i){
     const x = x0 + (s.d / maxD) * (x1 - x0);
-    const y = 110 + i * 74;
+    const y = V(110, 150) + i * rowH;
     o += '<line x1="' + x0 + '" y1="' + oy + '" x2="' + x.toFixed(1) + '" y2="' + y
        + '" stroke="' + SV_CREAM + '.22)" stroke-dasharray="3 5"/>';
-    o += '<circle cx="' + x.toFixed(1) + '" cy="' + y + '" r="8" fill="#E3E3C4"/>';
-    o += '<text x="' + (x - 16).toFixed(1) + '" y="' + (y + 6) + '" text-anchor="end"'
-       + ' font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
-       + ' fill="' + SV_CREAM + '.9)">' + esc(s.n) + '</text>';
-    o += '<text x="' + (x + 18).toFixed(1) + '" y="' + (y + 6) + '"'
-       + ' font-family="Afacad,sans-serif" font-size="13.5" fill="' + SV_CREAM + '.5)">'
-       + nfr(s.d) + ' a.l.</text>';
-    hots += hot(x, y, 8, s.n, s.note || '', s.sub || (nfr(s.d) + ' années-lumière'));
+    o += '<circle cx="' + x.toFixed(1) + '" cy="' + y + '" r="' + dotR + '" fill="#E3E3C4"/>';
+    if(COMPACT){
+      /* Le nom a gauche du point manquait de place pour les etoiles
+         proches de la Terre, une fois la police agrandie : nom au-dessus,
+         distance en dessous, toujours centres — la place verticale ne
+         depend pas de la position horizontale du point. */
+      o += '<text x="' + x.toFixed(1) + '" y="' + (y - dotR - 14) + '" text-anchor="middle"'
+         + ' font-family="Afacad,sans-serif" font-size="' + nameFont + '" font-weight="700"'
+         + ' fill="' + SV_CREAM + '.9)">' + esc(s.n) + '</text>';
+      o += '<text x="' + x.toFixed(1) + '" y="' + (y + dotR + distFont + 10) + '" text-anchor="middle"'
+         + ' font-family="Afacad,sans-serif" font-size="' + distFont + '" fill="' + SV_CREAM + '.5)">'
+         + nfr(s.d) + ' a.l.</text>';
+    }else{
+      o += '<text x="' + (x - labelGap).toFixed(1) + '" y="' + (y + 6) + '" text-anchor="end"'
+         + ' font-family="Afacad,sans-serif" font-size="' + nameFont + '" font-weight="700"'
+         + ' fill="' + SV_CREAM + '.9)">' + esc(s.n) + '</text>';
+      o += '<text x="' + (x + labelGap + 2).toFixed(1) + '" y="' + (y + 6) + '"'
+         + ' font-family="Afacad,sans-serif" font-size="' + distFont + '" fill="' + SV_CREAM + '.5)">'
+         + nfr(s.d) + ' a.l.</text>';
+    }
+    hots += hot(x, y, dotR, s.n, s.note || '', s.sub || (nfr(s.d) + ' années-lumière'));
   });
   return o + hots + '</svg>';
 }
@@ -484,24 +538,27 @@ function svCompass(d){
   const xs = pts.map(function(p){ return p[0]; }), ys = pts.map(function(p){ return p[1]; });
   const spanX = Math.max.apply(null, xs) - Math.min.apply(null, xs);
   const spanY = Math.max.apply(null, ys) - Math.min.apply(null, ys);
-  const W = 1000, H = 560;
+  const W = 1000, H = V(560, 640);
   /* la figure occupe la moitie du cadre, la couronne exterieure recoit les cibles */
-  const k = Math.min(400 / (spanX || 1e-6), 210 / (spanY || 1e-6));
+  const k = Math.min(V(400, 380) / (spanX || 1e-6), V(210, 230) / (spanY || 1e-6));
   const mx = (Math.max.apply(null, xs) + Math.min.apply(null, xs)) / 2;
   const my = (Math.max.apply(null, ys) + Math.min.apply(null, ys)) / 2;
   const CX = W / 2, CY = H / 2 + 14;
   /* nord en haut, est a gauche : convention des cartes du ciel */
   const S = pts.map(function(p){ return [CX - (p[0] - mx) * k, CY - (p[1] - my) * k]; });
 
-  /* Cibles : direction vraie, distance forcee au bord du cadre. */
+  /* Cibles : direction vraie, distance forcee au bord du cadre. Marge
+     agrandie en compact pour laisser la place aux etiquettes, bien plus
+     grandes. */
+  const edgeMX = V(130, 210), edgeMY = V(66, 120);
   const T = targets.map(function(x){
     const q = proj(x.ra, x.dec);
     let dx = -(q[0] - mx), dy = -(q[1] - my);
     const n2 = Math.hypot(dx, dy) || 1;
     dx /= n2; dy /= n2;
     /* rayon maximal tenant dans le cadre pour cette direction */
-    const rx = (W / 2 - 130) / Math.max(0.001, Math.abs(dx));
-    const ry = (H / 2 - 66) / Math.max(0.001, Math.abs(dy));
+    const rx = (W / 2 - edgeMX) / Math.max(0.001, Math.abs(dx));
+    const ry = (H / 2 - edgeMY) / Math.max(0.001, Math.abs(dy));
     const rr = Math.min(rx, ry);
     return [CX + dx * rr, CY + dy * rr];
   });
@@ -524,28 +581,64 @@ function svCompass(d){
        + ' stroke-dasharray="5 6" opacity=".7"/>';
   });
   let hots = '';
+  const starFont = V(15, 27), starGap = V(10, 15);
+  /* Decale verticalement l'etiquette d'une etoile quand une autre, deja
+     posee, est trop proche : les positions viennent d'une vraie
+     projection RA/Dec, rien ne garantit que deux etoiles voisines dans le
+     ciel laissent assez de place a deux noms l'un a cote de l'autre —
+     surtout une fois le texte agrandi en compact. */
+  function declutterY(placed, x, y, dxTol, dyTol, step){
+    let ny = y, guard = 0;
+    while(guard++ < 6 && placed.some(function(p){ return Math.abs(p.x - x) < dxTol && Math.abs(p.y - ny) < dyTol; })){
+      ny += step;
+    }
+    placed.push({ x: x, y: ny });
+    return ny;
+  }
+  const ownPlaced = [];
+  const ownDxTol = V(80, 170), ownDyTol = V(16, 30), ownStep = V(15, 30);
   own.forEach(function(s, i){
     const r = Math.max(4.5, 7.6 - s.mag * 0.9);
     o += '<circle cx="' + S[i][0].toFixed(1) + '" cy="' + S[i][1].toFixed(1) + '" r="' + r.toFixed(1)
        + '" fill="#E3E3C4"/>';
     if(s.n){
-      o += '<text x="' + (S[i][0] + r + 10).toFixed(1) + '" y="' + (S[i][1] + 5).toFixed(1) + '"'
-         + ' font-family="Afacad,sans-serif" font-size="15" fill="' + SV_CREAM + '.85)">'
+      const lx = S[i][0] + r + starGap;
+      const ly = declutterY(ownPlaced, lx, S[i][1] + 5, ownDxTol, ownDyTol, ownStep);
+      o += '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '"'
+         + ' font-family="Afacad,sans-serif" font-size="' + starFont + '" fill="' + SV_CREAM + '.85)">'
          + esc(s.n) + '</text>';
       const note = (d.notes && d.notes[s.n]) || '';
       hots += hot(S[i][0], S[i][1], r, s.n, note, 'Magnitude ' + s.mag);
     }
   });
+  const targetR = V(7, 11), targetGap = V(16, 34), targetFont = V(15, 27);
+  const targetPlaced = [];
+  const targetDxTol = V(90, 190), targetDyTol = V(16, 30), targetStep = V(15, 44);
+  const closeNeighborThresh = V(60, 140);
   targets.forEach(function(x, i){
     const p = T[i];
-    o += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="7" fill="#8FD0C9"/>';
-    /* l'etiquette part vers l'exterieur, pour ne pas revenir sur la figure */
-    const right = p[0] >= CX;
-    o += '<text x="' + (p[0] + (right ? 16 : -16)).toFixed(1) + '" y="' + (p[1] + 5).toFixed(1) + '"'
+    o += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + targetR + '" fill="#8FD0C9"/>';
+    /* l'etiquette part vers l'exterieur, pour ne pas revenir sur la figure.
+       Mais deux cibles proches l'une de l'autre, toutes deux « a gauche »
+       du centre par exemple, etendaient parfois leur texte l'une vers
+       l'autre plutot que de s'ecarter : quand une cible voisine est
+       proche, la direction se decide par rapport a elle, pas au centre. */
+    let neighborX = null, bestD = Infinity;
+    targets.forEach(function(_, j){
+      if(j === i) return;
+      const d2 = Math.abs(T[j][0] - p[0]);
+      if(d2 < bestD){ bestD = d2; neighborX = T[j][0]; }
+    });
+    const right = (neighborX !== null && bestD < closeNeighborThresh)
+      ? p[0] >= neighborX
+      : p[0] >= CX;
+    const lx = p[0] + (right ? targetGap : -targetGap);
+    const ly = declutterY(targetPlaced, lx, p[1] + 5, targetDxTol, targetDyTol, targetStep);
+    o += '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '"'
        + ' text-anchor="' + (right ? 'start' : 'end') + '"'
-       + ' font-family="Afacad,sans-serif" font-size="15" fill="' + SV_CREAM + '.8)">'
+       + ' font-family="Afacad,sans-serif" font-size="' + targetFont + '" fill="' + SV_CREAM + '.8)">'
        + esc(x.t.label || x.t.star) + '</text>';
-    hots += hot(p[0], p[1], 7, x.t.label || x.t.star, x.t.note || '', x.t.sub || '');
+    hots += hot(p[0], p[1], targetR, x.t.label || x.t.star, x.t.note || '', x.t.sub || '');
   });
   return o + hots + '</svg>';
 }
@@ -554,46 +647,54 @@ function svCompass(d){
 function svTimeline(d){
   const ev = (d.events || []).slice().sort(function(a, b){ return a.y - b.y; });
   if(!ev.length) return '';
-  const W = 1000, H = 400;
+  const W = 1000, H = V(400, 560);
   /* Espacement REGULIER, et non proportionnel aux dates : une chronologie
      dont les evenements se pressent sur deux siecles et s'espacent sur
      mille ans devient illisible en echelle vraie. Ce qui compte ici est la
      sequence, pas la metrique. */
-  const x0 = 150, x1 = 850, axis = H / 2 + 18;
+  const x0 = V(150, 90), x1 = V(850, 910), axis = H / 2 + V(18, 10);
   let o = svOpen(W, H) + svTitle(d.title || 'Repères chronologiques');
   o += '<line x1="' + x0 + '" y1="' + axis + '" x2="' + x1 + '" y2="' + axis
      + '" stroke="' + SV_CREAM + '.28)" stroke-width="1.2"/>';
   let hots = '';
+  const tickLen = V(20, 26), tyOff = V(34, 50), dotR = V(7, 12);
+  const whenFont = V(17, 26), lblFont = V(13.5, 22), lineH = V(19, 30), firstLine = V(22, 32);
   ev.forEach(function(e, i){
     const x = ev.length === 1 ? (x0 + x1) / 2
               : x0 + (i / (ev.length - 1)) * (x1 - x0);
     const up = i % 2 === 0;
-    const ty = up ? axis - 34 : axis + 34;
+    const ty = up ? axis - tyOff : axis + tyOff;
+    /* Les libelles du premier et du dernier evenement, centres sur x0/x1,
+       debordaient du cadre a gauche/a droite avec la police agrandie du
+       mode compact. On les ancre plutot vers l'interieur. */
+    const anchor = COMPACT ? (i === 0 ? 'start' : (i === ev.length - 1 ? 'end' : 'middle')) : 'middle';
     o += '<line x1="' + x.toFixed(1) + '" y1="' + axis + '" x2="' + x.toFixed(1) + '" y2="'
-       + (up ? axis - 20 : axis + 20) + '" stroke="' + SV_CREAM + '.35)"/>';
-    o += '<circle cx="' + x.toFixed(1) + '" cy="' + axis + '" r="7" fill="#E3E3C4"/>';
-    o += '<text x="' + x.toFixed(1) + '" y="' + ty + '" text-anchor="middle"'
-       + ' font-family="Afacad,sans-serif" font-size="17" font-weight="700"'
+       + (up ? axis - tickLen : axis + tickLen) + '" stroke="' + SV_CREAM + '.35)"/>';
+    o += '<circle cx="' + x.toFixed(1) + '" cy="' + axis + '" r="' + dotR + '" fill="#E3E3C4"/>';
+    o += '<text x="' + x.toFixed(1) + '" y="' + ty + '" text-anchor="' + anchor + '"'
+       + ' font-family="Afacad,sans-serif" font-size="' + whenFont + '" font-weight="700"'
        + ' fill="' + SV_CREAM + '.9)">' + esc(e.when || String(e.y)) + '</text>';
     /* le libelle est coupe en lignes courtes pour ne pas deborder */
     const words = String(e.label || '').split(' ');
     const lines = [];
     let cur = '';
     /* largeur de coupe deduite du nombre d'evenements : plus ils sont
-       nombreux, plus les colonnes sont etroites */
+       nombreux, plus les colonnes sont etroites. Le diviseur suit la
+       taille de police (V) pour rester correct en compact. */
     const col = (x1 - x0) / Math.max(1, ev.length - 1);
-    const wrap = Math.max(11, Math.min(24, Math.floor(col / 7)));
+    const charW = V(7, 13);
+    const wrap = Math.max(V(11, 7), Math.min(V(24, 15), Math.floor(col / charW)));
     words.forEach(function(w){
       if((cur + ' ' + w).trim().length > wrap){ lines.push(cur.trim()); cur = w; }
       else cur += ' ' + w;
     });
     if(cur.trim()) lines.push(cur.trim());
     lines.slice(0, 3).forEach(function(l, j){
-      o += '<text x="' + x.toFixed(1) + '" y="' + (ty + (up ? -22 - (lines.length - 1 - j) * 19 : 24 + j * 19))
-         + '" text-anchor="middle" font-family="Afacad,sans-serif" font-size="13.5"'
+      o += '<text x="' + x.toFixed(1) + '" y="' + (ty + (up ? -firstLine - (lines.length - 1 - j) * lineH : firstLine + j * lineH))
+         + '" text-anchor="' + anchor + '" font-family="Afacad,sans-serif" font-size="' + lblFont + '"'
          + ' fill="' + SV_CREAM + '.55)">' + esc(l) + '</text>';
     });
-    hots += hot(x, axis, 7, e.when || String(e.y), e.note || e.label || '', e.label || '');
+    hots += hot(x, axis, dotR, e.when || String(e.y), e.note || e.label || '', e.label || '');
   });
   return o + hots + '</svg>';
 }
@@ -602,24 +703,31 @@ function svTimeline(d){
 function svBars(d){
   const it = (d.items || []).slice();
   if(!it.length) return '';
-  const W = 1000, H = 130 + it.length * 62;
-  const x0 = 250, x1 = 860;
+  const rowH = V(62, 108);
+  const W = 1000, H = V(130, 190) + it.length * rowH;
+  const x0 = V(250, 190), x1 = V(860, 900);
   const max = Math.max.apply(null, it.map(function(x){ return x.v; })) || 1;
   let o = svOpen(W, H) + svTitle(d.title || 'Comparaison');
   let hots = '';
+  const nameFont = V(16, 26), valFont = V(14, 22), barH = V(22, 38), rx = V(4, 8);
+  /* La barre la plus longue allait jusqu'au bord du cadre : au-dela d'une
+     police lisible, son etiquette de valeur ("6 000 meteores/heure") n'a
+     plus la place de s'afficher a sa droite. On reserve une marge fixe en
+     compact plutot que de laisser la barre maximale manger tout l'espace. */
+  const barMaxFrac = V(1, 0.72);
   it.forEach(function(x, i){
-    const y = 96 + i * 62;
-    const w = Math.max(3, (x.v / max) * (x1 - x0));
-    o += '<text x="' + (x0 - 22) + '" y="' + (y + 15) + '" text-anchor="end"'
-       + ' font-family="Afacad,sans-serif" font-size="16" font-weight="700"'
+    const y = V(96, 150) + i * rowH;
+    const w = Math.max(3, (x.v / max) * (x1 - x0) * barMaxFrac);
+    o += '<text x="' + (x0 - V(22, 16)) + '" y="' + (y + barH/2 + 5) + '" text-anchor="end"'
+       + ' font-family="Afacad,sans-serif" font-size="' + nameFont + '" font-weight="700"'
        + ' fill="' + SV_CREAM + '.9)">' + esc(x.n) + '</text>';
-    o += '<rect x="' + x0 + '" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="4"'
+    o += '<rect x="' + x0 + '" y="' + y + '" width="' + w.toFixed(1) + '" height="' + barH + '" rx="' + rx + '"'
        + ' fill="' + (x.c || '#E3E3C4') + '" fill-opacity=".3" stroke="' + (x.c || '#E3E3C4')
        + '" stroke-width="1.2"/>';
-    o += '<text x="' + (x0 + w + 14).toFixed(1) + '" y="' + (y + 16) + '"'
-       + ' font-family="Afacad,sans-serif" font-size="14" fill="' + SV_CREAM + '.6)">'
+    o += '<text x="' + (x0 + w + V(14, 16)).toFixed(1) + '" y="' + (y + barH/2 + 5) + '"'
+       + ' font-family="Afacad,sans-serif" font-size="' + valFont + '" fill="' + SV_CREAM + '.6)">'
        + esc(x.sub || (nfr(x.v) + (d.unit ? ' ' + d.unit : ''))) + '</text>';
-    hots += hot(x0 + w / 2, y + 11, 11, x.n, x.note || '',
+    hots += hot(x0 + w / 2, y + barH/2, Math.max(V(11,20), barH/2), x.n, x.note || '',
                 x.sub || (nfr(x.v) + (d.unit ? ' ' + d.unit : '')));
   });
   return o + hots + '</svg>';
@@ -683,7 +791,7 @@ const CONTENT = {
         + "puisqu'Orion est posée sur l'équateur céleste." ]},
 
       { t:'figure', svg:'scale', wide:true,
-        cap:"L'échelle réelle, à taille comparable. Le disque du Soleil, à droite, tient dans un pixel. Survolez chaque astre.",
+        cap:"L'échelle réelle, à taille comparable. Le disque du Soleil, à droite, tient dans un pixel. Survolez ou touchez chaque astre.",
         credit:"Schéma Ekko of Beyond, rayons médians des estimations publiées." },
 
       { t:'text', h:"Le Baudrier n'est pas une ligne", p:[
@@ -695,7 +803,7 @@ const CONTENT = {
         + "chasseur se défait entièrement." ]},
 
       { t:'figure', svg:'depth', wide:true,
-        cap:"Les trois étoiles du Baudrier, replacées à leur distance réelle. Survolez chaque étoile.",
+        cap:"Les trois étoiles du Baudrier, replacées à leur distance réelle. Survolez ou touchez chaque étoile.",
         credit:"Schéma Ekko of Beyond." },
 
       { t:'text', h:"L'affaire Bételgeuse", p:[
@@ -724,7 +832,7 @@ const CONTENT = {
         "C'est la raison pour laquelle on apprend toujours Orion en premier." ]},
 
       { t:'figure', svg:'compass', wide:true,
-        cap:"Les alignements qui font d'Orion un point de repère. Survolez les étoiles pour les identifier.",
+        cap:"Les alignements qui font d'Orion un point de repère. Survolez ou touchez les étoiles pour les identifier.",
         credit:"Schéma Ekko of Beyond." },
 
       { t:'figure', src:IMG + 'orion-bar-webb.jpg', page:'https://esawebb.org/images/weic2411a/',
@@ -1156,7 +1264,12 @@ function applyFigureRoll(){
 /* ---------- infobulle des schémas ----------
    Une seule infobulle pour toute la page, positionnée au pointeur. Les
    zones sensibles sont posées par la fonction hot() dans chaque SVG, et
-   sont focalisables au clavier — la souris n'est pas le seul moyen. */
+   sont focalisables au clavier — la souris n'est pas le seul moyen.
+
+   Sur tactile, `pointerover` ne se déclenche pas de façon fiable (il n'y
+   a pas de survol) : sans le bloc ci-dessous, l'invite « survolez » des
+   légendes ne menait à rien au doigt. Un tap ouvre ou ferme désormais
+   l'infobulle de la zone touchée, et un tap ailleurs la referme. */
 (function(){
   const tip = document.getElementById('tip');
   if(!tip) return;
@@ -1175,16 +1288,19 @@ function applyFigureRoll(){
     tip.style.left = Math.max(12, left) + 'px';
     tip.style.top  = Math.max(12, top) + 'px';
   };
-  const hide = function(){ tip.classList.remove('on'); };
+  const hide = function(){ tip.classList.remove('on'); tip.dataset.pinned = ''; };
 
   document.addEventListener('pointerover', function(e){
+    if(e.pointerType === 'touch') return;   // le tap est gere a part, plus bas
     const h = e.target.closest && e.target.closest('.hot');
     if(h) show(h, e.clientX, e.clientY);
   });
   document.addEventListener('pointermove', function(e){
+    if(e.pointerType === 'touch') return;
     if(tip.classList.contains('on')) place(e.clientX, e.clientY);
   });
   document.addEventListener('pointerout', function(e){
+    if(e.pointerType === 'touch') return;
     if(e.target.closest && e.target.closest('.hot')) hide();
   });
   /* au clavier : l'infobulle se pose près de la zone focalisée */
@@ -1196,6 +1312,22 @@ function applyFigureRoll(){
   });
   document.addEventListener('focusout', hide);
   addEventListener('scroll', hide, { passive:true });
+
+  /* Au tap : une zone sensible « epingle » son infobulle (elle reste
+     ouverte sans que le doigt reste dessus) ; un second tap dessus, ou un
+     tap ailleurs, la referme. */
+  document.addEventListener('click', function(e){
+    const h = e.target.closest && e.target.closest('.hot');
+    if(!h){ hide(); return; }
+    if(tip.dataset.pinned === 'true' && tip.dataset.pinnedFor === (h.dataset.t || '') + '|' + (h.dataset.b || '')){
+      hide();
+      return;
+    }
+    const b = h.getBoundingClientRect();
+    show(h, b.left + b.width/2, b.top + b.height/2);
+    tip.dataset.pinned = 'true';
+    tip.dataset.pinnedFor = (h.dataset.t || '') + '|' + (h.dataset.b || '');
+  });
 })();
 
 /* ---------- onglets : seuls ceux qui ont du contenu ---------- */
@@ -1254,6 +1386,27 @@ if(!keys.length){
 }
 
 buildTabs();
+
+/* Les schemas SVG ci-dessus figent leurs constantes de mise en page (V())
+   au moment du rendu : une rotation d'ecran qui fait franchir le seuil de
+   760px doit donc reconstruire les panneaux, sinon un iPhone tourne en
+   paysage garderait des schemas dessines pour un etroit portrait (ou
+   l'inverse). Redondant avec les autres reglages de la page, qui ne
+   suivent deja pas la rotation en direct, mais ici le cout de ne pas le
+   faire est un schema illisible — ca merite le reflow. */
+(function(){
+  let t = null;
+  addEventListener('resize', function(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      const nowCompact = matchMedia('(max-width: 760px)').matches;
+      if(nowCompact !== COMPACT){
+        COMPACT = nowCompact;
+        buildTabs();
+      }
+    }, 180);
+  });
+})();
 
 /* Un fichier par onglet : content/<id>/<onglet>.json. On les demande tous
    les trois en parallele, un manquant n'est pas une erreur — c'est un

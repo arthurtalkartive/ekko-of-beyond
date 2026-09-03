@@ -301,21 +301,25 @@ button.account{cursor:pointer}
 .mi-sep{height:1px;margin:7px 13px;background:var(--c20)}
 @media (max-width:820px){ #menu{right:12px;left:12px;min-width:0} }
 
-/* ================= ACTIONS AU SURVOL =================
+/* ================= ACTIONS AU SURVOL / AU TOUCHER =================
    Deux boutons révélés au survol de la carte, dans la vue du ciel comme
    dans la liste. La rangée est présente mais repliée : on anime sa
    hauteur, ce qui évite de déplacer la mise en page au chargement.
 
-   Sur les appareils sans survol, elle reste ouverte en permanence — un
-   bouton inaccessible au doigt n'aurait aucun intérêt. */
+   Sur les appareils sans survol, elles restaient ouvertes en
+   permanence — un bouton inaccessible au doigt n'aurait aucun intérêt,
+   c'était le raisonnement d'origine. Mais ça grignotait en continu un
+   bon tiers de la hauteur de la carte, sur l'écran où l'espace manque
+   le plus. La classe `.open` (posée par JS au toucher de la carte,
+   plus bas dans le fichier) prend le relais : repliées par défaut,
+   révélées d'un tap, comme au survol. */
 .c-acts{
   display:flex;gap:12px;align-items:stretch;width:100%;
   max-height:0;opacity:0;overflow:hidden;
   transition:max-height .28s ease,opacity .22s ease,margin-top .28s ease;
   margin-top:0;
 }
-.card:hover .c-acts,.card:focus-within .c-acts{max-height:46px;opacity:1;margin-top:12px}
-@media (hover:none){ .c-acts{max-height:46px;opacity:1;margin-top:12px} }
+.card:hover .c-acts,.card:focus-within .c-acts,.card.open .c-acts{max-height:46px;opacity:1;margin-top:12px}
 
 .act{
   display:flex;align-items:center;justify-content:center;gap:10px;
@@ -338,10 +342,7 @@ button.account{cursor:pointer}
 
 @media (max-width:560px){
   .c-acts{gap:8px}
-  .card:hover .c-acts,.card:focus-within .c-acts,
-  .c-acts{max-height:0}
-  .card:hover .c-acts,.card:focus-within .c-acts{max-height:92px}
-  @media (hover:none){ .c-acts{max-height:92px} }
+  .card:hover .c-acts,.card:focus-within .c-acts,.card.open .c-acts{max-height:92px}
   .c-acts{flex-direction:column}
   .act{padding:9px 18px;font-size:13px}
   .act.more{padding:9px 18px}
@@ -424,6 +425,12 @@ body.collection .zoom,
 body.collection #reticle{opacity:0;pointer-events:none}
 .card-row,.c-pos,.zoom{transition:opacity .3s ease}
 
+/* Carte du ciel deployee (actions "Collecter"/"En savoir plus" au tap,
+   mobile) : elle grandit vers le haut depuis le meme point bas fixe et
+   peut passer sous les boutons de zoom, poses aux memes coordonnees.
+   Le zoom s'efface le temps que la carte est ouverte, comme en collection. */
+body.card-open .zoom{opacity:0;pointer-events:none}
+
 @media (max-width:900px){
   .coll-grid{grid-template-columns:1fr}
   .coll-filters{gap:10px;padding:0 14px 18px}
@@ -486,11 +493,13 @@ body.collection #reticle{opacity:0;pointer-events:none}
   .zbtn{width:44px;height:44px}
   .zbtn svg{width:20px;height:20px}
   .card-row{width:100%;padding:0 12px;bottom:calc(16px + var(--safe-b))}
-  .nav-side{position:absolute;top:50%;transform:translateY(-50%);z-index:3;gap:0}
-  .nav-side .ln,.nav-side .d5,.nav-side .r7{display:none}
-  .nav-side.prev{left:20px}
-  .nav-side.next{right:20px}
-  .nav-btn{width:40px;height:40px;background:rgba(6,10,16,.72)}
+  /* Les fleches flottaient par-dessus la carte (position absolue, pour
+     ne pas lui prendre de largeur) et son propre contenu — pastille «
+     non collectee », bouton « en savoir plus » — passait dessous sur
+     un ecran etroit. Retirees au profit du glisse tactile (voir plus
+     bas dans le fichier) ; le compteur au-dessus de la carte joue le
+     role d'indice de navigation. */
+  .nav-side{display:none}
   .card{width:100%;padding:16px 14px;gap:14px}
   .medallion{width:66px;height:66px}
   .c-title{font-size:18px}
@@ -672,7 +681,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
   <div class="coll-grid" id="coll-grid"></div>
 </section>
 
-<div class="c-pos" id="c-pos">1 / 53</div>
+<div class="c-pos" id="c-pos">‹  1 / 53  ›</div>
 
 <div class="card-row">
   <span class="nav-side prev">
@@ -1734,8 +1743,14 @@ function renderCard(){
   pill.classList.toggle('got', got);
 
   $('#c-acts').innerHTML = actionsHTML(c);
+  /* Un swipe vers une autre figure referme les actions eventuellement
+     ouvertes sur la precedente : rien ne justifie qu'elles restent
+     deployees pour une figure qu'on n'a pas touchee. */
+  const cardEl = document.querySelector('.card-row .card');
+  if(cardEl) cardEl.classList.remove('open');
+  document.body.classList.remove('card-open');
 
-  $('#c-pos').textContent = (cardIdx + 1) + ' / ' + CONSTELLATIONS.length;
+  $('#c-pos').textContent = '‹  ' + (cardIdx + 1) + ' / ' + CONSTELLATIONS.length + '  ›';
 }
 
 /* Sélectionne la constellation dans le moteur. C'est la sélection qui
@@ -1941,6 +1956,68 @@ addEventListener('keydown', e => {
   if(e.key === 'ArrowLeft')  goToCard(-1);
   if(e.key === 'ArrowRight') goToCard(1);
 });
+
+/* ============================================================
+   GLISSE TACTILE + REPLI DES ACTIONS AU TOUCHER
+   Sur mobile, les fleches de navigation sont masquees (elles
+   flottaient par-dessus le contenu de la carte, largeur oblige) : la
+   carte se glisse desormais horizontalement pour naviguer, comme un
+   carrousel. Un tap sur une zone non interactive de la carte revele
+   « Collecter »/« En savoir plus », repliees par defaut sur tactile —
+   voir la regle `.card.open .c-acts` plus haut dans le CSS.
+   ============================================================ */
+(function(){
+  const TAP_SLOP = 10;   // au-dela, on considere que le doigt a glisse
+  const SWIPE_MIN = 40;  // distance horizontale minimale pour naviguer
+
+  function interactiveTarget(el){
+    return el.closest('.act, .nav-btn, a, button');
+  }
+
+  let startX = 0, startY = 0, moved = false, tracking = false;
+
+  document.addEventListener('pointerdown', function(e){
+    const card = e.target.closest('.card');
+    if(!card || e.pointerType === 'mouse') return; // la souris garde le survol
+    tracking = true; moved = false;
+    startX = e.clientX; startY = e.clientY;
+  }, { passive:true });
+
+  document.addEventListener('pointermove', function(e){
+    if(!tracking) return;
+    if(Math.abs(e.clientX - startX) > TAP_SLOP || Math.abs(e.clientY - startY) > TAP_SLOP) moved = true;
+  }, { passive:true });
+
+  document.addEventListener('pointerup', function(e){
+    if(!tracking) return;
+    tracking = false;
+    const card = e.target.closest('.card');
+    if(!card) return;
+
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    // Glissement surtout horizontal et assez ample : on navigue. Reserve
+    // a la carte principale, la liste Collection ne se feuillette pas.
+    if(moved && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_MIN && card.closest('.card-row')){
+      goToCard(dx < 0 ? 1 : -1);
+      return;
+    }
+
+    // Sinon, un vrai tap (peu de mouvement) hors zone interactive
+    // bascule les actions de cette carte.
+    if(!moved && !interactiveTarget(e.target)){
+      const isSkyCard = !!card.closest('.card-row');
+      card.classList.toggle('open');
+      /* Deployee, la carte du ciel grandit vers le haut et peut passer
+         sous les boutons de zoom (memes coordonnees fixes que quand elle
+         etait repliee). Le meme traitement que le mode Collection : on
+         les efface le temps que la carte est ouverte. */
+      if(isSkyCard) document.body.classList.toggle('card-open', card.classList.contains('open'));
+    }
+  });
+})();
+
 /* ============================================================
    COLLECTION
    Liste des 53 figures, filtrable par categorie. Les cartes reprennent
