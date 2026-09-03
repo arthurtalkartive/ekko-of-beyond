@@ -347,7 +347,8 @@ button.account{cursor:pointer}
    le suivant. Remplace l'ancien placeholder "Ma progression" desactive —
    plus besoin d'attendre les comptes pour la voir, elle est juste
    partagee par tout le monde en attendant. */
-.mi-progress{padding:9px 13px 4px}
+.mi-progress{padding:9px 13px 4px;display:block;text-decoration:none;border-radius:9px;transition:background .18s}
+.mi-progress:hover{background:rgba(227,227,196,.1)}
 .mp-head{display:flex;align-items:center;gap:10px}
 .mp-ico{width:30px;height:30px;flex:none;display:block;opacity:.9}
 .mp-ico img{width:100%;height:100%;display:block;object-fit:contain}
@@ -803,7 +804,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
   <a class="mi" href="/studio">Studio des contenus</a>
   <a class="mi" href="/tools">Tous les outils</a>
   <span class="mi-sep"></span>
-  <div class="mi-progress" id="mi-progress"></div>
+  <a class="mi-progress" id="mi-progress" href="/progression"></a>
   <span class="mi off" title="Disponible avec les comptes">Déconnexion</span>
 </nav>
 
@@ -1480,6 +1481,11 @@ const CONSTELLATIONS = RAW.map(r => ({
   lines:r[6],
   cat: CATS[r[0]] || 'Constellation'
 }));
+/* Partage le total avec la page de progression (progression.html), qui ne
+   peut pas se permettre de dupliquer tout ce tableau juste pour compter
+   ses entrees. Reecrit a chaque chargement : le jour ou une constellation
+   s'ajoute ici, la page de progression le sait des la prochaine visite. */
+try{ localStorage.setItem('ekko-total', String(CONSTELLATIONS.length)); }catch(e){}
 
 /* Correspondance id Ekko -> abréviation IAU, pour dialoguer avec le moteur.
    Le Grand Nuage de Magellan et les trois astérismes n'ont pas de
