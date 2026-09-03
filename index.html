@@ -137,6 +137,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   opacity:1;transition:opacity .4s ease;
 }
 #splash-badge.hide{opacity:0}
+#splash-badge.no-anim-badge{transition:none}
 /* Le badge en video. Son fond noir n'est pas une couche alpha : il n'y a
    rien a retirer. On le neutralise par fusion « screen », ou le noir
    n'ajoute rien et seuls les pixels clairs apparaissent — exactement le
@@ -1949,79 +1950,97 @@ const EKKO_SESSION = import('/js/supa.js').then(function(m){ return m.getSession
     if(window.ekkoEnterSky) window.ekkoEnterSky();
   };
 
-  function revealFor(session, instant){
-    if(session){
-      window.ekkoRevealSky(instant);
-    }else{
-      const badge = document.getElementById('splash-badge');
-      const gate = document.getElementById('splash-gate');
-      if(badge) badge.classList.add('hide');
+  /* Portail : d'abord l'animation du badge s'efface completement, PUIS
+     le titre + les deux boutons apparaissent — deux temps distincts,
+     pas un fondu croise ou l'un chevaucherait l'autre (demande
+     explicite). Voir #splash-badge/.hide et #splash-gate/.on pour les
+     durees CSS ; 480ms de battement ici correspond a la fin du fondu de
+     sortie du badge (400ms) plus une petite marge. */
+  function showGate(instant){
+    const badge = document.getElementById('splash-badge');
+    const gate = document.getElementById('splash-gate');
+    if(badge) badge.classList.add('hide');
+    const openGate = function(){
       if(gate){ gate.classList.add('on'); if(instant) gate.classList.add('no-anim'); }
-      /* Demarree ici, sans condition sur no-splash : une revisite dans
-         la meme session (splash deja vu) atterrit tout aussi bien sur
-         le portail ou un ecran d'authentification, et merite la meme
-         musique. C'etait le bug remonte : elle ne se relancait pas
-         toute seule a partir de la deuxieme visite. */
-      window.ekkoStartBgm();
-      if(window.ekkoShowAuthScreenFromPath) window.ekkoShowAuthScreenFromPath(true);
-    }
+    };
+    if(instant) openGate(); else setTimeout(openGate, 480);
+    /* Demarree ici, sans condition sur no-splash : une revisite dans la
+       meme session (splash deja vu) qui n'est toujours pas connectee
+       atterrit tout aussi bien sur le portail, et merite la meme
+       musique — c'etait le bug remonte, elle ne se relancait pas toute
+       seule a partir de la deuxieme visite. */
+    window.ekkoStartBgm();
+    if(window.ekkoShowAuthScreenFromPath) window.ekkoShowAuthScreenFromPath(instant);
   }
 
-  /* Splash deja vu cette session : on va directement au bon endroit
-     sans rejouer l'animation, mais seulement une fois la session
-     connue — sinon un membre deconnecte verrait la carte clignoter une
-     fraction de seconde avant d'etre renvoye vers le portail. */
-  if(document.documentElement.classList.contains('no-splash')){
-    const badge0 = document.getElementById('splash-badge');
-    if(badge0) badge0.classList.add('hide');
-    EKKO_SESSION.then(function(session){ revealFor(session, true); });
-    return;
+  function revealFor(session, instant){
+    if(session) window.ekkoRevealSky(instant);
+    else showGate(instant);
   }
-
-  let done = false;
-  const finish = function(){
-    if(done) return;
-    done = true;
-    EKKO_SESSION.then(revealFor);
-  };
 
   /* Filet de securite : si le lecteur ou un fichier manque, on ne bloque
      jamais l'interface. Le splash s'efface au plus tard apres 6 s. */
-  let guard = setTimeout(finish, 6000);
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function playFullSplashThen(onDone){
+    let done = false;
+    const finish = function(){
+      if(done) return;
+      done = true;
+      onDone();
+    };
+    let guard = setTimeout(finish, 6000);
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if(typeof lottie === 'undefined'){
-    console.warn('[ekko] lecteur Lottie absent : splash abrege');
-    clearTimeout(guard); setTimeout(finish, 600);
-    return;
-  }
-  if(reduced){
-    clearTimeout(guard); setTimeout(finish, 400);
-    return;
-  }
+    if(typeof lottie === 'undefined'){
+      console.warn('[ekko] lecteur Lottie absent : splash abrege');
+      clearTimeout(guard); setTimeout(finish, 600);
+      return;
+    }
+    if(reduced){
+      clearTimeout(guard); setTimeout(finish, 400);
+      return;
+    }
 
-  /* les traces animees restent en Lottie */
-  try{
-    lottie.loadAnimation({
-      container: document.getElementById('splash-fond'),
-      renderer: 'svg', loop: true, autoplay: true,
-      path: '/assets/lottie/fond.json',
-    });
-  }catch(e){ console.warn('[ekko] traces :', e); }
+    /* les traces animees restent en Lottie */
+    try{
+      lottie.loadAnimation({
+        container: document.getElementById('splash-fond'),
+        renderer: 'svg', loop: true, autoplay: true,
+        path: '/assets/lottie/fond.json',
+      });
+    }catch(e){ console.warn('[ekko] traces :', e); }
 
-  try{
-    startBadge(document.getElementById('splash-badge'), function(){
+    try{
+      startBadge(document.getElementById('splash-badge'), function(){
+        clearTimeout(guard); finish();
+      }, function(durationMs){
+        /* La video est plus longue que le garde-fou par defaut : on le
+           repousse, sinon le splash serait coupe avant la fin. */
+        clearTimeout(guard);
+        guard = setTimeout(finish, durationMs + 2500);
+      });
+    }catch(e){
+      console.warn('[ekko] badge :', e);
       clearTimeout(guard); finish();
-    }, function(durationMs){
-      /* La video est plus longue que le garde-fou par defaut : on le
-         repousse, sinon le splash serait coupe avant la fin. */
-      clearTimeout(guard);
-      guard = setTimeout(finish, durationMs + 2500);
-    });
-  }catch(e){
-    console.warn('[ekko] badge :', e);
-    clearTimeout(guard); finish();
+    }
   }
+
+  EKKO_SESSION.then(function(session){
+    /* Le raccourci "deja vu cette session" ne saute la ceremonie que
+       pour quelqu'un deja connecte qui revient — il a deja prouve qui
+       il est, pas besoin de la lui rejouer a chaque rechargement.
+       Quelqu'un qui n'est pas encore connecte, lui, la voit en entier
+       a chaque fois qu'il atterrit ici : c'est la porte d'entree, elle
+       n'a pas de raison de se sentir « deja vue » avant qu'il ait
+       vraiment commence l'aventure. */
+    const skipAnimation = session && document.documentElement.classList.contains('no-splash');
+    if(skipAnimation){
+      const badge0 = document.getElementById('splash-badge');
+      if(badge0) badge0.classList.add('hide', 'no-anim-badge');
+      revealFor(session, true);
+      return;
+    }
+    playFullSplashThen(function(){ revealFor(session, false); });
+  });
 })();
 
 

@@ -62,22 +62,34 @@ export function startBgm({ fadeIn = false } = {}){
   audio.loop = true;
   audio.currentTime = savedPosition();
   const muted = isMuted();
-  audio.volume = fadeIn ? 0 : (muted ? 0 : TARGET_VOLUME);
 
-  const tryPlay = () => audio.play().catch(() => {});
-  tryPlay();
-  /* Autoplay bloque par le navigateur (frequent au tout premier chargement,
-     avant toute interaction) : on retente au premier geste, ou que ce
-     soit sur la page. */
-  const resumeOnGesture = () => { tryPlay(); cleanup(); };
-  function cleanup(){
-    removeEventListener('pointerdown', resumeOnGesture);
-    removeEventListener('keydown', resumeOnGesture);
+  /* Autoplay du son est bloque par tous les navigateurs sans gesture
+     prealable — aucune astuce cote client ne passe outre, c'est une
+     politique volontaire. Ce qui MARCHE partout en revanche, c'est
+     l'autoplay MUET : on demarre donc toujours ainsi, le morceau tourne
+     deja (silencieusement) des l'arrivee, et on leve la sourdine au
+     tout premier geste — un clic sur « Démarrer l'aventure » suffit,
+     pas besoin d'un second clic dedie. Le resultat parait instantane
+     puisque la lecture a deja commence, seul le volume etait a zero. */
+  audio.muted = true;
+  audio.volume = muted ? 0 : TARGET_VOLUME;
+  audio.play().catch(() => {});
+
+  let unlocked = false;
+  function unlock(){
+    if(unlocked) return;
+    unlocked = true;
+    audio.muted = false;
+    if(fadeIn && !muted) rampVolume(audio, 0, TARGET_VOLUME, 1800);
+    audio.play().catch(() => {});
+    cleanup();
   }
-  addEventListener('pointerdown', resumeOnGesture, { once: true });
-  addEventListener('keydown', resumeOnGesture, { once: true });
-
-  if(fadeIn && !muted) rampVolume(audio, 0, TARGET_VOLUME, 1800);
+  function cleanup(){
+    removeEventListener('pointerdown', unlock);
+    removeEventListener('keydown', unlock);
+  }
+  addEventListener('pointerdown', unlock, { once: true });
+  addEventListener('keydown', unlock, { once: true });
 
   /* Position memorisee regulierement, pas seulement a la fermeture :
      une navigation directe (clic sur un lien) ne declenche pas toujours
@@ -86,6 +98,7 @@ export function startBgm({ fadeIn = false } = {}){
   addEventListener('beforeunload', () => savePosition(audio.currentTime));
   audio.addEventListener('pause', () => savePosition(audio.currentTime));
 
+  audio._ekkoUnlock = unlock;
   audio._ekkoCleanup = () => { clearInterval(posTimer); cleanup(); };
   return audio;
 }
@@ -123,6 +136,7 @@ export function mountMuteButton(audioEl){
   btn.innerHTML = muted0 ? ICON_OFF : ICON_ON;
   btn.setAttribute('aria-label', muted0 ? 'Activer le son' : 'Couper le son');
   btn.addEventListener('click', () => {
+    if(audioEl._ekkoUnlock) audioEl._ekkoUnlock();
     const nowMuted = !isMuted();
     setMuted(nowMuted);
     rampVolume(audioEl, audioEl.volume, nowMuted ? 0 : TARGET_VOLUME, 300);
