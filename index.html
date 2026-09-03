@@ -198,7 +198,7 @@ a.account{text-decoration:none}
 .tg:not(.on):hover{opacity:.75}
 
 /* ================= ZOOM ================= */
-.zoom{position:fixed;right:39.7px;bottom:calc(40px + var(--safe-b));z-index:11;display:flex;flex-direction:column;gap:5px}
+.zoom{position:fixed;right:39.7px;bottom:calc(40px + var(--safe-b));z-index:11;display:flex;flex-direction:column;gap:5px;transition:bottom .28s ease}
 .zbtn{
   width:50px;height:50px;border-radius:50%;flex:none;
   border:1.064px solid var(--cream);
@@ -225,7 +225,7 @@ a.account{text-decoration:none}
 .nav-btn:active{background:rgba(227,227,196,.16);border-color:var(--cream)}
 .nav-btn svg{width:16px;height:16px;display:block}
 .card{
-  width:560px;flex:none;position:relative;
+  width:560px;flex:none;position:relative;cursor:pointer;
   border:1px solid var(--w-50);border-radius:8px;
   padding:20px 30px;display:flex;gap:30px;align-items:center;
   background:
@@ -425,12 +425,6 @@ body.collection .zoom,
 body.collection #reticle{opacity:0;pointer-events:none}
 .card-row,.c-pos,.zoom{transition:opacity .3s ease}
 
-/* Carte du ciel deployee (actions "Collecter"/"En savoir plus" au tap,
-   mobile) : elle grandit vers le haut depuis le meme point bas fixe et
-   peut passer sous les boutons de zoom, poses aux memes coordonnees.
-   Le zoom s'efface le temps que la carte est ouverte, comme en collection. */
-body.card-open .zoom,body.card-open .nav-side{opacity:0;pointer-events:none}
-
 @media (max-width:900px){
   .coll-grid{grid-template-columns:1fr}
   .coll-filters{gap:10px;padding:0 14px 18px}
@@ -503,7 +497,7 @@ body.card-open .zoom,body.card-open .nav-side{opacity:0;pointer-events:none}
      cote a cote plutot que l'une sur l'autre — hors du champ de la carte. */
   .nav-side{
     position:fixed;bottom:calc(196px + var(--safe-b));z-index:11;
-    height:auto;gap:0;
+    height:auto;gap:0;transition:bottom .28s ease;
   }
   .nav-side .ln,.nav-side .d5,.nav-side .r7{display:none}
   .nav-side.prev{left:14px}
@@ -1801,6 +1795,7 @@ function renderCard(){
   const cardEl = document.querySelector('.card-row .card');
   if(cardEl) cardEl.classList.remove('open');
   document.body.classList.remove('card-open');
+  if(window.__repositionAside) requestAnimationFrame(window.__repositionAside);
 
   $('#c-pos').textContent = '‹  ' + (cardIdx + 1) + ' / ' + CONSTELLATIONS.length + '  ›';
 }
@@ -2011,12 +2006,13 @@ addEventListener('keydown', e => {
 
 /* ============================================================
    GLISSE TACTILE + REPLI DES ACTIONS AU TOUCHER
-   Sur mobile, les fleches de navigation sont masquees (elles
-   flottaient par-dessus le contenu de la carte, largeur oblige) : la
-   carte se glisse desormais horizontalement pour naviguer, comme un
-   carrousel. Un tap sur une zone non interactive de la carte revele
-   « Collecter »/« En savoir plus », repliees par defaut sur tactile —
-   voir la regle `.card.open .c-acts` plus haut dans le CSS.
+
+   Tout repose ici sur les evenements pointer bruts (pointerdown/move/up)
+   plutot que sur l'evenement "click" de synthese : sur Safari iOS, celui-ci
+   ne se declenche pas de facon fiable sur un element generique (une carte
+   n'est ni un <button> ni un <a>) sans un cursor:pointer et peut, dans
+   certains cas, arriver dans un ordre qui annule ce que le tap venait de
+   faire. Un seul geste, une seule interpretation.
    ============================================================ */
 (function(){
   const TAP_SLOP = 10;   // au-dela, on considere que le doigt a glisse
@@ -2026,13 +2022,22 @@ addEventListener('keydown', e => {
     return el.closest('.act, .nav-btn, a, button');
   }
 
-  let startX = 0, startY = 0, moved = false, tracking = false;
+  function setCardOpen(card, open){
+    card.classList.toggle('open', open);
+    if(card.closest('.card-row')){
+      document.body.classList.toggle('card-open', open);
+      requestAnimationFrame(repositionAside);
+      setTimeout(repositionAside, 300); // apres la transition de hauteur de .c-acts
+    }
+  }
+
+  let startX = 0, startY = 0, moved = false, tracking = false, startCard = null;
 
   document.addEventListener('pointerdown', function(e){
-    const card = e.target.closest('.card');
-    if(!card || e.pointerType === 'mouse') return; // la souris garde le survol
+    if(e.pointerType === 'mouse') return; // la souris garde le survol
     tracking = true; moved = false;
     startX = e.clientX; startY = e.clientY;
+    startCard = e.target.closest('.card');
   }, { passive:true });
 
   document.addEventListener('pointermove', function(e){
@@ -2043,35 +2048,24 @@ addEventListener('keydown', e => {
   document.addEventListener('pointerup', function(e){
     if(!tracking) return;
     tracking = false;
-    const card = e.target.closest('.card');
-    if(!card) return;
 
     const dx = e.clientX - startX;
     const dy = e.clientY - startY;
 
-    // Glissement surtout horizontal et assez ample : on navigue. Reserve
-    // a la carte principale, la liste Collection ne se feuillette pas.
-    if(moved && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_MIN && card.closest('.card-row')){
+    // Glissement surtout horizontal et assez ample sur la carte
+    // principale : on navigue, on ne touche pas au repli des actions.
+    if(startCard && moved && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_MIN && startCard.closest('.card-row')){
       goToCard(dx < 0 ? 1 : -1);
+      return;
     }
-    // L'ouverture/fermeture des actions au tap est geree par le clic
-    // ci-dessous, pas ici : la separer du suivi de glissement evite qu'un
-    // tap qui vient d'ouvrir la carte ne la referme aussitot au clic
-    // synthetique qui suit le pointerup.
-  });
+    if(moved) return;                       // glissement insuffisant : pas un tap
+    if(interactiveTarget(e.target)) return; // un vrai bouton gere deja son propre clic
 
-  function setCardOpen(card, open){
-    card.classList.toggle('open', open);
-    if(card.closest('.card-row')) document.body.classList.toggle('card-open', open);
-  }
-
-  /* Un tap ouvre ou referme les actions d'une carte :
-     - sur une carte fermee, hors bouton -> ouverture ;
-     - un second tap sur cette meme carte, hors bouton -> fermeture ;
-     - un tap ailleurs pendant qu'une carte est ouverte — la vue du ciel,
-       une autre carte, l'en-tete — la referme aussi. */
-  document.addEventListener('click', function(e){
-    if(interactiveTarget(e.target)) return;
+    /* Sinon, un vrai tap :
+       - sur une carte fermee, hors bouton -> l'ouvre ;
+       - un second tap sur cette meme carte -> la referme ;
+       - un tap ailleurs pendant qu'une carte est ouverte — la vue du
+         ciel, une autre carte, l'en-tete — la referme aussi. */
     const openCard = document.querySelector('.card.open');
     const tappedCard = e.target.closest('.card');
 
@@ -2086,7 +2080,32 @@ addEventListener('keydown', e => {
     if(openCard) setCardOpen(openCard, false);
     setCardOpen(tappedCard, true);
   });
+
+  /* Fleches et zoom flottent juste au-dessus de la carte du ciel plutot
+     qu'a une hauteur fixe : sur mobile, la carte deployee (actions
+     visibles) est nettement plus haute que repliee, et une position figee
+     les faisait passer dessus. Sans effet au-dela du seuil compact — la
+     ou fleches et zoom ne partagent plus la meme colonne que la carte. */
+  function repositionAside(){
+    const card = document.querySelector('.card-row .card');
+    const zoom = document.querySelector('.zoom');
+    const navPrev = document.querySelector('.nav-side.prev');
+    const navNext = document.querySelector('.nav-side.next');
+    if(!card) return;
+    if(window.innerWidth > 820){
+      [zoom, navPrev, navNext].forEach(function(el){ if(el) el.style.bottom = ''; });
+      return;
+    }
+    const gap = 14;
+    const bottomPx = Math.round(window.innerHeight - card.getBoundingClientRect().top + gap);
+    [zoom, navPrev, navNext].forEach(function(el){ if(el) el.style.bottom = bottomPx + 'px'; });
+  }
+  addEventListener('resize', repositionAside);
+  addEventListener('orientationchange', function(){ setTimeout(repositionAside, 300); });
+  window.__repositionAside = repositionAside; // rappele par renderCard() au changement de figure
+  repositionAside();
 })();
+
 
 /* ============================================================
    COLLECTION
