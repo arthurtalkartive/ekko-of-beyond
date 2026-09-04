@@ -359,47 +359,86 @@ header{
   position:fixed;top:0;left:0;right:0;z-index:11;
   height:calc(var(--hd-h) + var(--safe-t));
   padding:calc(27px + var(--safe-t)) 80px 27px;
-  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
 }
-/* bloc miroir invisible : centre le logo exactement comme dans Figma */
-.hd-mirror{opacity:0;pointer-events:none}
+/* Deux colonnes laterales de largeur egale (1fr chacune) : le logo au
+   centre reste toujours parfaitement centre sur l'ecran, quel que soit
+   ce qu'on met a gauche ou a droite. Plus robuste que l'ancien bloc
+   miroir invisible, qui devait deviner a l'avance la largeur exacte du
+   bouton compte pour compenser. */
+header > :first-child{justify-self:start;min-width:0}
+header > :last-child{justify-self:end}
 
 /* ---------- recherche (en-tete, en haut a gauche) ----------
-   Icone seule sur mobile, revelee au tap ; barre deja visible sur les
-   ecrans assez larges pour l'accueillir sans se serrer contre le logo. */
-.search-wrap{position:relative;display:flex;align-items:center;gap:8px;z-index:20}
+   Desktop/tablette large : champ visible directement dans l'en-tete,
+   suggestions ancrees dessous. Mobile : l'icone seule ; au tap, une
+   recherche plein ecran s'ouvre par-dessus tout (#search-overlay, plus
+   bas) — rien ne change jamais de taille dans l'en-tete lui-meme, le
+   logo ne peut donc pas se decaler pendant une recherche. */
 .search-toggle{
   width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
   border:1px solid var(--c20);background:none;transition:background .2s,border-color .2s;
 }
 .search-toggle:hover{background:rgba(227,227,196,.08);border-color:var(--cream)}
 .search-toggle svg{width:18px;height:18px;display:block}
-#search-input{
-  width:0;min-width:0;opacity:0;padding:0;border:1px solid transparent;background:none;
-  color:var(--cream);font-family:inherit;font-size:14px;border-radius:999px;outline:none;
-  transition:width .28s ease,opacity .2s ease,padding .28s ease,border-color .2s;
-  pointer-events:none;
+
+.search-field{
+  position:relative;display:flex;align-items:center;gap:10px;
+  border:1px solid var(--cream);border-radius:20000px;
+  background:linear-gradient(180deg,rgba(227,227,196,.03) 0%,rgba(227,227,196,.09) 100%);
+  padding:11px 20px;width:230px;transition:border-color .2s,background .2s;
 }
-#search-input::placeholder{color:var(--cream);opacity:.5}
-.search-wrap.open #search-input{
-  width:150px;opacity:1;padding:8px 16px;border-color:var(--c20);
-  background:rgba(227,227,196,.05);pointer-events:auto;
+.search-field:focus-within{border-color:#fff;background:linear-gradient(180deg,rgba(227,227,196,.05) 0%,rgba(227,227,196,.13) 100%)}
+.search-field .s-ico{width:17px;height:17px;flex:none;opacity:.7;display:block}
+.search-field input{
+  flex:1 1 auto;min-width:0;background:none;border:none;outline:none;
+  color:var(--cream);font-family:inherit;font-size:14.5px;font-weight:600;
 }
-.search-wrap.open #search-input:focus{border-color:var(--cream)}
+.search-field input::placeholder{color:var(--cream);opacity:.48;font-weight:400}
+
+/* Fond entierement opaque : la premiere version, translucide avec flou,
+   se lisait mal par-dessus le ciel — demande explicite d'un rendu plus
+   franc, plus proche des autres panneaux (menu du compte, carte). */
 .search-results{
-  position:absolute;top:calc(100% + 8px);left:0;min-width:230px;max-width:280px;
-  background:rgba(4,8,14,.97);border:1px solid var(--c20);border-radius:14px;
-  padding:6px;backdrop-filter:blur(12px);display:none;max-height:320px;overflow-y:auto;
-  box-shadow:0 20px 40px rgba(0,0,0,.45);
+  position:absolute;top:calc(100% + 10px);left:0;width:280px;
+  background:#0A121F;border:1px solid var(--c20);border-radius:16px;
+  padding:6px;display:none;max-height:340px;overflow-y:auto;
+  box-shadow:0 24px 48px rgba(0,0,0,.55);
 }
 .search-results.on{display:block}
 .search-item{
-  display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;
-  cursor:pointer;transition:background .15s;font-size:13.5px;color:var(--cream);
+  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;
+  cursor:pointer;transition:background .15s;font-size:13.5px;color:var(--cream);font-weight:600;
 }
 .search-item:hover,.search-item.active{background:rgba(227,227,196,.1)}
-.search-item .si-cat{font-size:9.5px;opacity:.5;text-transform:uppercase;letter-spacing:.06em;margin-left:auto;flex:none;white-space:nowrap}
-.search-empty{padding:14px 12px;text-align:center;font-size:12.5px;color:var(--c50)}
+.search-item .si-cat{font-size:9.5px;opacity:.5;text-transform:uppercase;letter-spacing:.06em;margin-left:auto;flex:none;font-weight:700;white-space:nowrap}
+.search-empty{padding:16px 12px;text-align:center;font-size:12.5px;color:var(--c50)}
+
+/* ---------- recherche plein ecran (mobile/tablette) ----------
+   Un vrai calque a part, pas un champ qui s'etire dans l'en-tete :
+   c'est ce qui garantit que rien dans l'en-tete ne bouge pendant que la
+   recherche est ouverte. */
+#search-overlay{
+  position:fixed;inset:0;z-index:60;
+  background:linear-gradient(180deg,#04070c 0%,#0A1931 100%);
+  opacity:0;pointer-events:none;transition:opacity .25s ease;
+  display:flex;flex-direction:column;
+}
+#search-overlay.open{opacity:1;pointer-events:auto}
+.so-top{
+  display:flex;align-items:center;gap:12px;flex:none;
+  padding:calc(20px + var(--safe-t)) 20px 16px;
+  border-bottom:1px solid var(--c20);
+}
+.so-top .search-field{flex:1 1 auto;width:auto}
+.so-close{
+  width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--c50);background:none;color:var(--cream);
+}
+.so-close svg{width:16px;height:16px}
+.so-results{flex:1 1 auto;overflow-y:auto;padding:10px 16px calc(24px + var(--sb))}
+.so-results .search-item{padding:14px 12px;font-size:15px}
+.so-results .search-empty{padding-top:60px;font-size:14px}
 
 /* Bref eclat sur la carte de collection visee par un resultat de recherche. */
 .search-flash{animation:search-flash-kf 1.4s ease}
@@ -409,8 +448,11 @@ header{
 }
 
 @media (min-width:900px){
-  #search-input{width:190px!important;opacity:1!important;padding:8px 16px!important;pointer-events:auto!important;border-color:var(--c20)!important}
   .search-toggle{display:none}
+  #search-overlay{display:none!important}
+}
+@media (max-width:899px){
+  #search-field-desktop{display:none}
 }
 .account{display:flex;align-items:center;gap:15px;flex:none}
 .account .ico{width:29.33px;height:30px;flex:none;display:block}
@@ -472,6 +514,11 @@ a.account{text-decoration:none}
   display:flex;align-items:center;justify-content:center;transition:background .2s}
 .zbtn:active{background:rgba(227,227,196,.32)}
 .zbtn svg{width:24px;height:24px;display:block}
+/* Reserve au tactile (mobile/tablette) : sur un poste a souris, il n'y a
+   pas de boussole a lire, le bouton n'a donc rien a faire. */
+@media (hover:hover) and (pointer:fine){
+  #z-compass{display:none}
+}
 
 /* ================= CARTE ================= */
 .card-row{
@@ -843,9 +890,6 @@ body.collection #reticle{opacity:0;pointer-events:none}
 /* ================= RESPONSIVE ================= */
 @media (max-width:1180px){
   header{padding-left:32px;padding-right:32px}
-  .hd-mirror{display:none}
-  header{justify-content:center;position:fixed}
-  .account{position:fixed;right:32px;top:calc(27px + var(--safe-t));z-index:12}
 }
 /* Cette regle etait indexee uniquement sur la largeur. Un telephone en
    paysage (souvent 800 a 930px de large) ne la declenchait donc jamais et
@@ -858,7 +902,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
   :root{--hd-h:72px;--notch-w:210px;--notch-d:7px}
   header{padding:calc(18px + var(--safe-t)) 18px 18px}
   .logo{width:220px;height:30.5px}
-  .account{right:18px;top:calc(20px + var(--safe-t));gap:0}
+  .account{gap:0}
   a.account{text-decoration:none}
 .account .lbl{display:none}
   .account .ico{width:26px;height:26.6px}
@@ -982,11 +1026,14 @@ body.collection #reticle{opacity:0;pointer-events:none}
 <div class="hd-bg"></div>
 <header>
   <div class="search-wrap" id="search-wrap">
-    <button class="search-toggle" id="search-toggle" aria-label="Rechercher une constellation" aria-expanded="false">
+    <button class="search-toggle" id="search-toggle" aria-label="Rechercher une constellation">
       <svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M19 19l-4.3-4.3"/></svg>
     </button>
-    <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off" spellcheck="false" aria-label="Rechercher une constellation">
-    <div class="search-results" id="search-results"></div>
+    <div class="search-field" id="search-field-desktop">
+      <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M19 19l-4.3-4.3"/></svg>
+      <input type="text" id="search-input-desktop" placeholder="Rechercher une constellation…" autocomplete="off" spellcheck="false" aria-label="Rechercher une constellation">
+      <div class="search-results" id="search-results-desktop"></div>
+    </div>
   </div>
 
   <div class="logo">
@@ -1055,6 +1102,22 @@ body.collection #reticle{opacity:0;pointer-events:none}
     <span class="lbl">Mon compte</span>
   </button>
 </header>
+
+<!-- Recherche plein ecran : mobile/tablette uniquement, voir #z-compass
+     de meme pour l'idee d'un calque a part plutot que d'etirer un
+     element de l'en-tete. -->
+<div id="search-overlay">
+  <div class="so-top">
+    <div class="search-field">
+      <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M19 19l-4.3-4.3"/></svg>
+      <input type="text" id="search-input-mobile" placeholder="Rechercher une constellation…" autocomplete="off" spellcheck="false" aria-label="Rechercher une constellation">
+    </div>
+    <button type="button" class="so-close" id="search-close" aria-label="Fermer la recherche">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="so-results" id="search-results-mobile"></div>
+</div>
 
 <!-- sous-menu du compte : le bloc Outils ne s'affiche que pour un admin,
      voir setupRoleMenu() plus bas -->
@@ -2824,27 +2887,38 @@ function watchSelection(stel){
 
 /* ============================================================
    ROSE DES VENTS
-   Oriente la vue sur ce que l'utilisateur voit reellement, via la
-   boussole de l'appareil (Device Orientation). Un geste ponctuel, pas
-   un suivi continu : on lit le cap une fois, on anime la vue vers ce
-   point, puis on s'arrete — comme recentrer une carte, pas une camera
-   AR en direct. Les illustrations et les noms de constellations se
-   desactivent pendant ce temps (regarder le vrai ciel avec des noms
-   partout dessus serait plus genant qu'utile) et reviennent au premier
-   geste de l'utilisateur : glisser la vue ou changer de constellation
-   avec les fleches.
+   Suivi continu de l'orientation de l'appareil, comme SkyView : on
+   tient le telephone comme une fenetre vers le ciel, on l'incline et on
+   pivote, la vue suit en direct. Ce n'est plus un geste ponctuel — la
+   lecture du capteur reste active jusqu'a ce que l'utilisateur reglisse
+   la vue a la main, change de constellation avec les fleches, ou
+   reclique sur le bouton. Les illustrations et les noms de
+   constellations se desactivent pendant ce temps (regarder le vrai
+   ciel avec des noms partout dessus serait plus genant qu'utile) et
+   reviennent a la sortie du mode.
 
-   Convention d'azimut supposee ici : cap de boussole standard (0 = Nord,
-   90 = Est, sens horaire), la meme que celle documentee pour l'API de
-   script de Stellarium — mais jamais verifiee sur un vrai appareil avec
-   boussole. Si la rotation part dans le mauvais sens une fois teste,
-   il suffit d'inverser le signe de `az` ci-dessous.
+   Conventions supposees ici, aucune verifiee sur un vrai appareil :
+     - cap de boussole standard pour l'azimut (0 = Nord, 90 = Est,
+       sens horaire) ;
+     - hauteur ≈ 90 - beta, valable pour la prise en main "fenetre"
+       (telephone tenu a peu pres vertical, incline en arriere pour
+       regarder plus haut dans le ciel) — pas une vraie matrice de
+       rotation 3D complete, qui demanderait de combiner alpha/beta/
+       gamma avec le sens de tenue de l'appareil ;
+     - roulis ≈ gamma (l'appareil penche sur le cote -> la vue penche
+       pareil).
+   Si un de ces trois mouvements part dans le mauvais sens une fois
+   teste sur un vrai telephone, il suffit d'inverser son signe ci-dessous
+   — chacun est isole pour que ce soit un changement d'une ligne.
    ============================================================ */
 let compassModeActive = false;
+let compassLastTick = 0;
 
 function exitCompassMode(){
   if(!compassModeActive) return;
   compassModeActive = false;
+  removeEventListener('deviceorientationabsolute', onOrientationTick);
+  removeEventListener('deviceorientation', onOrientationTick);
   $('#z-compass').classList.remove('active');
   try{
     STEL.core.constellations.labels_visible = true;
@@ -2852,37 +2926,35 @@ function exitCompassMode(){
   }catch(e){}
 }
 
-/** Resout avec un cap en degres (0 = Nord), ou rejette si le capteur ne
-    repond pas — pas de boussole, permission refusee, navigateur qui ne
-    supporte pas l'API. */
-function readCompassHeading(){
-  return new Promise(function(resolve, reject){
-    let settled = false;
-    function onReading(e){
-      let heading = null;
-      if(typeof e.webkitCompassHeading === 'number' && !isNaN(e.webkitCompassHeading)){
-        heading = e.webkitCompassHeading; // iOS Safari : deja le cap compas
-      }else if((e.absolute || typeof e.absolute === 'undefined') && typeof e.alpha === 'number'){
-        heading = (360 - e.alpha) % 360; // approximation usuelle sur Android/Chrome
-      }
-      if(heading != null && !settled){
-        settled = true; cleanup();
-        resolve(((heading % 360) + 360) % 360);
-      }
-    }
-    function cleanup(){
-      removeEventListener('deviceorientationabsolute', onReading);
-      removeEventListener('deviceorientation', onReading);
-    }
-    addEventListener('deviceorientationabsolute', onReading);
-    addEventListener('deviceorientation', onReading);
-    setTimeout(function(){
-      if(!settled){ cleanup(); reject(new Error("Pas de réponse du capteur d'orientation.")); }
-    }, 3000);
-  });
+/** Un point par evenement d'orientation : ni anime (dur=0 partout,
+    sinon les vols s'empilent plus vite qu'ils ne se terminent), ni a
+    chaque frame (les evenements deviceorientation suffisent, en general
+    autour de 60/s, un throttle leger evite juste de re-dessiner plus
+    souvent que necessaire). */
+function onOrientationTick(e){
+  const now = performance.now();
+  if(now - compassLastTick < 40) return; // ~25 rafraichissements/s, largement assez pour l'oeil
+  compassLastTick = now;
+
+  let heading = null;
+  if(typeof e.webkitCompassHeading === 'number' && !isNaN(e.webkitCompassHeading)){
+    heading = e.webkitCompassHeading;
+  }else if(typeof e.alpha === 'number'){
+    heading = (360 - e.alpha) % 360;
+  }
+  if(heading == null || typeof e.beta !== 'number') return;
+
+  try{
+    const az = ((heading % 360) + 360) % 360 * STEL.D2R;
+    const alt = Math.max(-89, Math.min(89, 90 - e.beta)) * STEL.D2R;
+    const roll = (typeof e.gamma === 'number' ? e.gamma : 0) * STEL.D2R;
+    STEL.lookAt(STEL.s2c(az, alt), 0);
+    animateRoll(roll, 0);
+  }catch(err){}
 }
 
 async function useRealOrientation(){
+  if(compassModeActive){ exitCompassMode(); return; }
   const btn = $('#z-compass');
   btn.classList.add('active');
   try{
@@ -2897,20 +2969,16 @@ async function useRealOrientation(){
         return;
       }
     }
-    const heading = await readCompassHeading();
-    const az = heading * STEL.D2R;     /* voir la note de convention plus haut */
-    const alt = 45 * STEL.D2R;         /* hauteur confortable, pas plein zenith */
-    const point = STEL.s2c(az, alt);
-
     compassModeActive = true;
     STEL.core.selection = null;               /* efface l'illustration en cours */
     STEL.core.constellations.labels_visible = false;
-    animateRoll(0, 1.1);                      /* haut d'ecran = zenith, orientation "naturelle" */
-    STEL.lookAt(point, 1.1);
+    addEventListener('deviceorientationabsolute', onOrientationTick);
+    addEventListener('deviceorientation', onOrientationTick);
   }catch(e){
     console.warn('[ekko] boussole :', e);
     setStatus("Boussole indisponible sur cet appareil.");
     btn.classList.remove('active');
+    compassModeActive = false;
   }
 }
 $('#z-compass').onclick = useRealOrientation;
@@ -3141,55 +3209,33 @@ function applyCollFilter(){
 
 /* ============================================================
    RECHERCHE
-   Icone seule sur mobile (revelee au tap), barre deja ouverte sur les
-   ecrans larges — voir le CSS pres de .search-wrap. Fonctionne sur les
-   deux vues : saute directement a la constellation sur la carte du
-   ciel, fait defiler et clignoter sa vignette sur la Collection.
+   Deux systemes distincts, pas un seul element qui s'adapte : sur
+   desktop/tablette large, un champ visible directement dans l'en-tete
+   avec ses suggestions ancrees dessous ; sur mobile, l'icone seule
+   ouvre une recherche plein ecran separee (#search-overlay). Comme rien
+   dans l'en-tete ne change jamais de taille, le logo reste toujours
+   parfaitement centre (voir header{grid-template-columns:1fr auto 1fr}).
+   Fonctionne sur les deux vues de la page : saute directement a la
+   constellation sur la carte du ciel, fait defiler et clignoter sa
+   vignette sur la Collection.
    ============================================================ */
 (function(){
-  const wrap = $('#search-wrap');
-  const toggle = $('#search-toggle');
-  const input = $('#search-input');
-  const results = $('#search-results');
-  if(!wrap || !toggle || !input || !results) return;
-
   const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-  function openSearch(){
-    wrap.classList.add('open');
-    toggle.setAttribute('aria-expanded', 'true');
-    input.focus();
-  }
-  function closeSearch(){
-    wrap.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-    results.classList.remove('on');
-    input.value = '';
-  }
-  toggle.addEventListener('click', function(){
-    if(wrap.classList.contains('open')) closeSearch(); else openSearch();
-  });
-
-  function renderResults(list){
+  function renderResults(el, list){
     if(!list.length){
-      results.innerHTML = '<div class="search-empty">Aucune constellation trouvée.</div>';
-      results.classList.add('on');
+      el.innerHTML = '<div class="search-empty">Aucune constellation trouvée.</div>';
+      el.classList.add('on');
       return;
     }
-    results.innerHTML = list.slice(0, 8).map(function(c){
+    el.innerHTML = list.slice(0, 8).map(function(c){
       return '<div class="search-item" data-id="' + c.id + '">'
         + '<span>' + c.name + '</span>'
         + '<span class="si-cat">' + c.cat + '</span>'
         + '</div>';
     }).join('');
-    results.classList.add('on');
+    el.classList.add('on');
   }
-
-  input.addEventListener('input', function(){
-    const q = norm(input.value.trim());
-    if(!q){ results.classList.remove('on'); return; }
-    renderResults(CONSTELLATIONS.filter((c) => norm(c.name).includes(q)));
-  });
 
   function jumpToCollectionCard(id){
     if(!collBuilt) buildCollection();
@@ -3208,26 +3254,75 @@ function applyCollFilter(){
     setTimeout(() => el.classList.remove('search-flash'), 1600);
   }
 
-  results.addEventListener('click', function(e){
-    const item = e.target.closest('.search-item');
-    if(!item) return;
-    const id = item.dataset.id;
+  function selectResult(id){
     const idx = CONSTELLATIONS.findIndex((c) => c.id === id);
     if(idx < 0) return;
     if(document.body.classList.contains('collection')) jumpToCollectionCard(id);
     else goToCardIndex(idx);
-    closeSearch();
-  });
+  }
 
-  document.addEventListener('pointerdown', function(e){
-    if(!wrap.contains(e.target)) closeSearch();
-  });
-  input.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeSearch();
-  });
+  /* ---------- desktop : champ direct dans l'en-tete ---------- */
+  const dInput = $('#search-input-desktop');
+  const dResults = $('#search-results-desktop');
+  const dField = $('#search-field-desktop');
+  if(dInput && dResults && dField){
+    dInput.addEventListener('input', function(){
+      const q = norm(dInput.value.trim());
+      if(!q){ dResults.classList.remove('on'); return; }
+      renderResults(dResults, CONSTELLATIONS.filter((c) => norm(c.name).includes(q)));
+    });
+    dResults.addEventListener('click', function(e){
+      const item = e.target.closest('.search-item');
+      if(!item) return;
+      selectResult(item.dataset.id);
+      dResults.classList.remove('on');
+      dInput.value = '';
+    });
+    document.addEventListener('pointerdown', function(e){
+      if(!dField.contains(e.target)) dResults.classList.remove('on');
+    });
+    dInput.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ dResults.classList.remove('on'); dInput.value = ''; dInput.blur(); }
+    });
+  }
+
+  /* ---------- mobile : recherche plein ecran ---------- */
+  const toggle = $('#search-toggle');
+  const overlay = $('#search-overlay');
+  const mInput = $('#search-input-mobile');
+  const mResults = $('#search-results-mobile');
+  const mClose = $('#search-close');
+  if(toggle && overlay && mInput && mResults && mClose){
+    function openOverlay(){
+      overlay.classList.add('open');
+      setTimeout(() => mInput.focus(), 50); /* apres la fin du fondu, sinon le clavier saute le debut de l'animation */
+    }
+    function closeOverlay(){
+      overlay.classList.remove('open');
+      mInput.value = '';
+      mResults.classList.remove('on');
+    }
+    toggle.addEventListener('click', openOverlay);
+    mClose.addEventListener('click', closeOverlay);
+    mInput.addEventListener('input', function(){
+      const q = norm(mInput.value.trim());
+      if(!q){ mResults.classList.remove('on'); return; }
+      renderResults(mResults, CONSTELLATIONS.filter((c) => norm(c.name).includes(q)));
+    });
+    mResults.addEventListener('click', function(e){
+      const item = e.target.closest('.search-item');
+      if(!item) return;
+      selectResult(item.dataset.id);
+      closeOverlay();
+    });
+    mInput.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeOverlay();
+    });
+  }
 })();
 
 function showCollection(on){
+
   document.body.classList.toggle('collection', on);
   $('#tg-coll').classList.toggle('on', on);
   $('#tg-sky').classList.toggle('on', !on);
