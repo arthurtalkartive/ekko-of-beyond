@@ -26,6 +26,7 @@ body{font-family:'Afacad',system-ui,sans-serif;color:var(--cream);
   background:linear-gradient(180deg,#000 0%,#0A1931 100%) fixed;min-height:100vh}
 button{font-family:inherit;color:inherit;cursor:pointer}
 a{color:inherit}
+input{font-family:inherit;color:var(--cream)}
 
 .top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;
   padding:calc(14px + var(--st)) 26px 14px;
@@ -39,9 +40,53 @@ a{color:inherit}
 .top .sp{flex:1}
 .top .where{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.45;white-space:nowrap}
 
-.wrap{max-width:760px;margin:0 auto;padding:48px 26px calc(80px + var(--sb))}
+.wrap{max-width:960px;margin:0 auto;padding:48px 26px calc(80px + var(--sb))}
+.head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
 h1{font-size:clamp(26px,6vw,34px);font-weight:700;text-transform:uppercase}
 .sub{margin-top:8px;font-size:14px;color:var(--c50)}
+
+.add-btn{
+  padding:11px 22px;border-radius:999px;border:1px solid var(--cream);
+  background:linear-gradient(180deg,rgba(227,227,196,.04),rgba(227,227,196,.2));
+  font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  transition:background .2s;white-space:nowrap;
+}
+.add-btn:hover{background:linear-gradient(180deg,rgba(227,227,196,.08),rgba(227,227,196,.28))}
+
+#add-panel{
+  margin-top:20px;padding:0;max-height:0;overflow:hidden;opacity:0;
+  border:1px solid var(--c20);border-radius:16px;
+  transition:max-height .3s ease,opacity .25s ease,margin-top .3s ease,padding .3s ease;
+}
+#add-panel.open{margin-top:24px;padding:22px;max-height:400px;opacity:1}
+#add-panel .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#add-panel .field{
+  border:1px solid var(--cream);border-radius:20000px;
+  background:linear-gradient(180deg,rgba(227,227,196,.02),rgba(227,227,196,.1));
+  padding:2px 20px;grid-column:span 1;
+}
+#add-panel .field.full{grid-column:span 2}
+#add-panel .field input{
+  width:100%;background:none;border:none;outline:none;padding:12px 0;
+  font-weight:700;font-size:15px;color:var(--cream);
+}
+#add-panel .field input::placeholder{color:var(--cream);opacity:.5}
+.role-check{
+  grid-column:span 2;display:flex;align-items:center;gap:10px;padding:4px 4px;
+  font-size:13px;color:var(--c50);
+}
+.role-check input{width:16px;height:16px;accent-color:var(--cream)}
+.add-actions{grid-column:span 2;display:flex;gap:10px;margin-top:4px}
+.add-submit{
+  flex:1;padding:12px;border-radius:999px;border:1px solid var(--cream);
+  background:linear-gradient(180deg,rgba(227,227,196,.04),rgba(227,227,196,.2));
+  font-size:13px;font-weight:700;text-transform:uppercase;
+}
+.add-cancel{
+  padding:12px 20px;border-radius:999px;border:1px solid var(--c50);
+  background:none;font-size:13px;font-weight:700;text-transform:uppercase;color:var(--c50);
+}
+.add-cancel:hover{color:var(--cream);border-color:var(--cream)}
 
 #list{margin-top:36px;display:flex;flex-direction:column;gap:2px}
 .row{
@@ -53,22 +98,32 @@ h1{font-size:clamp(26px,6vw,34px);font-weight:700;text-transform:uppercase}
   border:1px solid var(--c50);display:flex;align-items:center;justify-content:center;
   font-size:14px;font-weight:700;text-transform:uppercase;background:rgba(227,227,196,.04);
 }
-.row-mid{flex:1 1 0;min-width:0}
+.row-mid{flex:1 1 auto;min-width:180px}
 .row-name{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
 .row-email{margin-top:2px;font-size:12.5px;color:var(--c50);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.row-right{flex:none;display:flex;align-items:center;gap:10px}
+
+.row-stats{
+  flex:2 1 auto;display:grid;grid-template-columns:repeat(4,minmax(90px,1fr));gap:6px;
+  font-size:11.5px;color:var(--c50);
+}
+.row-stats .stat b{display:block;font-size:13.5px;font-weight:700;color:var(--cream);text-transform:none;margin-bottom:1px}
+.row-stats .stat span{text-transform:uppercase;letter-spacing:.04em;font-size:10px}
+
+.row-right{flex:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:280px}
 .role-badge{
   padding:3px 12px;border-radius:999px;font-size:10.5px;font-weight:700;
   letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--c50);color:var(--c50);
 }
 .role-badge.admin{border-color:var(--cream);color:var(--cream);background:rgba(227,227,196,.08)}
-.role-toggle{
-  padding:8px 16px;border-radius:999px;border:1px solid var(--c50);
-  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+.role-toggle,.del-btn{
+  padding:8px 14px;border-radius:999px;border:1px solid var(--c50);
+  font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
   background:none;color:var(--cream);transition:background .2s,border-color .2s;white-space:nowrap;
 }
 .role-toggle:hover{background:rgba(227,227,196,.1);border-color:var(--cream)}
-.role-toggle:disabled{opacity:.3;pointer-events:none}
+.del-btn{color:#F0B8B8;border-color:rgba(200,70,70,.4)}
+.del-btn:hover{background:rgba(200,70,70,.12);border-color:#F0B8B8}
+.role-toggle:disabled,.del-btn:disabled{opacity:.3;pointer-events:none}
 .row.you .row-name::after{content:" (toi)";font-weight:400;opacity:.5;text-transform:none}
 
 .msg{
@@ -81,9 +136,15 @@ h1{font-size:clamp(26px,6vw,34px);font-weight:700;text-transform:uppercase}
 
 .empty,.loading{margin-top:40px;text-align:center;color:var(--c50);font-size:14px}
 
-@media (max-width:520px){
+@media (max-width:900px){
   .row{flex-wrap:wrap}
-  .row-right{width:100%;justify-content:space-between;margin-top:8px;padding-left:52px}
+  .row-stats{width:100%;order:3;margin-top:10px;grid-template-columns:repeat(2,1fr);padding-left:52px}
+  .row-right{width:100%;order:2;justify-content:flex-end;margin-top:8px;max-width:none}
+}
+@media (max-width:480px){
+  #add-panel .grid{grid-template-columns:1fr}
+  #add-panel .field.full,.role-check,.add-actions{grid-column:span 1}
+  .row-stats{padding-left:0;grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -96,18 +157,72 @@ h1{font-size:clamp(26px,6vw,34px);font-weight:700;text-transform:uppercase}
 </div>
 
 <main class="wrap">
-  <h1>Membres</h1>
-  <p class="sub" id="count">Chargement…</p>
+  <div class="head-row">
+    <div>
+      <h1>Membres</h1>
+      <p class="sub" id="count">Chargement…</p>
+    </div>
+    <button type="button" class="add-btn" id="add-toggle">+ Ajouter un membre</button>
+  </div>
+
+  <div id="add-panel">
+    <form id="add-form">
+      <div class="grid">
+        <div class="field"><input type="text" name="first_name" placeholder="Prénom" required></div>
+        <div class="field"><input type="text" name="last_name" placeholder="Nom" required></div>
+        <div class="field full"><input type="email" name="email" placeholder="Adresse email" required></div>
+        <label class="role-check"><input type="checkbox" name="role"> Donner directement le rôle admin</label>
+        <div class="add-actions">
+          <button type="submit" class="add-submit">Envoyer l'invitation</button>
+          <button type="button" class="add-cancel" id="add-cancel">Annuler</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
   <div class="msg" id="msg"></div>
   <div id="list"></div>
 </main>
 
 <script type="module">
-import { supabase, requireAdmin } from '/js/supa.js';
+import { supabase, requireAdmin, callAdminApi } from '/js/supa.js';
 
 const admin = await requireAdmin();
 if(!admin) throw new Error('acces refuse — redirection en cours');
 const myId = admin.session.user.id;
+
+/* Meme table que index.html / progression.html (const LEVELS) : garder
+   les trois copies alignees si les seuils changent un jour. */
+const LEVELS = [
+  { name:'Œil Nu', min:0 },
+  { name:'Éveillé aux Étoiles', min:0.01 },
+  { name:"Chercheur d'Échos", min:0.10 },
+  { name:'Cartographe du Ciel', min:0.25 },
+  { name:'Gardien des Constellations', min:0.45 },
+  { name:'Oracle Céleste', min:0.68 },
+  { name:'Souverain des Astres', min:0.87 },
+  { name:"Écho de l'Au-delà", min:1.00 },
+];
+function levelName(ratio){
+  let l = LEVELS[0];
+  for(const lv of LEVELS){ if(ratio >= lv.min) l = lv; }
+  return l.name;
+}
+const TOTAL = parseInt(localStorage.getItem('ekko-total'), 10) || 53;
+
+function fmtDuration(totalSeconds){
+  const s = totalSeconds || 0;
+  if(s < 60) return '< 1 min';
+  const h = Math.floor(s / 3600), m = Math.round((s % 3600) / 60);
+  if(h === 0) return m + ' min';
+  return h + 'h' + (m ? ' ' + m + 'min' : '');
+}
+function fmtDate(iso){
+  if(!iso) return 'jamais';
+  const d = new Date(iso);
+  return d.toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric' })
+    + ' à ' + d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+}
 
 const list = document.getElementById('list');
 const countEl = document.getElementById('count');
@@ -124,53 +239,112 @@ function initials(p){
   return (a + b) || (p.email || '?')[0].toUpperCase();
 }
 
-function rowHTML(p){
+function rowHTML(p, ekkoCount){
   const name = [p.first_name, p.last_name].filter(Boolean).join(' ') || '(sans nom)';
   const isAdmin = p.role === 'admin';
   const isMe = p.id === myId;
+  const ratio = ekkoCount / TOTAL;
   return '<div class="row' + (isMe ? ' you' : '') + '" data-id="' + p.id + '">'
     + '<div class="row-avatar">' + initials(p) + '</div>'
     + '<div class="row-mid">'
       + '<div class="row-name">' + name + '</div>'
       + '<div class="row-email">' + (p.email || '') + '</div>'
     + '</div>'
+    + '<div class="row-stats">'
+      + '<div class="stat"><b>' + levelName(ratio) + '</b><span>Niveau</span></div>'
+      + '<div class="stat"><b>' + ekkoCount + ' / ' + TOTAL + '</b><span>Ekko collectés</span></div>'
+      + '<div class="stat"><b>' + fmtDuration(p.total_seconds) + '</b><span>Temps total</span></div>'
+      + '<div class="stat"><b>' + fmtDate(p.last_seen_at) + '</b><span>Dernière activité</span></div>'
+    + '</div>'
     + '<div class="row-right">'
       + '<span class="role-badge' + (isAdmin ? ' admin' : '') + '">' + (isAdmin ? 'Admin' : 'Membre') + '</span>'
-      + '<button type="button" class="role-toggle" data-role="' + (isAdmin ? 'member' : 'admin') + '"'
+      + '<button type="button" class="role-toggle" data-action="role" data-role="' + (isAdmin ? 'member' : 'admin') + '"'
         + (isMe ? ' disabled title="Tu ne peux pas changer ton propre rôle ici"' : '')
         + '>' + (isAdmin ? 'Repasser membre' : 'Passer admin') + '</button>'
+      + '<button type="button" class="del-btn" data-action="delete"'
+        + (isMe ? ' disabled title="Tu ne peux pas te supprimer toi-même"' : '')
+        + '>Supprimer</button>'
     + '</div>'
   + '</div>';
 }
 
 async function load(){
-  const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
-  if(error){
+  const [{ data: profiles, error: pErr }, { data: ekko, error: eErr }] = await Promise.all([
+    supabase.from('profiles').select('*').order('created_at', { ascending: false }),
+    supabase.from('user_ekko').select('user_id'),
+  ]);
+  if(pErr){
     countEl.textContent = '';
-    showMsg('Impossible de charger les membres : ' + error.message, 'err');
+    showMsg('Impossible de charger les membres : ' + pErr.message, 'err');
     return;
   }
-  countEl.textContent = data.length + (data.length === 1 ? ' membre inscrit' : ' membres inscrits');
-  if(!data.length){
+  const counts = {};
+  (ekko || []).forEach((row) => { counts[row.user_id] = (counts[row.user_id] || 0) + 1; });
+  if(eErr) console.warn('[ekko] comptage des collections indisponible :', eErr.message);
+
+  countEl.textContent = profiles.length + (profiles.length === 1 ? ' membre inscrit' : ' membres inscrits');
+  if(!profiles.length){
     list.innerHTML = '<p class="empty">Personne pour l\u2019instant.</p>';
     return;
   }
-  list.innerHTML = data.map(rowHTML).join('');
+  list.innerHTML = profiles.map((p) => rowHTML(p, counts[p.id] || 0)).join('');
 }
 
 list.addEventListener('click', async (e) => {
-  const btn = e.target.closest('.role-toggle');
+  const btn = e.target.closest('button[data-action]');
   if(!btn) return;
   const row = btn.closest('.row');
   const id = row.dataset.id;
-  const newRole = btn.dataset.role;
   const name = row.querySelector('.row-name').textContent;
-  if(!confirm('Passer ' + name + ' en ' + (newRole === 'admin' ? 'admin' : 'membre') + ' ?')) return;
 
+  if(btn.dataset.action === 'role'){
+    const newRole = btn.dataset.role;
+    if(!confirm('Passer ' + name + ' en ' + (newRole === 'admin' ? 'admin' : 'membre') + ' ?')) return;
+    btn.disabled = true;
+    const { error } = await supabase.from('profiles').update({ role: newRole }).eq('id', id);
+    if(error){ showMsg('Échec : ' + error.message, 'err'); btn.disabled = false; return; }
+    showMsg(name + ' est maintenant ' + (newRole === 'admin' ? 'admin' : 'membre') + '.', 'ok');
+    load();
+    return;
+  }
+
+  if(btn.dataset.action === 'delete'){
+    if(!confirm('Supprimer definitivement ' + name + ' ? Sa collection et ses rappels seront aussi effacés. Cette action est irréversible.')) return;
+    btn.disabled = true;
+    const result = await callAdminApi('/api/delete-member', { id });
+    if(result.error){ showMsg('Échec : ' + result.error, 'err'); btn.disabled = false; return; }
+    showMsg(name + ' a été supprimé.', 'ok');
+    load();
+  }
+});
+
+const addPanel = document.getElementById('add-panel');
+const addToggle = document.getElementById('add-toggle');
+const addForm = document.getElementById('add-form');
+
+addToggle.addEventListener('click', () => addPanel.classList.toggle('open'));
+document.getElementById('add-cancel').addEventListener('click', () => {
+  addPanel.classList.remove('open');
+  addForm.reset();
+});
+
+addForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData(addForm);
+  const payload = {
+    first_name: (fd.get('first_name') || '').trim(),
+    last_name: (fd.get('last_name') || '').trim(),
+    email: (fd.get('email') || '').trim(),
+    role: fd.get('role') ? 'admin' : 'member',
+  };
+  const btn = addForm.querySelector('.add-submit');
   btn.disabled = true;
-  const { error } = await supabase.from('profiles').update({ role: newRole }).eq('id', id);
-  if(error){ showMsg('Échec : ' + error.message, 'err'); btn.disabled = false; return; }
-  showMsg(name + ' est maintenant ' + (newRole === 'admin' ? 'admin' : 'membre') + '.', 'ok');
+  const result = await callAdminApi('/api/create-member', payload);
+  btn.disabled = false;
+  if(result.error){ showMsg('Échec : ' + result.error, 'err'); return; }
+  showMsg(result.message || 'Membre invité.', 'ok');
+  addForm.reset();
+  addPanel.classList.remove('open');
   load();
 });
 

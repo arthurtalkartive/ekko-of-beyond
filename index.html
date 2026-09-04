@@ -3402,6 +3402,11 @@ window.ekkoEnterSky = function(){
   }).then(function(pos){
     boot(pos.lat, pos.lon);
   });
+  /* Temps passe sur l'app, pour l'analytique de l'outil de gestion des
+     membres — voir js/supa.js. Demarre uniquement ici, jamais sur le
+     portail : le temps passe a s'inscrire ou se connecter n'a rien
+     d'un temps passe "dans" l'aventure. */
+  import('/js/supa.js').then(function(m){ m.startHeartbeat(); });
 };
 EKKO_SESSION.then(function(session){
   if(session) window.ekkoEnterSky();

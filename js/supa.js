@@ -69,3 +69,45 @@ export function friendlyAuthError(error){
   if(/rate limit/i.test(msg)) return 'Trop de tentatives — réessaie dans quelques minutes.';
   return msg || 'Une erreur est survenue.';
 }
+
+/** Fait l'appel authentifie vers une fonction serverless (api/*.js),
+    avec le jeton de la session en cours en en-tete — c'est lui qui
+    permet a la fonction de verifier cote serveur que l'appelant est
+    bien admin. */
+export async function callAdminApi(path, payload){
+  const session = await getSession();
+  if(!session) return { error: 'Non connecté.' };
+  const res = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token },
+    body: JSON.stringify(payload || {}),
+  });
+  let data = {};
+  try{ data = await res.json(); }catch(e){}
+  if(!res.ok) return { error: data.error || ('Erreur ' + res.status) };
+  return data;
+}
+
+/** Suivi du temps passe sur l'app : un signal toutes les ~30s tant que
+    l'onglet est visible, additionne cote base (voir la fonction SQL
+    heartbeat()). Rien n'est envoye pendant que l'onglet est en arriere-
+    plan — ce n'est pas une mesure a la seconde, mais elle ne compte pas
+    non plus le temps ou l'appli est juste restee ouverte sans etre
+    regardee. À appeler une fois par page, apres avoir confirme la
+    session (voir index.html). */
+export function startHeartbeat(intervalMs){
+  const period = intervalMs || 30000;
+  let last = Date.now();
+  async function ping(){
+    if(document.hidden) return;
+    const elapsed = Math.round((Date.now() - last) / 1000);
+    last = Date.now();
+    try{ await supabase.rpc('heartbeat', { seconds_elapsed: elapsed }); }catch(e){}
+  }
+  const timer = setInterval(ping, period);
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) last = Date.now(); // ne compte pas le temps cache
+  });
+  addEventListener('beforeunload', ping);
+  return function stop(){ clearInterval(timer); };
+}
