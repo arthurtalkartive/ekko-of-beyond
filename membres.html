@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="128x128" href="/favicon-128x128.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#060A10">
+<title>Ekko of Beyond · Membres</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#E3E3C4; --c50:rgba(227,227,196,.5); --c20:rgba(227,227,196,.2);
+  --ink:#060A10;
+  --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Afacad',system-ui,sans-serif;color:var(--cream);
+  background:linear-gradient(180deg,#000 0%,#0A1931 100%) fixed;min-height:100vh}
+button{font-family:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;
+  padding:calc(14px + var(--st)) 26px 14px;
+  background:linear-gradient(180deg,rgba(3,6,10,.96),rgba(3,6,10,.62));
+  border-bottom:1px solid var(--c20);backdrop-filter:blur(12px)}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  border:1px solid var(--c50);border-radius:999px;padding:9px 16px;font-size:11.5px;
+  font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.8;
+  transition:opacity .2s,background .2s;white-space:nowrap}
+.back:hover{opacity:1;background:rgba(227,227,196,.08)}
+.top .sp{flex:1}
+.top .where{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.45;white-space:nowrap}
+
+.wrap{max-width:760px;margin:0 auto;padding:48px 26px calc(80px + var(--sb))}
+h1{font-size:clamp(26px,6vw,34px);font-weight:700;text-transform:uppercase}
+.sub{margin-top:8px;font-size:14px;color:var(--c50)}
+
+#list{margin-top:36px;display:flex;flex-direction:column;gap:2px}
+.row{
+  display:flex;align-items:center;gap:14px;padding:16px 4px;
+  border-bottom:1px solid rgba(227,227,196,.1);
+}
+.row-avatar{
+  width:38px;height:38px;border-radius:50%;flex:none;
+  border:1px solid var(--c50);display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;text-transform:uppercase;background:rgba(227,227,196,.04);
+}
+.row-mid{flex:1 1 0;min-width:0}
+.row-name{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.row-email{margin-top:2px;font-size:12.5px;color:var(--c50);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-right{flex:none;display:flex;align-items:center;gap:10px}
+.role-badge{
+  padding:3px 12px;border-radius:999px;font-size:10.5px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--c50);color:var(--c50);
+}
+.role-badge.admin{border-color:var(--cream);color:var(--cream);background:rgba(227,227,196,.08)}
+.role-toggle{
+  padding:8px 16px;border-radius:999px;border:1px solid var(--c50);
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  background:none;color:var(--cream);transition:background .2s,border-color .2s;white-space:nowrap;
+}
+.role-toggle:hover{background:rgba(227,227,196,.1);border-color:var(--cream)}
+.role-toggle:disabled{opacity:.3;pointer-events:none}
+.row.you .row-name::after{content:" (toi)";font-weight:400;opacity:.5;text-transform:none}
+
+.msg{
+  margin-top:20px;padding:12px 18px;border-radius:14px;font-size:13.5px;line-height:1.4;
+  text-align:center;display:none;
+}
+.msg.on{display:block}
+.msg.err{background:rgba(200,70,70,.14);border:1px solid rgba(200,70,70,.4);color:#F0B8B8}
+.msg.ok{background:rgba(227,227,196,.08);border:1px solid var(--c20);color:var(--cream)}
+
+.empty,.loading{margin-top:40px;text-align:center;color:var(--c50);font-size:14px}
+
+@media (max-width:520px){
+  .row{flex-wrap:wrap}
+  .row-right{width:100%;justify-content:space-between;margin-top:8px;padding-left:52px}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a class="back" href="/">&larr;&nbsp; Vue du ciel</a>
+  <span class="sp"></span>
+  <span class="where">Membres</span>
+</div>
+
+<main class="wrap">
+  <h1>Membres</h1>
+  <p class="sub" id="count">Chargement…</p>
+  <div class="msg" id="msg"></div>
+  <div id="list"></div>
+</main>
+
+<script type="module">
+import { supabase, requireAdmin } from '/js/supa.js';
+
+const admin = await requireAdmin();
+if(!admin) throw new Error('acces refuse — redirection en cours');
+const myId = admin.session.user.id;
+
+const list = document.getElementById('list');
+const countEl = document.getElementById('count');
+const msgEl = document.getElementById('msg');
+
+function showMsg(text, kind){
+  msgEl.textContent = text;
+  msgEl.className = 'msg on ' + kind;
+}
+
+function initials(p){
+  const a = (p.first_name || '').trim()[0] || '';
+  const b = (p.last_name || '').trim()[0] || '';
+  return (a + b) || (p.email || '?')[0].toUpperCase();
+}
+
+function rowHTML(p){
+  const name = [p.first_name, p.last_name].filter(Boolean).join(' ') || '(sans nom)';
+  const isAdmin = p.role === 'admin';
+  const isMe = p.id === myId;
+  return '<div class="row' + (isMe ? ' you' : '') + '" data-id="' + p.id + '">'
+    + '<div class="row-avatar">' + initials(p) + '</div>'
+    + '<div class="row-mid">'
+      + '<div class="row-name">' + name + '</div>'
+      + '<div class="row-email">' + (p.email || '') + '</div>'
+    + '</div>'
+    + '<div class="row-right">'
+      + '<span class="role-badge' + (isAdmin ? ' admin' : '') + '">' + (isAdmin ? 'Admin' : 'Membre') + '</span>'
+      + '<button type="button" class="role-toggle" data-role="' + (isAdmin ? 'member' : 'admin') + '"'
+        + (isMe ? ' disabled title="Tu ne peux pas changer ton propre rôle ici"' : '')
+        + '>' + (isAdmin ? 'Repasser membre' : 'Passer admin') + '</button>'
+    + '</div>'
+  + '</div>';
+}
+
+async function load(){
+  const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
+  if(error){
+    countEl.textContent = '';
+    showMsg('Impossible de charger les membres : ' + error.message, 'err');
+    return;
+  }
+  countEl.textContent = data.length + (data.length === 1 ? ' membre inscrit' : ' membres inscrits');
+  if(!data.length){
+    list.innerHTML = '<p class="empty">Personne pour l\u2019instant.</p>';
+    return;
+  }
+  list.innerHTML = data.map(rowHTML).join('');
+}
+
+list.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.role-toggle');
+  if(!btn) return;
+  const row = btn.closest('.row');
+  const id = row.dataset.id;
+  const newRole = btn.dataset.role;
+  const name = row.querySelector('.row-name').textContent;
+  if(!confirm('Passer ' + name + ' en ' + (newRole === 'admin' ? 'admin' : 'membre') + ' ?')) return;
+
+  btn.disabled = true;
+  const { error } = await supabase.from('profiles').update({ role: newRole }).eq('id', id);
+  if(error){ showMsg('Échec : ' + error.message, 'err'); btn.disabled = false; return; }
+  showMsg(name + ' est maintenant ' + (newRole === 'admin' ? 'admin' : 'membre') + '.', 'ok');
+  load();
+});
+
+load();
+</script>
+</body>
+</html>
