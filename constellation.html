@@ -1687,11 +1687,11 @@ const FB = { lat: 41.39, lon: 2.17 };
    portail — voir le tout debut de ce script. */
 __ekkoAuthOk.then(function(ok){
   if(!ok) return;
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(
-      function(p){ bootSky(p.coords.latitude, p.coords.longitude); },
-      function(){ bootSky(FB.lat, FB.lon); }, { timeout: 6000 });
-  }else bootSky(FB.lat, FB.lon);
+  import('/js/geo.js').then(function(m){
+    return m.getCachedPosition(FB);
+  }).then(function(pos){
+    bootSky(pos.lat, pos.lon);
+  });
 });
 </script>
 </body>

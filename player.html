@@ -277,6 +277,49 @@
   #confirm button:hover { background: rgba(227, 227, 196, .1); border-color: var(--gold); }
   #confirm button[data-primary] { background: rgba(227, 227, 196, .16); border-color: var(--gold); }
 
+  /* ---------------------------------------------------------- célébration */
+
+  #celebrate {
+    position: fixed; inset: 0; z-index: 90;
+    display: grid; place-items: center;
+    padding: 24px;
+    background:
+      radial-gradient(120% 90% at 50% 15%, rgba(227,227,196,.08), transparent 62%),
+      rgba(2, 6, 12, .9);
+    backdrop-filter: blur(12px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .5s ease;
+  }
+  #celebrate[data-open] { opacity: 1; pointer-events: auto; }
+  #celebrate .box {
+    width: 100%; max-width: 420px; text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  #celebrate .cel-ring {
+    width: 78px; height: 78px; border-radius: 50%; flex: none;
+    border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    background: radial-gradient(circle, rgba(227,227,196,.14), transparent 70%);
+    transform: scale(.4); opacity: 0;
+    transition: transform .5s cubic-bezier(.2,1.5,.4,1) .15s, opacity .4s ease .15s;
+  }
+  #celebrate[data-open] .cel-ring { transform: scale(1); opacity: 1; }
+  #celebrate .cel-ring svg { width: 30px; height: 30px; }
+  #celebrate .cel-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--gold-50);
+  }
+  #celebrate h2 { margin: 10px 0 0; font-size: clamp(26px, 6vw, 34px); font-weight: 700; text-transform: uppercase; }
+  #celebrate p { margin: 14px 0 34px; font-size: 15.5px; line-height: 1.55; color: rgba(227, 227, 196, .75); }
+  #celebrate .cel-btn {
+    width: 100%; padding: 15px 30px; border-radius: 20000px;
+    border: 1px solid var(--gold);
+    background: linear-gradient(180deg, rgba(227,227,196,.04), rgba(227,227,196,.2));
+    font-size: 16px; font-weight: 700; text-transform: uppercase;
+    transition: background .2s;
+  }
+  #celebrate .cel-btn:hover { background: linear-gradient(180deg, rgba(227,227,196,.08), rgba(227,227,196,.28)); }
+
   /* ------------------------------------------------------------- notes */
 
   #notice {
@@ -431,6 +474,21 @@
   </div>
 </div>
 
+<!-- Ecran de celebration : remplace le fondu direct vers la carte quand
+     l'Ekko vient d'etre collecte, pour que le moment soit marque plutot
+     que de filer tout de suite vers l'ecran suivant. -->
+<div id="celebrate" role="dialog" aria-modal="true" aria-labelledby="celTitle">
+  <div class="box">
+    <div class="cel-ring">
+      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.5 5.3l2.3 2.3L8.6 2.7"/></svg>
+    </div>
+    <span class="cel-eyebrow">Ekko collecté</span>
+    <h2 id="celTitle"></h2>
+    <p id="celSub">a été ajoutée à ta collection.</p>
+    <button type="button" class="cel-btn" id="celContinue">Continuer l'aventure</button>
+  </div>
+</div>
+
 <div id="curtain"></div>
 
 <script type="module">
@@ -439,6 +497,13 @@ import { toViewOptions, emptySettings } from './js/view-settings.js';
 import { CueEngine, Chime, emptyTrack } from './js/cue-engine.js';
 import { ICONS, CUE_GLYPH, LINE_START, LINE_END } from './js/ekko-icons.js';
 import { PlayerHeader } from './js/player-header.js';
+import { requireAuth } from '/js/supa.js';
+
+/* Il faut un compte pour ecouter un Ekko : redirige vers le portail
+   avant toute autre chose si personne n'est connecte — inutile de
+   charger quoi que ce soit d'autre dans ce cas. */
+const __session = await requireAuth();
+if(!__session) throw new Error('non connecte — redirection en cours');
 
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -730,8 +795,20 @@ function collect() {
   view.clearFocus();
   hideCard();
   // TODO brancher ici la validation de collecte côté profil.
-  leave('/?collected=' + IAU.toLowerCase());
+  showCelebration();
 }
+
+/** Ecran de celebration : marque le moment plutot que de filer tout de
+    suite vers la carte. Le depart effectif n'a lieu qu'au clic sur
+    « Continuer l'aventure », voir plus bas. */
+function showCelebration() {
+  $('celTitle').textContent = (sky?.figures?.[IAU]?.name || IAU || '').toUpperCase();
+  $('celebrate').setAttribute('data-open', '');
+}
+
+$('celContinue').addEventListener('click', () => {
+  leave('/?collected=' + IAU.toLowerCase());
+});
 
 /** Fondu sortant symétrique de l'entrée. */
 function leave(href) {

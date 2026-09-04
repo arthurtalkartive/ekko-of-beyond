@@ -125,7 +125,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 /* Les cercles debordent volontairement du cadre 1920 x 1080 de l'animation :
    on laisse donc le SVG deborder au lieu de le rogner. */
 #splash-fond{
-  position:absolute;left:calc(50% - 21.5px);top:50%;
+  position:absolute;left:50%;top:50%;
   transform:translate(-50%,-50%);
   width:max(135vw,135vh);aspect-ratio:1920 / 1080;
   pointer-events:none;opacity:.92;
@@ -2906,6 +2906,18 @@ function showCollection(on){
   document.body.classList.toggle('collection', on);
   $('#tg-coll').classList.toggle('on', on);
   $('#tg-sky').classList.toggle('on', !on);
+  /* Si la carte du ciel etait ouverte au moment de basculer d'onglet,
+     elle reste techniquement "open" (et --aside-extra a sa valeur
+     deployee) meme une fois cachee derriere la Collection : au retour
+     sur "Vue du ciel", les fleches se retrouvaient bloquees en position
+     haute alors que la carte, elle, se re-affiche fermee. On referme
+     donc explicitement en quittant l'onglet, dans les deux sens. */
+  const openCard = document.querySelector('.card-row .card.open');
+  if(openCard){
+    openCard.classList.remove('open');
+    document.body.classList.remove('card-open');
+    document.documentElement.style.setProperty('--aside-extra', '0px');
+  }
   if(on){
     /* construction differee : 53 cartes et autant de medaillons, inutile de
        les fabriquer avant le premier affichage */
@@ -3360,13 +3372,11 @@ window.ekkoEnterSky = function(){
   __ekkoSkyEntered = true;
   renderCard();
   renderLevel();
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(
-      p => boot(p.coords.latitude, p.coords.longitude),
-      () => boot(GEO.lat, GEO.lon),
-      { enableHighAccuracy:false, timeout:6000 }
-    );
-  }else boot(GEO.lat, GEO.lon);
+  import('/js/geo.js').then(function(m){
+    return m.getCachedPosition({ lat: GEO.lat, lon: GEO.lon });
+  }).then(function(pos){
+    boot(pos.lat, pos.lon);
+  });
 };
 EKKO_SESSION.then(function(session){
   if(session) window.ekkoEnterSky();
