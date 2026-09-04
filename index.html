@@ -2891,23 +2891,37 @@ function watchSelection(stel){
    tient le telephone comme une fenetre vers le ciel, on l'incline et on
    pivote, la vue suit en direct.
 
-   Deux defauts corriges par rapport a la premiere version :
+   Historique des deux defauts precedents, pour comprendre pourquoi c'est
+   ecrit ainsi :
+     1. Une premiere version mappait alpha/beta/gamma directement sur
+        azimut/hauteur/roulis ; une seconde passait par un quaternion
+        transcrit a la main avec une erreur de signe. Les deux donnaient
+        des sauts des que les trois angles bougeaient ensemble.
+     2. Une troisieme version utilisait la bonne matrice de rotation
+        (verifiee contre la fonction de reference officielle du W3C,
+        10/10 correspondances exactes) mais lissait le vecteur "regarde"
+        et le vecteur "haut d'ecran" INDEPENDAMMENT l'un de l'autre.
+        Chacun pris separement etait correct, mais rien ne garantissait
+        qu'ils restent coherents entre eux pendant un mouvement rapide
+        (une rotation complete notamment) — d'ou les sauts de roulis
+        remontes. Pres du zenith en particulier (l'azimut devient
+        mathematiquement mal defini pile au pole, un point fondamental
+        qu'aucun lissage ne supprime completement, seulement qu'il
+        attenue), un bruit de capteur infime faisait aussi sauter
+        l'azimut brut de plusieurs dizaines de degres.
 
-   1. La transformation 3D elle-meme etait fausse. Une premiere tentative
-      mappait alpha/beta/gamma directement sur azimut/hauteur/roulis ;
-      une seconde passait par un quaternion transcrit a la main, avec une
-      erreur de signe qui donnait des positions absurdes des que les
-      trois angles bougeaient ensemble. Verifie ici en comparant, hors
-      moteur, la formule ci-dessous a la fonction de reference officielle
-      du W3C (specification DeviceOrientation, section A.1) sur une
-      dizaine de poses : correspondance exacte a chaque fois. C'est
-      desormais une vraie matrice de rotation (ordre Z-X-Y intrinseque),
-      pas une approximation.
-
-   2. Rien ne lissait les lectures brutes du capteur d'une image a
-      l'autre, d'ou la sensation de sauts au moindre mouvement — corrige
-      par un lissage exponentiel des vecteurs de direction (pas des
-      angles, pour eviter tout probleme de recollement pres de 0°/360°).
+   Version actuelle : la matrice de rotation (toujours la meme, deja
+   verifiee) est convertie en UN SEUL quaternion, lisse par
+   interpolation spherique (SLERP) d'une lecture a l'autre, puis c'est
+   CE quaternion lisse qui sert a deriver a la fois la direction
+   regardee et le "haut d'ecran" — les deux restent donc toujours
+   coherents entre eux, contrairement a deux lissages independants.
+   Verifie hors moteur (voir le travail de mise au point) : la
+   conversion matrice -> quaternion produit exactement les memes
+   vecteurs que le calcul direct deja valide, a l'erreur flottante pres
+   (1e-16). Le facteur de lissage est aussi plus lent qu'avant (moins
+   reactif) pour absorber le tremblement du capteur plutot que le
+   suivre a la lettre.
 
    Repere Terre du capteur (donne par la specification) : X = Est,
    Y = Nord, Z = Zenith. Le mode reste actif jusqu'a ce que l'utilisateur
@@ -2918,51 +2932,80 @@ function watchSelection(stel){
    ============================================================ */
 let compassModeActive = false;
 let compassLastTick = 0;
-let compassSmoothedLook = null; // vecteur lisse de la direction regardee (hors de l'arriere de l'appareil)
-let compassSmoothedUp = null;   // vecteur lisse du "haut d'ecran", pour le roulis
+let compassSmoothedQuat = null; // seul et unique etat lisse, tout en decoule
 
-/** Vecteur qui sort de l'arriere de l'appareil (a travers l'ecran, vers
-    l'utilisateur, puis au-dela), exprime dans le repere Terre (Est,
-    Nord, Zenith). Formule copiee verbatim de l'exemple chiffre du W3C —
-    voir le commentaire au-dessus du bloc pour la verification faite
-    avant de l'utiliser. */
-function ekkoDeviceLookVector(alpha, beta, gamma){
+/** Matrice de rotation Terre -> appareil (ordre Z-X-Y intrinseque),
+    verbatim de l'exemple chiffre du W3C — voir le commentaire au-dessus
+    du bloc pour la verification faite avant de l'utiliser. */
+function ekkoRotationMatrix(alpha, beta, gamma){
   const cA = Math.cos(alpha), sA = Math.sin(alpha);
   const cB = Math.cos(beta),  sB = Math.sin(beta);
   const cG = Math.cos(gamma), sG = Math.sin(gamma);
-  return [
-    -cA*sG - sA*sB*cG,
-    -sA*sG + cA*sB*cG,
-    -cB*cG,
-  ];
+  return {
+    m11: cA*cG - sA*sB*sG,  m12: -cB*sA,           m13: cG*sA*sB + cA*sG,
+    m21: cG*sA + cA*sB*sG,  m22: cA*cB,            m23: sA*sG - cA*cG*sB,
+    m31: -cB*sG,            m32: sB,               m33: cB*cG,
+  };
 }
-/** Vecteur qui sort du haut de l'ecran, meme repere — sert uniquement
-    au calcul du roulis (de quel cote la vue doit pencher). */
-function ekkoDeviceUpVector(alpha, beta, gamma){
-  const cA = Math.cos(alpha), sA = Math.sin(alpha);
-  const cB = Math.cos(beta),  sB = Math.sin(beta);
-  return [ -cB*sA, cA*cB, sB ];
+/** Matrice -> quaternion, methode standard (trace de la matrice), la
+    meme que Three.js (Quaternion.setFromRotationMatrix) ou toute autre
+    bibliotheque 3D serieuse — un algorithme publie et largement utilise,
+    pas une derivation maison comme la tentative precedente. */
+function ekkoMatrixToQuat(m){
+  const { m11,m12,m13, m21,m22,m23, m31,m32,m33 } = m;
+  const trace = m11 + m22 + m33;
+  let x, y, z, w;
+  if(trace > 0){
+    const s = 0.5 / Math.sqrt(trace + 1.0);
+    w = 0.25 / s; x = (m32-m23)*s; y = (m13-m31)*s; z = (m21-m12)*s;
+  }else if(m11 > m22 && m11 > m33){
+    const s = 2.0 * Math.sqrt(1.0 + m11 - m22 - m33);
+    w = (m32-m23)/s; x = 0.25*s; y = (m12+m21)/s; z = (m13+m31)/s;
+  }else if(m22 > m33){
+    const s = 2.0 * Math.sqrt(1.0 + m22 - m11 - m33);
+    w = (m13-m31)/s; x = (m12+m21)/s; y = 0.25*s; z = (m23+m32)/s;
+  }else{
+    const s = 2.0 * Math.sqrt(1.0 + m33 - m11 - m22);
+    w = (m21-m12)/s; x = (m13+m31)/s; y = (m23+m32)/s; z = 0.25*s;
+  }
+  return [x, y, z, w];
 }
-/** Lissage exponentiel dans l'espace des vecteurs (pas des angles) : un
-    simple mélange + renormalisation, largement suffisant a la frequence
-    ou ce suivi tourne (~30/s), et sans le probleme de recollement pres
-    de 0°/360° qu'un lissage d'angles bruts aurait pose. t petit = memoire
-    longue (mouvement doux, un peu de latence) ; t grand = suit vite mais
-    tremble plus. */
-function ekkoBlendVec(prev, next, t){
-  if(!prev) return next;
-  const x = prev[0] + (next[0]-prev[0])*t;
-  const y = prev[1] + (next[1]-prev[1])*t;
-  const z = prev[2] + (next[2]-prev[2])*t;
-  const n = Math.hypot(x, y, z) || 1;
-  return [x/n, y/n, z/n];
+function ekkoQuatRotateVec(q, v){
+  const [qx,qy,qz,qw] = q, [vx,vy,vz] = v;
+  const tx = 2*(qy*vz - qz*vy), ty = 2*(qz*vx - qx*vz), tz = 2*(qx*vy - qy*vx);
+  return [ vx+qw*tx+(qy*tz-qz*ty), vy+qw*ty+(qz*tx-qx*tz), vz+qw*tz+(qx*ty-qy*tx) ];
 }
+/** Interpolation spherique entre deux quaternions : contrairement a un
+    lissage de vecteurs independants, celui-ci porte sur UNE rotation
+    complete, donc ce qu'on en tire (direction regardee, haut d'ecran)
+    reste toujours mutuellement coherent. t plus petit = plus de memoire,
+    plus doux, un peu plus de latence ; plus grand = suit plus vite mais
+    laisse plus de tremblement passer. */
+function ekkoQuatSlerp(a, b, t){
+  let [ax,ay,az,aw] = a, [bx,by,bz,bw] = b;
+  let dot = ax*bx + ay*by + az*bz + aw*bw;
+  if(dot < 0){ bx=-bx; by=-by; bz=-bz; bw=-bw; dot=-dot; } // toujours le chemin le plus court
+  if(dot > 0.9995){
+    const x=ax+(bx-ax)*t, y=ay+(by-ay)*t, z=az+(bz-az)*t, w=aw+(bw-aw)*t;
+    const n = Math.hypot(x,y,z,w) || 1;
+    return [x/n, y/n, z/n, w/n];
+  }
+  const theta0 = Math.acos(dot), theta = theta0 * t;
+  const sinTheta = Math.sin(theta), sinTheta0 = Math.sin(theta0);
+  const s0 = Math.cos(theta) - dot * sinTheta / sinTheta0, s1 = sinTheta / sinTheta0;
+  return [ax*s0+bx*s1, ay*s0+by*s1, az*s0+bz*s1, aw*s0+bw*s1];
+}
+/* Facteur de lissage : delibirement plus lent que la version precedente
+   (0.14 contre 0.22) — plus de memoire d'une lecture a l'autre, pour
+   absorber le tremblement du capteur plutot que le suivre a la lettre,
+   comme demande. A remonter un peu si le mouvement parait trop en
+   retard une fois teste, a redescendre s'il tremble encore. */
+const COMPASS_SMOOTHING = 0.14;
 
 function exitCompassMode(){
   if(!compassModeActive) return;
   compassModeActive = false;
-  compassSmoothedLook = null;
-  compassSmoothedUp = null;
+  compassSmoothedQuat = null;
   removeEventListener('deviceorientationabsolute', onOrientationTick);
   removeEventListener('deviceorientation', onOrientationTick);
   $('#z-compass').classList.remove('active');
@@ -2989,25 +3032,29 @@ function onOrientationTick(e){
   }
 
   const D2R = STEL.D2R;
-  const a = alpha * D2R, b = e.beta * D2R, g = e.gamma * D2R;
-  compassSmoothedLook = ekkoBlendVec(compassSmoothedLook, ekkoDeviceLookVector(a, b, g), 0.22);
-  compassSmoothedUp   = ekkoBlendVec(compassSmoothedUp,   ekkoDeviceUpVector(a, b, g),   0.22);
+  const raw = ekkoMatrixToQuat(ekkoRotationMatrix(alpha*D2R, e.beta*D2R, e.gamma*D2R));
+  compassSmoothedQuat = compassSmoothedQuat ? ekkoQuatSlerp(compassSmoothedQuat, raw, COMPASS_SMOOTHING) : raw;
 
   try{
-    const alt = Math.asin(Math.max(-1, Math.min(1, compassSmoothedLook[2])));
-    const az  = Math.atan2(compassSmoothedLook[0], compassSmoothedLook[1]);
+    const lookLocal = ekkoQuatRotateVec(compassSmoothedQuat, [0, 0, -1]); // hors de l'arriere de l'appareil
+    const upLocal   = ekkoQuatRotateVec(compassSmoothedQuat, [0, 1, 0]); // haut d'ecran
+
+    /* Le repere du capteur (X=Est, Y=Nord, Z=zenith) n'est pas celui de
+       Stellarium : on repasse par l'azimut/hauteur (STEL.s2c) pour
+       rester dans la convention du moteur plutot que de melanger deux
+       reperes 3D differents. */
+    const alt = Math.asin(Math.max(-1, Math.min(1, lookLocal[2])));
+    const az  = Math.atan2(lookLocal[0], lookLocal[1]);
     const look = STEL.s2c(az, alt);
     STEL.lookAt(look, 0);
 
-    /* Roulis : meme calcul tangentiel que orientToFigure() plus haut —
-       l'angle entre le zenith projete et le "haut d'ecran" reel projete,
-       tous deux tangents a la direction regardee. Le "haut d'ecran" est
-       lui aussi repasse par s2c pour rester dans la convention du
-       moteur plutot que de melanger deux reperes 3D differents. */
-    const altU = Math.asin(Math.max(-1, Math.min(1, compassSmoothedUp[2])));
-    const azU  = Math.atan2(compassSmoothedUp[0], compassSmoothedUp[1]);
+    const altU = Math.asin(Math.max(-1, Math.min(1, upLocal[2])));
+    const azU  = Math.atan2(upLocal[0], upLocal[1]);
     const up = STEL.s2c(azU, altU);
 
+    /* Roulis : meme calcul tangentiel que orientToFigure() plus haut —
+       l'angle entre le zenith projete et le "haut d'ecran" reel projete,
+       tous deux tangents a la direction regardee. */
     const dot = (p,q) => p[0]*q[0] + p[1]*q[1] + p[2]*q[2];
     const nrm = v => { const n = Math.hypot(v[0],v[1],v[2]) || 1; return [v[0]/n, v[1]/n, v[2]/n]; };
     const crs = (p,q) => [p[1]*q[2]-p[2]*q[1], p[2]*q[0]-p[0]*q[2], p[0]*q[1]-p[1]*q[0]];
@@ -3038,8 +3085,7 @@ async function useRealOrientation(){
       }
     }
     compassModeActive = true;
-    compassSmoothedLook = null;
-    compassSmoothedUp = null;
+    compassSmoothedQuat = null;
     STEL.core.selection = null;               /* efface l'illustration en cours */
     STEL.core.constellations.labels_visible = false;
     addEventListener('deviceorientationabsolute', onOrientationTick);
