@@ -2889,34 +2889,80 @@ function watchSelection(stel){
    ROSE DES VENTS
    Suivi continu de l'orientation de l'appareil, comme SkyView : on
    tient le telephone comme une fenetre vers le ciel, on l'incline et on
-   pivote, la vue suit en direct. Ce n'est plus un geste ponctuel — la
-   lecture du capteur reste active jusqu'a ce que l'utilisateur reglisse
-   la vue a la main, change de constellation avec les fleches, ou
-   reclique sur le bouton. Les illustrations et les noms de
-   constellations se desactivent pendant ce temps (regarder le vrai
-   ciel avec des noms partout dessus serait plus genant qu'utile) et
-   reviennent a la sortie du mode.
+   pivote, la vue suit en direct.
 
-   Conventions supposees ici, aucune verifiee sur un vrai appareil :
-     - cap de boussole standard pour l'azimut (0 = Nord, 90 = Est,
-       sens horaire) ;
-     - hauteur ≈ 90 - beta, valable pour la prise en main "fenetre"
-       (telephone tenu a peu pres vertical, incline en arriere pour
-       regarder plus haut dans le ciel) — pas une vraie matrice de
-       rotation 3D complete, qui demanderait de combiner alpha/beta/
-       gamma avec le sens de tenue de l'appareil ;
-     - roulis ≈ gamma (l'appareil penche sur le cote -> la vue penche
-       pareil).
-   Si un de ces trois mouvements part dans le mauvais sens une fois
-   teste sur un vrai telephone, il suffit d'inverser son signe ci-dessous
-   — chacun est isole pour que ce soit un changement d'une ligne.
+   Deux defauts corriges par rapport a la premiere version :
+
+   1. La transformation 3D elle-meme etait fausse. Une premiere tentative
+      mappait alpha/beta/gamma directement sur azimut/hauteur/roulis ;
+      une seconde passait par un quaternion transcrit a la main, avec une
+      erreur de signe qui donnait des positions absurdes des que les
+      trois angles bougeaient ensemble. Verifie ici en comparant, hors
+      moteur, la formule ci-dessous a la fonction de reference officielle
+      du W3C (specification DeviceOrientation, section A.1) sur une
+      dizaine de poses : correspondance exacte a chaque fois. C'est
+      desormais une vraie matrice de rotation (ordre Z-X-Y intrinseque),
+      pas une approximation.
+
+   2. Rien ne lissait les lectures brutes du capteur d'une image a
+      l'autre, d'ou la sensation de sauts au moindre mouvement — corrige
+      par un lissage exponentiel des vecteurs de direction (pas des
+      angles, pour eviter tout probleme de recollement pres de 0°/360°).
+
+   Repere Terre du capteur (donne par la specification) : X = Est,
+   Y = Nord, Z = Zenith. Le mode reste actif jusqu'a ce que l'utilisateur
+   reglisse la vue a la main, change de constellation avec les fleches,
+   ou reclique sur le bouton — les illustrations et les noms de
+   constellations se desactivent pendant ce temps et reviennent a la
+   sortie.
    ============================================================ */
 let compassModeActive = false;
 let compassLastTick = 0;
+let compassSmoothedLook = null; // vecteur lisse de la direction regardee (hors de l'arriere de l'appareil)
+let compassSmoothedUp = null;   // vecteur lisse du "haut d'ecran", pour le roulis
+
+/** Vecteur qui sort de l'arriere de l'appareil (a travers l'ecran, vers
+    l'utilisateur, puis au-dela), exprime dans le repere Terre (Est,
+    Nord, Zenith). Formule copiee verbatim de l'exemple chiffre du W3C —
+    voir le commentaire au-dessus du bloc pour la verification faite
+    avant de l'utiliser. */
+function ekkoDeviceLookVector(alpha, beta, gamma){
+  const cA = Math.cos(alpha), sA = Math.sin(alpha);
+  const cB = Math.cos(beta),  sB = Math.sin(beta);
+  const cG = Math.cos(gamma), sG = Math.sin(gamma);
+  return [
+    -cA*sG - sA*sB*cG,
+    -sA*sG + cA*sB*cG,
+    -cB*cG,
+  ];
+}
+/** Vecteur qui sort du haut de l'ecran, meme repere — sert uniquement
+    au calcul du roulis (de quel cote la vue doit pencher). */
+function ekkoDeviceUpVector(alpha, beta, gamma){
+  const cA = Math.cos(alpha), sA = Math.sin(alpha);
+  const cB = Math.cos(beta),  sB = Math.sin(beta);
+  return [ -cB*sA, cA*cB, sB ];
+}
+/** Lissage exponentiel dans l'espace des vecteurs (pas des angles) : un
+    simple mélange + renormalisation, largement suffisant a la frequence
+    ou ce suivi tourne (~30/s), et sans le probleme de recollement pres
+    de 0°/360° qu'un lissage d'angles bruts aurait pose. t petit = memoire
+    longue (mouvement doux, un peu de latence) ; t grand = suit vite mais
+    tremble plus. */
+function ekkoBlendVec(prev, next, t){
+  if(!prev) return next;
+  const x = prev[0] + (next[0]-prev[0])*t;
+  const y = prev[1] + (next[1]-prev[1])*t;
+  const z = prev[2] + (next[2]-prev[2])*t;
+  const n = Math.hypot(x, y, z) || 1;
+  return [x/n, y/n, z/n];
+}
 
 function exitCompassMode(){
   if(!compassModeActive) return;
   compassModeActive = false;
+  compassSmoothedLook = null;
+  compassSmoothedUp = null;
   removeEventListener('deviceorientationabsolute', onOrientationTick);
   removeEventListener('deviceorientation', onOrientationTick);
   $('#z-compass').classList.remove('active');
@@ -2926,30 +2972,52 @@ function exitCompassMode(){
   }catch(e){}
 }
 
-/** Un point par evenement d'orientation : ni anime (dur=0 partout,
-    sinon les vols s'empilent plus vite qu'ils ne se terminent), ni a
-    chaque frame (les evenements deviceorientation suffisent, en general
-    autour de 60/s, un throttle leger evite juste de re-dessiner plus
-    souvent que necessaire). */
 function onOrientationTick(e){
   const now = performance.now();
-  if(now - compassLastTick < 40) return; // ~25 rafraichissements/s, largement assez pour l'oeil
+  if(now - compassLastTick < 32) return; // ~30 rafraichissements/s
   compassLastTick = now;
+  if(typeof e.alpha !== 'number' || typeof e.beta !== 'number' || typeof e.gamma !== 'number') return;
 
-  let heading = null;
+  /* Sur iOS, deviceorientation seul n'est pas cale sur le vrai nord —
+     webkitCompassHeading, lui, l'est. On en tire un alpha equivalent
+     avant de calculer plutot que d'utiliser alpha tel quel. Sur Android,
+     l'evenement "absolute" est deja correctement cale, alpha sert sans
+     retouche. */
+  let alpha = e.alpha;
   if(typeof e.webkitCompassHeading === 'number' && !isNaN(e.webkitCompassHeading)){
-    heading = e.webkitCompassHeading;
-  }else if(typeof e.alpha === 'number'){
-    heading = (360 - e.alpha) % 360;
+    alpha = 360 - e.webkitCompassHeading;
   }
-  if(heading == null || typeof e.beta !== 'number') return;
+
+  const D2R = STEL.D2R;
+  const a = alpha * D2R, b = e.beta * D2R, g = e.gamma * D2R;
+  compassSmoothedLook = ekkoBlendVec(compassSmoothedLook, ekkoDeviceLookVector(a, b, g), 0.22);
+  compassSmoothedUp   = ekkoBlendVec(compassSmoothedUp,   ekkoDeviceUpVector(a, b, g),   0.22);
 
   try{
-    const az = ((heading % 360) + 360) % 360 * STEL.D2R;
-    const alt = Math.max(-89, Math.min(89, 90 - e.beta)) * STEL.D2R;
-    const roll = (typeof e.gamma === 'number' ? e.gamma : 0) * STEL.D2R;
-    STEL.lookAt(STEL.s2c(az, alt), 0);
-    animateRoll(roll, 0);
+    const alt = Math.asin(Math.max(-1, Math.min(1, compassSmoothedLook[2])));
+    const az  = Math.atan2(compassSmoothedLook[0], compassSmoothedLook[1]);
+    const look = STEL.s2c(az, alt);
+    STEL.lookAt(look, 0);
+
+    /* Roulis : meme calcul tangentiel que orientToFigure() plus haut —
+       l'angle entre le zenith projete et le "haut d'ecran" reel projete,
+       tous deux tangents a la direction regardee. Le "haut d'ecran" est
+       lui aussi repasse par s2c pour rester dans la convention du
+       moteur plutot que de melanger deux reperes 3D differents. */
+    const altU = Math.asin(Math.max(-1, Math.min(1, compassSmoothedUp[2])));
+    const azU  = Math.atan2(compassSmoothedUp[0], compassSmoothedUp[1]);
+    const up = STEL.s2c(azU, altU);
+
+    const dot = (p,q) => p[0]*q[0] + p[1]*q[1] + p[2]*q[2];
+    const nrm = v => { const n = Math.hypot(v[0],v[1],v[2]) || 1; return [v[0]/n, v[1]/n, v[2]/n]; };
+    const crs = (p,q) => [p[1]*q[2]-p[2]*q[1], p[2]*q[0]-p[0]*q[2], p[0]*q[1]-p[1]*q[0]];
+    const Z = [0, 0, 1];
+    if(Math.abs(dot(Z, look)) < 0.999){
+      const tang = v => { const d = dot(v, look); return nrm([v[0]-d*look[0], v[1]-d*look[1], v[2]-d*look[2]]); };
+      const upT = tang(up), z0 = tang(Z);
+      const theta = Math.atan2(dot(crs(z0, upT), look), dot(z0, upT));
+      animateRoll(theta, 0);
+    }
   }catch(err){}
 }
 
@@ -2970,6 +3038,8 @@ async function useRealOrientation(){
       }
     }
     compassModeActive = true;
+    compassSmoothedLook = null;
+    compassSmoothedUp = null;
     STEL.core.selection = null;               /* efface l'illustration en cours */
     STEL.core.constellations.labels_visible = false;
     addEventListener('deviceorientationabsolute', onOrientationTick);
