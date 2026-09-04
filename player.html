@@ -46,6 +46,11 @@
     font-family: var(--font);
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
+    /* Un appui repete sur ±10s (ou n'importe quel bouton) etait par moments
+       interprete comme un double-tap par le navigateur, qui zoomait la
+       page — "manipulation" garde le defilement/pincement normal mais
+       supprime specifiquement ce zoom au double-tap. */
+    touch-action: manipulation;
   }
 
   button { font-family: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
