@@ -151,12 +151,6 @@ img{max-width:100%;display:block}
 <script>
 const $ = (id) => document.getElementById(id);
 
-/* Il faut un compte pour voir sa progression : redirige vers le portail
-   avant tout le reste si personne n'est connecte. */
-import('/js/supa.js').then(function(m){ return m.requireAuth(); }).then(function(s){
-  if(!s) throw new Error('non connecte — redirection en cours');
-});
-
 /* Fond pret des que decode() resout — evite le flash blanc au chargement. */
 (function(){
   const img = document.querySelector('#pagebg img');
@@ -191,12 +185,26 @@ function setIconWithFallback(imgEl, level){
    compte, on ne fait que le lire ici. Le total est ecrit par index.html
    a chaque chargement (voir CONSTELLATIONS juste apres sa definition) ;
    53 en repli pour quelqu'un qui arriverait directement sur cette page. */
-function loadCollectedCount(){
+/* La vraie source est Supabase (table user_ekko) depuis l'arrivee des
+   comptes ; le cache local ne sert que si la requete echoue (coupure
+   reseau). C'etait justement le bug remonte : cette page ne lisait que
+   le cache, jamais rempli si l'utilisateur n'etait jamais passe par
+   index.html sur ce meme navigateur au moins une fois depuis la mise en
+   place des comptes. */
+async function loadCollectedCount(userId, supa){
   try{
-    const raw = localStorage.getItem('ekko-collected');
-    const arr = raw ? JSON.parse(raw) : [];
-    return Array.isArray(arr) ? arr.length : 0;
-  }catch(e){ return 0; }
+    const { data, error } = await supa.from('user_ekko').select('constellation_id').eq('user_id', userId);
+    if(error) throw error;
+    try{ localStorage.setItem('ekko-collected', JSON.stringify((data || []).map((r) => r.constellation_id))); }catch(e){}
+    return (data || []).length;
+  }catch(e){
+    console.warn('[ekko] collection Supabase indisponible, repli sur le cache local :', e.message);
+    try{
+      const raw = localStorage.getItem('ekko-collected');
+      const arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr.length : 0;
+    }catch(e2){ return 0; }
+  }
 }
 function loadTotal(){
   const v = parseInt(localStorage.getItem('ekko-total'), 10);
@@ -216,78 +224,84 @@ function currentLevelIndex(total, n){
   return idx;
 }
 
-const TOTAL = loadTotal();
-const N = loadCollectedCount();
-const IDX = currentLevelIndex(TOTAL, N);
-const LEVEL = LEVELS[IDX];
-const RATIO = Math.min(1, N / TOTAL);
+(async function(){
+  const supa = await import('/js/supa.js');
+  const session = await supa.requireAuth();
+  if(!session) return; // requireAuth a deja lance la redirection
 
-/* ---------- anneau ---------- */
-const R = 136, CX = 170, CY = 170;
-const CIRC = 2 * Math.PI * R;
-const fillEl = $('ring-fill');
-fillEl.setAttribute('stroke-dasharray', CIRC.toFixed(2));
-requestAnimationFrame(function(){
-  fillEl.setAttribute('stroke-dashoffset', (CIRC * (1 - RATIO)).toFixed(2));
-});
+  const TOTAL = loadTotal();
+  const N = await loadCollectedCount(session.user.id, supa.supabase);
+  const IDX = currentLevelIndex(TOTAL, N);
+  const LEVEL = LEVELS[IDX];
+  const RATIO = Math.min(1, N / TOTAL);
 
-function pt(fraction, radius){
-  const a = (-90 + 360 * fraction) * Math.PI / 180;
-  return { x: CX + radius * Math.cos(a), y: CY + radius * Math.sin(a) };
-}
+  /* ---------- anneau ---------- */
+  const R = 136, CX = 170, CY = 170;
+  const CIRC = 2 * Math.PI * R;
+  const fillEl = $('ring-fill');
+  fillEl.setAttribute('stroke-dasharray', CIRC.toFixed(2));
+  requestAnimationFrame(function(){
+    fillEl.setAttribute('stroke-dashoffset', (CIRC * (1 - RATIO)).toFixed(2));
+  });
 
-/* Un repere sur l'anneau pour chaque niveau, allume des qu'il est atteint —
-   le meme langage visuel que les autres pastilles ● / cercles ○ de l'app. */
-const ticksSvg = LEVELS.map(function(lv){
-  const p = pt(lv.min, R);
-  const reached = RATIO >= lv.min;
-  return '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + (reached ? 4.5 : 3.5) + '"'
-    + ' fill="' + (reached ? '#E3E3C4' : '#04070B') + '" stroke="' + (reached ? '#04070B' : 'rgba(227,227,196,.45)') + '"'
-    + ' stroke-width="' + (reached ? 2 : 1.2) + '"/>';
-}).join('');
-$('ring-ticks').innerHTML = ticksSvg;
-
-/* Le curseur : point vif exactement a la position actuelle sur l'anneau —
-   le meme duo pastille pleine + anneau fin que partout ailleurs dans
-   l'app (voir .d5/.r7). */
-const cur = pt(RATIO, R);
-$('ring-cursor').innerHTML =
-  '<circle cx="' + cur.x.toFixed(1) + '" cy="' + cur.y.toFixed(1) + '" r="9" fill="none" stroke="#E3E3C4" stroke-width="1.2"/>'
-  + '<circle cx="' + cur.x.toFixed(1) + '" cy="' + cur.y.toFixed(1) + '" r="4" fill="#E3E3C4"/>';
-
-/* ---------- centre ---------- */
-setIconWithFallback($('lvl-ico'), LEVEL);
-$('ring-n').textContent = N;
-$('ring-total').textContent = TOTAL;
-$('ring-level').textContent = LEVEL.name;
-$('tagline').textContent = LEVEL.tagline;
-
-/* ---------- echelle ---------- */
-const ladder = $('ladder');
-LEVELS.forEach(function(lv, i){
-  const threshold = Math.max(i === 0 ? 0 : 1, Math.ceil(lv.min * TOTAL));
-  const li = document.createElement('li');
-  li.className = 'lrow' + (i < IDX ? ' done' : i === IDX ? ' now' : '');
-  let status;
-  if(i < IDX) status = 'Atteint';
-  else if(i === IDX) status = (i === LEVELS.length - 1) ? 'Niveau actuel' : (N + ' / ' + Math.ceil((LEVELS[i+1]||{min:1}).min * TOTAL));
-  else status = 'Dès ' + threshold + ' Ekko';
-
-  let bar = '';
-  if(i === IDX && i < LEVELS.length - 1){
-    const next = LEVELS[i + 1];
-    const span = (next.min - lv.min) || 1;
-    const pct = Math.max(2, Math.min(100, Math.round(((RATIO - lv.min) / span) * 100)));
-    bar = '<div class="lrow-bar"><span style="width:' + pct + '%"></span></div>';
+  function pt(fraction, radius){
+    const a = (-90 + 360 * fraction) * Math.PI / 180;
+    return { x: CX + radius * Math.cos(a), y: CY + radius * Math.sin(a) };
   }
 
-  li.innerHTML =
-    '<span class="lico"><img alt="" data-slug="' + lv.slug + '"></span>' +
-    '<div class="lrow-mid"><div class="lrow-name">' + lv.name + '</div>' + bar + '</div>' +
-    '<div class="lrow-status">' + status + '</div>';
-  ladder.appendChild(li);
-  setIconWithFallback(li.querySelector('img'), lv);
-});
+  /* Un repere sur l'anneau pour chaque niveau, allume des qu'il est atteint —
+     le meme langage visuel que les autres pastilles ● / cercles ○ de l'app. */
+  const ticksSvg = LEVELS.map(function(lv){
+    const p = pt(lv.min, R);
+    const reached = RATIO >= lv.min;
+    return '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + (reached ? 4.5 : 3.5) + '"'
+      + ' fill="' + (reached ? '#E3E3C4' : '#04070B') + '" stroke="' + (reached ? '#04070B' : 'rgba(227,227,196,.45)') + '"'
+      + ' stroke-width="' + (reached ? 2 : 1.2) + '"/>';
+  }).join('');
+  $('ring-ticks').innerHTML = ticksSvg;
+
+  /* Le curseur : point vif exactement a la position actuelle sur l'anneau —
+     le meme duo pastille pleine + anneau fin que partout ailleurs dans
+     l'app (voir .d5/.r7). */
+  const cur = pt(RATIO, R);
+  $('ring-cursor').innerHTML =
+    '<circle cx="' + cur.x.toFixed(1) + '" cy="' + cur.y.toFixed(1) + '" r="9" fill="none" stroke="#E3E3C4" stroke-width="1.2"/>'
+    + '<circle cx="' + cur.x.toFixed(1) + '" cy="' + cur.y.toFixed(1) + '" r="4" fill="#E3E3C4"/>';
+
+  /* ---------- centre ---------- */
+  setIconWithFallback($('lvl-ico'), LEVEL);
+  $('ring-n').textContent = N;
+  $('ring-total').textContent = TOTAL;
+  $('ring-level').textContent = LEVEL.name;
+  $('tagline').textContent = LEVEL.tagline;
+
+  /* ---------- echelle ---------- */
+  const ladder = $('ladder');
+  LEVELS.forEach(function(lv, i){
+    const threshold = Math.max(i === 0 ? 0 : 1, Math.ceil(lv.min * TOTAL));
+    const li = document.createElement('li');
+    li.className = 'lrow' + (i < IDX ? ' done' : i === IDX ? ' now' : '');
+    let status;
+    if(i < IDX) status = 'Atteint';
+    else if(i === IDX) status = (i === LEVELS.length - 1) ? 'Niveau actuel' : (N + ' / ' + Math.ceil((LEVELS[i+1]||{min:1}).min * TOTAL));
+    else status = 'Dès ' + threshold + ' Ekko';
+
+    let bar = '';
+    if(i === IDX && i < LEVELS.length - 1){
+      const next = LEVELS[i + 1];
+      const span = (next.min - lv.min) || 1;
+      const pct = Math.max(2, Math.min(100, Math.round(((RATIO - lv.min) / span) * 100)));
+      bar = '<div class="lrow-bar"><span style="width:' + pct + '%"></span></div>';
+    }
+
+    li.innerHTML =
+      '<span class="lico"><img alt="" data-slug="' + lv.slug + '"></span>' +
+      '<div class="lrow-mid"><div class="lrow-name">' + lv.name + '</div>' + bar + '</div>' +
+      '<div class="lrow-status">' + status + '</div>';
+    ladder.appendChild(li);
+    setIconWithFallback(li.querySelector('img'), lv);
+  });
+})();
 </script>
 </body>
 </html>
