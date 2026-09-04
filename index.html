@@ -363,6 +363,55 @@ header{
 }
 /* bloc miroir invisible : centre le logo exactement comme dans Figma */
 .hd-mirror{opacity:0;pointer-events:none}
+
+/* ---------- recherche (en-tete, en haut a gauche) ----------
+   Icone seule sur mobile, revelee au tap ; barre deja visible sur les
+   ecrans assez larges pour l'accueillir sans se serrer contre le logo. */
+.search-wrap{position:relative;display:flex;align-items:center;gap:8px;z-index:20}
+.search-toggle{
+  width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--c20);background:none;transition:background .2s,border-color .2s;
+}
+.search-toggle:hover{background:rgba(227,227,196,.08);border-color:var(--cream)}
+.search-toggle svg{width:18px;height:18px;display:block}
+#search-input{
+  width:0;min-width:0;opacity:0;padding:0;border:1px solid transparent;background:none;
+  color:var(--cream);font-family:inherit;font-size:14px;border-radius:999px;outline:none;
+  transition:width .28s ease,opacity .2s ease,padding .28s ease,border-color .2s;
+  pointer-events:none;
+}
+#search-input::placeholder{color:var(--cream);opacity:.5}
+.search-wrap.open #search-input{
+  width:150px;opacity:1;padding:8px 16px;border-color:var(--c20);
+  background:rgba(227,227,196,.05);pointer-events:auto;
+}
+.search-wrap.open #search-input:focus{border-color:var(--cream)}
+.search-results{
+  position:absolute;top:calc(100% + 8px);left:0;min-width:230px;max-width:280px;
+  background:rgba(4,8,14,.97);border:1px solid var(--c20);border-radius:14px;
+  padding:6px;backdrop-filter:blur(12px);display:none;max-height:320px;overflow-y:auto;
+  box-shadow:0 20px 40px rgba(0,0,0,.45);
+}
+.search-results.on{display:block}
+.search-item{
+  display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;
+  cursor:pointer;transition:background .15s;font-size:13.5px;color:var(--cream);
+}
+.search-item:hover,.search-item.active{background:rgba(227,227,196,.1)}
+.search-item .si-cat{font-size:9.5px;opacity:.5;text-transform:uppercase;letter-spacing:.06em;margin-left:auto;flex:none;white-space:nowrap}
+.search-empty{padding:14px 12px;text-align:center;font-size:12.5px;color:var(--c50)}
+
+/* Bref eclat sur la carte de collection visee par un resultat de recherche. */
+.search-flash{animation:search-flash-kf 1.4s ease}
+@keyframes search-flash-kf{
+  0%,100%{box-shadow:none}
+  20%{box-shadow:0 0 0 3px rgba(227,227,196,.55)}
+}
+
+@media (min-width:900px){
+  #search-input{width:190px!important;opacity:1!important;padding:8px 16px!important;pointer-events:auto!important;border-color:var(--c20)!important}
+  .search-toggle{display:none}
+}
 .account{display:flex;align-items:center;gap:15px;flex:none}
 .account .ico{width:29.33px;height:30px;flex:none;display:block}
 .account .ico svg{width:100%;height:100%;display:block;overflow:visible}
@@ -932,16 +981,12 @@ body.collection #reticle{opacity:0;pointer-events:none}
 
 <div class="hd-bg"></div>
 <header>
-  <div class="account hd-mirror" aria-hidden="true">
-    <span class="ico">
-<svg viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15.662 22.1333L8.19531 10.6666H22.5953L15.662 22.1333Z" stroke="#E3E3C4" stroke-width="0.8"/>
-<path d="M15.6618 30L0.728516 6.53333H30.0618L15.6618 30Z" stroke="#E3E3C4" stroke-width="0.8"/>
-<path d="M15.6621 0V26.9333" stroke="#E3E3C4" stroke-width="0.8"/>
-<circle cx="15.3949" cy="13.6" r="13.2" stroke="#E3E3C4" stroke-width="0.8"/>
-</svg>
-    </span>
-    <span class="lbl">Mon compte</span>
+  <div class="search-wrap" id="search-wrap">
+    <button class="search-toggle" id="search-toggle" aria-label="Rechercher une constellation" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M19 19l-4.3-4.3"/></svg>
+    </button>
+    <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off" spellcheck="false" aria-label="Rechercher une constellation">
+    <div class="search-results" id="search-results"></div>
   </div>
 
   <div class="logo">
@@ -1083,6 +1128,13 @@ body.collection #reticle{opacity:0;pointer-events:none}
 <div id="status">Initialisation du ciel Stellarium…</div>
 
 <div class="zoom">
+  <button class="zbtn" id="z-compass" aria-label="Orienter selon ma direction réelle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.3">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 4.5L14.5 12L12 19.5L9.5 12Z" fill="#E3E3C4" stroke="none"/>
+      <circle cx="12" cy="12" r="1.3" fill="#050B14" stroke="none"/>
+    </svg>
+  </button>
   <button class="zbtn" id="z-in" aria-label="Zoomer"><svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
   <button class="zbtn" id="z-out" aria-label="Dézoomer"><svg viewBox="0 0 24 24" fill="none" stroke="#E3E3C4" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
 </div>
@@ -2770,13 +2822,114 @@ function watchSelection(stel){
   setInterval(pollSelection, 200);
 }
 
-function goToCard(delta){
-  cardIdx = (cardIdx + delta + CONSTELLATIONS.length) % CONSTELLATIONS.length;
+/* ============================================================
+   ROSE DES VENTS
+   Oriente la vue sur ce que l'utilisateur voit reellement, via la
+   boussole de l'appareil (Device Orientation). Un geste ponctuel, pas
+   un suivi continu : on lit le cap une fois, on anime la vue vers ce
+   point, puis on s'arrete — comme recentrer une carte, pas une camera
+   AR en direct. Les illustrations et les noms de constellations se
+   desactivent pendant ce temps (regarder le vrai ciel avec des noms
+   partout dessus serait plus genant qu'utile) et reviennent au premier
+   geste de l'utilisateur : glisser la vue ou changer de constellation
+   avec les fleches.
+
+   Convention d'azimut supposee ici : cap de boussole standard (0 = Nord,
+   90 = Est, sens horaire), la meme que celle documentee pour l'API de
+   script de Stellarium — mais jamais verifiee sur un vrai appareil avec
+   boussole. Si la rotation part dans le mauvais sens une fois teste,
+   il suffit d'inverser le signe de `az` ci-dessous.
+   ============================================================ */
+let compassModeActive = false;
+
+function exitCompassMode(){
+  if(!compassModeActive) return;
+  compassModeActive = false;
+  $('#z-compass').classList.remove('active');
+  try{
+    STEL.core.constellations.labels_visible = true;
+    selectInEngine(cardIdx, 0); // restaure l'illustration de la carte en cours
+  }catch(e){}
+}
+
+/** Resout avec un cap en degres (0 = Nord), ou rejette si le capteur ne
+    repond pas — pas de boussole, permission refusee, navigateur qui ne
+    supporte pas l'API. */
+function readCompassHeading(){
+  return new Promise(function(resolve, reject){
+    let settled = false;
+    function onReading(e){
+      let heading = null;
+      if(typeof e.webkitCompassHeading === 'number' && !isNaN(e.webkitCompassHeading)){
+        heading = e.webkitCompassHeading; // iOS Safari : deja le cap compas
+      }else if((e.absolute || typeof e.absolute === 'undefined') && typeof e.alpha === 'number'){
+        heading = (360 - e.alpha) % 360; // approximation usuelle sur Android/Chrome
+      }
+      if(heading != null && !settled){
+        settled = true; cleanup();
+        resolve(((heading % 360) + 360) % 360);
+      }
+    }
+    function cleanup(){
+      removeEventListener('deviceorientationabsolute', onReading);
+      removeEventListener('deviceorientation', onReading);
+    }
+    addEventListener('deviceorientationabsolute', onReading);
+    addEventListener('deviceorientation', onReading);
+    setTimeout(function(){
+      if(!settled){ cleanup(); reject(new Error("Pas de réponse du capteur d'orientation.")); }
+    }, 3000);
+  });
+}
+
+async function useRealOrientation(){
+  const btn = $('#z-compass');
+  btn.classList.add('active');
+  try{
+    /* iOS 13+ exige un geste utilisateur explicite pour cette permission —
+       ce clic en est un, la demande ne peut donc pas se faire plus tot. */
+    const DOE = window.DeviceOrientationEvent;
+    if(DOE && typeof DOE.requestPermission === 'function'){
+      const perm = await DOE.requestPermission();
+      if(perm !== 'granted'){
+        setStatus("Boussole refusée — active-la dans les réglages du navigateur pour t'orienter.");
+        btn.classList.remove('active');
+        return;
+      }
+    }
+    const heading = await readCompassHeading();
+    const az = heading * STEL.D2R;     /* voir la note de convention plus haut */
+    const alt = 45 * STEL.D2R;         /* hauteur confortable, pas plein zenith */
+    const point = STEL.s2c(az, alt);
+
+    compassModeActive = true;
+    STEL.core.selection = null;               /* efface l'illustration en cours */
+    STEL.core.constellations.labels_visible = false;
+    animateRoll(0, 1.1);                      /* haut d'ecran = zenith, orientation "naturelle" */
+    STEL.lookAt(point, 1.1);
+  }catch(e){
+    console.warn('[ekko] boussole :', e);
+    setStatus("Boussole indisponible sur cet appareil.");
+    btn.classList.remove('active');
+  }
+}
+$('#z-compass').onclick = useRealOrientation;
+
+/* Le premier geste de l'utilisateur sur le ciel (glisser, molette/pincer)
+   annule le mode boussole — Stellarium gere lui-meme le geste, on ne fait
+   qu'observer qu'il s'est produit. */
+$('#stel-canvas').addEventListener('pointerdown', exitCompassMode, { passive: true });
+$('#stel-canvas').addEventListener('wheel', exitCompassMode, { passive: true });
+
+function goToCardIndex(idx){
+  exitCompassMode();
+  cardIdx = ((idx % CONSTELLATIONS.length) + CONSTELLATIONS.length) % CONSTELLATIONS.length;
   renderCard();
   focusOnCard(1.2);
   orientToFigure(cardIdx, 1.2);
   selectInEngine(cardIdx, 850);   /* le dessin apparaît à l'arrivée du vol */
 }
+function goToCard(delta){ goToCardIndex(cardIdx + delta); }
 $('#prev').onclick = () => goToCard(-1);
 $('#next').onclick = () => goToCard(1);
 addEventListener('keydown', e => {
@@ -2985,6 +3138,94 @@ function applyCollFilter(){
   const label = collFilter === '*' ? 'figures' : ('figures — ' + collFilter);
   document.getElementById('coll-count').textContent = shown + ' ' + label;
 }
+
+/* ============================================================
+   RECHERCHE
+   Icone seule sur mobile (revelee au tap), barre deja ouverte sur les
+   ecrans larges — voir le CSS pres de .search-wrap. Fonctionne sur les
+   deux vues : saute directement a la constellation sur la carte du
+   ciel, fait defiler et clignoter sa vignette sur la Collection.
+   ============================================================ */
+(function(){
+  const wrap = $('#search-wrap');
+  const toggle = $('#search-toggle');
+  const input = $('#search-input');
+  const results = $('#search-results');
+  if(!wrap || !toggle || !input || !results) return;
+
+  const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  function openSearch(){
+    wrap.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    input.focus();
+  }
+  function closeSearch(){
+    wrap.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    results.classList.remove('on');
+    input.value = '';
+  }
+  toggle.addEventListener('click', function(){
+    if(wrap.classList.contains('open')) closeSearch(); else openSearch();
+  });
+
+  function renderResults(list){
+    if(!list.length){
+      results.innerHTML = '<div class="search-empty">Aucune constellation trouvée.</div>';
+      results.classList.add('on');
+      return;
+    }
+    results.innerHTML = list.slice(0, 8).map(function(c){
+      return '<div class="search-item" data-id="' + c.id + '">'
+        + '<span>' + c.name + '</span>'
+        + '<span class="si-cat">' + c.cat + '</span>'
+        + '</div>';
+    }).join('');
+    results.classList.add('on');
+  }
+
+  input.addEventListener('input', function(){
+    const q = norm(input.value.trim());
+    if(!q){ results.classList.remove('on'); return; }
+    renderResults(CONSTELLATIONS.filter((c) => norm(c.name).includes(q)));
+  });
+
+  function jumpToCollectionCard(id){
+    if(!collBuilt) buildCollection();
+    if(collFilter !== '*'){
+      collFilter = '*';
+      document.querySelectorAll('#coll-filters .filt').forEach(function(x){
+        x.classList.toggle('on', x.dataset.key === '*');
+      });
+      applyCollFilter();
+    }
+    const el = document.querySelector('#coll-grid .card[data-id="' + id + '"]');
+    if(!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.remove('search-flash');
+    requestAnimationFrame(() => el.classList.add('search-flash'));
+    setTimeout(() => el.classList.remove('search-flash'), 1600);
+  }
+
+  results.addEventListener('click', function(e){
+    const item = e.target.closest('.search-item');
+    if(!item) return;
+    const id = item.dataset.id;
+    const idx = CONSTELLATIONS.findIndex((c) => c.id === id);
+    if(idx < 0) return;
+    if(document.body.classList.contains('collection')) jumpToCollectionCard(id);
+    else goToCardIndex(idx);
+    closeSearch();
+  });
+
+  document.addEventListener('pointerdown', function(e){
+    if(!wrap.contains(e.target)) closeSearch();
+  });
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeSearch();
+  });
+})();
 
 function showCollection(on){
   document.body.classList.toggle('collection', on);
