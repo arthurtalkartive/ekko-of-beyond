@@ -93,6 +93,10 @@ html,body{height:100%;overflow:hidden}
 body{
   font-family:'Afacad',system-ui,sans-serif;color:#fff;
   background:linear-gradient(180deg,#000 0%,#0A1931 100%);
+  /* Des taps rapprochés (zoom +/-, ouverture/fermeture de carte) pouvaient
+     etre lus comme un double-tap par le navigateur, qui zoomait toute la
+     page — supprime specifiquement ce geste, sans toucher au reste. */
+  touch-action:manipulation;
 }
 button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
@@ -177,17 +181,20 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
    fond, le logo reste un point fixe pendant toute la traversee. */
 #sg-content{width:100%;transition:opacity .32s ease;opacity:1}
 #sg-content.fading{opacity:0}
-.sg-acts{display:flex;flex-direction:column;gap:14px;align-items:center}
+.sg-acts{display:flex;flex-direction:column;gap:14px;align-items:center;width:100%}
 /* Le rang bouton+ornements : les decorations Figma (fournies en SVG,
    Left_side/Right_side) vivent A COTE du bouton, pas dedans a la place
-   du texte — un bouton plus etroit avec les ornements qui le prolongent
-   de chaque cote, exactement le decoupage Figma. */
-.sg-btn-row{display:flex;align-items:center}
+   du texte — un bouton qui se laisse prolonger de chaque cote par ces
+   ornements, exactement le decoupage Figma. Meme largeur et meme taille
+   de texte que les ecrans de formulaire (auth-submit) : demande
+   explicite, la maquette elle-meme etait plus etroite mais rendait les
+   boutons trop petits a l'usage. */
+.sg-btn-row{display:flex;align-items:center;width:100%}
 .sg-orn{flex:none;width:23px;height:8px;display:block}
 .sg-btn{
-  display:flex;align-items:center;justify-content:center;
-  width:min(270px,78vw);padding:15px 30px;border-radius:20000px;box-sizing:border-box;
-  text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.02em;
+  display:flex;align-items:center;justify-content:center;flex:1 1 auto;min-width:0;
+  width:100%;padding:15px 30px;border-radius:20000px;box-sizing:border-box;
+  text-decoration:none;font-weight:700;font-size:18px;letter-spacing:.02em;
   text-transform:uppercase;color:var(--cream);
   border:1px solid rgba(227,227,196,.5);
   transition:background .2s,border-color .2s;
@@ -200,7 +207,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 .sg-btn.primary:hover{background:linear-gradient(180deg,rgba(227,227,196,.08) 0%,rgba(227,227,196,.28) 100%)}
 .sg-btn .txt{white-space:nowrap}
 @media (max-width:420px){
-  .sg-btn{font-size:13.5px;padding:13px 20px}
+  .sg-btn{font-size:14px;padding:13px 20px}
   .sg-logo{margin-bottom:32px}
 }
 
@@ -609,7 +616,18 @@ button.mi{width:100%;text-align:left;border:none;background:none;
   transition:max-height .28s ease,opacity .22s ease,margin-top .28s ease;
   margin-top:0;
 }
-.card:hover .c-acts,.card:focus-within .c-acts,.card.open .c-acts{max-height:46px;opacity:1;margin-top:12px}
+.card.open .c-acts{max-height:46px;opacity:1;margin-top:12px}
+/* :hover/:focus-within ne pilotent la revelation qu'aux vrais pointeurs
+   a survol (souris) : sur un ecran tactile, iOS notamment applique un
+   :hover "collant" apres un tap qui ne se relache qu'au tap suivant
+   ailleurs — la carte se refermait alors correctement en JS (classe
+   .open retiree, fleches qui redescendent) tout en restant visuellement
+   ouverte, ce :hover fantome maintenant .c-acts deploye tout seul. Sans
+   pointeur fin, .open (entierement pilotee par le JS de tap) reste la
+   seule source de verite. */
+@media (hover:hover) and (pointer:fine){
+  .card:hover .c-acts,.card:focus-within .c-acts{max-height:46px;opacity:1;margin-top:12px}
+}
 
 .act{
   display:flex;align-items:center;justify-content:center;gap:10px;
@@ -652,15 +670,21 @@ button.mi{width:100%;text-align:left;border:none;background:none;
    juste pas reservee a lui ici. */
 .c-acts.stack{flex-direction:column;gap:8px}
 .c-acts.stack .act{width:100%}
-.card:hover .c-acts.stack,.card:focus-within .c-acts.stack,.card.open .c-acts.stack{max-height:92px}
+.card.open .c-acts.stack{max-height:92px}
+@media (hover:hover) and (pointer:fine){
+  .card:hover .c-acts.stack,.card:focus-within .c-acts.stack{max-height:92px}
+}
 
 @media (max-width:560px){
   .c-acts{gap:8px}
-  .card:hover .c-acts,.card:focus-within .c-acts,.card.open .c-acts{max-height:92px}
+  .card.open .c-acts{max-height:92px}
   .c-acts{flex-direction:column}
   .act{padding:9px 18px;font-size:13px}
   .act.more{padding:9px 18px}
   .act.collect .orn,.act.remind .orn,.act.reminder-done .orn{display:none}
+}
+@media (max-width:560px) and (hover:hover) and (pointer:fine){
+  .card:hover .c-acts,.card:focus-within .c-acts{max-height:92px}
 }
 
 /* ================= COLLECTION =================
@@ -998,6 +1022,7 @@ body.collection #reticle{opacity:0;pointer-events:none}
     <a class="mi" href="/constellation-lab">Banc d'essai constellation</a>
     <a class="mi" href="/calibration">Calibration audio</a>
     <a class="mi" href="/studio">Studio des contenus</a>
+    <a class="mi" href="/membres">Gestion des membres</a>
     <a class="mi" href="/tools">Tous les outils</a>
     <span class="mi-sep"></span>
   </div>
