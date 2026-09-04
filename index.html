@@ -165,18 +165,30 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 #splash-gate.on{opacity:1;pointer-events:auto}
 #splash-gate.no-anim{transition:none}
 .sg-inner{width:min(400px,100%);display:flex;flex-direction:column;align-items:center;margin:auto 0}
-.sg-logo{width:min(160px,52vw);margin-bottom:40px;flex:none;transition:margin .4s ease}
+/* Deux tailles de logo, pas une seule : la maquette du portail montre un
+   logo bien plus grand que celui des ecrans de formulaire — cf. Figma
+   94:548 (logo ~305px pour un cadre de 1440) contre 94:704 (~153px).
+   #splash-gate.form-screen bascule sur la petite taille des que le
+   contenu sous le logo n'est plus les deux boutons. */
+.sg-logo{width:min(230px,58vw);margin-bottom:40px;flex:none;transition:width .4s ease,margin .4s ease}
+#splash-gate.form-screen .sg-logo{width:min(150px,40vw);margin-bottom:28px}
 .sg-logo svg,.sg-logo img{width:100%;display:block}
 /* Le contenu sous le logo change d'un etat a l'autre : lui seul se
    fond, le logo reste un point fixe pendant toute la traversee. */
 #sg-content{width:100%;transition:opacity .32s ease;opacity:1}
 #sg-content.fading{opacity:0}
-.sg-acts{display:flex;flex-direction:column;gap:14px;width:100%}
+.sg-acts{display:flex;flex-direction:column;gap:14px;align-items:center}
+/* Le rang bouton+ornements : les decorations Figma (fournies en SVG,
+   Left_side/Right_side) vivent A COTE du bouton, pas dedans a la place
+   du texte — un bouton plus etroit avec les ornements qui le prolongent
+   de chaque cote, exactement le decoupage Figma. */
+.sg-btn-row{display:flex;align-items:center}
+.sg-orn{flex:none;width:23px;height:8px;display:block}
 .sg-btn{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;padding:15px 30px;border-radius:20000px;box-sizing:border-box;
+  display:flex;align-items:center;justify-content:center;
+  width:min(270px,78vw);padding:15px 30px;border-radius:20000px;box-sizing:border-box;
   text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.02em;
-  text-transform:uppercase;color:#E3E3C4;
+  text-transform:uppercase;color:var(--cream);
   border:1px solid rgba(227,227,196,.5);
   transition:background .2s,border-color .2s;
 }
@@ -186,9 +198,6 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   background:linear-gradient(180deg,rgba(227,227,196,.04) 0%,rgba(227,227,196,.2) 100%);
 }
 .sg-btn.primary:hover{background:linear-gradient(180deg,rgba(227,227,196,.08) 0%,rgba(227,227,196,.28) 100%)}
-.sg-btn .ln{flex:1 1 auto;height:1px;background:rgba(227,227,196,.5);min-width:8px}
-.sg-btn .r7{width:7px;height:7px;border-radius:50%;border:1px solid #E3E3C4;flex:none}
-.sg-btn .d5{width:5px;height:5px;border-radius:50%;background:#E3E3C4;flex:none}
 .sg-btn .txt{white-space:nowrap}
 @media (max-width:420px){
   .sg-btn{font-size:13.5px;padding:13px 20px}
@@ -201,10 +210,10 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
    JS qui construit chaque ecran n'ait rien de nouveau a apprendre. */
 .auth-head{width:100%;display:flex;flex-direction:column;align-items:center}
 .auth-title{
-  font-size:clamp(24px,7vw,36px);font-weight:700;text-transform:uppercase;
+  font-size:clamp(26px,8vw,42px);font-weight:700;text-transform:uppercase;
   color:var(--cream);text-align:center;width:100%;line-height:1.1;
 }
-.auth-rule{display:flex;align-items:center;gap:5px;width:100%;margin-top:14px}
+.auth-rule{display:flex;align-items:center;gap:5px;width:100%;margin-top:10px}
 .auth-rule .ln{flex:1 1 auto;height:1px;background:var(--cream-50)}
 .auth-rule .r7{width:7px;height:7px;border-radius:50%;border:1px solid var(--cream);flex:none}
 .auth-rule .d5{width:5px;height:5px;border-radius:50%;background:var(--cream);flex:none}
@@ -213,10 +222,15 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 
 .auth-note{
   margin-top:22px;font-size:14.5px;line-height:1.5;text-align:center;
-  color:var(--cream-50);max-width:38ch;
+  color:var(--cream-50);width:100%;
 }
 
-.auth-form{width:100%;display:flex;flex-direction:column;gap:22px;margin-top:36px}
+/* Deux paliers d'espacement, comme dans la maquette : 60px entre les
+   grands blocs (titre / formulaire / bouton), 25px entre les elements
+   a l'interieur du bloc formulaire (Google, "ou", champs). Un seul gap
+   uniforme aplatissait ces deux echelles en une seule. */
+.auth-form{width:100%;display:flex;flex-direction:column;gap:60px;margin-top:60px}
+.auth-group{width:100%;display:flex;flex-direction:column;gap:25px}
 
 .g-btn{
   width:100%;background:#fff;border-radius:20000px;padding:15px 30px;
@@ -225,14 +239,14 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 .g-btn:hover{background:#EFEFEF}
 .g-btn svg{width:24px;height:24px;flex:none;display:block}
-.g-btn span{font-weight:700;font-size:16px;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.g-btn span{font-weight:700;font-size:18px;text-transform:uppercase;color:var(--ink);white-space:nowrap}
 
 .auth-or{display:flex;align-items:center;gap:14px;width:100%}
 .auth-or .ln-wrap{flex:1 1 0;display:flex;align-items:center;gap:5px;height:7px}
 .auth-or .ln{flex:1 1 auto;height:1px;background:var(--cream-50)}
 .auth-or .r7{width:7px;height:7px;border-radius:50%;border:1px solid var(--cream);flex:none}
 .auth-or .d5{width:5px;height:5px;border-radius:50%;background:var(--cream);flex:none}
-.auth-or span{font-size:15px;font-weight:700;text-transform:uppercase;color:var(--cream);flex:none}
+.auth-or span{font-size:18px;font-weight:700;text-transform:uppercase;color:var(--cream);flex:none}
 
 .auth-fields{display:flex;flex-direction:column;gap:10px;width:100%}
 .auth-row{display:flex;gap:5px;width:100%}
@@ -245,7 +259,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 .auth-field:focus-within{border-color:#fff}
 .auth-field input{
   width:100%;background:none;border:none;outline:none;padding:14px 0;
-  font-family:inherit;font-weight:700;font-size:16px;text-transform:uppercase;color:var(--cream);
+  font-family:inherit;font-weight:700;font-size:18px;text-transform:uppercase;color:var(--cream);
 }
 .auth-field input::placeholder{color:var(--cream);opacity:.5}
 .auth-field input:-webkit-autofill{
@@ -260,7 +274,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 .auth-inline-link:hover{color:var(--cream)}
 
-.auth-actions{display:flex;flex-direction:column;gap:18px;align-items:center;width:100%}
+.auth-actions{display:flex;flex-direction:column;gap:20px;align-items:center;width:100%}
 .auth-submit{
   position:relative;width:100%;border:1px solid var(--cream);border-radius:20000px;
   background:linear-gradient(180deg,rgba(227,227,196,.04) 0%,rgba(227,227,196,.2) 100%);
@@ -269,7 +283,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 .auth-submit:hover{background:linear-gradient(180deg,rgba(227,227,196,.08) 0%,rgba(227,227,196,.28) 100%)}
 .auth-submit:disabled{opacity:.55;pointer-events:none}
-.auth-submit .txt{font-weight:700;font-size:16px;text-transform:uppercase;color:var(--cream);white-space:nowrap}
+.auth-submit .txt{font-weight:700;font-size:18px;text-transform:uppercase;color:var(--cream);white-space:nowrap}
 .auth-submit .spin{
   width:16px;height:16px;border-radius:50%;border:2px solid var(--c20);border-top-color:var(--cream);
   animation:auth-spin .7s linear infinite;display:none;
@@ -278,7 +292,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 .auth-submit.loading .spin{display:block;margin-left:10px}
 @keyframes auth-spin{to{transform:rotate(360deg)}}
 
-.auth-switch{font-size:13px;font-weight:700;text-transform:uppercase;color:#fff;text-decoration:underline;
+.auth-switch{font-size:14px;font-weight:700;text-transform:uppercase;color:#fff;text-decoration:underline;
   cursor:pointer;background:none;border:none;font-family:inherit}
 .auth-switch:hover{opacity:.8}
 
@@ -2008,11 +2022,14 @@ const EKKO_SESSION = import('/js/supa.js').then(function(m){ return m.getSession
       return;
     }
 
-    /* les traces animees restent en Lottie */
+    /* les traces animees restent en Lottie — loop:false : elle se joue
+       une fois puis se fige sur la derniere image (comportement Lottie
+       par defaut sans boucle). En boucle, le retour a la premiere image
+       creait un saut visible a chaque cycle. */
     try{
       lottie.loadAnimation({
         container: document.getElementById('splash-fond'),
-        renderer: 'svg', loop: true, autoplay: true,
+        renderer: 'svg', loop: false, autoplay: true,
         path: '/assets/lottie/fond.json',
       });
     }catch(e){ console.warn('[ekko] traces :', e); }
@@ -3465,11 +3482,11 @@ const SCREEN_TO_PATH = {
 const SCREENS = {
   gate: function(){
     return '<div class="sg-acts">'
-      + '<a class="sg-btn primary" href="/inscription" data-nav="inscription">'
-        + '<span class="d5"></span><span class="r7"></span><span class="ln"></span>'
-        + '<span class="txt">Démarrer l\u2019aventure</span>'
-        + '<span class="ln"></span><span class="r7"></span><span class="d5"></span>'
-      + '</a>'
+      + '<div class="sg-btn-row">'
+        + '<img class="sg-orn" src="/assets/img/deco/btn-left.svg" alt="" width="23" height="8">'
+        + '<a class="sg-btn primary" href="/inscription" data-nav="inscription"><span class="txt">Démarrer l\u2019aventure</span></a>'
+        + '<img class="sg-orn" src="/assets/img/deco/btn-right.svg" alt="" width="23" height="8">'
+      + '</div>'
       + '<a class="sg-btn" href="/connexion" data-nav="connexion"><span class="txt">Connexion</span></a>'
       + '</div>';
   },
@@ -3477,17 +3494,19 @@ const SCREENS = {
   inscription: function(){
     return '<div class="auth-head"><h1 class="auth-title">Démarrer l\u2019aventure</h1>' + RULE + '</div>'
       + '<form class="auth-form" data-screen="inscription" novalidate>'
-      + '<button type="button" class="g-btn" data-google>' + GOOGLE_SVG + '<span>Connexion avec Google</span></button>'
-      + OR
-      + '<div class="auth-fields">'
-        + '<div class="auth-row">'
-          + '<div class="auth-field"><input type="text" name="first_name" placeholder="Nom" autocomplete="family-name" required></div>'
-          + '<div class="auth-field"><input type="text" name="last_name" placeholder="Prénom" autocomplete="given-name" required></div>'
+      + '<div class="auth-group">'
+        + '<button type="button" class="g-btn" data-google>' + GOOGLE_SVG + '<span>Connexion avec Google</span></button>'
+        + OR
+        + '<div class="auth-fields">'
+          + '<div class="auth-row">'
+            + '<div class="auth-field"><input type="text" name="first_name" placeholder="Nom" autocomplete="family-name" required></div>'
+            + '<div class="auth-field"><input type="text" name="last_name" placeholder="Prénom" autocomplete="given-name" required></div>'
+          + '</div>'
+          + '<div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div>'
+          + '<div class="auth-field"><input type="password" name="password" placeholder="Mot de passe" autocomplete="new-password" minlength="6" required></div>'
         + '</div>'
-        + '<div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div>'
-        + '<div class="auth-field"><input type="password" name="password" placeholder="Mot de passe" autocomplete="new-password" minlength="6" required></div>'
+        + '<div class="auth-msg"></div>'
       + '</div>'
-      + '<div class="auth-msg"></div>'
       + '<div class="auth-actions">'
         + '<button type="submit" class="auth-submit"><span class="txt">Démarrer l\u2019aventure</span><span class="spin"></span></button>'
         + '<button type="button" class="auth-switch" data-nav="connexion">J\u2019ai déjà un compte</button>'
@@ -3497,14 +3516,16 @@ const SCREENS = {
   connexion: function(){
     return '<div class="auth-head"><h1 class="auth-title">Reprendre l\u2019aventure</h1>' + RULE + '</div>'
       + '<form class="auth-form" data-screen="connexion" novalidate>'
-      + '<button type="button" class="g-btn" data-google>' + GOOGLE_SVG + '<span>Connexion avec Google</span></button>'
-      + OR
-      + '<div class="auth-fields">'
-        + '<div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div>'
-        + '<div class="auth-field"><input type="password" name="password" placeholder="Mot de passe" autocomplete="current-password" required></div>'
+      + '<div class="auth-group">'
+        + '<button type="button" class="g-btn" data-google>' + GOOGLE_SVG + '<span>Connexion avec Google</span></button>'
+        + OR
+        + '<div class="auth-fields">'
+          + '<div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div>'
+          + '<div class="auth-field"><input type="password" name="password" placeholder="Mot de passe" autocomplete="current-password" required></div>'
+        + '</div>'
+        + '<button type="button" class="auth-inline-link" data-nav="mdp-oublie">Mot de passe oublié ?</button>'
+        + '<div class="auth-msg"></div>'
       + '</div>'
-      + '<button type="button" class="auth-inline-link" data-nav="mdp-oublie">Mot de passe oublié ?</button>'
-      + '<div class="auth-msg"></div>'
       + '<div class="auth-actions">'
         + '<button type="submit" class="auth-submit"><span class="txt">Reprendre l\u2019aventure</span><span class="spin"></span></button>'
         + '<button type="button" class="auth-switch" data-nav="inscription">Je n\u2019ai pas encore de compte</button>'
@@ -3515,8 +3536,10 @@ const SCREENS = {
     return '<div class="auth-head"><h1 class="auth-title">Mot de passe oublié</h1>' + RULE + '</div>'
       + '<p class="auth-note">Indique l\u2019adresse avec laquelle tu t\u2019es inscrit : on t\u2019envoie un lien pour choisir un nouveau mot de passe.</p>'
       + '<form class="auth-form" data-screen="mdp-oublie" novalidate>'
-      + '<div class="auth-fields"><div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div></div>'
-      + '<div class="auth-msg"></div>'
+      + '<div class="auth-group">'
+        + '<div class="auth-fields"><div class="auth-field"><input type="email" name="email" placeholder="Adresse email" autocomplete="email" required></div></div>'
+        + '<div class="auth-msg"></div>'
+      + '</div>'
       + '<div class="auth-actions">'
         + '<button type="submit" class="auth-submit"><span class="txt">Envoyer le lien</span><span class="spin"></span></button>'
         + '<button type="button" class="auth-switch" data-nav="connexion">Retour à la connexion</button>'
@@ -3527,11 +3550,13 @@ const SCREENS = {
     return '<div class="auth-head"><h1 class="auth-title">Nouveau mot de passe</h1>' + RULE + '</div>'
       + '<p class="auth-note" data-reinit-note>Choisis le mot de passe qui remplacera l\u2019ancien.</p>'
       + '<form class="auth-form" data-screen="reinit" novalidate>'
-      + '<div class="auth-fields">'
-        + '<div class="auth-field"><input type="password" name="password" placeholder="Nouveau mot de passe" autocomplete="new-password" minlength="6" required></div>'
-        + '<div class="auth-field"><input type="password" name="confirm" placeholder="Confirme le mot de passe" autocomplete="new-password" minlength="6" required></div>'
+      + '<div class="auth-group">'
+        + '<div class="auth-fields">'
+          + '<div class="auth-field"><input type="password" name="password" placeholder="Nouveau mot de passe" autocomplete="new-password" minlength="6" required></div>'
+          + '<div class="auth-field"><input type="password" name="confirm" placeholder="Confirme le mot de passe" autocomplete="new-password" minlength="6" required></div>'
+        + '</div>'
+        + '<div class="auth-msg"></div>'
       + '</div>'
-      + '<div class="auth-msg"></div>'
       + '<div class="auth-actions">'
         + '<button type="submit" class="auth-submit"><span class="txt">Enregistrer</span><span class="spin"></span></button>'
         + '<button type="button" class="auth-switch" data-nav="connexion">Retour à la connexion</button>'
@@ -3546,6 +3571,10 @@ let recoveryReady = false; // valide seulement sur l'ecran reinit, voir plus bas
 function renderScreen(name){
   currentScreen = name;
   sgContent.innerHTML = SCREENS[name]();
+  /* Le grand logo n'est que pour le portail ; tous les ecrans de
+     formulaire (inscription, connexion...) utilisent la petite taille
+     de la maquette Figma correspondante. */
+  document.getElementById('splash-gate').classList.toggle('form-screen', name !== 'gate');
   if(name === 'reinit') checkRecoverySession();
 }
 
