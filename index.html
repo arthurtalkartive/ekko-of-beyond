@@ -514,6 +514,17 @@ a.account{text-decoration:none}
   display:flex;align-items:center;justify-content:center;transition:background .2s}
 .zbtn:active{background:rgba(227,227,196,.32)}
 .zbtn svg{width:24px;height:24px;display:block}
+/* Mode boussole actif : fond dore plein, pictogramme fonce — l'inverse
+   du bouton au repos, pour que l'etat "en train de suivre le geste"
+   saute aux yeux plutot que de se deviner au seul contour "active" du
+   bouton (voir useRealOrientation/exitCompassMode plus bas). */
+#z-compass.active{
+  background:linear-gradient(180deg,#E3E3C4 0%,#EDEDD8 100%);
+  border-color:#E3E3C4;
+}
+#z-compass.active svg{stroke:#050B14}
+#z-compass.active svg path{fill:#050B14}
+#z-compass.active svg circle:last-child{fill:#E3E3C4}
 /* Reserve au tactile (mobile/tablette) : sur un poste a souris, il n'y a
    pas de boussole a lire, le bouton n'a donc rien a faire. */
 @media (hover:hover) and (pointer:fine){
@@ -3216,6 +3227,13 @@ addEventListener('keydown', e => {
     }
     if(moved) return;                       // glissement insuffisant : pas un tap
     if(interactiveTarget(e.target)) return; // un vrai bouton gere deja son propre clic
+
+    /* Un tap ici — sur une carte ou sur le ciel — c'est l'utilisateur qui
+       reprend la main sur la navigation : le mode boussole n'a plus lieu
+       d'etre (voir aussi les ecouteurs pointerdown/wheel poses sur le
+       canvas, qui couvrent le glissement — ceci couvre le tap, y
+       compris sur une carte qui n'est pas un enfant du canvas). */
+    exitCompassMode();
 
     /* Sinon, un vrai tap :
        - sur une carte fermee, hors bouton -> l'ouvre ;
