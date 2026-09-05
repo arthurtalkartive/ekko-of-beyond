@@ -2933,6 +2933,7 @@ function watchSelection(stel){
 let compassModeActive = false;
 let compassLastTick = 0;
 let compassSmoothedQuat = null; // seul et unique etat lisse, tout en decoule
+let compassUsingAbsolute = false; // voir la note au-dessus de onAbsoluteTick/onRelativeTick
 
 /** Matrice de rotation Terre -> appareil (ordre Z-X-Y intrinseque),
     verbatim de l'exemple chiffre du W3C — voir le commentaire au-dessus
@@ -3006,8 +3007,9 @@ function exitCompassMode(){
   if(!compassModeActive) return;
   compassModeActive = false;
   compassSmoothedQuat = null;
-  removeEventListener('deviceorientationabsolute', onOrientationTick);
-  removeEventListener('deviceorientation', onOrientationTick);
+  compassUsingAbsolute = false;
+  removeEventListener('deviceorientationabsolute', onAbsoluteTick);
+  removeEventListener('deviceorientation', onRelativeTick);
   $('#z-compass').classList.remove('active');
   try{
     STEL.core.constellations.labels_visible = true;
@@ -3015,24 +3017,45 @@ function exitCompassMode(){
   }catch(e){}
 }
 
-function onOrientationTick(e){
+/* Deux evenements distincts existent : deviceorientationabsolute, garanti
+   cale sur le vrai nord quand il existe, et deviceorientation, qui peut
+   tout aussi bien etre absolu (webkitCompassHeading fourni, cas iOS) que
+   purement relatif a un point de depart arbitraire (certains Android,
+   ou l'absolu est indisponible). Le bug remonte — le nord qui "suit" au
+   lieu de rester fixe apres un demi-tour — venait d'ecouter les DEUX en
+   meme temps et de traiter chaque evenement recu, quelle que soit sa
+   source : des qu'un evenement relatif se glissait entre deux evenements
+   absolus, sa reference (arbitraire, pas le vrai nord) prenait
+   momentanement le dessus, redefinissant le "nord" sur la direction du
+   telephone a cet instant precis. Desormais, l'absolu est toujours
+   prioritaire et EXCLUSIF des qu'il commence a arriver ; le relatif n'est
+   utilise qu'en son absence totale (older Android sans magnetometre,
+   ou avant que le tout premier evenement absolu n'arrive). */
+function onAbsoluteTick(e){
+  compassUsingAbsolute = true;
+  processOrientation(e.alpha, e.beta, e.gamma, null);
+}
+function onRelativeTick(e){
+  if(compassUsingAbsolute) return; // l'absolu a deja pris le relais, on ignore le relatif
+  processOrientation(e.alpha, e.beta, e.gamma, e.webkitCompassHeading);
+}
+
+function processOrientation(rawAlpha, beta, gamma, webkitCompassHeading){
   const now = performance.now();
   if(now - compassLastTick < 32) return; // ~30 rafraichissements/s
   compassLastTick = now;
-  if(typeof e.alpha !== 'number' || typeof e.beta !== 'number' || typeof e.gamma !== 'number') return;
+  if(typeof rawAlpha !== 'number' || typeof beta !== 'number' || typeof gamma !== 'number') return;
 
   /* Sur iOS, deviceorientation seul n'est pas cale sur le vrai nord —
      webkitCompassHeading, lui, l'est. On en tire un alpha equivalent
-     avant de calculer plutot que d'utiliser alpha tel quel. Sur Android,
-     l'evenement "absolute" est deja correctement cale, alpha sert sans
-     retouche. */
-  let alpha = e.alpha;
-  if(typeof e.webkitCompassHeading === 'number' && !isNaN(e.webkitCompassHeading)){
-    alpha = 360 - e.webkitCompassHeading;
+     avant de calculer plutot que d'utiliser alpha tel quel. */
+  let alpha = rawAlpha;
+  if(typeof webkitCompassHeading === 'number' && !isNaN(webkitCompassHeading)){
+    alpha = 360 - webkitCompassHeading;
   }
 
   const D2R = STEL.D2R;
-  const raw = ekkoMatrixToQuat(ekkoRotationMatrix(alpha*D2R, e.beta*D2R, e.gamma*D2R));
+  const raw = ekkoMatrixToQuat(ekkoRotationMatrix(alpha*D2R, beta*D2R, gamma*D2R));
   compassSmoothedQuat = compassSmoothedQuat ? ekkoQuatSlerp(compassSmoothedQuat, raw, COMPASS_SMOOTHING) : raw;
 
   try{
@@ -3086,10 +3109,11 @@ async function useRealOrientation(){
     }
     compassModeActive = true;
     compassSmoothedQuat = null;
+    compassUsingAbsolute = false;
     STEL.core.selection = null;               /* efface l'illustration en cours */
     STEL.core.constellations.labels_visible = false;
-    addEventListener('deviceorientationabsolute', onOrientationTick);
-    addEventListener('deviceorientation', onOrientationTick);
+    addEventListener('deviceorientationabsolute', onAbsoluteTick);
+    addEventListener('deviceorientation', onRelativeTick);
   }catch(e){
     console.warn('[ekko] boussole :', e);
     setStatus("Boussole indisponible sur cet appareil.");
